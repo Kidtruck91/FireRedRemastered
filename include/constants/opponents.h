@@ -746,12 +746,214 @@
 #define TRAINER_CHAMPION_REMATCH_BULBASAUR       740
 #define TRAINER_CHAMPION_REMATCH_CHARMANDER      741
 #define TRAINER_CUE_BALL_PAXTON                  742
+#define TRAINER_LEADER_WALKERA                   743
+#define TRAINER_LEADER_WALKERB                   744
+#define TRAINER_LEADER_WALKERC                   745
+#define TRAINER_LEADER_WALKERREMATCHA            746
+#define TRAINER_LEADER_WALKERREMATCHB            747
+#define TRAINER_LEADER_WALKERREMATCHC            748
+#define TRAINER_LEADER_BUGSYA                    749
+#define TRAINER_LEADER_BUGSYB                    750
+#define TRAINER_LEADER_BUGSYC                    751
+#define TRAINER_LEADER_BUGSYREMATCHA             752
+#define TRAINER_LEADER_BUGSYREMATCHB             753
+#define TRAINER_LEADER_BUGSYREMATCHC             754
+#define TRAINER_LEADER_WHITNEYA                  756
+#define TRAINER_LEADER_WHITNEYB                  757
+#define TRAINER_LEADER_WHITNEYC                  758
+#define TRAINER_LEADER_WHITNEYREMATCHA           759
+#define TRAINER_LEADER_WHITNEYREMATCHB           760
+#define TRAINER_LEADER_WHITNEYREMATCHC           761
+#define TRAINER_LEADER_MORTYA                    762
+#define TRAINER_LEADER_MORTYB                    763
+#define TRAINER_LEADER_MORTYC                    764
+#define TRAINER_LEADER_MORTYREMATCHA             765
+#define TRAINER_LEADER_MORTYREMATCHB             766
+#define TRAINER_LEADER_MORTYREMATCHC             767
+#define TRAINER_LEADER_CHUCKA                    768
+#define TRAINER_LEADER_CHUCKB                    769
+#define TRAINER_LEADER_CHUCKC                    770
+#define TRAINER_LEADER_CHUCKREMATCHA             771
+#define TRAINER_LEADER_CHUCKREMATCHB             772
+#define TRAINER_LEADER_CHUCKREMATCHC             773
+#define TRAINER_LEADER_JASMINEA                  774
+#define TRAINER_LEADER_JASMINEB                  775
+#define TRAINER_LEADER_JASMINEC                  776
+#define TRAINER_LEADER_JASMINEREMATCHA           777
+#define TRAINER_LEADER_JASMINEREMATCHB           778
+#define TRAINER_LEADER_JASMINEREMATCHC           779
+#define TRAINER_LEADER_PRYCEA                    780
+#define TRAINER_LEADER_PRYCEB                    781   
+#define TRAINER_LEADER_PRYCEC                    782
+#define TRAINER_LEADER_PRYCEREMATCHA             783
+#define TRAINER_LEADER_PRYCEREMATCHB             784
+#define TRAINER_LEADER_PRYCEREMATCHC             785
+#define TRAINER_LEADER_CLAIRA                    786
+#define TRAINER_LEADER_CLAIRB                    787
+#define TRAINER_LEADER_CLAIRC                    788
+#define TRAINER_LEADER_CLAIRREMATCHA             789
+#define TRAINER_LEADER_CLAIRREMATCHB             790
+#define TRAINER_LEADER_CLAIRREMATCHC             791
+#define TRAINER_LEADER_BROCKREMATCHA             792
+#define TRAINER_LEADER_BROCKREMATCHB             793
+#define TRAINER_LEADER_MISTYREMATCHA             794
+#define TRAINER_LEADER_MISTYREMATCHB             795
+#define TRAINER_LEADER_LT_SURGEREMATCHA          796
+#define TRAINER_LEADER_LT_SURGEREMATCHB          797
+#define TRAINER_LEADER_ERIKAREMATCHA             798
+#define TRAINER_LEADER_ERIKAREMATCHB             799
+#define TRAINER_LEADER_KOGAREMATCHA              800
+#define TRAINER_LEADER_KOGAREMATCHB              801
+#define TRAINER_LEADER_BLAINEREMATCHA            802
+#define TRAINER_LEADER_BLAINEREMATCHB            803
+#define TRAINER_LEADER_SABRINAREMATCHA           804
+#define TRAINER_LEADER_SABRINAREMATCHB           805
+
+#define TRAINER_BLACK_BELT_MICHEAL               806
+#define TRAINER_BLACK_BELT_DAVID                 807 
+#define TRAINER_BLACK_BELT_KOR                   808
+#define TRAINER_BLACK_BELT_ALVIN                 809
+#define TRAINER_BLACK_BELT_SIGMUND               810
+#define TRAINER_BLACK_BELT_TIMOTHY               811
+#define TRAINER_BLACK_BELT_JACOB                 812
+#define TRAINER_BLACK_BELT_STEVEN                813
+#define TRAINER_BLACK_BELT_JEREMIAH              814
+#define TRAINER_BLACK_BELT_ALEXANDER             815
+
+#define TRAINER_BIRD_KEEPER_MIKE                 816
+#define TRAINER_BIRD_KEEPER_TIM                  817
+#define TRAINER_BIRD_KEEPER_FALKNER              819
+#define TRAINER_BIRD_KEEPER_IAN                  820
+#define TRAINER_BIRD_KEEPER_PHIL                 821
+#define TRAINER_BIRD_KEEPER_CASS                 822
+#define TRAINER_BIRD_KEEPER_DAVE                 823
+#define TRAINER_BIRD_KEEPER_MICHEAL              824
+#define TRAINER_BIRD_KEEPER_TIMOTHY              825
+#define TRAINER_BIRD_KEEPER_PATRICK              826
+
+#define TRAINER_BUG_CATCHER_MIKE                 827
+#define TRAINER_BUG_CATCHER_SAMUEL               828
+#define TRAINER_BUG_CATCHER_MICHEAL              829
+#define TRAINER_BUG_CATCHER_DAVID                830
+#define TRAINER_BUG_CATCHER_ODIE                 831
+#define TRAINER_BUG_CATCHER_MONTE                832
+#define TRAINER_BUG_CATCHER_OLIVER               833
+#define TRAINER_BUG_CATCHER_JOHN                 834
+#define TRAINER_BUG_CATCHER_CLINT                835
+#define TRAINER_BUG_CATCHER_TYLER                836
+
+#define TRAINER_CHANNELER_PATTY                  837
+#define TRAINER_CHANNELER_CASSANDRA              838
+#define TRAINER_CHANNELER_HANNAH                 839
+#define TRAINER_CHANNELER_LYDIA                  840
+#define TRAINER_CHANNELER_ANNE                   841
+#define TRAINER_CHANNELER_SHELIA                 842
+#define TRAINER_CHANNELER_LUCY                   843
+#define TRAINER_CHANNELER_ERZA                   844
+#define TRAINER_CHANNELER_WENDY                  845
+#define TRAINER_CHANNELER_SHELLY                 846
+
+#define TRAINER_ENGINEER_STEVE                   847
+#define TRAINER_ENGINEER_CHRIS                   848
+#define TRAINER_ENGINEER_BILLY                   849
+#define TRAINER_ENGINEER_ERWIN                   850
+#define TRAINER_ENGINEER_SAL                     851
+#define TRAINER_ENGINEER_ROBERT                  852
+#define TRAINER_ENGINEER_MICKEY                  853
+#define TRAINER_ENGINEER_JASON                   854
+#define TRAINER_ENGINEER_JACOB                   855
+#define TRAINER_ENGINEER_JONATHAN                856
+
+#define TRAINER_YOUNGSTER_HENRY                  857
+#define TRAINER_YOUNGSTER_JAMES                  858
+#define TRAINER_YOUNGSTER_NOAH                   859
+#define TRAINER_YOUNGSTER_LIAM                   860
+#define TRAINER_YOUNGSTER_MARTY                  861
+
+#define TRAINER_BATTLE_GIRL_HARPER               862
+#define TRAINER_BATTLE_GIRL_SCARLETT             863
+#define TRAINER_BATTLE_GIRL_EMILY                864
+#define TRAINER_BATTLE_GIRL_CHLOE                865
+#define TRAINER_BATTLE_GIRL_VIOLET               866
+
+#define TRAINER_COOLTRAINER_SAM                  867
+#define TRAINER_COOLTRAINER_ALEX                 868
+#define TRAINER_COOLTRAINER_LUTHOR               869
+#define TRAINER_COOLTRAINER_BENJAMIN             870
+#define TRAINER_COOLTRAINER_LEVI                 871
+#define TRAINER_COOLTRAINER_EMMA                 872
+#define TRAINER_COOLTRAINER_AMELIA               873
+#define TRAINER_COOLTRAINER_SOPHIA               874
+#define TRAINER_COOLTRAINER_MIA                  875
+#define TRAINER_COOLTRAINER_LUNA                 876
+
+#define TRAINER_HIKER_TAYLOR                     877
+#define TRAINER_HIKER_KYLE                       878
+#define TRAINER_HIKER_LIAM                       879
+#define TRAINER_HIKER_SEBASTIAN                  880
+#define TRAINER_HIKER_JACK                       881
+#define TRAINER_HIKER_JAMES                      882
+#define TRAINER_HIKER_OWEN                       883
+#define TRAINER_HIKER_ETHAN                      884
+#define TRAINER_HIKER_LEO                        885
+#define TRAINER_HIKER_HUDSON                     886
+
+#define TRAINER_CAMPER_CHRISTIAN                 887
+#define TRAINER_CAMPER_LUKE                      888
+#define TRAINER_CAMPER_CHESTER                   889
+#define TRAINER_CAMPER_DAVIS                     890
+#define TRAINER_CAMPER_GABE                      891
+#define TRAINER_CAMPER_CHRISTINA                 892
+#define TRAINER_CAMPER_SOFIA                     893
+#define TRAINER_CAMPER_HARPER                    894
+#define TRAINER_CAMPER_EMILY                     895
+#define TRAINER_CAMPER_ELEANOR                   896
+
+#define TRAINER_RUIN_MANIAC_STANLEY              897
+#define TRAINER_RUIN_MANIAC_JOEY                 898
+#define TRAINER_RUIN_MANIAC_JULIAN               899
+#define TRAINER_RUIN_MANIAC_ISAAC                900
+#define TRAINER_RUIN_MANIAC_THOMAS               901
+
+#define TRAINER_SWIMMER_FEMALE_ELLIE             903
+#define TRAINER_SWIMMER_FEMALE_ARIA              904
+#define TRAINER_SWIMMER_FEMALE_MILA              905
+#define TRAINER_SWIMMER_FEMALE_AVA               906
+
+#define TRAINER_SWIMMER_MALE_TY                  907
+#define TRAINER_SWIMMER_MALE_JON                 908
+#define TRAINER_SWIMMER_MALE_COLE                909
+#define TRAINER_SWIMMER_MALE_NICK                910
+
+#define TRAINER_PICNICKER_SUSAN                  911
+#define TRAINER_PICNICKER_LILY                   912
+#define TRAINER_PICNICKER_RILEY                  913
+#define TRAINER_PICNICKER_STELLA                 914
+#define TRAINER_PICNICKER_WILLOW                 915
+
+#define TRAINER_SAILOR_CORA                      916
+#define TRAINER_SAILOR_CAROLINE                  917
+#define TRAINER_SAILOR_HAILEY                    918
+
+#define TRAINER_LASS_EMERY                       919
+#define TRAINER_LASS_ANNA                        920
+#define TRAINER_LASS_MIA                         921
+#define TRAINER_LASS_SAMANTHA                    922
+#define TRAINER_LASS_IRENE                       923
+#define TRAINER_LASS_LYLA                        924
+#define TRAINER_LASS_MAEVE                       925
+
+
+
+
+
+
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is 
 //       only space for 25 additional trainers before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             743
-#define MAX_TRAINERS_COUNT                       768
+#define NUM_TRAINERS                             926
+#define MAX_TRAINERS_COUNT                       992
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

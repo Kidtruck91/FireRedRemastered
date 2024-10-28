@@ -108,7 +108,8 @@ bool32 IsNationalPokedexEnabled(void)
 {
     if (gSaveBlock2Ptr->pokedex.nationalMagic == 0xB9
             && VarGet(VAR_NATIONAL_DEX) == 0x6258
-            && FlagGet(FLAG_SYS_NATIONAL_DEX))
+            && FlagGet(FLAG_SYS_NATIONAL_DEX)
+            && FlagGet(FLAG_ACTUAL_ENABLE))
         return TRUE;
 
     return FALSE;

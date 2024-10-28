@@ -1407,3 +1407,4 @@ const u16 gTilesetPalettes_HallOfFame[][16] =
 	INCBIN_U16("data/tilesets/secondary/hall_of_fame/palettes/14.gbapal"),
 	INCBIN_U16("data/tilesets/secondary/hall_of_fame/palettes/15.gbapal"),
 };
+

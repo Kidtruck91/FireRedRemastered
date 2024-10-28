@@ -880,6 +880,13 @@ Text_GiveNicknameToReceivedMon::
 	.string "Want to give a nickname to the\n"
 	.string "{STR_VAR_2} you received?$"
 
+gText_PlayerNuzlockeFailed::
+	.string "{PLAYER} failed the\n"
+	.string "Nuzlocke challenge.\p"
+	.string "The Nuzlocke setting\n"
+	.string "has been turned off.$"
+
+
 gText_PkmnFainted3::
 	.string "{STR_VAR_1} fainted…\p"
 	.string "$"
@@ -1359,3 +1366,542 @@ Text_TestMsg::
 	.include "data/text/save.inc"
 	.include "data/text/new_game_intro.inc"
 	.include "data/text/pokedude.inc"
+
+	.include "data/maps/NewBarkTown/scripts.inc"
+	.include "data/maps/NewBarkTown/text.inc"
+	
+	.include "data/maps/CherrygroveCity/scripts.inc"
+	.include "data/maps/CherrygroveCity/text.inc"
+	
+	.include "data/maps/AzaleaTown/scripts.inc"
+	.include "data/maps/AzaleaTown/text.inc"
+
+	.include "data/maps/GoldenrodCity/scripts.inc"
+	.include "data/maps/GoldenrodCity/text.inc"
+	
+	.include "data/maps/VioletCity/scripts.inc"
+	.include "data/maps/VioletCity/text.inc"
+
+	.include "data/maps/MohoganyTown/scripts.inc"
+	.include "data/maps/MohoganyTown/text.inc"
+
+	.include "data/maps/OlivineCity/scripts.inc"
+	.include "data/maps/OlivineCity/text.inc"
+
+	.include "data/maps/CianwoodCity/scripts.inc"
+	.include "data/maps/CianwoodCity/text.inc"
+
+	.include "data/maps/EcruteakCity/scripts.inc"
+	.include "data/maps/EcruteakCity/text.inc"
+
+	.include "data/maps/BlackthornCity/scripts.inc"
+	.include "data/maps/BlackthornCity/text.inc"
+
+
+	.include "data/maps/Route29/scripts.inc"
+	.include "data/maps/Route29/text.inc"
+
+	.include "data/maps/IlexForest/scripts.inc"
+	.include "data/maps/IlexForest/text.inc"
+
+	.include "data/maps/LakeofRage/scripts.inc"
+	.include "data/maps/LakeofRage/text.inc"
+
+	.include "data/maps/RuinsofAlph/scripts.inc"
+	.include "data/maps/RuinsofAlph/text.inc"
+
+	.include "data/maps/NationalPark/scripts.inc"
+	.include "data/maps/NationalPark/text.inc"
+
+	.include "data/maps/Route30/scripts.inc"
+	.include "data/maps/Route30/text.inc"
+
+	.include "data/maps/Route31/scripts.inc"
+	.include "data/maps/Route31/text.inc"
+
+	.include "data/maps/Route32/scripts.inc"
+	.include "data/maps/Route32/text.inc"
+
+	.include "data/maps/Route33/scripts.inc"
+	.include "data/maps/Route33/text.inc"
+
+	.include "data/maps/Route34/scripts.inc"
+	.include "data/maps/Route34/text.inc"
+
+	.include "data/maps/Route35/scripts.inc"
+	.include "data/maps/Route35/text.inc"
+
+	.include "data/maps/Route36/scripts.inc"
+	.include "data/maps/Route36/text.inc"
+
+	.include "data/maps/Route37/scripts.inc"
+	.include "data/maps/Route37/text.inc"
+	
+	.include "data/maps/Route38/scripts.inc"
+	.include "data/maps/Route38/text.inc"
+
+	.include "data/maps/Route39/scripts.inc"
+	.include "data/maps/Route39/text.inc"
+	
+	.include "data/maps/Route40/scripts.inc"
+	.include "data/maps/Route40/text.inc"
+
+	.include "data/maps/Route41/scripts.inc"
+	.include "data/maps/Route41/text.inc"
+	
+	.include "data/maps/Route42/scripts.inc"
+	.include "data/maps/Route42/text.inc"
+
+	.include "data/maps/Route43/scripts.inc"
+	.include "data/maps/Route43/text.inc"
+
+	.include "data/maps/Route44/scripts.inc"
+	.include "data/maps/Route44/text.inc"
+
+	.include "data/maps/Route45/scripts.inc"
+	.include "data/maps/Route45/text.inc"
+
+	.include "data/maps/Route46/scripts.inc"
+	.include "data/maps/Route46/text.inc"
+
+	
+
+	
+
+	
+
+	.include "data/maps/JohtoKantoConnection/scripts.inc"
+	.include "data/maps/JohtoKantoConnection/text.inc"
+
+	.include "data/maps/Route26/scripts.inc"
+	.include "data/maps/Route26/text.inc"
+
+	.include "data/maps/Route27/scripts.inc"
+	.include "data/maps/Route27/text.inc"
+
+	.include "data/maps/Route26_House1/scripts.inc"
+	.include "data/maps/Route26_House1/text.inc"
+
+	.include "data/maps/Route26_House2/scripts.inc"
+	.include "data/maps/Route26_House2/text.inc"
+
+	.include "data/maps/Route27_House1/scripts.inc"
+	.include "data/maps/Route27_House1/text.inc"
+
+	.include "data/maps/Route28/scripts.inc"
+	.include "data/maps/Route28/text.inc"
+
+	.include "data/maps/Route29_Connector_North/scripts.inc"
+	.include "data/maps/Route29_Connector_North/text.inc"
+
+	
+
+	.include "data/maps/TojoFalls/scripts.inc"
+	.include "data/maps/TojoFalls/text.inc"
+
+	.include "data/maps/NewBark_ElmsLab/scripts.inc"
+	.include "data/maps/NewBark_ElmsLab/text.inc"
+
+	.include "data/maps/NewBark_GoldsHouse_1F/scripts.inc"
+	.include "data/maps/NewBark_GoldsHouse_1F/text.inc"
+
+	.include "data/maps/NewBark_GoldsHouse_2F/scripts.inc"
+	.include "data/maps/NewBark_GoldsHouse_2F/text.inc"
+
+	.include "data/maps/NewBark_House1/scripts.inc"
+	.include "data/maps/NewBark_House1/text.inc"
+
+	.include "data/maps/NewBark_House2/scripts.inc"
+	.include "data/maps/NewBark_House2/text.inc"
+
+	.include "data/maps/Cherrygrove_Pokecenter_1F/scripts.inc"
+	.include "data/maps/Cherrygrove_Pokecenter_1F/text.inc"
+
+	.include "data/maps/Cherrygrove_Pokecenter_2F/scripts.inc"
+	.include "data/maps/Cherrygrove_Pokecenter_2F/text.inc"
+
+	.include "data/maps/Cherrygrove_Pokemart/scripts.inc"
+	.include "data/maps/Cherrygrove_Pokemart/text.inc"
+
+	.include "data/maps/Route31_Connector_West/scripts.inc"
+	.include "data/maps/Route31_Connector_West/text.inc"
+
+	.include "data/maps/Route30_MrPokemonHouse/scripts.inc"
+	.include "data/maps/Route30_MrPokemonHouse/text.inc"
+
+	.include "data/maps/DarkCave/scripts.inc"
+	.include "data/maps/DarkCave/text.inc"
+
+	.include "data/maps/Route30_House1/scripts.inc"
+	.include "data/maps/Route30_House1/text.inc"
+
+	.include "data/maps/Cherrygrove_House2/scripts.inc"
+	.include "data/maps/Cherrygrove_House2/text.inc"
+
+	.include "data/maps/Cherrygrove_House1/scripts.inc"
+	.include "data/maps/Cherrygrove_House1/text.inc"
+
+	.include "data/maps/Cherrygrove_House3/scripts.inc"
+	.include "data/maps/Cherrygrove_House3/text.inc"
+
+	.include "data/maps/Route32_Connector_West/scripts.inc"
+	.include "data/maps/Route32_Connector_West/text.inc"
+
+	.include "data/maps/Route32_Pokecenter_1F/scripts.inc"
+	.include "data/maps/Route32_Pokecenter_1F/text.inc"
+
+	.include "data/maps/Route32_Pokecenter_2F/scripts.inc"
+	.include "data/maps/Route32_Pokecenter_2F/text.inc"
+
+	.include "data/maps/Route36_Connector_North/scripts.inc"
+	.include "data/maps/Route36_Connector_North/text.inc"
+
+	.include "data/maps/Route36_Connector_West/scripts.inc"
+	.include "data/maps/Route36_Connector_West/text.inc"
+
+	.include "data/maps/UnionCave_1F/scripts.inc"
+	.include "data/maps/UnionCave_1F/text.inc"
+
+	.include "data/maps/UnionCave_2F/scripts.inc"
+	.include "data/maps/UnionCave_2F/text.inc"
+
+
+	.include "data/maps/UnionCave_3F/scripts.inc"
+	.include "data/maps/UnionCave_3F/text.inc"
+
+	.include "data/maps/GoldenrodConnector_North/scripts.inc"
+	.include "data/maps/GoldenrodConnector_North/text.inc"
+
+	.include "data/maps/Violet_House1/scripts.inc"
+	.include "data/maps/Violet_House1/text.inc"
+
+	.include "data/maps/Violet_House2/scripts.inc"
+	.include "data/maps/Violet_House2/text.inc"
+
+	.include "data/maps/Violet_Pokecenter_1F/scripts.inc"
+	.include "data/maps/Violet_Pokecenter_1F/text.inc"
+
+	.include "data/maps/Violet_Pokecenter_2F/scripts.inc"
+	.include "data/maps/Violet_Pokecenter_2F/text.inc"
+
+	.include "data/maps/Violet_Pokemart/scripts.inc"
+	.include "data/maps/Violet_Pokemart/text.inc"
+
+	.include "data/maps/Violet_TrainerSchool/scripts.inc"
+	.include "data/maps/Violet_TrainerSchool/text.inc"
+
+	.include "data/maps/VioletGym/scripts.inc"
+	.include "data/maps/VioletGym/text.inc"
+
+	.include "data/maps/Azalea_Connector_West/scripts.inc"
+	.include "data/maps/Azalea_Connector_West/text.inc"
+
+	.include "data/maps/Azalea_House1/scripts.inc"
+	.include "data/maps/Azalea_House1/text.inc"
+
+	.include "data/maps/Azalea_KurtsHouse/scripts.inc"
+	.include "data/maps/Azalea_KurtsHouse/text.inc"
+
+	.include "data/maps/AzaleaGym/scripts.inc"
+	.include "data/maps/AzaleaGym/text.inc"
+
+	.include "data/maps/IlexForest_Connector_North/scripts.inc"
+	.include "data/maps/IlexForest_Connector_North/text.inc"
+
+	.include "data/maps/Route35_Daycare/scripts.inc"
+	.include "data/maps/Route35_Daycare/text.inc"
+
+	.include "data/maps/BellTower_1F/scripts.inc"
+	.include "data/maps/BellTower_1F/text.inc"
+
+	.include "data/maps/BellTowerBarrierStation/scripts.inc"
+	.include "data/maps/BellTowerBarrierStation/text.inc"
+
+	.include "data/maps/BurnedTower_1F/scripts.inc"
+	.include "data/maps/BurnedTower_1F/text.inc"
+
+	.include "data/maps/BurnedTower_2F/scripts.inc"
+	.include "data/maps/BurnedTower_2F/text.inc"
+
+	.include "data/maps/Ecruteak_Connector_East/scripts.inc"
+	.include "data/maps/Ecruteak_Connector_East/text.inc"
+
+	.include "data/maps/Ecruteak_Connector_West/scripts.inc"
+	.include "data/maps/Ecruteak_Connector_West/text.inc"
+
+	.include "data/maps/Ecruteak_DanceTheater/scripts.inc"
+	.include "data/maps/Ecruteak_DanceTheater/text.inc"
+
+	.include "data/maps/Ecruteak_House1/scripts.inc"
+	.include "data/maps/Ecruteak_House1/text.inc"
+
+	.include "data/maps/Ecruteak_House2/scripts.inc"
+	.include "data/maps/Ecruteak_House2/text.inc"
+
+	.include "data/maps/Ecruteak_Pokecenter_1F/scripts.inc"
+	.include "data/maps/Ecruteak_Pokecenter_1F/text.inc"
+
+	.include "data/maps/Ecruteak_Pokecenter_2F/scripts.inc"
+	.include "data/maps/Ecruteak_Pokecenter_2F/text.inc"
+
+	.include "data/maps/Ecruteak_Pokemart/scripts.inc"
+	.include "data/maps/Ecruteak_Pokemart/text.inc"
+
+	.include "data/maps/EcruteakGym/scripts.inc"
+	.include "data/maps/EcruteakGym/text.inc"
+
+	.include "data/maps/MiltankFarms/scripts.inc"
+	.include "data/maps/MiltankFarms/text.inc"
+
+	.include "data/maps/MiltankFarms2/scripts.inc"
+	.include "data/maps/MiltankFarms2/text.inc"
+
+	.include "data/maps/MtMortar_1F/scripts.inc"
+	.include "data/maps/MtMortar_1F/text.inc"
+
+	.include "data/maps/MtMortar_2F/scripts.inc"
+	.include "data/maps/MtMortar_2F/text.inc"
+
+	.include "data/maps/MtMortar_3F/scripts.inc"
+	.include "data/maps/MtMortar_3F/text.inc"
+
+	.include "data/maps/MtMortar_4F/scripts.inc"
+	.include "data/maps/MtMortar_4F/text.inc"
+
+	.include "data/maps/Goldenrod_BikeShop/scripts.inc"
+	.include "data/maps/Goldenrod_BikeShop/text.inc"
+
+	.include "data/maps/Goldenrod_Underground_South/scripts.inc"
+	.include "data/maps/Goldenrod_Underground_South/text.inc"
+
+	.include "data/maps/Goldenrod_Underground_North/scripts.inc"
+	.include "data/maps/Goldenrod_Underground_North/text.inc"
+
+	.include "data/maps/Goldenrod_DeptStore_1F/scripts.inc"
+	.include "data/maps/Goldenrod_DeptStore_1F/text.inc"
+
+	.include "data/maps/Goldenrod_DeptStore_2F/scripts.inc"
+	.include "data/maps/Goldenrod_DeptStore_2F/text.inc"
+
+	.include "data/maps/Goldenrod_DeptStore_3F/scripts.inc"
+	.include "data/maps/Goldenrod_DeptStore_3F/text.inc"
+
+	.include "data/maps/Goldenrod_DeptStore_4F/scripts.inc"
+	.include "data/maps/Goldenrod_DeptStore_4F/text.inc"
+
+	.include "data/maps/Goldenrod_DeptStore_5F/scripts.inc"
+	.include "data/maps/Goldenrod_DeptStore_5F/text.inc"
+
+	.include "data/maps/Goldenrod_DeptStore_6F/scripts.inc"
+	.include "data/maps/Goldenrod_DeptStore_6F/text.inc"
+
+	.include "data/maps/Goldenrod_FlowerShop/scripts.inc"
+	.include "data/maps/Goldenrod_FlowerShop/text.inc"
+
+	.include "data/maps/Goldenrod_GameCorner/scripts.inc"
+	.include "data/maps/Goldenrod_GameCorner/text.inc"
+
+	.include "data/maps/Goldenrod_House1/scripts.inc"
+	.include "data/maps/Goldenrod_House1/text.inc"
+
+	.include "data/maps/Goldenrod_House2/scripts.inc"
+	.include "data/maps/Goldenrod_House2/text.inc"
+
+	.include "data/maps/Goldenrod_House3/scripts.inc"
+	.include "data/maps/Goldenrod_House3/text.inc"
+
+	.include "data/maps/Goldenrod_House4/scripts.inc"
+	.include "data/maps/Goldenrod_House4/text.inc"
+
+	.include "data/maps/Goldenrod_MagnetTrain/scripts.inc"
+	.include "data/maps/Goldenrod_MagnetTrain/text.inc"
+
+	.include "data/maps/Goldenrod_Pokecenter_1F/scripts.inc"
+	.include "data/maps/Goldenrod_Pokecenter_1F/text.inc"
+
+	.include "data/maps/Goldenrod_Pokecenter_2F/scripts.inc"
+	.include "data/maps/Goldenrod_Pokecenter_2F/text.inc"
+
+	.include "data/maps/Goldenrod_Underground_Basement_1F/scripts.inc"
+	.include "data/maps/Goldenrod_Underground_Basement_1F/text.inc"
+
+	.include "data/maps/Goldenrod_Underground_Basement_2F/scripts.inc"
+	.include "data/maps/Goldenrod_Underground_Basement_2F/text.inc"
+
+	.include "data/maps/Goldenrod_Underground_Basement_3F/scripts.inc"
+	.include "data/maps/Goldenrod_Underground_Basement_3F/text.inc"
+
+	.include "data/maps/GoldenrodGym/scripts.inc"
+	.include "data/maps/GoldenrodGym/text.inc"
+
+	.include "data/maps/NationalParkEntrance/scripts.inc"
+	.include "data/maps/NationalParkEntrance/text.inc"
+
+	.include "data/maps/Radiotower_1F/scripts.inc"
+	.include "data/maps/Radiotower_1F/text.inc"
+
+	.include "data/maps/Radiotower_2F/scripts.inc"
+	.include "data/maps/Radiotower_2F/text.inc"
+
+	.include "data/maps/Radiotower_3F/scripts.inc"
+	.include "data/maps/Radiotower_3F/text.inc"
+
+	.include "data/maps/Radiotower_4F/scripts.inc"
+	.include "data/maps/Radiotower_4F/text.inc"
+
+	.include "data/maps/Radiotower_5F/scripts.inc"
+	.include "data/maps/Radiotower_5F/text.inc"
+
+	.include "data/maps/Blackthorn_DragonsDen_1F/scripts.inc"
+	.include "data/maps/Blackthorn_DragonsDen_1F/text.inc"
+
+	.include "data/maps/Blackthorn_DragonsDen_2F/scripts.inc"
+	.include "data/maps/Blackthorn_DragonsDen_2F/text.inc"
+
+	.include "data/maps/Cianwood_House1/scripts.inc"
+	.include "data/maps/Cianwood_House1/text.inc"
+
+	.include "data/maps/Cianwood_House2/scripts.inc"
+	.include "data/maps/Cianwood_House2/text.inc"
+
+	.include "data/maps/Cianwood_House3/scripts.inc"
+	.include "data/maps/Cianwood_House3/text.inc"
+
+	.include "data/maps/Cianwood_Pharmacy/scripts.inc"
+	.include "data/maps/Cianwood_Pharmacy/text.inc"
+
+	.include "data/maps/CianwoodGym/scripts.inc"
+	.include "data/maps/CianwoodGym/text.inc"
+
+	.include "data/maps/Olivine_Cafe/scripts.inc"
+	.include "data/maps/Olivine_Cafe/text.inc"
+
+	.include "data/maps/Olivine_House1/scripts.inc"
+	.include "data/maps/Olivine_House1/text.inc"
+
+	.include "data/maps/Olivine_House2/scripts.inc"
+	.include "data/maps/Olivine_House2/text.inc"
+
+	.include "data/maps/Olivine_House3/scripts.inc"
+	.include "data/maps/Olivine_House3/text.inc"
+
+	.include "data/maps/Olivine_Pokecenter_1F/scripts.inc"
+	.include "data/maps/Olivine_Pokecenter_1F/text.inc"
+
+	.include "data/maps/Olivine_Pokecenter_2F/scripts.inc"
+	.include "data/maps/Olivine_Pokecenter_2F/text.inc"
+
+	.include "data/maps/Olivine_Pokemart/scripts.inc"
+	.include "data/maps/Olivine_Pokemart/text.inc"
+
+	.include "data/maps/Olivine_Port_1F/scripts.inc"
+	.include "data/maps/Olivine_Port_1F/text.inc"
+
+	.include "data/maps/Olivine_Port_2F/scripts.inc"
+	.include "data/maps/Olivine_Port_2F/text.inc"
+
+	.include "data/maps/OlivineGym/scripts.inc"
+	.include "data/maps/OlivineGym/text.inc"
+
+	.include "data/maps/MtSilver_1F/scripts.inc"
+	.include "data/maps/MtSilver_1F/text.inc"
+
+	.include "data/maps/MtSilver_2F/scripts.inc"
+	.include "data/maps/MtSilver_2F/text.inc"
+
+	.include "data/maps/MtSilver_3F/scripts.inc"
+	.include "data/maps/MtSilver_3F/text.inc"
+
+	.include "data/maps/MtSilverPokecenter/scripts.inc"
+	.include "data/maps/MtSilverPokecenter/text.inc"
+
+	.include "data/maps/Goldenrod_Underground_Tunnel/scripts.inc"
+	.include "data/maps/Goldenrod_Underground_Tunnel/text.inc"
+
+	.include "data/maps/MohoganyPokecenter_1F/scripts.inc"
+	.include "data/maps/MohoganyPokecenter_1F/text.inc"
+
+	.include "data/maps/MohoganyPokecenter_2F/scripts.inc"
+	.include "data/maps/MohoganyPokecenter_2F/text.inc"
+
+	.include "data/maps/MohoganyHouse1/scripts.inc"
+	.include "data/maps/MohoganyHouse1/text.inc"
+
+	.include "data/maps/MohoganyGym/scripts.inc"
+	.include "data/maps/MohoganyGym/text.inc"
+
+	.include "data/maps/Mohogany_Connector_North/scripts.inc"
+	.include "data/maps/Mohogany_Connector_North/text.inc"
+
+	.include "data/maps/Lake_of_RageHouse2/scripts.inc"
+	.include "data/maps/Lake_of_RageHouse2/text.inc"
+
+	.include "data/maps/Lake_of_RageHouse1/scripts.inc"
+	.include "data/maps/Lake_of_RageHouse1/text.inc"
+
+	.include "data/maps/IcePath_1F/scripts.inc"
+	.include "data/maps/IcePath_1F/text.inc"
+
+	.include "data/maps/IcePath_2F/scripts.inc"
+	.include "data/maps/IcePath_2F/text.inc"
+
+	.include "data/maps/IcePath_3F/scripts.inc"
+	.include "data/maps/IcePath_3F/text.inc"
+
+	.include "data/maps/IcePath_4F/scripts.inc"
+	.include "data/maps/IcePath_4F/text.inc"
+
+	.include "data/maps/IcePath_5F/scripts.inc"
+	.include "data/maps/IcePath_5F/text.inc"
+
+	.include "data/maps/IcePath_6F/scripts.inc"
+	.include "data/maps/IcePath_6F/text.inc"
+
+	.include "data/maps/Blackthorn_House1/scripts.inc"
+	.include "data/maps/Blackthorn_House1/text.inc"
+
+	.include "data/maps/Blackthorn_House2/scripts.inc"
+	.include "data/maps/Blackthorn_House2/text.inc"
+
+	.include "data/maps/Blackthorn_House3/scripts.inc"
+	.include "data/maps/Blackthorn_House3/text.inc"
+
+	.include "data/maps/Blackthorn_House4/scripts.inc"
+	.include "data/maps/Blackthorn_House4/text.inc"
+
+	.include "data/maps/Blackthorn_Pokecenter_1F/scripts.inc"
+	.include "data/maps/Blackthorn_Pokecenter_1F/text.inc"
+
+	.include "data/maps/Blackthorn_Pokecenter_2F/scripts.inc"
+	.include "data/maps/Blackthorn_Pokecenter_2F/text.inc"
+
+	.include "data/maps/Blackthorn_Pokemart/scripts.inc"
+	.include "data/maps/Blackthorn_Pokemart/text.inc"
+
+	.include "data/maps/BlackthornGym/scripts.inc"
+	.include "data/maps/BlackthornGym/text.inc"
+
+	.include "data/maps/AzaleaPokecenter_1F/scripts.inc"
+	.include "data/maps/AzaleaPokecenter_1F/text.inc"
+
+	.include "data/maps/AzaleaPokecenter_2F/scripts.inc"
+	.include "data/maps/AzaleaPokecenter_2F/text.inc"
+
+	.include "data/maps/AzaleaPokemart/scripts.inc"
+	.include "data/maps/AzaleaPokemart/text.inc"
+
+	.include "data/maps/SlowpokeWell_1F/scripts.inc"
+	.include "data/maps/SlowpokeWell_1F/text.inc"
+
+	.include "data/maps/SlowpokeWell_2F/scripts.inc"
+	.include "data/maps/SlowpokeWell_2F/text.inc"
+
+	.include "data/maps/IcePath_7F/scripts.inc"
+	.include "data/maps/IcePath_7F/text.inc"
+
+	.include "data/maps/MtMortar_5F/scripts.inc"
+	.include "data/maps/MtMortar_5F/text.inc"
+
+	.include "data/maps/MtSilver_4F/scripts.inc"
+	.include "data/maps/MtSilver_4F/text.inc"
+

@@ -120,3 +120,39 @@ PewterCity_Gym_Text_GymStatuePlayerWon::
     .string "WINNING TRAINERS:\n"
     .string "{RIVAL}, {PLAYER}$"
 
+
+
+
+PewterCity_Gym_Text_RematchNotUnlocked:
+    .string "Sorry, champ. You aren't \n"
+    .string "ready for a rematch yet.\p"
+    .string "Come on back after a while.$"
+
+PewterCity_Gym_Text_NoRematch:
+	.string "No problem, champ.$"
+
+PewterCity_Gym_Text_RematchQuestion:
+	.string "Hey, champ! Want a rematch?$"
+
+PewterCity_Gym_Text_RematchGo:
+	.string "You got it champ!$"
+
+PewterCity_Gym_Text_Brock_postrematch:
+  .string "I've chosen to postpone my dream of\n"
+  .string "becoming a Pokémon Breeder just for a\p"
+  .string "little bit longer. Right now I'm more\p"
+  .string "interested in training to grow strong\p"
+  .string "enough to one day face and defeat you!\p"
+  .string "Please, come back soon so I can grow\p"
+  .string "even stronger!$"
+
+PewterCity_Gym_Text_RebattleIntro:
+ .string "You sure look different from when we\n"
+ .string "first met!Please allow me the privilege\p"
+ .string "of facing you in battle once again!\p"
+ .string "Allow me to show you the true rock-hard\p"
+ .string "strength of my Pokémon!$"
+
+PewterCity_Gym_Text_RebattleDeafeated:
+ .string "I knew you were strong, but\n"
+ .string "this...$"

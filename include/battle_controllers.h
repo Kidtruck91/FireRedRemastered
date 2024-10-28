@@ -4,8 +4,7 @@
 #include "global.h"
 #include "battle.h"
 
-enum
-{
+enum{
     REQUEST_ALL_BATTLE,
     REQUEST_SPECIES_BATTLE,
     REQUEST_HELDITEM_BATTLE,

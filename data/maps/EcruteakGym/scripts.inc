@@ -1,0 +1,48 @@
+EcruteakGym_MapScripts::
+	.byte 0
+
+EcruteakGym_EventScript_Leader_Morty::
+	goto_if_set FLAG_REMATCH_MORTY, EcruteakGym_EventScript_LeaderRematch
+	random 3
+	switch VAR_RESULT
+	case 0, EcruteakGym_Script_Morty_TeamOption1
+	case 1, EcruteakGym_Script_Morty_TeamOption2
+	case 2, EcruteakGym_Script_Morty_TeamOption3
+	msgbox EcruteakGym_Text_Morty_postbattle, MSGBOX_AUTOCLOSE
+	end
+EcruteakGym_Script_Morty_TeamOption1::
+ trainerbattle_single TRAINER_LEADER_MORTYA, EcruteakGym_Text_Intro,EcruteakGym_Text_Deafeated
+EcruteakGym_Script_Morty_TeamOption2::
+ trainerbattle_single TRAINER_LEADER_MORTYB, EcruteakGym_Text_Intro, EcruteakGym_Text_Deafeated
+EcruteakGym_Script_Morty_TeamOption3::
+ trainerbattle_single TRAINER_LEADER_MORTYC, EcruteakGym_Text_Intro, EcruteakGym_Text_Deafeated
+
+EcruteakGym_EventScript_LeaderRematch::
+ random 3
+ switch VAR_RESULT
+ case 0, EcruteakGym_Script_Morty_RematchTeamOption1
+ case 1, EcruteakGym_Script_Morty_RematchTeamOption2
+ case 2, EcruteakGym_Script_Morty_RematchTeamOption3
+ msgbox EcruteakGym_Text_Morty_postrematch, MSGBOX_AUTOCLOSE
+ clearflag FLAG_REMATCH_MORTY
+ end
+EcruteakGym_Script_Morty_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_MORTYREMATCHA, EcruteakGym_Text_RebattleIntro, EcruteakGym_Text_RebattleDeafeated
+EcruteakGym_Script_Morty_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_MORTYREMATCHB, EcruteakGym_Text_RebattleIntro, EcruteakGym_Text_RebattleDeafeated
+EcruteakGym_Script_Morty_RematchTeamOption3::
+ trainerbattle_single TRAINER_LEADER_MORTYREMATCHC,EcruteakGym_Text_RebattleIntro, EcruteakGym_Text_RebattleDeafeated
+
+EcruteakGym_Script_Rematch::
+	lock
+	faceplayer
+	msgbox EcruteakGym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq EcruteakGym_Script_NoRematch
+	setflag FLAG_REMATCH_MORTY
+	msgbox EcruteakGym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+EcruteakGym_Script_NoRematch::
+	msgbox EcruteakGym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
+	end

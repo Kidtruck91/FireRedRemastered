@@ -55,6 +55,13 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE22_NORTH_ENTRANCE",
       "dest_warp_id": "2"
+    },
+    {
+      "x": 7,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_KANTO_CONNECTION",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

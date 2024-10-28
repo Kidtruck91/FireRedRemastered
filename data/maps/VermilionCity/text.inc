@@ -129,3 +129,16 @@ VermilionCity_Text_Route2AideHasPackageForYou::
     .string "If you're in the ROUTE 2 area,\n"
     .string "please look for him.$"
 
+VermilionCity_TEXT_SQRTPOLICEMAN::
+    .string "You look like a responsible trainer.\n"
+    .string "This SQUIRTLE has been causing some\p"
+    .string "real trouble.\n"
+    .string "Would you be able to take care\p" 
+    .string "of it and keep it out of trouble?\n$"
+VermilionCity_Text_ReceivedSquirtle::
+	.string "{PLAYER} received a Squirtle!$"
+VermilionCity_Text_PlayerHasFullParty::
+	.string "Ah, your party is full.$"
+VermilionCity_TEXT_POLICEMAN_THANKS::
+	.string "Thanks for taking care\n" 
+    .string "of that Squirtle!$"

@@ -1,0 +1,48 @@
+GoldenrodGym_MapScripts::
+	.byte 0
+
+GoldenrodGym_EventScript_Leader_Whitney::
+	goto_if_set FLAG_REMATCH_WHITNEY, GoldenrodGym_EventScript_LeaderRematch
+	random 3
+	switch VAR_RESULT
+	case 0, GoldenrodGym_Script_Whitney_TeamOption1
+	case 1, GoldenrodGym_Script_Whitney_TeamOption2
+	case 2, GoldenrodGym_Script_Whitney_TeamOption3
+	msgbox GoldenrodGym_Text_Whitney_postbattle, MSGBOX_AUTOCLOSE
+	end
+GoldenrodGym_Script_Whitney_TeamOption1::
+ trainerbattle_single TRAINER_LEADER_WHITNEYA, GoldenrodGym_Text_Intro,GoldenrodGym_Text_Deafeated
+GoldenrodGym_Script_Whitney_TeamOption2::
+ trainerbattle_single TRAINER_LEADER_WHITNEYB, GoldenrodGym_Text_Intro, GoldenrodGym_Text_Deafeated
+GoldenrodGym_Script_Whitney_TeamOption3::
+ trainerbattle_single TRAINER_LEADER_WHITNEYC, GoldenrodGym_Text_Intro, GoldenrodGym_Text_Deafeated
+
+GoldenrodGym_EventScript_LeaderRematch::
+ random 3
+ switch VAR_RESULT
+ case 0, GoldenrodGym_Script_Whitney_RematchTeamOption1
+ case 1, GoldenrodGym_Script_Whitney_RematchTeamOption2
+ case 2, GoldenrodGym_Script_Whitney_RematchTeamOption3
+ msgbox GoldenrodGym_Text_Whitney_postrematch, MSGBOX_AUTOCLOSE
+ clearflag FLAG_REMATCH_WHITNEY
+ end
+GoldenrodGym_Script_Whitney_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_WHITNEYREMATCHA, GoldenrodGym_Text_RebattleIntro, GoldenrodGym_Text_RebattleDeafeated
+GoldenrodGym_Script_Whitney_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_WHITNEYREMATCHB, GoldenrodGym_Text_RebattleIntro, GoldenrodGym_Text_RebattleDeafeated
+GoldenrodGym_Script_Whitney_RematchTeamOption3::
+ trainerbattle_single TRAINER_LEADER_WHITNEYREMATCHC,GoldenrodGym_Text_RebattleIntro, GoldenrodGym_Text_RebattleDeafeated
+
+GoldenrodGym_Script_Rematch::
+	lock
+	faceplayer
+	msgbox GoldenrodGym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq GoldenrodGym_Script_NoRematch
+	setflag FLAG_REMATCH_WHITNEY
+	msgbox GoldenrodGym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+GoldenrodGym_Script_NoRematch::
+	msgbox GoldenrodGym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
+	end

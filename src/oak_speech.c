@@ -16,7 +16,8 @@
 #include "random.h"
 #include "data.h"
 #include "constants/songs.h"
-
+#include "constants/flags.h"
+#include "event_data.h"
 #define INTRO_SPECIES SPECIES_NIDORAN_F
 
 enum
@@ -94,6 +95,10 @@ static void Task_OakSpeech_FadePlayerPicWhite(u8);
 static void Task_OakSpeech_FadePlayerPicToBlack(u8);
 static void Task_OakSpeech_WaitForFade(u8);
 static void Task_OakSpeech_FreeResources(u8);
+//added
+static void Task_NewGameOakSpeech_Nuzlocke(u8);
+static void Task_NewGameOakSpeech_ChooseNuzlocke(u8);
+static void Task_NewGameOakSpeech_ClearNuzlockeWindow(u8);
 
 static void CB2_ReturnFromNamingScreen(void);
 static void CreateNidoranFSprite(u8);
@@ -1334,9 +1339,81 @@ static void Task_OakSpeech_ClearGenderWindows(u8 taskId)
     ClearDialogWindowAndFrame(tMenuWindowId, TRUE);
     FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 30, 20);
     CopyBgTilemapBufferToVram(0);
+    gTasks[taskId].func = Task_NewGameOakSpeech_Nuzlocke;
+}
+
+//Added
+// Function to initialize and ask about Nuzlocke Challenge
+// Function to initialize and ask about Nuzlocke Challenge
+static void Task_NewGameOakSpeech_Nuzlocke(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    if (tTimer != 0)
+    {
+        tTimer--;
+    }
+    else if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        OakSpeechPrintMessage(gText_AskAboutNuzlockeChallenge, sOakSpeechResources->textSpeed);
+        tTimer = 25;  // Set a delay before showing the Yes/No menu
+    }
+    else if (tTimer == 0)
+    {
+        CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
+        gTasks[taskId].func = Task_NewGameOakSpeech_ChooseNuzlocke;
+    }
+}
+
+// Function to handle the selection input from the Nuzlocke menu
+static void Task_NewGameOakSpeech_ChooseNuzlocke(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    s8 input = Menu_ProcessInputNoWrapAround();
+
+    switch (input)
+    {
+        case 0: // YES
+            FlagSet(FLAG_NUZLOCKE);
+            break;
+        case 1: // NO
+            FlagClear(FLAG_NUZLOCKE);
+            break;
+        case MENU_B_PRESSED:
+        case MENU_NOTHING_CHOSEN:
+            return;  // No action taken, wait for input
+    }
+
+    gTasks[taskId].func = Task_NewGameOakSpeech_ClearNuzlockeWindow;
+}
+
+    // Function to clear the Nuzlocke menu and continue the game flow
+static void Task_NewGameOakSpeech_ClearNuzlockeWindow(u8 taskId) {
+    s16 *data = gTasks[taskId].data;
+    u8 windowId = gTasks[taskId].tMenuWindowId;  // Assume tMenuWindowId is stored in the task data
+
+    // Clear and remove the window using the retrieved window ID
+    ClearStdWindowAndFrameToTransparent(windowId, TRUE);
+    RemoveWindow(windowId);
+
+    // Refill background tilemap to clean any leftover graphics
+    FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 30, 20);
+    CopyBgTilemapBufferToVram(0);
+
+    // Transition to the next function in the task flow
     gTasks[taskId].func = Task_OakSpeech_LoadPlayerPic;
 }
 
+
+
+
+
+
+
+
+
+
+
+//end
 static void Task_OakSpeech_LoadPlayerPic(u8 taskId)
 {
     if (gSaveBlock2Ptr->playerGender == MALE)
@@ -1345,6 +1422,7 @@ static void Task_OakSpeech_LoadPlayerPic(u8 taskId)
         LoadTrainerPic(FEMALE_PLAYER_PIC, 0);
     CreateFadeOutTask(taskId, 2);
     gTasks[taskId].tTimer = 32;
+    //added
     gTasks[taskId].func = Task_OakSpeech_YourNameWhatIsIt;
 }
 

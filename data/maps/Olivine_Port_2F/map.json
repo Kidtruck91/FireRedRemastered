@@ -1,0 +1,35 @@
+{
+  "id": "MAP_OLIVINE_PORT_2F",
+  "name": "Olivine_Port_2F",
+  "layout": "LAYOUT_OLIVINE_PORT_2F",
+  "music": "MUS_BERRY_PICK",
+  "region_map_section": "MAPSEC_OLIVINE_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 17,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_OLIVINE_PORT_1F",
+      "dest_warp_id": "3"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

@@ -1,0 +1,58 @@
+Olivine_House2_MapScripts::
+	.byte 0
+
+Olivine_House2_EventScript_ChikoritaBALDMAN::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_Chikorita_FROM_BALDMAN, Olivine_House2_EventScript_AlreadyGotChikorita
+	msgbox Olivine_House2_TEXT_CHIKBALDMAN
+	setvar VAR_TEMP_1, SPECIES_CHIKORITA
+	givemon SPECIES_CHIKORITA, 10, ITEM_MIRACLE_SEED
+	goto_if_eq VAR_RESULT, 0, Olivine_House2_EventScript_ReceiveChikoritaParty
+	goto_if_eq VAR_RESULT, 1, Olivine_House2_EventScript_ReceiveChikoritaPC
+	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+Olivine_House2_EventScript_ReceiveChikoritaParty::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message Olivine_House2_Text_ReceivedChikorita
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_CHIKORITA
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Olivine_House2_EventScript_EndReceiveChikorita
+	call EventScript_GetGiftMonPartySlot
+	call EventScript_ChangePokemonNickname
+	goto Olivine_House2_EventScript_EndReceiveChikorita
+	end
+
+Olivine_House2_EventScript_ReceiveChikoritaPC::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message Olivine_House2_Text_ReceivedChikorita
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_CHIKORITA
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Olivine_House2_EventScript_ChikoritaTransferredToPC
+	call EventScript_NameReceivedBoxMon
+	goto Olivine_House2_EventScript_ChikoritaTransferredToPC
+	end
+
+Olivine_House2_EventScript_ChikoritaTransferredToPC::
+	call EventScript_TransferredToPC
+	goto Olivine_House2_EventScript_EndReceiveChikorita
+	end
+
+Olivine_House2_EventScript_EndReceiveChikorita::
+	textcolor NPC_TEXT_COLOR_MALE
+	msgbox Olivine_House2_TEXT_BALDMAN_THANKS
+	setflag FLAG_GOT_Chikorita_FROM_BALDMAN
+	release
+	end
+Olivine_House2_EventScript_AlreadyGotChikorita::
+	msgbox Olivine_House2_TEXT_BALDMAN_THANKS
+	release
+	end

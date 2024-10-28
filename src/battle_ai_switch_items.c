@@ -304,7 +304,8 @@ static bool8 ShouldSwitch(void)
     u8 battlerIn1, battlerIn2;
     s32 i;
     s32 availableToSwitch;
-
+   // if (EnemyMonHasSpecificSuperEffectiveRevealedMove())
+	//	return TRUE;
     if ((gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
      || (gStatuses3[gActiveBattler] & STATUS3_ROOTED)
      || AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, gActiveBattler, ABILITY_SHADOW_TAG, 0, 0)
@@ -428,7 +429,7 @@ static void ModulateByTypeEffectiveness(u8 atkType, u8 defType1, u8 defType2, u8
 u8 GetMostSuitableMonToSwitchInto(void)
 {
     u8 opposingBattler;
-    u8 bestDmg; // Note : should be changed to u32 for obvious reasons.
+    u32 bestDmg; // Note : should be changed to u32 for obvious reasons.
     u8 bestMonId;
     u8 battlerIn1, battlerIn2;
     s32 i, j;
@@ -543,7 +544,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
     return bestMonId;
 }
 
-static u8 GetAI_ItemType(u8 itemId, const u8 *itemEffect) // NOTE: should take u16 as item Id argument
+static u8 GetAI_ItemType(u16 itemId, const u8 *itemEffect) // NOTE: should take u16 as item Id argument
 {
     if (itemId == ITEM_FULL_RESTORE)
         return AI_ITEM_FULL_RESTORE;
@@ -672,3 +673,15 @@ static bool8 ShouldUseItem(void)
     }
     return FALSE;
 }
+//static bool8 EnemyMonHasSpecificSuperEffectiveRevealedMove(void)
+//{
+//  u8 opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(gActiveBattler));
+//	if (gBattleMons[GetBattlerAtPosition(opposingPosition)].species == YOUR_SPECIES_HERE) {
+//	u8 moveFlags = AI_TypeCalc(gLastLandedMoves[gActiveBattler], gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].ability);
+//	if (gLastLandedMoves[gActiveBattler] == YOUR_MOVE_HERE && (moveFlags & MOVE_RESULT_SUPER_EFFECTIVE)) {
+//		*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
+//		BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+//		return TRUE;
+//	}
+//	}
+//}

@@ -110,3 +110,17 @@ FuchsiaCity_Text_MyFatherIsGymLeader::
     .string "I'm training to use POISON POKéMON\n"
     .string "as well as my father.$"
 
+
+FuchsiaCity_TEXT_CHARNERD::
+    .string "Would you like a pokemon?\n"
+    .string "This CHARMANDER seems to \p"
+    .string "have left it's trainer.\n"
+    .string "Would you be able to take care\p" 
+    .string "of it?.\n$"
+FuchsiaCity_Text_ReceivedCharmander::
+	.string "{PLAYER} received a Charmander!$"
+FuchsiaCity_Text_PlayerHasFullParty::
+	.string "Ah, your party is full.$"
+FuchsiaCity_TEXT_SUPERNERD_THANKS::
+	.string "Thanks for taking care\n" 
+    .string "of that Charmander!$"

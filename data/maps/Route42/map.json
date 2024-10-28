@@ -1,0 +1,62 @@
+{
+  "id": "MAP_ROUTE42",
+  "name": "Route42",
+  "layout": "LAYOUT_ROUTE42",
+  "music": "MUS_BERRY_PICK",
+  "region_map_section": "MAPSEC_ROUTE_42",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_MOHOGANY_TOWN",
+      "offset": -2,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CONNECTOR_EAST",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 14,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MORTAR_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 32,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MORTAR_1F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 50,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MORTAR_1F",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

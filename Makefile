@@ -207,6 +207,9 @@ mostlyclean: tidy
 clean-tools:
 	@$(foreach tooldir,$(TOOLDIRS),$(MAKE) clean -C $(tooldir);)
 
+gbapals:
+	find .	-name "*.pal" -exec $(GFX) {} {}.gbapal \;
+
 clean: mostlyclean clean-tools
 
 tidy:
@@ -228,8 +231,14 @@ include songs.mk
 %.1bpp: %.png  ; $(GFX) $< $@
 %.4bpp: %.png  ; $(GFX) $< $@
 %.8bpp: %.png  ; $(GFX) $< $@
-%.gbapal: %.pal ; $(GFX) $< $@
-%.gbapal: %.png ; $(GFX) $< $@
+
+%.gbapal: %.pal
+	@echo "Converting $< to $@"
+	$(GFX) $< $@
+%.gbapal: %.png
+	@echo "Converting $< to $@ (from PNG)"
+	$(GFX) $< $@
+
 %.lz: % ; $(GFX) $< $@
 %.rl: % ; $(GFX) $< $@
 $(CRY_SUBDIR)/%.bin: $(CRY_SUBDIR)/%.aif ; $(AIF) $< $@ --compress

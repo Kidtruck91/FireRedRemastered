@@ -1,0 +1,58 @@
+Cianwood_House1_MapScripts::
+	.byte 0
+
+Cianwood_House1_EventScript_TotodileBLACKBELT::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_Totodile_FROM_BLACKBELT, Cianwood_House1_EventScript_AlreadyGotTotodile
+	msgbox Cianwood_House1_TEXT_TOTOBLACKBELT
+	setvar VAR_TEMP_1, SPECIES_TOTODILE
+	givemon SPECIES_CYNDAQUIL, 10, ITEM_MYSTIC_WATER
+	goto_if_eq VAR_RESULT, 0, Cianwood_House1_EventScript_ReceiveTotodileParty
+	goto_if_eq VAR_RESULT, 1, Cianwood_House1_EventScript_ReceiveTotodilePC
+	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+Cianwood_House1_EventScript_ReceiveTotodileParty::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message Cianwood_House1_Text_ReceivedTotodile
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_TOTODILE
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Cianwood_House1_EventScript_EndReceiveTotodile
+	call EventScript_GetGiftMonPartySlot
+	call EventScript_ChangePokemonNickname
+	goto Cianwood_House1_EventScript_EndReceiveTotodile
+	end
+
+Cianwood_House1_EventScript_ReceiveTotodilePC::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message Cianwood_House1_Text_ReceivedTotodile
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_TOTODILE
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Cianwood_House1_EventScript_TotodileTransferredToPC
+	call EventScript_NameReceivedBoxMon
+	goto Cianwood_House1_EventScript_TotodileTransferredToPC
+	end
+
+Cianwood_House1_EventScript_TotodileTransferredToPC::
+	call EventScript_TransferredToPC
+	goto Cianwood_House1_EventScript_EndReceiveTotodile
+	end
+
+Cianwood_House1_EventScript_EndReceiveTotodile::
+	textcolor NPC_TEXT_COLOR_MALE
+	msgbox Cianwood_House1_TEXT_BLACKBELT_THANKS
+	setflag FLAG_GOT_Totodile_FROM_BLACKBELT
+	release
+	end
+Cianwood_House1_EventScript_AlreadyGotTotodile::
+	msgbox Cianwood_House1_TEXT_BLACKBELT_THANKS
+	release
+	end

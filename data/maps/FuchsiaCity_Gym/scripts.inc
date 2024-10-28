@@ -3,6 +3,7 @@ FuchsiaCity_Gym_MapScripts::
 
 FuchsiaCity_Gym_EventScript_Koga::
 	famechecker FAMECHECKER_KOGA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_REMATCH_KOGA, FuchsiaCity_Gym_EventScript_LeaderRematch
 	trainerbattle_single TRAINER_LEADER_KOGA, FuchsiaCity_Gym_Text_KogaIntro, FuchsiaCity_Gym_Text_KogaDefeat, FuchsiaCity_Gym_EventScript_DefeatedKoga, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM06_FROM_KOGA, FuchsiaCity_Gym_EventScript_GiveTM06
 	msgbox FuchsiaCity_Gym_Text_KogaPostBattle
@@ -87,4 +88,40 @@ FuchsiaCity_Gym_EventScript_GymStatue::
 FuchsiaCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox FuchsiaCity_Gym_Text_GymStatuePlayerWon
 	releaseall
+	end
+
+
+
+
+
+
+FuchsiaCity_Gym_EventScript_LeaderRematch::
+ random 2
+ switch VAR_RESULT
+ case 0, FuchsiaCity_Gym_Script_Koga_RematchTeamOption1
+ case 1, FuchsiaCity_Gym_Script_Koga_RematchTeamOption2
+ msgbox FuchsiaCity_Gym_Text_Koga_postrematch, MSGBOX_AUTOCLOSE
+ end
+FuchsiaCity_Gym_Script_Koga_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_KOGAREMATCHA, FuchsiaCity_Gym_Text_RebattleIntro, FuchsiaCity_Gym_Text_RebattleDeafeated
+ clearflag FLAG_REMATCH_KOGA
+FuchsiaCity_Gym_Script_Koga_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_KOGAREMATCHB, FuchsiaCity_Gym_Text_RebattleIntro, FuchsiaCity_Gym_Text_RebattleDeafeated
+ clearflag FLAG_REMATCH_KOGA
+FuchsiaCity_Gym_Text_RematchCheckUnlocked::
+  lock
+  faceplayer
+  goto_if_set FLAG_DEFEATED_CHAMP, FuchsiaCity_Gym_Script_Rematch
+  msgbox FuchsiaCity_Gym_Text_RematchNotUnlocked, MSGBOX_AUTOCLOSE
+  end
+FuchsiaCity_Gym_Script_Rematch::
+	msgbox FuchsiaCity_Gym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq FuchsiaCity_Gym_Script_NoRematch
+	setflag FLAG_REMATCH_KOGA
+	msgbox FuchsiaCity_Gym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+FuchsiaCity_Gym_Script_NoRematch::
+	msgbox FuchsiaCity_Gym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
 	end

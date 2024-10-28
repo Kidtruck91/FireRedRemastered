@@ -1292,7 +1292,7 @@ static void Task_DoSaleOfTMs(u8 taskId)
     PlaySE(SE_SHOP);
     RemoveBagItem(gSpecialVar_ItemId, tQuantitySelected);
     AddMoney(&gSaveBlock1Ptr->money, ItemId_GetPrice(gSpecialVar_ItemId) / 2 * tQuantitySelected);
-    RecordItemPurchase(gSpecialVar_ItemId, tQuantitySelected, 2);
+    RecordItemTransaction(gSpecialVar_ItemId, tQuantitySelected, 2);
     DestroyListMenuTask(tListTaskId, &sTMCaseStaticResources.scrollOffset, &sTMCaseStaticResources.selectedRow);
     TMCaseSetup_GetTMCount();
     TMCaseSetup_InitListMenuPositions();
@@ -1529,10 +1529,10 @@ static void PrintTitle(void)
 
 static void DrawMoveInfoLabels(void)
 {
-    BlitMoveInfoIcon(WIN_MOVE_INFO_LABELS, 19, 0, 0);
-    BlitMoveInfoIcon(WIN_MOVE_INFO_LABELS, 20, 0, 12);
-    BlitMoveInfoIcon(WIN_MOVE_INFO_LABELS, 21, 0, 24);
-    BlitMoveInfoIcon(WIN_MOVE_INFO_LABELS, 22, 0, 36);
+    BlitMenuInfoIcon(WIN_MOVE_INFO_LABELS, 19, 0, 0);
+    BlitMenuInfoIcon(WIN_MOVE_INFO_LABELS, 20, 0, 12);
+    BlitMenuInfoIcon(WIN_MOVE_INFO_LABELS, 21, 0, 24);
+    BlitMenuInfoIcon(WIN_MOVE_INFO_LABELS, 22, 0, 36);
     CopyWindowToVram(WIN_MOVE_INFO_LABELS, COPYWIN_GFX);
 }
 
@@ -1553,7 +1553,7 @@ static void PrintMoveInfo(u16 itemId)
     {
         // Draw type icon
         move = ItemIdToBattleMoveId(itemId);
-        BlitMoveInfoIcon(WIN_MOVE_INFO, gBattleMoves[move].type + 1, 0, 0);
+        BlitMenuInfoIcon(WIN_MOVE_INFO, gBattleMoves[move].type + 1, 0, 0);
 
         // Print power
         if (gBattleMoves[move].power < 2)

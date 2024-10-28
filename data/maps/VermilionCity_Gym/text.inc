@@ -138,3 +138,36 @@ VermilionCity_Gym_Text_OnlyTrashLocksWereReset::
     .string "Hey!\n"
     .string "The electric locks were reset!$"
 
+
+
+
+
+VermilionCity_Gym_Text_RematchNotUnlocked:
+    .string "Sorry, champ. You aren't \n"
+    .string "ready for a rematch yet.\p"
+    .string "Come on back after a while."
+
+VermilionCity_Gym_Text_NoRematch:
+	.string "No problem, champ!.$"
+
+VermilionCity_Gym_Text_RematchQuestion:
+	.string "Hey, champ! Want a rematch?$"
+
+VermilionCity_Gym_Text_RematchGo:
+	.string "You got it champ!$"
+
+VermilionCity_Gym_Text_LT_Surge_postrematch:
+ .string "Looks like there's still a gap between \n"
+ .string "our skill levels I need to close, kid!\p"
+ .string "This is the first time I've felt like\p"
+ .string "this since I first arrived here in\p"
+ .string "Kanto! Come back soon!$"
+
+VermilionCity_Gym_Text_RebattleIntro:
+ .string "Hey there, kid! Pretty shocking you \n"
+ .string "made it through the Pokémon League! All\p"
+ .string "right, then. How about you show me what\p"
+ .string "kind of Pokémon you've raised!$"
+
+VermilionCity_Gym_Text_RebattleDeafeated:
+ .string "Absolutely shocking!"

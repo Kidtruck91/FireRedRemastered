@@ -193,6 +193,7 @@ gOakSpeech_Text_WelcomeToTheWorld::
     .string "My name is OAK.\p"
     .string "People affectionately refer to me\n"
     .string "as the POKéMON PROFESSOR.\p$"
+    
 
 gOakSpeech_Text_ThisWorld::
     .string "This world…$"
@@ -218,6 +219,10 @@ gOakSpeech_Text_YourNameWhatIsIt::
 gOakSpeech_Text_SoYourNameIsPlayer::
     .string "Right…\n"
     .string "So your name is {PLAYER}.$"
+
+gText_AskAboutNuzlockeChallenge::
+	.string "Will you be performing the\n"
+	.string "Nuzlocke challenge?$"
 
 gOakSpeech_Text_WhatWasHisName::
     .string "This is my grandson.\p"

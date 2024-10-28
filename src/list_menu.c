@@ -752,7 +752,7 @@ void ListMenuLoadStdPalAt(u8 palOffset, u8 palId)
     LoadPalette(palette, palOffset, PLTT_SIZE_4BPP);
 }
 
-void BlitMoveInfoIcon(u8 windowId, u8 iconId, u16 x, u16 y)
+void BlitMenuInfoIcon(u8 windowId, u8 iconId, u16 x, u16 y)
 {
     BlitBitmapRectToWindow(windowId, gFireRedMenuElements_Gfx + gMoveMenuInfoIcons[iconId].offset * 32, 0, 0, 128, 128, x, y, gMoveMenuInfoIcons[iconId].width, gMoveMenuInfoIcons[iconId].height);
 }

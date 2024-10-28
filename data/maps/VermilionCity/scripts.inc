@@ -219,6 +219,9 @@ VermilionCity_EventScript_CheckSeagallopPresentTrigger::
 
 VermilionCity_EventScript_Sailor::
 	msgbox VermilionCity_Text_SSAnneVisitsOnceAYear, MSGBOX_NPC
+	clearflag FLAG_RECEIVED_MYSTIC_TICKET
+	clearflag FLAG_ENABLE_SHIP_NAVEL_ROCK
+	removeitem ITEM_MYSTIC_TICKET, 1
 	end
 
 VermilionCity_EventScript_OaksAide::
@@ -266,3 +269,60 @@ VermilionCity_EventScript_GymSign::
 VermilionCity_EventScript_HarborSign::
 	msgbox VermilionCity_Text_VermilionHarbor, MSGBOX_SIGN
 	end
+
+VermilionCity_EventScript_SquirtlePOLICEMAN::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_Squirtle_FROM_POLICEMAN, VermilionCity_EventScript_AlreadyGotSquirtle
+	msgbox VermilionCity_TEXT_SQRTPOLICEMAN
+	setvar VAR_TEMP_1, SPECIES_SQUIRTLE
+	givemon SPECIES_SQUIRTLE, 10, ITEM_BLACK_GLASSES
+	goto_if_eq VAR_RESULT, 0, VermilionCity_EventScript_ReceiveSquirtleParty
+	goto_if_eq VAR_RESULT, 1, VermilionCity_EventScript_ReceiveSquirtlePC
+	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+VermilionCity_EventScript_ReceiveSquirtleParty::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message VermilionCity_Text_ReceivedSquirtle
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_SQUIRTLE
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_EndReceiveSquirtle
+	call EventScript_GetGiftMonPartySlot
+	call EventScript_ChangePokemonNickname
+	goto VermilionCity_EventScript_EndReceiveSquirtle
+	end
+
+VermilionCity_EventScript_ReceiveSquirtlePC::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message VermilionCity_Text_ReceivedSquirtle
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_SQUIRTLE
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_SquirtleTransferredToPC
+	call EventScript_NameReceivedBoxMon
+	goto VermilionCity_EventScript_SquirtleTransferredToPC
+	end
+
+VermilionCity_EventScript_SquirtleTransferredToPC::
+	call EventScript_TransferredToPC
+	goto VermilionCity_EventScript_EndReceiveSquirtle
+	end
+
+VermilionCity_EventScript_EndReceiveSquirtle::
+	textcolor NPC_TEXT_COLOR_MALE
+	msgbox VermilionCity_TEXT_POLICEMAN_THANKS
+	setflag FLAG_GOT_Squirtle_FROM_POLICEMAN
+	release
+	end
+VermilionCity_EventScript_AlreadyGotSquirtle::
+	msgbox VermilionCity_TEXT_POLICEMAN_THANKS
+	release
+	end
+

@@ -1,0 +1,36 @@
+Ecruteak_DanceTheater_MapScripts::
+	.byte 0
+
+Script_Ecruteak_DanceTheater_Kimono_Girl_Leader::
+ lock
+ faceplayer
+ goto_if_set FLAG_DEFEATED_MORTY, Script_Ecruteak_DanceTheater_FoundThisMysticTicket
+ msgbox Text_Ecruteak_DanceTheater_Defeat_Morty
+ release
+ end
+Script_Ecruteak_DanceTheater_FoundThisMysticTicket::
+	lock
+	faceplayer
+	msgbox Text_Ecruteak_DanceTheater_MysticTicketGive, MSGBOX_DEFAULT
+	checkitem ITEM_MYSTIC_TICKET
+	compare VAR_RESULT, TRUE
+	goto_if_ge Script_Ecruteak_DanceTheater_HasMysticTicketAlready
+	msgbox Text_Ecruteak_DanceTheater_GivingMysticTicket, MSGBOX_DEFAULT
+	giveitem ITEM_MYSTIC_TICKET
+	setflag FLAG_RECEIVED_MYSTIC_TICKET
+	setflag FLAG_ENABLE_SHIP_NAVEL_ROCK
+	compare VAR_RESULT, 0
+	goto_if_eq Script_Ecruteak_DanceTheater_MysticBagIsFull
+	release
+	end
+
+Script_Ecruteak_DanceTheater_HasMysticTicketAlready::
+	msgbox Text_Ecruteak_DanceTheater_HasMysticTicketAlready, MSGBOX_DEFAULT
+	release
+	end
+
+Script_Ecruteak_DanceTheater_MysticBagIsFull::
+	msgbox Text_Ecruteak_DanceTheater_MysticBagIsFull, MSGBOX_DEFAULT
+	release
+	end
+

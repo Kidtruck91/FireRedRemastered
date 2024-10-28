@@ -1,0 +1,56 @@
+{
+  "id": "MAP_RUINSOF_ALPH",
+  "name": "RuinsofAlph",
+  "layout": "LAYOUT_RUINSOF_ALPH",
+  "music": "MUS_BERRY_PICK",
+  "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 15,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE32_CONNECTOR_WEST",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 7,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE36_CONNECTOR_NORTH",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 6,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_CAVE_2F",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 6,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_CAVE_2F",
+      "dest_warp_id": "3"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

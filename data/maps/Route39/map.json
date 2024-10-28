@@ -1,0 +1,53 @@
+{
+  "id": "MAP_ROUTE39",
+  "name": "Route39",
+  "layout": "LAYOUT_ROUTE39",
+  "music": "MUS_BERRY_PICK",
+  "region_map_section": "MAPSEC_ROUTE_39",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE38",
+      "offset": 0,
+      "direction": "right"
+    },
+    {
+      "map": "MAP_OLIVINE_CITY",
+      "offset": -10,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_MILTANK_FARMS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 1,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_MILTANK_FARMS2",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

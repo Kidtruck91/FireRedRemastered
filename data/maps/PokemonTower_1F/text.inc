@@ -27,3 +27,17 @@ PokemonTower_1F_Text_SenseSpiritsUpToMischief::
     .string "There are spirits up to mischief.\n"
     .string "I sense them high in the TOWER.$"
 
+
+LavenderTower_TEXT_BULBOLDWOMAN::
+    .string "Oh, hello.\n"
+    .string "This BULBASAUR lost it's\p"
+    .string "mother.\n"
+    .string "Would you be able to take care\p" 
+    .string "of it? I'm afraid I'm too old.\n$"
+LavenderTower_Text_ReceivedBulbasaur::
+	.string "{PLAYER} received a Bulbasaur!$"
+LavenderTower_Text_PlayerHasFullParty::
+	.string "Ah, your party is full.$"
+LavenderTower_TEXT_OLDWOMAN_THANKS::
+	.string "Thanks for taking care\n" 
+    .string "of that Bulbasaur!$"

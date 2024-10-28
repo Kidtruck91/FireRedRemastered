@@ -1,0 +1,49 @@
+CianwoodGym_MapScripts::
+	.byte 0
+
+CianwoodGym_EventScript_Leader_Chuck::
+	goto_if_set FLAG_REMATCH_CHUCK, CianwoodGym_EventScript_LeaderRematch
+	random 3
+	switch VAR_RESULT
+	case 0, CianwoodGym_Script_Chuck_TeamOption1
+	case 1, CianwoodGym_Script_Chuck_TeamOption2
+	case 2, CianwoodGym_Script_Chuck_TeamOption3
+	msgbox CianwoodGym_Text_Chuck_postbattle, MSGBOX_AUTOCLOSE
+	end
+CianwoodGym_Script_Chuck_TeamOption1::
+ trainerbattle_single TRAINER_LEADER_CHUCKA, CianwoodGym_Text_Intro,CianwoodGym_Text_Deafeated
+CianwoodGym_Script_Chuck_TeamOption2::
+ trainerbattle_single TRAINER_LEADER_CHUCKB, CianwoodGym_Text_Intro, CianwoodGym_Text_Deafeated
+CianwoodGym_Script_Chuck_TeamOption3::
+ trainerbattle_single TRAINER_LEADER_CHUCKC, CianwoodGym_Text_Intro, CianwoodGym_Text_Deafeated
+
+CianwoodGym_EventScript_LeaderRematch::
+ random 3
+ switch VAR_RESULT
+ case 0, CianwoodGym_Script_Chuck_RematchTeamOption1
+ case 1, CianwoodGym_Script_Chuck_RematchTeamOption2
+ case 2, CianwoodGym_Script_Chuck_RematchTeamOption3
+ msgbox CianwoodGym_Text_Chuck_postrematch, MSGBOX_AUTOCLOSE
+ clearflag FLAG_REMATCH_CHUCK
+ end
+CianwoodGym_Script_Chuck_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_CHUCKREMATCHA, CianwoodGym_Text_RebattleIntro, CianwoodGym_Text_RebattleDeafeated
+CianwoodGym_Script_Chuck_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_CHUCKREMATCHB, CianwoodGym_Text_RebattleIntro, CianwoodGym_Text_RebattleDeafeated
+CianwoodGym_Script_Chuck_RematchTeamOption3::
+ trainerbattle_single TRAINER_LEADER_CHUCKREMATCHC,CianwoodGym_Text_RebattleIntro, CianwoodGym_Text_RebattleDeafeated
+
+CianwoodGym_Script_Rematch::
+	lock
+	faceplayer
+	msgbox CianwoodGym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq CianwoodGym_Script_NoRematch
+	setflag FLAG_REMATCH_CHUCK
+	msgbox CianwoodGym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+CianwoodGym_Script_NoRematch::
+	msgbox CianwoodGym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
+	end
+

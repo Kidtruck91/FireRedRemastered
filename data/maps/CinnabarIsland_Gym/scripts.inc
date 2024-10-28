@@ -54,6 +54,7 @@ CinnabarIsland_Gym_OnLoadOpenDoor6::
 
 CinnabarIsland_Gym_EventScript_Blaine::
 	famechecker FAMECHECKER_BLAINE, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_REMATCH_BLAINE, CinnabarIsland_Gym_EventScript_LeaderRematch
 	trainerbattle_single TRAINER_LEADER_BLAINE, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM38_FROM_BLAINE, CinnabarIsland_Gym_EventScript_GiveTM38
 	msgbox CinnabarIsland_Gym_Text_BlainePostBattle
@@ -715,3 +716,39 @@ CinnabarIsland_Gym_EventScript_OpenDoor6::
 	setmetatile  6, 10, METATILE_CinnabarGym_Floor, 0
 	setmetatile  7, 10, METATILE_CinnabarGym_Floor_ShadeDiagonal, 0
 	return
+
+
+
+
+
+
+CinnabarIsland_Gym_EventScript_LeaderRematch::
+ random 2
+ switch VAR_RESULT
+ case 0, CinnabarIsland_Gym_Script_Blaine_RematchTeamOption1
+ case 1, CinnabarIsland_Gym_Script_Blaine_RematchTeamOption2
+ msgbox CinnabarIsland_Gym_Text_Blaine_postrematch, MSGBOX_AUTOCLOSE
+ end
+CinnabarIsland_Gym_Script_Blaine_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_BLAINEREMATCHA, CinnabarIsland_Gym_Text_RebattleIntro, CinnabarIsland_Gym_Text_RebattleDeafeated
+ clearflag FLAG_REMATCH_BLAINE
+CinnabarIsland_Gym_Script_Blaine_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_BLAINEREMATCHB, CinnabarIsland_Gym_Text_RebattleIntro, CinnabarIsland_Gym_Text_RebattleDeafeated
+ clearflag FLAG_REMATCH_BLAINE
+CinnabarIsland_Gym_Text_RematchCheckUnlocked::
+  lock
+  faceplayer
+  goto_if_set FLAG_DEFEATED_CHAMP, CinnabarIsland_Gym_Script_Rematch
+  msgbox CinnabarIsland_Gym_Text_RematchNotUnlocked, MSGBOX_AUTOCLOSE
+  end
+CinnabarIsland_Gym_Script_Rematch::
+	msgbox CinnabarIsland_Gym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq CinnabarIsland_Gym_Script_NoRematch
+	setflag FLAG_REMATCH_BLAINE
+	msgbox CinnabarIsland_Gym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+CinnabarIsland_Gym_Script_NoRematch::
+	msgbox CinnabarIsland_Gym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
+	end

@@ -1,0 +1,49 @@
+BlackthornGym_MapScripts::
+	.byte 0
+
+BlackthornGym_EventScript_Leader_Clair::
+	goto_if_set FLAG_REMATCH_CLAIR, BlackthornGym_EventScript_LeaderRematch
+	random 3
+	switch VAR_RESULT
+	case 0, BlackthornGym_Script_Clair_TeamOption1
+	case 1, BlackthornGym_Script_Clair_TeamOption2
+	case 2, BlackthornGym_Script_Clair_TeamOption3
+	msgbox BlackthornGym_Text_Clair_postbattle, MSGBOX_AUTOCLOSE
+	end
+BlackthornGym_Script_Clair_TeamOption1::
+ trainerbattle_single TRAINER_LEADER_CLAIRA, BlackthornGym_Text_Intro,BlackthornGym_Text_Deafeated
+BlackthornGym_Script_Clair_TeamOption2::
+ trainerbattle_single TRAINER_LEADER_CLAIRB, BlackthornGym_Text_Intro, BlackthornGym_Text_Deafeated
+BlackthornGym_Script_Clair_TeamOption3::
+ trainerbattle_single TRAINER_LEADER_CLAIRC, BlackthornGym_Text_Intro, BlackthornGym_Text_Deafeated
+
+BlackthornGym_EventScript_LeaderRematch::
+ random 3
+ switch VAR_RESULT
+ case 0, BlackthornGym_Script_Clair_RematchTeamOption1
+ case 1, BlackthornGym_Script_Clair_RematchTeamOption2
+ case 2,BlackthornGym_Script_Clair_RematchTeamOption3
+ msgbox BlackthornGym_Text_Clair_postrematch, MSGBOX_AUTOCLOSE
+ clearflag FLAG_REMATCH_CLAIR
+ end
+BlackthornGym_Script_Clair_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_CLAIRREMATCHA, BlackthornGym_Text_RebattleIntro, BlackthornGym_Text_RebattleDeafeated
+BlackthornGym_Script_Clair_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_CLAIRREMATCHB, BlackthornGym_Text_RebattleIntro, BlackthornGym_Text_RebattleDeafeated
+BlackthornGym_Script_Clair_RematchTeamOption3::
+ trainerbattle_single TRAINER_LEADER_CLAIRREMATCHC,BlackthornGym_Text_RebattleIntro, BlackthornGym_Text_RebattleDeafeated
+
+BlackthornGym_Script_Rematch::
+	lock
+	faceplayer
+	msgbox BlackthornGym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq BlackthornGym_Script_NoRematch
+	setflag FLAG_REMATCH_CLAIR
+	msgbox BlackthornGym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+BlackthornGym_Script_NoRematch::
+	msgbox BlackthornGym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
+	end
+

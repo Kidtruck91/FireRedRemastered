@@ -190,19 +190,19 @@
 #define FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS 0x0AE
 
 // Unused?
-#define FLAG_0x0AF               0x0AF
-#define FLAG_0x0B0               0x0B0
-#define FLAG_0x0B1               0x0B1
-#define FLAG_0x0B2               0x0B2
-#define FLAG_0x0B3               0x0B3
-#define FLAG_0x0B4               0x0B4
-#define FLAG_0x0B5               0x0B5
-#define FLAG_0x0B6               0x0B6
-#define FLAG_0x0B7               0x0B7
-#define FLAG_0x0B8               0x0B8
-#define FLAG_0x0B9               0x0B9
-#define FLAG_0x0BA               0x0BA
-#define FLAG_0x0BB               0x0BB
+#define FLAG_GOT_Squirtle_FROM_POLICEMAN 0x0AF
+#define FLAG_GOT_Bulbasaur_FROM_OLDWOMAN 0x0B0
+#define FLAG_GOT_Charmander_FROM_SUPERNERD 0x0B1
+#define FLAG_GOT_Chikorita_FROM_BALDMAN 0x0B2
+#define FLAG_GOT_Cyndaquil_FROM_COOLTRAINER 0x0B3
+#define FLAG_GOT_Totodile_FROM_BLACKBELT 0x0B4
+#define FLAG_HIDE_REGICE               0x0B5
+#define FLAG_HIDE_REGIROCK               0x0B6
+#define FLAG_HIDE_REGISTEEL               0x0B7
+#define FLAG_HIDE_RAYQUAZA               0x0B8
+#define FLAG_HIDE_GROUDON               0x0B9
+#define FLAG_HIDE_KYOGRE               0x0BA
+#define FLAG_HIDE_JIRACHI               0x0BB
 #define FLAG_0x0BC               0x0BC
 #define FLAG_0x0BD               0x0BD
 #define FLAG_0x0BE               0x0BE
@@ -530,7 +530,7 @@
 #define FLAG_HIDE_SILPH_CO_4F_TM41                              0x1FE
 
 // Unused?
-#define FLAG_0x1FF               0x1FF
+#define FLAG_NUZLOCKE           0x1FF
 #define FLAG_0x200               0x200
 #define FLAG_0x201               0x201
 #define FLAG_0x202               0x202
@@ -1246,10 +1246,34 @@
 #define FLAG_DEFEATED_AGATHA          0x4BA
 #define FLAG_DEFEATED_LANCE           0x4BB
 #define FLAG_DEFEATED_CHAMP           0x4BC
-
+#define FLAG_REMATCH_BROCK           0x4BD
+#define FLAG_REMATCH_MISTY           0x4BE
+#define FLAG_REMATCH_LT_SURGE        0x4BF
+#define FLAG_REMATCH_ERIKA           0x4C0
+#define FLAG_REMATCH_KOGA            0x4C1
+#define FLAG_REMATCH_SABRINA         0x4C2
+#define FLAG_REMATCH_BLAINE          0x4C3
+#define FLAG_REMATCH_TEMPOAK         0x4C4
+#define FLAG_REMATCH_WALKER          0x4C5
+#define FLAG_REMATCH_BUGSY           0x4C6
+#define FLAG_REMATCH_WHITNEY          0x4C7
+#define FLAG_REMATCH_MORTY           0x4C8
+#define FLAG_REMATCH_CHUCK           0x4C9
+#define FLAG_REMATCH_JASMINE         0x4CA
+#define FLAG_REMATCH_PRYCE           0x4CB
+#define FLAG_REMATCH_CLAIR          0x4CC
+#define FLAG_ACTUAL_ENABLE          0x4CD
+#define FLAG_DEFEATED_WALKER         0x4CE
+#define FLAG_DEFEATED_BUGSY           0x4CF
+#define FLAG_DEFEATED_WHITNEY          0x4D0
+#define FLAG_DEFEATED_MORTY           0x4D1
+#define FLAG_DEFEATED_CHUCK           0x4D2
+#define FLAG_DEFEATED_JASMINE         0x4D3
+#define FLAG_DEFEATED_PRYCE           0x4D4
+#define FLAG_DEFEATED_CLAIR          0x4D5
 // Unused?
-#define FLAG_0x4BD               0x4BD
-#define FLAG_0x4BE               0x4BE
+
+
 #define FLAG_0x4BF               0x4BF
 #define FLAG_0x4C0               0x4C0
 #define FLAG_0x4C1               0x4C1

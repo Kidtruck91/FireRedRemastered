@@ -154,3 +154,40 @@ FuchsiaCity_Gym_Text_GymStatuePlayerWon::
     .string "WINNING TRAINERS:\n"
     .string "{RIVAL}, {PLAYER}$"
 
+FuchsiaCity_Gym_Text_RematchNotUnlocked:
+    .string "Sorry, champ. You aren't \n"
+    .string "ready for a rematch yet.\p"
+    .string "Come on back after a while.$"
+
+FuchsiaCity_Gym_Text_NoRematch:
+	.string "No problem, champ.$"
+
+FuchsiaCity_Gym_Text_RematchQuestion:
+	.string "Hey, champ! Want a rematch?$"
+
+FuchsiaCity_Gym_Text_RematchGo:
+	.string "You got it champ!$"
+
+FuchsiaCity_Gym_Text_Koga_postrematch:
+ .string "With Trainers like you, the Pokémon\n"
+ .string "League must be a place of formidable\p"
+ .string "strength! Truly, it is something to be\p"
+ .string "proud of! As it so happens, I have been\p"
+ .string "thinking of aiming to join the Elite\p"
+ .string "Four myself...$"
+
+FuchsiaCity_Gym_Text_RebattleIntro:
+ .string "Fwahahaha! If it isn't the child. It\n"
+ .string "seems we are fated to meet once again.\p"
+ .string "You have come at a truly opportune\p"
+ .string "time. I was just thinking that I wanted\p"
+ .string "to test my newly refined sinister\p"
+ .string "techniques... in a battle that will not\p"
+ .string "only defeat you, but will also\p"
+ .string "demonstrate my fatherly dignity to my\p"
+ .string "daughter!$"
+
+FuchsiaCity_Gym_Text_RebattleDeafeated:
+ .string "If I am not strong enough to defeat\n"
+ .string "you now, there is but one thing to do.\p"
+ .string "I must hone my skills.$"

@@ -158,3 +158,39 @@ SaffronCity_Gym_Text_GymStatuePlayerWon::
     .string "WINNING TRAINERS:\n"
     .string "{RIVAL}, {PLAYER}$"
 
+SaffronCity_Gym_Text_RematchNotUnlocked:
+    .string "Sorry, champ. You aren't \n"
+    .string "ready for a rematch yet.\p"
+    .string "Come on back after a while.$"
+
+SaffronCity_Gym_Text_NoRematch:
+	.string "No problem, champ.$"
+
+SaffronCity_Gym_Text_RematchQuestion:
+	.string "Hey, champ! Want a rematch?$"
+
+SaffronCity_Gym_Text_RematchGo:
+	.string "You got it champ!$"
+
+SaffronCity_Gym_Text_Sabrina_postrematch:
+    .string "There was once a time when I was\n"
+    .string "shocked that I lost to you. That\p"
+    .string "feeling is gone now. It's been replaced\p"
+    .string "with a desire to grow strong and live\p"
+    .string "freely, as you do$"
+
+SaffronCity_Gym_Text_RebattleIntro:
+    .string "It's true that psychic power is a\n"
+    .string "potent ability. However, there are\p"
+    .string "things that cannot be overcome with\p"
+    .string "that power alone. I finally understand\p"
+    .string "that now, after losing to you in our\p"
+    .string "last battle. I won't be relying on just\p"
+    .string "psychic power this time. My true\p"
+    .string "strength...my true self... Allow me to\p"
+    .string "test them against you!$"
+
+SaffronCity_Gym_Text_RebattleDeafeated:
+    .string "I won't encounter a Trainer like you for\n"
+    .string "around another three years.$"
+

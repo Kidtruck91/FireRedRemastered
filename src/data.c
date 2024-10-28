@@ -3,10 +3,12 @@
 #include "battle.h"
 #include "data.h"
 #include "graphics.h"
+#include "battle_transition.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/battle_ai.h"
 #include "constants/trainers.h"
+
 
 #define BATTLER_OFFSET(i) (gHeap + 0x8000 + MON_PIC_SIZE * (i))
 

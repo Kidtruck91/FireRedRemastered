@@ -1,0 +1,63 @@
+{
+  "id": "MAP_MT_SILVER_2F",
+  "name": "MtSilver_2F",
+  "layout": "LAYOUT_MT_SILVER_2F",
+  "music": "MUS_BERRY_PICK",
+  "region_map_section": "MAPSEC_NONE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 25,
+      "y": 38,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_3F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 21,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_3F",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 39,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_3F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 34,
+      "y": 55,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 38,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_4F",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

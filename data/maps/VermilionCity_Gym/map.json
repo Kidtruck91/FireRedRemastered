@@ -13,7 +13,7 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_GYM",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "type": "object",
@@ -31,16 +31,16 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN",
-      "x": 2,
-      "y": 11,
+      "graphics_id": "OBJ_EVENT_GFX_TEACHY_TV_HOST",
+      "x": 7,
+      "y": 19,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "VermilionCity_Gym_EventScript_Baily",
+      "script": "VermilionCity_Gym_Text_RematchCheckUnlocked",
       "flag": "0"
     },
     {
@@ -109,7 +109,9 @@
       "dest_warp_id": "9"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

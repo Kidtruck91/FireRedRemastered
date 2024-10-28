@@ -1,0 +1,48 @@
+MohoganyGym_MapScripts::
+	.byte 0
+
+MohoganyGym_EventScript_Leader_Pryce::
+	goto_if_set FLAG_REMATCH_PRYCE, MohoganyGym_EventScript_LeaderRematch
+	random 3
+	switch VAR_RESULT
+	case 0, MohoganyGym_Script_Pryce_TeamOption1
+	case 1, MohoganyGym_Script_Pryce_TeamOption2
+	case 2, MohoganyGym_Script_Pryce_TeamOption3
+	msgbox MohoganyGym_Text_Pryce_postbattle, MSGBOX_AUTOCLOSE
+	end
+MohoganyGym_Script_Pryce_TeamOption1::
+ trainerbattle_single TRAINER_LEADER_PRYCEA, MohoganyGym_Text_Intro,MohoganyGym_Text_Deafeated
+MohoganyGym_Script_Pryce_TeamOption2::
+ trainerbattle_single TRAINER_LEADER_PRYCEB, MohoganyGym_Text_Intro, MohoganyGym_Text_Deafeated
+MohoganyGym_Script_Pryce_TeamOption3::
+ trainerbattle_single TRAINER_LEADER_PRYCEC, MohoganyGym_Text_Intro, MohoganyGym_Text_Deafeated
+
+MohoganyGym_EventScript_LeaderRematch::
+ random 3
+ switch VAR_RESULT
+ case 0, MohoganyGym_Script_Pryce_RematchTeamOption1
+ case 1, MohoganyGym_Script_Pryce_RematchTeamOption2
+ case 2, MohoganyGym_Script_Pryce_RematchTeamOption3
+ msgbox MohoganyGym_Text_Pryce_postrematch, MSGBOX_AUTOCLOSE
+ clearflag FLAG_REMATCH_PRYCE
+ end
+MohoganyGym_Script_Pryce_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_PRYCEREMATCHA, MohoganyGym_Text_RebattleIntro, MohoganyGym_Text_RebattleDeafeated
+MohoganyGym_Script_Pryce_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_PRYCEREMATCHB, MohoganyGym_Text_RebattleIntro, MohoganyGym_Text_RebattleDeafeated
+MohoganyGym_Script_Pryce_RematchTeamOption3::
+ trainerbattle_single TRAINER_LEADER_PRYCEREMATCHC,MohoganyGym_Text_RebattleIntro, MohoganyGym_Text_RebattleDeafeated
+
+MohoganyGym_Script_Rematch::
+	lock
+	faceplayer
+	msgbox MohoganyGym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq MohoganyGym_Script_NoRematch
+	setflag FLAG_REMATCH_PRYCE
+	msgbox MohoganyGym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+MohoganyGym_Script_NoRematch::
+	msgbox MohoganyGym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
+	end

@@ -90,3 +90,36 @@ CeruleanCity_Gym_Text_GymStatuePlayerWon::
     .string "WINNING TRAINERS:\n"
     .string "{RIVAL}, {PLAYER}$"
 
+CeruleanCity_Gym_Text_RematchNotUnlocked:
+    .string "Sorry, champ. You aren't \n"
+    .string "ready for a rematch yet.\p"
+    .string "Come on back after a while.$"
+
+CeruleanCity_Gym_Text_NoRematch:
+	.string "No problem, champ.$"
+
+CeruleanCity_Gym_Text_RematchQuestion:
+	.string "Hey, champ! Want a rematch?$"
+
+CeruleanCity_Gym_Text_RematchGo:
+	.string "You got it champ!$"
+
+CeruleanCity_Gym_Text_Misty_postrematch:
+ .string "I lost... I need to try swimming around\n"
+ .string "for a bit so that I can clear my head of\p"
+ .string "these feelings. ...I definitely won't\p"
+ .string "lose next time!$"
+ 
+
+CeruleanCity_Gym_Text_RebattleIntro:
+ .string "I heard an interesting rumor! Not only\n" 
+ .string "did you and that other kid defeat \p"
+ .string "those Team Rocket guys, but you also\p"
+ .string "met again in the battle for Champion.\p"
+ .string "Argh! I just can't take it anymore!\p"
+ .string "You've gotten so strong that I just\p"
+ .string "absolutely have to battle you again!\p"
+ .string "You got that? No refusing!$"
+ 
+CeruleanCity_Gym_Text_RebattleDeafeated:
+ .string "Hmph! How annoying!$"

@@ -3,6 +3,7 @@ CeladonCity_Gym_MapScripts::
 
 CeladonCity_Gym_EventScript_Erika::
 	famechecker FAMECHECKER_ERIKA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_REMATCH_ERIKA, CeladonCity_Gym_EventScript_LeaderRematch
 	trainerbattle_single TRAINER_LEADER_ERIKA, CeladonCity_Gym_Text_ErikaIntro, CeladonCity_Gym_Text_ErikaDefeat, CeladonCity_Gym_EventScript_DefeatedErika, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM19_FROM_ERIKA, CeladonCity_Gym_EventScript_GiveTM19
 	famechecker FAMECHECKER_ERIKA, 4
@@ -82,3 +83,45 @@ CeladonCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox CeladonCity_Gym_Text_GymStatuePlayerWon
 	releaseall
 	end
+
+
+CeladonCity_Gym_EventScript_LeaderRematch::
+ random 2
+ switch VAR_RESULT
+ case 0, CeladonCity_Gym_Script_Erika_RematchTeamOption1
+ case 1, CeladonCity_Gym_Script_Erika_RematchTeamOption2
+ msgbox CeladonCity_Gym_Text_Erika_postrematch, MSGBOX_AUTOCLOSE
+ end
+CeladonCity_Gym_Script_Erika_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_ERIKAREMATCHA, CeladonCity_Gym_Text_RebattleIntro, CeladonCity_Gym_Text_RebattleDeafeated
+ clearflag FLAG_REMATCH_ERIKA
+CeladonCity_Gym_Script_Erika_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_ERIKAREMATCHB, CeladonCity_Gym_Text_RebattleIntro, CeladonCity_Gym_Text_RebattleDeafeated
+ clearflag FLAG_REMATCH_ERIKA
+
+CeladonCity_Gym_Text_RematchCheckUnlocked::
+  lock
+  faceplayer
+  goto_if_set FLAG_DEFEATED_CHAMP, CeladonCity_Gym_Script_Rematch
+  msgbox CeladonCity_Gym_Text_RematchNotUnlocked, MSGBOX_AUTOCLOSE
+  end
+
+
+CeladonCity_Gym_Script_Rematch::
+	msgbox CeladonCity_Gym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq CeladonCity_Gym_Script_NoRematch
+	setflag FLAG_REMATCH_ERIKA
+	msgbox CeladonCity_Gym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+CeladonCity_Gym_Script_NoRematch::
+	msgbox CeladonCity_Gym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
+	end
+
+
+
+
+
+
+

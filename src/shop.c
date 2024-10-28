@@ -995,7 +995,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
     {
         BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
         DebugFunc_PrintPurchaseDetails(taskId);
-        RecordItemPurchase(tItemId, tItemCount, 1);
+        RecordItemTransaction(tItemId, tItemCount, 1);
     }
     else
     {
@@ -1066,7 +1066,7 @@ static void DebugFunc_PrintShopMenuHistoryBeforeClearMaybe(void)
 {
 }
 
-void RecordItemPurchase(u16 item, u16 quantity, u8 a2)
+void RecordItemTransaction(u16 item, u16 quantity, u8 a2)
 {
     struct MartHistory *history;
     

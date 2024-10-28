@@ -151,4 +151,3 @@ PewterCity_Text_RunningShoesLetterFromMom::
     .string "Remember, I'll always cheer for\n"
     .string "you! Don't ever give up!\p"
     .string "From Mom$"
-

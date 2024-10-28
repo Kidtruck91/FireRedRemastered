@@ -150,8 +150,22 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DeoxysD;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DeoxysA;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DeoxysN;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SSAnne;
-
-
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Walker;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bugsy;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Whitney;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Morty;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chuck;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Jasmine;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pryce;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Clair;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elm;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Regi;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Groudon;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kyogre;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Latias_Latios;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rayquaza;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RayquazaStill;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo;
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
     [OBJ_EVENT_GFX_RED_BIKE]                 = &gObjectEventGraphicsInfo_RedBike,
@@ -305,4 +319,20 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_DEOXYS_A]                 = &gObjectEventGraphicsInfo_DeoxysA,
     [OBJ_EVENT_GFX_DEOXYS_N]                 = &gObjectEventGraphicsInfo_DeoxysN,
     [OBJ_EVENT_GFX_SS_ANNE]                  = &gObjectEventGraphicsInfo_SSAnne,
-};
+    [OBJ_EVENT_GFX_WALKER]                   = &gObjectEventGraphicsInfo_Walker,
+    [OBJ_EVENT_GFX_BUGSY]                    = &gObjectEventGraphicsInfo_Bugsy,
+    [OBJ_EVENT_GFX_WHITNEY]                  = &gObjectEventGraphicsInfo_Whitney,
+    [OBJ_EVENT_GFX_MORTY]                    = &gObjectEventGraphicsInfo_Morty,
+    [OBJ_EVENT_GFX_CHUCK]                    = &gObjectEventGraphicsInfo_Chuck,
+    [OBJ_EVENT_GFX_JASMINE]                  = &gObjectEventGraphicsInfo_Jasmine,
+    [OBJ_EVENT_GFX_PRYCE]                    = &gObjectEventGraphicsInfo_Pryce,
+    [OBJ_EVENT_GFX_CLAIR]                    = &gObjectEventGraphicsInfo_Clair,
+    [OBJ_EVENT_GFX_ELM]                      = &gObjectEventGraphicsInfo_Elm,
+    [OBJ_EVENT_GFX_REGI]                     = &gObjectEventGraphicsInfo_Regi,
+    [OBJ_EVENT_GFX_GROUDON]                  = &gObjectEventGraphicsInfo_Groudon,
+    [OBJ_EVENT_GFX_KYOGRE]                   = &gObjectEventGraphicsInfo_Kyogre,
+    [OBJ_EVENT_GFX_LATIAS_LATIOS]            = &gObjectEventGraphicsInfo_Latias_Latios,
+    [OBJ_EVENT_GFX_RAYQUAZA]                 = &gObjectEventGraphicsInfo_Rayquaza,
+    [OBJ_EVENT_GFX_RAYQUAZA_STILL]           = &gObjectEventGraphicsInfo_RayquazaStill,
+    [OBJ_EVENT_GFX_SUDOWOODO]                = &gObjectEventGraphicsInfo_Sudowoodo,
+   };

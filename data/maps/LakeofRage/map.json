@@ -1,0 +1,48 @@
+{
+  "id": "MAP_LAKEOF_RAGE",
+  "name": "LakeofRage",
+  "layout": "LAYOUT_LAKEOF_RAGE",
+  "music": "MUS_BERRY_PICK",
+  "region_map_section": "MAPSEC_LAKE_OF_RAGE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE43",
+      "offset": 10,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 7,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_LAKE_OF_RAGE_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 27,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_LAKE_OF_RAGE_HOUSE2",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

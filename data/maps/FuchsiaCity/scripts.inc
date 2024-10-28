@@ -137,3 +137,59 @@ FuchsiaCity_EventScript_OmanyteSign::
 	hidemonpic
 	releaseall
 	end
+
+FuchsiaCity_EventScript_CharmanderSUPERNERD::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_Charmander_FROM_SUPERNERD, FuchsiaCity_EventScript_AlreadyGotCharmander
+	msgbox FuchsiaCity_TEXT_CHARNERD
+	setvar VAR_TEMP_1, SPECIES_CHARMANDER
+	givemon SPECIES_CHARMANDER, 10, ITEM_CHARCOAL
+	goto_if_eq VAR_RESULT, 0, FuchsiaCity_EventScript_ReceiveCharmanderParty
+	goto_if_eq VAR_RESULT, 1, FuchsiaCity_EventScript_ReceiveCharmanderPC
+	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+FuchsiaCity_EventScript_ReceiveCharmanderParty::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message FuchsiaCity_Text_ReceivedCharmander
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_CHARMANDER
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, FuchsiaCity_EventScript_EndReceiveCharmander
+	call EventScript_GetGiftMonPartySlot
+	call EventScript_ChangePokemonNickname
+	goto FuchsiaCity_EventScript_EndReceiveCharmander
+	end
+
+FuchsiaCity_EventScript_ReceiveCharmanderPC::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message FuchsiaCity_Text_ReceivedCharmander
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_CHARMANDER
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, FuchsiaCity_EventScript_CharmanderTransferredToPC
+	call EventScript_NameReceivedBoxMon
+	goto FuchsiaCity_EventScript_CharmanderTransferredToPC
+	end
+
+FuchsiaCity_EventScript_CharmanderTransferredToPC::
+	call EventScript_TransferredToPC
+	goto FuchsiaCity_EventScript_EndReceiveCharmander
+	end
+
+FuchsiaCity_EventScript_EndReceiveCharmander::
+	textcolor NPC_TEXT_COLOR_MALE
+	msgbox FuchsiaCity_TEXT_SUPERNERD_THANKS
+	setflag FLAG_GOT_Charmander_FROM_SUPERNERD
+	release
+	end
+FuchsiaCity_EventScript_AlreadyGotCharmander::
+	msgbox FuchsiaCity_TEXT_SUPERNERD_THANKS
+	release
+	end

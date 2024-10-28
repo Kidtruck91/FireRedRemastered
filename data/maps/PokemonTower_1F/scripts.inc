@@ -35,3 +35,59 @@ PokemonTower_1F_EventScript_Woman2MalePlayer::
 PokemonTower_1F_EventScript_WorkerF::
 	msgbox PokemonTower_1F_Text_ErectedInMemoryOfDeadMons, MSGBOX_NPC
 	end
+
+LavenderTower_EventScript_BulbasaurOLDWOMAN::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_Bulbasaur_FROM_OLDWOMAN, LavenderTower_EventScript_AlreadyGotBulbasaur
+	msgbox LavenderTower_TEXT_BULBOLDWOMAN
+	setvar VAR_TEMP_1, SPECIES_BULBASAUR
+	givemon SPECIES_BULBASAUR, 10, ITEM_MIRACLE_SEED
+	goto_if_eq VAR_RESULT, 0, LavenderTower_EventScript_ReceiveBulbasaurParty
+	goto_if_eq VAR_RESULT, 1, LavenderTower_EventScript_ReceiveBulbasaurPC
+	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+LavenderTower_EventScript_ReceiveBulbasaurParty::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message LavenderTower_Text_ReceivedBulbasaur
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_BULBASAUR
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, LavenderTower_EventScript_EndReceiveBulbasaur
+	call EventScript_GetGiftMonPartySlot
+	call EventScript_ChangePokemonNickname
+	goto LavenderTower_EventScript_EndReceiveBulbasaur
+	end
+
+LavenderTower_EventScript_ReceiveBulbasaurPC::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message LavenderTower_Text_ReceivedBulbasaur
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_BULBASAUR
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, LavenderTower_EventScript_BulbasaurTransferredToPC
+	call EventScript_NameReceivedBoxMon
+	goto LavenderTower_EventScript_BulbasaurTransferredToPC
+	end
+
+LavenderTower_EventScript_BulbasaurTransferredToPC::
+	call EventScript_TransferredToPC
+	goto LavenderTower_EventScript_EndReceiveBulbasaur
+	end
+
+LavenderTower_EventScript_EndReceiveBulbasaur::
+	textcolor NPC_TEXT_COLOR_FEMALE
+	msgbox LavenderTower_TEXT_OLDWOMAN_THANKS
+	setflag FLAG_GOT_Bulbasaur_FROM_OLDWOMAN
+	release
+	end
+LavenderTower_EventScript_AlreadyGotBulbasaur::
+	msgbox LavenderTower_TEXT_OLDWOMAN_THANKS
+	release
+	end

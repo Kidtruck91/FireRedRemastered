@@ -188,3 +188,33 @@ CinnabarIsland_Gym_Text_SorryBadCall::
     .string "Sorry!\n"
     .string "Bad call!$"
 
+CinnabarIsland_Gym_Text_RematchNotUnlocked:
+    .string "Sorry, champ. You aren't \n"
+    .string "ready for a rematch yet.\p"
+    .string "Come on back after a while.$"
+
+CinnabarIsland_Gym_Text_NoRematch:
+	.string "No problem, champ.$"
+
+CinnabarIsland_Gym_Text_RematchQuestion:
+	.string "Hey, champ! Want a rematch?$"
+
+CinnabarIsland_Gym_Text_RematchGo:
+	.string "You got it champ!$"
+
+CinnabarIsland_Gym_Text_Blaine_postrematch:
+ .string "Awesome. I have burned out... But the\n"
+ .string "fire inside me is only going to get\p"
+ .string "stronger! Let's battle again sometime!$"
+
+CinnabarIsland_Gym_Text_RebattleIntro:
+ .string "Hah! Well done on climbing to Champion!\n"
+ .string "The Cinnabar Island volcano seems\p"
+ .string "quite active today! Which means that\p"
+ .string "my Fire-type Pokémon will be in top\p"
+ .string "shape today. Since you came all this\p"
+ .string "way, we should have a battle! Hah!$"
+
+CinnabarIsland_Gym_Text_RebattleDeafeated:
+ .string "Hah! It's over already? I was just \n"
+ .string "getting fired up!$"

@@ -1,8 +1,9 @@
 PewterCity_Gym_MapScripts::
 	.byte 0
-
+	
 PewterCity_Gym_EventScript_Brock::
 	famechecker FAMECHECKER_BROCK, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_REMATCH_BROCK, PewterCity_Gym_EventScript_LeaderRematch
 	trainerbattle_single TRAINER_LEADER_BROCK, PewterCity_Gym_Text_BrockIntro, PewterCity_Gym_Text_BrockDefeat, PewterCity_Gym_EventScript_DefeatedBrock, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM39_FROM_BROCK, PewterCity_Gym_EventScript_GiveTM39
 	msgbox PewterCity_Gym_Text_BrockPostBattle
@@ -79,4 +80,36 @@ PewterCity_Gym_EventScript_GymStatue::
 PewterCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox PewterCity_Gym_Text_GymStatuePlayerWon
 	releaseall
+	end
+
+
+
+PewterCity_Gym_EventScript_LeaderRematch::
+ random 2
+ switch VAR_RESULT
+ case 0, PewterCity_Gym_Script_Brock_RematchTeamOption1
+ case 1, PewterCity_Gym_Script_Brock_RematchTeamOption2
+ msgbox PewterCity_Gym_Text_Brock_postrematch, MSGBOX_AUTOCLOSE
+ clearflag FLAG_REMATCH_BROCK
+ end
+PewterCity_Gym_Script_Brock_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_BROCKREMATCHA, PewterCity_Gym_Text_RebattleIntro, PewterCity_Gym_Text_RebattleDeafeated
+PewterCity_Gym_Script_Brock_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_BROCKREMATCHB, PewterCity_Gym_Text_RebattleIntro, PewterCity_Gym_Text_RebattleDeafeated
+PewterCity_Gym_Text_RematchCheckUnlocked::
+  lock
+  faceplayer
+  goto_if_set FLAG_DEFEATED_CHAMP, PewterCity_Gym_Script_Rematch
+  msgbox PewterCity_Gym_Text_RematchNotUnlocked, MSGBOX_AUTOCLOSE
+  end
+PewterCity_Gym_Script_Rematch::
+	msgbox PewterCity_Gym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq PewterCity_Gym_Script_NoRematch
+	setflag FLAG_REMATCH_BROCK
+	msgbox PewterCity_Gym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+PewterCity_Gym_Script_NoRematch::
+	msgbox PewterCity_Gym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
 	end

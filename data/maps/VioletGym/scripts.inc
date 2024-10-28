@@ -1,0 +1,48 @@
+VioletGym_MapScripts::
+	.byte 0
+	
+VioletGym_EventScript_Leader_Walker::
+	goto_if_set FLAG_REMATCH_WALKER, VioletGym_EventScript_LeaderRematch
+	random 3
+	switch VAR_RESULT
+	case 0, VioletGym_Script_Walker_TeamOption1
+	case 1, VioletGym_Script_Walker_TeamOption2
+	case 2, VioletGym_Script_Walker_TeamOption3
+	msgbox VioletGym_Text_Walker_postbattle, MSGBOX_AUTOCLOSE
+	end
+VioletGym_Script_Walker_TeamOption1::
+ trainerbattle_single TRAINER_LEADER_WALKERA, VioletGym_Text_Intro,VioletGym_Text_Deafeated
+VioletGym_Script_Walker_TeamOption2::
+ trainerbattle_single TRAINER_LEADER_WALKERB, VioletGym_Text_Intro, VioletGym_Text_Deafeated
+VioletGym_Script_Walker_TeamOption3::
+ trainerbattle_single TRAINER_LEADER_WALKERC, VioletGym_Text_Intro, VioletGym_Text_Deafeated
+
+VioletGym_EventScript_LeaderRematch::
+ random 3
+ switch VAR_RESULT
+ case 0, VioletGym_Script_Walker_RematchTeamOption1
+ case 1, VioletGym_Script_Walker_RematchTeamOption2
+ case 2, VioletGym_Script_Walker_RematchTeamOption3
+ msgbox VioletGym_Text_Walker_postrematch, MSGBOX_AUTOCLOSE
+ clearflag FLAG_REMATCH_WALKER
+ end
+VioletGym_Script_Walker_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_WALKERREMATCHA, VioletGym_Text_RebattleIntro, VioletGym_Text_RebattleDeafeated
+VioletGym_Script_Walker_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_WALKERREMATCHB, VioletGym_Text_RebattleIntro, VioletGym_Text_RebattleDeafeated
+VioletGym_Script_Walker_RematchTeamOption3::
+ trainerbattle_single TRAINER_LEADER_WALKERREMATCHC,VioletGym_Text_RebattleIntro, VioletGym_Text_RebattleDeafeated
+ 
+VioletGym_Script_Rematch::
+	lock
+	faceplayer
+	msgbox VioletGym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq VioletGym_Script_NoRematch
+	setflag FLAG_REMATCH_WALKER
+	msgbox VioletGym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+VioletGym_Script_NoRematch::
+	msgbox VioletGym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
+	end

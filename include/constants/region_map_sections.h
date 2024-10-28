@@ -205,7 +205,43 @@
 #define MAPSEC_EMBER_SPA                    0xC3
 #define MAPSEC_SPECIAL_AREA                 0xC4
 #define MAPSEC_NONE                         0xC5
-#define MAPSEC_COUNT                        0xC6
+#define MAPSECS_JOHTO_TOWNS                 0xC6
+
+#define MAPSEC_NEW_BARK_TOWN                0xC6
+#define MAPSEC_CHERRYGROVE_CITY             0xC7
+#define MAPSEC_VIOLET_CITY                  0xC8
+#define MAPSEC_AZALEA_TOWN                  0xC9
+#define MAPSEC_GOLDENROD_CITY               0xCA
+#define MAPSEC_ECRUTEAK_CITY                0xCB
+#define MAPSEC_OLIVINE_CITY                 0xCC
+#define MAPSEC_CIANWOOD_CITY                0xCD
+#define MAPSEC_MAHOGANY_TOWN                0xCE
+#define MAPSEC_BLACKTHORN_CITY              0xCF
+#define MAPSEC_ROUTE_29                     0xD0
+#define MAPSEC_ROUTE_30                     0xD1
+#define MAPSEC_ROUTE_31                     0xD2
+#define MAPSEC_ROUTE_32                     0xD3
+#define MAPSEC_ROUTE_33                     0xD4
+#define MAPSEC_ROUTE_34                     0xD5
+#define MAPSEC_ROUTE_35                     0xD6
+#define MAPSEC_ROUTE_36                     0xD7
+#define MAPSEC_ROUTE_37                     0xD8
+#define MAPSEC_ROUTE_38                     0xD9
+#define MAPSEC_ROUTE_39                     0xDA
+#define MAPSEC_ROUTE_40                     0xDB
+#define MAPSEC_ROUTE_41                     0xDC
+#define MAPSEC_ROUTE_42                     0xDD
+#define MAPSEC_ROUTE_43                     0xDE
+#define MAPSEC_ROUTE_44                     0xDF
+#define MAPSEC_ROUTE_45                     0xE0
+#define MAPSEC_ROUTE_46                     0xE1
+#define MAPSEC_ILEX_FOREST                  0xE2
+#define MAPSEC_LAKE_OF_RAGE                 0xE3
+#define MAPSEC_RUINS_OF_ALPH                0xE4
+#define MAPSEC_NATIONAL_PARK                0xE5
+#define MAPSEC_MT_SILVER                    0xE6
+#define MAPSEC_COUNT                        0xE7
+
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE

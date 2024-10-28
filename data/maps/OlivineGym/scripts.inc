@@ -1,0 +1,48 @@
+OlivineGym_MapScripts::
+	.byte 0
+
+OlivineGym_EventScript_Leader_Jasmine::
+	goto_if_set FLAG_REMATCH_JASMINE, OlivineGym_EventScript_LeaderRematch
+	random 3
+	switch VAR_RESULT
+	case 0, OlivineGym_Script_Jasmine_TeamOption1
+	case 1, OlivineGym_Script_Jasmine_TeamOption2
+	case 2, OlivineGym_Script_Jasmine_TeamOption3
+	msgbox OlivineGym_Text_Jasmine_postbattle, MSGBOX_AUTOCLOSE
+	end
+OlivineGym_Script_Jasmine_TeamOption1::
+ trainerbattle_single TRAINER_LEADER_JASMINEA, OlivineGym_Text_Intro,OlivineGym_Text_Deafeated
+OlivineGym_Script_Jasmine_TeamOption2::
+ trainerbattle_single TRAINER_LEADER_JASMINEB, OlivineGym_Text_Intro, OlivineGym_Text_Deafeated
+OlivineGym_Script_Jasmine_TeamOption3::
+ trainerbattle_single TRAINER_LEADER_JASMINEC, OlivineGym_Text_Intro, OlivineGym_Text_Deafeated
+
+OlivineGym_EventScript_LeaderRematch::
+ random 3
+ switch VAR_RESULT
+ case 0, OlivineGym_Script_Jasmine_RematchTeamOption1
+ case 1, OlivineGym_Script_Jasmine_RematchTeamOption2
+ case 2, OlivineGym_Script_Jasmine_RematchTeamOption3
+ msgbox OlivineGym_Text_Jasmine_postrematch, MSGBOX_AUTOCLOSE
+ clearflag FLAG_REMATCH_JASMINE
+ end
+OlivineGym_Script_Jasmine_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_JASMINEREMATCHA, OlivineGym_Text_RebattleIntro, OlivineGym_Text_RebattleDeafeated
+OlivineGym_Script_Jasmine_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_JASMINEREMATCHB, OlivineGym_Text_RebattleIntro, OlivineGym_Text_RebattleDeafeated
+OlivineGym_Script_Jasmine_RematchTeamOption3::
+ trainerbattle_single TRAINER_LEADER_JASMINEREMATCHC,OlivineGym_Text_RebattleIntro, OlivineGym_Text_RebattleDeafeated
+
+OlivineGym_Script_Rematch::
+	lock
+	faceplayer
+	msgbox OlivineGym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq OlivineGym_Script_NoRematch
+	setflag FLAG_REMATCH_JASMINE
+	msgbox OlivineGym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+OlivineGym_Script_NoRematch::
+	msgbox OlivineGym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
+	end

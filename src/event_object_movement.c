@@ -468,6 +468,16 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_RS_GROUDON                  0x1119
 #define OBJ_EVENT_PAL_TAG_RS_GROUDON_REFLECTION       0x111A
 #define OBJ_EVENT_PAL_TAG_RS_SUBMARINE_SHADOW         0x111B
+#define OBJ_EVENT_PAL_WALKER                          0x111C
+#define OBJ_EVENT_PAL_BUGSY                           0x111D
+#define OBJ_EVENT_PAL_WHITNEY                         0x111E
+#define OBJ_EVENT_PAL_MORTY                           0x111F
+#define OBJ_EVENT_PAL_CHUCK                           0x1120
+#define OBJ_EVENT_PAL_JASMINE                         0x1121
+#define OBJ_EVENT_PAL_PRYCE                           0x1122
+#define OBJ_EVENT_PAL_CLAIR                           0x1123
+#define OBJ_EVENT_PAL_ELM                           0x1124
+
 #define OBJ_EVENT_PAL_TAG_NONE                        0x11FF
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -497,6 +507,15 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Meteorite,               OBJ_EVENT_PAL_TAG_METEORITE},
     {gObjectEventPal_SSAnne,                  OBJ_EVENT_PAL_TAG_SS_ANNE},
     {gObjectEventPal_Seagallop,               OBJ_EVENT_PAL_TAG_SEAGALLOP},
+    {gObjectEventPalette_Walker,              OBJ_EVENT_PAL_WALKER},
+    {gObjectEventPalette_Bugsy,               OBJ_EVENT_PAL_BUGSY},
+    {gObjectEventPalette_Whitney,             OBJ_EVENT_PAL_WHITNEY},
+    {gObjectEventPalette_Morty,               OBJ_EVENT_PAL_MORTY},
+    {gObjectEventPalette_Chuck,               OBJ_EVENT_PAL_CHUCK},
+    {gObjectEventPalette_Jasmine,             OBJ_EVENT_PAL_JASMINE},
+    {gObjectEventPalette_Pryce,               OBJ_EVENT_PAL_PRYCE},
+    {gObjectEventPalette_Clair,               OBJ_EVENT_PAL_CLAIR},
+    {gObjectEventPalette_Elm,               OBJ_EVENT_PAL_ELM},
     {},
 };
 

@@ -150,3 +150,39 @@ CeladonCity_Gym_Text_GymStatuePlayerWon::
     .string "WINNING TRAINERS:\n"
     .string "{RIVAL}, {PLAYER}$"
 
+
+
+
+CeladonCity_Gym_Text_RematchNotUnlocked:
+    .string "Sorry, champ. You aren't \n"
+    .string "ready for a rematch yet.\p"
+    .string "Come on back after a while.$"
+
+CeladonCity_Gym_Text_NoRematch:
+	.string "No problem, champ!.$"
+
+CeladonCity_Gym_Text_RematchQuestion:
+	.string "Hey, champ! Want a rematch?$"
+
+CeladonCity_Gym_Text_RematchGo:
+	.string "You got it champ!$"
+
+CeladonCity_Gym_Text_Erika_postrematch:
+ .string "Simply marvelous. That was an effort\n"
+ .string "worthy at least 10 Rainbow Badges.$"
+
+CeladonCity_Gym_Text_RebattleIntro:
+ .string "...Zzz...zzz... Oh, good day to you. If it\n"
+ .string "isn't the one who's been trying to fill\p"
+ .string "the Pokédex. I do hope things have\p"
+ .string "been going well for you since our last\p"
+ .string "encounter. ...I see. You certainly have\p"
+ .string "been busy. I'm not particularly fond of\p"
+ .string "those kinds of public things... However,\p"
+ .string "battles are different. Those, I \p"
+ .string "graciously partake.$"
+
+
+
+CeladonCity_Gym_Text_RebattleDeafeated:
+ .string "Oh! It appears it is my loss... ...$"

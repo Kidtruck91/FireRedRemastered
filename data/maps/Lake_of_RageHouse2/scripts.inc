@@ -1,0 +1,58 @@
+Lake_of_RageHouse2_MapScripts::
+	.byte 0
+
+Lake_of_RageHouse2_EventScript_CyndaquilCOOLTRAINER::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_Cyndaquil_FROM_COOLTRAINER, Lake_of_RageHouse2_EventScript_AlreadyGotCyndaquil
+	msgbox Lake_of_RageHouse2_TEXT_CYNDCOOLTRAINER
+	setvar VAR_TEMP_1, SPECIES_CYNDAQUIL
+	givemon SPECIES_CYNDAQUIL, 10, ITEM_CHARCOAL
+	goto_if_eq VAR_RESULT, 0, Lake_of_RageHouse2_EventScript_ReceiveCyndaquilParty
+	goto_if_eq VAR_RESULT, 1, Lake_of_RageHouse2_EventScript_ReceiveCyndaquilPC
+	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+Lake_of_RageHouse2_EventScript_ReceiveCyndaquilParty::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message Lake_of_RageHouse2_Text_ReceivedCyndaquil
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_CYNDAQUIL
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Lake_of_RageHouse2_EventScript_EndReceiveCyndaquil
+	call EventScript_GetGiftMonPartySlot
+	call EventScript_ChangePokemonNickname
+	goto Lake_of_RageHouse2_EventScript_EndReceiveCyndaquil
+	end
+
+Lake_of_RageHouse2_EventScript_ReceiveCyndaquilPC::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_LEVEL_UP
+	message Lake_of_RageHouse2_Text_ReceivedCyndaquil
+	waitmessage
+	waitfanfare
+	bufferspeciesname STR_VAR_1, SPECIES_CYNDAQUIL
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Lake_of_RageHouse2_EventScript_CyndaquilTransferredToPC
+	call EventScript_NameReceivedBoxMon
+	goto Lake_of_RageHouse2_EventScript_CyndaquilTransferredToPC
+	end
+
+Lake_of_RageHouse2_EventScript_CyndaquilTransferredToPC::
+	call EventScript_TransferredToPC
+	goto Lake_of_RageHouse2_EventScript_EndReceiveCyndaquil
+	end
+
+Lake_of_RageHouse2_EventScript_EndReceiveCyndaquil::
+	textcolor NPC_TEXT_COLOR_FEMALE
+	msgbox Lake_of_RageHouse2_TEXT_COOLTRAINER_THANKS
+	setflag FLAG_GOT_Cyndaquil_FROM_COOLTRAINER
+	release
+	end
+Lake_of_RageHouse2_EventScript_AlreadyGotCyndaquil::
+	msgbox Lake_of_RageHouse2_TEXT_COOLTRAINER_THANKS
+	release
+	end

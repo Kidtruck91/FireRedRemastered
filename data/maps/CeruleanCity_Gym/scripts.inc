@@ -3,6 +3,7 @@ CeruleanCity_Gym_MapScripts::
 
 CeruleanCity_Gym_EventScript_Misty::
 	famechecker FAMECHECKER_MISTY, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_REMATCH_MISTY, CeruleanCity_Gym_EventScript_LeaderRematch
 	trainerbattle_single TRAINER_LEADER_MISTY, CeruleanCity_Gym_Text_MistyIntro, CeruleanCity_Gym_Text_MistyDefeat, CeruleanCity_Gym_EventScript_MistyDefeated, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM03_FROM_MISTY, CeruleanCity_Gym_EventScript_GiveTM03
 	msgbox CeruleanCity_Gym_Text_ExplainTM03
@@ -67,4 +68,39 @@ CeruleanCity_Gym_EventScript_GymStatue::
 CeruleanCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox CeruleanCity_Gym_Text_GymStatuePlayerWon
 	releaseall
+	end
+
+
+
+
+
+CeruleanCity_Gym_EventScript_LeaderRematch::
+ random 2
+ switch VAR_RESULT
+ case 0, CeruleanCity_Gym_Script_Misty_RematchTeamOption1
+ case 1, CeruleanCity_Gym_Script_Misty_RematchTeamOption2
+ msgbox CeruleanCity_Gym_Text_Misty_postrematch, MSGBOX_AUTOCLOSE
+ end
+CeruleanCity_Gym_Script_Misty_RematchTeamOption1::
+ trainerbattle_single TRAINER_LEADER_MISTYREMATCHA, CeruleanCity_Gym_Text_RebattleIntro, CeruleanCity_Gym_Text_RebattleDeafeated
+ clearflag FLAG_REMATCH_MISTY
+CeruleanCity_Gym_Script_Misty_RematchTeamOption2::
+ trainerbattle_single TRAINER_LEADER_MISTYREMATCHB, CeruleanCity_Gym_Text_RebattleIntro, CeruleanCity_Gym_Text_RebattleDeafeated
+ clearflag FLAG_REMATCH_MISTY
+CeruleanCity_Gym_Text_RematchCheckUnlocked::
+  lock
+  faceplayer
+  goto_if_set FLAG_DEFEATED_CHAMP, CeruleanCity_Gym_Script_Rematch
+  msgbox CeruleanCity_Gym_Text_RematchNotUnlocked, MSGBOX_AUTOCLOSE
+  end
+CeruleanCity_Gym_Script_Rematch::
+	msgbox CeruleanCity_Gym_Text_RematchQuestion, MSGBOX_YESNO
+	compare VAR_RESULT, 0
+	goto_if_eq CeruleanCity_Gym_Script_NoRematch
+	setflag FLAG_REMATCH_MISTY
+	msgbox CeruleanCity_Gym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	end
+CeruleanCity_Gym_Script_NoRematch::
+	msgbox CeruleanCity_Gym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	release
 	end
