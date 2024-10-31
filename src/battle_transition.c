@@ -20,9 +20,6 @@
 #include "constants/songs.h"
 #include "battle_setup.h"
 #include "battle.h"
-#include "data.h"
-#include "src/data/trainers.h"
-#include "battle_transition.h"
 #include "constants/trainers.h"
 #define PALTAG_UNUSED_MUGSHOT 0x100A
 
