@@ -1,5 +1,5 @@
-#include "event_data.h"
 #include "global.h"
+#include "event_data.h"
 #include "sprite.h"
 #include "task.h"
 #include "overworld.h"
@@ -1886,7 +1886,7 @@ static bool8 Mugshot_SetGfx(struct Task *task)
     const u16 *mugshotsMap = sMugshotsTilemap;
 
     u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
-    u8 mugshotColor = gTrainers[gTrainerBattleOpponent_A].mugshotColor
+    u8 mugshotColor = gTrainers[gTrainerBattleOpponent_A].mugshotColor;
 
 
     GetBg0TilesDst(&tilemap, &tileset);
@@ -2142,8 +2142,8 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
     
     gReservedSpritePaletteCount = 10;
     task->tOpponentSpriteId = CreateTrainerSprite(trainerPicId,
-                                                  sMugshotsOpponentCoords[trainerPicId].x - 32,
-                                                  sMugshotsOpponentCoords[trainerPicId].y + 42,
+                                                  sMugshotsOpponentCoords[trainerPicId][0] - 32,
+                                                  sMugshotsOpponentCoords[trainerPicId][1] + 42,
                                                   0, gDecompressionBuffer);
     gReservedSpritePaletteCount = 12;
     task->tPlayerSpriteId = CreateTrainerSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender, TRUE),
