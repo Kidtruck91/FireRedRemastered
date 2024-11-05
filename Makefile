@@ -181,9 +181,9 @@ all: tools rom
 syms: $(SYM)
 
 rom: $(ROM)
-ifeq ($(COMPARE),1)
-	@$(SHA1) $(BUILD_NAME).sha1
-endif
+#ifeq ($(COMPARE),1)
+#	@$(SHA1) $(BUILD_NAME).sha1
+#endif
 
 tools: $(TOOLDIRS)
 
