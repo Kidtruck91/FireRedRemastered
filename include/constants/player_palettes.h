@@ -13,7 +13,7 @@ enum
 };
 u8 GetPlayerPaletteId(void);
 void SetPlayerPaletteId(u8 playerPaletteId);
-void SetCustomPlayerPaletteId(u8 playerPaletteId);
+void SetCustomPlayerPaletteId(void);
 void RevertPlayerPaletteToGenderDefault(void);
 
 #endif // PLAYER_PALETTES_H

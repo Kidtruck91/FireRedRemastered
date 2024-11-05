@@ -53,12 +53,15 @@ struct
 } static const sSaveSlotLayout[NUM_SECTORS_PER_SLOT] =
 {
     SAVEBLOCK_CHUNK(struct SaveBlock2, 0), // SECTOR_ID_SAVEBLOCK2
-
+ 
+    
     SAVEBLOCK_CHUNK(struct SaveBlock1, 0), // SECTOR_ID_SAVEBLOCK1_START
     SAVEBLOCK_CHUNK(struct SaveBlock1, 1),
     SAVEBLOCK_CHUNK(struct SaveBlock1, 2),
     SAVEBLOCK_CHUNK(struct SaveBlock1, 3), // SECTOR_ID_SAVEBLOCK1_END
-
+    SAVEBLOCK_CHUNK(struct SaveBlock1, 4),
+    SAVEBLOCK_CHUNK(struct SaveBlock1, 5),
+    
     SAVEBLOCK_CHUNK(struct PokemonStorage, 0), // SECTOR_ID_PKMN_STORAGE_START
     SAVEBLOCK_CHUNK(struct PokemonStorage, 1),
     SAVEBLOCK_CHUNK(struct PokemonStorage, 2),
@@ -70,10 +73,11 @@ struct
     SAVEBLOCK_CHUNK(struct PokemonStorage, 8), // SECTOR_ID_PKMN_STORAGE_END
 };
 
+
 // These will produce an error if a save struct is larger than the space
-// alloted for it in the flash.
-STATIC_ASSERT(sizeof(struct SaveBlock2) <= SECTOR_DATA_SIZE, SaveBlock2FreeSpace);
+// allotted for it in the flash.
 STATIC_ASSERT(sizeof(struct SaveBlock1) <= SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLOCK1_END - SECTOR_ID_SAVEBLOCK1_START + 1), SaveBlock1FreeSpace);
+STATIC_ASSERT(sizeof(struct SaveBlock2) <= SECTOR_DATA_SIZE, SaveBlock2FreeSpace);
 STATIC_ASSERT(sizeof(struct PokemonStorage) <= SECTOR_DATA_SIZE * (SECTOR_ID_PKMN_STORAGE_END - SECTOR_ID_PKMN_STORAGE_START + 1), PokemonStorageFreeSpace);
 
 // Sector num to begin writing save data. Sectors are rotated each time the game is saved. (possibly to avoid wear on flash memory?)

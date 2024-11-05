@@ -14,6 +14,15 @@
 // to the inclusion of asserts in the retail ROM.
 
 #ifndef NDEBUG
+/* 
+DebugPrintf(str, ...);
+View man 3 printf or find a ressource online to see a list of format arguments you can provide and what they do, e.g.:
+u32 a = 42;
+DebugPrintf("a = %d. But also a = 0x%x", a, a);
+DebugPrintf("%S", gSpeciesNames[SPECIES_BULBASAUR]);
+
+
+*/
 #define PRETTY_PRINT_OFF (0)
 #define PRETTY_PRINT_MINI_PRINTF (1)
 #define PRETTY_PRINT_LIBC (2)

@@ -37,7 +37,7 @@
 #include "constants/event_objects.h"
 #include "constants/maps.h"
 #include "constants/sound.h"
-
+#include "constants/player_palettes.h"
 extern u16 (*const gSpecials[])(void);
 extern u16 (*const gSpecialsEnd[])(void);
 extern const u8 *const gStdScripts[];

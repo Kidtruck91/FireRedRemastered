@@ -1,14 +1,15 @@
 #include "global.h"
 #include "event_data.h"
 #include "constants/player_palettes.h"
-
+#include "constants/vars.h"
 void SetPlayerPaletteId(u8 playerPaletteId)
 {
     gPlayerPaletteId = playerPaletteId;
 }
-void SetCustomPlayerPaletteId(u8 playerPaletteId)
+void SetCustomPlayerPaletteId(void)
 {
-    gPlayerPaletteId = playerPaletteId;
+    gPlayerPaletteId = gSpecialVar_0x8015;
+    DebugPrintf("%d", gPlayerPaletteId);
 }
 u8 GetPlayerPaletteId(void)
 {

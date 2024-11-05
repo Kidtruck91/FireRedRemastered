@@ -1856,10 +1856,3 @@
 	setvar VAR_0x8006, \item
 	special CreateEnemyEventMon
 	.endm
-	
-@ Calls a C function to set the player palette.
-	.macro setplayerpalette playerPaletteId:req
-    .byte 0x08
-    .4byte SetCustomPlayerPaletteId
-    .byte \playerPaletteId
-	.endm

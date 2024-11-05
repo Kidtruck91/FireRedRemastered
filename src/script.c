@@ -5,7 +5,7 @@
 #include "mystery_gift.h"
 #include "constants/maps.h"
 #include "constants/map_scripts.h"
-
+#include "constants/player_palettes.h"
 extern void ResetContextNpcTextColor(void); // field_specials
 extern u16 CalcCRC16WithTable(u8 *data, int length); // util
 
@@ -42,7 +42,7 @@ extern ScrCmdFunc gScriptCmdTable[];
 extern ScrCmdFunc gScriptCmdTableEnd[];
 extern void *gNullScriptPtr;
 
-
+void SetCustomPlayerPaletteId(void);
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd)
 {
     s32 i;

@@ -11,23 +11,29 @@
 
 #define NUM_SAVE_SLOTS 2
 
-// If the sector's signature field is not this value then the sector is either invalid or empty.
+// If the sector's signature field is not this value, then the sector is either invalid or empty.
 #define SECTOR_SIGNATURE 0x08012025
-
+#define TOTAL_FLASH_SIZE 128 * 1024 
 #define SPECIAL_SECTOR_SENTINEL 0xB39D
 
+// Updated sector IDs based on expanded SaveBlock layout
 #define SECTOR_ID_SAVEBLOCK2          0
+  
 #define SECTOR_ID_SAVEBLOCK1_START    1
-#define SECTOR_ID_SAVEBLOCK1_END      4
-#define SECTOR_ID_PKMN_STORAGE_START  5
-#define SECTOR_ID_PKMN_STORAGE_END   13
-#define NUM_SECTORS_PER_SLOT         14
-// Save Slot 1: 0-13;  Save Slot 2: 14-27
-#define SECTOR_ID_HOF_1              28
-#define SECTOR_ID_HOF_2              29
-#define SECTOR_ID_TRAINER_TOWER_1    30
-#define SECTOR_ID_TRAINER_TOWER_2    31
-#define SECTORS_COUNT                32
+#define SECTOR_ID_SAVEBLOCK1_END      6 // Now includes 6 sectors (4-9)
+#define SECTOR_ID_PKMN_STORAGE_START  7
+#define SECTOR_ID_PKMN_STORAGE_END    15 // Now includes 9 sectors (10-18)
+
+// Total sectors per save slot with the new layout
+#define NUM_SECTORS_PER_SLOT          16
+
+// Additional sectors outside the save slots
+// Save Slot 1: sectors 0-18; Save Slot 2: sectors 19-37
+#define SECTOR_ID_HOF_1               28
+#define SECTOR_ID_HOF_2               29
+#define SECTOR_ID_TRAINER_TOWER_1     30
+#define SECTOR_ID_TRAINER_TOWER_2     31
+#define SECTORS_COUNT                 32
 
 #define NUM_HOF_SECTORS 2
 
@@ -37,7 +43,7 @@
 #define SAVE_STATUS_NO_FLASH 4
 #define SAVE_STATUS_ERROR    0xFF
 
-// Special sector id value for certain save functions
+// Special sector ID value for certain save functions
 // to indicate that all sectors should be used
 // instead of a specific sector.
 #define FULL_SAVE_SLOT 0xFFFF

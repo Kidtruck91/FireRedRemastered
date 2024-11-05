@@ -2,7 +2,7 @@
 #define GUARD_SCRIPT_H
 
 #include "global.h"
-
+#include "constants/player_palettes.h"
 struct ScriptContext;
 
 typedef bool8 (*ScrCmdFunc)(struct ScriptContext *);
@@ -22,7 +22,7 @@ struct ScriptContext
 };
 
 #define ScriptReadByte(ctx) (*(ctx->scriptPtr++))
-
+void SetCustomPlayerPaletteId(void);
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd);
 u8 SetupBytecodeScript(struct ScriptContext *ctx, const u8 *ptr);
 void SetupNativeScript(struct ScriptContext *ctx, bool8 (*ptr)(void));
