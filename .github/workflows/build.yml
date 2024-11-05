@@ -17,75 +17,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          ref: main
-
-      - name: Checkout agbcc
-        uses: actions/checkout@v3
-        with:
-          path: 'agbcc'
-          repository: 'pret/agbcc'
-
-      - name: Clone or Skip symbols branch
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          git clone https://github.com/${{ github.repository_owner }}/FireRedRemastered symbols || exit 0
-          cd symbols
-          if git show-ref --quiet refs/heads/symbols; then
-            echo "Symbols branch exists, checking out."
-            git checkout symbols
-          else
-            echo "Symbols branch not found, staying on default branch."
-          fi
-          cd ..
 
       - name: Install dependencies
         run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi libpng-dev
 
-      - name: Install agbcc
-        run: |
-          ./build.sh
-          ./install.sh ../
-        working-directory: ./agbcc
-
       - name: Debug - List Directory Contents
         run: ls -R
-        working-directory: ./
+        working-directory: .
 
-      - name: Build FireRed
-        run: |
-          make -j${nproc}
-        working-directory: ./
-
-      - name: Build FireRed rev1
-        env:
-          GAME_REVISION: 1
-        run: |
-          make -j${nproc}
-        working-directory: ./
-
-      - name: Build LeafGreen
-        env:
-          GAME_VERSION: LEAFGREEN
-        run: |
-          make -j${nproc}
-        working-directory: ./
-
-      - name: Build LeafGreen rev1
-        env:
-          GAME_VERSION: LEAFGREEN
-          GAME_REVISION: 1
-        run: |
-          make -j${nproc}
-        working-directory: ./
-
-      - name: Build Modern
-        env:
-          MODERN: 1
-          COMPARE: 0
-        run: |
-          make -j${nproc}
-        working-directory: ./
+      - name: Build Project
+        run: make -j${nproc}
+        working-directory: ./FireRedRemastered  # Adjust this path if needed based on the directory structure
 
       - name: Move symfiles
         if: ${{ github.event_name == 'push' }}
@@ -93,12 +35,3 @@ jobs:
           mkdir -p symbols
           cp ./*.sym symbols/
           echo "SYMBOLS_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
-
-      - name: Update symfiles
-        if: ${{ github.event_name == 'push' }}
-        uses: EndBug/add-and-commit@v7
-        with:
-          branch: symbols
-          cwd: "./symbols"
-          add: "*.sym"
-          message: ${{ env.SYMBOLS_COMMIT_MSG }}
