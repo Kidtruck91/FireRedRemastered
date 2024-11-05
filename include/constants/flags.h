@@ -203,7 +203,7 @@
 #define FLAG_HIDE_GROUDON               0x0B9
 #define FLAG_HIDE_KYOGRE               0x0BA
 #define FLAG_HIDE_JIRACHI               0x0BB
-#define FLAG_0x0BC               0x0BC
+#define CUSTOM_PLAYER_TRANSITION        0x0BC
 #define FLAG_0x0BD               0x0BD
 #define FLAG_0x0BE               0x0BE
 #define FLAG_0x0BF               0x0BF

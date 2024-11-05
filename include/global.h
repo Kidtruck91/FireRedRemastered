@@ -820,5 +820,6 @@ struct MapPosition
 
 extern struct SaveBlock1* gSaveBlock1Ptr;
 extern u8 gReservedSpritePaletteCount;
-
+//added for custom player transition
+extern u8 gPlayerPaletteId;
 #endif // GUARD_GLOBAL_H

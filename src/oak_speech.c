@@ -18,6 +18,7 @@
 #include "constants/songs.h"
 #include "constants/flags.h"
 #include "event_data.h"
+#include "constants/player_palettes.h"
 #define INTRO_SPECIES SPECIES_NIDORAN_F
 
 enum
@@ -1318,9 +1319,11 @@ static void Task_OakSpeech_HandleGenderInput(u8 taskId)
     {
     case 0: // BOY
         gSaveBlock2Ptr->playerGender = MALE;
+        SetPlayerPaletteId(PLAYER_PALETTE_MALE);
         break;
     case 1: // GIRL
         gSaveBlock2Ptr->playerGender = FEMALE;
+        SetPlayerPaletteId(PLAYER_PALETTE_FEMALE);
         break;
     case MENU_B_PRESSED:
     case MENU_NOTHING_CHOSEN:

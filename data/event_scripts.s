@@ -69,7 +69,7 @@ gSpecialVars::
 	.4byte gSpecialVar_TextColor
 	.4byte gSpecialVar_PrevTextColor
 	.4byte gSpecialVar_0x8014
-
+	.4byte gSpecialVar_0x8015
 	.include "data/specials.inc"
 
 	.align 2

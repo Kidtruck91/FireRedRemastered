@@ -21,6 +21,7 @@
 #include "battle_setup.h"
 #include "battle.h"
 #include "constants/trainers.h"
+#include "constants/player_palettes.h"
 #define PALTAG_UNUSED_MUGSHOT 0x100A
 
 #define B_TRANS_DMA_FLAGS (1 | ((DMA_SRC_INC | DMA_DEST_FIXED | DMA_REPEAT | DMA_16BIT | DMA_START_HBLANK | DMA_ENABLE) << 16))
@@ -100,6 +101,8 @@ static bool8 Mugshot_ShowBanner(struct Task *task);
 static bool8 Mugshot_StartOpponentSlide(struct Task *task);
 static bool8 Mugshot_WaitStartPlayerSlide(struct Task *task);
 static bool8 Mugshot_WaitPlayerSlide(struct Task *task);
+
+//u8 GetPlayerPaletteId(void);
 static bool8 Mugshot_GradualWhiteFade(struct Task *task);
 static bool8 Mugshot_InitFadeWhiteToBlack(struct Task *task);
 static bool8 Mugshot_FadeToBlack(struct Task *task);
@@ -396,7 +399,6 @@ static const TransitionSpriteCallback sMugshotTrainerPicFuncs[] =
     MugshotTrainerPic_Init,
     MugshotTrainerPic_Slide,
     MugshotTrainerPic_SlideSlow,
-    MugshotTrainerPic_Pause,
     MugshotTrainerPic_SlideOffscreen,
     MugshotTrainerPic_Pause,
 };
@@ -581,27 +583,92 @@ const struct SpritePalette gSpritePalette_Pokeball =
     .tag = FLDEFF_PAL_TAG_POKEBALL_TRAIL,
 };
 
+
 static const u16 sMugshotPal_Pink[] = INCBIN_U16("graphics/battle_transitions/pink_bg.gbapal");
 static const u16 sMugshotPal_Yellow[] = INCBIN_U16("graphics/battle_transitions/yellow_bg.gbapal");
-static const u16 sMugshotPal_Indigo[] = INCBIN_U16("graphics/battle_transitions/indigo_bg.gbapal");
-static const u16 sMugshotPal_Purple[] = INCBIN_U16("graphics/battle_transitions/purple_bg.gbapal");
 static const u16 sMugshotPal_Blue[] = INCBIN_U16("graphics/battle_transitions/blue_bg.gbapal");
-static const u16 sMugshotPal_Red[] = INCBIN_U16("graphics/battle_transitions/red_bg.gbapal");
+static const u16 sMugshotPal_Purple[] = INCBIN_U16("graphics/battle_transitions/purple_bg.gbapal");
 static const u16 sMugshotPal_Green[] = INCBIN_U16("graphics/battle_transitions/green_bg.gbapal");
+static const u16 sMugshotPal_Stars[] = INCBIN_U16("graphics/battle_transitions/unused_trainer.gbapal");
+static const u16 sMugshotPal_Dark_Red[] = INCBIN_U16("graphics/battle_transitions/dark_red_bg.gbapal");
+static const u16 sMugshotPal_Red_Orange[] = INCBIN_U16("graphics/battle_transitions/red_orange_bg.gbapal");
+static const u16 sMugshotPal_Red_Black[] = INCBIN_U16("graphics/battle_transitions/red_black_bg.gbapal");
+static const u16 sMugshotPal_Light_Blue[] = INCBIN_U16("graphics/battle_transitions/light_blue_bg.gbapal");
+static const u16 sMugshotPal_Yellow_Green[] = INCBIN_U16("graphics/battle_transitions/yellow_green_bg.gbapal");
+static const u16 sMugshotPal_Brown_Grey[] = INCBIN_U16("graphics/battle_transitions/brown_grey_bg.gbapal");
+static const u16 sMugshotPal_Green_Green[] = INCBIN_U16("graphics/battle_transitions/green_green_bg.gbapal");
+static const u16 sMugshotPal_Lavender_Purples[] = INCBIN_U16("graphics/battle_transitions/lavender_purples_bg.gbapal");
+static const u16 sMugshotPal_Dark_Purples[] = INCBIN_U16("graphics/battle_transitions/dark_purples_bg.gbapal");
+static const u16 sMugshotPal_Pink_White[] = INCBIN_U16("graphics/battle_transitions/pink_white_bg.gbapal");
+static const u16 sMugshotPal_Blue_Yellow_Red_Green[] = INCBIN_U16("graphics/battle_transitions/blue_yellow_red_green_bg.gbapal");
+static const u16 sMugshotPal_Dark_Blue_Aqua[] = INCBIN_U16("graphics/battle_transitions/dark_blue_aqua_bg.gbapal");
+static const u16 sMugshotPal_Dark_Blue_Grey[] = INCBIN_U16("graphics/battle_transitions/dark_blue_grey_bg.gbapal");
+static const u16 sMugshotPal_Dark_Purple_Green[] = INCBIN_U16("graphics/battle_transitions/dark_purple_green_bg.gbapal");
+static const u16 sMugshotPal_Earth_Brown_Grey[] = INCBIN_U16("graphics/battle_transitions/earth_brown_grey_bg.gbapal");
+static const u16 sMugshotPal_Green_Brown[] = INCBIN_U16("graphics/battle_transitions/green_brown_bg.gbapal");
+static const u16 sMugshotPal_Light_Blue_White[] = INCBIN_U16("graphics/battle_transitions/light_blue_white_bg.gbapal");
+static const u16 sMugshotPal_Purple_Black[] = INCBIN_U16("graphics/battle_transitions/purple_black_bg.gbapal");
+static const u16 sMugshotPal_Red_Yellow[] = INCBIN_U16("graphics/battle_transitions/red_yellow_bg.gbapal");
+static const u16 sMugshotPal_Silver_Yellow[] = INCBIN_U16("graphics/battle_transitions/silver_yellow_bg.gbapal");
+static const u16 sMugshotPal_Sky_Blue_Grey[] = INCBIN_U16("graphics/battle_transitions/sky_blue_grey_bg.gbapal");
+static const u16 sMugshotPal_Fire[] = INCBIN_U16("graphics/battle_transitions/fire_bg.gbapal");
+static const u16 sMugshotPal_Water[] = INCBIN_U16("graphics/battle_transitions/water_bg.gbapal");
+static const u16 sMugshotPal_Grass[] = INCBIN_U16("graphics/battle_transitions/grass_bg.gbapal");
+//static const u16 sMugshotPal_[] = INCBIN_U16("graphics/battle_transitions/_bg.gbapal");
+
+
+static const u16 sMugshotPal_MalePc[] = INCBIN_U16("graphics/battle_transitions/malepc_bg.gbapal");
+static const u16 sMugshotPal_FemalePc[] = INCBIN_U16("graphics/battle_transitions/femalepc_bg.gbapal");
+static const u16 sMugshotPal_Player_Starter_Water[] = INCBIN_U16("graphics/battle_transitions/player_starter_water_bg.gbapal");
+static const u16 sMugshotPal_Player_Starter_Fire[] = INCBIN_U16("graphics/battle_transitions/player_starter_fire_bg.gbapal");
+static const u16 sMugshotPal_Player_Starter_Grass[] = INCBIN_U16("graphics/battle_transitions/player_starter_grass_bg.gbapal");
+
 //Potentially try this?
+
 static const u16 *const sOpponentMugshotsPals[MUGSHOT_COLOR_COUNT] =
 {   
     [MUGSHOT_COLOR_PINK] = sMugshotPal_Pink,
     [MUGSHOT_COLOR_YELLOW]   = sMugshotPal_Yellow,
-    [MUGSHOT_COLOR_INDIGO]  = sMugshotPal_Indigo,
+    [MUGSHOT_COLOR_BLUE]  = sMugshotPal_Blue,
     [MUGSHOT_COLOR_PURPLE]   = sMugshotPal_Purple,
-    [MUGSHOT_COLOR_BLUE]    = sMugshotPal_Blue
-};
+    [MUGSHOT_COLOR_GREEN]    = sMugshotPal_Green,
+    [MUGSHOT_COLOR_STARS]    = sMugshotPal_Stars,
+    [MUGSHOT_COLOR_DARK_RED]    = sMugshotPal_Dark_Red,
+    [MUGSHOT_COLOR_RED_ORANGE]    = sMugshotPal_Red_Orange,//good for Blaine
+    [MUGSHOT_COLOR_RED_BLACK]    = sMugshotPal_Red_Black,//good for Giovanni
+    [MUGSHOT_COLOR_YELLOW_GREEN]    = sMugshotPal_Yellow_Green,//good for LT. Surge
+    [MUGSHOT_COLOR_LIGHT_BLUE]    = sMugshotPal_Light_Blue,//Good for Misty
+    [MUGSHOT_COLOR_BROWN_GREY]    = sMugshotPal_Brown_Grey,//good for Brock
+    [MUGSHOT_COLOR_GREEN_GREEN]    = sMugshotPal_Green_Green,// good for Erika
+    [MUGSHOT_COLOR_LAVENDER_PURPLES]    = sMugshotPal_Lavender_Purples,//good for sabrina
+    [MUGSHOT_COLOR_DARK_PURPLES]    = sMugshotPal_Dark_Purples,//good for Koga
+    
+    [MUGSHOT_COLOR_BLUE_YELLOW_RED_GREEN]    = sMugshotPal_Blue_Yellow_Red_Green,//maybe for rival(horible needs work)
+    [MUGSHOT_COLOR_PINK_WHITE]    = sMugshotPal_Pink_White,//good for whitney
+    [MUGSHOT_COLOR_DARK_BLUE_AQUA]    = sMugshotPal_Dark_Blue_Aqua,//good for Clair
+    [MUGSHOT_COLOR_DARK_BLUE_GREY]    = sMugshotPal_Dark_Blue_Grey,//good for chuck
+    [MUGSHOT_COLOR_DARK_PURPLE_GREEN]    = sMugshotPal_Dark_Purple_Green,//good for agatha(need to make green, greener)
+    [MUGSHOT_COLOR_EARTH_BROWN_GREY]    = sMugshotPal_Earth_Brown_Grey,//good for Bruno
+    [MUGSHOT_COLOR_GREEN_BROWN]    = sMugshotPal_Green_Brown,//good for bugsy(test on bugsy to make sure)
+    [MUGSHOT_COLOR_LIGHT_BLUE_WHITE]    = sMugshotPal_Light_Blue_White,//good for pryce
+    [MUGSHOT_COLOR_PURPLE_BLACK]    = sMugshotPal_Purple_Black,//good for morty(pinkish purple to yellow)
+    [MUGSHOT_COLOR_RED_YELLOW]    = sMugshotPal_Red_Yellow,//maybe lance(blue better but idk)
+    [MUGSHOT_COLOR_SILVER_YELLOW]    = sMugshotPal_Silver_Yellow,// good for jasmine(needs a little work perhaps changing shade of yellow in 2 middles)
+    [MUGSHOT_COLOR_SKY_BLUE_GREY]    = sMugshotPal_Sky_Blue_Grey,//good for falkner(walker)
+    [MUGSHOT_COLOR_GRASS]    =sMugshotPal_Grass,
+    [MUGSHOT_COLOR_WATER]    =sMugshotPal_Water,
+    [MUGSHOT_COLOR_FIRE]    =sMugshotPal_Fire,
 
-static const u16 *const sPlayerMugshotsPals[GENDER_COUNT] =
+};
+//[MUGSHOT_COLOR_]    = sMugshotPal_,
+static const u16 *const sPlayerPalettes[PLAYER_PALETTES_COUNT] =
 {
-    [MALE]   = sMugshotPal_Red,
-    [FEMALE] = sMugshotPal_Green,
+    [PLAYER_PALETTE_MALE] = sMugshotPal_MalePc,
+    [PLAYER_PALETTE_FEMALE] = sMugshotPal_FemalePc,
+    [PLAYER_PALETTE_GRASS_STARTER] = sMugshotPal_Player_Starter_Grass,
+    [PLAYER_PALETTE_WATER_STARTER] = sMugshotPal_Player_Starter_Water,
+    [PLAYER_PALETTE_FIRE_STARTER] = sMugshotPal_Player_Starter_Fire,
+    // Add additional custom palettes if needed
 };
 
 static const u16 sUnusedTrainerPalette[] = INCBIN_U16("graphics/battle_transitions/unused_trainer.gbapal");
@@ -1832,7 +1899,20 @@ static void VBlankCB_Spiral(void)
 // These are all the "mugshot" transitions, where a banner shows
 // the trainer pic of the player and their opponent.
 //----------------------------------------------------------------
-
+//For sake of reference
+/*static const TransitionStateFunc sMugshot_Funcs[] =
+{
+    Mugshot_Init,
+    Mugshot_SetGfx,
+    Mugshot_ShowBanner,
+    Mugshot_StartOpponentSlide,
+    Mugshot_WaitStartPlayerSlide,
+    Mugshot_WaitPlayerSlide,
+    Mugshot_PauseAfterSlide,
+    Mugshot_InitFadeWhiteToBlack,
+    Mugshot_FadeToBlack,
+    Mugshot_End,
+};*/
 #define tSinIndex         data[1]
 #define tTopBannerX       data[2]
 #define tBottomBannerX    data[3]
@@ -1840,7 +1920,7 @@ static void VBlankCB_Spiral(void)
 #define tFadeSpread       data[4]
 #define tOpponentSpriteId data[13]
 #define tPlayerSpriteId   data[14]
-//#define tMugshotId        data[15]
+
 
 // Sprite data for trainer sprites in mugshots
 #define sState      data[0]
@@ -1849,15 +1929,10 @@ static void VBlankCB_Spiral(void)
 #define sDone       data[6]
 #define sSlideDir   data[7]
 
-
-
-
-
 static void Task_Mugshot(u8 taskId)
 {
     while (sMugshot_Funcs[gTasks[taskId].tState](&gTasks[taskId]));
 }
-
 static bool8 Mugshot_Init(struct Task *task)
 {
     u8 i;
@@ -1884,21 +1959,32 @@ static bool8 Mugshot_SetGfx(struct Task *task)
     s16 i, j;
     u16 *tilemap, *tileset;
     const u16 *mugshotsMap = sMugshotsTilemap;
-
     u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
     u8 mugshotColor = gTrainers[gTrainerBattleOpponent_A].mugshotColor;
-
-
+    u8 currentPalette;
+    
+    currentPalette = GetPlayerPaletteId();
+    
+    
+    
     GetBg0TilesDst(&tilemap, &tileset);
     CpuCopy16(sMugshotBanner_Gfx, tileset, sizeof(sMugshotBanner_Gfx));
-    //LoadPalette(sOpponentMugshotsPals[task->tMugshotId], BG_PLTT_ID(15), PLTT_SIZE_4BPP);
-    if (mugshotColor >= ARRAY_COUNT(sOpponentMugshotsPals))
-        mugshotColor = MUGSHOT_COLOR_INDIGO;
 
-    LoadPalette(sOpponentMugshotsPals[mugshotColor], 0xF0, 0x20);   
-    
-    LoadPalette(sPlayerMugshotsPals[gSaveBlock2Ptr->playerGender], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(16 - 10));
-    
+    if (mugshotColor >= ARRAY_COUNT(sOpponentMugshotsPals))
+        mugshotColor = MUGSHOT_COLOR_STARS;
+    LoadPalette(sOpponentMugshotsPals[mugshotColor], BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+
+    if (currentPalette >= ARRAY_COUNT(sPlayerPalettes))
+    {
+        LoadPalette(sPlayerPalettes[gSaveBlock2Ptr->playerGender], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(16 - 10));
+        //LoadPalette(sPlayerPalettes[2], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(16 - 10));
+    }
+    else
+    {
+        LoadPalette(sPlayerPalettes[currentPalette], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(16 - 10));
+        //LoadPalette(sPlayerPalettes[4], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(16 - 10));
+    }
+
     for (i = 0; i < 20; i++)
         for (j = 0; j < 32; j++, mugshotsMap++)
             SET_TILE(tilemap, i, j, *mugshotsMap);
@@ -2136,10 +2222,9 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
 {
     struct Sprite *opponentSprite, *playerSprite;
     u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
-    
+
     s16 opponentRotationScales;
-      
-    
+
     gReservedSpritePaletteCount = 10;
     task->tOpponentSpriteId = CreateTrainerSprite(trainerPicId,
                                                   sMugshotsOpponentCoords[trainerPicId][0] - 32,
@@ -2150,7 +2235,6 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
                                                 DISPLAY_WIDTH + 32,
                                                 106,
                                                 0, gDecompressionBuffer);
-   
 
     opponentSprite = &gSprites[task->tOpponentSpriteId];
     playerSprite = &gSprites[task->tPlayerSpriteId];
@@ -2237,15 +2321,32 @@ static bool8 MugshotTrainerPic_SlideSlow(struct Sprite *sprite)
 
 // Slides trainer pic offscreen. This is never reached, because it's preceded
 // by a second MugshotTrainerPic_Pause, and IncrementTrainerPicState is
-// only called once per trainer pic.
+// only called once per trainer pic.**Fixed it
 static bool8 MugshotTrainerPic_SlideOffscreen(struct Sprite *sprite)
 {
+    u8 sSlideOffscreenTimer = 0;
+
+    // Introduce a delay before starting the slide-off logic
+    if (sSlideOffscreenTimer < 5) // Adjust this value for the desired delay duration
+    {
+        sSlideOffscreenTimer++;
+        return FALSE; // Continue waiting until the timer expires
+    }
+
+    // Reset the timer after the delay has completed
+    sSlideOffscreenTimer = 0;
+
+    // Original slide-off logic
     sprite->sSlideSpeed += sprite->sSlideAccel;
     sprite->x += sprite->sSlideSpeed;
     if (sprite->x < -31 || sprite->x > DISPLAY_WIDTH + 31)
-        sprite->sState++;
+    {
+        sprite->sState++; // Move to the next state
+    }
+
     return FALSE;
 }
+
 
 static void SetTrainerPicSlideDirection(s16 spriteId, bool16 dirId)
 {
@@ -2274,6 +2375,8 @@ static s16 IsTrainerPicSlideDone(s16 spriteId)
 #undef tFadeSpread
 #undef tOpponentSpriteId
 #undef tPlayerSpriteId
+
+
 
 
 //--------------------

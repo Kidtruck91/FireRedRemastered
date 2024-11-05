@@ -78,6 +78,8 @@ static IntrFunc * const sTimerIntrFunc = gIntrTable + 0x7;
 
 EWRAM_DATA u8 gDecompressionBuffer[0x4000] = {0};
 EWRAM_DATA u16 gTrainerId = 0;
+//for custom player transitions
+EWRAM_DATA u8 gPlayerPaletteId = 0;
 
 static void UpdateLinkAndCallCallbacks(void);
 static void InitMainCallbacks(void);

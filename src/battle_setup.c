@@ -32,7 +32,7 @@
 #include "constants/songs.h"
 #include "constants/pokemon.h"
 #include "constants/trainers.h"
-
+#include "constants/player_palettes.h"
 enum {
     TRANSITION_TYPE_NORMAL,
     TRANSITION_TYPE_CAVE,
@@ -56,6 +56,7 @@ struct TrainerBattleParameter
     void *varPtr;
     u8 ptrType;
 };
+
 
 static void DoSafariBattle(void);
 static void DoGhostBattle(void);
@@ -935,6 +936,7 @@ static void CB2_EndTrainerBattle(void)
             QuestLogEvents_HandleEndTrainerBattle();
         }
     }
+    RevertPlayerPaletteToGenderDefault();
 }
 
 static void CB2_EndRematchBattle(void)
