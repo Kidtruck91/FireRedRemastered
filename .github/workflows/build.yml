@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ master ]
   pull_request:
 
 jobs:
@@ -15,19 +15,27 @@ jobs:
       MODERN: 0
       COMPARE: 1
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          ref: main
+      - name: Checkout
+        uses: actions/checkout@master
 
       - name: Checkout agbcc
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
         with:
           path: 'agbcc'
           repository: 'pret/agbcc'
 
+      - name: Checkout symbols
+        if: ${{ github.event_name == 'push' }}
+        uses: actions/checkout@master
+        with:
+          path: 'symbols'
+          ref: 'symbols'
+
       - name: Install binutils
-        run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi
+        run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi libpng-dev
+        # build-essential and git are already installed
+        # gcc-arm-none-eabi is only needed for the modern build
+        # as an alternative to dkP
 
       - name: Install agbcc
         run: |
@@ -35,48 +43,39 @@ jobs:
           ./install.sh ../
         working-directory: ./agbcc
 
-      - name: Build FireRed
+      - name: Compare FireRed
         run: |
-          make -j${nproc} syms
+          make -j${nproc} all syms
 
-      - name: Build FireRed rev1
+      - name: Compare FireRed rev1
         env:
           GAME_REVISION: 1
         run: |
-          make -j${nproc} syms
+          make -j${nproc} all syms
 
-      - name: Build LeafGreen
+      - name: Compare LeafGreen
         env:
           GAME_VERSION: LEAFGREEN
         run: |
-          make -j${nproc} syms
+          make -j${nproc} all syms
 
-      - name: Build LeafGreen rev1
+      - name: Compare LeafGreen rev1
         env:
           GAME_VERSION: LEAFGREEN
           GAME_REVISION: 1
         run: |
-          make -j${nproc} syms
+          make -j${nproc} all syms
 
       - name: Build Modern
         env:
           MODERN: 1
           COMPARE: 0
         run: |
-          make -j${nproc} syms
-
-      - name: Webhook
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
-        env:
-          CALCROM_DISCORD_WEBHOOK_USERNAME: OK
-          CALCROM_DISCORD_WEBHOOK_AVATAR_URL: https://i.imgur.com/38BQHdd.png
-          CALCROM_DISCORD_WEBHOOK_URL: ${{ secrets.CALCROM_DISCORD_WEBHOOK_URL }}
-        run: sh .github/calcrom/webhook.sh pokefirered
+          make -j${nproc} all
 
       - name: Move symfiles
         if: ${{ github.event_name == 'push' }}
         run: |
-          mkdir -p symbols
           cp *.sym symbols/
           echo "SYMBOLS_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
 
@@ -84,7 +83,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v7
         with:
-          branch: main
+          branch: symbols
           cwd: "./symbols"
           add: "*.sym"
           message: ${{ env.SYMBOLS_COMMIT_MSG }}
