@@ -1964,9 +1964,6 @@ static bool8 Mugshot_SetGfx(struct Task *task)
     u8 currentPalette;
     
     currentPalette = GetPlayerPaletteId();
-    DebugPrintf("%S", currentPalette);
-    
-    
     GetBg0TilesDst(&tilemap, &tileset);
     CpuCopy16(sMugshotBanner_Gfx, tileset, sizeof(sMugshotBanner_Gfx));
 
