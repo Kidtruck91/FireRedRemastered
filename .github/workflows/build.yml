@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]  # Triggers on push to master or main
   pull_request:
 
 jobs:
@@ -15,21 +15,16 @@ jobs:
       MODERN: 0
       COMPARE: 1
     steps:
-      - name: Checkout
-        uses: actions/checkout
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: main  # Ensure this uses the main branch
 
       - name: Checkout agbcc
-        uses: actions/checkout
+        uses: actions/checkout@v3
         with:
           path: 'agbcc'
           repository: 'pret/agbcc'
-
-      - name: Checkout symbols
-        if: ${{ github.event_name == 'push' }}
-        uses: actions/checkout
-        with:
-          path: 'symbols'
-          ref: 'symbols'
 
       - name: Install binutils
         run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi
@@ -84,6 +79,7 @@ jobs:
       - name: Move symfiles
         if: ${{ github.event_name == 'push' }}
         run: |
+          mkdir -p symbols
           cp *.sym symbols/
           echo "SYMBOLS_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
 
@@ -91,7 +87,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v7
         with:
-          branch: symbols
+          branch: main  # Use the main branch for updates
           cwd: "./symbols"
           add: "*.sym"
           message: ${{ env.SYMBOLS_COMMIT_MSG }}
