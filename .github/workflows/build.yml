@@ -26,12 +26,15 @@ jobs:
           path: 'agbcc'
           repository: 'pret/agbcc'
 
-      - name: Checkout symbols
+      - name: Attempt Checkout symbols
         if: ${{ github.event_name == 'push' }}
-        uses: actions/checkout@v3
-        with:
-          path: 'symbols'
-          ref: 'symbols'
+        run: |
+          if git ls-remote --heads origin symbols; then
+            echo "Symbols branch exists, checking out."
+            git clone --depth=1 --branch=symbols https://github.com/${{ github.repository_owner }}/FireRedRemastered symbols
+          else
+            echo "Symbols branch not found, skipping symbols checkout."
+          fi
 
       - name: Install dependencies
         run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi libpng-dev
