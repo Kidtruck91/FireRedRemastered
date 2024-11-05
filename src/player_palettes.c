@@ -8,7 +8,9 @@ void SetPlayerPaletteId(u8 playerPaletteId)
 }
 void SetCustomPlayerPaletteId(void)
 {
-    gPlayerPaletteId = gSpecialVar_0x8015;
+    
+    gPlayerPaletteId = VarGet(VAR_0x8015);
+    
 }
 u8 GetPlayerPaletteId(void)
 {
