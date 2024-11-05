@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ master, main ]  # Triggers on push to master or main
+    branches: [ master, main ]
   pull_request:
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: main  # Ensure this uses the main branch
+          ref: main
 
       - name: Checkout agbcc
         uses: actions/checkout@v3
@@ -28,9 +28,6 @@ jobs:
 
       - name: Install binutils
         run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi
-        # build-essential, git, and libpng-dev are already installed
-        # gcc-arm-none-eabi is only needed for the modern build
-        # as an alternative to dkP
 
       - name: Install agbcc
         run: |
@@ -38,35 +35,35 @@ jobs:
           ./install.sh ../
         working-directory: ./agbcc
 
-      - name: Compare FireRed
+      - name: Build FireRed
         run: |
-          make -j${nproc} all syms
+          make -j${nproc} syms
 
-      - name: Compare FireRed rev1
+      - name: Build FireRed rev1
         env:
           GAME_REVISION: 1
         run: |
-          make -j${nproc} all syms
+          make -j${nproc} syms
 
-      - name: Compare LeafGreen
+      - name: Build LeafGreen
         env:
           GAME_VERSION: LEAFGREEN
         run: |
-          make -j${nproc} all syms
+          make -j${nproc} syms
 
-      - name: Compare LeafGreen rev1
+      - name: Build LeafGreen rev1
         env:
           GAME_VERSION: LEAFGREEN
           GAME_REVISION: 1
         run: |
-          make -j${nproc} all syms
+          make -j${nproc} syms
 
       - name: Build Modern
         env:
           MODERN: 1
           COMPARE: 0
         run: |
-          make -j${nproc} all
+          make -j${nproc} syms
 
       - name: Webhook
         if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
@@ -87,7 +84,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v7
         with:
-          branch: main  # Use the main branch for updates
+          branch: main
           cwd: "./symbols"
           add: "*.sym"
           message: ${{ env.SYMBOLS_COMMIT_MSG }}
