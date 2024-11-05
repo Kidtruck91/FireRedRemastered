@@ -51,18 +51,21 @@ jobs:
       - name: Build FireRed
         run: |
           make -j${nproc}
+        working-directory: ./FireRedRemastered
 
       - name: Build FireRed rev1
         env:
           GAME_REVISION: 1
         run: |
           make -j${nproc}
+        working-directory: ./FireRedRemastered
 
       - name: Build LeafGreen
         env:
           GAME_VERSION: LEAFGREEN
         run: |
           make -j${nproc}
+        working-directory: ./FireRedRemastered
 
       - name: Build LeafGreen rev1
         env:
@@ -70,6 +73,7 @@ jobs:
           GAME_REVISION: 1
         run: |
           make -j${nproc}
+        working-directory: ./FireRedRemastered
 
       - name: Build Modern
         env:
@@ -77,12 +81,13 @@ jobs:
           COMPARE: 0
         run: |
           make -j${nproc}
+        working-directory: ./FireRedRemastered
 
       - name: Move symfiles
         if: ${{ github.event_name == 'push' }}
         run: |
           mkdir -p symbols
-          cp *.sym symbols/
+          cp ./FireRedRemastered/*.sym symbols/
           echo "SYMBOLS_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
 
       - name: Update symfiles
