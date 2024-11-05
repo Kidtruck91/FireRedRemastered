@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ master ]
   pull_request:
 
 jobs:
@@ -15,23 +15,23 @@ jobs:
       MODERN: 0
       COMPARE: 1
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi libpng-dev
 
-      - name: Debug - List Directory Contents
-        run: ls -R
-        working-directory: .
+      - name: Set Up AGBCC
+        run: |
+          git clone https://github.com/pret/agbcc agbcc
+          cd agbcc
+          ./build.sh
+          ./install.sh ../
+
+      - name: Verify Directory and Makefile
+        run: |
+          pwd
+          ls -la
 
       - name: Build Project
-        run: make -j${nproc}
-        working-directory: ./FireRedRemastered  # Adjust this path if needed based on the directory structure
-
-      - name: Move symfiles
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          mkdir -p symbols
-          cp ./*.sym symbols/
-          echo "SYMBOLS_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
+        run: make -j$(nproc)
