@@ -48,6 +48,10 @@ jobs:
           ./install.sh ../
         working-directory: ./agbcc
 
+      - name: Debug - List Directory Contents
+        run: ls -R
+        working-directory: ./
+
       - name: Build FireRed
         run: |
           make -j${nproc}
