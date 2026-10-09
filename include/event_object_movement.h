@@ -200,7 +200,7 @@ void SetAndStartSpriteAnim(struct Sprite *, u8, u8);
 bool8 SpriteAnimEnded(struct Sprite *);
 u8 ObjectEventGetHeldMovementActionId(struct ObjectEvent *objectEvent);
 u8 GetMoveDirectionAnimNum(u8 direction);
-
+void MovementType_FollowingPokemon(struct Sprite *);
 // Exported data declarations
 
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
@@ -230,7 +230,14 @@ u8 GetAcroPopWheelieMoveMovementAction(u32 direction);
 u8 GetAcroWheelieMoveMovementAction(u32 direction);
 u8 GetJumpSpecialWithEffectMovementAction(u32 direction);
 u8 GetFishingBiteDirectionAnimNum(u8 direction);
+//folowing pokemon
+u8 MovementType_FollowingPokemon_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementType_FollowingPokemon_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementType_FollowingPokemon_Step2(struct ObjectEvent *, struct Sprite *);
+u8 MovementType_FollowingPokemon_Step3(struct ObjectEvent *, struct Sprite *);
 void TrySpawnObjectEvents(s16 cameraX, s16 cameraY);
+//Following pokemon
+bool8 ObjectEventPokemonFacePlayer(struct ObjectEvent *, struct ObjectEvent *);
 void ResetObjectEvents(void);
 
 #endif // GUARD_EVENT_OBJECT_MOVEMENT_H

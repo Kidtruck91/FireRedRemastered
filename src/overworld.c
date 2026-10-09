@@ -1545,6 +1545,7 @@ void CB2_WhiteOut(void)
         UnlockPlayerFieldControls();
         gFieldCallback = FieldCB_RushInjuredPokemonToCenter;
         val = 0;
+        FlagSet(FLAG_WHITEOUT);
         DoMapLoadLoop(&val);
         QuestLog_CutRecording();
         SetFieldVBlankCallback();

@@ -64,3 +64,20 @@ PalletTown_Text_OakYouEnjoyingTraveling::
     .string "exotic locales.\p"
     .string "Good for you, good for you.\n"
     .string "Hohoho.$"
+
+PalletTown_Text_DisplayLevelCap:
+    .string "The current level cap is {STR_VAR_1}.$"
+PalletTown_Text_DefaultLevelCap:
+    .string "The level cap is not set. Please set it first.$"
+
+PalletTown_Text_SetLevelCapTo14:
+    .string "The level cap has been set to 14!$"
+
+PalletTown_Text_NuzlockeEnabled:
+    .string "The Nuzlocke Mode is enabled!$"
+
+PalletTown_Text_NuzlockeDisabled:
+    .string "The Nuzlocke Mode is not enabled.$"
+
+PalletTown_Text_NuzlockeAlreadyEnabled:
+    .string "The Nuzlocke Mode is already enabled.$"

@@ -123,5 +123,9 @@
 #define CONNECTION_EAST     4
 #define CONNECTION_DIVE     5
 #define CONNECTION_EMERGE   6
+//Folower pokemon
+#define POST_BATTLE_FOLLOWER_FIX    FALSE
+
+#define FAST_FOLLOWERS FALSE
 
 #endif //GUARD_CONSTANTS_GLOBAL_H

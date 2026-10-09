@@ -309,6 +309,7 @@ static void (*const sMovementTypeCallbacks[MOVEMENT_TYPES_COUNT])(struct Sprite 
     [MOVEMENT_TYPE_RAISE_HAND_AND_JUMP]                   = MovementType_RaiseHandAndJump,
     [MOVEMENT_TYPE_RAISE_HAND_AND_SWIM]                   = MovementType_RaiseHandAndSwim,
     [MOVEMENT_TYPE_WANDER_AROUND_SLOWER]                  = MovementType_WanderAroundSlower,
+    [MOVEMENT_TYPE_FOLLOWING_POKEMON] = MovementType_FollowingPokemon,
 };
 
 static const bool8 gRangedMovementTypes[MOVEMENT_TYPES_COUNT] = {
@@ -354,6 +355,7 @@ static const bool8 gRangedMovementTypes[MOVEMENT_TYPES_COUNT] = {
     [MOVEMENT_TYPE_COPY_PLAYER_COUNTERCLOCKWISE_IN_GRASS] = TRUE,
     [MOVEMENT_TYPE_COPY_PLAYER_CLOCKWISE_IN_GRASS] = TRUE,
     [MOVEMENT_TYPE_WANDER_AROUND_SLOWER] = TRUE,
+    [MOVEMENT_TYPE_FOLLOWING_POKEMON] = FALSE,
 };
 
 static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
@@ -3030,6 +3032,47 @@ u8 TryGetTrainerEncounterDirection(struct ObjectEvent *objectEvent, u8 movementT
     }
     return gGetVectorDirectionFuncs[movementType](dx, dy, absdx, absdy);
 }
+//Following pokemon block
+movement_type_def(MovementType_FollowingPokemon, gMovementTypeFuncs_FollowingPokemon)
+
+bool8 MovementType_FollowingPokemon_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    ClearObjectEventMovement(objectEvent, sprite);
+    sprite->data[1] = 1;
+    return TRUE;
+}
+
+bool8 MovementType_FollowingPokemon_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    ObjectEventSetSingleMovement(objectEvent, sprite, MOVEMENT_ACTION_FOLLOWING_POKEMON);
+    sprite->data[1] = 2;
+    return TRUE;
+}
+
+bool8 MovementType_FollowingPokemon_Step2(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (ObjectEventExecSingleMovementAction(objectEvent, sprite))
+    {
+        objectEvent->singleMovementActive = FALSE;
+        sprite->data[1] = 3;
+    }
+    return FALSE;
+}
+
+bool8 MovementType_FollowingPokemon_Step3(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    sprite->data[1] = 1;
+    return TRUE;
+}
+
+
+
+
+
+
+
+
+
 
 movement_type_def(MovementType_LookAround, gMovementTypeFuncs_LookAround)
 

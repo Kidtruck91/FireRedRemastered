@@ -309,6 +309,7 @@ OneIsland_PokemonCenter_1F_EventScript_GiveCelioRuby::
 	msgbox OneIsland_PokemonCenter_1F_Text_MayIAskOneMoreFavor, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, OneIsland_PokemonCenter_1F_EventScript_DeclineHelpCelio
 	goto OneIsland_PokemonCenter_1F_EventScript_GiveRainbowPass
+	setflag FLAG_HIDE_GAURD_ROUTE_22
 	end
 
 OneIsland_PokemonCenter_1F_EventScript_DeclineHelpCelio::

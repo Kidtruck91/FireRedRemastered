@@ -316,27 +316,39 @@ struct BattleTowerData // Leftover from R/S
 struct SaveBlock2
 {
     /*0x000*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
-    /*0x008*/ u8 playerGender; // MALE, FEMALE
+    /*0x008*/ u8 playerGender;
     /*0x009*/ u8 specialSaveWarpFlags;
     /*0x00A*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
     /*0x00E*/ u16 playTimeHours;
     /*0x010*/ u8 playTimeMinutes;
     /*0x011*/ u8 playTimeSeconds;
     /*0x012*/ u8 playTimeVBlanks;
-    /*0x013*/ u8 optionsButtonMode;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
-    /*0x014*/ u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST]
-              u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
-    /*0x15*/  u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
-              u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
-              u16 optionsBattleSceneOff:1; // whether battle animations are disabled
-              u16 regionMapZoom:1; // whether the map is zoomed in
-    /*0x018*/ struct Pokedex pokedex;
-    /*0x090*/ u8 filler_90[0x8];
+    /*0x013*/ u8 optionsButtonMode;
+
+    // Packed bits
+    /*0x014*/ u16 optionsTextSpeed:3;
+              u16 optionsWindowFrameType:5;
+              u16 optionsSound:1;
+              u16 optionsBattleStyle:1;
+              u16 optionsBattleSceneOff:1;
+              u16 enableNuzlocke:1;
+              u16 regionMapZoom:1;
+              u16 fillerBits:3;
+
+    // Align bool8s
+    /*0x016*/ bool8 randomizeItems;
+    /*0x017*/ bool8 randomizeWilds;
+    /*0x018*/ bool8 randomizeTrainers;
+    /*0x019*/ u8 padding_019;
+
+    /*0x01A*/ struct Pokedex pokedex;                  
+    /*0x092*/ u8 filler_90[0x8];                       
     /*0x098*/ struct Time localTimeOffset;
     /*0x0A0*/ struct Time lastBerryTreeUpdate;
-    /*0x0A8*/ u32 gcnLinkFlags; // Read by Pokemon Colosseum/XD
-    /*0x0AC*/ bool8 unkFlag1; // Set TRUE, never read
-    /*0x0AD*/ bool8 unkFlag2; // Set FALSE, never read
+    /*0x0A8*/ u32 gcnLinkFlags;
+    /*0x0AC*/ bool8 unkFlag1;
+    /*0x0AD*/ bool8 unkFlag2;
+    /*0x0AE*/ u8 filler_0AE[2];                        
     /*0x0B0*/ struct BattleTowerData battleTower;
     /*0x898*/ u16 mapView[0x100];
     /*0xA98*/ struct LinkBattleRecords linkBattleRecords;
@@ -346,6 +358,8 @@ struct SaveBlock2
     /*0xB20*/ u8 filler_B20[0x400];
     /*0xF20*/ u32 encryptionKey;
 }; // size: 0xF24
+
+
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
 
@@ -779,6 +793,7 @@ struct SaveBlock1
     /*0x08E0*/ struct ObjectEventTemplate objectEventTemplates[OBJECT_EVENT_TEMPLATES_COUNT];
     /*0x0EE0*/ u8 flags[NUM_FLAG_BYTES];
     /*0x1000*/ u16 vars[VARS_COUNT];
+    /*0x1100*/ u8 levelCap;
     /*0x1200*/ u32 gameStats[NUM_GAME_STATS];
     /*0x1300*/ struct QuestLog questLog[QUEST_LOG_SCENE_COUNT];
     /*0x2CA0*/ u16 easyChatProfile[EASY_CHAT_BATTLE_WORDS_COUNT];
@@ -822,4 +837,5 @@ extern struct SaveBlock1* gSaveBlock1Ptr;
 extern u8 gReservedSpritePaletteCount;
 //added for custom player transition
 extern u8 gPlayerPaletteId;
+
 #endif // GUARD_GLOBAL_H

@@ -204,11 +204,11 @@
 #define FLAG_HIDE_KYOGRE               0x0BA
 #define FLAG_HIDE_JIRACHI               0x0BB
 #define CUSTOM_PLAYER_TRANSITION        0x0BC
-#define FLAG_0x0BD               0x0BD
-#define FLAG_0x0BE               0x0BE
-#define FLAG_0x0BF               0x0BF
-#define FLAG_0x0C0               0x0C0
-#define FLAG_0x0C1               0x0C1
+#define FLAG_HIDE_GAURD_ROUTE_22        0x0BD
+#define FLAG_LEVEL_CAP               0x0BE
+#define FLAG_WHITEOUT               0x0BF
+#define FLAG_FOLLOWER_ACTIVE        0x0C0
+#define FLAG_FOLLOWER_IN_BUILDING   0x0C1
 #define FLAG_0x0C2               0x0C2
 #define FLAG_0x0C3               0x0C3
 #define FLAG_0x0C4               0x0C4
@@ -530,8 +530,9 @@
 #define FLAG_HIDE_SILPH_CO_4F_TM41                              0x1FE
 
 // Unused?
+
 #define FLAG_NUZLOCKE           0x1FF
-#define FLAG_0x200               0x200
+#define FLAG_NUZLOCKE_FIN       0x200
 #define FLAG_0x201               0x201
 #define FLAG_0x202               0x202
 #define FLAG_0x203               0x203

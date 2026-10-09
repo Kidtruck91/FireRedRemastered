@@ -36,3 +36,13 @@ PalletTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad::
 PalletTown_PlayersHouse_1F_Text_OopsWrongSide::
     .string "Oops, wrong side…$"
 
+Text_MomGiveShoes:
+    .string "Oh wait, I almost forgot!\n"
+    .string "I got you some new shoes, sweetie.$"
+
+Text_YouReceivedRunningShoes:
+    .string "You received the Running Shoes!$"
+
+PlayersHouse_1F_Text_NuzlockeIsOver:
+	.string "Also, you completed the Nuzlocke\n"
+	.string "challenge. It's over. Congrats!$"

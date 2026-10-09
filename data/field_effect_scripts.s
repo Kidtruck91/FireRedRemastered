@@ -72,7 +72,10 @@ gFieldEffectScriptPointers::
 	.4byte gFldEffScript_MoveDeoxysRock          @ FLDEFF_MOVE_DEOXYS_ROCK
 	.4byte gFldEffScript_DestroyDeoxysRock       @ FLDEFF_DESTROY_DEOXYS_ROCK
 	.4byte gFldEffScript_PhotoFlash              @ FLDEFF_PHOTO_FLASH
-	
+	.4byte gFieldEffectScript_TracksSlither             @ FLDEFF_TRACKS_SLITHER
+	.4byte gFieldEffectScript_TracksBug                 @ FLDEFF_TRACKS_BUG
+	.4byte gFieldEffectScript_TracksSpot                @ FLDEFF_TRACKS_SPOT
+
 
 
 
@@ -348,3 +351,22 @@ gFldEffScript_DestroyDeoxysRock::
 gFldEffScript_PhotoFlash::
 	callnative FldEff_PhotoFlash
 	end 
+
+
+
+
+
+
+gFieldEffectScript_TracksBug:: @ 82DBB42
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksBug
+	field_eff_end
+
+gFieldEffectScript_TracksSpot:: @ 82DBB42
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksSpot
+	field_eff_end
+
+gFieldEffectScript_TracksSlither:: @ 82DBBFF
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksSlither
+	field_eff_end
+
+

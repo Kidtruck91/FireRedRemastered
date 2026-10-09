@@ -27,13 +27,13 @@ void fisherYatesShuffle(char **array, int n) {
 }
 
 int main() {
-    // List of Pokémon species
+    // List of Pokï¿½mon species
     char *pokemon[] = {"SPECIES_RATTATA", "SPECIES_PIKACHU", "SPECIES_BULBASAUR", "SPECIES_CHARMANDER", "SPECIES_SQUIRTLE", "SPECIES_JIGGLYPUFF", "SPECIES_MEWTWO", "SPECIES_SNORLAX"};
 
-    // Get the number of Pokémon species
+    // Get the number of Pokï¿½mon species
     int num_species = sizeof(pokemon) / sizeof(pokemon[0]);
 
-    // Shuffle the array of Pokémon species
+    // Shuffle the array of Pokï¿½mon species
     fisherYatesShuffle(pokemon, num_species);
 
     // Determine team size (random between MIN_TEAM_SIZE and MAX_TEAM_SIZE)
@@ -14728,5 +14728,49 @@ static const struct TrainerMonItemCustomMoves sParty_LassMaeve[] = {
         .species = SPECIES_HITMONLEE,
         .heldItem = ITEM_NONE,
         .moves = {MOVE_MEGA_KICK, MOVE_FORESIGHT, MOVE_BRICK_BREAK, MOVE_FACADE},
+    }
+};
+static const struct TrainerMonItemCustomMoves sParty_NurseJoy[] = {
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_CHANSEY,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_HEAL_BELL, MOVE_FAKE_TEARS, MOVE_SWALLOW, MOVE_SPIT_UP},
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_CHANSEY,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_HEAL_BELL, MOVE_FAKE_TEARS, MOVE_SWALLOW, MOVE_SPIT_UP},
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_CHANSEY,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_HEAL_BELL, MOVE_FAKE_TEARS, MOVE_SWALLOW, MOVE_SPIT_UP},
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_CHANSEY,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_HEAL_BELL, MOVE_FAKE_TEARS, MOVE_SWALLOW, MOVE_SPIT_UP},
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_CHANSEY,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_HEAL_BELL, MOVE_FAKE_TEARS, MOVE_SWALLOW, MOVE_SPIT_UP},
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_CHANSEY,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_HEAL_BELL, MOVE_FAKE_TEARS, MOVE_SWALLOW, MOVE_SPIT_UP},
     }
 };

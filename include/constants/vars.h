@@ -307,7 +307,14 @@
 #define VAR_0x40FE                 0x40FE
 #define VAR_0x40FF                 0x40FF
 #define VAR_0x4100                 0x4100
-#define VARS_END                   0x4100
+#define VAR_0x4101                 0x4101
+#define VAR_0x4102                 0x4102
+#define VAR_0x4103                 0x4103
+#define VAR_LEVEL_CAP              0x4104
+#define VAR_NUZLOKE_TOGGLE         0x4105
+#define VAR_0x4106                 0x4106
+
+#define VARS_END                   0x4106
 #define VARS_COUNT                 (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START         0x8000
@@ -334,7 +341,8 @@
 #define VAR_PREV_TEXT_COLOR        0x8013
 #define VAR_0x8014                 0x8014 // Unknown/unused
 #define VAR_0x8015                 0x8015 // Pallete
-#define SPECIAL_VARS_END           0x8015
+#define VAR_0x8016                 0x8016 // Levelcap
+#define SPECIAL_VARS_END           0x8016
 
 // Text color ids for VAR_TEXT_COLOR / VAR_PREV_TEXT_COLOR
 #define NPC_TEXT_COLOR_MALE      0 // Blue, for male NPCs

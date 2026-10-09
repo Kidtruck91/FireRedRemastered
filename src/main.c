@@ -67,7 +67,6 @@ IntrFunc gIntrTable[INTR_COUNT];
 bool8 gLinkVSyncDisabled;
 u32 IntrMain_Buffer[0x200];
 u8 gPcmDmaCounter;
-
 // These variables are not defined in RS or Emerald, and are never read.
 // They were likely used to debug the audio engine and VCount interrupt.
 u8 sVcountAfterSound;
@@ -80,6 +79,7 @@ EWRAM_DATA u8 gDecompressionBuffer[0x4000] = {0};
 EWRAM_DATA u16 gTrainerId = 0;
 //for custom player transitions
 EWRAM_DATA u8 gPlayerPaletteId = 0;
+
 
 static void UpdateLinkAndCallCallbacks(void);
 static void InitMainCallbacks(void);

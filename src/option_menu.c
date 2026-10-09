@@ -23,6 +23,7 @@ enum
     MENUITEM_SOUND,
     MENUITEM_BUTTONMODE,
     MENUITEM_FRAMETYPE,
+    MENUITEM_NUZLOCKE,
     MENUITEM_CANCEL,
     MENUITEM_COUNT
 };
@@ -131,7 +132,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 0};
+static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 2, 0};
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -141,6 +142,8 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_SOUND]       = gText_Sound,
     [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
     [MENUITEM_FRAMETYPE]   = gText_Frame,
+    [MENUITEM_NUZLOCKE]    = gText_NuzlockeMode,
+
     [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
 };
 
@@ -175,6 +178,13 @@ static const u8 *const sButtonTypeOptions[] =
 	gText_ButtonTypeLR,
 	gText_ButtonTypeLEqualsA
 };
+
+static const u8 *const sNuzlockeOptions[] =
+{
+    gText_NuzlockeOn,
+    gText_NuzlockeOff
+};
+
 
 static const u8 sOptionMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 static const u8 sOptionMenuTextColor[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_RED};
@@ -212,6 +222,8 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->option[MENUITEM_SOUND] = gSaveBlock2Ptr->optionsSound;
     sOptionMenuPtr->option[MENUITEM_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
     sOptionMenuPtr->option[MENUITEM_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
+    sOptionMenuPtr->option[MENUITEM_NUZLOCKE] = gSaveBlock2Ptr->enableNuzlocke;
+
     
     for (i = 0; i < MENUITEM_COUNT - 1; i++)
     {
@@ -498,6 +510,9 @@ static void BufferOptionMenuString(u8 selection)
         StringAppendN(str, buf, 3);
         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, str);
         break;
+    case MENUITEM_NUZLOCKE:
+        AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sNuzlockeOptions[sOptionMenuPtr->option[selection]]);
+        break;
     default:
         break;
     }
@@ -516,6 +531,7 @@ static void CloseAndSaveOptionMenu(u8 taskId)
     gSaveBlock2Ptr->optionsSound = sOptionMenuPtr->option[MENUITEM_SOUND];
     gSaveBlock2Ptr->optionsButtonMode = sOptionMenuPtr->option[MENUITEM_BUTTONMODE];
     gSaveBlock2Ptr->optionsWindowFrameType = sOptionMenuPtr->option[MENUITEM_FRAMETYPE];
+    gSaveBlock2Ptr->enableNuzlocke = sOptionMenuPtr->option[MENUITEM_NUZLOCKE];
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
     FREE_AND_SET_NULL(sOptionMenuPtr);
     DestroyTask(taskId);

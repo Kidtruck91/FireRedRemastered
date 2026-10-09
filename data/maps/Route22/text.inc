@@ -64,3 +64,11 @@ Route22_Text_LeagueGateSign::
 	.string "POKéMON LEAGUE\n"
 	.string "Front Gate$"
 
+Route22_Text_Johto_Road_Closed::
+    .string "Sorry kid, no enrty,\p"
+    .string "A bunch of Graveller \n"
+    .string "are blocking the road\p"
+    .string "into Johto.\n"
+    .string "Come back later, after\p"
+    .string "we get the path cleared$"
+

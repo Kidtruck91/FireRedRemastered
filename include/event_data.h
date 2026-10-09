@@ -24,6 +24,7 @@ extern u16 gSpecialVar_TextColor;
 extern u16 gSpecialVar_PrevTextColor;
 extern u16 gSpecialVar_0x8014;
 extern u16 gSpecialVar_0x8015;
+//extern u16 gSaveBlock1Ptr->levelCap;
 void InitEventData(void);
 void ClearTempFieldEventData(void);
 void ClearUpperFlags(void);

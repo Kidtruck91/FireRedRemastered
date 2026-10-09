@@ -72,6 +72,9 @@
 #define FLDEFF_DESTROY_DEOXYS_ROCK       68
 #define FLDEFF_PHOTO_FLASH               69
 #define FLDEFF_USE_HEADBUTT              70
+#define FLDEFF_TRACKS_SLITHER            71
+#define FLDEFF_TRACKS_SPOT               72
+#define FLDEFF_TRACKS_BUG                73
 
 #define FLDEFF_PAL_TAG_GENERAL_0          0x1004
 #define FLDEFF_PAL_TAG_GENERAL_1          0x1005
@@ -115,5 +118,8 @@
 #define FLDEFFOBJ_ASH_LAUNCH               33
 #define FLDEFFOBJ_BUBBLES                  34
 #define FLDEFFOBJ_SMALL_SPARKLE            35
+#define FLDEFFOBJ_TRACKS_SLITHER           36
+#define FLDEFFOBJ_TRACKS_SPOT              37
+#define FLDEFFOBJ_TRACKS_BUG               38
 
 #endif // GUARD_CONSTANTS_FIELD_EFFECTS_H

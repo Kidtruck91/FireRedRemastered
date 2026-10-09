@@ -942,7 +942,7 @@
 #define TRAINER_LASS_IRENE                       923
 #define TRAINER_LASS_LYLA                        924
 #define TRAINER_LASS_MAEVE                       925
-
+#define TRAINER_NURSE_JOY                       926
 
 
 
@@ -953,7 +953,7 @@
 //       only space for 25 additional trainers before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             926
+#define NUM_TRAINERS                             927
 #define MAX_TRAINERS_COUNT                       992
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

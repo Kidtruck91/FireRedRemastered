@@ -234,3 +234,7 @@ Route22_Movement_LateRivalExit::
 Route22_EventScript_LeagueGateSign::
 	msgbox Route22_Text_LeagueGateSign, MSGBOX_SIGN
 	end
+Route22_EventScript_JohtoGaurd::
+	msgbox Route22_Text_Johto_Road_Closed, MSGBOX_NPC
+	end
+

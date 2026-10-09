@@ -8,6 +8,7 @@
 .set __special__, 0
 	.align 2
 gSpecials::
+	def_special GetSpecialVarLevelCap
 	def_special HealPlayerParty
 	def_special SetCableClubWarp
 	def_special DoCableClubWarp
@@ -452,4 +453,5 @@ gSpecials::
 	def_special UpdateLoreleiDollCollection
 	def_special LoopWingFlapSound
 	def_special CreateEnemyEventMon
+	
 gSpecialsEnd::

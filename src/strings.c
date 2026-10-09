@@ -866,6 +866,15 @@ const u8 gText_Option[] = _("OPTION");
 const u8 gText_TextSpeed[] = _("TEXT SPEED");
 const u8 gText_BattleScene[] = _("BATTLE SCENE");
 const u8 gText_BattleStyle[] = _("BATTLE STYLE");
+
+const u8 gText_NuzlockeMode[] = _("NUZLOCKE MODE");
+const u8 gText_NuzlockeOn[] = _("ON");
+const u8 gText_NuzlockeOff[] = _("OFF");
+const u8 gText_RandomizeTrainer[] = _("RANDOMIZE TRAINER");
+const u8 gText_RandomizeItems[] = _("RANDOMIZE ITEMS");
+const u8 gText_RandomizeWild[] = _("RANDOMIZE WILD");
+
+
 const u8 gText_Sound[] = _("SOUND");
 const u8 gText_ButtonMode[] = _("BUTTON MODE");
 const u8 gText_Frame[] = _("FRAME");
@@ -1334,3 +1343,5 @@ const u8 gText_Receive[] = _("RECEIVE");
 const u8 gText_Send[] = _("SEND");
 const u8 gText_Toss[] = _("TOSS");
 const u8 gText_DelAllCancelOk[] = _("DEL. ALL{CLEAR_TO 0x57}CANCEL{CLEAR_TO 0xA4}OK");
+const u8 gText_NurseJoy_Text_BattleIntro[] = _("Greetings!\nHope you are prepared!");
+const u8 gText_NurseJoy_Text_BattleDefeat[] = _("Fantastic!\nHope I was able to help!");

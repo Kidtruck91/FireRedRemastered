@@ -51,3 +51,6 @@ Text_WhitedOut::
 	.string "{PLAYER} is out of usable\n"
 	.string "POKéMON!\p"
 	.string "{PLAYER} whited out!$"
+Text_PlayerNuzlockeFailed::
+	.string "{PLAYER} has failed the\n"
+	.string "Nuzlocke Challenge$"

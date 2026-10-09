@@ -35,8 +35,10 @@
 #include "constants/daycare.h"
 #include "constants/easy_chat.h"
 #include "constants/trainer_card.h"
+
 #include "constants/help_system.h"
 #include "constants/mystery_gift.h"
+#include "constants/follow_me.h"
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
 	.set FALSE, 0
@@ -871,6 +873,12 @@ Text_TrainerSchoolEmail::
 Text_PlayerBootedUpPC::
 	.string "{PLAYER} booted up the PC.$"
 
+gText_PlayerNuzlockeFailed::
+	.string "{PLAYER} failed the\n"
+	.string "Nuzlocke challenge.\p"
+	.string "The Nuzlocke setting\n"
+	.string "has been turned off.$"
+
 @ Unused
 Text_LinkWasCanceled::
 	.string "つうしんは　キャンセルされました$"
@@ -879,13 +887,6 @@ Text_LinkWasCanceled::
 Text_GiveNicknameToReceivedMon::
 	.string "Want to give a nickname to the\n"
 	.string "{STR_VAR_2} you received?$"
-
-gText_PlayerNuzlockeFailed::
-	.string "{PLAYER} failed the\n"
-	.string "Nuzlocke challenge.\p"
-	.string "The Nuzlocke setting\n"
-	.string "has been turned off.$"
-
 
 gText_PkmnFainted3::
 	.string "{STR_VAR_1} fainted…\p"
@@ -919,6 +920,17 @@ Text_DoorOpenedFarAway::
 Text_BigHoleInTheWall::
 	.string "かべに\n"
 	.string "おおきな　あなが　あいている！$"
+
+
+gText_WelcomeBattleRoom::
+	.string "Welcome to the Training Room!\n"
+	.string "Would you like to participate?$"
+
+gText_PreparingBattle::
+	.string "Alright! I'll get everything ready.$"
+
+gText_ComeBackLater::
+	.string "No problem! Come back anytime.$"
 
 Text_WirelessClubUndergoingAdjustments::
 	.string "I'm terribly sorry.\n"
@@ -1238,8 +1250,12 @@ EventScript_VsSeekerChargingDone::
 	releaseall
 	end
 
-Common_EventScript_UnionRoomAttendant::
+Common_EventScript_Level_Up_Room::
 	call CableClub_EventScript_UnionRoomAttendant
+	end
+
+Common_EventScript_UnionRoomAttendant::
+	call NurseJoyBattleRoom_EventScript_Enter
 	end
 
 Common_EventScript_WirelessClubAttendant::

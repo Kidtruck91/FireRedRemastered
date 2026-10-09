@@ -450,3 +450,51 @@ PalletTown_EventScript_SignLadyStartShowSign::
 	call PalletTown_EventScript_SignLadyShowSign
 	release
 	end
+
+PalletTown_EventScript_DisplayLevelCap::
+    lock
+    faceplayer
+	callnative GetSpecialVarLevelCap
+    compare VAR_TEMP_0, 100
+	goto_if_eq PalletTown_EventScript_DisplayDefaultCap
+	buffernumberstring STR_VAR_1, VAR_TEMP_0
+    msgbox PalletTown_Text_DisplayLevelCap, MSGBOX_SIGN
+    release
+    end
+
+
+
+PalletTown_EventScript_DisplayDefaultCap::
+    msgbox PalletTown_Text_DefaultLevelCap, MSGBOX_SIGN
+    release
+    end
+
+PalletTown_EventScript_SetLevelCapTo14::
+    lock
+    faceplayer
+    callnative SetLevelCapTo
+    msgbox PalletTown_Text_SetLevelCapTo14, MSGBOX_SIGN
+    release
+    end
+
+PalletTown_EventScript_CheckNuzlocke::
+    lock
+    faceplayer
+    goto_if_set FLAG_NUZLOCKE, PalletTown_EventScript_NuzlockeEnabled
+    msgbox PalletTown_Text_NuzlockeDisabled, MSGBOX_SIGN
+    release
+    end
+
+PalletTown_EventScript_NuzlockeEnabled::
+    msgbox PalletTown_Text_NuzlockeEnabled, MSGBOX_SIGN
+    release
+    end
+NuzlockeTestScript::
+    goto_if_set FLAG_NUZLOCKE, NuzlockeAlreadySet
+    setflag FLAG_NUZLOCKE
+    msgbox PalletTown_Text_NuzlockeEnabled, MSGBOX_SIGN
+    end
+
+NuzlockeAlreadySet::
+    msgbox PalletTown_Text_NuzlockeAlreadyEnabled, MSGBOX_SIGN
+    end

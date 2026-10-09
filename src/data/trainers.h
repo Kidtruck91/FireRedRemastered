@@ -9440,4 +9440,14 @@ const struct Trainer gTrainers[] = {
         .aiFlags=AI_SCRIPT_CHECK_BAD_MOVE,
         .party = ITEM_CUSTOM_MOVES(sParty_LassMaeve),
     },
+    [TRAINER_NURSE_JOY] = {
+        .trainerClass = TRAINER_CLASS_LASS,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LASS,
+        .trainerName = _("Joy"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags=AI_SCRIPT_CHECK_BAD_MOVE,
+        .party = ITEM_CUSTOM_MOVES(sParty_NurseJoy),
+    },
 };

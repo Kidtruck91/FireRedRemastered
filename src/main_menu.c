@@ -17,6 +17,7 @@
 #include "text_window.h"
 #include "text_window_graphics.h"
 #include "constants/songs.h"
+#include "constants/flags.h"
 enum MainMenuType
 {
     MAIN_MENU_NEWGAME = 0,

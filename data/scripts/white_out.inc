@@ -7,7 +7,9 @@ EventScript_AfterWhiteOutHeal::
 	call_if_set FLAG_DEFEATED_BROCK, EventScript_AfterWhiteOutHealMsg
 	applymovement VAR_LAST_TALKED, Movement_Bow
 	waitmovement 0
+	
 	fadedefaultbgm
+	call_if_set FLAG_NUZLOCKE, EventScript_ShowNuzlockeFailMsg
 	releaseall
 	end
 
@@ -29,6 +31,7 @@ EventScript_AfterWhiteOutMomHeal::
 	msgbox Text_HadQuiteAnExperienceTakeRest
 	call EventScript_OutOfCenterPartyHeal
 	msgbox Text_MomExplainHPGetPotions
+	call_if_set FLAG_NUZLOCKE, EventScript_ShowNuzlockeFailMsg
 	fadedefaultbgm
 	releaseall
 	end
@@ -66,3 +69,8 @@ EventScript_FieldWhiteOutFade::
 	special SetCB2WhiteOut
 	waitstate
 	end
+EventScript_ShowNuzlockeFailMsg::
+    msgbox Text_PlayerNuzlockeFailed, MSGBOX_SIGN
+    clearflag FLAG_NUZLOCKE
+    setflag FLAG_NUZLOCKE_FIN
+    return

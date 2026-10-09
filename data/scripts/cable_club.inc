@@ -314,6 +314,33 @@ CableClub_EventScript_EnterColosseum::
 	waitstate
 	end
 
+
+NurseJoyBattleRoom_EventScript_Enter::
+    lockall
+    msgbox gText_WelcomeBattleRoom
+    waitmessage
+    multichoice 0, 0, MULTICHOICE_YES_NO, FALSE
+    switch VAR_RESULT
+    case 0, NurseJoyBattleRoom_EventScript_StartBattle
+    case 1, NurseJoyBattleRoom_EventScript_Decline
+    case SCR_MENU_CANCEL, NurseJoyBattleRoom_EventScript_Decline
+    end
+
+NurseJoyBattleRoom_EventScript_StartBattle::
+    msgbox gText_PreparingBattle
+    waitmessage
+    special HealPlayerParty
+    special SavePlayerParty
+    special LoadPlayerBag
+    warp MAP_BATTLE_COLOSSEUM_2P, 6, 8
+    waitstate
+    end
+
+NurseJoyBattleRoom_EventScript_Decline::
+    msgbox gText_ComeBackLater
+    releaseall
+    end
+
 @ Unused
 CableClub_EventScript_PlayerApproachLinkRoomRight::
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_PlayerApproachLinkRoomRight

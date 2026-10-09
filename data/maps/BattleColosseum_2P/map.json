@@ -18,8 +18,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_UNION_ROOM_RECEPTIONIST",
-      "x": 9,
-      "y": 3,
+      "x": 10,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -54,7 +54,7 @@
       "elevation": 3,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "BattleColosseum_2P_EventScript_PlayerSpot0"
+      "script": "BattleColosseum_2P_EventScript_NurseJoyBattle"
     },
     {
       "type": "trigger",

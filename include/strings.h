@@ -931,6 +931,14 @@ extern const u8 gText_BattleSceneOn[];
 extern const u8 gText_BattleSceneOff[];
 extern const u8 gText_BattleStyleShift[];
 extern const u8 gText_BattleStyleSet[];
+extern const u8 gText_NuzlockeOn[];
+extern const u8 gText_NuzlockeOff[];
+extern const u8 gText_NuzlockeMode[];
+extern const u8 gText_RandomizeItems[];
+extern const u8 gText_RandomizeWild[];
+extern const u8 gText_RandomizeTrainer[];
+
+
 extern const u8 gText_SoundMono[];
 extern const u8 gText_SoundStereo[];
 extern const u8 gText_ButtonTypeHelp[];
@@ -1545,5 +1553,9 @@ extern const u8 gText_PokeSum_EggOrigin_Trade[];
 extern const u8 gText_PokeSum_EggOrigin_NicePlace[];
 extern const u8 gText_PokeSum_EggOrigin_Spa[];
 extern const u8 gText_PokeSum_EggOrigin_Trade[];
-
+extern const u8 gText_WelcomeBattleRoom[];
+extern const u8 gText_PreparingBattle[];
+extern const u8 gText_ComeBackLater[];
+extern const u8 gText_NurseJoy_Text_BattleIntro[];
+extern const u8 gText_NurseJoy_Text_BattleDefeat[];
 #endif //GUARD_STRINGS_H
