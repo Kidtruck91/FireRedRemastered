@@ -313,6 +313,30 @@ struct BattleTowerData // Leftover from R/S
     /*0x04D1, 0x0581*/ u8 filler_4D1[0x317];
 }; /* size = 0x7E8 */
 
+// State for the follower Pokemon / "follow me" system (src/follow_me.c)
+struct Follower
+{
+    /*0x00*/ u8 inProgress:1;
+             u8 warpEnd:1;
+             u8 createSurfBlob:3;
+             u8 comeOutDoorStairs:3;
+    /*0x01*/ u8 objId;
+    /*0x02*/ u8 currentSprite;
+    /*0x03*/ u8 delayedState;
+    /*0x04*/ struct {
+                 u8 id;
+                 u8 number;
+                 u8 group;
+             } map;
+    /*0x07*/ u8 padding;
+    /*0x08*/ struct Coords16 log;
+    /*0x0C*/ const u8 *script;
+    /*0x10*/ u16 flag;
+    /*0x12*/ u16 graphicsId;
+    /*0x14*/ u16 flags;
+    /*0x16*/ u16 padding2;
+}; /* size = 0x18 */
+
 struct SaveBlock2
 {
     /*0x000*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
@@ -355,7 +379,8 @@ struct SaveBlock2
     /*0xAF0*/ struct BerryCrush berryCrush;
     /*0xB00*/ struct PokemonJumpRecords pokeJump;
     /*0xB10*/ struct BerryPickingResults berryPick;
-    /*0xB20*/ u8 filler_B20[0x400];
+    /*0xB20*/ struct Follower follower;
+    /*0xB38*/ u8 filler_B38[0x400 - sizeof(struct Follower)];
     /*0xF20*/ u32 encryptionKey;
 }; // size: 0xF24
 

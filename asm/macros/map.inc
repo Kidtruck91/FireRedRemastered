@@ -18,27 +18,8 @@
 	.2byte \compare
 	.4byte \script
 	.endm
-	@Commented out and replaced with version below 
 	@ Defines an object event template for map data, to be used by a normal object. Mirrors the struct layout of ObjectEventTemplate in include/global.fieldmap.h
-	@.macro object_event index:req, gfx:req, x:req, y:req, elevation:req, movement_type:req, x_radius:req, y_radius:req, trainer_type:req, sight_radius_tree_etc:req, script:req, event_flag:req
-	@.byte \index
-	@.byte \gfx
-	@.byte OBJ_KIND_NORMAL
-	@.space 1  @ Padding
-	@.2byte \x, \y
-	@.byte \elevation
-	@.byte \movement_type
-	@.byte ((\y_radius << 4) | \x_radius)
-	@.space 1  @ Padding
-	@.2byte \trainer_type
-	@.2byte \sight_radius_tree_etc
-	@.4byte \script
-	@.2byte \event_flag
-	@.space 2  @ Padding
-	@inc _num_npcs
-	@.endm
-
-    @ Defines an object event template for map data, to be used by a normal object. Mirrors the struct layout of ObjectEventTemplate in include/global.fieldmap.h
+	@ (graphicsId is a halfword so follower Pokemon graphics ids fit)
 	.macro object_event index:req, gfx:req, x:req, y:req, elevation:req, movement_type:req, x_radius:req, y_radius:req, trainer_type:req, sight_radius_tree_etc:req, script:req, event_flag:req
 	.byte \index, OBJ_KIND_NORMAL
 	.2byte \gfx
@@ -53,10 +34,8 @@
 
 	@ Defines an object event template for map data, to be used by a clone object. Mirrors the struct layout of ObjectEventTemplate in include/global.fieldmap.h
 	.macro clone_event index:req, gfx:req, x:req, y:req, target_local_id:req, target_map_id:req
-	.byte \index
-	.byte \gfx
-	.byte OBJ_KIND_CLONE
-	.space 1  @ Padding
+	.byte \index, OBJ_KIND_CLONE
+	.2byte \gfx
 	.2byte \x, \y
 	.byte \target_local_id
 	.space 3  @ Padding

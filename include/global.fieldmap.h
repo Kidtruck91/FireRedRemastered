@@ -110,8 +110,8 @@ struct BackupMapLayout
 struct ObjectEventTemplate
 {
     u8 localId;
-    u8 graphicsId;
     u8 kind; // The "kind" field determines how to access objUnion union below.
+    u16 graphicsId; // u16 so that follower Pokemon graphics ids (>= 256) fit
     s16 x, y;
     union {
         struct {
@@ -240,9 +240,8 @@ struct ObjectEvent
              /*26*/ u32 fixedPriority:1;
              /*27*/ u32 hideReflection:1;
     /*0x04*/        u8 spriteId;
-    /*0x05*/        u8 graphicsId;
-    /*0x06*/        u8 movementType;
-    /*0x07*/        u8 trainerType;
+    /*0x05*/        u8 movementType;
+    /*0x06*/        u16 graphicsId; // u16 so that follower Pokemon graphics ids (>= 256) fit
     /*0x08*/        u8 localId;
     /*0x09*/        u8 mapNum;
     /*0x0A*/        u8 mapGroup;
@@ -264,6 +263,7 @@ struct ObjectEvent
     /*0x20*/        u8 previousMovementDirection;
     /*0x21*/        u8 directionSequenceIndex;
     /*0x22*/        u8 playerCopyableMovement;
+    /*0x23*/        u8 trainerType; // moved here to keep the struct at 0x24 bytes after widening graphicsId
     /*size = 0x24*/
 };
 
