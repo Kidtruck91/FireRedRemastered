@@ -1,0 +1,57 @@
+diff --git a/include/follow_me.h b/include/follow_me.h
+index f7c40c9c8..a78d2c0aa 100644
+--- a/include/follow_me.h
++++ b/include/follow_me.h
+@@ -82,6 +82,7 @@ void FollowMe_DoorWarp_PlayerWalkedIn(void);
+ bool8 FollowMe_DoorWarp_ShouldCloseDoor(void);
+ void FollowMe_DoorWarp_FollowerEnter(void);
+ void FollowMe_DoorExit(void);
++void FollowMe_DoorExitEnd(void);
+ void FollowMe_IdleUpdate(void);
+ void FollowMe_StopRunningUpdate(void);
+ void FollowMe_FixSpriteOffset(void);
+diff --git a/src/field_fadetransition.c b/src/field_fadetransition.c
+index e283739de..de5f51fe1 100644
+--- a/src/field_fadetransition.c
++++ b/src/field_fadetransition.c
+@@ -394,6 +394,7 @@ static void Task_ExitDoor(u8 taskId)
+             task->data[0] = 4;
+         break;
+     case 4:
++        FollowMe_DoorExitEnd();
+         UnfreezeObjectEvents();
+         UnlockPlayerFieldControls();
+         DestroyTask(taskId);
+@@ -431,6 +432,7 @@ static void Task_ExitNonAnimDoor(u8 taskId)
+         }
+         break;
+     case 3:
++        FollowMe_DoorExitEnd();
+         UnfreezeObjectEvents();
+         UnlockPlayerFieldControls();
+         DestroyTask(taskId);
+diff --git a/src/follow_me.c b/src/follow_me.c
+index f24293bf5..b3cacfcbb 100644
+--- a/src/follow_me.c
++++ b/src/follow_me.c
+@@ -2424,11 +2424,20 @@ void FollowMe_DoorWarp_FollowerEnter(void)
+ }
+ 
+ // Door exits (Task_ExitDoor / Task_ExitNonAnimDoor): the follower comes out of the door after the player
++// Exiting through a door: hide the follower while the player steps out...
+ void FollowMe_DoorExit(void)
+ {
+     if (!FollowerObjectExists())
+         return;
+     HideFollower();
++}
++
++// ...then, once the player has finished stepping out, put the follower in the doorway
++// (one tile behind the player) so it walks out on the player's next step.
++void FollowMe_DoorExitEnd(void)
++{
++    if (!FollowerObjectExists())
++        return;
+     FollowMe_SetIndicatorToComeOutDoor();
+     FollowMe_WarpSetEnd();
+ }

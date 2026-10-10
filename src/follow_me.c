@@ -2424,11 +2424,20 @@ void FollowMe_DoorWarp_FollowerEnter(void)
 }
 
 // Door exits (Task_ExitDoor / Task_ExitNonAnimDoor): the follower comes out of the door after the player
+// Exiting through a door: hide the follower while the player steps out...
 void FollowMe_DoorExit(void)
 {
     if (!FollowerObjectExists())
         return;
     HideFollower();
+}
+
+// ...then, once the player has finished stepping out, put the follower in the doorway
+// (one tile behind the player) so it walks out on the player's next step.
+void FollowMe_DoorExitEnd(void)
+{
+    if (!FollowerObjectExists())
+        return;
     FollowMe_SetIndicatorToComeOutDoor();
     FollowMe_WarpSetEnd();
 }

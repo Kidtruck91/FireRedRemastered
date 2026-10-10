@@ -82,6 +82,7 @@ void FollowMe_DoorWarp_PlayerWalkedIn(void);
 bool8 FollowMe_DoorWarp_ShouldCloseDoor(void);
 void FollowMe_DoorWarp_FollowerEnter(void);
 void FollowMe_DoorExit(void);
+void FollowMe_DoorExitEnd(void);
 void FollowMe_IdleUpdate(void);
 void FollowMe_StopRunningUpdate(void);
 void FollowMe_FixSpriteOffset(void);

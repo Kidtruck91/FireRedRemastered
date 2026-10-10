@@ -1,12 +1,31 @@
 .equ LOCALID_MOM, 1
 
 PalletTown_PlayersHouse_1F_MapScripts::
-	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PalletTown_PlayersHouse_1F_OnWarp
-	call_if_unset FLAG_SYS_B_DASH, PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes
-	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PalletTown_PlayersHouse_1F_OnWarp2
-	call_if_set FLAG_NUZLOCKE_FIN, PalletTown_PlayersHouse_1F_EventScript_EndNuzlocke
-	
+	map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_PlayersHouse_1F_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, PalletTown_PlayersHouse_1F_OnFrame
 	.byte 0
+
+@ Decide on entry which cutscene (if any) Mom plays. VAR_TEMP_1 resets every map load.
+@ (Mom's heal after a whiteout is started by field_screen_effect.c, not here.)
+PalletTown_PlayersHouse_1F_OnTransition::
+	clearflag FLAG_WHITEOUT
+	setvar VAR_TEMP_1, 0
+	call_if_set FLAG_NUZLOCKE_FIN, PalletTown_PlayersHouse_1F_EventScript_QueueEndNuzlocke
+	call_if_unset FLAG_SYS_B_DASH, PalletTown_PlayersHouse_1F_EventScript_QueueRunningShoes
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_QueueEndNuzlocke::
+	setvar VAR_TEMP_1, 2
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_QueueRunningShoes::
+	setvar VAR_TEMP_1, 1
+	return
+
+PalletTown_PlayersHouse_1F_OnFrame::
+	map_script_2 VAR_TEMP_1, 1, PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes
+	map_script_2 VAR_TEMP_1, 2, PalletTown_PlayersHouse_1F_EventScript_EndNuzlocke
+	.2byte 0
 
 PalletTown_PlayersHouse_1F_EventScript_Mom::
 	lock
@@ -21,9 +40,6 @@ PalletTown_PlayersHouse_1F_EventScript_Mom::
 	release
 	end
 
-PalletTown_PlayersHouse_1F_OnWarp2::
-    end
-
 
 PalletTown_PlayersHouse_1F_EventScript_EndNuzlocke::
     lockall
@@ -32,8 +48,10 @@ PalletTown_PlayersHouse_1F_EventScript_EndNuzlocke::
 	textcolor NPC_TEXT_COLOR_FEMALE
     msgbox PlayersHouse_1F_Text_NuzlockeIsOver, MSGBOX_NPC
     clearflag FLAG_NUZLOCKE
+    clearflag FLAG_NUZLOCKE_FIN
     applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturnHome2
     waitmovement 0
+    setvar VAR_TEMP_1, 0
     releaseall
     end
 
@@ -52,14 +70,6 @@ PalletTown_PlayersHouse_1F_Movement_MomReturnHome2::
     step_end
 
 
-PalletTown_PlayersHouse_1F_OnWarp::
-    PalletTown_PlayersHouse_1F_OnWarp::
-    checkflag FLAG_WHITEOUT
-    call_if_set FLAG_WHITEOUT, EventScript_AfterWhiteOutMomHeal
-    clearflag FLAG_WHITEOUT
-    end
-
-
 PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes::
     lockall
     applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproachPlayer
@@ -71,6 +81,7 @@ PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes::
     msgbox Text_YouReceivedRunningShoes, MSGBOX_SIGN
     applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturnHome
     waitmovement 0
+    setvar VAR_TEMP_1, 0
     releaseall
     end
 

@@ -394,6 +394,7 @@ static void Task_ExitDoor(u8 taskId)
             task->data[0] = 4;
         break;
     case 4:
+        FollowMe_DoorExitEnd();
         UnfreezeObjectEvents();
         UnlockPlayerFieldControls();
         DestroyTask(taskId);
@@ -431,6 +432,7 @@ static void Task_ExitNonAnimDoor(u8 taskId)
         }
         break;
     case 3:
+        FollowMe_DoorExitEnd();
         UnfreezeObjectEvents();
         UnlockPlayerFieldControls();
         DestroyTask(taskId);
