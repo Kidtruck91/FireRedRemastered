@@ -23,6 +23,10 @@ enum {
     // the remaining sprite palette slots (12-15) are used by field effects, the interface, etc.
 };
 
+// paletteSlot value for graphics whose palette is allocated on demand by tag in one of the
+// free slots 12-15 (follower Pokemon)
+#define PALSLOT_DYNAMIC 15
+
 enum SpinnerRunnerFollowPatterns
 {
     RUNFOLLOW_ANY,
@@ -93,18 +97,18 @@ u8 GetFaceDirectionAnimNum(u8);
 void SetSpritePosToOffsetMapCoords(s16 *, s16 *, s16, s16);
 void ObjectEventClearHeldMovement(struct ObjectEvent *);
 void ObjectEventClearHeldMovementIfActive(struct ObjectEvent *);
-u8 CreateVirtualObject(u8 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevation, u8 direction);
+u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevation, u8 direction);
 u8 CreateObjectGraphicsSprite(u16 graphicsId, SpriteCallback callback, s16 x, s16 y, u8 subpriority);
 u8 TrySpawnObjectEvent(u8 localId, u8 mapNum, u8 mapGroup);
-int SpawnSpecialObjectEventParameterized(u8, u8, u8, s16, s16, u8);
+int SpawnSpecialObjectEventParameterized(u16, u8, u8, s16, s16, u8);
 u8 SpawnSpecialObjectEvent(struct ObjectEventTemplate *);
 void CameraObjectReset1(void);
 void CameraObjectReset2(void);
-void ObjectEventSetGraphicsId(struct ObjectEvent *, u8);
+void ObjectEventSetGraphicsId(struct ObjectEvent *, u16);
 void ObjectEventTurn(struct ObjectEvent *, u8);
 void ObjectEventTurnByLocalIdAndMap(u8, u8, u8, u8);
 void ObjectEventForceSetHeldMovement(struct ObjectEvent *, u8);
-const struct ObjectEventGraphicsInfo *GetObjectEventGraphicsInfo(u8);
+const struct ObjectEventGraphicsInfo *GetObjectEventGraphicsInfo(u16);
 void SetObjectInvisibility(u8 localId, u8 mapNum, u8 mapGroup, u8 state);
 void FreeAndReserveObjectSpritePalettes(void);
 void SetObjectPositionByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup, s16 x, s16 y);
@@ -133,8 +137,7 @@ void OverrideMovementTypeForObjectEvent(const struct ObjectEvent *, u8);
 void SetTrainerMovementType(struct ObjectEvent *, u8);
 u8 GetFishingDirectionAnimNum(u8 direction);
 u8 GetFishingNoCatchDirectionAnimNum(u8 a0);
-void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u8 a1);
-u8 CreateFameCheckerObject(u8 graphicsId, u8 localId, s16 x, s16 y);
+u8 CreateFameCheckerObject(u16 graphicsId, u8 localId, s16 x, s16 y);
 void InitObjectEventPalettes(u8 mode);
 bool8 ObjectEventIsMovementOverridden(struct ObjectEvent *objectEvent);
 u8 ObjectEventCheckHeldMovementStatus(struct ObjectEvent *objectEvent);
@@ -200,7 +203,7 @@ void SetAndStartSpriteAnim(struct Sprite *, u8, u8);
 bool8 SpriteAnimEnded(struct Sprite *);
 u8 ObjectEventGetHeldMovementActionId(struct ObjectEvent *objectEvent);
 u8 GetMoveDirectionAnimNum(u8 direction);
-void MovementType_FollowingPokemon(struct Sprite *);
+
 // Exported data declarations
 
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
@@ -230,14 +233,17 @@ u8 GetAcroPopWheelieMoveMovementAction(u32 direction);
 u8 GetAcroWheelieMoveMovementAction(u32 direction);
 u8 GetJumpSpecialWithEffectMovementAction(u32 direction);
 u8 GetFishingBiteDirectionAnimNum(u8 direction);
-//folowing pokemon
-u8 MovementType_FollowingPokemon_Step0(struct ObjectEvent *, struct Sprite *);
-u8 MovementType_FollowingPokemon_Step1(struct ObjectEvent *, struct Sprite *);
-u8 MovementType_FollowingPokemon_Step2(struct ObjectEvent *, struct Sprite *);
-u8 MovementType_FollowingPokemon_Step3(struct ObjectEvent *, struct Sprite *);
 void TrySpawnObjectEvents(s16 cameraX, s16 cameraY);
-//Following pokemon
-bool8 ObjectEventPokemonFacePlayer(struct ObjectEvent *, struct ObjectEvent *);
 void ResetObjectEvents(void);
+
+// Follower Pokemon support
+void RemoveObjectEvent(struct ObjectEvent *objectEvent);
+u8 TrySpawnObjectEventTemplate(const struct ObjectEventTemplate *objectEventTemplate, u8 mapNum, u8 mapGroup, s16 cameraX, s16 cameraY);
+const struct ObjectEventTemplate *GetObjectEventTemplateByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup);
+bool8 ObjectEventPokemonFacePlayer(struct ObjectEvent *follower, struct ObjectEvent *player);
+bool8 PlayerIsUnderWaterfall(struct ObjectEvent *objectEvent);
+u16 GetMiniStepCount(u8 speed);
+void RunMiniStep(struct Sprite *sprite, u8 speed, u8 currentFrame);
+void ObjectEventSetGraphicsIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup, u16 graphicsId);
 
 #endif // GUARD_EVENT_OBJECT_MOVEMENT_H

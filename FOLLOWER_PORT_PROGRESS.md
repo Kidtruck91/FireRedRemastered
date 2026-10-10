@@ -57,15 +57,16 @@ If a session runs out, a new one should read this file, check `git log follower-
 - [x] `spritesheet_rules.mk`: rules for the follower sprites (32x32, or 64x64 for Steelix, Lugia, Ho-Oh and Wailord), the tracks, and the expanding sparkle.
 - **The build does not pass yet.** `follow_me.c` and the `event_object_movement.c` hooks still need porting.
 
-### Chunk 2: event_object_movement.c and graphics plumbing
-- [ ] Widen to `u16` every function that takes or returns a graphicsId: `GetObjectEventGraphicsInfo`, `ObjectEventSetGraphicsId(ByLocalIdAndMap)`, `SpawnSpecialObjectEventParameterized`, `CreateVirtualObject`, `CreateFameCheckerObject`, `CopyObjectGraphicsInfoToSpriteTemplate*`, `CreateObjectGraphicsSprite`, `VarGetObjectEventGraphicsId`, the field_player_avatar gfx getters, `CheckObjectGraphicsInFrontOfPlayer`, `ScrCmd_createvobject`, `quest_log_player` and `vs_seeker`. Use `grep -rn "u8 graphicsId\|u8 gfxId"`.
-- [ ] Include `follower_graphics.h` and `follower_anims.h` in `event_object_movement.c`, and handle the follower range in `GetObjectEventGraphicsInfo`.
-- [ ] Dynamic palette path for `PALSLOT_DYNAMIC` in every spawn and set-graphics path, freeing the palette on remove. Also set the reflection map entries 12–15.
-- [ ] `MOVEMENT_TYPE_FOLLOWING_POKEMON` and movement actions `FOLLOWING_POKEMON`, `_FACESOUTH/NORTH/WEST/EAST`, `_SHRINK` and `_GROW`, plus their func tables. Some already exist from the earlier attempt in `include/constants/event_object_movement.h` (0xB0–0xB7) and `asm/macros/movement.inc`; review them.
-- [ ] The follower-specific branches in the WalkSlow/WalkNormal/WalkFast/WalkFaster/Slide/Jump2 `_Step0` functions (anim numbers and x2 offsets). Use a helper instead of 24 copies.
-- [ ] `ObjectEventPokemonFacePlayer`, `RecreateObjectEvent`, `GetMiniStepCount`, `RunMiniStep`, `PlayerIsUnderWaterfall`.
-- [ ] Collision exemption (`FollowMe_IsCollisionExempt`), the `FollowMe()` call in `ObjectEventSetHeldMovement`, `GetObjectEventIdByLocalIdAndMap` mapping 0xFE to the follower, don't remove the follower when it's outside the view, and no ground effects while it's invisible.
-- [ ] New track field effects: `FLDEFF_TRACKS_*`, templates and `FldEff_Tracks*`. Constants and scripts were partly added before; verify them.
+### Chunk 2: event_object_movement.c and graphics plumbing ✅ (committed)
+- [x] `GetObjectEventGraphicsInfo()` handles the follower range (256+). Spawn and set-graphics paths use `GetObjectEventPaletteNum()`, which loads `PALSLOT_DYNAMIC` palettes on demand (`LoadDynamicObjectEventPalette`) and frees them when the object is removed. Reflection map entries 12–15 map to themselves.
+- [x] Movement type `MOVEMENT_TYPE_FOLLOWING_POKEMON` (0x51). Movement actions `MOVEMENT_ACTION_FOLLOWING_POKEMON*` are **0xAA–0xB0**; the earlier 0xB0–0xB7 values were replaced. Func tables are in `src/data/object_events/movement_*_func_tables.h`.
+- [x] The follower step animations go through one helper, `FollowerSetStepAnim()`, called at the top of the WalkSlow/WalkNormal/WalkFast/WalkFaster/Slide `_Step0` functions; `FollowerPrepareJump()` covers Jump2.
+- [x] The follower movement actions (face, shrink and grow with a pokeball, `RecreateObjectEvent`) are in `event_object_movement.c`. The source is `_follower_port_work/patches/follower_actions.c`. They call `CreateFollowerPokeballSprite()` and `IsBigSprite()`, which **chunk 3 must implement in follow_me.c**.
+- [x] Collision exemption, the `FollowMe()` hook in `ObjectEventSetHeldMovement`, local id 0xFE mapping to the follower, no despawn outside the view, no ground effects while hidden, elevation fix, and ministep helpers.
+- [x] Track field effects (`FLDEFF_TRACKS_SLITHER/SPOT/BUG` = 71–73) with scripts, templates, pics and `FldEff_Tracks*`. `FLDEFF_USE_HEADBUTT` (70) had no script, so it points at the PhotoFlash script as a placeholder to keep the table aligned.
+- [x] Not widened, on purpose, because follower ids never reach them: the field_player_avatar gender/state getters, `VarGetObjectEventGraphicsId`, vs_seeker, union room, and `CheckObjectGraphicsInFrontOfPlayer`. The quest log is handled in chunk 4.
+- **Build status:** everything compiles except `src/follow_me.c` (chunk 3).
+- Patch scripts used are kept in `_follower_port_work/patches/` for reference.
 
 ### Chunk 3: follow_me.c
 - [ ] Adapt `src/follow_me.c` (currently a straight copy of FollowerEm's):
@@ -88,3 +89,4 @@ If a session runs out, a new one should read this file, check `git log follower-
 
 ## Log
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
+- 2026-10-10: Chunk 2 done and committed.

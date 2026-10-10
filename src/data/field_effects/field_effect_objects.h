@@ -529,6 +529,60 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_BikeTireTracks =
     .callback = UpdateFootprintsTireTracksFieldEffect,
 };
 
+// Follower Pokemon tracks
+static const struct SpriteFrameImage sPicTable_SlitherTracks[] =
+{
+    overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 0),
+    overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 1),
+    overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 2),
+    overworld_frame(gFieldEffectObjectPic_SlitherTracks, 2, 2, 3),
+};
+
+const struct SpriteTemplate gFieldEffectObjectTemplate_SlitherTracks =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = sAnimTable_BikeTireTracks,
+    .images = sPicTable_SlitherTracks,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateFootprintsTireTracksFieldEffect,
+};
+
+static const struct SpriteFrameImage sPicTable_BugTracks[] =
+{
+    overworld_frame(gFieldEffectObjectPic_BugTracks, 2, 2, 0),
+    overworld_frame(gFieldEffectObjectPic_BugTracks, 2, 2, 1),
+};
+
+const struct SpriteTemplate gFieldEffectObjectTemplate_BugTracks =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = sAnimTable_DeepSandFootprints,
+    .images = sPicTable_BugTracks,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateFootprintsTireTracksFieldEffect,
+};
+
+static const struct SpriteFrameImage sPicTable_SpotTracks[] =
+{
+    overworld_frame(gFieldEffectObjectPic_SpotTracks, 2, 2, 0),
+    overworld_frame(gFieldEffectObjectPic_SpotTracks, 2, 2, 1),
+};
+
+const struct SpriteTemplate gFieldEffectObjectTemplate_SpotTracks =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = FLDEFF_PAL_TAG_GENERAL_0,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = sAnimTable_DeepSandFootprints,
+    .images = sPicTable_SpotTracks,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateFootprintsTireTracksFieldEffect,
+};
+
 static const struct SpriteFrameImage sPicTable_JumpBigSplash[] =
 {
     overworld_frame(gFieldEffectObjectPic_JumpBigSplash, 2, 2, 0),

@@ -457,6 +457,22 @@ static bool8 (*const sMovementActionFuncs_JumpSpecialWithEffectDown[])(struct Ob
 static bool8 (*const sMovementActionFuncs_JumpSpecialWithEffectUp[])(struct ObjectEvent *, struct Sprite *);
 static bool8 (*const sMovementActionFuncs_JumpSpecialWithEffectLeft[])(struct ObjectEvent *, struct Sprite *);
 static bool8 (*const sMovementActionFuncs_JumpSpecialWithEffectRight[])(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_FollowingPokemon_Step0(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_FollowingPokemon_FaceSouth_Step0(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_FollowingPokemon_FaceNorth_Step0(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_FollowingPokemon_FaceWest_Step0(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_FollowingPokemon_FaceEast_Step0(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_FollowingPokemon_Shrink_Step0(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_FollowingPokemon_Shrink_Step1(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_FollowingPokemon_Grow_Step0(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_FollowingPokemon_Grow_Step1(struct ObjectEvent *, struct Sprite *);
+static bool8 (*const sMovementActionFuncs_FollowingPokemon[])(struct ObjectEvent *, struct Sprite *);
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_FaceSouth[])(struct ObjectEvent *, struct Sprite *);
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_FaceNorth[])(struct ObjectEvent *, struct Sprite *);
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_FaceWest[])(struct ObjectEvent *, struct Sprite *);
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_FaceEast[])(struct ObjectEvent *, struct Sprite *);
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_Shrink[])(struct ObjectEvent *, struct Sprite *);
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_Grow[])(struct ObjectEvent *, struct Sprite *);
 
 static u8 GetMoveDirectionFastAnimNum(u8 direction);
 static u8 GetMoveDirectionFasterAnimNum(u8 direction);
@@ -633,6 +649,13 @@ static bool8 (*const *const sMovementActionFuncs[])(struct ObjectEvent *, struct
     [MOVEMENT_ACTION_JUMP_SPECIAL_WITH_EFFECT_UP]        = sMovementActionFuncs_JumpSpecialWithEffectUp,
     [MOVEMENT_ACTION_JUMP_SPECIAL_WITH_EFFECT_LEFT]      = sMovementActionFuncs_JumpSpecialWithEffectLeft,
     [MOVEMENT_ACTION_JUMP_SPECIAL_WITH_EFFECT_RIGHT]     = sMovementActionFuncs_JumpSpecialWithEffectRight,
+    [MOVEMENT_ACTION_FOLLOWING_POKEMON]                  = sMovementActionFuncs_FollowingPokemon,
+    [MOVEMENT_ACTION_FOLLOWING_POKEMON_FACESOUTH]        = sMovementActionFuncs_FollowingPokemon_FaceSouth,
+    [MOVEMENT_ACTION_FOLLOWING_POKEMON_FACENORTH]        = sMovementActionFuncs_FollowingPokemon_FaceNorth,
+    [MOVEMENT_ACTION_FOLLOWING_POKEMON_FACEWEST]         = sMovementActionFuncs_FollowingPokemon_FaceWest,
+    [MOVEMENT_ACTION_FOLLOWING_POKEMON_FACEEAST]         = sMovementActionFuncs_FollowingPokemon_FaceEast,
+    [MOVEMENT_ACTION_FOLLOWING_POKEMON_SHRINK]           = sMovementActionFuncs_FollowingPokemon_Shrink,
+    [MOVEMENT_ACTION_FOLLOWING_POKEMON_GROW]             = sMovementActionFuncs_FollowingPokemon_Grow,
 };
 
 static bool8 (*const sMovementActionFuncs_FaceDown[])(struct ObjectEvent *, struct Sprite *) = {
@@ -1663,4 +1686,40 @@ static bool8 (*const sMovementActionFuncs_FlyDown[])(struct ObjectEvent *, struc
     MovementAction_FlyDown_Step0,
     MovementAction_FlyDown_Step1,
     MovementAction_FlyUp_Step2,
+};
+
+static bool8 (*const sMovementActionFuncs_FollowingPokemon[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FollowingPokemon_Step0,
+};
+
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_FaceSouth[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FollowingPokemon_FaceSouth_Step0,
+    MovementAction_Finish,
+};
+
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_FaceNorth[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FollowingPokemon_FaceNorth_Step0,
+    MovementAction_Finish,
+};
+
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_FaceWest[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FollowingPokemon_FaceWest_Step0,
+    MovementAction_Finish,
+};
+
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_FaceEast[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FollowingPokemon_FaceEast_Step0,
+    MovementAction_Finish,
+};
+
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_Shrink[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FollowingPokemon_Shrink_Step0,
+    MovementAction_FollowingPokemon_Shrink_Step1,
+    MovementAction_Finish,
+};
+
+static bool8 (*const sMovementActionFuncs_FollowingPokemon_Grow[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_FollowingPokemon_Grow_Step0,
+    MovementAction_FollowingPokemon_Grow_Step1,
+    MovementAction_Finish,
 };

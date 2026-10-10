@@ -170,6 +170,18 @@ u8 (*const gMovementTypeFuncs_WanderAround[])(struct ObjectEvent *, struct Sprit
     MovementType_WanderAround_Step6,
 };
 
+static bool8 MovementType_FollowingPokemon_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite);
+static bool8 MovementType_FollowingPokemon_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite);
+static bool8 MovementType_FollowingPokemon_Step2(struct ObjectEvent *objectEvent, struct Sprite *sprite);
+static bool8 MovementType_FollowingPokemon_Step3(struct ObjectEvent *objectEvent, struct Sprite *sprite);
+
+u8 (*const gMovementTypeFuncs_FollowingPokemon[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementType_FollowingPokemon_Step0,
+    MovementType_FollowingPokemon_Step1,
+    MovementType_FollowingPokemon_Step2,
+    MovementType_FollowingPokemon_Step3,
+};
+
 u8 (*const gMovementTypeFuncs_WanderAroundSlower[])(struct ObjectEvent *, struct Sprite *) = {
     MovementType_WanderAround_Step0,
     MovementType_WanderAround_Step1,

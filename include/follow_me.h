@@ -58,6 +58,10 @@ void CheckPlayerHasFollower(void);
 void SetFollowerWarpPosition(void);
 void Task_DoDoorWarp(u8 taskId);
 void FollowMe_HideFollowerForSurf(void);
+const struct ObjectEventTemplate *GetFollowerObjectEventTemplate(void);
+u8 CreateFollowerPokeballSprite(s16 x, s16 y, u8 subpriority, SpriteCallback callback);
+void DestroyFollowerPokeballSprite(struct Sprite *sprite);
+bool8 IsBigSprite(u16 graphicsId);
 
 // Follower Pokemon (the lead party Pokemon walking behind the player)
 bool8 FollowerPokemon_IsEnabled(void);

@@ -72,9 +72,10 @@ gFieldEffectScriptPointers::
 	.4byte gFldEffScript_MoveDeoxysRock          @ FLDEFF_MOVE_DEOXYS_ROCK
 	.4byte gFldEffScript_DestroyDeoxysRock       @ FLDEFF_DESTROY_DEOXYS_ROCK
 	.4byte gFldEffScript_PhotoFlash              @ FLDEFF_PHOTO_FLASH
-	.4byte gFieldEffectScript_TracksSlither             @ FLDEFF_TRACKS_SLITHER
-	.4byte gFieldEffectScript_TracksBug                 @ FLDEFF_TRACKS_BUG
-	.4byte gFieldEffectScript_TracksSpot                @ FLDEFF_TRACKS_SPOT
+	.4byte gFldEffScript_PhotoFlash              @ FLDEFF_USE_HEADBUTT (placeholder: no headbutt script yet)
+	.4byte gFldEffScript_TracksSlither           @ FLDEFF_TRACKS_SLITHER
+	.4byte gFldEffScript_TracksSpot              @ FLDEFF_TRACKS_SPOT
+	.4byte gFldEffScript_TracksBug               @ FLDEFF_TRACKS_BUG
 
 
 
@@ -352,21 +353,15 @@ gFldEffScript_PhotoFlash::
 	callnative FldEff_PhotoFlash
 	end 
 
+@ Follower Pokemon tracks
+gFldEffScript_TracksBug::
+	loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksBug
+	end
 
+gFldEffScript_TracksSpot::
+	loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksSpot
+	end
 
-
-
-
-gFieldEffectScript_TracksBug:: @ 82DBB42
-	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksBug
-	field_eff_end
-
-gFieldEffectScript_TracksSpot:: @ 82DBB42
-	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksSpot
-	field_eff_end
-
-gFieldEffectScript_TracksSlither:: @ 82DBBFF
-	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksSlither
-	field_eff_end
-
-
+gFldEffScript_TracksSlither::
+	loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_TracksSlither
+	end
