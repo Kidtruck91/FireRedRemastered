@@ -179,3 +179,4 @@ Its own commit. There's no in-game option: each trainer's level is set in `src/d
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
 - 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds. Chunk 4 done (hooks and dialogue); the follower is live, so testing is next. Nuzlocke rules added (separate commit).
 - 2026-10-10: Trainer AI levels (Simple / Normal / Advanced as trainer data) added as a separate commit. Builds; not play-tested.
+- 2026-10-10: Play-testing fixes: follower door exit placement, Mom's house (map header + coord triggers), option menu CANCEL row. NOTE: VisualBoyAdvance was writing the 128K save as 64K (sectors alias), which mixes old and new save data and caused the black quest-log recap and a crash on continue. Set the emulator save type to Flash 128K (or use mGBA) and start a new save.
