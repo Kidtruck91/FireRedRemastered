@@ -2,30 +2,28 @@
 
 PalletTown_PlayersHouse_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_PlayersHouse_1F_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, PalletTown_PlayersHouse_1F_OnFrame
 	.byte 0
 
-@ Decide on entry which cutscene (if any) Mom plays. VAR_TEMP_1 resets every map load.
+@ Arm Mom's one-time cutscenes. Temp vars reset on every map load, so these only fire
+@ while the condition still holds:
+@   VAR_TEMP_1 = 1 -> no Running Shoes yet: stepping onto row 7 (the way to the door) triggers Mom
+@   VAR_TEMP_2 = 1 -> a Nuzlocke run just ended: stepping off the stairs triggers Mom
 @ (Mom's heal after a whiteout is started by field_screen_effect.c, not here.)
 PalletTown_PlayersHouse_1F_OnTransition::
 	clearflag FLAG_WHITEOUT
 	setvar VAR_TEMP_1, 0
-	call_if_set FLAG_NUZLOCKE_FIN, PalletTown_PlayersHouse_1F_EventScript_QueueEndNuzlocke
-	call_if_unset FLAG_SYS_B_DASH, PalletTown_PlayersHouse_1F_EventScript_QueueRunningShoes
+	setvar VAR_TEMP_2, 0
+	call_if_unset FLAG_SYS_B_DASH, PalletTown_PlayersHouse_1F_EventScript_ArmRunningShoes
+	call_if_set FLAG_NUZLOCKE_FIN, PalletTown_PlayersHouse_1F_EventScript_ArmEndNuzlocke
 	end
 
-PalletTown_PlayersHouse_1F_EventScript_QueueEndNuzlocke::
-	setvar VAR_TEMP_1, 2
-	return
-
-PalletTown_PlayersHouse_1F_EventScript_QueueRunningShoes::
+PalletTown_PlayersHouse_1F_EventScript_ArmRunningShoes::
 	setvar VAR_TEMP_1, 1
 	return
 
-PalletTown_PlayersHouse_1F_OnFrame::
-	map_script_2 VAR_TEMP_1, 1, PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes
-	map_script_2 VAR_TEMP_1, 2, PalletTown_PlayersHouse_1F_EventScript_EndNuzlocke
-	.2byte 0
+PalletTown_PlayersHouse_1F_EventScript_ArmEndNuzlocke::
+	setvar VAR_TEMP_2, 1
+	return
 
 PalletTown_PlayersHouse_1F_EventScript_Mom::
 	lock
@@ -41,69 +39,375 @@ PalletTown_PlayersHouse_1F_EventScript_Mom::
 	end
 
 
+@ Player has just stepped off the stairs onto (9,2). Mom comes to stand just below them.
 PalletTown_PlayersHouse_1F_EventScript_EndNuzlocke::
-    lockall
-    applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproachPlayer2
-    waitmovement LOCALID_MOM
+	lockall
+	setvar VAR_TEMP_2, 0
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproachStairs
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
 	textcolor NPC_TEXT_COLOR_FEMALE
-    msgbox PlayersHouse_1F_Text_NuzlockeIsOver, MSGBOX_NPC
-    clearflag FLAG_NUZLOCKE
-    clearflag FLAG_NUZLOCKE_FIN
-    applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturnHome2
-    waitmovement 0
-    setvar VAR_TEMP_1, 0
-    releaseall
-    end
+	msgbox PlayersHouse_1F_Text_NuzlockeIsOver, MSGBOX_NPC
+	clearflag FLAG_NUZLOCKE
+	clearflag FLAG_NUZLOCKE_FIN
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturnFromStairs
+	waitmovement 0
+	releaseall
+	end
 
-PalletTown_PlayersHouse_1F_Movement_MomApproachPlayer2::
-    walk_right
+PalletTown_PlayersHouse_1F_Movement_MomApproachStairs:
+	walk_right
 	walk_up
-	walk_up
-    face_right
-    step_end
+	face_up
+	step_end
 
-PalletTown_PlayersHouse_1F_Movement_MomReturnHome2::
-    walk_left
-    walk_down
-    walk_down
-    face_left
-    step_end
-
-
-PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes::
-    lockall
-    applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproachPlayer
-    waitmovement LOCALID_MOM
-	textcolor NPC_TEXT_COLOR_FEMALE
-    msgbox Text_MomGiveShoes, MSGBOX_NPC
-    setflag FLAG_SYS_B_DASH
-	textcolor NPC_TEXT_COLOR_NEUTRAL
-    msgbox Text_YouReceivedRunningShoes, MSGBOX_SIGN
-    applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturnHome
-    waitmovement 0
-    setvar VAR_TEMP_1, 0
-    releaseall
-    end
-
-PalletTown_PlayersHouse_1F_Movement_MomApproachPlayer::
-    walk_down
+PalletTown_PlayersHouse_1F_Movement_MomReturnFromStairs:
 	walk_down
 	walk_left
-    walk_left
-    walk_left
-	walk_left
-    walk_down
-    step_end
+	face_left
+	step_end
 
-PalletTown_PlayersHouse_1F_Movement_MomReturnHome::
-    walk_up
-    walk_right
-    walk_right
-    walk_right
+@ First time heading for the door without Running Shoes: Mom walks over and hands them over.
+@ Triggered from any tile on row 7 (every path to the doormat crosses it).
+PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes::
+	lockall
+	setvar VAR_TEMP_1, 0
+	getplayerxy VAR_0x8004, VAR_0x8005
+	call_if_eq VAR_0x8004, 2, PalletTown_PlayersHouse_1F_EventScript_MomApproach2
+	call_if_eq VAR_0x8004, 3, PalletTown_PlayersHouse_1F_EventScript_MomApproach3
+	call_if_eq VAR_0x8004, 4, PalletTown_PlayersHouse_1F_EventScript_MomApproach4
+	call_if_eq VAR_0x8004, 5, PalletTown_PlayersHouse_1F_EventScript_MomApproach5
+	call_if_eq VAR_0x8004, 6, PalletTown_PlayersHouse_1F_EventScript_MomApproach6
+	call_if_eq VAR_0x8004, 7, PalletTown_PlayersHouse_1F_EventScript_MomApproach7
+	call_if_eq VAR_0x8004, 8, PalletTown_PlayersHouse_1F_EventScript_MomApproach8
+	call_if_eq VAR_0x8004, 9, PalletTown_PlayersHouse_1F_EventScript_MomApproach9
+	call_if_eq VAR_0x8004, 10, PalletTown_PlayersHouse_1F_EventScript_MomApproach10
+	call_if_eq VAR_0x8004, 11, PalletTown_PlayersHouse_1F_EventScript_MomApproach11
+	textcolor NPC_TEXT_COLOR_FEMALE
+	msgbox Text_MomGiveShoes, MSGBOX_NPC
+	setflag FLAG_SYS_B_DASH
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgbox Text_YouReceivedRunningShoes, MSGBOX_SIGN
+	closemessage
+	call_if_eq VAR_0x8004, 2, PalletTown_PlayersHouse_1F_EventScript_MomReturn2
+	call_if_eq VAR_0x8004, 3, PalletTown_PlayersHouse_1F_EventScript_MomReturn3
+	call_if_eq VAR_0x8004, 4, PalletTown_PlayersHouse_1F_EventScript_MomReturn4
+	call_if_eq VAR_0x8004, 5, PalletTown_PlayersHouse_1F_EventScript_MomReturn5
+	call_if_eq VAR_0x8004, 6, PalletTown_PlayersHouse_1F_EventScript_MomReturn6
+	call_if_eq VAR_0x8004, 7, PalletTown_PlayersHouse_1F_EventScript_MomReturn7
+	call_if_eq VAR_0x8004, 8, PalletTown_PlayersHouse_1F_EventScript_MomReturn8
+	call_if_eq VAR_0x8004, 9, PalletTown_PlayersHouse_1F_EventScript_MomReturn9
+	call_if_eq VAR_0x8004, 10, PalletTown_PlayersHouse_1F_EventScript_MomReturn10
+	call_if_eq VAR_0x8004, 11, PalletTown_PlayersHouse_1F_EventScript_MomReturn11
+	releaseall
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach2::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach2
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceRight
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn2::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn2
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach2:
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn2:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	walk_right
 	walk_up
 	walk_up
-    step_end
+	walk_up
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach3::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach3
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceRight
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn3::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn3
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach3:
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn3:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach4::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach4
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceRight
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn4::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn4
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach4:
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn4:
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach5::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach5
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceRight
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn5::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn5
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach5:
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn5:
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach6::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach6
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceRight
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn6::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn6
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach6:
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn6:
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach7::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach7
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceRight
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn7::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn7
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach7:
+	walk_down
+	walk_down
+	walk_down
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn7:
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach8::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach8
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceRight
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn8::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn8
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach8:
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn8:
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach9::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach9
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceLeft
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn9::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn9
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach9:
+	walk_down
+	walk_down
+	walk_down
+	face_right
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn9:
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach10::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach10
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceLeft
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn10::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn10
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach10:
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	face_right
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn10:
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_EventScript_MomApproach11::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomApproach11
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerFaceLeft
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_EventScript_MomReturn11::
+	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_MomReturn11
+	waitmovement 0
+	return
+
+PalletTown_PlayersHouse_1F_Movement_MomApproach11:
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	face_right
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_MomReturn11:
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	face_left
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_PlayerFaceRight:
+	face_right
+	step_end
+
+PalletTown_PlayersHouse_1F_Movement_PlayerFaceLeft:
+	face_left
+	step_end
 
 PalletTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale::
 	msgbox PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou

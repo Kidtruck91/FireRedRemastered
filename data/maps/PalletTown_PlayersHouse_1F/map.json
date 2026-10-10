@@ -63,11 +63,92 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 4,
-      "y": 8,
+      "x": 2,
+      "y": 7,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_1",
+      "var_value": "1",
       "script": "PalletTown_PlayersHouse_1F_EventScript_GiveRunningShoes"
     },
     {
@@ -75,8 +156,8 @@
       "x": 9,
       "y": 2,
       "elevation": 0,
-      "var": "VAR_TEMP_1",
-      "var_value": "0",
+      "var": "VAR_TEMP_2",
+      "var_value": "1",
       "script": "PalletTown_PlayersHouse_1F_EventScript_EndNuzlocke"
     }
   ],
