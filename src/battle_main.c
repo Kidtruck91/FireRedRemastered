@@ -43,6 +43,7 @@
 #include "constants/pokemon.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
+#include "trainer_pools.h"
 
 static void SpriteCB_UnusedDebugSprite(struct Sprite *sprite);
 static void HandleAction_UseMove(void);
@@ -1533,6 +1534,125 @@ static void SpriteCB_UnusedDebugSprite_Step(struct Sprite *sprite)
     }
 }
 
+// .ability on a trainer Pokemon: 1 = first ability, 2 = second (if the species has one).
+// 0 or 3 = either: keep whatever CreateMon picked.
+static void SetTrainerMonAbility(struct Pokemon *mon, u8 abilitySlot)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u8 abilityNum;
+
+    if (abilitySlot == 1)
+        abilityNum = 0;
+    else if (abilitySlot == 2 && gSpeciesInfo[species].abilities[1] != ABILITY_NONE)
+        abilityNum = 1;
+    else
+        return;
+    SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
+}
+
+// Small seeded RNG for pool teams, so the same trainer rolls the same team every time in a
+// playthrough without touching the game's main RNG.
+static u32 PoolRandom(u32 *state)
+{
+    *state = *state * 1103515245 + 24691;
+    return *state >> 16;
+}
+
+// Builds a team rolled from a pool (POOL_PARTY in src/data/trainers.h). Returns the team size.
+static u8 CreatePoolTrainerParty(struct Pokemon *party, u16 trainerNum)
+{
+    const struct Trainer *trainer = &gTrainers[trainerNum];
+    const struct PoolMon *pool = trainer->party.Pool;
+    u8 order[255];
+    u16 chosenSpecies[PARTY_SIZE];
+    u32 rng, personality;
+    s32 poolCount, i, j, k, picked;
+    u8 minSize, maxSize, size, level, fixedIV;
+
+    // Seed: this trainer + this save's Trainer ID (same team all playthrough, new game = new teams)
+    rng = trainerNum * 0x9E3779B1;
+    rng ^= gSaveBlock2Ptr->playerTrainerId[0] | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+         | (gSaveBlock2Ptr->playerTrainerId[2] << 16) | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+    for (i = 0; i < 4; i++)
+        PoolRandom(&rng);
+
+    for (poolCount = 0; poolCount < 255 && pool[poolCount].species != SPECIES_NONE; poolCount++)
+        order[poolCount] = poolCount;
+    if (poolCount == 0)
+        return 0;
+
+    minSize = trainer->poolMinSize;
+    maxSize = trainer->partySize;
+    if (minSize == 0)
+        minSize = 1;
+    if (maxSize < minSize)
+        maxSize = minSize;
+    if (maxSize > PARTY_SIZE)
+        maxSize = PARTY_SIZE;
+    if (minSize > maxSize)
+        minSize = maxSize;
+    size = minSize + PoolRandom(&rng) % (maxSize - minSize + 1);
+    if (trainer->doubleBattle && size < 2)
+        size = 2;
+
+    // Shuffle the pool order, then take entries in that order, skipping repeated species
+    for (i = poolCount - 1; i > 0; i--)
+    {
+        u8 tmp;
+        j = PoolRandom(&rng) % (i + 1);
+        tmp = order[i];
+        order[i] = order[j];
+        order[j] = tmp;
+    }
+
+    picked = 0;
+    for (k = 0; k < poolCount && picked < size; k++)
+    {
+        const struct PoolMon *poolMon = &pool[order[k]];
+
+        for (j = 0; j < picked; j++)
+        {
+            if (chosenSpecies[j] == poolMon->species)
+                break;
+        }
+        if (j < picked)
+            continue; // already have this species
+
+        level = trainer->poolLevel + PoolRandom(&rng) % (trainer->poolLevelRange + 1);
+        if (level < 1)
+            level = 1;
+        if (level > MAX_LEVEL)
+            level = MAX_LEVEL;
+
+        // Low byte nudges gender like normal trainer teams; the rest is from the seeded roll
+        if (trainer->doubleBattle == TRUE)
+            personality = 0x80;
+        else if (trainer->encounterMusic_gender & F_TRAINER_FEMALE)
+            personality = 0x78;
+        else
+            personality = 0x88;
+        personality |= (PoolRandom(&rng) << 16) | ((PoolRandom(&rng) & 0xFF) << 8);
+
+        fixedIV = poolMon->iv * MAX_PER_STAT_IVS / 255;
+        CreateMon(&party[picked], poolMon->species, level, fixedIV, TRUE, personality, OT_ID_RANDOM_NO_SHINY, 0);
+
+        if (poolMon->heldItem != ITEM_NONE)
+            SetMonData(&party[picked], MON_DATA_HELD_ITEM, &poolMon->heldItem);
+        if (poolMon->moves[0] != MOVE_NONE)
+        {
+            for (j = 0; j < MAX_MON_MOVES; j++)
+            {
+                SetMonData(&party[picked], MON_DATA_MOVE1 + j, &poolMon->moves[j]);
+                SetMonData(&party[picked], MON_DATA_PP1 + j, &gBattleMoves[poolMon->moves[j]].pp);
+            }
+        }
+        SetTrainerMonAbility(&party[picked], poolMon->ability);
+        chosenSpecies[picked] = poolMon->species;
+        picked++;
+    }
+    return picked;
+}
+
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
 {
     u32 nameHash = 0;
@@ -1547,6 +1667,12 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
      && !(gBattleTypeFlags & (BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER)))
     {
         ZeroEnemyPartyMons();
+        if (gTrainers[trainerNum].partyFlags & F_TRAINER_PARTY_POOL)
+        {
+            u8 count = CreatePoolTrainerParty(party, trainerNum);
+            gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
+            return count;
+        }
         for (i = 0; i < gTrainers[trainerNum].partySize; i++)
         {
 
@@ -1572,6 +1698,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                SetTrainerMonAbility(&party[i], partyData[i].ability);
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
@@ -1584,6 +1711,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                SetTrainerMonAbility(&party[i], partyData[i].ability);
 
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
@@ -1602,6 +1730,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                SetTrainerMonAbility(&party[i], partyData[i].ability);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 break;
@@ -1616,6 +1745,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                SetTrainerMonAbility(&party[i], partyData[i].ability);
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
                 for (j = 0; j < MAX_MON_MOVES; j++)

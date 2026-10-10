@@ -1,0 +1,593 @@
+diff --git a/FOLLOWER_PORT_PROGRESS.md b/FOLLOWER_PORT_PROGRESS.md
+index 916097a0e..da00f77a6 100644
+--- a/FOLLOWER_PORT_PROGRESS.md
++++ b/FOLLOWER_PORT_PROGRESS.md
+@@ -175,7 +175,37 @@ Its own commit. There's no in-game option: each trainer's level is set in `src/d
+ 
+ **Status:** builds; **not play-tested.**
+ 
++## Separate change: trainer team pools + ability field (not part of the follower port)
++Its own commit. Handwritten teams are unchanged; only trainers you point at a pool use one.
++
++**Pools:**
++- Pools live in `src/data/trainer_pools.h`. Types are in `include/trainer_pools.h`.
++- A trainer opts in with `.party = POOL_PARTY(sPool_X, minMons, maxMons, baseLevel, levelRange)`.
++- The generator is `CreatePoolTrainerParty` in `battle_main.c`.
++  - It is seeded from the trainer id and the save's Trainer ID, so the team is the same all playthrough and new on a new game. VS Seeker rematch entries roll their own.
++  - It never repeats a species. Doubles always get at least 2 mons.
++  - Levels are rolled per mon.
++- The pool settings use the old padding bytes in `struct Trainer` (0x21-0x23), so the size is unchanged.
++- Money uses the last rolled mon's level, and the battle transition uses the pool's average level.
++
++**Tiers** (a naming convention; there are Hiker examples):
++- `_Basic` = species only
++- `_Intermediate` = some items and moves
++- `_Advanced` = fully evolved, with 4 moves, an item and an ability
++- `scripts/check_trainer_pools.py` enforces the `_Advanced` rules from `make`, through the `build/firered/trainer_pools.ok` stamp. It is skipped if python3 is missing.
++
++**Ability field:**
++- `.ability` is on every trainer mon struct, in old padding at offset 3, so sizes are unchanged.
++- It is also on `PoolMon`.
++- Values: 1 = first ability, 2 = second, 0/3 = either (unchanged behaviour).
++
++**Status:** tested in mGBA. With the lab rival temporarily pointed at `sPool_Hiker_Advanced` in a test ROM only:
++- It rolled 4 Pokémon at levels 53-65 with the full sets.
++- A rerun gave the same team; a changed Trainer ID gave a different one.
++- Existing teams were confirmed unchanged.
++
+ ## Log
+ - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
+ - 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds. Chunk 4 done (hooks and dialogue); the follower is live, so testing is next. Nuzlocke rules added (separate commit).
+ - 2026-10-10: Trainer AI levels (Simple / Normal / Advanced as trainer data) added as a separate commit. Builds; not play-tested.
++- 2026-10-10: Trainer team pools (Basic/Intermediate/Advanced tiers, Hiker examples) and the per-mon ability field. Tested in mGBA.
+diff --git a/Makefile b/Makefile
+index 79545727d..efd0be531 100644
+--- a/Makefile
++++ b/Makefile
+@@ -286,6 +286,12 @@ $(C_BUILDDIR)/%.o : $(C_SUBDIR)/%.c $$(c_dep)
+ 	@echo -e ".text\n\t.align\t2, 0 @ Don't pad with nop\n" >> $(C_BUILDDIR)/$*.s
+ 	$(AS) $(ASFLAGS) -o $@ $(C_BUILDDIR)/$*.s
+ 
++# Check the _Advanced trainer pools (fully evolved, 4 moves, item, ability) before building trainer data
++$(OBJ_DIR)/trainer_pools.ok: src/data/trainer_pools.h src/data/pokemon/evolution.h scripts/check_trainer_pools.py
++	@if command -v python3 >/dev/null 2>&1; then python3 scripts/check_trainer_pools.py || exit 1; else echo "python3 not found: skipping trainer pool check"; fi
++	@mkdir -p $(OBJ_DIR) && touch $@
++$(C_BUILDDIR)/data.o: $(OBJ_DIR)/trainer_pools.ok
++
+ ifeq ($(NODEP),1)
+ $(C_BUILDDIR)/%.o: c_asm_dep :=
+ else
+diff --git a/include/battle.h b/include/battle.h
+index 2ed495802..aafa5a080 100644
+--- a/include/battle.h
++++ b/include/battle.h
+@@ -72,6 +72,7 @@ struct TrainerMonNoItemDefaultMoves
+ {
+     u16 iv;
+     u8 lvl;
++    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
+     u16 species;
+ };
+ 
+@@ -79,6 +80,7 @@ struct TrainerMonItemDefaultMoves
+ {
+     u16 iv;
+     u8 lvl;
++    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
+     u16 species;
+     u16 heldItem;
+ };
+@@ -87,6 +89,7 @@ struct TrainerMonNoItemCustomMoves
+ {
+     u16 iv;
+     u8 lvl;
++    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
+     u16 species;
+     u16 moves[MAX_MON_MOVES];
+ };
+@@ -95,6 +98,7 @@ struct TrainerMonItemCustomMoves
+ {
+     u16 iv;
+     u8 lvl;
++    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
+     u16 species;
+     u16 heldItem;
+     u16 moves[MAX_MON_MOVES];
+@@ -105,12 +109,19 @@ struct TrainerMonItemCustomMoves
+ #define ITEM_DEFAULT_MOVES(party) { .ItemDefaultMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_HELD_ITEM
+ #define ITEM_CUSTOM_MOVES(party) { .ItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM
+ 
++struct PoolMon; // include/trainer_pools.h
++
++// A team rolled from a pool: POOL_PARTY(pool, min mons, max mons, base level, extra random levels)
++// e.g. POOL_PARTY(sPool_Hiker_Advanced, 3, 5, 50, 15) -> 3-5 mons from that pool at level 50-65.
++#define POOL_PARTY(pool, minMons, maxMons, level, levelRange) { .Pool = pool }, .partySize = maxMons, .poolMinSize = minMons, .poolLevel = level, .poolLevelRange = levelRange, .partyFlags = F_TRAINER_PARTY_POOL
++
+ union TrainerMonPtr
+ {
+     const struct TrainerMonNoItemDefaultMoves *NoItemDefaultMoves;
+     const struct TrainerMonNoItemCustomMoves *NoItemCustomMoves;
+     const struct TrainerMonItemDefaultMoves *ItemDefaultMoves;
+     const struct TrainerMonItemCustomMoves *ItemCustomMoves;
++    const struct PoolMon *Pool;
+ };
+ 
+ struct Trainer
+@@ -125,7 +136,10 @@ struct Trainer
+     /*0x19*/ bool8 mugshotEnabled;
+     /*0x1A*/ u8 mugshotColor;
+     /*0x1C*/ u32 aiFlags;
+-    /*0x20*/ u8 partySize;
++    /*0x20*/ u8 partySize;        // for a pool trainer: the most mons it can roll
++    /*0x21*/ u8 poolMinSize;      // pool trainers only (these three fill what used to be padding)
++    /*0x22*/ u8 poolLevel;
++    /*0x23*/ u8 poolLevelRange;
+     /*0x24*/ const union TrainerMonPtr party;
+     
+     
+diff --git a/include/constants/trainers.h b/include/constants/trainers.h
+index 4eb9ef00d..0b4a2f210 100644
+--- a/include/constants/trainers.h
++++ b/include/constants/trainers.h
+@@ -456,5 +456,6 @@
+ // Pokémon.
+ #define F_TRAINER_PARTY_CUSTOM_MOVESET (1 << 0)
+ #define F_TRAINER_PARTY_HELD_ITEM      (1 << 1)
++#define F_TRAINER_PARTY_POOL           (1 << 2) // team is rolled from a pool (src/data/trainer_pools.h)
+ 
+ #endif  // GUARD_CONSTANTS_TRAINERS_H
+diff --git a/include/trainer_pools.h b/include/trainer_pools.h
+new file mode 100644
+index 000000000..62e33d00b
+--- /dev/null
++++ b/include/trainer_pools.h
+@@ -0,0 +1,41 @@
++#ifndef GUARD_TRAINER_POOLS_H
++#define GUARD_TRAINER_POOLS_H
++
++// Trainer team pools.
++//
++// Instead of writing a fixed team for every trainer, a trainer can roll its team from a pool:
++//
++//     .party = POOL_PARTY(sPool_Hiker_Advanced, 3, 5, 50, 15),
++//
++// gives that trainer 3-5 different Pokemon from sPool_Hiker_Advanced, each at level 50 + 0..15.
++// The roll is seeded from the trainer and the save file's Trainer ID, so the team is the same
++// every time you fight that trainer in one playthrough (including after a loss), but different
++// in a new game. VS Seeker rematches are separate trainer entries, so they roll their own team.
++// Double battle trainers always get at least 2 Pokemon.
++//
++// Pools live in src/data/trainer_pools.h. An entry only needs a species; everything else is
++// optional:
++//     { .species = SPECIES_GRAVELER },                                  // level-up moves, no item
++//     { .species = SPECIES_GOLEM, .heldItem = ITEM_QUICK_CLAW, .iv = 255, .ability = 2,
++//       .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_EXPLOSION, MOVE_COUNTER} },
++// and every pool ends with POOL_END.
++//
++// .ability: 0 or 3 = either, 1 = the species' first ability, 2 = its second ability
++//           (ignored if the species only has one).
++// .iv:      0-255, same scale as normal trainer parties (255 = perfect IVs).
++//
++// Pools whose name ends in _Advanced are checked when you build (scripts/check_trainer_pools.py):
++// every entry must be fully evolved, have four moves, a held item and an ability choice.
++
++struct PoolMon
++{
++    u16 species;
++    u16 heldItem;
++    u16 moves[MAX_MON_MOVES]; // all MOVE_NONE = normal level-up moves
++    u8 iv;
++    u8 ability;
++};
++
++#define POOL_END { .species = SPECIES_NONE }
++
++#endif // GUARD_TRAINER_POOLS_H
+diff --git a/scripts/check_trainer_pools.py b/scripts/check_trainer_pools.py
+new file mode 100644
+index 000000000..5d776027b
+--- /dev/null
++++ b/scripts/check_trainer_pools.py
+@@ -0,0 +1,81 @@
++#!/usr/bin/env python3
++"""Checks the _Advanced trainer pools in src/data/trainer_pools.h.
++
++Every entry in a pool whose name ends in _Advanced must:
++  - be fully evolved (no evolution in src/data/pokemon/evolution.h)
++  - have four moves
++  - hold an item
++  - choose an ability (.ability = 1, 2 or 3)
++Run automatically by `make`; exits non-zero (stopping the build) if something is wrong.
++"""
++import re
++import sys
++
++POOLS = 'src/data/trainer_pools.h'
++EVOS = 'src/data/pokemon/evolution.h'
++
++
++def strip_comments(text):
++    text = re.sub(r'/\*.*?\*/', '', text, flags=re.S)
++    return re.sub(r'//[^\n]*', '', text)
++
++
++def species_with_evolutions():
++    text = strip_comments(open(EVOS).read())
++    return set(re.findall(r'\[(SPECIES_\w+)\]\s*=\s*\{\s*\{', text))
++
++
++def top_level_entries(body):
++    """Split '{...}, {...}, POOL_END' into the top-level brace groups."""
++    entries, depth, start = [], 0, None
++    for i, ch in enumerate(body):
++        if ch == '{':
++            if depth == 0:
++                start = i
++            depth += 1
++        elif ch == '}':
++            depth -= 1
++            if depth == 0 and start is not None:
++                entries.append(body[start + 1:i])
++                start = None
++    return entries
++
++
++def main():
++    evolves = species_with_evolutions()
++    text = strip_comments(open(POOLS).read())
++    errors = []
++    for m in re.finditer(r'struct\s+PoolMon\s+(\w+_Advanced)\s*\[\s*\]\s*=\s*\{', text):
++        name = m.group(1)
++        # find the matching closing brace of the array
++        depth, i = 1, m.end()
++        while depth and i < len(text):
++            depth += {'{': 1, '}': -1}.get(text[i], 0)
++            i += 1
++        for entry in top_level_entries(text[m.end():i - 1]):
++            sp = re.search(r'\.species\s*=\s*(SPECIES_\w+)', entry)
++            if not sp or sp.group(1) == 'SPECIES_NONE':
++                continue
++            species = sp.group(1)
++            where = '%s: %s' % (name, species)
++            if species in evolves:
++                errors.append('%s is not fully evolved' % where)
++            mv = re.search(r'\.moves\s*=\s*\{([^}]*)\}', entry)
++            moves = [x.strip() for x in mv.group(1).split(',') if x.strip()] if mv else []
++            if len([x for x in moves if x not in ('MOVE_NONE', '0')]) != 4:
++                errors.append('%s needs four moves' % where)
++            item = re.search(r'\.heldItem\s*=\s*(\w+)', entry)
++            if not item or item.group(1) in ('ITEM_NONE', '0'):
++                errors.append('%s needs a held item' % where)
++            ab = re.search(r'\.ability\s*=\s*(\d+)', entry)
++            if not ab or ab.group(1) not in ('1', '2', '3'):
++                errors.append('%s needs .ability = 1, 2 or 3' % where)
++    if errors:
++        print('Trainer pool check failed (src/data/trainer_pools.h):', file=sys.stderr)
++        for e in errors:
++            print('  ' + e, file=sys.stderr)
++        sys.exit(1)
++
++
++if __name__ == '__main__':
++    main()
+diff --git a/src/battle_main.c b/src/battle_main.c
+index 513d324d6..4c6cf5847 100644
+--- a/src/battle_main.c
++++ b/src/battle_main.c
+@@ -43,6 +43,7 @@
+ #include "constants/pokemon.h"
+ #include "constants/songs.h"
+ #include "constants/trainers.h"
++#include "trainer_pools.h"
+ 
+ static void SpriteCB_UnusedDebugSprite(struct Sprite *sprite);
+ static void HandleAction_UseMove(void);
+@@ -1533,6 +1534,125 @@ static void SpriteCB_UnusedDebugSprite_Step(struct Sprite *sprite)
+     }
+ }
+ 
++// .ability on a trainer Pokemon: 1 = first ability, 2 = second (if the species has one).
++// 0 or 3 = either: keep whatever CreateMon picked.
++static void SetTrainerMonAbility(struct Pokemon *mon, u8 abilitySlot)
++{
++    u16 species = GetMonData(mon, MON_DATA_SPECIES);
++    u8 abilityNum;
++
++    if (abilitySlot == 1)
++        abilityNum = 0;
++    else if (abilitySlot == 2 && gSpeciesInfo[species].abilities[1] != ABILITY_NONE)
++        abilityNum = 1;
++    else
++        return;
++    SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
++}
++
++// Small seeded RNG for pool teams, so the same trainer rolls the same team every time in a
++// playthrough without touching the game's main RNG.
++static u32 PoolRandom(u32 *state)
++{
++    *state = *state * 1103515245 + 24691;
++    return *state >> 16;
++}
++
++// Builds a team rolled from a pool (POOL_PARTY in src/data/trainers.h). Returns the team size.
++static u8 CreatePoolTrainerParty(struct Pokemon *party, u16 trainerNum)
++{
++    const struct Trainer *trainer = &gTrainers[trainerNum];
++    const struct PoolMon *pool = trainer->party.Pool;
++    u8 order[255];
++    u16 chosenSpecies[PARTY_SIZE];
++    u32 rng, personality;
++    s32 poolCount, i, j, k, picked;
++    u8 minSize, maxSize, size, level, fixedIV;
++
++    // Seed: this trainer + this save's Trainer ID (same team all playthrough, new game = new teams)
++    rng = trainerNum * 0x9E3779B1;
++    rng ^= gSaveBlock2Ptr->playerTrainerId[0] | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
++         | (gSaveBlock2Ptr->playerTrainerId[2] << 16) | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
++    for (i = 0; i < 4; i++)
++        PoolRandom(&rng);
++
++    for (poolCount = 0; poolCount < 255 && pool[poolCount].species != SPECIES_NONE; poolCount++)
++        order[poolCount] = poolCount;
++    if (poolCount == 0)
++        return 0;
++
++    minSize = trainer->poolMinSize;
++    maxSize = trainer->partySize;
++    if (minSize == 0)
++        minSize = 1;
++    if (maxSize < minSize)
++        maxSize = minSize;
++    if (maxSize > PARTY_SIZE)
++        maxSize = PARTY_SIZE;
++    if (minSize > maxSize)
++        minSize = maxSize;
++    size = minSize + PoolRandom(&rng) % (maxSize - minSize + 1);
++    if (trainer->doubleBattle && size < 2)
++        size = 2;
++
++    // Shuffle the pool order, then take entries in that order, skipping repeated species
++    for (i = poolCount - 1; i > 0; i--)
++    {
++        u8 tmp;
++        j = PoolRandom(&rng) % (i + 1);
++        tmp = order[i];
++        order[i] = order[j];
++        order[j] = tmp;
++    }
++
++    picked = 0;
++    for (k = 0; k < poolCount && picked < size; k++)
++    {
++        const struct PoolMon *poolMon = &pool[order[k]];
++
++        for (j = 0; j < picked; j++)
++        {
++            if (chosenSpecies[j] == poolMon->species)
++                break;
++        }
++        if (j < picked)
++            continue; // already have this species
++
++        level = trainer->poolLevel + PoolRandom(&rng) % (trainer->poolLevelRange + 1);
++        if (level < 1)
++            level = 1;
++        if (level > MAX_LEVEL)
++            level = MAX_LEVEL;
++
++        // Low byte nudges gender like normal trainer teams; the rest is from the seeded roll
++        if (trainer->doubleBattle == TRUE)
++            personality = 0x80;
++        else if (trainer->encounterMusic_gender & F_TRAINER_FEMALE)
++            personality = 0x78;
++        else
++            personality = 0x88;
++        personality |= (PoolRandom(&rng) << 16) | ((PoolRandom(&rng) & 0xFF) << 8);
++
++        fixedIV = poolMon->iv * MAX_PER_STAT_IVS / 255;
++        CreateMon(&party[picked], poolMon->species, level, fixedIV, TRUE, personality, OT_ID_RANDOM_NO_SHINY, 0);
++
++        if (poolMon->heldItem != ITEM_NONE)
++            SetMonData(&party[picked], MON_DATA_HELD_ITEM, &poolMon->heldItem);
++        if (poolMon->moves[0] != MOVE_NONE)
++        {
++            for (j = 0; j < MAX_MON_MOVES; j++)
++            {
++                SetMonData(&party[picked], MON_DATA_MOVE1 + j, &poolMon->moves[j]);
++                SetMonData(&party[picked], MON_DATA_PP1 + j, &gBattleMoves[poolMon->moves[j]].pp);
++            }
++        }
++        SetTrainerMonAbility(&party[picked], poolMon->ability);
++        chosenSpecies[picked] = poolMon->species;
++        picked++;
++    }
++    return picked;
++}
++
+ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+ {
+     u32 nameHash = 0;
+@@ -1547,6 +1667,12 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+      && !(gBattleTypeFlags & (BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER)))
+     {
+         ZeroEnemyPartyMons();
++        if (gTrainers[trainerNum].partyFlags & F_TRAINER_PARTY_POOL)
++        {
++            u8 count = CreatePoolTrainerParty(party, trainerNum);
++            gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
++            return count;
++        }
+         for (i = 0; i < gTrainers[trainerNum].partySize; i++)
+         {
+ 
+@@ -1572,6 +1698,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+                 personalityValue += nameHash << 8;
+                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
+                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
++                SetTrainerMonAbility(&party[i], partyData[i].ability);
+                 break;
+             }
+             case F_TRAINER_PARTY_CUSTOM_MOVESET:
+@@ -1584,6 +1711,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+                 personalityValue += nameHash << 8;
+                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
+                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
++                SetTrainerMonAbility(&party[i], partyData[i].ability);
+ 
+                 for (j = 0; j < MAX_MON_MOVES; j++)
+                 {
+@@ -1602,6 +1730,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+                 personalityValue += nameHash << 8;
+                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
+                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
++                SetTrainerMonAbility(&party[i], partyData[i].ability);
+ 
+                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+                 break;
+@@ -1616,6 +1745,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
+                 personalityValue += nameHash << 8;
+                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
+                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
++                SetTrainerMonAbility(&party[i], partyData[i].ability);
+                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+ 
+                 for (j = 0; j < MAX_MON_MOVES; j++)
+diff --git a/src/battle_script_commands.c b/src/battle_script_commands.c
+index 10d724449..8abdfcef3 100644
+--- a/src/battle_script_commands.c
++++ b/src/battle_script_commands.c
+@@ -5369,6 +5369,18 @@ static void Cmd_getmoneyreward(void)
+                     lastMonLevel = party4[gTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
+                 }
+                 break;
++            case F_TRAINER_PARTY_POOL:
++                {
++                    // Pool teams are rolled, so use the last Pokemon actually in the enemy party
++                    s32 k;
++                    for (k = PARTY_SIZE - 1; k > 0; k--)
++                    {
++                        if (GetMonData(&gEnemyParty[k], MON_DATA_SPECIES) != SPECIES_NONE)
++                            break;
++                    }
++                    lastMonLevel = GetMonData(&gEnemyParty[k], MON_DATA_LEVEL);
++                }
++                break;
+             }
+             for (; gTrainerMoneyTable[i].classId != 0xFF; i++)
+             {
+diff --git a/src/battle_setup.c b/src/battle_setup.c
+index 4553e11cf..9ec50e7e2 100644
+--- a/src/battle_setup.c
++++ b/src/battle_setup.c
+@@ -605,6 +605,11 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
+                 sum += party[i].lvl;
+         }
+         break;
++    case F_TRAINER_PARTY_POOL:
++        // The team isn't rolled yet when the battle transition is picked; use the average level
++        for (i = 0; i < count; ++i)
++            sum += gTrainers[opponentId].poolLevel + gTrainers[opponentId].poolLevelRange / 2;
++        break;
+     }
+     return sum;
+ }
+diff --git a/src/data.c b/src/data.c
+index 1b6de5459..c10bf1195 100644
+--- a/src/data.c
++++ b/src/data.c
+@@ -300,6 +300,8 @@ const union AnimCmd *const gAnims_MonPic[] =
+ 
+ #include "data/pokemon_graphics/enemy_mon_elevation.h"
+ 
++#include "trainer_pools.h"
++#include "data/trainer_pools.h"
+ #include "data/trainer_parties.h"
+ #include "data/text/trainer_class_names.h"
+ #include "data/trainers.h"
+diff --git a/src/data/trainer_pools.h b/src/data/trainer_pools.h
+new file mode 100644
+index 000000000..1bb37f7ae
+--- /dev/null
++++ b/src/data/trainer_pools.h
+@@ -0,0 +1,80 @@
++// Trainer team pools. See include/trainer_pools.h for how pools work.
++//
++// To give a trainer a pooled team, set its party in src/data/trainers.h to e.g.
++//     .party = POOL_PARTY(sPool_Hiker_Intermediate, 3, 5, 30, 8),
++// (pool, fewest mons, most mons, base level, + up to this many random levels).
++// Handwritten teams are untouched; only trainers you point at a pool use one.
++//
++// Tiers (a naming convention, copy the Hiker pools for other trainer types):
++//   _Basic         early Pokemon, just a species (they use their normal level-up moves)
++//   _Intermediate  mid-stage / some final forms, a few chosen items or moves where it matters
++//   _Advanced      fully evolved only, full competitive sets (4 moves, item, ability).
++//                  `make` refuses to build if an _Advanced entry breaks those rules.
++//
++// A species may appear more than once (e.g. two different Golem sets); a team never gets the
++// same species twice.
++
++// ---------------------------------------------------------------------------------------------
++// Hiker
++
++static const struct PoolMon sPool_Hiker_Basic[] =
++{
++    { .species = SPECIES_GEODUDE },
++    { .species = SPECIES_ONIX },
++    { .species = SPECIES_MACHOP },
++    { .species = SPECIES_DIGLETT },
++    { .species = SPECIES_SANDSHREW },
++    { .species = SPECIES_CUBONE },
++    { .species = SPECIES_MANKEY },
++    { .species = SPECIES_RHYHORN },
++    { .species = SPECIES_PHANPY },
++    { .species = SPECIES_SWINUB },
++    { .species = SPECIES_LARVITAR },
++    { .species = SPECIES_GLIGAR },
++    POOL_END
++};
++
++static const struct PoolMon sPool_Hiker_Intermediate[] =
++{
++    { .species = SPECIES_GRAVELER, .iv = 100 },
++    { .species = SPECIES_MACHOKE,  .iv = 100, .heldItem = ITEM_BLACK_BELT },
++    { .species = SPECIES_ONIX,     .iv = 100, .ability = 2 }, // Sturdy
++    { .species = SPECIES_MAROWAK,  .iv = 100, .heldItem = ITEM_THICK_CLUB, .ability = 1 }, // Rock Head
++    { .species = SPECIES_SANDSLASH, .iv = 100 },
++    { .species = SPECIES_DUGTRIO,  .iv = 100, .heldItem = ITEM_SOFT_SAND },
++    { .species = SPECIES_RHYHORN,  .iv = 100, .ability = 2 }, // Rock Head
++    { .species = SPECIES_SUDOWOODO, .iv = 100,
++      .moves = {MOVE_ROCK_SLIDE, MOVE_LOW_KICK, MOVE_FAINT_ATTACK, MOVE_MIMIC} },
++    { .species = SPECIES_PILOSWINE, .iv = 100 },
++    { .species = SPECIES_DONPHAN,  .iv = 100 },
++    { .species = SPECIES_PUPITAR,  .iv = 100, .heldItem = ITEM_HARD_STONE },
++    { .species = SPECIES_GLIGAR,   .iv = 100 },
++    POOL_END
++};
++
++static const struct PoolMon sPool_Hiker_Advanced[] =
++{
++    { .species = SPECIES_GOLEM, .heldItem = ITEM_QUICK_CLAW, .iv = 255, .ability = 2, // Sturdy
++      .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_EXPLOSION, MOVE_COUNTER} },
++    { .species = SPECIES_MACHAMP, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Guts
++      .moves = {MOVE_CROSS_CHOP, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_BULK_UP} },
++    { .species = SPECIES_STEELIX, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Rock Head
++      .moves = {MOVE_EARTHQUAKE, MOVE_IRON_TAIL, MOVE_EXPLOSION, MOVE_ROAR} },
++    { .species = SPECIES_RHYDON, .heldItem = ITEM_QUICK_CLAW, .iv = 255, .ability = 2, // Rock Head
++      .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MEGAHORN, MOVE_SWORDS_DANCE} },
++    { .species = SPECIES_MAROWAK, .heldItem = ITEM_THICK_CLUB, .iv = 255, .ability = 1, // Rock Head: no Double-Edge recoil
++      .moves = {MOVE_BONEMERANG, MOVE_ROCK_SLIDE, MOVE_DOUBLE_EDGE, MOVE_SWORDS_DANCE} },
++    { .species = SPECIES_DONPHAN, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Sturdy
++      .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_RAPID_SPIN, MOVE_ROAR} },
++    { .species = SPECIES_TYRANITAR, .heldItem = ITEM_LUM_BERRY, .iv = 255, .ability = 1, // Sand Stream
++      .moves = {MOVE_DRAGON_DANCE, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_CRUNCH} },
++    { .species = SPECIES_SUDOWOODO, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 2, // Rock Head
++      .moves = {MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_BRICK_BREAK, MOVE_EXPLOSION} },
++    { .species = SPECIES_PILOSWINE, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Oblivious
++      .moves = {MOVE_EARTHQUAKE, MOVE_ICE_BEAM, MOVE_ROCK_SLIDE, MOVE_PROTECT} },
++    { .species = SPECIES_DUGTRIO, .heldItem = ITEM_CHOICE_BAND, .iv = 255, .ability = 2, // Arena Trap
++      .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_AERIAL_ACE, MOVE_SUBSTITUTE} },
++    { .species = SPECIES_GLIGAR, .heldItem = ITEM_SITRUS_BERRY, .iv = 255, .ability = 1, // Hyper Cutter
++      .moves = {MOVE_EARTHQUAKE, MOVE_AERIAL_ACE, MOVE_SWORDS_DANCE, MOVE_ROCK_SLIDE} },
++    POOL_END
++};

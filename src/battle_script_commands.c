@@ -5369,6 +5369,18 @@ static void Cmd_getmoneyreward(void)
                     lastMonLevel = party4[gTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
                 }
                 break;
+            case F_TRAINER_PARTY_POOL:
+                {
+                    // Pool teams are rolled, so use the last Pokemon actually in the enemy party
+                    s32 k;
+                    for (k = PARTY_SIZE - 1; k > 0; k--)
+                    {
+                        if (GetMonData(&gEnemyParty[k], MON_DATA_SPECIES) != SPECIES_NONE)
+                            break;
+                    }
+                    lastMonLevel = GetMonData(&gEnemyParty[k], MON_DATA_LEVEL);
+                }
+                break;
             }
             for (; gTrainerMoneyTable[i].classId != 0xFF; i++)
             {

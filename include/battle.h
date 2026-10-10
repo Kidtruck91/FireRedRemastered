@@ -72,6 +72,7 @@ struct TrainerMonNoItemDefaultMoves
 {
     u16 iv;
     u8 lvl;
+    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
     u16 species;
 };
 
@@ -79,6 +80,7 @@ struct TrainerMonItemDefaultMoves
 {
     u16 iv;
     u8 lvl;
+    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
     u16 species;
     u16 heldItem;
 };
@@ -87,6 +89,7 @@ struct TrainerMonNoItemCustomMoves
 {
     u16 iv;
     u8 lvl;
+    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
     u16 species;
     u16 moves[MAX_MON_MOVES];
 };
@@ -95,6 +98,7 @@ struct TrainerMonItemCustomMoves
 {
     u16 iv;
     u8 lvl;
+    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
     u16 species;
     u16 heldItem;
     u16 moves[MAX_MON_MOVES];
@@ -105,12 +109,19 @@ struct TrainerMonItemCustomMoves
 #define ITEM_DEFAULT_MOVES(party) { .ItemDefaultMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_HELD_ITEM
 #define ITEM_CUSTOM_MOVES(party) { .ItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM
 
+struct PoolMon; // include/trainer_pools.h
+
+// A team rolled from a pool: POOL_PARTY(pool, min mons, max mons, base level, extra random levels)
+// e.g. POOL_PARTY(sPool_Hiker_Advanced, 3, 5, 50, 15) -> 3-5 mons from that pool at level 50-65.
+#define POOL_PARTY(pool, minMons, maxMons, level, levelRange) { .Pool = pool }, .partySize = maxMons, .poolMinSize = minMons, .poolLevel = level, .poolLevelRange = levelRange, .partyFlags = F_TRAINER_PARTY_POOL
+
 union TrainerMonPtr
 {
     const struct TrainerMonNoItemDefaultMoves *NoItemDefaultMoves;
     const struct TrainerMonNoItemCustomMoves *NoItemCustomMoves;
     const struct TrainerMonItemDefaultMoves *ItemDefaultMoves;
     const struct TrainerMonItemCustomMoves *ItemCustomMoves;
+    const struct PoolMon *Pool;
 };
 
 struct Trainer
@@ -125,7 +136,10 @@ struct Trainer
     /*0x19*/ bool8 mugshotEnabled;
     /*0x1A*/ u8 mugshotColor;
     /*0x1C*/ u32 aiFlags;
-    /*0x20*/ u8 partySize;
+    /*0x20*/ u8 partySize;        // for a pool trainer: the most mons it can roll
+    /*0x21*/ u8 poolMinSize;      // pool trainers only (these three fill what used to be padding)
+    /*0x22*/ u8 poolLevel;
+    /*0x23*/ u8 poolLevelRange;
     /*0x24*/ const union TrainerMonPtr party;
     
     

@@ -605,6 +605,11 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
                 sum += party[i].lvl;
         }
         break;
+    case F_TRAINER_PARTY_POOL:
+        // The team isn't rolled yet when the battle transition is picked; use the average level
+        for (i = 0; i < count; ++i)
+            sum += gTrainers[opponentId].poolLevel + gTrainers[opponentId].poolLevelRange / 2;
+        break;
     }
     return sum;
 }

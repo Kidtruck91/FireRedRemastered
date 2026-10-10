@@ -175,8 +175,38 @@ Its own commit. There's no in-game option: each trainer's level is set in `src/d
 
 **Status:** builds; **not play-tested.**
 
+## Separate change: trainer team pools + ability field (not part of the follower port)
+Its own commit. Handwritten teams are unchanged; only trainers you point at a pool use one.
+
+**Pools:**
+- Pools live in `src/data/trainer_pools.h`. Types are in `include/trainer_pools.h`.
+- A trainer opts in with `.party = POOL_PARTY(sPool_X, minMons, maxMons, baseLevel, levelRange)`.
+- The generator is `CreatePoolTrainerParty` in `battle_main.c`.
+  - It is seeded from the trainer id and the save's Trainer ID, so the team is the same all playthrough and new on a new game. VS Seeker rematch entries roll their own.
+  - It never repeats a species. Doubles always get at least 2 mons.
+  - Levels are rolled per mon.
+- The pool settings use the old padding bytes in `struct Trainer` (0x21-0x23), so the size is unchanged.
+- Money uses the last rolled mon's level, and the battle transition uses the pool's average level.
+
+**Tiers** (a naming convention; there are Hiker examples):
+- `_Basic` = species only
+- `_Intermediate` = some items and moves
+- `_Advanced` = fully evolved, with 4 moves, an item and an ability
+- `scripts/check_trainer_pools.py` enforces the `_Advanced` rules from `make`, through the `build/firered/trainer_pools.ok` stamp. It is skipped if python3 is missing.
+
+**Ability field:**
+- `.ability` is on every trainer mon struct, in old padding at offset 3, so sizes are unchanged.
+- It is also on `PoolMon`.
+- Values: 1 = first ability, 2 = second, 0/3 = either (unchanged behaviour).
+
+**Status:** tested in mGBA. With the lab rival temporarily pointed at `sPool_Hiker_Advanced` in a test ROM only:
+- It rolled 4 Pokémon at levels 53-65 with the full sets.
+- A rerun gave the same team; a changed Trainer ID gave a different one.
+- Existing teams were confirmed unchanged.
+
 ## Log
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
 - 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds. Chunk 4 done (hooks and dialogue); the follower is live, so testing is next. Nuzlocke rules added (separate commit).
 - 2026-10-10: Trainer AI levels (Simple / Normal / Advanced as trainer data) added as a separate commit. Builds; not play-tested.
 - 2026-10-10: Play-testing fixes: follower door exit placement, Mom's house (map header + coord triggers), option menu CANCEL row. NOTE: VisualBoyAdvance was writing the 128K save as 64K (sectors alias), which mixes old and new save data and caused the black quest-log recap and a crash on continue. Set the emulator save type to Flash 128K (or use mGBA) and start a new save.
+- 2026-10-10: Trainer team pools (Basic/Intermediate/Advanced tiers, Hiker examples) and the per-mon ability field. Tested in mGBA.

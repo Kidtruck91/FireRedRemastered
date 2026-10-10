@@ -456,5 +456,6 @@
 // Pokémon.
 #define F_TRAINER_PARTY_CUSTOM_MOVESET (1 << 0)
 #define F_TRAINER_PARTY_HELD_ITEM      (1 << 1)
+#define F_TRAINER_PARTY_POOL           (1 << 2) // team is rolled from a pool (src/data/trainer_pools.h)
 
 #endif  // GUARD_CONSTANTS_TRAINERS_H

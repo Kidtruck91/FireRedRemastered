@@ -286,6 +286,12 @@ $(C_BUILDDIR)/%.o : $(C_SUBDIR)/%.c $$(c_dep)
 	@echo -e ".text\n\t.align\t2, 0 @ Don't pad with nop\n" >> $(C_BUILDDIR)/$*.s
 	$(AS) $(ASFLAGS) -o $@ $(C_BUILDDIR)/$*.s
 
+# Check the _Advanced trainer pools (fully evolved, 4 moves, item, ability) before building trainer data
+$(OBJ_DIR)/trainer_pools.ok: src/data/trainer_pools.h src/data/pokemon/evolution.h scripts/check_trainer_pools.py
+	@if command -v python3 >/dev/null 2>&1; then python3 scripts/check_trainer_pools.py || exit 1; else echo "python3 not found: skipping trainer pool check"; fi
+	@mkdir -p $(OBJ_DIR) && touch $@
+$(C_BUILDDIR)/data.o: $(OBJ_DIR)/trainer_pools.ok
+
 ifeq ($(NODEP),1)
 $(C_BUILDDIR)/%.o: c_asm_dep :=
 else
