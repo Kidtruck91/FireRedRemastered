@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follow_me.h"
 #include "bike.h"
 #include "field_player_avatar.h"
 #include "metatile_behavior.h"
@@ -322,6 +323,7 @@ void GetOnOffBike(u8 flags)
     }
     else
     {
+        FollowerIntoPokeball();
         SetPlayerAvatarTransitionFlags(flags);
         if (Overworld_MusicCanOverrideMapMusic(MUS_CYCLING))
         {

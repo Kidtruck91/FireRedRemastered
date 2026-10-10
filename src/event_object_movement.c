@@ -167,7 +167,8 @@ static void MovementType_FollowingPokemon(struct Sprite *);
 
 static bool8 IsFollowerObjectEvent(struct ObjectEvent *objectEvent)
 {
-    return gSaveBlock2Ptr->follower.inProgress && objectEvent == &gObjectEvents[gSaveBlock2Ptr->follower.objId];
+    return gSaveBlock2Ptr->follower.inProgress && !QL_IS_PLAYBACK_STATE
+        && objectEvent == &gObjectEvents[gSaveBlock2Ptr->follower.objId];
 }
 
 // Follower Pokemon sprites have their own walk animations (see follower_anims.h). The animation is only
@@ -2666,6 +2667,8 @@ static const u8 *GetObjectEventScriptPointerByLocalIdAndMap(u8 localId, u8 mapNu
 
 const u8 *GetObjectEventScriptPointerByObjectEventId(u8 objectEventId)
 {
+    if (FollowMe_IsFollowerObjectEventId(objectEventId))
+        return GetFollowerScriptPointer();
     return GetObjectEventScriptPointerByLocalIdAndMap(gObjectEvents[objectEventId].localId, gObjectEvents[objectEventId].mapNum, gObjectEvents[objectEventId].mapGroup);
 }
 
@@ -5314,6 +5317,7 @@ void UpdateObjectEventCurrentMovement(struct ObjectEvent *objectEvent, struct Sp
     UpdateObjectEventSpriteAnimPause(objectEvent, sprite);
     UpdateObjectEventVisibility(objectEvent, sprite);
     ObjectEventUpdateSubpriority(objectEvent, sprite);
+    FollowMe_UpdateBounce(objectEvent, sprite);
 }
 
 void UpdateQuestLogObjectEventCurrentMovement(struct ObjectEvent *objectEvent, struct Sprite *sprite)

@@ -39,6 +39,8 @@
 #include "constants/help_system.h"
 #include "constants/mystery_gift.h"
 #include "constants/follow_me.h"
+#include "constants/region_map_sections.h"
+#include "constants/map_types.h"
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
 	.set FALSE, 0
@@ -1084,6 +1086,7 @@ EventScript_ResetAllMapFlags::
 	.include "data/scripts/hall_of_fame.inc"
 	.include "data/scripts/pkmn_center_nurse.inc"
 	.include "data/scripts/follower.inc"
+	.include "data/text/follower_dialogue.inc"
 	.include "data/scripts/obtain_item.inc"
 	.include "data/scripts/pc.inc"
 

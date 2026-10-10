@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follow_me.h"
 #include "gflib.h"
 #include "bg_regs.h"
 #include "cable_club.h"
@@ -325,6 +326,7 @@ void Overworld_ResetStateAfterDigEscRope(void)
 
 static void Overworld_ResetStateAfterWhitingOut(void)
 {
+    FollowMe_TryRemoveFollowerOnWhiteOut();
     ResetInitialPlayerAvatarState();
     FlagClear(FLAG_SYS_ON_CYCLING_ROAD);
     VarSet(VAR_MAP_SCENE_ROUTE16, 0);
@@ -1480,6 +1482,7 @@ static void CB2_Overworld(void)
     OverworldBasic();
     if (fading)
         SetFieldVBlankCallback();
+    FollowMe_FixSpriteOffset();
 }
 
 void SetMainCallback1(MainCallback cb)
@@ -1576,6 +1579,8 @@ static void CB2_LoadMap2(void)
         SetFieldVBlankCallback();
         SetMainCallback1(CB1_Overworld);
         SetMainCallback2(CB2_Overworld);
+        // Place the follower after a scripted warp (setfollowerwarppos)
+        FollowMe_TrySetCoordsFromWarp();
     }
 }
 
@@ -2135,11 +2140,14 @@ static void InitObjectEventsLocal(void)
     ResetInitialPlayerAvatarState();
     TrySpawnObjectEvents(0, 0);
     TryRunOnWarpIntoMapScript();
+    FollowMe_HandleSprite();
 }
 
 static void ReloadObjectsAndRunReturnToFieldMapScript(void)
 {
     SpawnObjectEventsOnReturnToField(0, 0);
+    // The lead Pokemon may have changed (party menu, PC, battle...)
+    UpdateFollowerPokemonGraphic();
     RunOnReturnToFieldMapScript();
 }
 

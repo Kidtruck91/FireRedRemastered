@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follow_me.h"
 #include "quest_log.h"
 #include "fieldmap.h"
 #include "field_player_avatar.h"
@@ -10,7 +11,7 @@ void SetQuestLogObjectEventsData(struct QuestLog * questLog)
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
-        questLog->unk_008[i].active = gObjectEvents[i].active;
+        questLog->unk_008[i].active = gObjectEvents[i].active && !FollowMe_IsFollowerObjectEventId(i);
         questLog->unk_008[i].triggerGroundEffectsOnStop = gObjectEvents[i].triggerGroundEffectsOnStop;
         questLog->unk_008[i].disableCoveringGroundEffects = gObjectEvents[i].disableCoveringGroundEffects;
         questLog->unk_008[i].landingJump = gObjectEvents[i].landingJump;

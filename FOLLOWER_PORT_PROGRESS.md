@@ -84,10 +84,26 @@ If a session runs out, a new one should read this file, check `git log follower-
 - Sizes checked: `gObjectEvents` is 0x240 (16 × 0x24, unchanged), SaveBlock2 is 0xF28, SaveBlock1 is 0x3E44.
 - **Nothing calls `CreateFollowerAvatar` yet, so no follower shows up in game until chunk 4.**
 
-### Chunk 4: hooks in the rest of the game
-- [ ] `overworld.c`: whiteout, warp placement, `CB1/CB2` fixes, `FollowMe_HandleSprite` after spawning objects, `UpdateFollowerPokemonGraphic` on return to field.
-- [ ] `field_player_avatar.c` (ledge, run, walk sparkle; `CreateFollowerAvatar` in `InitPlayerAvatar`), `field_control_avatar.c`, `field_screen_effect.c` (door warps), `field_effect.c` (fly, teleport, escalator, waterfall, warp spin), `bike.c`, `battle_setup.c`, `script_movement.c`, `scrcmd.c` (follower script commands 0xd5–0xd8 and `pokemonfaceplayer`), `gflib/sprite.c` (bounce), `new_game.c`, `pokemon_storage_system.c`, `field_specials.c` (`GetLeadMonNotFaintedIndex`), quest log.
-- [ ] Scripts: `pkmn_center_nurse` (ball in and out), `field_move_scripts` (`FollowerPositionFix` helpers), the macros in `asm/macros/event.inc` (already added; switch them to `VAR_0x8014`), and talking to the follower.
+### Chunk 4: hooks + dialogue ✅ (committed). ROM builds; the follower is live in game.
+All hooks are applied by `_follower_port_work/patches/chunk4_hooks.py`, which can be re-run because it resets the files first:
+- **`field_player_avatar.c`:** `CreateFollowerAvatar()` in `InitPlayerAvatar`; `FollowerPokeballSparkle()` before walk/run and ledge jumps (with a delayed jump if the follower is in its ball); `FollowerIntoPokeball()` in `StartPlayerAvatarSummonMonForFieldMoveAnim`, so every field move (Surf, Fly, Cut, Strength…) puts it away.
+- **`field_control_avatar.c`:** no wild encounter check while `preventStep`; `FollowMe_IdleUpdate()` when no step was taken; an invisible follower can't be talked to.
+- **`event_object_movement.c`:**
+  - talking to the follower runs `follower.script`
+  - `FollowMe_UpdateBounce()` gives the idle hop that FollowerEm did in `sprite.c`; flying Pokémon don't hop
+  - `IsFollowerObjectEvent` ignores quest-log playback
+- **`overworld.c`:** whiteout; `FollowMe_TrySetCoordsFromWarp()` in `CB2_LoadMap2`; `FollowMe_FixSpriteOffset()` in `CB2_Overworld`; `FollowMe_HandleSprite()` after map objects spawn; `UpdateFollowerPokemonGraphic()` on every return to the field (party menu, PC, battles, bag…).
+- **`field_fadetransition.c`:** door warp in (the follower steps up and walks in, and the door isn't closed on it); door exits use `FollowMe_DoorExit()`, so the follower comes out of the door after the player.
+- **Other files:** `bike.c` (into its ball when getting on the bike), `new_game.c` (clears the follower), `script_movement.c`, `quest_log_objects.c` (the follower isn't recorded).
+- **Pokémon Center nurse script:** the follower goes into its ball while the party is healed, and `updatefollowerpokemongraphic` runs after healing.
+- `UpdateFollowerPokemonGraphic()` also creates the follower immediately if it has just started (for example after getting the starter).
+
+**Dialogue system (requested):**
+- `data/text/follower_dialogue.inc` is a data file with instructions at the top. Each line is `follower_message COND, VALUE[, COND2, VALUE2]` followed by `.string "…$"`.
+- Conditions: species, type, egg group, exact map, map section (area), map type (caves = `MAP_TYPE_UNDERGROUND`), terrain (sand/beach, tall grass, next to water, ice), weather, friendship, low HP, status, flag set / not set.
+- Scoring: each condition has a weight (in `sFollowerConditionWeights`, `follow_me.c`). The highest-scoring matching lines win, with a random pick among ties.
+- About 60 starter lines: generic, types, places (caves, Power Plant, Pokémon Tower, beaches, Mt. Moon, Seafoam…) and specific Pokémon. Selection code: `ChooseFollowerMessage()` in `follow_me.c`.
+- Constants are in `include/constants/follow_me.h`.
 
 ### Chunk 5: build and test
 - [ ] `make` succeeds.
@@ -103,4 +119,4 @@ Committed on the same branch but in its own commit, touching only level-cap file
 
 ## Log
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
-- 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds.
+- 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds. Chunk 4 done (hooks and dialogue); the follower is live, so testing is next.

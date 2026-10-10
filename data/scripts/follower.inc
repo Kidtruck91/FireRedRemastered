@@ -1,19 +1,17 @@
 @ Follower Pokemon (see src/follow_me.c)
 
-@ Talking to the follower Pokemon
+@ Talking to the follower Pokemon. What it says comes from data/text/follower_dialogue.inc
 EventScript_FollowerPokemon::
 	lock
 	callnative FollowerPokemon_BufferLeadMonInfo
 	pokemonfaceplayer
 	playmoncry VAR_0x8004, CRY_MODE_NORMAL
-	msgbox Text_FollowerPokemonHappy, MSGBOX_DEFAULT
+	message gStringVar4
+	waitmessage
+	waitbuttonpress
 	waitmoncry
 	release
 	end
-
-Text_FollowerPokemonHappy::
-	.string "{STR_VAR_1} seems happy\n"
-	.string "to be with you!$"
 
 @ Used by scripts to line the follower up with the player (FollowerEm)
 FollowerPositionFixScript::

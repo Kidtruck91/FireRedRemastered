@@ -72,4 +72,21 @@ u16 GetFollowerPokemonGraphicsId(void);
 u16 GetFollowerPokemonSpecies(void);
 void FollowerPokemon_BufferLeadMonInfo(void);
 
+// Hooks used by the rest of the overworld code (follow_me.c)
+void UpdateFollowerPokemonGraphic(void);
+void FollowerPokeballSparkle(void);
+void FollowerIntoPokeball(void);
+void FollowerPokemonFacePlayer(void);
+void FollowMe_DoorWarp_Start(void);
+void FollowMe_DoorWarp_PlayerWalkedIn(void);
+bool8 FollowMe_DoorWarp_ShouldCloseDoor(void);
+void FollowMe_DoorWarp_FollowerEnter(void);
+void FollowMe_DoorExit(void);
+void FollowMe_IdleUpdate(void);
+void FollowMe_StopRunningUpdate(void);
+void FollowMe_FixSpriteOffset(void);
+void FollowMe_UpdateBounce(struct ObjectEvent *objectEvent, struct Sprite *sprite);
+void FollowMe_TrySetCoordsFromWarp(void);
+bool8 FollowMe_IsFollowerObjectEventId(u8 objectEventId);
+
 #endif // GUARD_FOLLOW_ME_H

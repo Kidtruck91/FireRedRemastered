@@ -1,6 +1,8 @@
 #include "global.h"
 #include "follow_me.h"
 #include "event_data.h"
+#include "event_object_lock.h"
+#include "characters.h"
 #include "event_object_movement.h"
 #include "field_door.h"
 #include "field_effect.h"
@@ -12,6 +14,7 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "quest_log.h"
+#include "random.h"
 #include "script.h"
 #include "sound.h"
 #include "sprite.h"
@@ -51,6 +54,7 @@
                               | FOLLOWER_FLAG_CAN_WATERFALL | FOLLOWER_FLAG_CAN_DIVE | FOLLOWER_FLAG_CAN_ROCK_CLIMB)
 
 extern const u8 EventScript_FollowerPokemon[];
+extern const u8 gText_FollowerDefault[];
 extern const struct SpritePalette gSpritePalette_SmallSparkle;
 
 static u8 GetFollowerMapObjId(void);
@@ -69,6 +73,7 @@ static void CalculateFollowerEscalatorTrajectoryDown(struct Task *task);
 static void RecreateFollowerObject(u16 newGraphicsId);
 static u8 GetLeadMonNotFaintedIndex(void);
 static void CreateFollowerSparkles(s16 x, s16 y, bool8 big);
+static bool8 FollowerObjectExists(void);
 
 // ---------------------------------------------------------------------------
 // Data
@@ -896,15 +901,180 @@ void FollowerPokemon_Disable(void)
     DestroyFollower();
 }
 
-// Buffers the lead Pokemon's nickname in gStringVar1 and its species in gSpecialVar_0x8004
-// (used by the script that runs when the player talks to the follower)
+// ---------------------------------------------------------------------------
+// Follower Pokemon dialogue
+// ---------------------------------------------------------------------------
+// The lines live in data/text/follower_dialogue.inc. Each entry has up to two conditions;
+// every matching entry gets a score (the sum of its conditions' weights below), and one of the
+// matching entries with the highest score is picked at random. So a line for "Pikachu in the
+// Power Plant" beats a line for "Pikachu" or "the Power Plant", which beat type/generic lines.
+
+extern const u8 gFollowerMessages[];
+
+#define FOLLOWER_MSG_END 0xFF
+
+static const u8 sFollowerConditionWeights[] =
+{
+    [FOLLOWER_COND_NONE]       = 0,
+    [FOLLOWER_COND_SPECIES]    = 10,
+    [FOLLOWER_COND_TYPE]       = 3,
+    [FOLLOWER_COND_EGG_GROUP]  = 3,
+    [FOLLOWER_COND_MAP]        = 8,
+    [FOLLOWER_COND_MAPSEC]     = 7,
+    [FOLLOWER_COND_MAP_TYPE]   = 4,
+    [FOLLOWER_COND_TERRAIN]    = 5,
+    [FOLLOWER_COND_WEATHER]    = 5,
+    [FOLLOWER_COND_FRIENDSHIP] = 2,
+    [FOLLOWER_COND_LOW_HP]     = 9,
+    [FOLLOWER_COND_STATUS]     = 9,
+    [FOLLOWER_COND_FLAG]       = 1,
+    [FOLLOWER_COND_NOT_FLAG]   = 1,
+};
+
+// Entry layout (see the follower_message macro): cond1, cond2, value1 (2 bytes), value2 (2 bytes), text...EOS
+#define MSG_COND1(p)  ((p)[0])
+#define MSG_COND2(p)  ((p)[1])
+#define MSG_VALUE1(p) ((p)[2] | ((p)[3] << 8))
+#define MSG_VALUE2(p) ((p)[4] | ((p)[5] << 8))
+#define MSG_TEXT(p)   ((p) + 6)
+
+static const u8 *NextFollowerMessage(const u8 *entry)
+{
+    const u8 *text = MSG_TEXT(entry);
+    while (*text != EOS)
+        text++;
+    return text + 1;
+}
+
+static bool8 IsFollowerNextToWater(s16 x, s16 y)
+{
+    return MetatileBehavior_IsSurfable(MapGridGetMetatileBehaviorAt(x + 1, y))
+        || MetatileBehavior_IsSurfable(MapGridGetMetatileBehaviorAt(x - 1, y))
+        || MetatileBehavior_IsSurfable(MapGridGetMetatileBehaviorAt(x, y + 1))
+        || MetatileBehavior_IsSurfable(MapGridGetMetatileBehaviorAt(x, y - 1));
+}
+
+static bool8 FollowerConditionMatches(u8 condition, u16 value, struct Pokemon *mon, u16 species)
+{
+    struct ObjectEvent *obj;
+    u8 behavior;
+
+    if (FollowerObjectExists())
+        obj = &gObjectEvents[GetFollowerMapObjId()];
+    else
+        obj = &gObjectEvents[gPlayerAvatar.objectEventId];
+    behavior = MapGridGetMetatileBehaviorAt(obj->currentCoords.x, obj->currentCoords.y);
+
+    switch (condition)
+    {
+    case FOLLOWER_COND_NONE:
+        return TRUE;
+    case FOLLOWER_COND_SPECIES:
+        return species == value;
+    case FOLLOWER_COND_TYPE:
+        return gSpeciesInfo[species].types[0] == value || gSpeciesInfo[species].types[1] == value;
+    case FOLLOWER_COND_EGG_GROUP:
+        return gSpeciesInfo[species].eggGroups[0] == value || gSpeciesInfo[species].eggGroups[1] == value;
+    case FOLLOWER_COND_MAP:
+        return ((gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum) == value;
+    case FOLLOWER_COND_MAPSEC:
+        return gMapHeader.regionMapSectionId == value;
+    case FOLLOWER_COND_MAP_TYPE:
+        return gMapHeader.mapType == value;
+    case FOLLOWER_COND_TERRAIN:
+        switch (value)
+        {
+        case FOLLOWER_TERRAIN_SAND:
+            return MetatileBehavior_IsSand(behavior);
+        case FOLLOWER_TERRAIN_TALL_GRASS:
+            return MetatileBehavior_IsTallGrass(behavior) || MetatileBehavior_IsLongGrass(behavior);
+        case FOLLOWER_TERRAIN_WATER:
+            return IsFollowerNextToWater(obj->currentCoords.x, obj->currentCoords.y);
+        case FOLLOWER_TERRAIN_ICE:
+            return MetatileBehavior_IsIce(behavior);
+        }
+        return FALSE;
+    case FOLLOWER_COND_WEATHER:
+        return GetCurrentWeather() == value;
+    case FOLLOWER_COND_FRIENDSHIP:
+        return GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) >= value;
+    case FOLLOWER_COND_LOW_HP:
+        return GetMonData(mon, MON_DATA_HP, NULL) * 4 <= GetMonData(mon, MON_DATA_MAX_HP, NULL);
+    case FOLLOWER_COND_STATUS:
+        return GetMonData(mon, MON_DATA_STATUS, NULL) != 0;
+    case FOLLOWER_COND_FLAG:
+        return FlagGet(value);
+    case FOLLOWER_COND_NOT_FLAG:
+        return !FlagGet(value);
+    }
+    return FALSE;
+}
+
+// Returns the entry's score, or -1 if it doesn't apply
+static s16 GetFollowerMessageScore(const u8 *entry, struct Pokemon *mon, u16 species)
+{
+    u8 cond1 = MSG_COND1(entry), cond2 = MSG_COND2(entry);
+
+    if (cond1 >= ARRAY_COUNT(sFollowerConditionWeights) || cond2 >= ARRAY_COUNT(sFollowerConditionWeights))
+        return -1;
+    if (!FollowerConditionMatches(cond1, MSG_VALUE1(entry), mon, species))
+        return -1;
+    if (!FollowerConditionMatches(cond2, MSG_VALUE2(entry), mon, species))
+        return -1;
+    return sFollowerConditionWeights[cond1] + sFollowerConditionWeights[cond2];
+}
+
+static const u8 *ChooseFollowerMessage(struct Pokemon *mon, u16 species)
+{
+    const u8 *entry;
+    s16 score, bestScore = -1;
+    u16 count = 0, pick;
+
+    for (entry = gFollowerMessages; MSG_COND1(entry) != FOLLOWER_MSG_END; entry = NextFollowerMessage(entry))
+    {
+        score = GetFollowerMessageScore(entry, mon, species);
+        if (score > bestScore)
+        {
+            bestScore = score;
+            count = 1;
+        }
+        else if (score == bestScore && score >= 0)
+        {
+            count++;
+        }
+    }
+    if (count == 0)
+        return NULL;
+
+    pick = Random() % count;
+    for (entry = gFollowerMessages; MSG_COND1(entry) != FOLLOWER_MSG_END; entry = NextFollowerMessage(entry))
+    {
+        if (GetFollowerMessageScore(entry, mon, species) == bestScore)
+        {
+            if (pick == 0)
+                return MSG_TEXT(entry);
+            pick--;
+        }
+    }
+    return NULL;
+}
+
+// Run when the player talks to the follower: buffers the lead Pokemon's nickname in gStringVar1,
+// its species in VAR_0x8004 (for the cry) and the chosen line, with placeholders expanded, in gStringVar4.
 void FollowerPokemon_BufferLeadMonInfo(void)
 {
     struct Pokemon *mon = &gPlayerParty[GetLeadMonNotFaintedIndex()];
+    u16 species = GetFollowerPokemonSpecies();
+    const u8 *text;
 
     GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
     StringGet_Nickname(gStringVar1);
-    gSpecialVar_0x8004 = GetFollowerPokemonSpecies();
+    gSpecialVar_0x8004 = species;
+
+    text = ChooseFollowerMessage(mon, species);
+    if (text == NULL)
+        text = gText_FollowerDefault;
+    StringExpandPlaceholders(gStringVar4, text);
 }
 
 // Called when the lead Pokemon may have changed (party menu, PC, battle, Pokemon Center...)
@@ -914,13 +1084,20 @@ void UpdateFollowerPokemonGraphic(void)
     struct ObjectEvent *follower;
 
     if (!gSaveBlock2Ptr->follower.inProgress)
-    {
         FollowerPokemon_TryStart();
+    if (!gSaveBlock2Ptr->follower.inProgress || QL_IS_PLAYBACK_STATE)
         return;
-    }
 
     if (GetFollowerPokemonSpecies() == SPECIES_NONE)
         return;
+
+    // Just got its first Pokemon (or the follower couldn't spawn before): create it now.
+    // It pops out of its ball on the player's next step.
+    if (GetFollowerMapObjId() >= OBJECT_EVENTS_COUNT)
+    {
+        CreateFollowerAvatar();
+        return;
+    }
 
     newGraphicsId = GetFollowerPokemonGraphicsId();
     if (newGraphicsId == gSaveBlock2Ptr->follower.graphicsId)
@@ -2187,4 +2364,230 @@ void FollowerIntoPokeball(void)
         ObjectEventForceSetHeldMovement(&gObjectEvents[gSaveBlock2Ptr->follower.objId], MOVEMENT_ACTION_FOLLOWING_POKEMON_SHRINK);
         gSpecialVar_0x8014 = 1;
     }
+}
+
+// ---------------------------------------------------------------------------
+// Hooks used by the rest of the overworld code
+// ---------------------------------------------------------------------------
+
+static bool8 FollowerObjectExists(void)
+{
+    return gSaveBlock2Ptr->follower.inProgress && GetFollowerMapObjId() < OBJECT_EVENTS_COUNT
+        && gObjectEvents[GetFollowerMapObjId()].active && !QL_IS_PLAYBACK_STATE;
+}
+
+static bool8 IsFollowerVisible(void)
+{
+    return FollowerObjectExists() && !gObjectEvents[GetFollowerMapObjId()].invisible;
+}
+
+// Door warps (field_fadetransition.c, Task_DoorWarp)
+void FollowMe_DoorWarp_Start(void)
+{
+    if (!gSaveBlock2Ptr->follower.inProgress)
+        return;
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH))
+        SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT); // Stop running
+    gSaveBlock2Ptr->follower.comeOutDoorStairs = 0; // Just in case it came out and went right back in
+}
+
+// The player started walking into the door: the follower steps to where the player was
+void FollowMe_DoorWarp_PlayerWalkedIn(void)
+{
+    struct ObjectEvent *player = &gObjectEvents[gPlayerAvatar.objectEventId];
+    struct ObjectEvent *follower;
+    u8 newState;
+
+    if (!IsFollowerVisible())
+        return;
+    follower = &gObjectEvents[GetFollowerMapObjId()];
+    newState = DetermineFollowerState(follower, MOVEMENT_ACTION_WALK_NORMAL_UP, DetermineFollowerDirection(player, follower));
+    if (newState == MOVEMENT_INVALID)
+        return;
+    ObjectEventClearHeldMovementIfActive(follower);
+    ObjectEventSetHeldMovement(follower, newState);
+}
+
+// Don't close the door in the follower's face
+bool8 FollowMe_DoorWarp_ShouldCloseDoor(void)
+{
+    return !IsFollowerVisible();
+}
+
+// The follower walks into the door too
+void FollowMe_DoorWarp_FollowerEnter(void)
+{
+    if (!IsFollowerVisible())
+        return;
+    ObjectEventClearHeldMovementIfActive(&gObjectEvents[GetFollowerMapObjId()]);
+    ObjectEventSetHeldMovement(&gObjectEvents[GetFollowerMapObjId()], MOVEMENT_ACTION_WALK_NORMAL_UP);
+}
+
+// Door exits (Task_ExitDoor / Task_ExitNonAnimDoor): the follower comes out of the door after the player
+void FollowMe_DoorExit(void)
+{
+    if (!FollowerObjectExists())
+        return;
+    HideFollower();
+    FollowMe_SetIndicatorToComeOutDoor();
+    FollowMe_WarpSetEnd();
+}
+
+// The player is standing still: keep the follower's idle animation going
+void FollowMe_IdleUpdate(void)
+{
+    struct ObjectEvent *follower;
+
+    if (!FollowerObjectExists() || gSaveBlock2Ptr->follower.createSurfBlob == 2)
+        return;
+    follower = &gObjectEvents[GetFollowerMapObjId()];
+    ObjectEventClearHeldMovementIfFinished(follower);
+    ObjectEventSetHeldMovement(follower, MOVEMENT_ACTION_FOLLOWING_POKEMON);
+}
+
+// The player stopped running but is still holding B: fix the follower's frame
+void FollowMe_StopRunningUpdate(void)
+{
+    struct ObjectEvent *follower;
+
+    if (!FollowerObjectExists() || !IsPlayerOnFoot() || !walkrun_is_standing_still())
+        return;
+    follower = &gObjectEvents[GetFollowerMapObjId()];
+    ObjectEventSetHeldMovement(follower, GetFaceDirectionMovementAction(follower->facingDirection));
+}
+
+// Side-facing follower frames are drawn off-center; keep them lined up (every frame, from CB2_Overworld)
+void FollowMe_FixSpriteOffset(void)
+{
+    struct Sprite *sprite;
+
+    if (!FollowerObjectExists())
+        return;
+    sprite = &gSprites[gObjectEvents[GetFollowerMapObjId()].spriteId];
+    if (sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK) // going into / out of its ball
+        return;
+    switch (gObjectEvents[GetFollowerMapObjId()].facingDirection)
+    {
+    case DIR_EAST:
+        sprite->x2 = -8;
+        break;
+    case DIR_WEST:
+        sprite->x2 = 8;
+        break;
+    }
+}
+
+static bool8 IsFlyingFollower(u16 graphicsId)
+{
+    switch (graphicsId - OBJ_EVENT_GFX_FOLLOWERS_START)
+    {
+    case SPECIES_BUTTERFREE:
+    case SPECIES_BEEDRILL:
+    case SPECIES_PIDGEOTTO:
+    case SPECIES_PIDGEOT:
+    case SPECIES_FEAROW:
+    case SPECIES_ZUBAT:
+    case SPECIES_GOLBAT:
+    case SPECIES_VENOMOTH:
+    case SPECIES_AERODACTYL:
+    case SPECIES_ARTICUNO:
+    case SPECIES_ZAPDOS:
+    case SPECIES_MOLTRES:
+    case SPECIES_DRAGONITE:
+    case SPECIES_NOCTOWL:
+    case SPECIES_LEDYBA:
+    case SPECIES_LEDIAN:
+    case SPECIES_CROBAT:
+    case SPECIES_TOGETIC:
+    case SPECIES_HOPPIP:
+    case SPECIES_SKIPLOOM:
+    case SPECIES_JUMPLUFF:
+    case SPECIES_YANMA:
+    case SPECIES_MANTINE:
+    case SPECIES_SKARMORY:
+    case SPECIES_LUGIA:
+    case SPECIES_HO_OH:
+    case SPECIES_CELEBI:
+    case SPECIES_BEAUTIFLY:
+    case SPECIES_DUSTOX:
+    case SPECIES_SWELLOW:
+    case SPECIES_WINGULL:
+    case SPECIES_PELIPPER:
+    case SPECIES_MASQUERAIN:
+    case SPECIES_FLYGON:
+    case SPECIES_SWABLU:
+    case SPECIES_ALTARIA:
+    case SPECIES_VOLBEAT:
+    case SPECIES_ILLUMISE:
+    case SPECIES_KYOGRE:
+    case SPECIES_LATIAS:
+    case SPECIES_LATIOS:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+// The little hop the follower does with each animation frame (not for flying Pokemon)
+void FollowMe_UpdateBounce(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (!FollowerObjectExists() || objectEvent != &gObjectEvents[GetFollowerMapObjId()])
+        return;
+    if (sprite->y2 < -1 || (sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK) || IsFlyingFollower(objectEvent->graphicsId))
+        return;
+    if (sprite->animCmdIndex % 2 == 1)
+        sprite->y2 = 0;
+    else
+        sprite->y2 = -1;
+}
+
+// setfollowerwarppos: place the follower after the scripted warp finished loading the map
+void FollowMe_TrySetCoordsFromWarp(void)
+{
+    struct ObjectEvent *player;
+    struct ObjectEvent *follower;
+
+    if (!FollowerObjectExists() || gSaveBlock2Ptr->follower.createSurfBlob != 1)
+        return;
+
+    player = &gObjectEvents[gPlayerAvatar.objectEventId];
+    follower = &gObjectEvents[GetFollowerMapObjId()];
+    gSaveBlock2Ptr->follower.warpEnd = 0;
+
+    switch (gSpecialVar_Result)
+    {
+    case DIR_NONE: // Pops out of its ball
+        MoveObjectEventToMapCoords(follower, player->currentCoords.x, player->currentCoords.y);
+        gSaveBlock2Ptr->follower.createSurfBlob = 2;
+        break;
+    case DIR_SOUTH:
+        MoveObjectEventToMapCoords(follower, player->currentCoords.x, player->currentCoords.y + 1);
+        follower->invisible = FALSE;
+        gSaveBlock2Ptr->follower.createSurfBlob = 0;
+        break;
+    case DIR_NORTH:
+        MoveObjectEventToMapCoords(follower, player->currentCoords.x, player->currentCoords.y - 1);
+        follower->invisible = FALSE;
+        gSaveBlock2Ptr->follower.createSurfBlob = 0;
+        break;
+    case DIR_WEST:
+        MoveObjectEventToMapCoords(follower, player->currentCoords.x - 1, player->currentCoords.y);
+        follower->invisible = FALSE;
+        gSaveBlock2Ptr->follower.createSurfBlob = 0;
+        break;
+    case DIR_EAST:
+        MoveObjectEventToMapCoords(follower, player->currentCoords.x + 1, player->currentCoords.y);
+        follower->invisible = FALSE;
+        gSaveBlock2Ptr->follower.createSurfBlob = 0;
+        break;
+    default:
+        gSaveBlock2Ptr->follower.createSurfBlob = 0;
+        break;
+    }
+}
+
+// Quest log: the follower isn't recorded (its graphics id doesn't fit the quest log's object data)
+bool8 FollowMe_IsFollowerObjectEventId(u8 objectEventId)
+{
+    return gSaveBlock2Ptr->follower.inProgress && objectEventId == GetFollowerMapObjId();
 }

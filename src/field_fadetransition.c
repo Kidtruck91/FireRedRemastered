@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follow_me.h"
 #include "gflib.h"
 #include "field_fadetransition.h"
 #include "overworld.h"
@@ -331,6 +332,7 @@ static void Task_ExitDoor(u8 taskId)
         break;
     case 5:
         SetPlayerVisibility(0);
+        FollowMe_DoorExit();
         FreezeObjectEvents();
         DoOutwardBarnDoorWipe();
         WarpFadeInScreenWithDelay();
@@ -409,6 +411,7 @@ static void Task_ExitNonAnimDoor(u8 taskId)
     {
     case 0:
         SetPlayerVisibility(0);
+        FollowMe_DoorExit();
         FreezeObjectEvents();
         PlayerGetDestCoords(x, y);
         task->data[0] = 1;
@@ -745,6 +748,7 @@ static void Task_DoorWarp(u8 taskId)
     switch (task->data[0])
     {
     case 0:
+        FollowMe_DoorWarp_Start();
         FreezeObjectEvents();
         PlayerGetDestCoords(xp, yp);
         PlaySE(GetDoorSoundEffect(*xp, *yp - 1));
@@ -756,13 +760,17 @@ static void Task_DoorWarp(u8 taskId)
         {
             ObjectEventClearHeldMovementIfActive(&gObjectEvents[GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0)]);
             ObjectEventSetHeldMovement(&gObjectEvents[GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0)], MOVEMENT_ACTION_WALK_NORMAL_UP);
+            FollowMe_DoorWarp_PlayerWalkedIn();
             task->data[0] = 2;
         }
         break;
     case 2:
         if (walkrun_is_standing_still())
         {
-            task->data[1] = FieldAnimateDoorClose(*xp, *yp - 1);
+            if (FollowMe_DoorWarp_ShouldCloseDoor())
+                task->data[1] = FieldAnimateDoorClose(*xp, *yp - 1);
+            else
+                task->data[1] = -1; // don't close the door on the follower
             ObjectEventClearHeldMovementIfFinished(&gObjectEvents[GetObjectEventIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0)]);
             SetPlayerVisibility(FALSE);
             task->data[0] = 3;
@@ -773,6 +781,7 @@ static void Task_DoorWarp(u8 taskId)
             task->data[0] = 4;
         break;
     case 4:
+        FollowMe_DoorWarp_FollowerEnter();
         TryFadeOutOldMapMusic();
         WarpFadeOutScreen();
         PlayRainStoppingSoundEffect();

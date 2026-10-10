@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follow_me.h"
 #include "gflib.h"
 #include "bike.h"
 #include "event_data.h"
@@ -490,6 +491,11 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
     {
         if (collision == COLLISION_LEDGE_JUMP)
         {
+            // The follower is in its ball: jump the ledge once it comes out
+            if (gSaveBlock2Ptr->follower.inProgress && GetFollowerObjectId() < OBJECT_EVENTS_COUNT
+             && gObjectEvents[GetFollowerObjectId()].invisible == TRUE)
+                gSaveBlock2Ptr->follower.delayedState = MOVEMENT_ACTION_JUMP_2_DOWN;
+            FollowerPokeballSparkle();
             PlayerJumpLedge(direction);
         }
         else if (collision == COLLISION_DIRECTIONAL_STAIR_WARP)
@@ -516,6 +522,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
     if ((heldKeys & B_BUTTON) && FlagGet(FLAG_SYS_B_DASH)
         && !IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior))
     {
+        FollowerPokeballSparkle();
         if (PlayerIsMovingOnRockStairs(direction))
             PlayerRunSlow(direction);
         else
@@ -525,6 +532,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
     }
     else
     {
+        FollowerPokeballSparkle();
         if (PlayerIsMovingOnRockStairs(direction))
             PlayerWalkSlow(direction);
         else
@@ -1313,6 +1321,7 @@ void InitPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender)
     gPlayerAvatar.spriteId = objectEvent->spriteId;
     gPlayerAvatar.gender = gender;
     SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_CONTROLLABLE | PLAYER_AVATAR_FLAG_ON_FOOT);
+    CreateFollowerAvatar();
 }
 
 void SetPlayerInvisibility(bool8 invisible)
@@ -1324,6 +1333,8 @@ void SetPlayerInvisibility(bool8 invisible)
 
 void StartPlayerAvatarSummonMonForFieldMoveAnim(void)
 {
+    FollowerIntoPokeball(); // the follower goes back into its ball when a field move is used
+
     ObjectEventSetGraphicsId(&gObjectEvents[gPlayerAvatar.objectEventId], GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_GFX_FIELD_MOVE));
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], ANIM_FIELD_MOVE);
 }

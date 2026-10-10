@@ -120,6 +120,7 @@ void NewGameInitData(void)
     gSaveBlock2Ptr->gcnLinkFlags = 0;
     gSaveBlock2Ptr->unkFlag1 = TRUE;
     gSaveBlock2Ptr->unkFlag2 = FALSE;
+    memset(&gSaveBlock2Ptr->follower, 0, sizeof(gSaveBlock2Ptr->follower));
     InitPlayerTrainerId();
     PlayTimeCounter_Reset();
     ClearPokedexFlags();

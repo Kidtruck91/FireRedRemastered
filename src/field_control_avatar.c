@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follow_me.h"
 #include "gflib.h"
 #include "bike.h"
 #include "coord_event_weather.h"
@@ -138,7 +139,7 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
     {
         if (tileTransitionState == T_TILE_CENTER && runningState == MOVING)
             input->tookStep = TRUE;
-        if (forcedMove == FALSE && tileTransitionState == T_TILE_CENTER)
+        if (forcedMove == FALSE && tileTransitionState == T_TILE_CENTER && !gPlayerAvatar.preventStep)
             input->checkStandardWildEncounter = TRUE;
     }
 
@@ -225,6 +226,11 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
             gFieldInputRecord.tookStep = TRUE;
             return TRUE;
         }
+    }
+    else
+    {
+        // Keep the follower's idle animation going (unless it's about to pop out of its ball)
+        FollowMe_IdleUpdate();
     }
     if (input->checkStandardWildEncounter)
     {
@@ -447,6 +453,10 @@ static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8
     }
 
     if (InUnionRoom() == TRUE && !ObjectEventCheckHeldMovementStatus(&gObjectEvents[objectEventId]))
+        return NULL;
+
+    // The follower can't be talked to while it's in its ball
+    if (FollowMe_IsFollowerObjectEventId(objectEventId) && gObjectEvents[objectEventId].invisible)
         return NULL;
 
     gSelectedObjectEvent = objectEventId;

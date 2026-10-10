@@ -19,6 +19,8 @@ EventScript_PkmnCenterNurse_HealPkmn::
 	end
 
 EventScript_PkmnCenterNurse_TakeAndHealPkmn::
+	followerintopokeball
+	call_if_eq VAR_0x8014, 1, EventScript_PkmnCenterNurse_FollowerIntoBallDelay
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
 	dofieldeffect FLDEFF_POKECENTER_HEAL
@@ -26,6 +28,13 @@ EventScript_PkmnCenterNurse_TakeAndHealPkmn::
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	special HealPlayerParty
+	updatefollowerpokemongraphic
+	return
+
+@ Wait for the follower Pokemon to go back into its ball
+EventScript_PkmnCenterNurse_FollowerIntoBallDelay::
+	delay 21
+	setvar VAR_0x8014, 0
 	return
 
 EventScript_PkmnCenterNurse_CheckTrainerTowerAndUnionRoom::
