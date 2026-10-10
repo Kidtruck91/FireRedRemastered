@@ -1,0 +1,112 @@
+diff --git a/src/event_object_movement.c b/src/event_object_movement.c
+index e7de6d058..3bf7d1415 100644
+--- a/src/event_object_movement.c
++++ b/src/event_object_movement.c
+@@ -8460,12 +8460,12 @@ static bool8 MovementAction_FollowingPokemon_Grow_Step0(struct ObjectEvent *obje
+         sprite->x2 = 0;
+         break;
+     case DIR_EAST:
+-        sprite->y2 = 10;
+-        sprite->x2 += 9;
+-        break;
+     case DIR_WEST:
++        // Grow in place on the follower's own tile. (This used to slide the sprite sideways
++        // by ~40px in the walking direction and snap it back at the end, so for a moment the
++        // Pokemon appeared a couple of tiles ahead of the player.)
+         sprite->y2 = 10;
+-        sprite->x2 -= 9;
++        sprite->x2 = 0;
+         break;
+     }
+     sprite->data[2]++;
+@@ -8493,36 +8493,8 @@ static bool8 MovementAction_FollowingPokemon_Grow_Step1(struct ObjectEvent *obje
+         sprite->y2 = 1;
+         break;
+     case DIR_WEST:
+-        if (sprite->data[7] <= 5)
+-        {
+-            if (sprite->data[7] > 3)
+-                sprite->x2 += 1 - sprite->data[7];
+-            else
+-                sprite->x2 -= sprite->data[7];
+-        }
+-        else if (sprite->data[7] == 6)
+-            sprite->x2 += -5;
+-        else
+-            sprite->x2 += 1 - sprite->data[7];
+-
+-        if (sprite->data[7] >= 10)
+-            sprite->y2 = 10;
+-        else
+-            sprite->y2 = sprite->data[7];
+-        break;
+     case DIR_EAST:
+-        if (sprite->data[7] <= 5)
+-        {
+-            if (sprite->data[7] > 3)
+-                sprite->x2 -= 2 - sprite->data[7];
+-            else
+-                sprite->x2 += sprite->data[7] - 1;
+-        }
+-        else if (sprite->data[7] == 6)
+-            sprite->x2 -= -4;
+-        else
+-            sprite->x2 -= 2 - sprite->data[7];
+-
++        sprite->x2 = 0;
+         if (sprite->data[7] >= 10)
+             sprite->y2 = 10;
+         else
+diff --git a/src/follow_me.c b/src/follow_me.c
+index 316b8435d..9e6234b5e 100644
+--- a/src/follow_me.c
++++ b/src/follow_me.c
+@@ -1136,6 +1136,8 @@ void FollowMe(struct ObjectEvent *npc, u8 state, bool8 ignoreScriptActive)
+         return;
+     else if (ArePlayerFieldControlsLocked() && !ignoreScriptActive)
+         return; // Don't follow during a script
++    else if (follower->heldMovementActive && follower->movementActionId == MOVEMENT_ACTION_FOLLOWING_POKEMON_GROW)
++        return; // Still coming out of its ball on the tile the player is leaving; it ends up one step behind
+ 
+     // Check if state would cause hidden follower to reappear
+     if (IsStateMovement(state) && gSaveBlock2Ptr->follower.warpEnd)
+@@ -2305,24 +2307,26 @@ void FollowerPokeballSparkle(void)
+     x = player->currentCoords.x;
+     y = player->currentCoords.y;
+ 
++    // Put the follower on the player's tile the normal way (the player is about to step off it,
++    // so the follower ends up one step behind). Positioning the sprite by hand here used camera
++    // coordinates that went stale as soon as the camera started scrolling.
++    MoveObjectEventToMapCoords(follower, x, y);
++
++    // Where the Poke Ball sprite appears
+     switch (player->facingDirection)
+     {
+     case DIR_SOUTH:
+         SetSpritePosToOffsetMapCoords(&x, &y, 8, 4);
+-        gSprites[follower->spriteId].y = y - 4;
+         break;
+     case DIR_NORTH:
+         SetSpritePosToOffsetMapCoords(&x, &y, 8, 0);
+-        gSprites[follower->spriteId].y = y;
+         break;
+     case DIR_EAST:
+     case DIR_WEST:
+     default:
+         SetSpritePosToOffsetMapCoords(&x, &y, 8, 8);
+-        gSprites[follower->spriteId].y = y - 8;
+         break;
+     }
+-    gSprites[follower->spriteId].x = x;
+ 
+     spriteId = CreateFollowerPokeballSprite(x, y, 2, SpriteCB_FollowerComeOutBall);
+     if (spriteId != MAX_SPRITES)
+@@ -2331,8 +2335,6 @@ void FollowerPokeballSparkle(void)
+         gSprites[spriteId].oam.priority = 2;
+     }
+ 
+-    follower->currentCoords.x = player->currentCoords.x;
+-    follower->currentCoords.y = player->currentCoords.y;
+     follower->facingDirection = player->facingDirection;
+ 
+     gSprites[follower->spriteId].animNum = player->facingDirection - 1;

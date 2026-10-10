@@ -8460,12 +8460,12 @@ static bool8 MovementAction_FollowingPokemon_Grow_Step0(struct ObjectEvent *obje
         sprite->x2 = 0;
         break;
     case DIR_EAST:
-        sprite->y2 = 10;
-        sprite->x2 += 9;
-        break;
     case DIR_WEST:
+        // Grow in place on the follower's own tile. (This used to slide the sprite sideways
+        // by ~40px in the walking direction and snap it back at the end, so for a moment the
+        // Pokemon appeared a couple of tiles ahead of the player.)
         sprite->y2 = 10;
-        sprite->x2 -= 9;
+        sprite->x2 = 0;
         break;
     }
     sprite->data[2]++;
@@ -8493,36 +8493,8 @@ static bool8 MovementAction_FollowingPokemon_Grow_Step1(struct ObjectEvent *obje
         sprite->y2 = 1;
         break;
     case DIR_WEST:
-        if (sprite->data[7] <= 5)
-        {
-            if (sprite->data[7] > 3)
-                sprite->x2 += 1 - sprite->data[7];
-            else
-                sprite->x2 -= sprite->data[7];
-        }
-        else if (sprite->data[7] == 6)
-            sprite->x2 += -5;
-        else
-            sprite->x2 += 1 - sprite->data[7];
-
-        if (sprite->data[7] >= 10)
-            sprite->y2 = 10;
-        else
-            sprite->y2 = sprite->data[7];
-        break;
     case DIR_EAST:
-        if (sprite->data[7] <= 5)
-        {
-            if (sprite->data[7] > 3)
-                sprite->x2 -= 2 - sprite->data[7];
-            else
-                sprite->x2 += sprite->data[7] - 1;
-        }
-        else if (sprite->data[7] == 6)
-            sprite->x2 -= -4;
-        else
-            sprite->x2 -= 2 - sprite->data[7];
-
+        sprite->x2 = 0;
         if (sprite->data[7] >= 10)
             sprite->y2 = 10;
         else

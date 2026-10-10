@@ -1136,6 +1136,8 @@ void FollowMe(struct ObjectEvent *npc, u8 state, bool8 ignoreScriptActive)
         return;
     else if (ArePlayerFieldControlsLocked() && !ignoreScriptActive)
         return; // Don't follow during a script
+    else if (follower->heldMovementActive && follower->movementActionId == MOVEMENT_ACTION_FOLLOWING_POKEMON_GROW)
+        return; // Still coming out of its ball on the tile the player is leaving; it ends up one step behind
 
     // Check if state would cause hidden follower to reappear
     if (IsStateMovement(state) && gSaveBlock2Ptr->follower.warpEnd)
@@ -2305,24 +2307,26 @@ void FollowerPokeballSparkle(void)
     x = player->currentCoords.x;
     y = player->currentCoords.y;
 
+    // Put the follower on the player's tile the normal way (the player is about to step off it,
+    // so the follower ends up one step behind). Positioning the sprite by hand here used camera
+    // coordinates that went stale as soon as the camera started scrolling.
+    MoveObjectEventToMapCoords(follower, x, y);
+
+    // Where the Poke Ball sprite appears
     switch (player->facingDirection)
     {
     case DIR_SOUTH:
         SetSpritePosToOffsetMapCoords(&x, &y, 8, 4);
-        gSprites[follower->spriteId].y = y - 4;
         break;
     case DIR_NORTH:
         SetSpritePosToOffsetMapCoords(&x, &y, 8, 0);
-        gSprites[follower->spriteId].y = y;
         break;
     case DIR_EAST:
     case DIR_WEST:
     default:
         SetSpritePosToOffsetMapCoords(&x, &y, 8, 8);
-        gSprites[follower->spriteId].y = y - 8;
         break;
     }
-    gSprites[follower->spriteId].x = x;
 
     spriteId = CreateFollowerPokeballSprite(x, y, 2, SpriteCB_FollowerComeOutBall);
     if (spriteId != MAX_SPRITES)
@@ -2331,8 +2335,6 @@ void FollowerPokeballSparkle(void)
         gSprites[spriteId].oam.priority = 2;
     }
 
-    follower->currentCoords.x = player->currentCoords.x;
-    follower->currentCoords.y = player->currentCoords.y;
     follower->facingDirection = player->facingDirection;
 
     gSprites[follower->spriteId].animNum = player->facingDirection - 1;
