@@ -9451,3 +9451,8 @@ const struct Trainer gTrainers[] = {
         .party = ITEM_CUSTOM_MOVES(sParty_NurseJoy),
     },
 };
+
+// Want a trainer whose team is rolled from a pool (Hiker / Swimmer / Ace Trainer pools with
+// Basic, Intermediate and Advanced tiers) instead of a handwritten one? See the DEMO at the
+// bottom of src/data/trainer_pools.h, e.g.
+//     .party = POOL_PARTY(sPool_Hiker_Advanced, 3, 5, 50, 15),

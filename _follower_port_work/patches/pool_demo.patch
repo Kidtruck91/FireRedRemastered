@@ -1,0 +1,89 @@
+diff --git a/src/data/trainer_pools.h b/src/data/trainer_pools.h
+index 1bb37f7ae..ff6e182e7 100644
+--- a/src/data/trainer_pools.h
++++ b/src/data/trainer_pools.h
+@@ -78,3 +78,71 @@ static const struct PoolMon sPool_Hiker_Advanced[] =
+       .moves = {MOVE_EARTHQUAKE, MOVE_AERIAL_ACE, MOVE_SWORDS_DANCE, MOVE_ROCK_SLIDE} },
+     POOL_END
+ };
++
++// =============================================================================================
++// DEMO: making a trainer that uses a pool (copy these three steps and uncomment)
++// =============================================================================================
++//
++// 1) Give the trainer an ID in include/constants/opponents.h, after the last one
++//    (TRAINER_NURSE_JOY is 926; there is room up to MAX_TRAINERS_COUNT, 992):
++//
++//        #define TRAINER_HIKER_DEMO                       927
++//        #define TRAINER_HIKER_DEMO_2                     928   // optional rematch
++//        #define TRAINER_SWIMMER_PAIR_DEMO                929   // optional double battle
++//
++//    and bump NUM_TRAINERS to match (927 -> 930 here).
++//
++// 2) Add the trainer to src/data/trainers.h, inside gTrainers[] like any other:
++//
++//    [TRAINER_HIKER_DEMO] = {
++//        .trainerClass = TRAINER_CLASS_HIKER,
++//        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
++//        .trainerPic = TRAINER_PIC_HIKER,
++//        .trainerName = _("DEMO"),
++//        .items = {},
++//        .doubleBattle = FALSE,
++//        .aiFlags = AI_LEVEL_NORMAL,
++//        .party = POOL_PARTY(sPool_Hiker_Intermediate, 3, 5, 30, 8),   // 3-5 mons, Lv 30-38
++//    },
++//
++//    // A VS Seeker rematch is a separate entry, so it rolls its own (harder) team:
++//    [TRAINER_HIKER_DEMO_2] = {
++//        .trainerClass = TRAINER_CLASS_HIKER,
++//        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
++//        .trainerPic = TRAINER_PIC_HIKER,
++//        .trainerName = _("DEMO"),
++//        .items = {ITEM_HYPER_POTION},
++//        .doubleBattle = FALSE,
++//        .aiFlags = AI_LEVEL_ADVANCED,
++//        .party = POOL_PARTY(sPool_Hiker_Advanced, 4, 5, 50, 15),     // 4-5 mons, Lv 50-65
++//    },
++//
++//    // Double battle: always gets at least 2 Pokemon, even if the minimum says 1.
++//    [TRAINER_SWIMMER_PAIR_DEMO] = {
++//        .trainerClass = TRAINER_CLASS_SWIMMER_M,
++//        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SWIMMER,
++//        .trainerPic = TRAINER_PIC_SWIMMER_M,
++//        .trainerName = _("DEMO"),
++//        .items = {},
++//        .doubleBattle = TRUE,
++//        .aiFlags = AI_LEVEL_NORMAL,
++//        .party = POOL_PARTY(sPool_Hiker_Basic, 2, 4, 20, 5),           // (use a Swimmer pool)
++//    },
++//
++//    A handwritten team can pick abilities too, without using a pool:
++//        static const struct TrainerMonNoItemDefaultMoves sParty_Demo[] = {
++//            { .iv = 0, .lvl = 12, .species = SPECIES_GEODUDE, .ability = 2 },   // Sturdy
++//        };
++//
++// 3) Battle them from a map script (data/maps/<Map>/scripts.inc), same as any trainer:
++//
++//    Route_EventScript_HikerDemo::
++//        trainerbattle_single TRAINER_HIKER_DEMO, Route_Text_HikerDemoIntro, Route_Text_HikerDemoDefeat
++//        msgbox Route_Text_HikerDemoPostBattle, MSGBOX_AUTOCLOSE
++//        end
++//
++//    and give the trainer's object in the map's map.json that script plus a trainer_type /
++//    sight range (Porymap: "Trainer Type: Normal", "Sight Radius: 3").
++//
++// The team that trainer gets is fixed for that save file, so losing and retrying shows the
++// same team; a new game rolls a new one.
+diff --git a/src/data/trainers.h b/src/data/trainers.h
+index 1c24ea94e..9bc1f5cb7 100644
+--- a/src/data/trainers.h
++++ b/src/data/trainers.h
+@@ -9451,3 +9451,8 @@ const struct Trainer gTrainers[] = {
+         .party = ITEM_CUSTOM_MOVES(sParty_NurseJoy),
+     },
+ };
++
++// Want a trainer whose team is rolled from a pool (Hiker / Swimmer / Ace Trainer pools with
++// Basic, Intermediate and Advanced tiers) instead of a handwritten one? See the DEMO at the
++// bottom of src/data/trainer_pools.h, e.g.
++//     .party = POOL_PARTY(sPool_Hiker_Advanced, 3, 5, 50, 15),
