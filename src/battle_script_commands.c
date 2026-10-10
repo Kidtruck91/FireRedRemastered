@@ -3251,6 +3251,9 @@ static void Cmd_getexp(void)
                         i = STRINGID_EMPTYSTRING4;
                     }
 
+                    // Level cap: don't let the EXP carry the Pokemon past the cap
+                    gBattleMoveDamage = CapExpGainAtLevelCap(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMoveDamage);
+
                     // get exp getter battlerId
                     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
                     {

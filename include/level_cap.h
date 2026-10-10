@@ -3,10 +3,11 @@
 
 #include "global.h"
 
-// Function prototypes
-void SetLevelCap(u8 cap);          // Set the level cap manually
-u8 GetLevelCap(void);              // Retrieve the current level cap
-void SetLevelCapTo(void);          // Set the level cap based on flags or progression
-void SPECIAL_GetSpecialVarLevelCap(void);  // Store the current level cap in gSpecialVar_0x8000
+void SetLevelCap(u8 cap);                                   // Saves a level cap value
+u8 GetLevelCap(void);                                       // Current level cap (MAX_LEVEL = no cap)
+void SetLevelCapTo(void);                                   // Recalculates the cap from progress and saves it
+void GetSpecialVarLevelCap(void);                           // Puts the current cap in VAR_TEMP_0
+bool8 IsMonAtLevelCap(struct Pokemon *mon);
+u32 CapExpGainAtLevelCap(struct Pokemon *mon, u32 expGain);
 
 #endif // LEVEL_CAP_H

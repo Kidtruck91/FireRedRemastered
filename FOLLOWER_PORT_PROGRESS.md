@@ -87,6 +87,13 @@ If a session runs out, a new one should read this file, check `git log follower-
 - [ ] Test on a new game: the follower appears after getting the starter; walk, run, ledges, doors, stairs, bike, surf, fly, Pokémon Center, battles, lead swap in the party and PC, and a big sprite (Steelix).
 - [ ] Remove `_follower_port_work/` when finished.
 
+## Separate change: level cap (not part of the follower port)
+Committed on the same branch but in its own commit, touching only level-cap files:
+- `src/level_cap.c` and `include/level_cap.h`: the cap is now calculated from badge flags whenever it's needed. Nuzlocke off means no cap. The user's cap table is unchanged.
+- `src/battle_script_commands.c`: EXP is clamped so a Pokémon can't level past the cap.
+- `src/party_menu.c`: Rare Candy has no effect at the cap.
+- `data/maps/PalletTown/text.inc`: the sign text for "no cap".
+
 ## Log
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
-- 2026-10-10: Chunk 2 done and committed.
+- 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit).

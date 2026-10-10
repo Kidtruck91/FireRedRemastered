@@ -68,7 +68,7 @@ PalletTown_Text_OakYouEnjoyingTraveling::
 PalletTown_Text_DisplayLevelCap:
     .string "The current level cap is {STR_VAR_1}.$"
 PalletTown_Text_DefaultLevelCap:
-    .string "The level cap is not set. Please set it first.$"
+    .string "There is no level cap right now.$"
 
 PalletTown_Text_SetLevelCapTo14:
     .string "The level cap has been set to 14!$"
