@@ -452,15 +452,17 @@ static u8 OptionMenu_ProcessInput(void)
     }
     else if (JOY_REPT(DPAD_UP))
     {
+        // The CANCEL row no longer fits on screen since Nuzlocke Mode was added (A/B already
+        // close the menu), so the cursor wraps between the first and last visible rows.
         if (sOptionMenuPtr->cursorPos == MENUITEM_TEXTSPEED)
-            sOptionMenuPtr->cursorPos = MENUITEM_CANCEL;
+            sOptionMenuPtr->cursorPos = MENUITEM_CANCEL - 1;
         else
             sOptionMenuPtr->cursorPos = sOptionMenuPtr->cursorPos - 1;
         return 3;        
     }
     else if (JOY_REPT(DPAD_DOWN))
     {
-        if (sOptionMenuPtr->cursorPos == MENUITEM_CANCEL)
+        if (sOptionMenuPtr->cursorPos >= MENUITEM_CANCEL - 1)
             sOptionMenuPtr->cursorPos = MENUITEM_TEXTSPEED;
         else
             sOptionMenuPtr->cursorPos = sOptionMenuPtr->cursorPos + 1;
