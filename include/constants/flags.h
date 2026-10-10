@@ -207,7 +207,7 @@
 #define FLAG_HIDE_GAURD_ROUTE_22        0x0BD
 #define FLAG_LEVEL_CAP               0x0BE
 #define FLAG_WHITEOUT               0x0BF
-#define FLAG_FOLLOWER_ACTIVE        0x0C0
+#define FLAG_FOLLOWERS_DISABLED     0x0C0 // Set to turn the follower Pokemon off (enablefollower / disablefollower)
 #define FLAG_FOLLOWER_IN_BUILDING   0x0C1
 #define FLAG_0x0C2               0x0C2
 #define FLAG_0x0C3               0x0C3

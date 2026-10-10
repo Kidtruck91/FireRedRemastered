@@ -1878,15 +1878,17 @@
 	setvar VAR_0x8006, \item
 	special CreateEnemyEventMon
 	.endm
-    
-	@Following pokemon
-	.macro pokemonfaceplayer objectId=254
-	setvar VAR_UNUSED_0x8014, \objectId
-	callnative ScrCmd_pokemonfaceplayer
+
+	@ Follower Pokemon
+	@ Makes the follower Pokemon (default) or the object with the given local id face the player
+	.macro pokemonfaceplayer objectId=OBJ_EVENT_ID_FOLLOWER
+	setvar VAR_0x8014, \objectId
+	callnative FollowerPokemonFacePlayer
 	.endm
 
+	@ Updates the follower's sprite after the lead Pokemon may have changed
 	.macro updatefollowerpokemongraphic
-	setvar VAR_UNUSED_0x8014, 1
+	setvar VAR_0x8014, 1
 	callnative UpdateFollowerPokemonGraphic
 	.endm
 
@@ -1897,13 +1899,24 @@
 	.macro showfollower
 	callnative ShowFollower
 	.endm
-    
-    .macro followerintopokeball
-    setvar VAR_UNUSED_0x8014, 0
-    callnative FollowerIntoPokeball
-    .endm
-    
-    .macro setfollowerwarppos pos:req
-    setvar VAR_RESULT, \pos
-    callnative SetFollowerWarpPosition
-    .endm
+
+	@ The follower shrinks into its Poke Ball. VAR_0x8014 is 1 afterwards if it was visible.
+	.macro followerintopokeball
+	setvar VAR_0x8014, 0
+	callnative FollowerIntoPokeball
+	.endm
+
+	@ Where the follower appears after the next scripted warp (DIR_NONE = pops out of its ball)
+	.macro setfollowerwarppos pos:req
+	setvar VAR_RESULT, \pos
+	callnative SetFollowerWarpPosition
+	.endm
+
+	@ Turns the follower Pokemon on / off (FLAG_FOLLOWERS_DISABLED)
+	.macro enablefollower
+	callnative FollowerPokemon_Enable
+	.endm
+
+	.macro disablefollower
+	callnative FollowerPokemon_Disable
+	.endm

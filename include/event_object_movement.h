@@ -235,6 +235,7 @@ u8 GetJumpSpecialWithEffectMovementAction(u32 direction);
 u8 GetFishingBiteDirectionAnimNum(u8 direction);
 void TrySpawnObjectEvents(s16 cameraX, s16 cameraY);
 void ResetObjectEvents(void);
+void ObjectEventSetMovementTypeNone(struct ObjectEvent *objectEvent);
 
 // Follower Pokemon support
 void RemoveObjectEvent(struct ObjectEvent *objectEvent);

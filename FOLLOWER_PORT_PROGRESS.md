@@ -68,14 +68,21 @@ If a session runs out, a new one should read this file, check `git log follower-
 - **Build status:** everything compiles except `src/follow_me.c` (chunk 3).
 - Patch scripts used are kept in `_follower_port_work/patches/` for reference.
 
-### Chunk 3: follow_me.c
-- [ ] Adapt `src/follow_me.c` (currently a straight copy of FollowerEm's):
-  - FireRed names: `gSpecialVar_0x8014` instead of `gSpecialVar_Unused_0x8014`
-  - the FireRed metatile behaviours and movement action names
-  - no Acro/Mach split in FireRed (only one bike)
-  - no underwater or dive
-- [ ] Built-in follower template; auto-start; `UpdateFollowerPokemonGraphic` and the sparkle/pokeball code from FollowerEm's `overworld.c`.
-- [ ] Add `src/follow_me.o` to `ld_script.txt` if FireRed's linker script lists objects explicitly.
+### Chunk 3: follow_me.c ✅ (committed). **`make` now builds a ROM.**
+- [x] `src/follow_me.c` rewritten for FireRed:
+  - The follower uses a built-in template (`sFollowerObjectEventTemplate`, local id 0xFE, script `EventScript_FollowerPokemon`).
+  - Auto-start: `FollowerPokemon_TryStart()`, called from `CreateFollowerAvatar()` and `UpdateFollowerPokemonGraphic()`.
+  - `UpdateFollowerPokemonGraphic()` recreates the object when the lead Pokémon changes.
+  - The ball and sparkle code from FollowerEm's `overworld.c` moved here: `FollowerPokeballSparkle`, `FollowerIntoPokeball`, `CreateFollowerPokeballSprite`, `IsBigSprite`, and the sparkle coords table re-indexed for FireRed species. All 12 FireRed ball types are supported; palettes load dynamically.
+  - Removed: rival/NPC alternate bike and surf sprites, the surf blob, underwater handling, `FAST_FOLLOWERS`, sideways stairs, and `Task_DoDoorWarp`. FireRed's door warp is in `field_fadetransition.c` and gets hooked in chunk 4.
+  - All functions are guarded against `objId == OBJECT_EVENTS_COUNT`, meaning the follower couldn't spawn on a full map, and against quest-log playback.
+- [x] `FLAG_FOLLOWER_ACTIVE` (0x0C0) renamed to `FLAG_FOLLOWERS_DISABLED`. `FLAG_FOLLOWER_IN_BUILDING` (0x0C1) is now unused.
+- [x] `asm/macros/event.inc`: the follower macros use `VAR_0x8014`; new `enablefollower` / `disablefollower`. `pokemonfaceplayer` calls `FollowerPokemonFacePlayer` (a callnative function, not a ScrCmd).
+- [x] `data/scripts/follower.inc`: the talk-to-follower script (cry and "X seems happy to be with you!") plus FollowerEm's position-fix scripts.
+- [x] `ObjectEventSetMovementTypeNone()` added to `event_object_movement.c` for `setfollower`.
+- [x] `ld_script.ld` needs no change; it has a `src/*.o` catch-all.
+- Sizes checked: `gObjectEvents` is 0x240 (16 × 0x24, unchanged), SaveBlock2 is 0xF28, SaveBlock1 is 0x3E44.
+- **Nothing calls `CreateFollowerAvatar` yet, so no follower shows up in game until chunk 4.**
 
 ### Chunk 4: hooks in the rest of the game
 - [ ] `overworld.c`: whiteout, warp placement, `CB1/CB2` fixes, `FollowMe_HandleSprite` after spawning objects, `UpdateFollowerPokemonGraphic` on return to field.
@@ -96,4 +103,4 @@ Committed on the same branch but in its own commit, touching only level-cap file
 
 ## Log
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
-- 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit).
+- 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds.

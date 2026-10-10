@@ -2843,6 +2843,13 @@ u16 GetObjectPaletteTag(u8 palSlot)
 }
 
 movement_type_empty_callback(MovementType_None)
+
+// Stops an object from moving on its own (used when an NPC becomes a follower)
+void ObjectEventSetMovementTypeNone(struct ObjectEvent *objectEvent)
+{
+    objectEvent->movementType = MOVEMENT_TYPE_NONE;
+    gSprites[objectEvent->spriteId].callback = MovementType_None;
+}
 movement_type_def(MovementType_WanderAround, gMovementTypeFuncs_WanderAround)
 movement_type_def(MovementType_WanderAroundSlower, gMovementTypeFuncs_WanderAroundSlower)
 movement_type_def(MovementType_FollowingPokemon, gMovementTypeFuncs_FollowingPokemon)
