@@ -3961,9 +3961,14 @@ static void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
 
 bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex)
 {
+    bool8 noEffect;
+
     if (Nuzlocke_ItemBlocked(mon, item))
         return TRUE; // no effect
-    return PokemonUseItemEffects(mon, item, partyIndex, moveIndex, 0);
+    noEffect = PokemonUseItemEffects(mon, item, partyIndex, moveIndex, 0);
+    if (!noEffect)
+        Nuzlocke_OnItemUsed(mon, item); // Revive / Revival Herb bring a dead Pokemon back
+    return noEffect;
 }
 
 #define UPDATE_FRIENDSHIP_FROM_ITEM()                                                                   \

@@ -2,7 +2,8 @@
 import sys, subprocess
 FILES=['include/global.h','src/script_pokemon_util.c','src/pokemon.c','src/battle_main.c','src/field_poison.c',
        'src/new_game.c','src/option_menu.c','src/item_use.c','data/scripts/white_out.inc','src/strings.c','include/strings.h']
-subprocess.run(['git','checkout','--']+FILES, check=True)
+# Files are reset to the commit before the Nuzlocke change (tag 'nuzlocke-base' in the working copy)
+subprocess.run(['git','checkout','nuzlocke-base','--']+FILES, check=True)
 def patch(path, pairs):
     s=open(path).read(); crlf='\r\n' in s; s=s.replace('\r\n','\n')
     for old,new in pairs:
@@ -50,12 +51,19 @@ patch('src/pokemon.c', [
 }"""),
 ("""bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex)
 {
-    return""",
+    return PokemonUseItemEffects(mon, item, partyIndex, moveIndex, 0);
+}""",
 """bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex)
 {
+    bool8 noEffect;
+
     if (Nuzlocke_ItemBlocked(mon, item))
         return TRUE; // no effect
-    return"""),
+    noEffect = PokemonUseItemEffects(mon, item, partyIndex, moveIndex, 0);
+    if (!noEffect)
+        Nuzlocke_OnItemUsed(mon, item); // Revive / Revival Herb bring a dead Pokemon back
+    return noEffect;
+}"""),
 ("""    u8 curEffect;
     u32 curMoveId;
 

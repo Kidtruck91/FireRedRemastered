@@ -118,7 +118,7 @@ Committed on the same branch but in its own commit, touching only level-cap file
 - `data/maps/PalletTown/text.inc`: the sign text for "no cap".
 
 ## Separate change: Nuzlocke rules (not part of the follower port)
-Its own commit. Hooks are applied by `_follower_port_work/patches/nuzlocke_hooks.py`, which can be re-run. The code is in `src/nuzlocke.c` and `include/nuzlocke.h`.
+Its own commit. Hooks are applied by `_follower_port_work/patches/nuzlocke_hooks.py`. It resets the files to the commit before the Nuzlocke change, using the tag `nuzlocke-base` in the scratch copy. The code is in `src/nuzlocke.c` and `include/nuzlocke.h`.
 
 **Switch:**
 - `FLAG_NUZLOCKE`, set from Oak's intro or the Options menu.
@@ -126,11 +126,12 @@ Its own commit. Hooks are applied by `_follower_port_work/patches/nuzlocke_hooks
 
 **Fainted = dead:**
 - After every battle the player didn't lose (`Nuzlocke_OnBattleEnd` in `battle_main.c`), party Pokémon at 0 HP are marked dead, using bit 1 of `MON_DATA_UNUSED_RIBBONS`. Fainting from field poison also marks a Pokémon dead.
-- Dead Pokémon stay in the party but can't be healed or revived:
+- Dead Pokémon stay in the party but can't be healed:
   - `HealPlayerParty` skips them
   - `CalculateMonStats` keeps them at 0 HP (taking them out of the PC or Day Care)
-  - every item has no effect on them
-  - Revive, Max Revive, Revival Herb and Sacred Ash never work on fainted Pokémon in Nuzlocke mode
+  - every item except Revive and Revival Herb has no effect on them
+- **Revive and Revival Herb are the only way back.** Using one is a deliberate rule bend, and `Nuzlocke_OnItemUsed` clears the dead mark.
+- Max Revive and Sacred Ash never work on fainted Pokémon in Nuzlocke mode. To allow them, add them to `IsNuzlockeReviveItem` in `nuzlocke.c`.
 
 **One encounter per area:**
 - The first wild battle in a map section uses up that area. The bits are in `SaveBlock2.nuzlockeAreas[32]`, inside the old filler, so the size is unchanged.

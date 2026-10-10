@@ -18,7 +18,8 @@
       After every battle the player didn't lose, any party Pokemon at 0 HP is marked dead
       (one of the unused ribbon bits, so it stays marked in the PC and the Day Care too).
       Dead Pokemon stay in the party but can't be healed (Pokemon Center, Mom, healing items,
-      PC withdraw...) or revived. In Nuzlocke mode, revive items never work on a fainted Pokemon.
+      PC withdraw...). The only way back is a Revive or Revival Herb (a deliberate rule bend);
+      Max Revive and Sacred Ash don't work on fainted Pokemon in Nuzlocke mode.
       Pokemon that faint from poison outside battle are marked dead too.
 
     One encounter per area
@@ -89,7 +90,21 @@ void Nuzlocke_MarkFaintedPartyMonsDead(void)
     }
 }
 
-static bool8 IsReviveItem(u16 item)
+// The only items that can bring back a fainted / dead Pokemon in Nuzlocke mode.
+// Using one is the player's deliberate choice to bend the rules. Max Revive and Sacred Ash
+// are left out on purpose; add them here to allow them too.
+static bool8 IsNuzlockeReviveItem(u16 item)
+{
+    switch (item)
+    {
+    case ITEM_REVIVE:
+    case ITEM_REVIVAL_HERB:
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static bool8 IsAnyReviveItem(u16 item)
 {
     switch (item)
     {
@@ -102,14 +117,24 @@ static bool8 IsReviveItem(u16 item)
     return FALSE;
 }
 
-// TRUE if the item must not work on this Pokemon (it's dead, or it's a revive in Nuzlocke mode)
+// TRUE if the item must not work on this Pokemon:
+// - dead Pokemon: only Revive / Revival Herb work on them
+// - Nuzlocke mode: other revive items (Max Revive, Sacred Ash) never work on fainted Pokemon
 bool8 Nuzlocke_ItemBlocked(struct Pokemon *mon, u16 item)
 {
     if (Nuzlocke_IsMonDead(mon))
-        return TRUE;
-    if (Nuzlocke_IsActive() && IsReviveItem(item) && GetMonData(mon, MON_DATA_HP, NULL) == 0)
+        return !IsNuzlockeReviveItem(item);
+    if (Nuzlocke_IsActive() && IsAnyReviveItem(item) && !IsNuzlockeReviveItem(item)
+     && GetMonData(mon, MON_DATA_HP, NULL) == 0)
         return TRUE;
     return FALSE;
+}
+
+// Called after an item was used successfully: a revived Pokemon is no longer dead
+void Nuzlocke_OnItemUsed(struct Pokemon *mon, u16 item)
+{
+    if (IsNuzlockeReviveItem(item) && GetMonData(mon, MON_DATA_HP, NULL) != 0)
+        ClearBoxMonDead(&mon->box);
 }
 
 // ---------------------------------------------------------------------------

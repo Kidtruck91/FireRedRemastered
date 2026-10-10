@@ -11,6 +11,7 @@ bool8 Nuzlocke_IsBoxMonDead(struct BoxPokemon *boxMon);
 void Nuzlocke_SetMonDead(struct Pokemon *mon);
 void Nuzlocke_MarkFaintedPartyMonsDead(void);
 bool8 Nuzlocke_ItemBlocked(struct Pokemon *mon, u16 item);
+void Nuzlocke_OnItemUsed(struct Pokemon *mon, u16 item);
 
 // One encounter per area: the first wild battle in each area uses it up.
 bool8 Nuzlocke_IsCurrentAreaUsed(void);
