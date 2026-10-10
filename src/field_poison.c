@@ -1,4 +1,5 @@
 #include "global.h"
+#include "nuzlocke.h"
 #include "gflib.h"
 #include "strings.h"
 #include "task.h"
@@ -35,6 +36,8 @@ static void FaintFromFieldPoison(u8 partyIdx)
     u32 status = STATUS1_NONE;
     AdjustFriendship(pokemon, FRIENDSHIP_EVENT_FAINT_OUTSIDE_BATTLE);
     SetMonData(pokemon, MON_DATA_STATUS, &status);
+    if (Nuzlocke_IsActive())
+        Nuzlocke_SetMonDead(pokemon);
     GetMonData(pokemon, MON_DATA_NICKNAME, gStringVar1);
     StringGet_Nickname(gStringVar1);
 }

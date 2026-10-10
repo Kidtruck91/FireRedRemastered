@@ -1,4 +1,5 @@
 #include "global.h"
+#include "event_data.h"
 #include "gflib.h"
 #include "scanline_effect.h"
 #include "text_window_graphics.h"
@@ -222,7 +223,7 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->option[MENUITEM_SOUND] = gSaveBlock2Ptr->optionsSound;
     sOptionMenuPtr->option[MENUITEM_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
     sOptionMenuPtr->option[MENUITEM_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
-    sOptionMenuPtr->option[MENUITEM_NUZLOCKE] = gSaveBlock2Ptr->enableNuzlocke;
+    sOptionMenuPtr->option[MENUITEM_NUZLOCKE] = FlagGet(FLAG_NUZLOCKE) ? 0 : 1;
 
     
     for (i = 0; i < MENUITEM_COUNT - 1; i++)
@@ -531,7 +532,11 @@ static void CloseAndSaveOptionMenu(u8 taskId)
     gSaveBlock2Ptr->optionsSound = sOptionMenuPtr->option[MENUITEM_SOUND];
     gSaveBlock2Ptr->optionsButtonMode = sOptionMenuPtr->option[MENUITEM_BUTTONMODE];
     gSaveBlock2Ptr->optionsWindowFrameType = sOptionMenuPtr->option[MENUITEM_FRAMETYPE];
-    gSaveBlock2Ptr->enableNuzlocke = sOptionMenuPtr->option[MENUITEM_NUZLOCKE];
+    if (sOptionMenuPtr->option[MENUITEM_NUZLOCKE] == 0)
+        FlagSet(FLAG_NUZLOCKE);
+    else
+        FlagClear(FLAG_NUZLOCKE);
+    gSaveBlock2Ptr->enableNuzlocke = FlagGet(FLAG_NUZLOCKE);
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
     FREE_AND_SET_NULL(sOptionMenuPtr);
     DestroyTask(taskId);

@@ -117,6 +117,29 @@ Committed on the same branch but in its own commit, touching only level-cap file
 - `src/party_menu.c`: Rare Candy has no effect at the cap.
 - `data/maps/PalletTown/text.inc`: the sign text for "no cap".
 
+## Separate change: Nuzlocke rules (not part of the follower port)
+Its own commit. Hooks are applied by `_follower_port_work/patches/nuzlocke_hooks.py`, which can be re-run. The code is in `src/nuzlocke.c` and `include/nuzlocke.h`.
+
+**Switch:**
+- `FLAG_NUZLOCKE`, set from Oak's intro or the Options menu.
+- The Options menu now reads and writes that flag; before, it only changed an unused `enableNuzlocke` bit.
+
+**Fainted = dead:**
+- After every battle the player didn't lose (`Nuzlocke_OnBattleEnd` in `battle_main.c`), party Pokémon at 0 HP are marked dead, using bit 1 of `MON_DATA_UNUSED_RIBBONS`. Fainting from field poison also marks a Pokémon dead.
+- Dead Pokémon stay in the party but can't be healed or revived:
+  - `HealPlayerParty` skips them
+  - `CalculateMonStats` keeps them at 0 HP (taking them out of the PC or Day Care)
+  - every item has no effect on them
+  - Revive, Max Revive, Revival Herb and Sacred Ash never work on fainted Pokémon in Nuzlocke mode
+
+**One encounter per area:**
+- The first wild battle in a map section uses up that area. The bits are in `SaveBlock2.nuzlockeAreas[32]`, inside the old filler, so the size is unchanged.
+- Throwing a ball in a later wild battle there asks: "Your encounter here is used. Throw it anyway?" Yes throws, No goes back to the bag.
+- Trainer, Safari, ghost, tutorial and Pokédude battles don't count.
+
+**Losing:**
+- The whiteout script's fail message now also calls `Nuzlocke_EndRun()`, which clears all dead marks (party and PC) and heals the party.
+
 ## Log
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
-- 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds. Chunk 4 done (hooks and dialogue); the follower is live, so testing is next.
+- 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds. Chunk 4 done (hooks and dialogue); the follower is live, so testing is next. Nuzlocke rules added (separate commit).

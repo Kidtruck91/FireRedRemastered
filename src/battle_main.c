@@ -1,4 +1,5 @@
 #include "global.h"
+#include "nuzlocke.h"
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -3843,6 +3844,7 @@ static void HandleEndTurn_FinishBattle(void)
         TrySetQuestLogBattleEvent();
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             ClearRematchStateByTrainerId();
+        Nuzlocke_OnBattleEnd();
         BeginFastPaletteFade(3);
         FadeOutMapMusic(5);
         gBattleMainFunc = FreeResetData_ReturnToOvOrDoEvolutions;

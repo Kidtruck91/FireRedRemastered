@@ -73,4 +73,5 @@ EventScript_ShowNuzlockeFailMsg::
     msgbox Text_PlayerNuzlockeFailed, MSGBOX_SIGN
     clearflag FLAG_NUZLOCKE
     setflag FLAG_NUZLOCKE_FIN
+    callnative Nuzlocke_EndRun
     return

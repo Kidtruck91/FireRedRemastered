@@ -1,4 +1,5 @@
 #include "global.h"
+#include "nuzlocke.h"
 #include "gflib.h"
 #include "random.h"
 #include "overworld.h"
@@ -121,6 +122,7 @@ void NewGameInitData(void)
     gSaveBlock2Ptr->unkFlag1 = TRUE;
     gSaveBlock2Ptr->unkFlag2 = FALSE;
     memset(&gSaveBlock2Ptr->follower, 0, sizeof(gSaveBlock2Ptr->follower));
+    Nuzlocke_ResetAreas();
     InitPlayerTrainerId();
     PlayTimeCounter_Reset();
     ClearPokedexFlags();

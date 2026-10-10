@@ -1,6 +1,7 @@
 #define IS_POKEMON_C
 
 #include "global.h"
+#include "nuzlocke.h"
 #include "gflib.h"
 #include "random.h"
 #include "text.h"
@@ -2166,6 +2167,8 @@ void CalculateMonStats(struct Pokemon *mon)
             return;
     }
 
+    if (Nuzlocke_IsMonDead(mon))
+        currentHP = 0; // Nuzlocke: dead Pokemon stay fainted (e.g. when taken out of the PC)
     SetMonData(mon, MON_DATA_HP, &currentHP);
 }
 
@@ -3958,6 +3961,8 @@ static void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
 
 bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex)
 {
+    if (Nuzlocke_ItemBlocked(mon, item))
+        return TRUE; // no effect
     return PokemonUseItemEffects(mon, item, partyIndex, moveIndex, 0);
 }
 
@@ -4529,6 +4534,9 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
     u16 heldItem;
     u8 curEffect;
     u32 curMoveId;
+
+    if (Nuzlocke_ItemBlocked(mon, item))
+        return TRUE; // Nuzlocke: no effect on dead Pokemon / no reviving
 
     // Get item hold effect
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);

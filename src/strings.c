@@ -868,6 +868,7 @@ const u8 gText_BattleScene[] = _("BATTLE SCENE");
 const u8 gText_BattleStyle[] = _("BATTLE STYLE");
 
 const u8 gText_NuzlockeMode[] = _("NUZLOCKE MODE");
+const u8 gText_NuzlockeAlreadyEncountered[] = _("Your encounter here is used.\nThrow it anyway?");
 const u8 gText_NuzlockeOn[] = _("ON");
 const u8 gText_NuzlockeOff[] = _("OFF");
 const u8 gText_RandomizeTrainer[] = _("RANDOMIZE TRAINER");

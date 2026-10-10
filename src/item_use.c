@@ -1,4 +1,7 @@
 #include "global.h"
+#include "nuzlocke.h"
+#include "bag.h"
+#include "menu_helpers.h"
 #include "gflib.h"
 #include "battle.h"
 #include "berry_pouch.h"
@@ -734,13 +737,43 @@ void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8 taskId)
     Task_ItemUse_CloseMessageBoxAndReturnToField(taskId);
 }
 
+static void ThrowPokeBall(u8 taskId)
+{
+    RemoveBagItem(gSpecialVar_ItemId, 1);
+    Bag_BeginCloseWin0Animation();
+    ItemMenu_StartFadeToExitCallback(taskId);
+}
+
+// Nuzlocke: "You already had your encounter here. Throw it anyway?"
+static void Task_NuzlockeThrowAnyway_Yes(u8 taskId)
+{
+    CloseBagWindow(5);
+    ThrowPokeBall(taskId);
+}
+
+static void Task_NuzlockeThrowAnyway_No(u8 taskId)
+{
+    Task_ReturnToBagFromContextMenu(taskId);
+}
+
+static const struct YesNoFuncTable sYesNoMenu_NuzlockeThrowAnyway = {
+    Task_NuzlockeThrowAnyway_Yes,
+    Task_NuzlockeThrowAnyway_No
+};
+
+static void Task_NuzlockeAskThrowAnyway(u8 taskId)
+{
+    BagCreateYesNoMenuBottomRight(taskId, &sYesNoMenu_NuzlockeThrowAnyway);
+}
+
 void BattleUseFunc_PokeBallEtc(u8 taskId)
 {
     if (!IsPlayerPartyAndPokemonStorageFull())
     {
-        RemoveBagItem(gSpecialVar_ItemId, 1);
-        Bag_BeginCloseWin0Animation();
-        ItemMenu_StartFadeToExitCallback(taskId);
+        if (Nuzlocke_ShouldWarnBeforeCatch())
+            DisplayItemMessageInBag(taskId, FONT_NORMAL, gText_NuzlockeAlreadyEncountered, Task_NuzlockeAskThrowAnyway);
+        else
+            ThrowPokeBall(taskId);
     }
     else
         DisplayItemMessageInBag(taskId, FONT_NORMAL, gText_BoxFull, Task_ReturnToBagFromContextMenu);

@@ -380,7 +380,8 @@ struct SaveBlock2
     /*0xB00*/ struct PokemonJumpRecords pokeJump;
     /*0xB10*/ struct BerryPickingResults berryPick;
     /*0xB20*/ struct Follower follower;
-    /*0xB38*/ u8 filler_B38[0x400 - sizeof(struct Follower)];
+    /*0xB38*/ u8 nuzlockeAreas[32]; // one bit per map section: its Nuzlocke encounter was used (src/nuzlocke.c)
+    /*0xB58*/ u8 filler_B58[0x400 - sizeof(struct Follower) - 32];
     /*0xF20*/ u32 encryptionKey;
 }; // size: 0xF24
 
