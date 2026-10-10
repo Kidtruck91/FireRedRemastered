@@ -44,6 +44,18 @@
 #define AI_SCRIPT_DOUBLE_BATTLE (1 << 7)
 #define AI_SCRIPT_HP_AWARE (1 << 8)
 #define AI_SCRIPT_UNKNOWN (1 << 9)
+#define AI_SCRIPT_ADVANCED (1 << 10) // C-side AI in src/battle_ai_advanced.c (no script)
+
+// Trainer AI levels. Put one of these in a trainer's .aiFlags in src/data/trainers.h.
+//   SIMPLE   - vanilla route-trainer AI: only avoids moves that obviously fail.
+//   NORMAL   - gym-leader AI: also goes for KOs, picks sensible moves, and plays around its HP.
+//   ADVANCED - NORMAL plus src/battle_ai_advanced.c: remembers every move your Pokemon use,
+//              uses real damage calcs to take sure KOs, sets up when it's safe, reads
+//              switches, and switches its own Pokemon out of bad matchups.
+// You can still OR in extra script flags, e.g. AI_LEVEL_NORMAL | AI_SCRIPT_SETUP_FIRST_TURN.
+#define AI_LEVEL_SIMPLE   (AI_SCRIPT_CHECK_BAD_MOVE)
+#define AI_LEVEL_NORMAL   (AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_HP_AWARE)
+#define AI_LEVEL_ADVANCED (AI_LEVEL_NORMAL | AI_SCRIPT_ADVANCED)
 // 10 - 28 are not used
 #define AI_SCRIPT_ROAMING (1 << 29)
 #define AI_SCRIPT_SAFARI (1 << 30)

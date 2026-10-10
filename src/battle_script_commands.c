@@ -37,6 +37,7 @@
 #include "constants/pokemon.h"
 #include "constants/maps.h"
 #include "level_cap.h"
+#include "battle_ai_advanced.h"
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 
@@ -4255,6 +4256,7 @@ static void Cmd_moveend(void)
                 if (gHitMarker & HITMARKER_OBEYS)
                 {
                     gLastMoves[gBattlerAttacker] = gChosenMove;
+                    AI_RecordPlayerMove(gBattlerAttacker, gChosenMove); // advanced trainer AI memory
                     gLastResultingMoves[gBattlerAttacker] = gCurrentMove;
                 }
                 else

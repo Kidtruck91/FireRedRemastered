@@ -5,6 +5,7 @@
 #include "item.h"
 #include "random.h"
 #include "battle_ai_script_commands.h"
+#include "battle_ai_advanced.h"
 #include "constants/abilities.h"
 #include "constants/battle_ai.h"
 #include "constants/battle_move_effects.h"
@@ -266,6 +267,7 @@ void BattleAI_HandleItemUseBeforeAISetup(void)
 
     for (i = 0; i < sizeof(struct BattleHistory); i++)
         data[i] = 0;
+    AI_ResetPlayerMoveMemory();
 
     // Items are allowed to use in ONLY trainer battles.
     if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
@@ -358,6 +360,11 @@ void BattleAI_SetupAIData(void)
         return;
     }
     AI_THINKING_STRUCT->aiFlags = gTrainers[gTrainerBattleOpponent_A].aiFlags;
+    if (AI_THINKING_STRUCT->aiFlags & AI_SCRIPT_ADVANCED)
+    {
+        AI_ObservePlayerSide();
+        AI_LoadTargetMoveHistory(gBattlerTarget);
+    }
 }
 
 u8 BattleAI_ChooseMoveOrAction(void)
@@ -366,6 +373,7 @@ u8 BattleAI_ChooseMoveOrAction(void)
     u8 consideredMoveArray[MAX_MON_MOVES];
     u8 numOfBestMoves;
     s32 i;
+    bool8 advanced = (AI_THINKING_STRUCT->aiFlags & AI_SCRIPT_ADVANCED) != 0;
 
     RecordLastUsedMoveByTarget();
     while (AI_THINKING_STRUCT->aiFlags != 0)
@@ -385,6 +393,9 @@ u8 BattleAI_ChooseMoveOrAction(void)
         return AI_CHOICE_FLEE;
     if (AI_THINKING_STRUCT->aiAction & AI_ACTION_WATCH)
         return AI_CHOICE_WATCH;
+
+    if (advanced)
+        AI_AdvancedScoreMoves(gBattlerAttacker, gBattlerTarget, AI_THINKING_STRUCT->score);
 
     numOfBestMoves = 1;
     currentMoveArray[0] = AI_THINKING_STRUCT->score[0];

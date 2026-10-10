@@ -141,6 +141,41 @@ Its own commit. Hooks are applied by `_follower_port_work/patches/nuzlocke_hooks
 **Losing:**
 - The whiteout script's fail message now also calls `Nuzlocke_EndRun()`, which clears all dead marks (party and PC) and heals the party.
 
+## Separate change: trainer AI levels (not part of the follower port)
+Its own commit. There's no in-game option: each trainer's level is set in `src/data/trainers.h` with `.aiFlags = AI_LEVEL_SIMPLE / AI_LEVEL_NORMAL / AI_LEVEL_ADVANCED`. These are defined in `include/constants/battle_ai.h`.
+
+**Levels:**
+- **SIMPLE** = `CHECK_BAD_MOVE`, vanilla route-trainer behaviour.
+- **NORMAL** = `CHECK_BAD_MOVE | CHECK_VIABILITY | TRY_TO_FAINT | HP_AWARE`. This is the vanilla gym-leader set plus HP_AWARE.
+- **ADVANCED** = NORMAL | `AI_SCRIPT_ADVANCED` (bit 10). Bit 10 is AI_Ret in the script table, so all of its logic is C in `src/battle_ai_advanced.c`. The tuning numbers are at the top of that file.
+
+**Defaults set by the conversion:**
+- The 776 vanilla `CHECK_BAD_MOVE` trainers became SIMPLE.
+- The other old gym-leader-style trainers became NORMAL.
+- Every `TRAINER_CLASS_LEADER`, `ELITE_FOUR` and `CHAMPION` entry (84, rematches included) became ADVANCED.
+
+**What Advanced does:**
+- **Memory:**
+  - `AI_RecordPlayerMove` is hooked in `battle_script_commands.c` where `gLastMoves` is set. It records each player party slot's used moves, `sSeenMoves[6][4]`, and which slots have been out.
+  - It is reset once per battle in `BattleAI_HandleItemUseBeforeAISetup`.
+  - The script history (`if_has_move AI_TARGET`) is replaced with the current mon's own remembered moves.
+  - Unseen moves are guessed as a typical STAB attack of the mon's types, at 80%.
+- **Move scoring:** `AI_AdvancedScoreMoves` runs after the scripts in `BattleAI_ChooseMoveOrAction` and uses real damage calcs.
+  - A sure KO when it moves first, or with a priority move: +8, minus an accuracy penalty.
+  - A KO when it's slower but survives the player's hit: +6.
+  - Its best-damage move: +3.
+  - When it will be KO'd before moving: status moves are discouraged; priority moves and Explosion are favoured.
+  - Setup moves are worth +5/+3 when it survives two of the player's best known hits. That drops once it's at +2, when the boost is useless, or when it's unsafe.
+  - **Switch prediction** (50% of turns, singles only): if the player's mon is in trouble and a *seen* teammate walls the AI's best attack, moves that also hit that teammate get a bonus.
+- **Switching:** in singles, `AI_AdvancedShouldSwitch` replaces vanilla's random type-matchup switches. Vanilla's Perish Song, Wonder Guard, absorb-ability and Natural Cure checks still run first.
+  - It switches only when it would be KO'd first, or is walled (under 1/8 damage), and only into something that takes the known moves much better.
+  - It never switches when it has a sure KO, never on consecutive turns, and stays in 25% of the time anyway.
+  - Replacements after a faint use the same scoring (`AI_AdvancedGetBestSwitchIn`).
+- **Doubles:** only the move scoring applies; switching is vanilla.
+
+**Status:** builds; **not play-tested.**
+
 ## Log
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
 - 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds. Chunk 4 done (hooks and dialogue); the follower is live, so testing is next. Nuzlocke rules added (separate commit).
+- 2026-10-10: Trainer AI levels (Simple / Normal / Advanced as trainer data) added as a separate commit. Builds; not play-tested.

@@ -2,6 +2,8 @@
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
+#include "battle_ai_advanced.h"
+#include "constants/battle_ai.h"
 #include "random.h"
 #include "util.h"
 #include "constants/abilities.h"
@@ -347,6 +349,8 @@ static bool8 ShouldSwitch(void)
      || FindMonThatAbsorbsOpponentsMove()
      || ShouldSwitchIfNaturalCure())
         return TRUE;
+    if (AI_IsAdvanced() && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+        return AI_AdvancedShouldSwitch(); // replaces the random type-matchup switches below
     if (HasSuperEffectiveMoveAgainstOpponents(FALSE)
      || AreStatsRaised())
         return FALSE;
@@ -362,6 +366,8 @@ void AI_TrySwitchOrUseItem(void)
 
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
+        if (AI_IsAdvanced())
+            AI_ObservePlayerSide();
         if (ShouldSwitch())
         {
             if (*(gBattleStruct->AI_monToSwitchIntoId + (GetBattlerPosition(gActiveBattler) >> 1)) == 6)
@@ -438,6 +444,15 @@ u8 GetMostSuitableMonToSwitchInto(void)
 
     if (*(gBattleStruct->monToSwitchIntoId + gActiveBattler) != PARTY_SIZE)
         return *(gBattleStruct->monToSwitchIntoId + gActiveBattler);
+    if (AI_IsAdvanced())
+    {
+        u8 advancedPick;
+
+        AI_ObservePlayerSide();
+        advancedPick = AI_AdvancedGetBestSwitchIn();
+        if (advancedPick != PARTY_SIZE)
+            return advancedPick;
+    }
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerIn1 = gActiveBattler;
