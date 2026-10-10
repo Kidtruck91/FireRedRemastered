@@ -1737,6 +1737,14 @@ void CreateFollowerAvatar(void)
     }
     gSaveBlock2Ptr->follower.graphicsId = GetFollowerPokemonGraphicsId();
 
+    // A new map: forget any door exit that was still pending from the last map. (Leaving through
+    // a door and walking straight back in before taking a step used to leave comeOutDoorStairs
+    // set, so the first step in the next map started a "come out of the door" sequence with no
+    // door and the player could never move again.) A door exit on this map sets it again
+    // afterwards in FollowMe_DoorExitEnd.
+    gSaveBlock2Ptr->follower.comeOutDoorStairs = 0;
+    gSaveBlock2Ptr->follower.warpEnd = 0;
+
     player = &gObjectEvents[gPlayerAvatar.objectEventId];
     clone = *GetFollowerObjectEventTemplate();
     clone.graphicsId = gSaveBlock2Ptr->follower.graphicsId;
