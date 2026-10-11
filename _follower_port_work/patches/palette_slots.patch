@@ -1,0 +1,1931 @@
+diff --git a/include/event_object_movement.h b/include/event_object_movement.h
+index d2221fda4..e17022ada 100644
+--- a/include/event_object_movement.h
++++ b/include/event_object_movement.h
+@@ -6,25 +6,31 @@
+ // time while walking around the overworld. The only exceptions are the palettes for the player and
+ // the "special" NPC, which can be swapped out. This also means that e.g. two "special" NPCs
+ // with competing palettes cannot be properly loaded at the same time.
++//
++// The reflection palettes come last: on maps with no reflective water or ice anywhere in view,
++// they are not loaded at all and slots 6-15 are free for followers, wild overworld Pokemon,
++// field effects and weather (instead of only 12-15).
+ enum {
+     PALSLOT_PLAYER,
+-    PALSLOT_PLAYER_REFLECTION,
+     PALSLOT_NPC_1,
+     PALSLOT_NPC_2,
+     PALSLOT_NPC_3,
+     PALSLOT_NPC_4,
++    PALSLOT_NPC_SPECIAL,
++    OBJ_PALSLOT_COUNT_NO_REFLECTIONS,
++    PALSLOT_PLAYER_REFLECTION = OBJ_PALSLOT_COUNT_NO_REFLECTIONS,
+     PALSLOT_NPC_1_REFLECTION,
+     PALSLOT_NPC_2_REFLECTION,
+     PALSLOT_NPC_3_REFLECTION,
+     PALSLOT_NPC_4_REFLECTION,
+-    PALSLOT_NPC_SPECIAL,
+     PALSLOT_NPC_SPECIAL_REFLECTION,
+     OBJ_PALSLOT_COUNT
+-    // the remaining sprite palette slots (12-15) are used by field effects, the interface, etc.
++    // the remaining sprite palette slots (12-15, or 6-15 without reflections) are used by
++    // field effects, the interface, follower Pokemon, etc.
+ };
+ 
+ // paletteSlot value for graphics whose palette is allocated on demand by tag in one of the
+-// free slots 12-15 (follower Pokemon)
++// free slots (follower Pokemon)
+ #define PALSLOT_DYNAMIC 15
+ 
+ enum SpinnerRunnerFollowPatterns
+@@ -140,6 +146,8 @@ u8 GetFishingDirectionAnimNum(u8 direction);
+ u8 GetFishingNoCatchDirectionAnimNum(u8 a0);
+ u8 CreateFameCheckerObject(u16 graphicsId, u8 localId, s16 x, s16 y);
+ void InitObjectEventPalettes(u8 mode);
++void UpdateObjectReflectionPaletteMode(void);
++bool8 AreObjectReflectionPalettesLoaded(void);
+ bool8 ObjectEventIsMovementOverridden(struct ObjectEvent *objectEvent);
+ u8 ObjectEventCheckHeldMovementStatus(struct ObjectEvent *objectEvent);
+ u8 GetWalkNormalMovementAction(u32);
+diff --git a/include/fieldmap.h b/include/fieldmap.h
+index a23b6c428..41dba8de4 100644
+--- a/include/fieldmap.h
++++ b/include/fieldmap.h
+@@ -26,6 +26,7 @@ extern const struct MapLayout Route1_Layout;
+ u32 MapGridGetMetatileIdAt(s32, s32);
+ u32 MapGridGetMetatileBehaviorAt(s16, s16);
+ u8 MapGridGetMetatileLayerTypeAt(s16 x, s16 y);
++bool8 MapGridHasReflectiveMetatiles(void);
+ void MapGridSetMetatileIdAt(s32, s32, u16);
+ void MapGridSetMetatileEntryAt(s32, s32, u16);
+ u8 MapGridGetElevationAt(s32 x, s32 y);
+diff --git a/include/overworld_mons.h b/include/overworld_mons.h
+index 1ea183a0f..de34c0f75 100644
+--- a/include/overworld_mons.h
++++ b/include/overworld_mons.h
+@@ -4,6 +4,7 @@
+ // Visible wild Pokemon that wander around on routes (src/overworld_mons.c).
+ 
+ void OverworldMons_OnStep(void);
++void OverworldMons_CleanUp(void);
+ bool8 OverworldMon_IsOverworldMonObjectEventId(u8 objectEventId);
+ bool8 OverworldMon_IsOverworldMonLocalId(u8 localId);
+ bool8 OverworldMon_TryWalkInto(u8 direction);
+diff --git a/src/data/object_events/object_event_graphics_info.h b/src/data/object_events/object_event_graphics_info.h
+index 6c7846abe..d25d92ce1 100644
+--- a/src/data/object_events/object_event_graphics_info.h
++++ b/src/data/object_events/object_event_graphics_info.h
+@@ -23,7 +23,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Walker = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -41,7 +41,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bugsy = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -59,7 +59,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Whitney = {
+     .size = 256,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -77,7 +77,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Morty = {
+     .size = 256,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -95,7 +95,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chuck = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -113,7 +113,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Jasmine = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -131,7 +131,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pryce = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -149,7 +149,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Clair = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -167,7 +167,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elm = {
+     .size = 192,
+     .width = 16,
+     .height = 24,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -242,7 +242,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Policeman = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -261,7 +261,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RSBrendan = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -280,7 +280,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RSMay = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -299,7 +299,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LittleBoy = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -318,7 +318,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LittleGirl = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -337,7 +337,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SittingBoy = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -356,7 +356,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lass = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -375,7 +375,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Youngster = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -394,7 +394,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Woman1 = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -413,7 +413,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Woman3 = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -432,7 +432,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Boy = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -451,7 +451,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BattleGirl = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -470,7 +470,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BugCatcher = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -489,7 +489,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FatMan = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -508,7 +508,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BaldingMan = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -527,7 +527,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Woman2 = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -546,7 +546,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldMan1 = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -565,7 +565,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_WorkerM = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -584,7 +584,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_WorkerF = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -603,7 +603,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Beauty = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -622,7 +622,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chef = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -641,7 +641,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldMan2 = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -660,7 +660,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldWoman = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -679,7 +679,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Camper = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -698,7 +698,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Picnicker = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -717,7 +717,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CooltrainerM = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -736,7 +736,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CooltrainerF = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -755,7 +755,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SuperNerd = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -774,7 +774,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Channeler = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -793,7 +793,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketF = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -812,7 +812,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerMWater = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -831,7 +831,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerFWater = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -850,7 +850,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerMLand = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -869,7 +869,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerFLand = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -888,7 +888,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blackbelt = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -907,7 +907,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Scientist = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -926,7 +926,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gentleman = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -945,7 +945,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sailor = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -964,7 +964,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Captain = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -983,7 +983,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fisher = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1002,7 +1002,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TeachyTVHost = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1021,7 +1021,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedWoman = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1040,7 +1040,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TuberF = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1059,7 +1059,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TuberMWater = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1078,7 +1078,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TuberMLand = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1097,7 +1097,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Hiker = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1116,7 +1116,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Biker = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1135,7 +1135,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GymGuy = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1154,7 +1154,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Nurse = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1173,7 +1173,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMaleReceptio
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1192,7 +1192,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ItemBall = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1211,7 +1211,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ProfOak = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1230,7 +1230,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Man = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1249,7 +1249,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rocker = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1268,7 +1268,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MrFuji = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1287,7 +1287,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bruno = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1306,7 +1306,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldManLyingDown =
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1325,7 +1325,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CutTree = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1344,7 +1344,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Clerk = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1363,7 +1363,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MGDeliveryman = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1382,7 +1382,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TrainerTowerDude =
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1401,7 +1401,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableClubReception
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1420,7 +1420,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnionRoomReception
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1439,7 +1439,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RockSmashRock = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1458,7 +1458,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_StrengthBoulder =
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1553,7 +1553,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedBikeAlt = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1572,7 +1572,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RocketM = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1591,7 +1591,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Celio = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1610,7 +1610,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Agatha = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1629,7 +1629,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Brock = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1648,7 +1648,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Misty = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1667,7 +1667,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LtSurge = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1686,7 +1686,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Erika = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1705,7 +1705,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Koga = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1724,7 +1724,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Giovanni = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1743,7 +1743,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blaine = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1762,7 +1762,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sabrina = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1781,7 +1781,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bill = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1800,7 +1800,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Daisy = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1819,7 +1819,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lorelei = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1838,7 +1838,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lance = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1857,7 +1857,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blue = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -1990,7 +1990,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TownMap = {
+     .size = 256,
+     .width = 32,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2009,7 +2009,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pokedex = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2028,7 +2028,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GBAKid = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2047,7 +2047,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Snorlax = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2066,7 +2066,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fossil = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2085,7 +2085,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ruby = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2104,7 +2104,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sapphire = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2123,7 +2123,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldAmber = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2142,7 +2142,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GymSign = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2161,7 +2161,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sign = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2180,7 +2180,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TrainerTips = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2199,7 +2199,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Clipboard = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2218,7 +2218,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Meteorite = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2237,7 +2237,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LaprasDoll = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_S,
+     .inanimate = TRUE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2256,7 +2256,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Spearow = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2275,7 +2275,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Omanyte = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2294,7 +2294,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kangaskhan = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2313,7 +2313,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Psyduck = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2332,7 +2332,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NidoranF = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2351,7 +2351,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_NidoranM = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2370,7 +2370,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Nidorino = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2389,7 +2389,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Meowth = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2408,7 +2408,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Seel = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2427,7 +2427,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Voltorb = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2446,7 +2446,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Slowpoke = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2465,7 +2465,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Slowbro = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2484,7 +2484,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Machop = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2503,7 +2503,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wigglytuff = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2522,7 +2522,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Doduo = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2541,7 +2541,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fearow = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2560,7 +2560,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lapras = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2579,7 +2579,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Zapdos = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2598,7 +2598,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Moltres = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2617,7 +2617,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Articuno = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2636,7 +2636,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DeoxysD = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2655,7 +2655,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DeoxysA = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2674,7 +2674,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DeoxysN = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2693,7 +2693,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mewtwo = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2712,7 +2712,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mew = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2731,7 +2731,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Entei = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2750,7 +2750,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Raikou = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2769,7 +2769,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Suicune = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2788,7 +2788,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lugia = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2807,7 +2807,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoOh = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2826,7 +2826,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Celebi = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 4,
++    .paletteSlot = 3,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2845,7 +2845,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cubone = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 5,
++    .paletteSlot = 4,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2864,7 +2864,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Machoke = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2883,7 +2883,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kabuto = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2902,7 +2902,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Poliwrath = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2921,7 +2921,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pidgeot = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2940,7 +2940,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chansey = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2959,7 +2959,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pikachu = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2978,7 +2978,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Jigglypuff = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -2997,7 +2997,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Pidgey = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3016,7 +3016,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Clefairy = {
+     .size = 128,
+     .width = 16,
+     .height = 16,
+-    .paletteSlot = 3,
++    .paletteSlot = 2,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3035,7 +3035,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mom = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3054,7 +3054,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Seagallop = {
+     .size = 2048,
+     .width = 64,
+     .height = 64,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3073,7 +3073,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SSAnne = {
+     .size = 4096,
+     .width = 128,
+     .height = 64,
+-    .paletteSlot = 10,
++    .paletteSlot = 5,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3091,7 +3091,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Regi = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3109,7 +3109,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Groudon = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3127,7 +3127,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kyogre = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3145,7 +3145,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Latias_Latios = {
+     .size = 512,
+     .width = 32,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3163,7 +3163,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rayquaza = {
+     .size = 2048,
+     .width = 64,
+     .height = 64,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3182,7 +3182,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RayquazaStill = {
+     .size = 2048,
+     .width = 64,
+     .height = 64,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+@@ -3200,7 +3200,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo = {
+     .size = 256,
+     .width = 16,
+     .height = 32,
+-    .paletteSlot = 2,
++    .paletteSlot = 1,
+     .shadowSize = SHADOW_SIZE_M,
+     .inanimate = FALSE,
+     .disableReflectionPaletteLoad = FALSE,
+diff --git a/src/event_object_movement.c b/src/event_object_movement.c
+index 3e8333881..02cb5c2e3 100644
+--- a/src/event_object_movement.c
++++ b/src/event_object_movement.c
+@@ -236,6 +236,7 @@ static u8 setup##_callback(struct ObjectEvent *objectEvent, struct Sprite *sprit
+ 
+ EWRAM_DATA u8 sCurrentReflectionType = 0;
+ EWRAM_DATA u16 sCurrentSpecialObjectPaletteTag = 0;
++static EWRAM_DATA bool8 sReflectionPalettesLoaded = FALSE;
+ 
+ const u8 gReflectionEffectPaletteMap[16] = {
+     [PALSLOT_PLAYER]                 = PALSLOT_PLAYER_REFLECTION,
+@@ -687,56 +688,64 @@ static const struct PairedPalettes gSpecialObjectReflectionPaletteSets[] = {
+     {OBJ_EVENT_PAL_TAG_NONE, NULL},
+ };
+ 
+-static const u16 sObjectPaletteTags0[] = {
+-    OBJ_EVENT_PAL_TAG_PLAYER_RED,
+-    OBJ_EVENT_PAL_TAG_PLAYER_RED_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_BLUE,
+-    OBJ_EVENT_PAL_TAG_NPC_PINK,
+-    OBJ_EVENT_PAL_TAG_NPC_GREEN,
+-    OBJ_EVENT_PAL_TAG_NPC_WHITE,
+-    OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION,
++static const u16 sObjectPaletteTags0[OBJ_PALSLOT_COUNT] = {
++    [PALSLOT_PLAYER]                 = OBJ_EVENT_PAL_TAG_PLAYER_RED,
++    [PALSLOT_NPC_1]                  = OBJ_EVENT_PAL_TAG_NPC_BLUE,
++    [PALSLOT_NPC_2]                  = OBJ_EVENT_PAL_TAG_NPC_PINK,
++    [PALSLOT_NPC_3]                  = OBJ_EVENT_PAL_TAG_NPC_GREEN,
++    [PALSLOT_NPC_4]                  = OBJ_EVENT_PAL_TAG_NPC_WHITE,
++    [PALSLOT_NPC_SPECIAL]            = OBJ_EVENT_PAL_TAG_NONE, // loaded on demand
++    [PALSLOT_PLAYER_REFLECTION]      = OBJ_EVENT_PAL_TAG_PLAYER_RED_REFLECTION,
++    [PALSLOT_NPC_1_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION,
++    [PALSLOT_NPC_2_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION,
++    [PALSLOT_NPC_3_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION,
++    [PALSLOT_NPC_4_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION,
++    [PALSLOT_NPC_SPECIAL_REFLECTION] = OBJ_EVENT_PAL_TAG_NONE, // loaded on demand
+ };
+ 
+-static const u16 sObjectPaletteTags1[] = {
+-    OBJ_EVENT_PAL_TAG_PLAYER_RED,
+-    OBJ_EVENT_PAL_TAG_PLAYER_GREEN,
+-    OBJ_EVENT_PAL_TAG_NPC_BLUE,
+-    OBJ_EVENT_PAL_TAG_NPC_PINK,
+-    OBJ_EVENT_PAL_TAG_NPC_GREEN,
+-    OBJ_EVENT_PAL_TAG_NPC_WHITE,
+-    OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION,
++static const u16 sObjectPaletteTags1[OBJ_PALSLOT_COUNT] = {
++    [PALSLOT_PLAYER]                 = OBJ_EVENT_PAL_TAG_PLAYER_RED,
++    [PALSLOT_NPC_1]                  = OBJ_EVENT_PAL_TAG_NPC_BLUE,
++    [PALSLOT_NPC_2]                  = OBJ_EVENT_PAL_TAG_NPC_PINK,
++    [PALSLOT_NPC_3]                  = OBJ_EVENT_PAL_TAG_NPC_GREEN,
++    [PALSLOT_NPC_4]                  = OBJ_EVENT_PAL_TAG_NPC_WHITE,
++    [PALSLOT_NPC_SPECIAL]            = OBJ_EVENT_PAL_TAG_NONE, // loaded on demand
++    [PALSLOT_PLAYER_REFLECTION]      = OBJ_EVENT_PAL_TAG_PLAYER_GREEN,
++    [PALSLOT_NPC_1_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION,
++    [PALSLOT_NPC_2_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION,
++    [PALSLOT_NPC_3_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION,
++    [PALSLOT_NPC_4_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION,
++    [PALSLOT_NPC_SPECIAL_REFLECTION] = OBJ_EVENT_PAL_TAG_NONE, // loaded on demand
+ };
+ 
+-static const u16 sObjectPaletteTags2[] = {
+-    OBJ_EVENT_PAL_TAG_PLAYER_RED,
+-    OBJ_EVENT_PAL_TAG_PLAYER_RED_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_BLUE,
+-    OBJ_EVENT_PAL_TAG_NPC_PINK,
+-    OBJ_EVENT_PAL_TAG_NPC_GREEN,
+-    OBJ_EVENT_PAL_TAG_NPC_WHITE,
+-    OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION,
++static const u16 sObjectPaletteTags2[OBJ_PALSLOT_COUNT] = {
++    [PALSLOT_PLAYER]                 = OBJ_EVENT_PAL_TAG_PLAYER_RED,
++    [PALSLOT_NPC_1]                  = OBJ_EVENT_PAL_TAG_NPC_BLUE,
++    [PALSLOT_NPC_2]                  = OBJ_EVENT_PAL_TAG_NPC_PINK,
++    [PALSLOT_NPC_3]                  = OBJ_EVENT_PAL_TAG_NPC_GREEN,
++    [PALSLOT_NPC_4]                  = OBJ_EVENT_PAL_TAG_NPC_WHITE,
++    [PALSLOT_NPC_SPECIAL]            = OBJ_EVENT_PAL_TAG_NONE, // loaded on demand
++    [PALSLOT_PLAYER_REFLECTION]      = OBJ_EVENT_PAL_TAG_PLAYER_RED_REFLECTION,
++    [PALSLOT_NPC_1_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION,
++    [PALSLOT_NPC_2_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION,
++    [PALSLOT_NPC_3_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION,
++    [PALSLOT_NPC_4_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION,
++    [PALSLOT_NPC_SPECIAL_REFLECTION] = OBJ_EVENT_PAL_TAG_NONE, // loaded on demand
+ };
+ 
+-static const u16 sObjectPaletteTags3[] = {
+-    OBJ_EVENT_PAL_TAG_PLAYER_RED,
+-    OBJ_EVENT_PAL_TAG_PLAYER_RED_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_BLUE,
+-    OBJ_EVENT_PAL_TAG_NPC_PINK,
+-    OBJ_EVENT_PAL_TAG_NPC_GREEN,
+-    OBJ_EVENT_PAL_TAG_NPC_WHITE,
+-    OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION,
+-    OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION,
++static const u16 sObjectPaletteTags3[OBJ_PALSLOT_COUNT] = {
++    [PALSLOT_PLAYER]                 = OBJ_EVENT_PAL_TAG_PLAYER_RED,
++    [PALSLOT_NPC_1]                  = OBJ_EVENT_PAL_TAG_NPC_BLUE,
++    [PALSLOT_NPC_2]                  = OBJ_EVENT_PAL_TAG_NPC_PINK,
++    [PALSLOT_NPC_3]                  = OBJ_EVENT_PAL_TAG_NPC_GREEN,
++    [PALSLOT_NPC_4]                  = OBJ_EVENT_PAL_TAG_NPC_WHITE,
++    [PALSLOT_NPC_SPECIAL]            = OBJ_EVENT_PAL_TAG_NONE, // loaded on demand
++    [PALSLOT_PLAYER_REFLECTION]      = OBJ_EVENT_PAL_TAG_PLAYER_RED_REFLECTION,
++    [PALSLOT_NPC_1_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION,
++    [PALSLOT_NPC_2_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION,
++    [PALSLOT_NPC_3_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION,
++    [PALSLOT_NPC_4_REFLECTION]       = OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION,
++    [PALSLOT_NPC_SPECIAL_REFLECTION] = OBJ_EVENT_PAL_TAG_NONE, // loaded on demand
+ };
+ 
+ static const u16 *const gObjectPaletteTagSets[] = {
+@@ -2026,7 +2035,7 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
+     if (graphicsInfo->paletteSlot == PALSLOT_PLAYER)
+         LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
+ 
+-    if (graphicsInfo->paletteSlot >= PALSLOT_NPC_SPECIAL && graphicsInfo->paletteSlot != PALSLOT_DYNAMIC)
++    if (graphicsInfo->paletteSlot == PALSLOT_NPC_SPECIAL)
+         LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
+ 
+     *(u16 *)&spriteTemplate.paletteTag = TAG_NONE;
+@@ -2434,6 +2443,8 @@ void LoadPlayerObjectReflectionPalette(u16 tag, u8 slot)
+     u8 i;
+ 
+     PatchObjectPalette(tag, slot);
++    if (!sReflectionPalettesLoaded)
++        return; // the reflection slot belongs to someone else on this map
+     for (i = 0; gPlayerReflectionPaletteSets[i].tag != OBJ_EVENT_PAL_TAG_NONE; i++)
+     {
+         if (gPlayerReflectionPaletteSets[i].tag == tag)
+@@ -2450,6 +2461,8 @@ void LoadSpecialObjectReflectionPalette(u16 tag, u8 slot)
+ 
+     sCurrentSpecialObjectPaletteTag = tag;
+     PatchObjectPalette(tag, slot);
++    if (!sReflectionPalettesLoaded)
++        return; // the reflection slot belongs to someone else on this map
+     for (i = 0; gSpecialObjectReflectionPaletteSets[i].tag != OBJ_EVENT_PAL_TAG_NONE; i++)
+     {
+         if (gSpecialObjectReflectionPaletteSets[i].tag == tag)
+@@ -2883,6 +2896,17 @@ void TryOverrideObjectEventTemplateCoords(u8 localId, u8 mapNum, u8 mapGroup)
+         OverrideTemplateCoordsForObjectEvent(&gObjectEvents[objectEventId]);
+ }
+ 
++static void PatchObjectPaletteSet(u8 minSlot, u8 maxSlot)
++{
++    const u16 *tags = gObjectPaletteTagSets[sCurrentReflectionType];
++
++    for (; minSlot < maxSlot; minSlot++)
++    {
++        if (tags[minSlot] != OBJ_EVENT_PAL_TAG_NONE)
++            PatchObjectPalette(tags[minSlot], minSlot);
++    }
++}
++
+ void InitObjectEventPalettes(u8 palSlot)
+ {
+     FreeAndReserveObjectSpritePalettes();
+@@ -2890,12 +2914,112 @@ void InitObjectEventPalettes(u8 palSlot)
+     sCurrentReflectionType = palSlot;
+     if (palSlot == 1)
+     {
+-        PatchObjectPaletteRange(gObjectPaletteTagSets[sCurrentReflectionType], 0, 6);
++        // Link rooms: no reflections; slots 0-7 stay reserved like in vanilla.
++        sReflectionPalettesLoaded = FALSE;
++        PatchObjectPaletteSet(0, OBJ_PALSLOT_COUNT_NO_REFLECTIONS);
+         gReservedSpritePaletteCount = 8;
+     }
++    else if (MapGridHasReflectiveMetatiles())
++    {
++        sReflectionPalettesLoaded = TRUE;
++        PatchObjectPaletteSet(0, OBJ_PALSLOT_COUNT);
++    }
+     else
+     {
+-        PatchObjectPaletteRange(gObjectPaletteTagSets[sCurrentReflectionType], 0, 10);
++        // Nothing can be reflected here: hand the 6 reflection slots to dynamic palettes.
++        sReflectionPalettesLoaded = FALSE;
++        PatchObjectPaletteSet(0, OBJ_PALSLOT_COUNT_NO_REFLECTIONS);
++        gReservedSpritePaletteCount = OBJ_PALSLOT_COUNT_NO_REFLECTIONS;
++    }
++}
++
++bool8 AreObjectReflectionPalettesLoaded(void)
++{
++    return sReflectionPalettesLoaded;
++}
++
++// Moves a tagged sprite palette out of slot `from` into a free slot at or after the reserved
++// ones, repointing every sprite that used it. Returns FALSE if there is no free slot.
++static bool8 MoveSpritePaletteOutOfSlot(u8 from)
++{
++    u16 tag = GetSpritePaletteTagByPaletteNum(from);
++    u8 to, i;
++
++    if (tag == TAG_NONE)
++        return TRUE;
++    to = AllocSpritePalette(tag); // searches from gReservedSpritePaletteCount (already raised)
++    if (to == 0xFF)
++        return FALSE;
++    // The tag is now in both slots; free the old one (the lookup starts at the reserved count).
++    gReservedSpritePaletteCount = from;
++    FreeSpritePaletteByTag(tag);
++    gReservedSpritePaletteCount = OBJ_PALSLOT_COUNT;
++    CpuCopy16(&gPlttBufferUnfaded[OBJ_PLTT_ID(from)], &gPlttBufferUnfaded[OBJ_PLTT_ID(to)], PLTT_SIZE_4BPP);
++    CpuCopy16(&gPlttBufferFaded[OBJ_PLTT_ID(from)], &gPlttBufferFaded[OBJ_PLTT_ID(to)], PLTT_SIZE_4BPP);
++    for (i = 0; i < MAX_SPRITES; i++)
++    {
++        if (gSprites[i].inUse && gSprites[i].oam.paletteNum == from)
++            gSprites[i].oam.paletteNum = to;
++    }
++    if (gWeatherPtr->weatherPicSpritePalIndex == from)
++        gWeatherPtr->weatherPicSpritePalIndex = to;
++    if (gWeatherPtr->altGammaSpritePalIndex == from)
++        gWeatherPtr->altGammaSpritePalIndex = to;
++    return TRUE;
++}
++
++// Called after walking across a map connection (the palettes are not reloaded then).
++// Loads the reflection palettes if reflective tiles came into range, or frees their slots
++// once nothing reflective is left.
++void UpdateObjectReflectionPaletteMode(void)
++{
++    u8 i;
++
++    if (sCurrentReflectionType == 1)
++        return;
++    if (MapGridHasReflectiveMetatiles())
++    {
++        if (sReflectionPalettesLoaded)
++            return;
++        OverworldMons_CleanUp(); // wild Pokemon left behind on the old map free their palettes
++        gReservedSpritePaletteCount = OBJ_PALSLOT_COUNT;
++        for (i = OBJ_PALSLOT_COUNT_NO_REFLECTIONS; i < OBJ_PALSLOT_COUNT; i++)
++        {
++            if (!MoveSpritePaletteOutOfSlot(i))
++            {
++                // Too many palettes in use: do without reflections until the next warp.
++                gReservedSpritePaletteCount = OBJ_PALSLOT_COUNT_NO_REFLECTIONS;
++                return;
++            }
++        }
++        sReflectionPalettesLoaded = TRUE;
++        PatchObjectPaletteSet(OBJ_PALSLOT_COUNT_NO_REFLECTIONS, OBJ_PALSLOT_COUNT);
++        for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
++        {
++            if (gObjectEvents[i].active)
++            {
++                const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(gObjectEvents[i].graphicsId);
++                if (graphicsInfo->paletteSlot == PALSLOT_PLAYER || graphicsInfo->paletteSlot == PALSLOT_NPC_SPECIAL)
++                {
++                    if (graphicsInfo->paletteSlot == PALSLOT_PLAYER)
++                        LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag, PALSLOT_PLAYER);
++                    else
++                        LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, PALSLOT_NPC_SPECIAL);
++                }
++            }
++        }
++        for (i = OBJ_PALSLOT_COUNT_NO_REFLECTIONS; i < OBJ_PALSLOT_COUNT; i++)
++            UpdateSpritePaletteWithWeather(i);
++    }
++    else if (sReflectionPalettesLoaded)
++    {
++        for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
++        {
++            if (gObjectEvents[i].active && gObjectEvents[i].hasReflection)
++                return; // still standing by the water; try again next time
++        }
++        sReflectionPalettesLoaded = FALSE;
++        gReservedSpritePaletteCount = OBJ_PALSLOT_COUNT_NO_REFLECTIONS;
+     }
+ }
+ 
+@@ -2903,7 +3027,7 @@ u16 GetObjectPaletteTag(u8 palSlot)
+ {
+     u8 i;
+ 
+-    if (palSlot < 10)
++    if (palSlot < OBJ_PALSLOT_COUNT && palSlot != PALSLOT_NPC_SPECIAL && palSlot != PALSLOT_NPC_SPECIAL_REFLECTION)
+     {
+         return gObjectPaletteTagSets[sCurrentReflectionType][palSlot];
+     }
+@@ -8846,7 +8970,7 @@ static void ObjectEventUpdateMetatileBehaviors(struct ObjectEvent *objEvent)
+ static void GetGroundEffectFlags_Reflection(struct ObjectEvent *objEvent, u32 *flags)
+ {
+     u32 reflectionFlags[2] = { GROUND_EFFECT_FLAG_REFLECTION, GROUND_EFFECT_FLAG_ICE_REFLECTION };
+-    u8 type = ObjectEventCheckForReflectiveSurface(objEvent);
++    u8 type = sReflectionPalettesLoaded ? ObjectEventCheckForReflectiveSurface(objEvent) : 0;
+ 
+     if (type)
+     {
+diff --git a/src/field_effect_helpers.c b/src/field_effect_helpers.c
+index 6d2618818..174072486 100644
+--- a/src/field_effect_helpers.c
++++ b/src/field_effect_helpers.c
+@@ -81,11 +81,11 @@ static void LoadObjectRegularReflectionPalette(struct ObjectEvent * objectEvent,
+     graphicsInfo = GetObjectEventGraphicsInfo(objectEvent->graphicsId);
+     if (graphicsInfo->reflectionPaletteTag != OBJ_EVENT_PAL_TAG_NONE)
+     {
+-        if (graphicsInfo->paletteSlot == 0)
++        if (graphicsInfo->paletteSlot == PALSLOT_PLAYER)
+         {
+             LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag, paletteIndex);
+         }
+-        else if (graphicsInfo->paletteSlot == 10)
++        else if (graphicsInfo->paletteSlot == PALSLOT_NPC_SPECIAL)
+         {
+             LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, paletteIndex);
+         }
+diff --git a/src/field_weather.c b/src/field_weather.c
+index 56cf6505b..1da86a22c 100644
+--- a/src/field_weather.c
++++ b/src/field_weather.c
+@@ -108,18 +108,18 @@ static const u8 sBasePaletteGammaTypes[32] = {
+     GAMMA_NONE,
+     GAMMA_NONE,
+     GAMMA_NONE,
+-    // sprite palettes
+-    GAMMA_ALT,
+-    GAMMA_NORMAL,
+-    GAMMA_ALT,
+-    GAMMA_ALT,
+-    GAMMA_ALT,
+-    GAMMA_ALT,
++    // sprite palettes (see the PALSLOT_* enum: objects 0-5, reflections 6-11, free 12-15)
++    GAMMA_ALT,    // player
++    GAMMA_ALT,    // NPC 1
++    GAMMA_ALT,    // NPC 2
++    GAMMA_ALT,    // NPC 3
++    GAMMA_ALT,    // NPC 4
++    GAMMA_ALT,    // special NPC
++    GAMMA_NORMAL, // reflections...
+     GAMMA_NORMAL,
+     GAMMA_NORMAL,
+     GAMMA_NORMAL,
+     GAMMA_NORMAL,
+-    GAMMA_ALT,
+     GAMMA_NORMAL,
+     GAMMA_NORMAL,
+     GAMMA_NORMAL,
+diff --git a/src/fieldmap.c b/src/fieldmap.c
+index bd69c0533..a780a2c9a 100644
+--- a/src/fieldmap.c
++++ b/src/fieldmap.c
+@@ -5,6 +5,7 @@
+ #include "new_menu_helpers.h"
+ #include "quest_log.h"
+ #include "fieldmap.h"
++#include "metatile_behavior.h"
+ 
+ struct ConnectionFlags
+ {
+@@ -429,6 +430,48 @@ void MapGridSetMetatileImpassabilityAt(s32 x, s32 y, bool32 impassable)
+     }
+ }
+ 
++// TRUE if any loaded metatile (the map plus the strips of its connected maps, and the border)
++// makes object reflections (pond water, puddles, ice). Used to decide whether the reflection
++// sprite palettes need to be loaded.
++bool8 MapGridHasReflectiveMetatiles(void)
++{
++    u8 reflective[NUM_METATILES_TOTAL / 8];
++    const struct MapLayout *layout = gMapHeader.mapLayout;
++    u32 behavior;
++    s32 i, count;
++    u16 metatile;
++    bool8 any = FALSE;
++
++    for (i = 0; i < NUM_METATILES_TOTAL / 8; i++)
++        reflective[i] = 0;
++    for (i = 0; i < NUM_METATILES_TOTAL; i++)
++    {
++        behavior = GetAttributeByMetatileIdAndMapLayout(layout, i, METATILE_ATTRIBUTE_BEHAVIOR);
++        if (MetatileBehavior_IsReflective(behavior) || MetatileBehavior_IsIce(behavior))
++        {
++            reflective[i / 8] |= 1 << (i % 8);
++            any = TRUE;
++        }
++    }
++    if (!any)
++        return FALSE;
++
++    count = VMap.Xsize * VMap.Ysize;
++    for (i = 0; i < count; i++)
++    {
++        metatile = VMap.map[i] & MAPGRID_METATILE_ID_MASK;
++        if (metatile < NUM_METATILES_TOTAL && (reflective[metatile / 8] & (1 << (metatile % 8))))
++            return TRUE;
++    }
++    for (i = 0; i < layout->borderWidth * layout->borderHeight; i++)
++    {
++        metatile = layout->border[i] & MAPGRID_METATILE_ID_MASK;
++        if (reflective[metatile / 8] & (1 << (metatile % 8)))
++            return TRUE;
++    }
++    return FALSE;
++}
++
+ static u32 GetAttributeByMetatileIdAndMapLayout(const struct MapLayout *mapLayout, u16 metatile, u8 attributeType)
+ {
+     const u32 * attributes;
+diff --git a/src/overworld.c b/src/overworld.c
+index 2b837cd81..d6346213c 100644
+--- a/src/overworld.c
++++ b/src/overworld.c
+@@ -767,6 +767,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
+     RunOnTransitionMapScript();
+     TryRegenerateRenewableHiddenItems();
+     InitMap();
++    UpdateObjectReflectionPaletteMode();
+     CopySecondaryTilesetToVramUsingHeap(gMapHeader.mapLayout);
+     LoadSecondaryTilesetPalette(gMapHeader.mapLayout);
+     for (paletteIndex = 7; paletteIndex < 13; paletteIndex++)
+diff --git a/src/overworld_mons.c b/src/overworld_mons.c
+index df3c26cd9..1f40ee238 100644
+--- a/src/overworld_mons.c
++++ b/src/overworld_mons.c
+@@ -253,8 +253,9 @@ static bool8 HasPaletteRoomFor(u16 species, bool8 shiny)
+     if (IndexOfSpritePaletteTag(FOLLOWER_PAL_TAG(species)) != 0xFF
+      || IndexOfSpritePaletteTag(FOLLOWER_SHINY_PAL_TAG(species)) != 0xFF)
+         return TRUE; // this species' palette is already loaded
+-    // Only the slots after the 12 reserved for map objects can be loaded at runtime (4 on the
+-    // overworld). A shiny is recoloured in place, so one free slot is enough either way.
++    // Only the slots after the ones reserved for map objects can be loaded at runtime (4 on maps
++    // with reflective water, 10 elsewhere). A shiny is recoloured in place, so one free slot is
++    // enough either way.
+     for (i = gReservedSpritePaletteCount; i < 16; i++)
+     {
+         if (GetSpritePaletteTagByPaletteNum(i) == TAG_NONE)
+@@ -393,6 +394,12 @@ static void TryDespawnFarthest(bool8 forceFar)
+ }
+ 
+ // Called on every player step (field_control_avatar.c)
++// Called when walking onto a connected map, before the palettes are reshuffled
++void OverworldMons_CleanUp(void)
++{
++    CleanUpSlots();
++}
++
+ void OverworldMons_OnStep(void)
+ {
+     u8 i, active;

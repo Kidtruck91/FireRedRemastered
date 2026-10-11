@@ -264,3 +264,11 @@ Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
 - 2026-10-10: Trainer team pools (Basic/Intermediate/Advanced tiers, Hiker examples) and the per-mon ability field. Tested in mGBA.
 - 2026-10-11: Wandering overworld Pokémon (route table + bonus lists, 1/512 shiny, egg moves, counts for Nuzlocke). Tested in mGBA.
 - 2026-10-11: Overworld shinies (1/4096, shiny colours, sparkles, shiny follower), water spawns.
+
+## Extra: more sprite palette slots (b8b7c59ec)
+
+- Palette slots reordered: player 0, NPC 1-4, special 5, reflections 6-11 (`include/event_object_movement.h`; numeric `.paletteSlot` values in `object_event_graphics_info.h` remapped 2-5->1-4, 10->5; weather gamma table matches).
+- `InitObjectEventPalettes` only loads reflection palettes when `MapGridHasReflectiveMetatiles()` (fieldmap.c) finds pond water / puddle / ice in the loaded map grid; otherwise `gReservedSpritePaletteCount` = 6, so slots 6-15 (10) are free instead of 12-15 (4).
+- Crossing a map connection calls `UpdateObjectReflectionPaletteMode()` (overworld.c `LoadMapFromCameraTransition`): loads reflections (moving any dynamic palettes out of 6-11, fixing weather palette indices) or frees the slots once nothing is reflecting. With reflections off, no reflection sprites are made.
+- Tested in mGBA: Pallet/Route 1/houses = 6 reserved; Viridian (pond) = 12 with working player + follower reflections; walking Route 1 <-> Viridian and PC in/out switch correctly.
+- `OW_MON_MAX` could now go above 2 on most routes; `HasPaletteRoomFor` already checks free slots.
