@@ -48,6 +48,33 @@ void HealPlayerParty(void)
     }
 }
 
+static bool8 sNextGivenMonHasHiddenAbility;
+
+// callnative (see the givemon_hidden / giveegg_hidden macros): the next givemon / giveegg
+// gets its species' hidden ability.
+void ScriptSetNextGivenMonHiddenAbility(void)
+{
+    sNextGivenMonHasHiddenAbility = TRUE;
+}
+
+static void TryGiveHiddenAbility(struct Pokemon *mon)
+{
+    u8 abilityNum = ABILITY_NUM_HIDDEN;
+
+    if (sNextGivenMonHasHiddenAbility)
+        SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
+    sNextGivenMonHasHiddenAbility = FALSE;
+}
+
+// callnative after setwildbattle (see the setwildbattle_hidden macro): the static
+// encounter has its hidden ability.
+void ScriptSetWildMonHiddenAbility(void)
+{
+    u8 abilityNum = ABILITY_NUM_HIDDEN;
+
+    SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &abilityNum);
+}
+
 u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 unused3)
 {
     u16 nationalDexNum;
@@ -56,6 +83,7 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
 
     CreateMon(mon, species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+    TryGiveHiddenAbility(mon);
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(mon, MON_DATA_HELD_ITEM, heldItem);
@@ -82,6 +110,7 @@ u8 ScriptGiveEgg(u16 species)
     bool8 sentToPc;
 
     CreateEgg(mon, species, TRUE);
+    TryGiveHiddenAbility(mon);
     isEgg = TRUE;
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
 

@@ -1534,7 +1534,8 @@ static void SpriteCB_UnusedDebugSprite_Step(struct Sprite *sprite)
     }
 }
 
-// .ability on a trainer Pokemon: 1 = first ability, 2 = second (if the species has one).
+// .ability on a trainer Pokemon: 1 = first ability, 2 = second (if the species has one),
+// 4 = hidden ability (if the species has one, otherwise either normal one).
 // 0 or 3 = either: keep whatever CreateMon picked.
 static void SetTrainerMonAbility(struct Pokemon *mon, u8 abilitySlot)
 {
@@ -1545,6 +1546,8 @@ static void SetTrainerMonAbility(struct Pokemon *mon, u8 abilitySlot)
         abilityNum = 0;
     else if (abilitySlot == 2 && gSpeciesInfo[species].abilities[1] != ABILITY_NONE)
         abilityNum = 1;
+    else if (abilitySlot == 4 && gSpeciesInfo[species].hiddenAbility != ABILITY_NONE)
+        abilityNum = ABILITY_NUM_HIDDEN;
     else
         return;
     SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
@@ -2706,7 +2709,7 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
 
             gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];
             gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];
-            gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);
+            gBattleMons[gActiveBattler].ability = GetBattlerPartyMonAbility(gActiveBattler, gBattlerPartyIndexes[gActiveBattler]);
             hpOnSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)];
             *hpOnSwitchout = gBattleMons[gActiveBattler].hp;
             for (i = 0; i < NUM_BATTLE_STATS; i++)

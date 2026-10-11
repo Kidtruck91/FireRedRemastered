@@ -3,6 +3,8 @@
 
 bool8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unk1, u32 unk2, u8 unk3);
 bool8 ScriptGiveEgg(u16 species);
+void ScriptSetNextGivenMonHiddenAbility(void);
+void ScriptSetWildMonHiddenAbility(void);
 void ScriptSetMonMoveSlot(u8 partyIdx, u16 move, u8 slot);
 void HealPlayerParty(void);
 void ReducePlayerPartyToThree(void);

@@ -35,6 +35,7 @@
 #include "sound.h"
 #include "sprite.h"
 #include "wild_encounter.h"
+#include "constants/abilities.h"
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
 #include "constants/maps.h"
@@ -53,6 +54,7 @@
 #define OW_MON_DESPAWN_DISTANCE 12   // tiles: anything farther than this leaves
 #define OW_MON_SHINY_ODDS       4096 // 1 in this many (normal wild odds stay 1/8192)
 #define OW_MON_EGG_MOVE_CHANCE  50   // % chance to know one egg move
+#define OW_MON_HIDDEN_ABILITY_CHANCE 10 // % chance to have its hidden ability (if the species has one)
 #define OW_MON_BONUS_CHANCE     20   // % chance to pick from the map's bonus list, if it has one
 #define OW_MON_WANDER_RANGE     2    // how far (tiles) a spawn wanders from where it appeared
 #define OW_MON_WATER_CHANCE     25   // % of spawns on water when you're on land (if the map has a surf table)
@@ -86,6 +88,7 @@ struct OverworldMonSlot
     u8 level;
     u16 species;
     u16 eggMove;
+    bool8 hiddenAbility;
     u32 personality;
     bool8 shiny;
     u8 sparkleTimer;
@@ -322,6 +325,8 @@ static void TrySpawn(void)
     sSlots[slot].level = level;
     sSlots[slot].personality = shiny ? MakeShinyPersonality() : ((u32)Random() << 16 | Random());
     sSlots[slot].eggMove = (Random() % 100) < OW_MON_EGG_MOVE_CHANCE ? GetRandomEggMoveForSpecies(species) : MOVE_NONE;
+    sSlots[slot].hiddenAbility = gSpeciesInfo[species].hiddenAbility != ABILITY_NONE
+                              && (Random() % 100) < OW_MON_HIDDEN_ABILITY_CHANCE;
     sSlots[slot].shiny = shiny;
     sSlots[slot].sparkleTimer = OW_MON_SPARKLE_FRAMES;
     if (shiny)
@@ -468,6 +473,11 @@ void OverworldMon_PrepareBattle(void)
     {
         if (GiveMoveToMon(mon, sSlots[slot].eggMove) == MON_HAS_MAX_MOVES)
             SetMonMoveSlot(mon, sSlots[slot].eggMove, Random() % MAX_MON_MOVES);
+    }
+    if (sSlots[slot].hiddenAbility)
+    {
+        u8 abilityNum = ABILITY_NUM_HIDDEN;
+        SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
     }
     gSpecialVar_0x8004 = sSlots[slot].species;
     gSpecialVar_Result = TRUE;

@@ -3176,7 +3176,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = substruct3->isEgg;
         break;
     case MON_DATA_ABILITY_NUM:
-        retVal = substruct3->abilityNum;
+        retVal = substruct3->hiddenAbility ? ABILITY_NUM_HIDDEN : substruct3->abilityNum;
         break;
     case MON_DATA_COOL_RIBBON:
         retVal = substruct3->coolRibbon;
@@ -3584,7 +3584,15 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             boxMon->isEgg = FALSE;
         break;
     case MON_DATA_ABILITY_NUM:
-        SET8(substruct3->abilityNum);
+        if (*data == ABILITY_NUM_HIDDEN)
+        {
+            substruct3->hiddenAbility = TRUE; // the normal slot is kept underneath
+        }
+        else
+        {
+            substruct3->hiddenAbility = FALSE;
+            SET8(substruct3->abilityNum);
+        }
         break;
     case MON_DATA_COOL_RIBBON:
         SET8(substruct3->coolRibbon);
@@ -3779,9 +3787,11 @@ u8 GetMonsStateToDoubles(void)
     return (aliveCount > 1) ? PLAYER_HAS_TWO_USABLE_MONS : PLAYER_HAS_ONE_USABLE_MON;
 }
 
-u8 GetAbilityBySpecies(u16 species, bool8 abilityNum)
+u8 GetAbilityBySpecies(u16 species, u8 abilityNum)
 {
-    if (abilityNum)
+    if (abilityNum == ABILITY_NUM_HIDDEN && gSpeciesInfo[species].hiddenAbility != ABILITY_NONE)
+        gLastUsedAbility = gSpeciesInfo[species].hiddenAbility;
+    else if (abilityNum == 1)
         gLastUsedAbility = gSpeciesInfo[species].abilities[1];
     else
         gLastUsedAbility = gSpeciesInfo[species].abilities[0];
@@ -3794,6 +3804,17 @@ u8 GetMonAbility(struct Pokemon *mon)
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
     return GetAbilityBySpecies(species, abilityNum);
+}
+
+// A battler's ability, read from its party Pokemon (struct BattlePokemon only has room for a
+// 1-bit abilityNum, so it can't carry the hidden ability itself).
+u8 GetBattlerPartyMonAbility(u8 battlerId, u8 partyIndex)
+{
+    struct Pokemon *party = (GetBattlerSide(battlerId) == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
+
+    if (partyIndex >= PARTY_SIZE || GetMonData(&party[partyIndex], MON_DATA_SPECIES, NULL) != gBattleMons[battlerId].species)
+        return GetAbilityBySpecies(gBattleMons[battlerId].species, gBattleMons[battlerId].abilityNum);
+    return GetMonAbility(&party[partyIndex]);
 }
 
 static void CreateSecretBaseEnemyParty(struct SecretBaseRecord *secretBaseRecord)
@@ -3943,7 +3964,7 @@ static void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
     gBattleMons[battlerId].otId = GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_ID, NULL);
     gBattleMons[battlerId].type1 = gSpeciesInfo[gBattleMons[battlerId].species].types[0];
     gBattleMons[battlerId].type2 = gSpeciesInfo[gBattleMons[battlerId].species].types[1];
-    gBattleMons[battlerId].ability = GetAbilityBySpecies(gBattleMons[battlerId].species, gBattleMons[battlerId].abilityNum);
+    gBattleMons[battlerId].ability = GetBattlerPartyMonAbility(battlerId, partyIndex);
     GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(gBattleMons[battlerId].nickname, nickname);
     GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_NAME, gBattleMons[battlerId].otName);

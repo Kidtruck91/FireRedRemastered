@@ -73,7 +73,8 @@ struct PokemonSubstruct3
  /* 0x0B */ u32 nationalRibbon:1;           // Given to purified Shadow Pokémon in Colosseum/XD.
  /* 0x0B */ u32 earthRibbon:1;              // Given to teams that have beaten Mt. Battle's 100-battle challenge in Colosseum/XD.
  /* 0x0B */ u32 worldRibbon:1;              // Distributed during Pokémon Festa '04 and '05 to tournament winners.
- /* 0x0B */ u32 unusedRibbons:4;            // Discarded in Gen 4.
+ /* 0x0B */ u32 unusedRibbons:3;            // Discarded in Gen 4. Bit 0 = Nuzlocke "dead" marker.
+ /* 0x0B */ u32 hiddenAbility:1;            // Has its species' hidden ability (MON_DATA_ABILITY_NUM reads 2).
 
  // The functionality of this bit changed in FRLG:
  // In RS, this bit does nothing, is never set, & is accidentally unset when hatching Eggs.
@@ -232,6 +233,7 @@ struct SpeciesInfo
  /* 0x18 */ u8 safariZoneFleeRate;
  /* 0x19 */ u8 bodyColor : 7;
             u8 noFlip : 1;
+ /* 0x1A */ u8 hiddenAbility; // ABILITY_NONE if the species has none
 };
 
 struct BattleMove
@@ -354,7 +356,10 @@ u8 GiveMonToPlayer(struct Pokemon *mon);
 u8 CalculatePlayerPartyCount(void);
 u8 CalculateEnemyPartyCount(void);
 u8 GetMonsStateToDoubles(void);
-u8 GetAbilityBySpecies(u16 species, bool8 abilityNum);
+// MON_DATA_ABILITY_NUM values: 0 = first ability, 1 = second, ABILITY_NUM_HIDDEN = hidden ability
+#define ABILITY_NUM_HIDDEN 2
+u8 GetAbilityBySpecies(u16 species, u8 abilityNum);
+u8 GetBattlerPartyMonAbility(u8 battlerId, u8 partyIndex);
 u8 GetMonAbility(struct Pokemon *mon);
 u8 GetSecretBaseTrainerPicIndex(void);
 u8 GetSecretBaseTrainerNameIndex(void);
