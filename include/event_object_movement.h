@@ -102,6 +102,7 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, SpriteCallback callback, s16 x, s1
 u8 TrySpawnObjectEvent(u8 localId, u8 mapNum, u8 mapGroup);
 int SpawnSpecialObjectEventParameterized(u16, u8, u8, s16, s16, u8);
 u8 SpawnSpecialObjectEvent(struct ObjectEventTemplate *);
+void ObjectEventSetShinyPalette(struct ObjectEvent *objectEvent, bool8 shiny);
 void CameraObjectReset1(void);
 void CameraObjectReset2(void);
 void ObjectEventSetGraphicsId(struct ObjectEvent *, u16);

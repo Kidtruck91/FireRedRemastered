@@ -19,6 +19,9 @@ enum
 // Palette tags used by follower Pokemon sprites (one per species, loaded on demand).
 #define FOLLOWER_PAL_TAG_BASE       0x2000
 #define FOLLOWER_PAL_TAG(species)   (FOLLOWER_PAL_TAG_BASE + (species))
+// Shiny versions (graphics/object_events/palettes/followers_shiny, generated from the battle palettes)
+#define FOLLOWER_SHINY_PAL_TAG_BASE     0x2400
+#define FOLLOWER_SHINY_PAL_TAG(species) (FOLLOWER_SHINY_PAL_TAG_BASE + (species))
 
 // follow_me.c
 u8 GetFollowerObjectId(void);
@@ -89,5 +92,6 @@ void FollowMe_FixSpriteOffset(void);
 void FollowMe_UpdateBounce(struct ObjectEvent *objectEvent, struct Sprite *sprite);
 void FollowMe_TrySetCoordsFromWarp(void);
 bool8 FollowMe_IsFollowerObjectEventId(u8 objectEventId);
+bool8 CreateShinySparklesAtObject(u8 objectEventId, bool8 twinkle);
 
 #endif // GUARD_FOLLOW_ME_H

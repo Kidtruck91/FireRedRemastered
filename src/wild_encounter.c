@@ -801,3 +801,21 @@ bool8 GetLandEncounterForOverworldMon(u16 *species, u8 *level)
     *level = ChooseWildMonLevel(&info->wildPokemon[index]);
     return TRUE;
 }
+
+// Same for the current map's surfing table (water spawns).
+bool8 GetWaterEncounterForOverworldMon(u16 *species, u8 *level)
+{
+    u16 headerId = GetCurrentMapWildMonHeaderId();
+    const struct WildPokemonInfo *info;
+    u8 index;
+
+    if (headerId == HEADER_NONE)
+        return FALSE;
+    info = gWildMonHeaders[headerId].waterMonsInfo;
+    if (info == NULL)
+        return FALSE;
+    index = ChooseWildMonIndex_WaterRock();
+    *species = info->wildPokemon[index].species;
+    *level = ChooseWildMonLevel(&info->wildPokemon[index]);
+    return TRUE;
+}

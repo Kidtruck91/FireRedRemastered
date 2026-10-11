@@ -81,6 +81,7 @@ static void MakeObjectTemplateFromObjectEventTemplate(const struct ObjectEventTe
 static void GetObjectEventMovingCameraOffset(s16 *, s16 *);
 static u8 GetObjectEventPaletteNum(const struct ObjectEventGraphicsInfo *graphicsInfo);
 static void FreeDynamicObjectEventPaletteIfUnused(u16 paletteTag);
+static u8 LoadDynamicObjectEventPalette(u16 paletteTag);
 static void LoadObjectEventPalette(u16);
 static void RemoveObjectEventIfOutsideView(struct ObjectEvent *);
 static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y);
@@ -539,6 +540,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #include "data/object_events/object_event_graphics_info.h"
 #include "data/object_events/follower_anims.h"
 #include "data/object_events/follower_graphics.h"
+#include "data/object_events/follower_shiny_palettes.h"
 
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_NpcBlue,                 OBJ_EVENT_PAL_TAG_NPC_BLUE},
@@ -1612,6 +1614,54 @@ static void RemoveObjectEventInternal(struct ObjectEvent *objectEvent)
     DestroySprite(&gSprites[objectEvent->spriteId]);
     if (graphicsInfo->paletteSlot == PALSLOT_DYNAMIC)
         FreeDynamicObjectEventPaletteIfUnused(graphicsInfo->paletteTag);
+    if (objectEvent->graphicsId >= OBJ_EVENT_GFX_FOLLOWERS_START && objectEvent->graphicsId < OBJ_EVENT_GFX_FOLLOWERS_END)
+        FreeDynamicObjectEventPaletteIfUnused(FOLLOWER_SHINY_PAL_TAG(objectEvent->graphicsId - OBJ_EVENT_GFX_FOLLOWERS_START));
+}
+
+// Recolours a Pokemon object (follower graphics) with its shiny palette, or back to normal.
+// Cheap to call every frame: does nothing if the sprite already has the right palette.
+void ObjectEventSetShinyPalette(struct ObjectEvent *objectEvent, bool8 shiny)
+{
+    struct Sprite *sprite;
+    u16 species, wantTag, otherTag;
+    u8 paletteNum;
+
+    if (objectEvent->graphicsId < OBJ_EVENT_GFX_FOLLOWERS_START || objectEvent->graphicsId >= OBJ_EVENT_GFX_FOLLOWERS_END)
+        return;
+    species = objectEvent->graphicsId - OBJ_EVENT_GFX_FOLLOWERS_START;
+    wantTag = shiny ? FOLLOWER_SHINY_PAL_TAG(species) : FOLLOWER_PAL_TAG(species);
+    otherTag = shiny ? FOLLOWER_PAL_TAG(species) : FOLLOWER_SHINY_PAL_TAG(species);
+    sprite = &gSprites[objectEvent->spriteId];
+
+    paletteNum = IndexOfSpritePaletteTag(wantTag);
+    if (paletteNum != 0xFF)
+    {
+        if (sprite->oam.paletteNum != paletteNum)
+        {
+            sprite->oam.paletteNum = paletteNum;
+            FreeDynamicObjectEventPaletteIfUnused(otherTag);
+        }
+        return;
+    }
+
+    // Only 4 sprite palette slots are free on the overworld, so if this sprite is the only one
+    // using its current (other) palette, recolour that slot in place instead of needing a new one.
+    if (GetSpritePaletteTagByPaletteNum(sprite->oam.paletteNum) == otherTag)
+    {
+        u8 i, current = sprite->oam.paletteNum;
+        for (i = 0; i < MAX_SPRITES; i++)
+        {
+            if (&gSprites[i] != sprite && gSprites[i].inUse && gSprites[i].oam.paletteNum == current)
+                break;
+        }
+        if (i == MAX_SPRITES)
+            FreeSpritePaletteByTag(otherTag);
+    }
+    paletteNum = LoadDynamicObjectEventPalette(wantTag);
+    if (paletteNum == 0xFF)
+        return; // no free palette slot: keep the current colours
+    sprite->oam.paletteNum = paletteNum;
+    FreeDynamicObjectEventPaletteIfUnused(otherTag);
 }
 
 void Unref_RemoveAllObjectEventsExceptPlayer(void)
@@ -2060,7 +2110,11 @@ void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u16 graphicsId)
     sprite->subspriteTables = graphicsInfo->subspriteTables;
     sprite->oam.paletteNum = GetObjectEventPaletteNum(graphicsInfo);
     if (oldGraphicsInfo->paletteSlot == PALSLOT_DYNAMIC && oldGraphicsInfo->paletteTag != graphicsInfo->paletteTag)
+    {
         FreeDynamicObjectEventPaletteIfUnused(oldGraphicsInfo->paletteTag);
+        if (oldGraphicsInfo->paletteTag >= FOLLOWER_PAL_TAG_BASE && oldGraphicsInfo->paletteTag < FOLLOWER_PAL_TAG_BASE + FOLLOWER_GFX_COUNT)
+            FreeDynamicObjectEventPaletteIfUnused(oldGraphicsInfo->paletteTag - FOLLOWER_PAL_TAG_BASE + FOLLOWER_SHINY_PAL_TAG_BASE);
+    }
     if (!sprite->usingSheet)
     {
         s32 var2;
@@ -2233,9 +2287,15 @@ void FreeAndReserveObjectSpritePalettes(void)
 
 // Follower Pokemon palettes are not in sObjectEventSpritePalettes; they are loaded on demand
 // into the free (non-reserved) sprite palette slots, like field effect palettes.
+static bool8 IsShinyFollowerPaletteTag(u16 paletteTag)
+{
+    return paletteTag >= FOLLOWER_SHINY_PAL_TAG_BASE && paletteTag < FOLLOWER_SHINY_PAL_TAG_BASE + FOLLOWER_GFX_COUNT;
+}
+
 static bool8 IsDynamicObjectEventPaletteTag(u16 paletteTag)
 {
-    return paletteTag >= FOLLOWER_PAL_TAG_BASE && paletteTag < FOLLOWER_PAL_TAG_BASE + FOLLOWER_GFX_COUNT;
+    return (paletteTag >= FOLLOWER_PAL_TAG_BASE && paletteTag < FOLLOWER_PAL_TAG_BASE + FOLLOWER_GFX_COUNT)
+        || IsShinyFollowerPaletteTag(paletteTag);
 }
 
 static u8 LoadDynamicObjectEventPalette(u16 paletteTag)
@@ -2248,7 +2308,15 @@ static u8 LoadDynamicObjectEventPalette(u16 paletteTag)
     if (!IsDynamicObjectEventPaletteTag(paletteTag))
         return 0xFF;
 
-    spritePalette.data = sFollowerPalettes[paletteTag - FOLLOWER_PAL_TAG_BASE];
+    if (IsShinyFollowerPaletteTag(paletteTag))
+    {
+        u16 species = paletteTag - FOLLOWER_SHINY_PAL_TAG_BASE;
+        spritePalette.data = sFollowerShinyPalettes[species] != NULL ? sFollowerShinyPalettes[species] : sFollowerPalettes[species];
+    }
+    else
+    {
+        spritePalette.data = sFollowerPalettes[paletteTag - FOLLOWER_PAL_TAG_BASE];
+    }
     spritePalette.tag = paletteTag;
     paletteNum = LoadSpritePalette(&spritePalette);
     if (paletteNum != 0xFF)
@@ -5322,6 +5390,8 @@ void UpdateObjectEventCurrentMovement(struct ObjectEvent *objectEvent, struct Sp
     UpdateObjectEventVisibility(objectEvent, sprite);
     ObjectEventUpdateSubpriority(objectEvent, sprite);
     FollowMe_UpdateBounce(objectEvent, sprite);
+    if (OverworldMon_IsOverworldMonLocalId(objectEvent->localId) && !objectEvent->isPlayer)
+        OverworldMon_UpdateObject(objectEvent);
 }
 
 void UpdateQuestLogObjectEventCurrentMovement(struct ObjectEvent *objectEvent, struct Sprite *sprite)

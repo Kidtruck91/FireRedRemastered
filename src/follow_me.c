@@ -694,6 +694,31 @@ static const struct SpriteTemplate sSpriteTemplate_ExpandingSparkle =
     .callback = SpriteCB_FollowerSparkle,
 };
 
+// The same sparkle drawn with the general field-effect palette (light blues), for when the
+// overworld's few sprite palette slots are full but that palette is already loaded (tall grass).
+static const u32 sExpandingSparkleAltPic[] = INCBIN_U32("graphics/field_effects/pics/expanding_sparkle_alt.4bpp");
+
+static const struct SpriteFrameImage sPicTable_ExpandingSparkleAlt[] =
+{
+    overworld_frame(sExpandingSparkleAltPic, 4, 4, 0),
+    overworld_frame(sExpandingSparkleAltPic, 4, 4, 1),
+    overworld_frame(sExpandingSparkleAltPic, 4, 4, 2),
+    overworld_frame(sExpandingSparkleAltPic, 4, 4, 3),
+    overworld_frame(sExpandingSparkleAltPic, 4, 4, 4),
+    overworld_frame(sExpandingSparkleAltPic, 4, 4, 5),
+};
+
+static const struct SpriteTemplate sSpriteTemplate_ExpandingSparkleAlt =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = FLDEFF_PAL_TAG_GENERAL_1,
+    .oam = &sOam_ExpandingSparkle,
+    .anims = sAnimTable_ExpandingSparkle,
+    .images = sPicTable_ExpandingSparkleAlt,
+    .affineAnims = sAffineAnimTable_ExpandingSparkle,
+    .callback = SpriteCB_FollowerSparkle,
+};
+
 // ---------------------------------------------------------------------------
 // Basic accessors
 // ---------------------------------------------------------------------------
@@ -845,9 +870,15 @@ u16 GetFollowerPokemonSpecies(void)
     return species;
 }
 
+// Whether the lead Pokemon is shiny; refreshed whenever the follower's graphics are worked out
+static bool8 sFollowerIsShiny;
+
 u16 GetFollowerPokemonGraphicsId(void)
 {
-    return OBJ_EVENT_GFX_FOLLOWER(GetFollowerPokemonSpecies());
+    u16 species = GetFollowerPokemonSpecies();
+
+    sFollowerIsShiny = (species != SPECIES_NONE) && IsMonShiny(&gPlayerParty[GetLeadMonNotFaintedIndex()]);
+    return OBJ_EVENT_GFX_FOLLOWER(species);
 }
 
 bool8 FollowerPokemon_IsEnabled(void)
@@ -2140,6 +2171,9 @@ static void SpriteCB_FollowerSparkle(struct Sprite *sprite)
         FreeSpriteOamMatrix(sprite);
         DestroySprite(sprite);
         // Free the sparkle palette once no sprite uses it anymore
+        // (only the sparkle's own palette: the borrowed field-effect palette is managed elsewhere)
+        if (GetSpritePaletteTagByPaletteNum(paletteNum) != FLDEFF_PAL_TAG_SMALL_SPARKLE)
+            return;
         for (i = 0; i < MAX_SPRITES; i++)
         {
             if (gSprites[i].inUse && gSprites[i].oam.paletteNum == paletteNum)
@@ -2552,6 +2586,7 @@ void FollowMe_UpdateBounce(struct ObjectEvent *objectEvent, struct Sprite *sprit
 {
     if (!FollowerObjectExists() || objectEvent != &gObjectEvents[GetFollowerMapObjId()])
         return;
+    ObjectEventSetShinyPalette(objectEvent, sFollowerIsShiny); // shiny lead = shiny follower
     if (sprite->y2 < -1 || (sprite->oam.affineMode & ST_OAM_AFFINE_ON_MASK) || IsFlyingFollower(objectEvent->graphicsId))
         return;
     if (sprite->animCmdIndex % 2 == 1)
@@ -2609,4 +2644,50 @@ void FollowMe_TrySetCoordsFromWarp(void)
 bool8 FollowMe_IsFollowerObjectEventId(u8 objectEventId)
 {
     return gSaveBlock2Ptr->follower.inProgress && objectEventId == GetFollowerMapObjId();
+}
+
+// Shiny sparkles on an object (the overworld shiny Pokemon in overworld_mons.c): a full burst,
+// or a small twinkle. Uses the normal sparkle palette when it can be loaded, otherwise borrows
+// the general field-effect palette if that's loaded. Returns FALSE if neither was possible.
+bool8 CreateShinySparklesAtObject(u8 objectEventId, bool8 twinkle)
+{
+    const struct SpriteTemplate *template;
+    struct Sprite *sprite;
+    s16 x, y;
+    u8 i, spriteId;
+
+    if (objectEventId >= OBJECT_EVENTS_COUNT || !gObjectEvents[objectEventId].active)
+        return FALSE;
+
+    if (LoadSpritePalette(&gSpritePalette_SmallSparkle) != 0xFF)
+    {
+        UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_SMALL_SPARKLE));
+        template = &sSpriteTemplate_ExpandingSparkle;
+    }
+    else if (IndexOfSpritePaletteTag(FLDEFF_PAL_TAG_GENERAL_1) != 0xFF)
+    {
+        template = &sSpriteTemplate_ExpandingSparkleAlt;
+    }
+    else
+    {
+        return FALSE;
+    }
+
+    sprite = &gSprites[gObjectEvents[objectEventId].spriteId];
+    x = sprite->x + sprite->x2;
+    y = sprite->y + sprite->y2;
+    for (i = 0; i < 8; i++)
+    {
+        if (twinkle && (i & 1)) // a twinkle is half the burst
+            continue;
+        spriteId = CreateSprite(template, x, y, 0);
+        if (spriteId == MAX_SPRITES)
+            break;
+        gSprites[spriteId].coordOffsetEnabled = TRUE;
+        gSprites[spriteId].oam.priority = 1;
+        gSprites[spriteId].data[0] = 0;
+        gSprites[spriteId].data[7] = i;
+        StartSpriteAffineAnim(&gSprites[spriteId], i);
+    }
+    return TRUE;
 }

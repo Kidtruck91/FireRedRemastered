@@ -7,7 +7,9 @@
 //
 // Spawned Pokemon:
 //   - use the follower overworld sprites (one per species)
-//   - have much better shiny odds (OW_MON_SHINY_ODDS); a shiny plays the shiny sound as it appears
+//   - have much better shiny odds (OW_MON_SHINY_ODDS). A shiny one is drawn in its shiny colours,
+//     appears with a burst of sparkles and the shiny sound, and twinkles while it wanders
+//   - also appear on water (from the map's surf table) - mostly while you're surfing - and in caves
 //   - often know an egg move (OW_MON_EGG_MOVE_CHANCE)
 //   - count as the route's encounter in Nuzlocke mode, like any wild battle
 //   - aren't saved: leaving the map (or loading a save) clears them
@@ -16,6 +18,8 @@
 
 #include "global.h"
 #include "event_data.h"
+#include "field_effect.h"
+#include "constants/field_effects.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
 #include "field_player_avatar.h"
@@ -47,10 +51,13 @@
 #define OW_MON_SPAWN_CHANCE     60   // % chance to spawn one when below the max
 #define OW_MON_DESPAWN_CHANCE   20   // % chance the farthest one leaves when at the max
 #define OW_MON_DESPAWN_DISTANCE 12   // tiles: anything farther than this leaves
-#define OW_MON_SHINY_ODDS       512  // 1 in this many (normal wild odds stay 1/8192)
+#define OW_MON_SHINY_ODDS       4096 // 1 in this many (normal wild odds stay 1/8192)
 #define OW_MON_EGG_MOVE_CHANCE  50   // % chance to know one egg move
 #define OW_MON_BONUS_CHANCE     20   // % chance to pick from the map's bonus list, if it has one
 #define OW_MON_WANDER_RANGE     2    // how far (tiles) a spawn wanders from where it appeared
+#define OW_MON_WATER_CHANCE     25   // % of spawns on water when you're on land (if the map has a surf table)
+#define OW_MON_WATER_CHANCE_SURFING 85 // % of spawns on water while you're surfing
+#define OW_MON_SPARKLE_FRAMES   90   // a shiny twinkles this often (frames) while on screen
 // ---------------------------------------------------------------------------------------------
 
 #define OW_MON_LOCALID_BASE 0xF0 // local ids 0xF0..0xF0+OW_MON_MAX-1 (player 0xFF, follower 0xFE)
@@ -80,6 +87,9 @@ struct OverworldMonSlot
     u16 species;
     u16 eggMove;
     u32 personality;
+    bool8 shiny;
+    u8 sparkleTimer;
+    u8 burstPending; // frames left to show the "just appeared" sparkle burst
 };
 
 static struct OverworldMonSlot sSlots[OW_MON_MAX];
@@ -89,6 +99,9 @@ extern const u8 EventScript_OverworldMon[];
 
 u16 GetRandomEggMoveForSpecies(u16 species); // daycare.c
 bool8 GetLandEncounterForOverworldMon(u16 *species, u8 *level); // wild_encounter.c
+bool8 GetWaterEncounterForOverworldMon(u16 *species, u8 *level); // wild_encounter.c
+
+enum { HABITAT_LAND, HABITAT_WATER };
 
 // ---------------------------------------------------------------------------------------------
 
@@ -170,10 +183,12 @@ static const struct OverworldBonusList *GetBonusListForMap(void)
     return NULL;
 }
 
-static bool8 ChooseSpecies(u16 *species, u8 *level)
+static bool8 ChooseSpecies(u8 habitat, u16 *species, u8 *level)
 {
     const struct OverworldBonusList *bonus = GetBonusListForMap();
 
+    if (habitat == HABITAT_WATER)
+        return GetWaterEncounterForOverworldMon(species, level);
     if (bonus != NULL && (Random() % 100) < OW_MON_BONUS_CHANCE)
     {
         const struct OverworldBonusMon *mon = &bonus->mons[Random() % bonus->count];
@@ -187,8 +202,8 @@ static bool8 ChooseSpecies(u16 *species, u8 *level)
     return GetLandEncounterForOverworldMon(species, level);
 }
 
-// A free tile with wild encounters, not too close to the player and on screen.
-static bool8 FindSpawnTile(s16 *outX, s16 *outY)
+// A free tile with wild encounters of the right kind, not too close to the player and on screen.
+static bool8 FindSpawnTile(u8 habitat, s16 *outX, s16 *outY)
 {
     struct ObjectEvent *player = &gObjectEvents[gPlayerAvatar.objectEventId];
     u8 tries;
@@ -203,11 +218,13 @@ static bool8 FindSpawnTile(s16 *outX, s16 *outY)
 
         if (dist < 3)
             continue;
-        if (MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_ENCOUNTER_TYPE) != TILE_ENCOUNTER_LAND)
+        if (MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_ENCOUNTER_TYPE)
+            != (habitat == HABITAT_WATER ? TILE_ENCOUNTER_WATER : TILE_ENCOUNTER_LAND))
             continue;
         if (MapGridGetCollisionAt(x, y))
             continue;
-        if (MapGridGetElevationAt(x, y) != player->currentElevation && MapGridGetElevationAt(x, y) != 0)
+        // Land spawns stay on the player's level; water spawns sit at the water's own level
+        if (habitat == HABITAT_LAND && MapGridGetElevationAt(x, y) != player->currentElevation && MapGridGetElevationAt(x, y) != 0)
             continue;
         if (GetObjectEventIdByXY(x, y) != OBJECT_EVENTS_COUNT)
             continue;
@@ -229,25 +246,28 @@ static u32 MakeShinyPersonality(void)
     return ((u32)hi << 16) | lo;
 }
 
-static bool8 HasPaletteRoomFor(u16 species)
+static bool8 HasPaletteRoomFor(u16 species, bool8 shiny)
 {
-    u8 i, freeSlots = 0;
+    u8 i;
 
-    if (IndexOfSpritePaletteTag(FOLLOWER_PAL_TAG(species)) != 0xFF)
-        return TRUE; // same species is already loaded
-    for (i = 0; i < 16; i++)
+    if (IndexOfSpritePaletteTag(FOLLOWER_PAL_TAG(species)) != 0xFF
+     || IndexOfSpritePaletteTag(FOLLOWER_SHINY_PAL_TAG(species)) != 0xFF)
+        return TRUE; // this species' palette is already loaded
+    // Only the slots after the 12 reserved for map objects can be loaded at runtime (4 on the
+    // overworld). A shiny is recoloured in place, so one free slot is enough either way.
+    for (i = gReservedSpritePaletteCount; i < 16; i++)
     {
         if (GetSpritePaletteTagByPaletteNum(i) == TAG_NONE)
-            freeSlots++;
+            return TRUE;
     }
-    return freeSlots >= 2; // keep one spare for field effects / the follower
+    return FALSE;
 }
 
 static void TrySpawn(void)
 {
     struct ObjectEventTemplate template;
     u16 species;
-    u8 level, slot, objId;
+    u8 level, slot, objId, habitat, elevation;
     s16 x, y;
     bool8 shiny;
 
@@ -258,10 +278,24 @@ static void TrySpawn(void)
     }
     if (slot == OW_MON_MAX)
         return;
-    if (!ChooseSpecies(&species, &level) || species == SPECIES_NONE || species >= FOLLOWER_GFX_COUNT)
+
+    // Land or water: mostly water while surfing, sometimes water from the shore
+    habitat = HABITAT_LAND;
+    if ((Random() % 100) < (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) ? OW_MON_WATER_CHANCE_SURFING : OW_MON_WATER_CHANCE))
+        habitat = HABITAT_WATER;
+    if (!FindSpawnTile(habitat, &x, &y))
+    {
+        habitat = (habitat == HABITAT_WATER) ? HABITAT_LAND : HABITAT_WATER;
+        if (!FindSpawnTile(habitat, &x, &y))
+            return;
+    }
+    if (!ChooseSpecies(habitat, &species, &level) || species == SPECIES_NONE || species >= FOLLOWER_GFX_COUNT)
         return;
-    if (!HasPaletteRoomFor(species) || !FindSpawnTile(&x, &y))
+    shiny = (Random() % OW_MON_SHINY_ODDS) == 0;
+    if (!HasPaletteRoomFor(species, shiny))
         return;
+    elevation = (habitat == HABITAT_WATER) ? MapGridGetElevationAt(x, y)
+                                           : gObjectEvents[gPlayerAvatar.objectEventId].currentElevation;
 
     memset(&template, 0, sizeof(template));
     template.localId = OW_MON_LOCALID_BASE + slot;
@@ -269,7 +303,7 @@ static void TrySpawn(void)
     template.graphicsId = OBJ_EVENT_GFX_FOLLOWER(species);
     template.x = x - MAP_OFFSET;
     template.y = y - MAP_OFFSET;
-    template.objUnion.normal.elevation = gObjectEvents[gPlayerAvatar.objectEventId].currentElevation;
+    template.objUnion.normal.elevation = elevation;
     template.objUnion.normal.movementType = MOVEMENT_TYPE_WANDER_AROUND;
     template.objUnion.normal.movementRangeX = OW_MON_WANDER_RANGE;
     template.objUnion.normal.movementRangeY = OW_MON_WANDER_RANGE;
@@ -280,7 +314,6 @@ static void TrySpawn(void)
     if (objId >= OBJECT_EVENTS_COUNT)
         return;
 
-    shiny = (Random() % OW_MON_SHINY_ODDS) == 0;
     sSlots[slot].active = TRUE;
     sSlots[slot].mapGroup = gSaveBlock1Ptr->location.mapGroup;
     sSlots[slot].mapNum = gSaveBlock1Ptr->location.mapNum;
@@ -288,8 +321,44 @@ static void TrySpawn(void)
     sSlots[slot].level = level;
     sSlots[slot].personality = shiny ? MakeShinyPersonality() : ((u32)Random() << 16 | Random());
     sSlots[slot].eggMove = (Random() % 100) < OW_MON_EGG_MOVE_CHANCE ? GetRandomEggMoveForSpecies(species) : MOVE_NONE;
+    sSlots[slot].shiny = shiny;
+    sSlots[slot].sparkleTimer = OW_MON_SPARKLE_FRAMES;
     if (shiny)
+    {
+        ObjectEventSetShinyPalette(&gObjectEvents[objId], TRUE);
+        sSlots[slot].burstPending = 60; // sparkle burst as soon as a palette slot allows (see below)
         PlaySE(SE_SHINY);
+    }
+}
+
+// Every frame, for each spawned object (event_object_movement.c): keeps a shiny in its shiny
+// colours (e.g. after returning from a menu or another battle) and makes it twinkle.
+void OverworldMon_UpdateObject(struct ObjectEvent *objectEvent)
+{
+    u8 slot = objectEvent->localId - OW_MON_LOCALID_BASE;
+
+    if (slot >= OW_MON_MAX || !IsSlotOnThisMap(slot) || !sSlots[slot].shiny)
+        return;
+    ObjectEventSetShinyPalette(objectEvent, TRUE);
+
+    // The sparkle sprites need their own palette, and the overworld only has 4 free palette
+    // slots (weather, grass effects, the follower...), so wait for one for up to a second.
+    // Sparkle burst when it appears (retried for up to a second if no palette is available)
+    if (sSlots[slot].burstPending)
+    {
+        if (CreateShinySparklesAtObject(objectEvent - gObjectEvents, FALSE))
+            sSlots[slot].burstPending = 0;
+        else
+            sSlots[slot].burstPending--;
+    }
+
+    // ...and a twinkle every so often while it's on screen
+    if (--sSlots[slot].sparkleTimer == 0)
+    {
+        sSlots[slot].sparkleTimer = OW_MON_SPARKLE_FRAMES;
+        if (!objectEvent->offScreen && !objectEvent->invisible)
+            CreateShinySparklesAtObject(objectEvent - gObjectEvents, TRUE);
+    }
 }
 
 static void TryDespawnFarthest(bool8 forceFar)

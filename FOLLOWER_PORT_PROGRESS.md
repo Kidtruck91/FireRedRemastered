@@ -242,6 +242,20 @@ Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
 - water/surf spawns
 - hidden abilities
 
+
+**Update (shinies, water, caves):**
+- Shiny odds are now 1/4096.
+- **Shiny colours:** `graphics/object_events/palettes/followers_shiny/` holds 385 palettes, generated from each species' battle normal/shiny palettes by `scripts/make_shiny_follower_pals.py`. Castform keeps its normal palette.
+  - They use tags `FOLLOWER_SHINY_PAL_TAG(species)` (0x2400+) and are applied with `ObjectEventSetShinyPalette()`, which recolours in place when the sprite is the sole user, because only 4 sprite palette slots are free on the overworld.
+  - A shiny lead Pokémon makes the follower shiny too.
+- **Shiny sparkles:**
+  - When a shiny spawns, the sound plays and there is a sparkle burst (`CreateShinySparklesAtObject`). It retries for up to a second if no palette is free.
+  - While it is on screen it twinkles every 90 frames.
+  - If the sparkle palette can't load, the burst borrows the grass field-effect palette (`expanding_sparkle_alt.png`, light blues).
+- **Water spawns** come from the map's surf table: 85% of spawns while surfing, 25% from the shore. They sit at the water's elevation, so they stay on the water.
+- **Caves** already spawned, since cave floors are land-encounter tiles.
+- **Tested in mGBA** (forced-shiny test ROM): shiny Tentacool on Pallet's pond, a shiny Rattata in Route 1's grass with the burst and twinkles.
+
 ## Log
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
 - 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds. Chunk 4 done (hooks and dialogue); the follower is live, so testing is next. Nuzlocke rules added (separate commit).
@@ -249,3 +263,4 @@ Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
 - 2026-10-10: Play-testing fixes: follower door exit placement, Mom's house (map header + coord triggers), option menu CANCEL row. NOTE: VisualBoyAdvance was writing the 128K save as 64K (sectors alias), which mixes old and new save data and caused the black quest-log recap and a crash on continue. Set the emulator save type to Flash 128K (or use mGBA) and start a new save.
 - 2026-10-10: Trainer team pools (Basic/Intermediate/Advanced tiers, Hiker examples) and the per-mon ability field. Tested in mGBA.
 - 2026-10-11: Wandering overworld Pokémon (route table + bonus lists, 1/512 shiny, egg moves, counts for Nuzlocke). Tested in mGBA.
+- 2026-10-11: Overworld shinies (1/4096, shiny colours, sparkles, shiny follower), water spawns.

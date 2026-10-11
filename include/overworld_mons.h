@@ -9,5 +9,6 @@ bool8 OverworldMon_IsOverworldMonLocalId(u8 localId);
 bool8 OverworldMon_TryWalkInto(u8 direction);
 void OverworldMon_PrepareBattle(void);
 void OverworldMon_RemoveTalked(void);
+void OverworldMon_UpdateObject(struct ObjectEvent *objectEvent);
 
 #endif // GUARD_OVERWORLD_MONS_H
