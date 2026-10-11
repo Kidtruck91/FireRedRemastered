@@ -272,3 +272,11 @@ Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
 - Crossing a map connection calls `UpdateObjectReflectionPaletteMode()` (overworld.c `LoadMapFromCameraTransition`): loads reflections (moving any dynamic palettes out of 6-11, fixing weather palette indices) or frees the slots once nothing is reflecting. With reflections off, no reflection sprites are made.
 - Tested in mGBA: Pallet/Route 1/houses = 6 reserved; Viridian (pond) = 12 with working player + follower reflections; walking Route 1 <-> Viridian and PC in/out switch correctly.
 - `OW_MON_MAX` could now go above 2 on most routes; `HasPaletteRoomFor` already checks free slots.
+
+## Extra: hidden abilities (7da2c2305)
+
+- Gen 3 abilities only (user choice): `.hiddenAbility` in `src/data/pokemon/species_info.h` for the 123 species whose official HA exists in Gen 3; the rest have none. Add Gen 4/5 abilities later if it feels limiting.
+- Saved bit: `hiddenAbility:1` taken from `unusedRibbons` (now 3 bits; Nuzlocke dead bit 0 unchanged). `MON_DATA_ABILITY_NUM` returns/accepts 2 (`ABILITY_NUM_HIDDEN`); `GetAbilityBySpecies` falls back to slot 1 if a species has no HA.
+- Battle: `GetBattlerPartyMonAbility` (pokemon.c) used at battle intro, switch-in and CopyPlayerPartyMonToBattleData, because `BattlePokemon.abilityNum` is only 1 bit. AI switch logic and Pickup use `GetMonAbility`.
+- Sources: overworld mons `OW_MON_HIDDEN_ABILITY_CHANCE` 10%; trainer/pool `.ability = 4` (check_trainer_pools.py rejects species without an HA); daycare 60% from the mother, or the non-Ditto parent with Ditto, kept on hatch; script macros `givemon_hidden`, `giveegg_hidden`, `setwildbattle_hidden`.
+- Tested: test ROM with Charmander HA = Drought given via givemon -> Drought activates in the rival battle and shows on the summary; normal ROM Charmander still Blaze.
