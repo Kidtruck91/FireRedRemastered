@@ -4,6 +4,7 @@
 // Visible wild Pokemon that wander around on routes (src/overworld_mons.c).
 
 void OverworldMons_OnStep(void);
+void OverworldMons_CleanUp(void);
 bool8 OverworldMon_IsOverworldMonObjectEventId(u8 objectEventId);
 bool8 OverworldMon_IsOverworldMonLocalId(u8 localId);
 bool8 OverworldMon_TryWalkInto(u8 direction);

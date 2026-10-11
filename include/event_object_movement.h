@@ -6,25 +6,31 @@
 // time while walking around the overworld. The only exceptions are the palettes for the player and
 // the "special" NPC, which can be swapped out. This also means that e.g. two "special" NPCs
 // with competing palettes cannot be properly loaded at the same time.
+//
+// The reflection palettes come last: on maps with no reflective water or ice anywhere in view,
+// they are not loaded at all and slots 6-15 are free for followers, wild overworld Pokemon,
+// field effects and weather (instead of only 12-15).
 enum {
     PALSLOT_PLAYER,
-    PALSLOT_PLAYER_REFLECTION,
     PALSLOT_NPC_1,
     PALSLOT_NPC_2,
     PALSLOT_NPC_3,
     PALSLOT_NPC_4,
+    PALSLOT_NPC_SPECIAL,
+    OBJ_PALSLOT_COUNT_NO_REFLECTIONS,
+    PALSLOT_PLAYER_REFLECTION = OBJ_PALSLOT_COUNT_NO_REFLECTIONS,
     PALSLOT_NPC_1_REFLECTION,
     PALSLOT_NPC_2_REFLECTION,
     PALSLOT_NPC_3_REFLECTION,
     PALSLOT_NPC_4_REFLECTION,
-    PALSLOT_NPC_SPECIAL,
     PALSLOT_NPC_SPECIAL_REFLECTION,
     OBJ_PALSLOT_COUNT
-    // the remaining sprite palette slots (12-15) are used by field effects, the interface, etc.
+    // the remaining sprite palette slots (12-15, or 6-15 without reflections) are used by
+    // field effects, the interface, follower Pokemon, etc.
 };
 
 // paletteSlot value for graphics whose palette is allocated on demand by tag in one of the
-// free slots 12-15 (follower Pokemon)
+// free slots (follower Pokemon)
 #define PALSLOT_DYNAMIC 15
 
 enum SpinnerRunnerFollowPatterns
@@ -140,6 +146,8 @@ u8 GetFishingDirectionAnimNum(u8 direction);
 u8 GetFishingNoCatchDirectionAnimNum(u8 a0);
 u8 CreateFameCheckerObject(u16 graphicsId, u8 localId, s16 x, s16 y);
 void InitObjectEventPalettes(u8 mode);
+void UpdateObjectReflectionPaletteMode(void);
+bool8 AreObjectReflectionPalettesLoaded(void);
 bool8 ObjectEventIsMovementOverridden(struct ObjectEvent *objectEvent);
 u8 ObjectEventCheckHeldMovementStatus(struct ObjectEvent *objectEvent);
 u8 GetWalkNormalMovementAction(u32);

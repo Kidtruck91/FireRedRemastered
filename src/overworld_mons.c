@@ -253,8 +253,9 @@ static bool8 HasPaletteRoomFor(u16 species, bool8 shiny)
     if (IndexOfSpritePaletteTag(FOLLOWER_PAL_TAG(species)) != 0xFF
      || IndexOfSpritePaletteTag(FOLLOWER_SHINY_PAL_TAG(species)) != 0xFF)
         return TRUE; // this species' palette is already loaded
-    // Only the slots after the 12 reserved for map objects can be loaded at runtime (4 on the
-    // overworld). A shiny is recoloured in place, so one free slot is enough either way.
+    // Only the slots after the ones reserved for map objects can be loaded at runtime (4 on maps
+    // with reflective water, 10 elsewhere). A shiny is recoloured in place, so one free slot is
+    // enough either way.
     for (i = gReservedSpritePaletteCount; i < 16; i++)
     {
         if (GetSpritePaletteTagByPaletteNum(i) == TAG_NONE)
@@ -393,6 +394,12 @@ static void TryDespawnFarthest(bool8 forceFar)
 }
 
 // Called on every player step (field_control_avatar.c)
+// Called when walking onto a connected map, before the palettes are reshuffled
+void OverworldMons_CleanUp(void)
+{
+    CleanUpSlots();
+}
+
 void OverworldMons_OnStep(void)
 {
     u8 i, active;

@@ -108,18 +108,18 @@ static const u8 sBasePaletteGammaTypes[32] = {
     GAMMA_NONE,
     GAMMA_NONE,
     GAMMA_NONE,
-    // sprite palettes
-    GAMMA_ALT,
+    // sprite palettes (see the PALSLOT_* enum: objects 0-5, reflections 6-11, free 12-15)
+    GAMMA_ALT,    // player
+    GAMMA_ALT,    // NPC 1
+    GAMMA_ALT,    // NPC 2
+    GAMMA_ALT,    // NPC 3
+    GAMMA_ALT,    // NPC 4
+    GAMMA_ALT,    // special NPC
+    GAMMA_NORMAL, // reflections...
     GAMMA_NORMAL,
-    GAMMA_ALT,
-    GAMMA_ALT,
-    GAMMA_ALT,
-    GAMMA_ALT,
     GAMMA_NORMAL,
     GAMMA_NORMAL,
     GAMMA_NORMAL,
-    GAMMA_NORMAL,
-    GAMMA_ALT,
     GAMMA_NORMAL,
     GAMMA_NORMAL,
     GAMMA_NORMAL,

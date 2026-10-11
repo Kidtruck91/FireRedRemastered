@@ -5,6 +5,7 @@
 #include "new_menu_helpers.h"
 #include "quest_log.h"
 #include "fieldmap.h"
+#include "metatile_behavior.h"
 
 struct ConnectionFlags
 {
@@ -427,6 +428,48 @@ void MapGridSetMetatileImpassabilityAt(s32 x, s32 y, bool32 impassable)
         else
             VMap.map[x + VMap.Xsize * y] &= ~MAPGRID_COLLISION_MASK;
     }
+}
+
+// TRUE if any loaded metatile (the map plus the strips of its connected maps, and the border)
+// makes object reflections (pond water, puddles, ice). Used to decide whether the reflection
+// sprite palettes need to be loaded.
+bool8 MapGridHasReflectiveMetatiles(void)
+{
+    u8 reflective[NUM_METATILES_TOTAL / 8];
+    const struct MapLayout *layout = gMapHeader.mapLayout;
+    u32 behavior;
+    s32 i, count;
+    u16 metatile;
+    bool8 any = FALSE;
+
+    for (i = 0; i < NUM_METATILES_TOTAL / 8; i++)
+        reflective[i] = 0;
+    for (i = 0; i < NUM_METATILES_TOTAL; i++)
+    {
+        behavior = GetAttributeByMetatileIdAndMapLayout(layout, i, METATILE_ATTRIBUTE_BEHAVIOR);
+        if (MetatileBehavior_IsReflective(behavior) || MetatileBehavior_IsIce(behavior))
+        {
+            reflective[i / 8] |= 1 << (i % 8);
+            any = TRUE;
+        }
+    }
+    if (!any)
+        return FALSE;
+
+    count = VMap.Xsize * VMap.Ysize;
+    for (i = 0; i < count; i++)
+    {
+        metatile = VMap.map[i] & MAPGRID_METATILE_ID_MASK;
+        if (metatile < NUM_METATILES_TOTAL && (reflective[metatile / 8] & (1 << (metatile % 8))))
+            return TRUE;
+    }
+    for (i = 0; i < layout->borderWidth * layout->borderHeight; i++)
+    {
+        metatile = layout->border[i] & MAPGRID_METATILE_ID_MASK;
+        if (reflective[metatile / 8] & (1 << (metatile % 8)))
+            return TRUE;
+    }
+    return FALSE;
 }
 
 static u32 GetAttributeByMetatileIdAndMapLayout(const struct MapLayout *mapLayout, u16 metatile, u8 attributeType)
