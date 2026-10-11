@@ -782,3 +782,22 @@ static void AddToWildEncounterRateBuff(u8 encounterRate)
     else
         sWildEncounterData.encounterRateBuff = 0;
 }
+
+// A species + level from the current map's land encounter table (used by the wandering
+// overworld Pokemon in overworld_mons.c). FALSE if this map has no land encounters.
+bool8 GetLandEncounterForOverworldMon(u16 *species, u8 *level)
+{
+    u16 headerId = GetCurrentMapWildMonHeaderId();
+    const struct WildPokemonInfo *info;
+    u8 index;
+
+    if (headerId == HEADER_NONE)
+        return FALSE;
+    info = gWildMonHeaders[headerId].landMonsInfo;
+    if (info == NULL)
+        return FALSE;
+    index = ChooseWildMonIndex_Land();
+    *species = info->wildPokemon[index].species;
+    *level = ChooseWildMonLevel(&info->wildPokemon[index]);
+    return TRUE;
+}

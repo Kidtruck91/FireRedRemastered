@@ -204,9 +204,48 @@ Its own commit. Handwritten teams are unchanged; only trainers you point at a po
 - A rerun gave the same team; a changed Trainer ID gave a different one.
 - Existing teams were confirmed unchanged.
 
+## Separate change: wandering overworld Pokémon (not part of the follower port)
+Its own commit. The code is in `src/overworld_mons.c`; the tuning numbers are at the top.
+
+**What it does:**
+- On maps with land encounters, every `OW_MON_STEP_INTERVAL` (6) steps it rolls to spawn (up to 2) or to despawn the farthest one. Anything over 12 tiles away also leaves.
+- Spawns use the map's land table, plus an optional per-map bonus list in `src/data/overworld_mons.h` (20% chance; Route 1 has Sentret and Hoothoot as an example).
+- Spawns appear on encounter tiles 3–8 tiles away and wander within 2 tiles, using the follower sprites.
+- They are skipped if no sprite palette slot is free.
+- Normal random encounters still happen.
+
+**Battling:**
+- Walking into a spawn (`OverworldMon_TryWalkInto`, `field_player_avatar.c`) or pressing A runs `EventScript_OverworldMon` (`data/scripts/overworld_mons.inc`).
+- That script builds the Pokémon, plays its cry, removes the object, and runs `dowildbattle`, a scripted wild battle that counts as the route's Nuzlocke encounter.
+
+**Bonuses:**
+- Shiny odds are 1/512: the personality is made shiny for the player's Trainer ID, and the shiny sound plays when one spawns.
+- There is a 50% chance of one egg move (`GetRandomEggMoveForSpecies` in `daycare.c`, through the basic form).
+
+**Hooks:**
+- `field_control_avatar.c` (the step counter)
+- `field_player_avatar.c` (walking into a spawn)
+- `event_object_movement.c` (the script pointer for local ids 0xF0–0xF1)
+- `quest_log_objects.c` (spawns are not recorded)
+- `wild_encounter.c` (`GetLandEncounterForOverworldMon`)
+
+Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
+
+**Status:** tested in mGBA on Route 1, using test ROMs with normal encounters off.
+- Spawns appeared and wandered; a Sentret came from the bonus list.
+- Walking into a Rattata started the battle, and after it the field was fine.
+- Forced 100% egg moves gave legal ones (Foresight, Steel Wing, Uproar, Flame Wheel).
+- A forced-shiny Pidgey was shiny in battle.
+
+**Not done yet:**
+- shiny overworld sprite colours (there are no shiny follower palettes)
+- water/surf spawns
+- hidden abilities
+
 ## Log
 - 2026-10-09: survey done, backup branch made, Chunk 1 done and committed.
 - 2026-10-10: Chunk 2 done and committed. Level cap behaviour finished (separate commit). Chunk 3 done; the ROM builds. Chunk 4 done (hooks and dialogue); the follower is live, so testing is next. Nuzlocke rules added (separate commit).
 - 2026-10-10: Trainer AI levels (Simple / Normal / Advanced as trainer data) added as a separate commit. Builds; not play-tested.
 - 2026-10-10: Play-testing fixes: follower door exit placement, Mom's house (map header + coord triggers), option menu CANCEL row. NOTE: VisualBoyAdvance was writing the 128K save as 64K (sectors alias), which mixes old and new save data and caused the black quest-log recap and a crash on continue. Set the emulator save type to Flash 128K (or use mGBA) and start a new save.
 - 2026-10-10: Trainer team pools (Basic/Intermediate/Advanced tiers, Hiker examples) and the per-mon ability field. Tested in mGBA.
+- 2026-10-11: Wandering overworld Pokémon (route table + bonus lists, 1/512 shiny, egg moves, counts for Nuzlocke). Tested in mGBA.

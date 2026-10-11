@@ -1,4 +1,6 @@
 #include "global.h"
+#include "overworld_mons.h"
+extern const u8 EventScript_OverworldMon[];
 #include "gflib.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -2669,6 +2671,8 @@ const u8 *GetObjectEventScriptPointerByObjectEventId(u8 objectEventId)
 {
     if (FollowMe_IsFollowerObjectEventId(objectEventId))
         return GetFollowerScriptPointer();
+    if (OverworldMon_IsOverworldMonObjectEventId(objectEventId))
+        return EventScript_OverworldMon;
     return GetObjectEventScriptPointerByLocalIdAndMap(gObjectEvents[objectEventId].localId, gObjectEvents[objectEventId].mapNum, gObjectEvents[objectEventId].mapGroup);
 }
 

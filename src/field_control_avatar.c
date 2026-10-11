@@ -1,4 +1,5 @@
 #include "global.h"
+#include "overworld_mons.h"
 #include "follow_me.h"
 #include "gflib.h"
 #include "bike.h"
@@ -664,6 +665,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
         return FALSE;
 
     UpdateHappinessStepCounter();
+    OverworldMons_OnStep();
 
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED) && !MetatileBehavior_IsForcedMovementTile(metatileBehavior))
     {

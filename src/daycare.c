@@ -2153,3 +2153,25 @@ static void EggHatchPrintMessage(u8 windowId, u8 *string, u8 x, u8 y, u8 speed)
     sEggHatchData->textColor[2] = 6;
     AddTextPrinterParameterized4(windowId, FONT_NORMAL_COPY_2, x, y, 1, 1, sEggHatchData->textColor, speed, string);
 }
+
+// A random egg move for a species (looked up through its basic form), or MOVE_NONE.
+// Used by the wandering overworld Pokemon (overworld_mons.c).
+u16 GetRandomEggMoveForSpecies(u16 species)
+{
+    u16 eggSpecies = GetEggSpecies(species);
+    u16 i, start, count;
+
+    for (i = 0; i < NELEMS(gEggMoves) - 1; i++)
+    {
+        if (gEggMoves[i] == eggSpecies + EGG_MOVES_SPECIES_OFFSET)
+            break;
+    }
+    if (i >= NELEMS(gEggMoves) - 1)
+        return MOVE_NONE;
+    start = i + 1;
+    for (count = 0; start + count < NELEMS(gEggMoves) && gEggMoves[start + count] < EGG_MOVES_SPECIES_OFFSET; count++)
+        ;
+    if (count == 0)
+        return MOVE_NONE;
+    return gEggMoves[start + Random() % count];
+}
