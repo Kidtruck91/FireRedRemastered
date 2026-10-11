@@ -367,6 +367,37 @@ void BattleAI_SetupAIData(void)
     }
 }
 
+// Moves that backfire because of a Gen 4/5 ability on the target (the AI scripts predate them)
+static void AI_ScoreGen45TargetAbilities(u8 attacker, u8 target, s8 *scores)
+{
+    s32 i;
+    u16 move;
+    u8 effect, ability = gBattleMons[target].ability;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        move = gBattleMons[attacker].moves[i];
+        if (move == MOVE_NONE || scores[i] == 0)
+            continue;
+        effect = gBattleMoves[move].effect;
+        if (ability == ABILITY_MAGIC_BOUNCE && (gBattleMoves[move].flags & FLAG_MAGIC_COAT_AFFECTED))
+            scores[i] -= 10;
+        else if (ability == ABILITY_CONTRARY
+              && ((effect >= EFFECT_ATTACK_DOWN && effect <= EFFECT_EVASION_DOWN)
+               || (effect >= EFFECT_ATTACK_DOWN_2 && effect <= EFFECT_EVASION_DOWN_2)
+               || effect == EFFECT_TICKLE))
+            scores[i] -= 10;
+        else if (ability == ABILITY_SAP_SIPPER && gBattleMoves[move].type == TYPE_GRASS && gBattleMoves[move].power == 0)
+            scores[i] -= 10; // grass status moves (Sleep Powder, Leech Seed, ...)
+        else if ((ability == ABILITY_DEFIANT)
+              && ((effect >= EFFECT_ATTACK_DOWN && effect <= EFFECT_EVASION_DOWN)
+               || (effect >= EFFECT_ATTACK_DOWN_2 && effect <= EFFECT_EVASION_DOWN_2)))
+            scores[i] -= 5;
+        if (scores[i] < 0)
+            scores[i] = 0;
+    }
+}
+
 u8 BattleAI_ChooseMoveOrAction(void)
 {
     u8 currentMoveArray[MAX_MON_MOVES];
@@ -374,6 +405,7 @@ u8 BattleAI_ChooseMoveOrAction(void)
     u8 numOfBestMoves;
     s32 i;
     bool8 advanced = (AI_THINKING_STRUCT->aiFlags & AI_SCRIPT_ADVANCED) != 0;
+    bool8 checksBadMoves = (AI_THINKING_STRUCT->aiFlags & AI_SCRIPT_CHECK_BAD_MOVE) != 0;
 
     RecordLastUsedMoveByTarget();
     while (AI_THINKING_STRUCT->aiFlags != 0)
@@ -394,6 +426,8 @@ u8 BattleAI_ChooseMoveOrAction(void)
     if (AI_THINKING_STRUCT->aiAction & AI_ACTION_WATCH)
         return AI_CHOICE_WATCH;
 
+    if (checksBadMoves && !(gBattleTypeFlags & BATTLE_TYPE_SAFARI))
+        AI_ScoreGen45TargetAbilities(gBattlerAttacker, gBattlerTarget, AI_THINKING_STRUCT->score);
     if (advanced)
         AI_AdvancedScoreMoves(gBattlerAttacker, gBattlerTarget, AI_THINKING_STRUCT->score);
 

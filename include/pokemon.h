@@ -247,7 +247,12 @@ struct BattleMove
     u8 target;
     s8 priority;
     u8 flags;
+    u8 split; // SPLIT_PHYSICAL / SPLIT_SPECIAL / SPLIT_STATUS (used when the Options split is ON)
 };
+
+#define SPLIT_PHYSICAL 0
+#define SPLIT_SPECIAL  1
+#define SPLIT_STATUS   2
 
 #define SPINDA_SPOT_WIDTH 16
 #define SPINDA_SPOT_HEIGHT 16

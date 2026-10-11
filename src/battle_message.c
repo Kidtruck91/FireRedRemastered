@@ -262,6 +262,19 @@ static const u8 sText_PkmnCantUseMoveTorment[] = _("{B_ACTIVE_NAME_WITH_PREFIX} 
 static const u8 sText_PkmnCantUseMoveTaunt[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use\n{B_CURRENT_MOVE} after the TAUNT!\p");
 static const u8 sText_PkmnCantUseMoveSealed[] = _("{B_ACTIVE_NAME_WITH_PREFIX} can't use the\nsealed {B_CURRENT_MOVE}!\p");
 static const u8 sText_PkmnMadeItRain[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nmade it rain!");
+static const u8 sText_CursedBodyDisabled[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\ndisabled {B_ATK_NAME_WITH_PREFIX}'s\l{B_BUFF1}!");
+static const u8 sText_PickpocketStole[] = _("{B_DEF_NAME_WITH_PREFIX} stole\n{B_ATK_NAME_WITH_PREFIX}'s {B_LAST_ITEM}!");
+static const u8 sText_HurtByOwnAbility[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt by\nits {B_ATK_ABILITY}!");
+static const u8 sText_HarvestedBerry[] = _("{B_ATK_NAME_WITH_PREFIX} harvested\none {B_LAST_ITEM}!");
+static const u8 sText_HealerCured[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\ncured its partner's problem!");
+static const u8 sText_FriskFound[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} frisked its foe\nand found one {B_LAST_ITEM}!");
+static const u8 sText_AnticipationShudder[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} shuddered!");
+static const u8 sText_UnnerveActivates[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nmakes its foes nervous!");
+static const u8 sText_MagicBounced[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_CURRENT_MOVE}\nwas bounced back by MAGIC BOUNCE!");
+static const u8 sText_AbilityRaisedStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nraised its {B_BUFF1}!");
+static const u8 sText_AbilityLoweredStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nlowered its {B_BUFF1}!");
+static const u8 sText_AbilitySharplyRaisedStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nsharply raised its {B_BUFF1}!");
+static const u8 sText_AbilityMaxedStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nmaxed its {B_BUFF1}!");
 static const u8 sText_PkmnRaisedSpeed[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nraised its SPEED!");
 static const u8 sText_PkmnProtectedBy[] = _("{B_DEF_NAME_WITH_PREFIX} was protected\nby {B_DEF_ABILITY}!");
 static const u8 sText_PkmnPreventsUsage[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nprevents {B_ATK_NAME_WITH_PREFIX}\lfrom using {B_CURRENT_MOVE}!");
@@ -698,6 +711,19 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT - BATTLESTRINGS_TABLE_ST
     [STRINGID_PKMNWAITSFORTARGET - BATTLESTRINGS_TABLE_START]            = sText_PkmnWaitsForTarget,
     [STRINGID_PKMNSNATCHEDMOVE - BATTLESTRINGS_TABLE_START]              = sText_PkmnSnatchedMove,
     [STRINGID_PKMNMADEITRAIN - BATTLESTRINGS_TABLE_START]                = sText_PkmnMadeItRain,
+    [STRINGID_CURSEDBODYDISABLED - BATTLESTRINGS_TABLE_START]            = sText_CursedBodyDisabled,
+    [STRINGID_PICKPOCKETSTOLE - BATTLESTRINGS_TABLE_START]               = sText_PickpocketStole,
+    [STRINGID_HURTBYOWNABILITY - BATTLESTRINGS_TABLE_START]              = sText_HurtByOwnAbility,
+    [STRINGID_HARVESTEDBERRY - BATTLESTRINGS_TABLE_START]                = sText_HarvestedBerry,
+    [STRINGID_HEALERCURED - BATTLESTRINGS_TABLE_START]                   = sText_HealerCured,
+    [STRINGID_FRISKFOUND - BATTLESTRINGS_TABLE_START]                    = sText_FriskFound,
+    [STRINGID_ANTICIPATIONSHUDDER - BATTLESTRINGS_TABLE_START]           = sText_AnticipationShudder,
+    [STRINGID_UNNERVEACTIVATES - BATTLESTRINGS_TABLE_START]              = sText_UnnerveActivates,
+    [STRINGID_MAGICBOUNCED - BATTLESTRINGS_TABLE_START]                  = sText_MagicBounced,
+    [STRINGID_ABILITYRAISEDSTAT - BATTLESTRINGS_TABLE_START]             = sText_AbilityRaisedStat,
+    [STRINGID_ABILITYLOWEREDSTAT - BATTLESTRINGS_TABLE_START]            = sText_AbilityLoweredStat,
+    [STRINGID_ABILITYMAXEDSTAT - BATTLESTRINGS_TABLE_START]              = sText_AbilityMaxedStat,
+    [STRINGID_ABILITYSHARPLYRAISEDSTAT - BATTLESTRINGS_TABLE_START]      = sText_AbilitySharplyRaisedStat,
     [STRINGID_PKMNRAISEDSPEED - BATTLESTRINGS_TABLE_START]               = sText_PkmnRaisedSpeed,
     [STRINGID_PKMNPROTECTEDBY - BATTLESTRINGS_TABLE_START]               = sText_PkmnProtectedBy,
     [STRINGID_PKMNPREVENTSUSAGE - BATTLESTRINGS_TABLE_START]             = sText_PkmnPreventsUsage,
@@ -1006,6 +1032,16 @@ const u16 gUproarAwakeStringIds[] =
     [B_MSG_CANT_SLEEP_UPROAR]  = STRINGID_PKMNCANTSLEEPINUPROAR2,
     [B_MSG_UPROAR_KEPT_AWAKE]  = STRINGID_UPROARKEPTPKMNAWAKE,
     [B_MSG_STAYED_AWAKE_USING] = STRINGID_PKMNSTAYEDAWAKEUSING
+};
+
+const u16 gSwitchInAbilityStringIds[] =
+{
+    STRINGID_FRISKFOUND, STRINGID_ANTICIPATIONSHUDDER, STRINGID_UNNERVEACTIVATES
+};
+
+const u16 gAbilityStatChangeStringIds[] =
+{
+    STRINGID_ABILITYRAISEDSTAT, STRINGID_ABILITYLOWEREDSTAT, STRINGID_ABILITYMAXEDSTAT, STRINGID_ABILITYSHARPLYRAISEDSTAT
 };
 
 const u16 gStatUpStringIds[] =

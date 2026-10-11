@@ -2869,6 +2869,25 @@ static void PokeSum_PrintSelectedMoveStats(void)
                                      sLevelNickTextColors[0], TEXT_SKIP_DRAW,
                                      sMonSummaryScreen->summary.moveAccuracyStrBufs[sMoveSelectionCursorPos]);
 
+        // With the Options PHYS/SPEC SPLIT on, show which kind of move it is
+        if (FlagGet(FLAG_PHYS_SPEC_SPLIT))
+        {
+            static const u8 sText_Physical[] = _("PHYSICAL");
+            static const u8 sText_Special[] = _("SPECIAL");
+            static const u8 sText_Status[] = _("STATUS");
+            const u8 *category;
+            switch (gBattleMoves[sMonSummaryScreen->moveIds[sMoveSelectionCursorPos]].split)
+            {
+            case SPLIT_PHYSICAL: category = sText_Physical; break;
+            case SPLIT_SPECIAL:  category = sText_Special; break;
+            default:             category = sText_Status; break;
+            }
+            AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], FONT_SMALL,
+                                         82, 2,
+                                         sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+                                         category);
+        }
+
         AddTextPrinterParameterized4(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], FONT_NORMAL,
                                      7, 42,
                                      0, 0,

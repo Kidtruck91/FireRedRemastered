@@ -934,6 +934,7 @@ extern const u8 gText_BattleStyleSet[];
 extern const u8 gText_NuzlockeOn[];
 extern const u8 gText_NuzlockeOff[];
 extern const u8 gText_NuzlockeMode[];
+extern const u8 gText_PhysSpecSplit[];
 extern const u8 gText_NuzlockeAlreadyEncountered[];
 extern const u8 gText_RandomizeItems[];
 extern const u8 gText_RandomizeWild[];

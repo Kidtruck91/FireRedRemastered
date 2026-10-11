@@ -246,7 +246,7 @@ struct SpecialStatus
     s32 specialDmg;
     u8 physicalBattlerId;
     u8 specialBattlerId;
-    u8 field12;
+    u8 switchInAbilityDone; // Frisk / Anticipation / Unnerve / Imposter already announced
     u8 field13;
 };
 
@@ -493,6 +493,12 @@ extern struct BattleStruct *gBattleStruct;
 #define IS_TYPE_PHYSICAL(moveType)(moveType < TYPE_MYSTERY)
 #define IS_TYPE_SPECIAL(moveType)(moveType > TYPE_MYSTERY)
 
+// Physical or special: by the move's own category when the Options menu's PHYS/SPEC SPLIT is ON
+// (Gen 4+), otherwise by its type (Gen 3). moveType is the type the move is being used as.
+bool8 IsPhysSpecSplitOn(void);
+#define IS_MOVE_PHYSICAL(move, moveType) (IsPhysSpecSplitOn() ? gBattleMoves[move].split == SPLIT_PHYSICAL : IS_TYPE_PHYSICAL(moveType))
+#define IS_MOVE_SPECIAL(move, moveType)  (IsPhysSpecSplitOn() ? gBattleMoves[move].split == SPLIT_SPECIAL : IS_TYPE_SPECIAL(moveType))
+
 #define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0))
 
 #define IS_BATTLER_OF_TYPE(battlerId, type)((gBattleMons[battlerId].type1 == type || gBattleMons[battlerId].type2 == type))
@@ -670,6 +676,7 @@ extern u16 gCurrentMove;
 extern u16 gChosenMove;
 extern u16 gCalledMove;
 extern u8 gCritMultiplier;
+extern u16 gBattlerSwitchInItem[MAX_BATTLERS_COUNT];
 extern u16 gBattleWeather;
 extern u8 gLastUsedAbility;
 extern u8 gBattlerInMenuId;

@@ -25,6 +25,7 @@ enum
     MENUITEM_BUTTONMODE,
     MENUITEM_FRAMETYPE,
     MENUITEM_NUZLOCKE,
+    MENUITEM_PHYS_SPEC_SPLIT,
     MENUITEM_CANCEL,
     MENUITEM_COUNT
 };
@@ -40,7 +41,8 @@ enum
 struct OptionMenu
 {
     /*0x00*/ u16 option[MENUITEM_COUNT];
-    /*0x0E*/ u16 cursorPos;
+    u16 cursorPos;
+    u8 scroll; // first row on screen
     /*0x10*/ u8 loadState;
     /*0x11*/ u8 state;
     /*0x12*/ u8 loadPaletteState;
@@ -133,7 +135,10 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 2, 0};
+static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 2, 2, 0};
+
+// Only this many rows fit in the window; the list scrolls past them.
+#define VISIBLE_ROWS 7
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -144,6 +149,7 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
     [MENUITEM_FRAMETYPE]   = gText_Frame,
     [MENUITEM_NUZLOCKE]    = gText_NuzlockeMode,
+    [MENUITEM_PHYS_SPEC_SPLIT] = gText_PhysSpecSplit,
 
     [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
 };
@@ -224,6 +230,7 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->option[MENUITEM_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
     sOptionMenuPtr->option[MENUITEM_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
     sOptionMenuPtr->option[MENUITEM_NUZLOCKE] = FlagGet(FLAG_NUZLOCKE) ? 0 : 1;
+    sOptionMenuPtr->option[MENUITEM_PHYS_SPEC_SPLIT] = FlagGet(FLAG_PHYS_SPEC_SPLIT) ? 0 : 1;
 
     
     for (i = 0; i < MENUITEM_COUNT - 1; i++)
@@ -404,6 +411,15 @@ static void Task_OptionMenu(u8 taskId)
         case 4:
             BufferOptionMenuString(sOptionMenuPtr->cursorPos);
             break;
+        case 5:
+        {
+            u8 i;
+            LoadOptionMenuItemNames();
+            for (i = 0; i < MENUITEM_COUNT; i++)
+                BufferOptionMenuString(i);
+            UpdateSettingSelectionDisplay(sOptionMenuPtr->cursorPos);
+            break;
+        }
         }
         break;
     case 3:
@@ -419,6 +435,18 @@ static void Task_OptionMenu(u8 taskId)
         CloseAndSaveOptionMenu(taskId);
         break;
     }
+}
+
+// Keeps the cursor row on screen. Returns TRUE if the list scrolled (needs a redraw).
+static bool8 ScrollToCursor(void)
+{
+    u8 old = sOptionMenuPtr->scroll;
+
+    if (sOptionMenuPtr->cursorPos < sOptionMenuPtr->scroll)
+        sOptionMenuPtr->scroll = sOptionMenuPtr->cursorPos;
+    else if (sOptionMenuPtr->cursorPos >= sOptionMenuPtr->scroll + VISIBLE_ROWS)
+        sOptionMenuPtr->scroll = sOptionMenuPtr->cursorPos - VISIBLE_ROWS + 1;
+    return sOptionMenuPtr->scroll != old;
 }
 
 static u8 OptionMenu_ProcessInput(void)
@@ -452,13 +480,13 @@ static u8 OptionMenu_ProcessInput(void)
     }
     else if (JOY_REPT(DPAD_UP))
     {
-        // The CANCEL row no longer fits on screen since Nuzlocke Mode was added (A/B already
-        // close the menu), so the cursor wraps between the first and last visible rows.
+        // There is no CANCEL row (A/B close the menu); the cursor wraps between the first and
+        // last options, and the list scrolls to keep it on screen.
         if (sOptionMenuPtr->cursorPos == MENUITEM_TEXTSPEED)
             sOptionMenuPtr->cursorPos = MENUITEM_CANCEL - 1;
         else
             sOptionMenuPtr->cursorPos = sOptionMenuPtr->cursorPos - 1;
-        return 3;        
+        return ScrollToCursor() ? 5 : 3;
     }
     else if (JOY_REPT(DPAD_DOWN))
     {
@@ -466,7 +494,7 @@ static u8 OptionMenu_ProcessInput(void)
             sOptionMenuPtr->cursorPos = MENUITEM_TEXTSPEED;
         else
             sOptionMenuPtr->cursorPos = sOptionMenuPtr->cursorPos + 1;
-        return 3;
+        return ScrollToCursor() ? 5 : 3;
     }
     else if (JOY_NEW(B_BUTTON) || JOY_NEW(A_BUTTON))
     {
@@ -485,9 +513,11 @@ static void BufferOptionMenuString(u8 selection)
     u8 dst[3];
     u8 x, y;
     
+    if (selection < sOptionMenuPtr->scroll || selection >= sOptionMenuPtr->scroll + VISIBLE_ROWS)
+        return;
     memcpy(dst, sOptionMenuTextColor, 3);
     x = 0x82;
-    y = ((GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) - 1) * selection) + 2;
+    y = ((GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) - 1) * (selection - sOptionMenuPtr->scroll)) + 2;
     FillWindowPixelRect(1, 1, x, y, 0x46, GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT));
 
     switch (selection)
@@ -514,6 +544,7 @@ static void BufferOptionMenuString(u8 selection)
         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, str);
         break;
     case MENUITEM_NUZLOCKE:
+    case MENUITEM_PHYS_SPEC_SPLIT:
         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sNuzlockeOptions[sOptionMenuPtr->option[selection]]);
         break;
     default:
@@ -539,6 +570,10 @@ static void CloseAndSaveOptionMenu(u8 taskId)
     else
         FlagClear(FLAG_NUZLOCKE);
     gSaveBlock2Ptr->enableNuzlocke = FlagGet(FLAG_NUZLOCKE);
+    if (sOptionMenuPtr->option[MENUITEM_PHYS_SPEC_SPLIT] == 0)
+        FlagSet(FLAG_PHYS_SPEC_SPLIT);
+    else
+        FlagClear(FLAG_PHYS_SPEC_SPLIT);
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
     FREE_AND_SET_NULL(sOptionMenuPtr);
     DestroyTask(taskId);
@@ -581,9 +616,10 @@ static void LoadOptionMenuItemNames(void)
     u8 i;
     
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    for (i = 0; i < MENUITEM_COUNT; i++)
+    for (i = sOptionMenuPtr->scroll; i < MENUITEM_CANCEL && i < sOptionMenuPtr->scroll + VISIBLE_ROWS; i++)
     {
-        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sOptionMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SKIP_DRAW, NULL);    
+        u8 row = i - sOptionMenuPtr->scroll;
+        AddTextPrinterParameterized(WIN_OPTIONS, FONT_NORMAL, sOptionMenuItemsNames[i], 8, (u8)((row * (GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - row, TEXT_SKIP_DRAW, NULL);
     }
 }
 
@@ -592,7 +628,7 @@ static void UpdateSettingSelectionDisplay(u16 selection)
     u16 maxLetterHeight, y;
     
     maxLetterHeight = GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT);
-    y = selection * (maxLetterHeight - 1) + 0x3A;
+    y = (selection - sOptionMenuPtr->scroll) * (maxLetterHeight - 1) + 0x3A;
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(y, y + maxLetterHeight));
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0x10, 0xE0));
 }

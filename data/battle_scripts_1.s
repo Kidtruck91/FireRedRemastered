@@ -856,6 +856,7 @@ BattleScript_MoveMissedDoDamage::
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE, BattleScript_MoveEnd
+	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD, BattleScript_MoveEnd
 	printstring STRINGID_PKMNCRASHED
 	waitmessage B_WAIT_TIME_LONG
 	damagecalc
@@ -3307,6 +3308,25 @@ BattleScript_MistProtected::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+@ An ability changed a stat (Defiant, Justified, Moxie, Weak Armor, ...). Set up by
+@ TryRunAbilityStatQueue (battle_util.c): sBATTLER, the stat changer and cMULTISTRING_CHOOSER.
+BattleScript_AbilityStatChange::
+	setgraphicalstatchangevalues
+	playanimation BS_SCRIPTING, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gAbilityStatChangeStringIds
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_CursedBodyActivates::
+	printstring STRINGID_CURSEDBODYDISABLED
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_PickpocketActivates::
+	printstring STRINGID_PICKPOCKETSTOLE
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_RageIsBuilding::
 	printstring STRINGID_PKMNRAGEBUILDING
 	waitmessage B_WAIT_TIME_LONG
@@ -3616,6 +3636,16 @@ BattleScript_MagicCoatBounce::
 	setmagiccoattarget BS_ATTACKER
 	return
 
+BattleScript_MagicBounce::
+	attackstring
+	ppreduce
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_MAGICBOUNCED
+	waitmessage B_WAIT_TIME_LONG
+	orword gHitMarker, HITMARKER_ATTACKSTRING_PRINTED | HITMARKER_NO_PPDEDUCT | HITMARKER_ALLOW_NO_PP
+	setmagiccoattarget BS_ATTACKER
+	return
+
 BattleScript_SnatchedMove::
 	attackstring
 	ppreduce
@@ -3899,6 +3929,7 @@ BattleScript_MoveEffectConfusion::
 	return
 
 BattleScript_MoveEffectRecoil::
+	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD, BattleScript_RecoilEnd
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil
 	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD, BattleScript_RecoilEnd
 BattleScript_DoRecoil::
@@ -3934,6 +3965,44 @@ BattleScript_SpeedBoostActivates::
 BattleScript_TraceActivates::
 	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_PKMNTRACED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_HurtByOwnAbility::
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_HURTBYOWNABILITY
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_ATTACKER
+	end3
+
+BattleScript_HarvestActivates::
+	printstring STRINGID_HARVESTEDBERRY
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_HealerActivates::
+	printstring STRINGID_HEALERCURED
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_SCRIPTING
+	end3
+
+BattleScript_AbilityStatChangesEnd3::
+	various BS_ATTACKER, VARIOUS_ABILITY_STAT_CHANGES
+	end3
+
+BattleScript_SwitchInAbilityMsg::
+	pause B_WAIT_TIME_SHORT
+	printfromtable gSwitchInAbilityStringIds
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_ImposterActivates::
+	transformdataexecution
+	attackanimation
+	waitanimation
+	printfromtable gTransformUsedStringIds
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
@@ -4004,6 +4073,7 @@ BattleScript_IntimidateFail::
 	goto BattleScript_IntimidateActivationAnimLoop
 
 BattleScript_IntimidateEnd::
+	various BS_ATTACKER, VARIOUS_ABILITY_STAT_CHANGES
 	return
 
 BattleScript_IntimidateAbilityFail::

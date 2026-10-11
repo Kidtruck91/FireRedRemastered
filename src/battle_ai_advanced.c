@@ -226,6 +226,10 @@ static u16 MoveMultVsTypes(u16 move, u8 type1, u8 type2, u8 ability)
         return 0;
     if (ability == ABILITY_VOLT_ABSORB && moveType == TYPE_ELECTRIC)
         return 0;
+    if ((ability == ABILITY_STORM_DRAIN || ability == ABILITY_DRY_SKIN) && moveType == TYPE_WATER)
+        return 0;
+    if (ability == ABILITY_SAP_SIPPER && moveType == TYPE_GRASS)
+        return 0;
     mult = TypeMultiplier(moveType, type1, type2);
     if (ability == ABILITY_WONDER_GUARD && mult <= MULT_NEUTRAL)
         return 0;
@@ -441,7 +445,7 @@ static bool8 HasDamagingMoveOfCategory(u8 battler, bool8 physical)
         move = gBattleMons[battler].moves[i];
         if (!IsDamagingMove(move))
             continue;
-        if (physical ? IS_TYPE_PHYSICAL(gBattleMoves[move].type) : IS_TYPE_SPECIAL(gBattleMoves[move].type))
+        if (physical ? IS_MOVE_PHYSICAL(move, gBattleMoves[move].type) : IS_MOVE_SPECIAL(move, gBattleMoves[move].type))
             return TRUE;
     }
     return FALSE;

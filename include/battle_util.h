@@ -35,6 +35,13 @@
 #define ABILITYEFFECT_WATER_SPORT                254
 #define ABILITYEFFECT_SWITCH_IN_WEATHER          255
 
+void ClearAbilityStatQueue(void);
+void QueueAbilityStatChange(u8 battler, u8 stat, s8 amount);
+bool8 TryRunAbilityStatQueue(void);
+bool8 IsSheerForceBoosted(u16 move);
+bool8 IsPunchingMove(u16 move);
+bool8 IsRecoilMove(u16 move);
+
 #define ABILITY_ON_OPPOSING_FIELD(battlerId, abilityId)(AbilityBattleEffects(ABILITYEFFECT_CHECK_OTHER_SIDE, battlerId, abilityId, 0, 0))
 #define ABILITY_ON_FIELD(abilityId)(AbilityBattleEffects(ABILITYEFFECT_CHECK_ON_FIELD, 0, abilityId, 0, 0))
 #define ABILITY_ON_FIELD2(abilityId)(AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, abilityId, 0, 0))

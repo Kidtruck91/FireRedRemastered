@@ -169,6 +169,7 @@ EWRAM_DATA u8 gEffectBattler = 0;
 EWRAM_DATA u8 gPotentialItemEffectBattler = 0;
 EWRAM_DATA u8 gAbsentBattlerFlags = 0;
 EWRAM_DATA u8 gCritMultiplier = 0;
+EWRAM_DATA u16 gBattlerSwitchInItem[MAX_BATTLERS_COUNT] = {0}; // Unburden: item held when it came in
 EWRAM_DATA u8 gMultiHitCounter = 0;
 EWRAM_DATA const u8 *gBattlescriptCurrInstr = NULL;
 EWRAM_DATA u32 gUnusedBattleMainVar = 0;
@@ -2341,6 +2342,7 @@ static void BattleStartClearSetData(void)
     u32 j;
     u8 *dataPtr;
 
+    ClearAbilityStatQueue();
     TurnValuesCleanUp(FALSE);
     SpecialStatusesClear();
 
@@ -2707,6 +2709,7 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
             gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];
             gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];
             gBattleMons[gActiveBattler].ability = GetBattlerPartyMonAbility(gActiveBattler, gBattlerPartyIndexes[gActiveBattler]);
+            gBattlerSwitchInItem[gActiveBattler] = gBattleMons[gActiveBattler].item;
             hpOnSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)];
             *hpOnSwitchout = gBattleMons[gActiveBattler].hp;
             for (i = 0; i < NUM_BATTLE_STATS; i++)
@@ -3524,6 +3527,16 @@ void SwapTurnOrder(u8 id1, u8 id2)
     SWAP(gBattlerByTurnOrder[id1], gBattlerByTurnOrder[id2], temp);
 }
 
+// Move priority including Prankster (+1 for status moves)
+s8 GetMovePriority(u8 battler, u16 move)
+{
+    s8 priority = gBattleMoves[move].priority;
+
+    if (move != MOVE_NONE && gBattleMons[battler].ability == ABILITY_PRANKSTER && gBattleMoves[move].power == 0)
+        priority++;
+    return priority;
+}
+
 u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
 {
     u8 strikesFirst = 0;
@@ -3536,12 +3549,14 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     if (WEATHER_HAS_EFFECT)
     {
         if ((gBattleMons[battler1].ability == ABILITY_SWIFT_SWIM && gBattleWeather & B_WEATHER_RAIN)
-            || (gBattleMons[battler1].ability == ABILITY_CHLOROPHYLL && gBattleWeather & B_WEATHER_SUN))
+            || (gBattleMons[battler1].ability == ABILITY_CHLOROPHYLL && gBattleWeather & B_WEATHER_SUN)
+            || (gBattleMons[battler1].ability == ABILITY_SAND_RUSH && gBattleWeather & B_WEATHER_SANDSTORM))
             speedMultiplierBattler1 = 2;
         else
             speedMultiplierBattler1 = 1;
         if ((gBattleMons[battler2].ability == ABILITY_SWIFT_SWIM && gBattleWeather & B_WEATHER_RAIN)
-            || (gBattleMons[battler2].ability == ABILITY_CHLOROPHYLL && gBattleWeather & B_WEATHER_SUN))
+            || (gBattleMons[battler2].ability == ABILITY_CHLOROPHYLL && gBattleWeather & B_WEATHER_SUN)
+            || (gBattleMons[battler2].ability == ABILITY_SAND_RUSH && gBattleWeather & B_WEATHER_SANDSTORM))
             speedMultiplierBattler2 = 2;
         else
             speedMultiplierBattler2 = 1;
@@ -3573,8 +3588,12 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         speedBattler1 = (speedBattler1 * 110) / 100;
     if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
         speedBattler1 /= 2;
-    if (gBattleMons[battler1].status1 & STATUS1_PARALYSIS)
+    if (gBattleMons[battler1].ability == ABILITY_QUICK_FEET && (gBattleMons[battler1].status1 & STATUS1_ANY))
+        speedBattler1 = (speedBattler1 * 150) / 100; // and ignores paralysis
+    else if (gBattleMons[battler1].status1 & STATUS1_PARALYSIS)
         speedBattler1 /= 4;
+    if (gBattleMons[battler1].ability == ABILITY_UNBURDEN && gBattlerSwitchInItem[battler1] != ITEM_NONE && gBattleMons[battler1].item == ITEM_NONE)
+        speedBattler1 *= 2;
     if (holdEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * holdEffectParam) / 100)
         speedBattler1 = UINT_MAX;
     // check second battlerId's speed
@@ -3598,8 +3617,12 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         speedBattler2 = (speedBattler2 * 110) / 100;
     if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
         speedBattler2 /= 2;
-    if (gBattleMons[battler2].status1 & STATUS1_PARALYSIS)
+    if (gBattleMons[battler2].ability == ABILITY_QUICK_FEET && (gBattleMons[battler2].status1 & STATUS1_ANY))
+        speedBattler2 = (speedBattler2 * 150) / 100; // and ignores paralysis
+    else if (gBattleMons[battler2].status1 & STATUS1_PARALYSIS)
         speedBattler2 /= 4;
+    if (gBattleMons[battler2].ability == ABILITY_UNBURDEN && gBattlerSwitchInItem[battler2] != ITEM_NONE && gBattleMons[battler2].item == ITEM_NONE)
+        speedBattler2 *= 2;
     if (holdEffect == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * holdEffectParam) / 100)
         speedBattler2 = UINT_MAX;
     if (ignoreChosenMoves)
@@ -3629,10 +3652,10 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
             moveBattler2 = MOVE_NONE;
     }
     // both move priorities are different than 0
-    if (gBattleMoves[moveBattler1].priority != 0 || gBattleMoves[moveBattler2].priority != 0)
+    if (GetMovePriority(battler1, moveBattler1) != 0 || GetMovePriority(battler2, moveBattler2) != 0)
     {
         // both priorities are the same
-        if (gBattleMoves[moveBattler1].priority == gBattleMoves[moveBattler2].priority)
+        if (GetMovePriority(battler1, moveBattler1) == GetMovePriority(battler2, moveBattler2))
         {
             if (speedBattler1 == speedBattler2 && Random() & 1)
                 strikesFirst = 2; // same speeds, same priorities
@@ -3640,7 +3663,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
                 strikesFirst = 1; // battler2 has more speed
             // else battler1 has more speed
         }
-        else if (gBattleMoves[moveBattler1].priority < gBattleMoves[moveBattler2].priority)
+        else if (GetMovePriority(battler1, moveBattler1) < GetMovePriority(battler2, moveBattler2))
             strikesFirst = 1; // battler2's move has greater priority
         // else battler1's move has greater priority
     }
