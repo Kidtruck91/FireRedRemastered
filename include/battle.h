@@ -72,7 +72,7 @@ struct TrainerMonNoItemDefaultMoves
 {
     u16 iv;
     u8 lvl;
-    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability, 4 = hidden ability
+    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
     u16 species;
 };
 
@@ -80,7 +80,7 @@ struct TrainerMonItemDefaultMoves
 {
     u16 iv;
     u8 lvl;
-    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability, 4 = hidden ability
+    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
     u16 species;
     u16 heldItem;
 };
@@ -89,7 +89,7 @@ struct TrainerMonNoItemCustomMoves
 {
     u16 iv;
     u8 lvl;
-    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability, 4 = hidden ability
+    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
     u16 species;
     u16 moves[MAX_MON_MOVES];
 };
@@ -98,7 +98,7 @@ struct TrainerMonItemCustomMoves
 {
     u16 iv;
     u8 lvl;
-    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability, 4 = hidden ability
+    u8 ability; // 0 or 3 = either (as before), 1 = first ability, 2 = second ability
     u16 species;
     u16 heldItem;
     u16 moves[MAX_MON_MOVES];

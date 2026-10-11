@@ -8,7 +8,6 @@
 #include "event_data.h"
 #include "random.h"
 #include "constants/moves.h"
-#include "constants/abilities.h"
 #include "menu.h"
 #include "new_menu_helpers.h"
 #include "script.h"
@@ -1061,38 +1060,6 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
     return eggSpecies;
 }
 
-#define HIDDEN_ABILITY_INHERIT_CHANCE 60 // % (Gen 6+ rules)
-
-// The mother passes on her hidden ability; with Ditto, the other parent (either gender) does.
-static void InheritHiddenAbility(struct Pokemon *egg, struct DayCare *daycare)
-{
-    struct BoxPokemon *parent = NULL;
-    u8 i, nonDitto = 0, abilityNum;
-
-    for (i = 0; i < DAYCARE_MON_COUNT; i++)
-    {
-        struct BoxPokemon *mon = &daycare->mons[i].mon;
-        if (GetBoxMonData(mon, MON_DATA_SPECIES) == SPECIES_DITTO)
-            continue;
-        nonDitto++;
-        if (nonDitto == 1 || GetBoxMonGender(mon) == MON_FEMALE)
-            parent = mon;
-    }
-    if (parent == NULL)
-        return;
-    if (nonDitto == 2 && GetBoxMonGender(parent) != MON_FEMALE)
-        return; // two parents and no mother (shouldn't happen)
-    if (GetBoxMonData(parent, MON_DATA_ABILITY_NUM) != ABILITY_NUM_HIDDEN)
-        return;
-    if (gSpeciesInfo[GetMonData(egg, MON_DATA_SPECIES)].hiddenAbility == ABILITY_NONE)
-        return;
-    if ((Random() % 100) < HIDDEN_ABILITY_INHERIT_CHANCE)
-    {
-        abilityNum = ABILITY_NUM_HIDDEN;
-        SetMonData(egg, MON_DATA_ABILITY_NUM, &abilityNum);
-    }
-}
-
 static void _GiveEggFromDaycare(struct DayCare *daycare)
 {
     struct Pokemon egg;
@@ -1104,7 +1071,6 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
     AlterEggSpeciesWithIncenseItem(&species, daycare);
     SetInitialEggData(&egg, species, daycare);
     InheritIVs(&egg, daycare);
-    InheritHiddenAbility(&egg, daycare);
     BuildEggMoveset(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
 
     /*if (species == SPECIES_PICHU)
@@ -1628,7 +1594,7 @@ static void CreatedHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
 {
     u16 species;
     u32 personality, pokerus;
-    u8 i, friendship, language, gameMet, markings, isModernFatefulEncounter, abilityNum;
+    u8 i, friendship, language, gameMet, markings, isModernFatefulEncounter;
     u16 moves[MAX_MON_MOVES];
     u32 ivs[NUM_STATS];
 
@@ -1648,7 +1614,6 @@ static void CreatedHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     markings = GetMonData(egg, MON_DATA_MARKINGS);
     pokerus = GetMonData(egg, MON_DATA_POKERUS);
     isModernFatefulEncounter = GetMonData(egg, MON_DATA_MODERN_FATEFUL_ENCOUNTER);
-    abilityNum = GetMonData(egg, MON_DATA_ABILITY_NUM);
 
     CreateMon(temp, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);
 
@@ -1662,7 +1627,6 @@ static void CreatedHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     SetMonData(temp, MON_DATA_LANGUAGE, &language);
     SetMonData(temp, MON_DATA_MET_GAME, &gameMet);
     SetMonData(temp, MON_DATA_MARKINGS, &markings);
-    SetMonData(temp, MON_DATA_ABILITY_NUM, &abilityNum); // keeps an inherited hidden ability
 
     friendship = 120;
     SetMonData(temp, MON_DATA_FRIENDSHIP, &friendship);

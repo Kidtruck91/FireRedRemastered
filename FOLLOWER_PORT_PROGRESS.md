@@ -280,3 +280,5 @@ Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
 - Battle: `GetBattlerPartyMonAbility` (pokemon.c) used at battle intro, switch-in and CopyPlayerPartyMonToBattleData, because `BattlePokemon.abilityNum` is only 1 bit. AI switch logic and Pickup use `GetMonAbility`.
 - Sources: overworld mons `OW_MON_HIDDEN_ABILITY_CHANCE` 10%; trainer/pool `.ability = 4` (check_trainer_pools.py rejects species without an HA); daycare 60% from the mother, or the non-Ditto parent with Ditto, kept on hatch; script macros `givemon_hidden`, `giveegg_hidden`, `setwildbattle_hidden`.
 - Tested: test ROM with Charmander HA = Drought given via givemon -> Drought activates in the rival battle and shows on the summary; normal ROM Charmander still Blaze.
+
+- Follow-up: hidden abilities are now wild-overworld-only (10% chance). Removed trainer `.ability = 4`, daycare inheritance and the `*_hidden` script macros.

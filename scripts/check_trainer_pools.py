@@ -5,7 +5,7 @@ Every entry in a pool whose name ends in _Advanced must:
   - be fully evolved (no evolution in src/data/pokemon/evolution.h)
   - have four moves
   - hold an item
-  - choose an ability (.ability = 1, 2, 3, or 4 for a hidden ability the species actually has)
+  - choose an ability (.ability = 1, 2 or 3)
 Run automatically by `make`; exits non-zero (stopping the build) if something is wrong.
 """
 import re
@@ -13,7 +13,6 @@ import sys
 
 POOLS = 'src/data/trainer_pools.h'
 EVOS = 'src/data/pokemon/evolution.h'
-SPECIES_INFO = 'src/data/pokemon/species_info.h'
 
 
 def strip_comments(text):
@@ -24,16 +23,6 @@ def strip_comments(text):
 def species_with_evolutions():
     text = strip_comments(open(EVOS).read())
     return set(re.findall(r'\[(SPECIES_\w+)\]\s*=\s*\{\s*\{', text))
-
-
-def species_with_hidden_abilities():
-    text = strip_comments(open(SPECIES_INFO).read())
-    found = set()
-    for m in re.finditer(r'\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\n    \}', text, flags=re.S):
-        ha = re.search(r'\.hiddenAbility\s*=\s*(\w+)', m.group(2))
-        if ha and ha.group(1) != 'ABILITY_NONE':
-            found.add(m.group(1))
-    return found
 
 
 def top_level_entries(body):
@@ -79,21 +68,8 @@ def main():
             if not item or item.group(1) in ('ITEM_NONE', '0'):
                 errors.append('%s needs a held item' % where)
             ab = re.search(r'\.ability\s*=\s*(\d+)', entry)
-            if not ab or ab.group(1) not in ('1', '2', '3', '4'):
-                errors.append('%s needs .ability = 1, 2, 3 or 4' % where)
-    # Any pool: .ability = 4 needs a species with a hidden ability
-    hidden = species_with_hidden_abilities()
-    for m in re.finditer(r'struct\s+PoolMon\s+(\w+)\s*\[\s*\]\s*=\s*\{', text):
-        name = m.group(1)
-        depth, i = 1, m.end()
-        while depth and i < len(text):
-            depth += {'{': 1, '}': -1}.get(text[i], 0)
-            i += 1
-        for entry in top_level_entries(text[m.end():i - 1]):
-            sp = re.search(r'\.species\s*=\s*(\w+)', entry)
-            ab = re.search(r'\.ability\s*=\s*(\d+)', entry)
-            if sp and ab and ab.group(1) == '4' and sp.group(1) not in hidden:
-                errors.append('%s: %s has no hidden ability (.ability = 4)' % (name, sp.group(1)))
+            if not ab or ab.group(1) not in ('1', '2', '3'):
+                errors.append('%s needs .ability = 1, 2 or 3' % where)
     if errors:
         print('Trainer pool check failed (src/data/trainer_pools.h):', file=sys.stderr)
         for e in errors:

@@ -46,7 +46,7 @@ static const struct PoolMon sPool_Hiker_Intermediate[] =
     { .species = SPECIES_SUDOWOODO, .iv = 100,
       .moves = {MOVE_ROCK_SLIDE, MOVE_LOW_KICK, MOVE_FAINT_ATTACK, MOVE_MIMIC} },
     { .species = SPECIES_PILOSWINE, .iv = 100 },
-    { .species = SPECIES_DONPHAN,  .iv = 100, .ability = 4 }, // Sand Veil (hidden)
+    { .species = SPECIES_DONPHAN,  .iv = 100 },
     { .species = SPECIES_PUPITAR,  .iv = 100, .heldItem = ITEM_HARD_STONE },
     { .species = SPECIES_GLIGAR,   .iv = 100 },
     POOL_END
@@ -132,10 +132,7 @@ static const struct PoolMon sPool_Hiker_Advanced[] =
 //    A handwritten team can pick abilities too, without using a pool:
 //        static const struct TrainerMonNoItemDefaultMoves sParty_Demo[] = {
 //            { .iv = 0, .lvl = 12, .species = SPECIES_GEODUDE, .ability = 2 },   // Sturdy
-//            { .iv = 0, .lvl = 12, .species = SPECIES_PHANPY,  .ability = 4 },   // Sand Veil (hidden)
 //        };
-//    .ability = 4 asks for the hidden ability (.hiddenAbility in src/data/pokemon/species_info.h);
-//    `make` refuses a pool entry with .ability = 4 on a species that has none.
 //
 // 3) Battle them from a map script (data/maps/<Map>/scripts.inc), same as any trainer:
 //

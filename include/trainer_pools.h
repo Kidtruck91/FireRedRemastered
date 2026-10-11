@@ -20,8 +20,7 @@
 //       .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_EXPLOSION, MOVE_COUNTER} },
 // and every pool ends with POOL_END.
 //
-// .ability: 0 or 3 = either, 1 = the species' first ability, 2 = its second ability,
-//           4 = its hidden ability (.hiddenAbility in species_info.h)
+// .ability: 0 or 3 = either, 1 = the species' first ability, 2 = its second ability
 //           (ignored if the species only has one).
 // .iv:      0-255, same scale as normal trainer parties (255 = perfect IVs).
 //
