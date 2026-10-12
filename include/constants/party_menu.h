@@ -103,7 +103,7 @@
 #define PARTY_MSG_TWO_MONS_ARE_NEEDED       18
 #define PARTY_MSG_MONS_CANT_BE_SAME         19
 #define PARTY_MSG_NO_SAME_HOLD_ITEMS        20
-#define PARTY_MSG_UNUSED                    21
+#define PARTY_MSG_TYPE_TRIAD                21
 #define PARTY_MSG_DO_WHAT_WITH_MON          22
 #define PARTY_MSG_RESTORE_WHICH_MOVE        23
 #define PARTY_MSG_BOOST_PP_WHICH_MOVE       24
@@ -133,6 +133,7 @@ enum
     CHOOSE_MONS_FOR_CABLE_CLUB_BATTLE,
     CHOOSE_MONS_FOR_BATTLE_TOWER,
     CHOOSE_MONS_FOR_UNION_ROOM_BATTLE,
+    CHOOSE_MONS_FOR_TYPE_TRIAD, // one mon of each of gTypeTriadTypes (src/orange_islands.c)
 };
 
 #endif // GUARD_CONSTANTS_PARTY_MENU_H

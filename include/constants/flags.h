@@ -536,8 +536,8 @@
 #define FLAG_PHYS_SPEC_SPLIT    0x201 // Options menu: physical/special decided by move, not type
 #define FLAG_EXP_ALL            0x202 // Options menu: whole party shares EXP (src/battle_script_commands.c)
 #define FLAG_ORANGE_CHALLENGE   0x203 // Orange Islands trip active: home team stored, PC locked (src/orange_islands.c)
-#define FLAG_0x204               0x204
-#define FLAG_0x205               0x205
+#define FLAG_NO_BATTLE_ITEMS    0x204 // Bag can't be used in battle (gym rules; cleared on defeat)
+#define FLAG_ORANGE_PARTY_REDUCED 0x205 // Party cut to the chosen 3; restored after the trainer battle
 #define FLAG_0x206               0x206
 #define FLAG_0x207               0x207
 #define FLAG_0x208               0x208

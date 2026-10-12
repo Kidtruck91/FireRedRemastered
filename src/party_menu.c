@@ -412,6 +412,8 @@ static EWRAM_DATA u16 *sSlot1TilemapBuffer = NULL; // for switching party slots
 static EWRAM_DATA u16 *sSlot2TilemapBuffer = NULL;
 static EWRAM_DATA struct Pokemon *sSacredAshQuestLogMonBackup = NULL;
 EWRAM_DATA u8 gSelectedOrderFromParty[3] = {0};
+EWRAM_DATA u8 gTypeTriadTypes[3] = {0};
+EWRAM_DATA u8 gTypeTriadMessage[64] = {0};
 static EWRAM_DATA u16 sPartyMenuItemId = ITEM_NONE;
 ALIGNED(4) EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
 
@@ -5695,6 +5697,17 @@ static bool8 GetBattleEntryEligibility(struct Pokemon *mon)
         if (GetMonData(mon, MON_DATA_HP) == 0)
             return FALSE;
         break;
+    case CHOOSE_MONS_FOR_TYPE_TRIAD:
+        if (GetMonData(mon, MON_DATA_HP) == 0)
+            return FALSE;
+        species = GetMonData(mon, MON_DATA_SPECIES);
+        for (i = 0; i < NELEMS(gTypeTriadTypes); i++)
+        {
+            if (gSpeciesInfo[species].types[0] == gTypeTriadTypes[i]
+             || gSpeciesInfo[species].types[1] == gTypeTriadTypes[i])
+                return TRUE;
+        }
+        return FALSE;
     case CHOOSE_MONS_FOR_BATTLE_TOWER:
         if (gSaveBlock2Ptr->battleTower.battleTowerLevelType == 0 // level 50
          && GetMonData(mon, MON_DATA_LEVEL) > 50)
@@ -5706,6 +5719,30 @@ static bool8 GetBattleEntryEligibility(struct Pokemon *mon)
         break;
     }
     return TRUE;
+}
+
+static bool8 MonHasType(u8 slot, u8 type)
+{
+    u16 species = GetMonData(&gPlayerParty[slot], MON_DATA_SPECIES);
+
+    return gSpeciesInfo[species].types[0] == type || gSpeciesInfo[species].types[1] == type;
+}
+
+// TRUE if the 3 chosen mons can be matched one-to-one with the 3 required types
+static bool8 TypeTriadCovered(const u8 *order)
+{
+    static const u8 perms[6][3] = {{0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}};
+    u8 p, i;
+
+    for (p = 0; p < NELEMS(perms); p++)
+    {
+        for (i = 0; i < 3; i++)
+            if (!MonHasType(order[perms[p][i]] - 1, gTypeTriadTypes[i]))
+                break;
+        if (i == 3)
+            return TRUE;
+    }
+    return FALSE;
 }
 
 static u8 CheckBattleEntriesAndGetMessage(void)
@@ -5735,6 +5772,12 @@ static u8 CheckBattleEntriesAndGetMessage(void)
     case CHOOSE_MONS_FOR_UNION_ROOM_BATTLE:
         if (order[1] == 0)
             return PARTY_MSG_TWO_MONS_ARE_NEEDED;
+        break;
+    case CHOOSE_MONS_FOR_TYPE_TRIAD:
+        if (order[2] == 0)
+            return PARTY_MSG_THREE_MONS_ARE_NEEDED;
+        if (!TypeTriadCovered(order))
+            return PARTY_MSG_TYPE_TRIAD;
         break;
     }
     return 0xFF;

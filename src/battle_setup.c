@@ -68,6 +68,7 @@ static void CB2_EndScriptedWildBattle(void);
 static void CB2_EndMarowakBattle(void);
 static bool32 IsPlayerDefeated(u32 battleOutcome);
 static void CB2_EndTrainerBattle(void);
+void OrangeGym_OnTrainerBattleEnd(bool8 playerLost);
 static const u8 *GetIntroSpeechOfApproachingTrainer(void);
 static const u8 *GetTrainerCantBattleSpeech(void);
 
@@ -897,6 +898,7 @@ void StartTrainerBattle(void)
 
 static void CB2_EndTrainerBattle(void)
 {
+    OrangeGym_OnTrainerBattleEnd(IsPlayerDefeated(gBattleOutcome) == TRUE);
     if (sTrainerBattleMode == TRAINER_BATTLE_EARLY_RIVAL)
     {
         if (IsPlayerDefeated(gBattleOutcome) == TRUE)
