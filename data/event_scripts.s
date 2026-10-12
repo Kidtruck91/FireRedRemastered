@@ -1946,3 +1946,48 @@ Text_TestMsg::
 
 	.include "data/maps/SixIsland_Safari_Cave_Cold/scripts.inc"
 	.include "data/maps/SixIsland_Safari_Cave_Cold/text.inc"
+
+	.include "data/maps/OrangeIslands_Valencia/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia/text.inc"
+
+	.include "data/maps/OrangeIslands_Mikan/scripts.inc"
+	.include "data/maps/OrangeIslands_Mikan/text.inc"
+
+	.include "data/maps/OrangeIslands_Navel/scripts.inc"
+	.include "data/maps/OrangeIslands_Navel/text.inc"
+
+	.include "data/maps/OrangeIslands_Trovita/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita/text.inc"
+
+	.include "data/maps/OrangeIslands_Kumquat/scripts.inc"
+	.include "data/maps/OrangeIslands_Kumquat/text.inc"
+
+	.include "data/maps/OrangeIslands_Pummelo/scripts.inc"
+	.include "data/maps/OrangeIslands_Pummelo/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_1/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_1/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_2/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_2/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_3/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_3/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_4/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_4/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_5/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_5/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_6/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_6/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_7/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_7/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_8/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_8/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_9/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_9/text.inc"

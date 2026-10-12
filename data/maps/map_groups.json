@@ -54,7 +54,8 @@
     "gMapGroup_JohtoIndoorCianwood",
     "gMapGroup_JohtoIndoorMohogany",
     "gMapGroup_JohtoIndoorBlackthorn",
-    "gMapGroup_JohtoMtSilver"
+    "gMapGroup_JohtoMtSilver",
+    "gMapGroup_OrangeIslands"
   ],
   "gMapGroup_Link": [
     "BattleColosseum_2P",
@@ -773,5 +774,22 @@
     "MtSilver_3F",
     "MtSilver_4F",
     "MtSilverPokecenter"
+  ],
+  "gMapGroup_OrangeIslands": [
+    "OrangeIslands_Valencia",
+    "OrangeIslands_Mikan",
+    "OrangeIslands_Navel",
+    "OrangeIslands_Trovita",
+    "OrangeIslands_Kumquat",
+    "OrangeIslands_Pummelo",
+    "OrangeIslands_Route_1",
+    "OrangeIslands_Route_2",
+    "OrangeIslands_Route_3",
+    "OrangeIslands_Route_4",
+    "OrangeIslands_Route_5",
+    "OrangeIslands_Route_6",
+    "OrangeIslands_Route_7",
+    "OrangeIslands_Route_8",
+    "OrangeIslands_Route_9"
   ]
 }
