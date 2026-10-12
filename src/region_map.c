@@ -31,8 +31,12 @@ enum {
     REGIONMAP_SEVII123,
     REGIONMAP_SEVII45,
     REGIONMAP_SEVII67,
+    REGIONMAP_JOHTO,     // right-hand column of the switch menu (room below it for more regions)
     REGIONMAP_COUNT
 };
+
+#define SWITCH_MENU_LEFT_X   16   // pixel x of the left (Kanto/Sevii) panel column
+#define SWITCH_MENU_RIGHT_X  128  // pixel x of the right (Johto) panel column
 
 enum {
     MAPSECTYPE_NONE,
@@ -133,15 +137,17 @@ struct SwitchMapMenuCursorSubsprite
 
 struct SwitchMapMenu
 {
-    u8 switchMapTiles[0x1000];
+    u8 switchMapTiles[0x2000];
     u16 switchMapTilemap[600];
     struct SwitchMapMenuCursorSubsprite cursorSubsprite[2];
     u8 mainState;
     u8 cursorLoadState;
     u8 currentSelection;
     u8 chosenRegion;
-    u8 maxSelection;
+    u8 maxSelection;    // last selectable region in the left column
     u8 alpha;
+    bool8 hasJohto;
+    u8 lastLeftSelection;
     u16 yOffset;
     TaskFunc exitTask;
     struct GpuWindowParams highlight;
@@ -249,7 +255,7 @@ struct MapIcons
     u8 dungeonIconTiles[0x40];
     u8 flyIconTiles[0x100];
     struct MapIconSprite dungeonIcons[25];
-    struct MapIconSprite flyIcons[25];
+    struct MapIconSprite flyIcons[40];
     u8 region; // Never read
     u8 unused_1[2];
     u8 state;
@@ -411,10 +417,14 @@ static const u32 sKanto_Tilemap[] = INCBIN_U32("graphics/region_map/kanto.bin.lz
 static const u32 sSevii123_Tilemap[] = INCBIN_U32("graphics/region_map/sevii_123.bin.lz");
 static const u32 sSevii45_Tilemap[] = INCBIN_U32("graphics/region_map/sevii_45.bin.lz");
 static const u32 sSevii67_Tilemap[] = INCBIN_U32("graphics/region_map/sevii_67.bin.lz");
+static const u32 sJohto_Tilemap[] = INCBIN_U32("graphics/region_map/johto.bin.lz");
 static const u32 sMapEdge_Tilemap[] = INCBIN_U32("graphics/region_map/map_edge.bin.lz");
 static const u32 sSwitchMap_KantoSeviiAll_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii_all.bin.lz");
 static const u32 sSwitchMap_KantoSevii123_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii_123.bin.lz");
 static const u32 sSwitchMap_KantoSeviiAll2_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii_all2.bin.lz");
+static const u32 sSwitchMap_JohtoSeviiAll_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_johto_sevii_all.bin.lz");
+static const u32 sSwitchMap_JohtoSevii123_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_johto_sevii_123.bin.lz");
+static const u32 sSwitchMap_JohtoKanto_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_johto_kanto.bin.lz");
 static const u32 sMapEdge_TopLeft[] = INCBIN_U32("graphics/region_map/map_edge_top_left.4bpp.lz");
 static const u32 sMapEdge_TopRight[] = INCBIN_U32("graphics/region_map/map_edge_top_right.4bpp.lz");
 static const u32 sMapEdge_MidLeft[] = INCBIN_U32("graphics/region_map/map_edge_mid_left.4bpp.lz");
@@ -824,6 +834,7 @@ static const u8 sTextColors[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_CO
 #include "data/region_map/region_map_layout_sevii_123.h"
 #include "data/region_map/region_map_layout_sevii_45.h"
 #include "data/region_map/region_map_layout_sevii_67.h"
+#include "data/region_map/region_map_layout_johto.h"
 
 static const u8 sMapFlyDestinations[][3] = {
     [MAPSEC_PALLET_TOWN         - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           SPAWN_PALLET_TOWN},
@@ -934,7 +945,55 @@ static const u8 sMapFlyDestinations[][3] = {
     [MAPSEC_RIXY_CHAMBER        - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           0},
     [MAPSEC_VIAPOIS_CHAMBER     - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           0},
     [MAPSEC_EMBER_SPA           - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           0},
-   };
+    [MAPSEC_SPECIAL_AREA        - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           0},
+    [MAPSEC_NONE                - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           0},
+    [MAPSEC_NEW_BARK_TOWN       - MAPSECS_KANTO] = {MAP(NEW_BARK_TOWN),                         SPAWN_NEW_BARK_TOWN},
+    [MAPSEC_CHERRYGROVE_CITY    - MAPSECS_KANTO] = {MAP(CHERRYGROVE_CITY),                      SPAWN_CHERRYGROVE_CITY},
+    [MAPSEC_VIOLET_CITY         - MAPSECS_KANTO] = {MAP(VIOLET_CITY),                           SPAWN_VIOLET_CITY},
+    [MAPSEC_AZALEA_TOWN         - MAPSECS_KANTO] = {MAP(AZALEA_TOWN),                           SPAWN_AZALEA_TOWN},
+    [MAPSEC_GOLDENROD_CITY      - MAPSECS_KANTO] = {MAP(GOLDENROD_CITY),                        SPAWN_GOLDENROD_CITY},
+    [MAPSEC_ECRUTEAK_CITY       - MAPSECS_KANTO] = {MAP(ECRUTEAK_CITY),                         SPAWN_ECRUTEAK_CITY},
+    [MAPSEC_OLIVINE_CITY        - MAPSECS_KANTO] = {MAP(OLIVINE_CITY),                          SPAWN_OLIVINE_CITY},
+    [MAPSEC_CIANWOOD_CITY       - MAPSECS_KANTO] = {MAP(CIANWOOD_CITY),                         SPAWN_CIANWOOD_CITY},
+    [MAPSEC_MAHOGANY_TOWN       - MAPSECS_KANTO] = {MAP(MOHOGANY_TOWN),                         SPAWN_MOHOGANY_TOWN},
+    [MAPSEC_BLACKTHORN_CITY     - MAPSECS_KANTO] = {MAP(BLACKTHORN_CITY),                       SPAWN_BLACKTHORN_CITY},
+    [MAPSEC_ROUTE_29            - MAPSECS_KANTO] = {MAP(ROUTE29),                               0},
+    [MAPSEC_ROUTE_30            - MAPSECS_KANTO] = {MAP(ROUTE30),                               0},
+    [MAPSEC_ROUTE_31            - MAPSECS_KANTO] = {MAP(ROUTE31),                               0},
+    [MAPSEC_ROUTE_32            - MAPSECS_KANTO] = {MAP(ROUTE32),                               0},
+    [MAPSEC_ROUTE_33            - MAPSECS_KANTO] = {MAP(ROUTE33),                               0},
+    [MAPSEC_ROUTE_34            - MAPSECS_KANTO] = {MAP(ROUTE34),                               0},
+    [MAPSEC_ROUTE_35            - MAPSECS_KANTO] = {MAP(ROUTE35),                               0},
+    [MAPSEC_ROUTE_36            - MAPSECS_KANTO] = {MAP(ROUTE36),                               0},
+    [MAPSEC_ROUTE_37            - MAPSECS_KANTO] = {MAP(ROUTE37),                               0},
+    [MAPSEC_ROUTE_38            - MAPSECS_KANTO] = {MAP(ROUTE38),                               0},
+    [MAPSEC_ROUTE_39            - MAPSECS_KANTO] = {MAP(ROUTE39),                               0},
+    [MAPSEC_ROUTE_40            - MAPSECS_KANTO] = {MAP(ROUTE40),                               0},
+    [MAPSEC_ROUTE_41            - MAPSECS_KANTO] = {MAP(ROUTE41),                               0},
+    [MAPSEC_ROUTE_42            - MAPSECS_KANTO] = {MAP(ROUTE42),                               0},
+    [MAPSEC_ROUTE_43            - MAPSECS_KANTO] = {MAP(ROUTE43),                               0},
+    [MAPSEC_ROUTE_44            - MAPSECS_KANTO] = {MAP(ROUTE44),                               0},
+    [MAPSEC_ROUTE_45            - MAPSECS_KANTO] = {MAP(ROUTE45),                               0},
+    [MAPSEC_ROUTE_46            - MAPSECS_KANTO] = {MAP(ROUTE46),                               0},
+    [MAPSEC_ILEX_FOREST         - MAPSECS_KANTO] = {MAP(ILEX_FOREST),                           0},
+    [MAPSEC_LAKE_OF_RAGE        - MAPSECS_KANTO] = {MAP(LAKEOF_RAGE),                           0},
+    [MAPSEC_RUINS_OF_ALPH       - MAPSECS_KANTO] = {MAP(RUINSOF_ALPH),                          0},
+    [MAPSEC_NATIONAL_PARK       - MAPSECS_KANTO] = {MAP(NATIONAL_PARK),                         0},
+    [MAPSEC_MT_SILVER           - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           0},
+    [MAPSEC_ROUTE_26            - MAPSECS_KANTO] = {MAP(ROUTE26),                               0},
+    [MAPSEC_ROUTE_27            - MAPSECS_KANTO] = {MAP(ROUTE27),                               0},
+    [MAPSEC_ROUTE_28            - MAPSECS_KANTO] = {MAP(ROUTE28),                               0},
+};
+
+// Johto shows up in the switch menu once the player has been to any Johto town
+static bool8 IsJohtoMapUnlocked(void)
+{
+    return FlagGet(FLAG_WORLD_MAP_NEW_BARK_TOWN) || FlagGet(FLAG_WORLD_MAP_CHERRYGROVE_CITY)
+        || FlagGet(FLAG_WORLD_MAP_VIOLET_CITY) || FlagGet(FLAG_WORLD_MAP_AZALEA_TOWN)
+        || FlagGet(FLAG_WORLD_MAP_GOLDENROD_CITY) || FlagGet(FLAG_WORLD_MAP_ECRUTEAK_CITY)
+        || FlagGet(FLAG_WORLD_MAP_OLIVINE_CITY) || FlagGet(FLAG_WORLD_MAP_CIANWOOD_CITY)
+        || FlagGet(FLAG_WORLD_MAP_MAHOGANY_TOWN) || FlagGet(FLAG_WORLD_MAP_BLACKTHORN_CITY);
+}
 
 static void RegionMap_DarkenPalette(u16 *pal, u16 size, u16 tint)
 {
@@ -1025,11 +1084,15 @@ static void InitRegionMapType(void)
     {
         sRegionMap->permissions[i] = sRegionMapPermissions[sRegionMap->type][i];
     }
-    if (!FlagGet(FLAG_SYS_SEVII_MAP_123))
+    if (!FlagGet(FLAG_SYS_SEVII_MAP_123) && !IsJohtoMapUnlocked())
         sRegionMap->permissions[MAPPERM_HAS_SWITCH_BUTTON] = FALSE;
     region = REGIONMAP_KANTO;
     j = REGIONMAP_KANTO;
-    if (gMapHeader.regionMapSectionId >= MAPSECS_SEVII_123)
+    if (gMapHeader.regionMapSectionId >= MAPSECS_JOHTO_TOWNS && gMapHeader.regionMapSectionId != MAPSEC_NONE)
+    {
+        region = REGIONMAP_JOHTO;
+    }
+    else if (gMapHeader.regionMapSectionId >= MAPSECS_SEVII_123 && gMapHeader.regionMapSectionId < MAPSEC_SPECIAL_AREA)
     {
         // Mapsec is in Sevii Islands, determine which map to use
         while (region == REGIONMAP_KANTO)
@@ -1142,6 +1205,9 @@ static bool8 LoadRegionMapGfx(void)
         break;
     case 8:
         LZ77UnCompWram(sSevii67_Tilemap, sRegionMap->layouts[REGIONMAP_SEVII67]);
+        break;
+    case 9:
+        LZ77UnCompWram(sJohto_Tilemap, sRegionMap->layouts[REGIONMAP_JOHTO]);
         break;
     default:
         LZ77UnCompWram(sBackground_Tilemap, sRegionMap->layouts[REGIONMAP_COUNT]);
@@ -1559,10 +1625,31 @@ static void InitSwitchMapMenu(u8 whichMap, u8 taskId, TaskFunc taskFunc)
         sSwitchMapMenu->maxSelection = 1;
     else
         sSwitchMapMenu->maxSelection = 0;
+    sSwitchMapMenu->hasJohto = IsJohtoMapUnlocked();
+    sSwitchMapMenu->lastLeftSelection = (whichMap == REGIONMAP_JOHTO) ? REGIONMAP_KANTO : whichMap;
     sSwitchMapMenu->cursorSubsprite[0].x = 88;
     sSwitchMapMenu->cursorSubsprite[1].x = 152;
 
-    switch (sSwitchMapMenu->maxSelection)
+    if (sSwitchMapMenu->hasJohto)
+    {
+        // two columns: Kanto + Sevii on the left, Johto on the right
+        switch (sSwitchMapMenu->maxSelection)
+        {
+        case 3:
+            LZ77UnCompWram(sSwitchMap_JohtoSeviiAll_Tilemap, sSwitchMapMenu->switchMapTilemap);
+            sSwitchMapMenu->yOffset = 3;
+            break;
+        case 1:
+            LZ77UnCompWram(sSwitchMap_JohtoSevii123_Tilemap, sSwitchMapMenu->switchMapTilemap);
+            sSwitchMapMenu->yOffset = 6;
+            break;
+        default:
+            LZ77UnCompWram(sSwitchMap_JohtoKanto_Tilemap, sSwitchMapMenu->switchMapTilemap);
+            sSwitchMapMenu->yOffset = 8;
+            break;
+        }
+    }
+    else switch (sSwitchMapMenu->maxSelection)
     {
     case 1:
         LZ77UnCompWram(sSwitchMap_KantoSevii123_Tilemap, sSwitchMapMenu->switchMapTilemap);
@@ -1586,6 +1673,19 @@ static void InitSwitchMapMenu(u8 whichMap, u8 taskId, TaskFunc taskFunc)
     SaveRegionMapGpuRegs(0);
     PrintTopBarTextRight(gText_RegionMap_AButtonOK);
     gTasks[taskId].func = Task_SwitchMapMenu;
+}
+
+// Panel position of a region in the switch menu. Without Johto the menu is the original single column.
+static u16 SwitchMenuPanelX(u8 region)
+{
+    if (!sSwitchMapMenu->hasJohto)
+        return 72;
+    return region == REGIONMAP_JOHTO ? SWITCH_MENU_RIGHT_X : SWITCH_MENU_LEFT_X;
+}
+
+static u8 SwitchMenuPanelRow(u8 region)
+{
+    return region == REGIONMAP_JOHTO ? 0 : region;
 }
 
 static void ResetGpuRegsForSwitchMapMenu(void)
@@ -1757,9 +1857,9 @@ static void LoadSwitchMapTilemap(u8 bg, u16 *map)
 static void SetGpuRegsToDimScreen(void)
 {
     struct GpuWindowParams data;
-    data.left = sSwitchMapMenu->highlight.left = 72;
-    data.top = sSwitchMapMenu->highlight.top = 8 * (sSwitchMapMenu->yOffset + 4 * sSwitchMapMenu->currentSelection);
-    data.right = sSwitchMapMenu->highlight.right = 168;
+    data.left = sSwitchMapMenu->highlight.left = SwitchMenuPanelX(sSwitchMapMenu->currentSelection);
+    data.top = sSwitchMapMenu->highlight.top = 8 * (sSwitchMapMenu->yOffset + 4 * SwitchMenuPanelRow(sSwitchMapMenu->currentSelection));
+    data.right = sSwitchMapMenu->highlight.right = data.left + 96;
     data.bottom = sSwitchMapMenu->highlight.bottom = sSwitchMapMenu->highlight.top + 32;
     ResetGpuRegs();
     SetBldCnt(0, (BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ), BLDCNT_EFFECT_DARKEN);
@@ -1787,21 +1887,40 @@ static bool8 HandleSwitchMapInput(void)
 {
     bool8 changedSelection = FALSE;
     struct GpuWindowParams data;
-    data.left = sSwitchMapMenu->highlight.left = 72;
-    data.top = sSwitchMapMenu->highlight.top = 8 * (sSwitchMapMenu->yOffset + 4 * sSwitchMapMenu->currentSelection);
-    data.right = sSwitchMapMenu->highlight.right = 168;
+    data.left = sSwitchMapMenu->highlight.left = SwitchMenuPanelX(sSwitchMapMenu->currentSelection);
+    data.top = sSwitchMapMenu->highlight.top = 8 * (sSwitchMapMenu->yOffset + 4 * SwitchMenuPanelRow(sSwitchMapMenu->currentSelection));
+    data.right = sSwitchMapMenu->highlight.right = data.left + 96;
     data.bottom = sSwitchMapMenu->highlight.bottom = sSwitchMapMenu->highlight.top + 32;
-    if (JOY_NEW(DPAD_UP) && sSwitchMapMenu->currentSelection != 0)
+    if (sSwitchMapMenu->currentSelection == REGIONMAP_JOHTO)
     {
-        PlaySE(SE_BAG_CURSOR);
-        sSwitchMapMenu->currentSelection--;
-        changedSelection = TRUE;
+        if (JOY_NEW(DPAD_LEFT))
+        {
+            PlaySE(SE_BAG_CURSOR);
+            sSwitchMapMenu->currentSelection = sSwitchMapMenu->lastLeftSelection;
+            changedSelection = TRUE;
+        }
     }
-    if (JOY_NEW(DPAD_DOWN) && sSwitchMapMenu->currentSelection < sSwitchMapMenu->maxSelection)
+    else
     {
-        PlaySE(SE_BAG_CURSOR);
-        sSwitchMapMenu->currentSelection++;
-        changedSelection = TRUE;
+        if (JOY_NEW(DPAD_UP) && sSwitchMapMenu->currentSelection != 0)
+        {
+            PlaySE(SE_BAG_CURSOR);
+            sSwitchMapMenu->currentSelection--;
+            changedSelection = TRUE;
+        }
+        if (JOY_NEW(DPAD_DOWN) && sSwitchMapMenu->currentSelection < sSwitchMapMenu->maxSelection)
+        {
+            PlaySE(SE_BAG_CURSOR);
+            sSwitchMapMenu->currentSelection++;
+            changedSelection = TRUE;
+        }
+        if (JOY_NEW(DPAD_RIGHT) && sSwitchMapMenu->hasJohto)
+        {
+            PlaySE(SE_BAG_CURSOR);
+            sSwitchMapMenu->lastLeftSelection = sSwitchMapMenu->currentSelection;
+            sSwitchMapMenu->currentSelection = REGIONMAP_JOHTO;
+            changedSelection = TRUE;
+        }
     }
     if (JOY_NEW(A_BUTTON) && sSwitchMapMenu->blendY == 6)
     {
@@ -1840,6 +1959,7 @@ static bool8 HandleSwitchMapInput(void)
 static void SpriteCB_SwitchMapCursor(struct Sprite *sprite)
 {
     sprite->y = sSwitchMapMenu->highlight.top + 16;
+    sprite->x = sSwitchMapMenu->highlight.left + sprite->data[0];
 }
 
 static bool8 CreateSwitchMapCursor(void)
@@ -1897,7 +2017,9 @@ static void CreateSwitchMapCursorSubsprite_(u8 whichSprite, u16 tileTag, u16 pal
     LoadSpriteSheet(&spriteSheet);
     LoadSpritePalette(&spritePalette);
 
-    spriteId = CreateSprite(&template, sSwitchMapMenu->cursorSubsprite[whichSprite].x, 8 * (sSwitchMapMenu->yOffset + 4 * sSwitchMapMenu->currentSelection), 0);
+    spriteId = CreateSprite(&template, SwitchMenuPanelX(sSwitchMapMenu->currentSelection) + sSwitchMapMenu->cursorSubsprite[whichSprite].x - 72,
+                            8 * (sSwitchMapMenu->yOffset + 4 * SwitchMenuPanelRow(sSwitchMapMenu->currentSelection)), 0);
+    gSprites[spriteId].data[0] = sSwitchMapMenu->cursorSubsprite[whichSprite].x - 72;
     sSwitchMapMenu->cursorSubsprite[whichSprite].sprite = &gSprites[spriteId];
     gSprites[spriteId].invisible = FALSE;
 }
@@ -2995,6 +3117,26 @@ static u8 GetMapsecType(u8 mapsec)
         return FlagGet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
     case MAPSEC_ROUTE_10_POKECENTER:
         return FlagGet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_NEW_BARK_TOWN:
+        return FlagGet(FLAG_WORLD_MAP_NEW_BARK_TOWN) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_CHERRYGROVE_CITY:
+        return FlagGet(FLAG_WORLD_MAP_CHERRYGROVE_CITY) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_VIOLET_CITY:
+        return FlagGet(FLAG_WORLD_MAP_VIOLET_CITY) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_AZALEA_TOWN:
+        return FlagGet(FLAG_WORLD_MAP_AZALEA_TOWN) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_GOLDENROD_CITY:
+        return FlagGet(FLAG_WORLD_MAP_GOLDENROD_CITY) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_ECRUTEAK_CITY:
+        return FlagGet(FLAG_WORLD_MAP_ECRUTEAK_CITY) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_OLIVINE_CITY:
+        return FlagGet(FLAG_WORLD_MAP_OLIVINE_CITY) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_CIANWOOD_CITY:
+        return FlagGet(FLAG_WORLD_MAP_CIANWOOD_CITY) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_MAHOGANY_TOWN:
+        return FlagGet(FLAG_WORLD_MAP_MAHOGANY_TOWN) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_BLACKTHORN_CITY:
+        return FlagGet(FLAG_WORLD_MAP_BLACKTHORN_CITY) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
     case MAPSEC_NONE:
         return MAPSECTYPE_NONE;
     default:
@@ -3363,6 +3505,8 @@ static u8 GetSelectedMapSection(u8 whichMap, u8 layer, s16 y, s16 x)
         return sRegionMapSections_Sevii45[layer][y][x];
     case REGIONMAP_SEVII67:
         return sRegionMapSections_Sevii67[layer][y][x];
+    case REGIONMAP_JOHTO:
+        return sRegionMapSections_Johto[layer][y][x];
     default:
         return MAPSEC_NONE;
     }
@@ -3594,7 +3738,7 @@ static void CreateDungeonIcons(void)
                     continue;
                 if (mapsec == MAPSEC_CERULEAN_CAVE && !FlagGet(FLAG_SYS_CAN_LINK_WITH_RS))
                     continue;
-                CreateDungeonIconSprite(i, numIcons, x, y, numIcons + 35, 10);
+                CreateDungeonIconSprite(i, numIcons, x, y, numIcons + 60, 10);
                 if (GetDungeonMapsecType(mapsec) != 2)
                 {
                     StartSpriteAnim(sMapIcons->dungeonIcons[numIcons].sprite, 1);
@@ -3803,7 +3947,8 @@ u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)
     u8 *dst;
     u16 i;
     u16 idx;
-    if ((idx = mapsec - MAPSECS_KANTO) <= MAPSEC_SPECIAL_AREA - MAPSECS_KANTO)
+    idx = mapsec - MAPSECS_KANTO;
+    if (idx < ARRAY_COUNT(sMapNames) && sMapNames[idx] != NULL)
     {
         if (IsCeladonDeptStoreMapsec(mapsec) == TRUE)
             dst = StringCopy(dst0, sMapsecName_CELADONDEPT);

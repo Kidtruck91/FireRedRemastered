@@ -240,7 +240,10 @@
 #define MAPSEC_RUINS_OF_ALPH                0xE4
 #define MAPSEC_NATIONAL_PARK                0xE5
 #define MAPSEC_MT_SILVER                    0xE6
-#define MAPSEC_COUNT                        0xE7
+#define MAPSEC_ROUTE_26                     0xE7
+#define MAPSEC_ROUTE_27                     0xE8
+#define MAPSEC_ROUTE_28                     0xE9
+#define MAPSEC_COUNT                        0xEA
 
 
 #define METLOC_SPECIAL_EGG                  0xFD
