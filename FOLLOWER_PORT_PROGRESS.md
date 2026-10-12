@@ -300,3 +300,11 @@ Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
 - Exits: `VAR_SAFARI_RETURN_POINT` (0x402A; 0 Fuchsia, 1 Six Island) picks the gate in `data/scripts/safari_zone.inc`; `VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE` (0x402B) is the gate's scene var (reset with the Fuchsia one in overworld.c). Sign at (18,14) shows the current habitat.
 - `src/data/overworld_mons.h`: `sOverworldBonusLists` keeps a placeholder line so it builds with every bonus list commented out.
 - Tested in mGBA (test ROM starting in the gate): menu + preview, paying, entering, Coast Electrike Lv37 safari battle, leaving early (NO returns, YES leaves), RETIRE from the Start menu returns to the Six Island gate, walking out onto the island. Water encounters and the out-of-balls-mid-battle path were not play-tested.
+
+## Extra: Hoenn Desert + Hoenn Volcano tilesets
+
+- Two secondary tilesets for gTileset_General, converted from pokeemerald: `gTileset_HoennDesert` (Route 111 desert: pink Hoenn mountains, sand, dunes, boulders, Hoenn trees/grass, cave entrance) and `gTileset_HoennVolcano` (Mt. Chimney / Fiery Path / Jagged Pass / Magma Hideout: red rock cliffs, ash ground, lava, ledges, cave floors). Buildings, cable car, hot springs and machinery left out.
+- Emerald's 8-wide metatile rows are kept, so multi-tile pieces sit together in Porymap (empty slots between them are blank).
+- Behaviors mapped to FR: deep sand -> MB_SAND (land encounters), MB_CAVE floors (land encounters), cave entrance -> MB_CAVE_DOOR, ledges kept, Emerald-only ones (diagonal ledges, bumpy/muddy slopes) -> MB_NORMAL. Collision comes from the map, so mark lava impassable in Porymap.
+- Lava animates (`InitTilesetAnim_HoennVolcano` in tileset_anims.c, Emerald's 4-frame lava, first 4 tiles of the tileset).
+- Converter + source lists live in the session scratch (`/tmp/claude-0/hoenn/convert.py`); tested by converting Mt. Chimney's crater and the Route 111 desert into test maps in mGBA.

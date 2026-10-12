@@ -1408,3 +1408,46 @@ const u16 gTilesetPalettes_HallOfFame[][16] =
 	INCBIN_U16("data/tilesets/secondary/hall_of_fame/palettes/15.gbapal"),
 };
 
+const u32 gTilesetTiles_HoennDesert[] = INCBIN_U32("data/tilesets/secondary/hoenn_desert/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_HoennDesert[][16] =
+{
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/00.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/01.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/02.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/03.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/04.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/05.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/06.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/07.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/08.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/09.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/10.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/11.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/12.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/13.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/14.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/15.gbapal"),
+};
+
+const u32 gTilesetTiles_HoennVolcano[] = INCBIN_U32("data/tilesets/secondary/hoenn_volcano/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_HoennVolcano[][16] =
+{
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/00.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/01.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/02.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/03.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/04.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/05.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/06.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/07.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/08.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/09.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/10.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/11.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/12.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/13.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/14.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/15.gbapal"),
+};

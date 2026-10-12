@@ -1,0 +1,1240 @@
+diff --git a/data/tilesets/secondary/hoenn_desert/metatile_attributes.bin b/data/tilesets/secondary/hoenn_desert/metatile_attributes.bin
+new file mode 100644
+index 0000000000000000000000000000000000000000..58a7d491c45e88a73b17a474a2869b1ddea75840
+GIT binary patch
+literal 1312
+zcmd5)K@P$&49hBx9C$*;D?r?M3IBfub{dPW&`Fy#2@8|dPEswK*>;p-)Ap{zI{a+r
+zm`)mU!I1=0W8T7X5UDe7;Wz}_`7F3Yzk!eRsR7>ehtIl2|K(&)vG0#!%!PkVFC^Xn
+zss&!d_x;q_EAp)UDCX>_qfbC9eCB-aD(?Sxv@XcK<ZgCP)ec4j_WH9KexG+Vntzb)
+vm@D!M<}DnDo+F<+YgaLwO(F`N)cawS$EckuvbOcr-}<Q`{3YTWU;EbI!5kLc
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/tilesets/secondary/hoenn_desert/metatiles.bin b/data/tilesets/secondary/hoenn_desert/metatiles.bin
+new file mode 100644
+index 0000000000000000000000000000000000000000..f711332369281dd326573cc97a52d8e2cd9fc828
+GIT binary patch
+literal 5248
+zcmd5<>30-G5bqGckc4nZ5(3`fKUg33Lq7O68AT<Kfn7ZC1Q!pCsOiy(xRSsMNKhdj
+zKonGrCxUWAP$5>O^Xp@>&lf@>?!0-uzp3i_RaJM_)F>7H^16esyvEZ`ipa-!{(l`G
+z){p2l`cdmY;(1IzuGi|dX%^3R99_CAU8mQj;K^b<pREz`uGif<)*E<b&H8qy>(dQs
+zZ2g)o{*Ahzi+Yn?k3zaJ-INw*jQ0t8lAfZcX}bO+A4+YeXXsf1evY1}7wAQcw=lz2
+zdWlN3jb3Iw@V!E>j_U!xM%!sCy>8{OXXHKBp5QlF3-TTGCcQ;(v;FOXJ;-}Wv)zQ=
+zVZC=*4}2;0@$>gA?xmfK-?uol*Av(e`OEYH?IOu%KMmOV;NMMqs6rnyf0_2uJ}Vdf
+z{T|-U{2$Q)D<AAU$k$*e;`g!eJ8bd~jQj&5|L`ZfURn9aZ2J?wo&Kkc4h8u?OhW|w
+z$p2^bIekH2vab0-j{L*k4$gz*3mEwU7VaZ-*vf@_h>iyN5BZI~eVk1{|KNvxx1J_n
+zz=$6h@dGPm;)gwnPWX>i%!PacBmclz`-mU*v;HA|$PvH9=bzW%g1L}?@J*y&L5}=8
+z|HJ(P{~$;Fz=;1V`kIc@3A?_qk9fpCe?LQx_+StEz*#xshaB;LL*J6zVSL9b-_c3>
+zo}UVz<Y0uc=oma)7@;2+|7ho7KF&MV%jG-VA6Yr_C2VpF_fM0oD`lj^1;hPw6%BY|
+z#*;Kc;`1++Un{37zg1ALz@POuoIUd>uk$It@zT@!bb3agnX&iIR6WIcM*oqWhkEfl
+z{Xu8xoUISQ*gwFoA2aI<jP-=R@SNxR<KrQ^VCxa;{6)H$yF{0A@ar;N&RwA^7K==D
+zAQzeF08e$qK7c;<0q|7EyuQl)=&0R?*XU2au30?#P=~&nbNwsM!)DfyGYPEJUyP(C
+z-rO&*{|@@$>vW^t?~lir-^buH^}y#p#N0<oMK#f!2=7OwYP)J8_r7Et&y5du&x>!)
+zOQ((XNBqEue;%{>{7!Cc40g}?SAOVYbj%a;C*J>v-|3n7g@0~T8)2TvYkkc8HL;p@
+z{IWl8v|pcC=lO|`??}Mv#=2wyUv*U^PUpY;SC`ZeG?W|rW{Y!S(vZ}9@ivtkg7}-t
+zjROmkMFZe>`7!ke81)?(^#~aC4|NB45wrRH(06?GRr%2`Kp*D}82tk9;$(5(l4MDr
+zc~2i8pT99_vg<AS4P_ro{ufS)AMbzIM_j<@2M`CwJvr&0cUgWspX#`@cqd;=i|{|+
+zKi1ySpYI3G+TnV|^=Y&n&&P6MeOwkbM=epSJ%7vN=BO>eE8@0jr9FSGENkNn{UR{d
+z8(8?{{o~`IN%#V-WLrMJvF`k7jasVmqrY?ZO@9lFdIyYp=dgI#GtR#vT5jVP{^r=n
+zEpc<aY*PH_@0>l;-vguG0ZacU_1<Cg{fB)c-rQBZyNG@O`31)L0!F@N-mUz?dOJVy
+zakct*D_ql=+sog)^4&X~xwm5u`aN)GF`nP9QTChpzPYEQ)V-zqO81Z7*k2EnR+Z!i
+OUR`>yBscI(`~44%ygjf0
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/00.pal b/data/tilesets/secondary/hoenn_desert/palettes/00.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/00.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/01.pal b/data/tilesets/secondary/hoenn_desert/palettes/01.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/01.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/02.pal b/data/tilesets/secondary/hoenn_desert/palettes/02.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/02.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/03.pal b/data/tilesets/secondary/hoenn_desert/palettes/03.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/03.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/04.pal b/data/tilesets/secondary/hoenn_desert/palettes/04.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/04.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/05.pal b/data/tilesets/secondary/hoenn_desert/palettes/05.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/05.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/06.pal b/data/tilesets/secondary/hoenn_desert/palettes/06.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/06.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/07.pal b/data/tilesets/secondary/hoenn_desert/palettes/07.pal
+new file mode 100644
+index 000000000..32d6914d8
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/07.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++255 255 255
++213 213 213
++189 189 189
++164 164 164
++131 131 139
++65 180 131
++164 213 197
++65 49 65
++238 213 205
++222 180 164
++189 148 139
++156 115 115
++131 90 90
++98 65 82
++115 197 164
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/08.pal b/data/tilesets/secondary/hoenn_desert/palettes/08.pal
+new file mode 100644
+index 000000000..7c21ba6fd
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/08.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++24 41 82
++238 230 164
++222 205 131
++213 180 106
++205 156 82
++115 197 164
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/09.pal b/data/tilesets/secondary/hoenn_desert/palettes/09.pal
+new file mode 100644
+index 000000000..696cbb041
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/09.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++24 41 82
++98 98 123
++115 189 246
++98 164 222
++74 115 172
++57 82 156
++41 65 139
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/10.pal b/data/tilesets/secondary/hoenn_desert/palettes/10.pal
+new file mode 100644
+index 000000000..587fa68fa
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/10.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++172 180 139
++255 255 255
++222 230 238
++90 90 115
++65 74 106
++156 213 255
++98 172 238
++197 246 230
++148 222 205
++98 197 180
++74 148 131
++49 106 90
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/11.pal b/data/tilesets/secondary/hoenn_desert/palettes/11.pal
+new file mode 100644
+index 000000000..d9016542e
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/11.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++24 41 82
++180 255 131
++131 197 98
++57 139 49
++57 82 0
++106 90 90
++65 57 49
++164 213 197
++115 197 164
++65 180 131
++24 164 106
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/12.pal b/data/tilesets/secondary/hoenn_desert/palettes/12.pal
+new file mode 100644
+index 000000000..1d4f4c943
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/12.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++24 41 82
++222 230 238
++189 205 230
++156 180 222
++131 131 139
++98 98 123
++65 74 106
++115 189 246
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/13.pal b/data/tilesets/secondary/hoenn_desert/palettes/13.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/13.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/14.pal b/data/tilesets/secondary/hoenn_desert/palettes/14.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/14.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/palettes/15.pal b/data/tilesets/secondary/hoenn_desert/palettes/15.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_desert/palettes/15.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_desert/tiles.png b/data/tilesets/secondary/hoenn_desert/tiles.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..0bf42cd48f56f7838d0eb2c9cbbdba4f881c454d
+GIT binary patch
+literal 3989
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/tilesets/secondary/hoenn_volcano/anim/lava/0.png b/data/tilesets/secondary/hoenn_volcano/anim/lava/0.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..610a9ef6b9ff08bf0c87158f42e89c7a488e4043
+GIT binary patch
+literal 880
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!63?wyl`GXl4m>B|mLR=*@gU%W<Ofh8mCL!@{
+z3Q%$sjE2An3W1Pw8^nO#)%J9845^rtoZ!OD6TuP@5fK0+X3U%!$TH(1i$vg$2wqm^
+f9a?j=Ug$6|teVfLU3tA)85ByMu6{1-oD!M<Ba$F6
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/tilesets/secondary/hoenn_volcano/anim/lava/1.png b/data/tilesets/secondary/hoenn_volcano/anim/lava/1.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b0a28664c5601c74b9eec358708ef395b4d80ab5
+GIT binary patch
+literal 903
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!63?wyl`GXl4m>B|mLR=*@gU%W<Ofh8mCL!@{
+z3Q%$sjE2An3W1Pw8^nO#b@Fs^45^qiwbxOo!GMFA^Ys7wYqoY7Y-Qh>svhYRv|>)|
+zM9Bn(lhw@S%bBe#rf)g<dUeB^w^FMgGrLU4mwz9Byq10QcShGU>s;@G0?*Uc&t;uc
+GLK6V=1Ten<
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/tilesets/secondary/hoenn_volcano/anim/lava/2.png b/data/tilesets/secondary/hoenn_volcano/anim/lava/2.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..36aec07801aeb99b64f1d3aa77e76544d5c8fbc7
+GIT binary patch
+literal 895
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!63?wyl`GXl4m>B|mLR=*@gU%W<Ofh8mCL!@{
+z3Q%$sjE2An3W1Pw8^nO#weoav45^rtoZ!NA=1flyk4DV`4rV*i1cye36E>61CL|^{
+waye|-yuqMZl1G4@nRP}YlL5CvjZzLH!-`f$??kVyVW2?sboFyt=akR{0B3|Gz5oCK
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/tilesets/secondary/hoenn_volcano/anim/lava/3.png b/data/tilesets/secondary/hoenn_volcano/anim/lava/3.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..3511dbddcfe153f9b120235cdd016b05311a83d8
+GIT binary patch
+literal 898
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!63?wyl`GXl4m>B|mLR=*@gU%W<Ofh8mCL!@{
+z3Q%$sjE2An3W1Pw8^nO#we@sy45^qiweKPqg8>KA>~H_?+a&Q`YCl->dD4!EX){_)
+zE_AOs%u@29B1=IuWU1Z)Zl(oHaTlc4etufGiE*(CqlxbC7!^>sdAj<!taD0e0su--
+BE&~7n
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/tilesets/secondary/hoenn_volcano/metatile_attributes.bin b/data/tilesets/secondary/hoenn_volcano/metatile_attributes.bin
+new file mode 100644
+index 0000000000000000000000000000000000000000..7cb6856b6c4bc2ec517a70685591b34910bf44cd
+GIT binary patch
+literal 1024
+zcmb7?%MAiC3`E0?14WoFKs3Vv`fq`GP8^)D$}W~h_Iw;=Kc#GzNe$$HU7G$@f7KbE
+zEM*DsqP!P9W`uUm;AQ_gWeDaSIEA)_>URGpH~D^sGz0m((55arlnv}SS?%E+@gwJ5
+zcc<(q$S-!}_A*TwVT3kw*YDc736Hdk*213A+<VFqL8tr-2K>nIo$w}ze!t<ll#~8d
+q*Fu+eWf$OQ)M$Mti}NG)Pd9}FeXrdE9v*$S;{LnA6yUiN_3;BLa}@vp
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/tilesets/secondary/hoenn_volcano/metatiles.bin b/data/tilesets/secondary/hoenn_volcano/metatiles.bin
+new file mode 100644
+index 0000000000000000000000000000000000000000..f158e3e393ee1a2b6337b3aaa81a77603b43eec4
+GIT binary patch
+literal 4096
+zcmc&%`(G7B6dy|~(Z6>1eD)W9v9pMZWOc8G0ul_iT<BqK8sLL!^Nr6yuMfhDiDfAo
+zY9Np5oE^T)?C?<@-9F8JX7_&gobx?r&YYQ@t5kJcJ#8;E&<@&3+ew&r6&h2#iyBkB
+zyU;`;-%anOc&*;ICGRGbgo#pn=zaQtfOj%qJvC+cLuM~fk@nI)`iPooe|#X8?qlD-
+za7cVDrX^}Mt&uN>zcxBZ?euZx4|<SyP$wDcqC@5r6Pa#f<t5|d9)8<PpHhK7qt9cd
+zzK9R=J>L)y<iMgO?^bG}|0R8u=3ymWks}_&;`)oZ0YknL=ht+Ej?y<g8@BaQACI?>
+zkRQBX?X%wu@YQeH=olTR6B+Mn?R`Cr2lWIj^(4B$s3-V`zF=GLRv&Wc`~G|k{*yeO
+zK^_k<^nfuh;79#QJ&S+QmpX@hwfP1ANv`K_*<SE>^nF$@kauvMCiDZHqSHKoXR^GX
+zrE_$iE@XHpz8Jgtka4+K#^GYbYsY&jcJbx-%Akv{4k~5w5Lf=S_%h!GUu3HvS*FyL
+z^lrJ<cgOmzR(-86ivP~a-~VKv8#cqs_PJ_BFrt;Zu5a+Y%)P{YB)F+>>2jb{4<qcc
+zx6K_>jW|XVdo9Jk<WKy&@rZxa_fL9E-_;cjJg)EQO7L@r@3VX&Cx5{5i2(Yy^&LH|
+zhXbr5V9B?vCt$22VA%hn%lcRSF!NUqe$x+w-!nYIa>*m~%YhviaEopUT6Jp{&m;XP
+zc&r}>@IT4%KjHX+$Ms}T37%y7HeaQTU$Eo{^#ZwzMUL@8j`6{ML^qMd{nV6=Qh#t?
+zTf5Kp6M6?tnlUqFDyE(u=mwey#?53@iKZfq$Fi1;i{<;eQbYc1e9t1_a`ZHMwhDXr
+zLwvx9&&!X=<%jv<?>Q;;f;+HMe=?fReGg{nC1ZP@ndRSeG|T&RQ+mFcp?SU*vi%=?
+z{`mV%-X8wM_X5p0{-#q8kXxQvN3PU7+qnC)#0LyM-~V13F!G&3yuKXv@;=W$&EDp?
+z=bIbfU%B{|dP#q$@yeW}R^f&a`fr49hVm|l7v-X#${AxmfuRq+^y%DizENspj^F>j
+z<9oiT)?T1^HMZwn$Z@_9?0!!ne=B@Dd?(zTjTd!@_)&+@xBhF2K88Nz7B?);Lrrl@
+zt-TOGF!r~tU0b`|`09E71^3d%P|kt<<{-amrZ#45rxLG^0h91sr8=p{bfxDIsTa#{
+z*Eg^|Kil&p{QJ+P@4-UK0ld7Dd`pY-<M;Q&nj-kD_ClkJ=NgrAF|V+koa>o2Uf<IB
+zs2fdWy~_#^ES$2|#F8;fH`U2{QtG*vubSfP*_Yx&J>qHYxE@mW(L{Vpm-CTy@QQEg
+ncK3Rb`N#hi=>1<$<RA4W^XZ;%s~wl0ziRVK?%nnDZ~6ZLzpSX>
+
+literal 0
+HcmV?d00001
+
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/00.pal b/data/tilesets/secondary/hoenn_volcano/palettes/00.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/00.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/01.pal b/data/tilesets/secondary/hoenn_volcano/palettes/01.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/01.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/02.pal b/data/tilesets/secondary/hoenn_volcano/palettes/02.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/02.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/03.pal b/data/tilesets/secondary/hoenn_volcano/palettes/03.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/03.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/04.pal b/data/tilesets/secondary/hoenn_volcano/palettes/04.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/04.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/05.pal b/data/tilesets/secondary/hoenn_volcano/palettes/05.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/05.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/06.pal b/data/tilesets/secondary/hoenn_volcano/palettes/06.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/06.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/07.pal b/data/tilesets/secondary/hoenn_volcano/palettes/07.pal
+new file mode 100644
+index 000000000..c906492a2
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/07.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++49 49 255
++238 205 197
++222 180 164
++156 115 115
++98 65 82
++98 57 49
++98 16 0
++213 156 139
++189 131 115
++156 98 82
++131 49 32
++98 82 65
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/08.pal b/data/tilesets/secondary/hoenn_volcano/palettes/08.pal
+new file mode 100644
+index 000000000..f74b3c490
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/08.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++49 49 255
++255 255 255
++213 213 213
++164 164 164
++131 131 139
++65 49 65
++238 189 172
++213 156 139
++189 131 115
++156 98 82
++131 49 32
++98 16 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/09.pal b/data/tilesets/secondary/hoenn_volcano/palettes/09.pal
+new file mode 100644
+index 000000000..5a08bb0d9
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/09.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++255 255 255
++213 213 213
++164 164 164
++131 131 139
++65 49 65
++238 213 205
++222 180 164
++189 148 139
++156 115 115
++131 90 90
++98 65 82
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/10.pal b/data/tilesets/secondary/hoenn_volcano/palettes/10.pal
+new file mode 100644
+index 000000000..e9590704a
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/10.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++24 41 82
++180 255 131
++131 197 98
++57 139 49
++57 82 0
++106 90 90
++65 57 49
++255 197 148
++205 65 82
++164 213 197
++115 197 164
++65 180 131
++24 164 106
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/11.pal b/data/tilesets/secondary/hoenn_volcano/palettes/11.pal
+new file mode 100644
+index 000000000..ca8130ba8
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/11.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++49 49 255
++197 197 172
++148 148 139
++98 98 123
++65 74 106
++41 49 90
++255 230 139
++222 189 98
++180 156 74
++139 123 32
++115 82 41
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/12.pal b/data/tilesets/secondary/hoenn_volcano/palettes/12.pal
+new file mode 100644
+index 000000000..89fef719f
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/12.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++24 41 82
++205 49 0
++148 49 0
++246 24 24
++246 148 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/13.pal b/data/tilesets/secondary/hoenn_volcano/palettes/13.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/13.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/14.pal b/data/tilesets/secondary/hoenn_volcano/palettes/14.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/14.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/palettes/15.pal b/data/tilesets/secondary/hoenn_volcano/palettes/15.pal
+new file mode 100644
+index 000000000..4b0812f09
+--- /dev/null
++++ b/data/tilesets/secondary/hoenn_volcano/palettes/15.pal
+@@ -0,0 +1,19 @@
++JASC-PAL
++0100
++16
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
++0 0 0
+diff --git a/data/tilesets/secondary/hoenn_volcano/tiles.png b/data/tilesets/secondary/hoenn_volcano/tiles.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..41173f9a5798cdd3c2564d32ab05edf550d523a8
+GIT binary patch
+literal 3599
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/include/tileset_anims.h b/include/tileset_anims.h
+index b85f6ecd5..47cb54730 100644
+--- a/include/tileset_anims.h
++++ b/include/tileset_anims.h
+@@ -12,5 +12,6 @@ void InitTilesetAnim_VermilionGym(void);
+ void InitTilesetAnim_CeladonGym(void);
+ void InitTilesetAnim_SilphCo(void);
+ void InitTilesetAnim_MtEmber(void);
++void InitTilesetAnim_HoennVolcano(void);
+ 
+ #endif // GUARD_TILESET_ANIMS_H
+diff --git a/src/data/tilesets/graphics.h b/src/data/tilesets/graphics.h
+index 7e92e5991..e52cb7325 100644
+--- a/src/data/tilesets/graphics.h
++++ b/src/data/tilesets/graphics.h
+@@ -1408,3 +1408,46 @@ const u16 gTilesetPalettes_HallOfFame[][16] =
+ 	INCBIN_U16("data/tilesets/secondary/hall_of_fame/palettes/15.gbapal"),
+ };
+ 
++const u32 gTilesetTiles_HoennDesert[] = INCBIN_U32("data/tilesets/secondary/hoenn_desert/tiles.4bpp.lz");
++
++const u16 gTilesetPalettes_HoennDesert[][16] =
++{
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/00.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/01.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/02.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/03.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/04.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/05.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/06.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/07.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/08.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/09.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/10.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/11.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/12.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/13.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/14.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_desert/palettes/15.gbapal"),
++};
++
++const u32 gTilesetTiles_HoennVolcano[] = INCBIN_U32("data/tilesets/secondary/hoenn_volcano/tiles.4bpp.lz");
++
++const u16 gTilesetPalettes_HoennVolcano[][16] =
++{
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/00.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/01.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/02.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/03.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/04.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/05.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/06.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/07.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/08.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/09.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/10.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/11.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/12.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/13.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/14.gbapal"),
++	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/15.gbapal"),
++};
+diff --git a/src/data/tilesets/headers.h b/src/data/tilesets/headers.h
+index 290880eb6..ba478fe74 100644
+--- a/src/data/tilesets/headers.h
++++ b/src/data/tilesets/headers.h
+@@ -744,4 +744,26 @@ const struct Tileset gTileset_HallOfFame =
+     .metatiles = gMetatiles_HallOfFame,
+     .metatileAttributes = gMetatileAttributes_HallOfFame,
+     .callback = NULL,
+-};
+\ No newline at end of file
++};
++
++const struct Tileset gTileset_HoennDesert =
++{
++    .isCompressed = TRUE,
++    .isSecondary = TRUE,
++    .tiles = gTilesetTiles_HoennDesert,
++    .palettes = gTilesetPalettes_HoennDesert,
++    .metatiles = gMetatiles_HoennDesert,
++    .metatileAttributes = gMetatileAttributes_HoennDesert,
++    .callback = NULL,
++};
++
++const struct Tileset gTileset_HoennVolcano =
++{
++    .isCompressed = TRUE,
++    .isSecondary = TRUE,
++    .tiles = gTilesetTiles_HoennVolcano,
++    .palettes = gTilesetPalettes_HoennVolcano,
++    .metatiles = gMetatiles_HoennVolcano,
++    .metatileAttributes = gMetatileAttributes_HoennVolcano,
++    .callback = InitTilesetAnim_HoennVolcano,
++};
+diff --git a/src/data/tilesets/metatiles.h b/src/data/tilesets/metatiles.h
+index d360d395e..3987f05f7 100644
+--- a/src/data/tilesets/metatiles.h
++++ b/src/data/tilesets/metatiles.h
+@@ -200,4 +200,10 @@ const u16 gMetatiles_PokemonLeague[] = INCBIN_U16("data/tilesets/secondary/pokem
+ const u32 gMetatileAttributes_PokemonLeague[] = INCBIN_U32("data/tilesets/secondary/pokemon_league/metatile_attributes.bin");
+ 
+ const u16 gMetatiles_HallOfFame[] = INCBIN_U16("data/tilesets/secondary/hall_of_fame/metatiles.bin");
+-const u32 gMetatileAttributes_HallOfFame[] = INCBIN_U32("data/tilesets/secondary/hall_of_fame/metatile_attributes.bin");
+\ No newline at end of file
++const u32 gMetatileAttributes_HallOfFame[] = INCBIN_U32("data/tilesets/secondary/hall_of_fame/metatile_attributes.bin");
++
++const u16 gMetatiles_HoennDesert[] = INCBIN_U16("data/tilesets/secondary/hoenn_desert/metatiles.bin");
++const u32 gMetatileAttributes_HoennDesert[] = INCBIN_U32("data/tilesets/secondary/hoenn_desert/metatile_attributes.bin");
++
++const u16 gMetatiles_HoennVolcano[] = INCBIN_U16("data/tilesets/secondary/hoenn_volcano/metatiles.bin");
++const u32 gMetatileAttributes_HoennVolcano[] = INCBIN_U32("data/tilesets/secondary/hoenn_volcano/metatile_attributes.bin");
+diff --git a/src/tileset_anims.c b/src/tileset_anims.c
+index 04854a2e4..56e9e2a40 100644
+--- a/src/tileset_anims.c
++++ b/src/tileset_anims.c
+@@ -108,6 +108,19 @@ static const u16 sTilesetAnims_MtEmber_Steam_Frame1[] = INCBIN_U16("data/tileset
+ static const u16 sTilesetAnims_MtEmber_Steam_Frame2[] = INCBIN_U16("data/tilesets/secondary/mt_ember/anim/steam/2.4bpp");
+ static const u16 sTilesetAnims_MtEmber_Steam_Frame3[] = INCBIN_U16("data/tilesets/secondary/mt_ember/anim/steam/3.4bpp");
+ 
++// Hoenn Volcano (lava from Emerald's Lavaridge/cave tilesets): 4 tiles at the start of the secondary tileset
++static const u16 sTilesetAnims_HoennVolcano_Lava_Frame0[] = INCBIN_U16("data/tilesets/secondary/hoenn_volcano/anim/lava/0.4bpp");
++static const u16 sTilesetAnims_HoennVolcano_Lava_Frame1[] = INCBIN_U16("data/tilesets/secondary/hoenn_volcano/anim/lava/1.4bpp");
++static const u16 sTilesetAnims_HoennVolcano_Lava_Frame2[] = INCBIN_U16("data/tilesets/secondary/hoenn_volcano/anim/lava/2.4bpp");
++static const u16 sTilesetAnims_HoennVolcano_Lava_Frame3[] = INCBIN_U16("data/tilesets/secondary/hoenn_volcano/anim/lava/3.4bpp");
++
++static const u16 *const sTilesetAnims_HoennVolcano_Lava[] = {
++    sTilesetAnims_HoennVolcano_Lava_Frame0,
++    sTilesetAnims_HoennVolcano_Lava_Frame1,
++    sTilesetAnims_HoennVolcano_Lava_Frame2,
++    sTilesetAnims_HoennVolcano_Lava_Frame3
++};
++
+ static const u16 *const sTilesetAnims_MtEmber_Steam[] = {
+     sTilesetAnims_MtEmber_Steam_Frame0,
+     sTilesetAnims_MtEmber_Steam_Frame1,
+@@ -284,6 +297,20 @@ static void TilesetAnim_MtEmber(u16 timer)
+         QueueAnimTiles_MtEmber_Steam(timer / 16);
+ }
+ 
++static void TilesetAnim_HoennVolcano(u16 timer)
++{
++    if (timer % 16 == 1)
++        AppendTilesetAnimToBuffer(sTilesetAnims_HoennVolcano_Lava[(timer / 16) % ARRAY_COUNT(sTilesetAnims_HoennVolcano_Lava)],
++                                  (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(640)), 4 * TILE_SIZE_4BPP);
++}
++
++void InitTilesetAnim_HoennVolcano(void)
++{
++    sSecondaryTilesetAnimCounter = 0;
++    sSecondaryTilesetAnimCounterMax = 128;
++    sSecondaryTilesetAnimCallback = TilesetAnim_HoennVolcano;
++}
++
+ void InitTilesetAnim_MtEmber(void)
+ {
+     sSecondaryTilesetAnimCounter = 0;

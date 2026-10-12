@@ -745,3 +745,25 @@ const struct Tileset gTileset_HallOfFame =
     .metatileAttributes = gMetatileAttributes_HallOfFame,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_HoennDesert =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennDesert,
+    .palettes = gTilesetPalettes_HoennDesert,
+    .metatiles = gMetatiles_HoennDesert,
+    .metatileAttributes = gMetatileAttributes_HoennDesert,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennVolcano =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennVolcano,
+    .palettes = gTilesetPalettes_HoennVolcano,
+    .metatiles = gMetatiles_HoennVolcano,
+    .metatileAttributes = gMetatileAttributes_HoennVolcano,
+    .callback = InitTilesetAnim_HoennVolcano,
+};

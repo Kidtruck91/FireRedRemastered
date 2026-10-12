@@ -108,6 +108,19 @@ static const u16 sTilesetAnims_MtEmber_Steam_Frame1[] = INCBIN_U16("data/tileset
 static const u16 sTilesetAnims_MtEmber_Steam_Frame2[] = INCBIN_U16("data/tilesets/secondary/mt_ember/anim/steam/2.4bpp");
 static const u16 sTilesetAnims_MtEmber_Steam_Frame3[] = INCBIN_U16("data/tilesets/secondary/mt_ember/anim/steam/3.4bpp");
 
+// Hoenn Volcano (lava from Emerald's Lavaridge/cave tilesets): 4 tiles at the start of the secondary tileset
+static const u16 sTilesetAnims_HoennVolcano_Lava_Frame0[] = INCBIN_U16("data/tilesets/secondary/hoenn_volcano/anim/lava/0.4bpp");
+static const u16 sTilesetAnims_HoennVolcano_Lava_Frame1[] = INCBIN_U16("data/tilesets/secondary/hoenn_volcano/anim/lava/1.4bpp");
+static const u16 sTilesetAnims_HoennVolcano_Lava_Frame2[] = INCBIN_U16("data/tilesets/secondary/hoenn_volcano/anim/lava/2.4bpp");
+static const u16 sTilesetAnims_HoennVolcano_Lava_Frame3[] = INCBIN_U16("data/tilesets/secondary/hoenn_volcano/anim/lava/3.4bpp");
+
+static const u16 *const sTilesetAnims_HoennVolcano_Lava[] = {
+    sTilesetAnims_HoennVolcano_Lava_Frame0,
+    sTilesetAnims_HoennVolcano_Lava_Frame1,
+    sTilesetAnims_HoennVolcano_Lava_Frame2,
+    sTilesetAnims_HoennVolcano_Lava_Frame3
+};
+
 static const u16 *const sTilesetAnims_MtEmber_Steam[] = {
     sTilesetAnims_MtEmber_Steam_Frame0,
     sTilesetAnims_MtEmber_Steam_Frame1,
@@ -282,6 +295,20 @@ static void TilesetAnim_MtEmber(u16 timer)
 {
     if (timer % 16 == 0)
         QueueAnimTiles_MtEmber_Steam(timer / 16);
+}
+
+static void TilesetAnim_HoennVolcano(u16 timer)
+{
+    if (timer % 16 == 1)
+        AppendTilesetAnimToBuffer(sTilesetAnims_HoennVolcano_Lava[(timer / 16) % ARRAY_COUNT(sTilesetAnims_HoennVolcano_Lava)],
+                                  (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(640)), 4 * TILE_SIZE_4BPP);
+}
+
+void InitTilesetAnim_HoennVolcano(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 128;
+    sSecondaryTilesetAnimCallback = TilesetAnim_HoennVolcano;
 }
 
 void InitTilesetAnim_MtEmber(void)
