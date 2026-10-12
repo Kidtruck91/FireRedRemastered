@@ -191,12 +191,12 @@
 #define VAR_MAP_SCENE_MT_MOON_B2F                                              0x408B
 
 
-#define VAR_0x408C             0x408C
-#define VAR_0x408D                 0x408D
-#define VAR_0x408E                 0x408E
-#define VAR_0x408F                 0x408F
-#define VAR_0x4090                 0x4090
-#define VAR_0x4091                 0x4091
+#define VAR_ORANGE_STASH_0          0x408C // Orange Islands: home team PC slot
+#define VAR_ORANGE_STASH_1          0x408D // Orange Islands: home team PC slot
+#define VAR_ORANGE_STASH_2          0x408E // Orange Islands: home team PC slot
+#define VAR_ORANGE_STASH_3          0x408F // Orange Islands: home team PC slot
+#define VAR_ORANGE_STASH_4          0x4090 // Orange Islands: home team PC slot
+#define VAR_ORANGE_STASH_5          0x4091 // Orange Islands: home team PC slot
 #define VAR_0x4092                 0x4092
 #define VAR_0x4093                 0x4093
 #define VAR_0x4094                 0x4094

@@ -31,6 +31,7 @@ PalletTown_PlayersHouse_2F_EventScript_Sign::
 PalletTown_PlayersHouse_2F_EventScript_PC::
 	goto_if_questlog EventScript_ReleaseEnd
 	lockall
+	goto_if_set FLAG_ORANGE_CHALLENGE, EventScript_PCOrangeIslands
 	setvar VAR_0x8004, HELPCONTEXT_BEDROOM_PC
 	special Script_SetHelpContext
 	setvar VAR_0x8004, 1

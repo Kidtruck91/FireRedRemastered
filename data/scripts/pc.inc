@@ -2,6 +2,7 @@ EventScript_PC::
 	goto_if_questlog EventScript_ReleaseEnd
 	lockall
 	goto_if_set FLAG_SYS_PC_STORAGE_DISABLED, EventScript_PCDisabled
+	goto_if_set FLAG_ORANGE_CHALLENGE, EventScript_PCOrangeIslands
 	setvar VAR_0x8004, HELPCONTEXT_PC
 	special Script_SetHelpContext
 	setvar VAR_0x8004, 0
@@ -16,6 +17,19 @@ EventScript_PCDisabled::
 	msgbox OneIsland_PokemonCenter_1F_Text_UsualPCServicesUnavailable
 	releaseall
 	end
+
+@ Orange Islands trip: the home team and boxes stay locked until the trip ends
+EventScript_PCOrangeIslands::
+	playse SE_PC_ON
+	msgbox Text_PCOrangeIslandsLocked
+	releaseall
+	end
+
+Text_PCOrangeIslandsLocked:
+	.string "The PC can't link up with the KANTO\n"
+	.string "network from the ORANGE ISLANDS.\p"
+	.string "Your POKéMON and items will be\n"
+	.string "waiting when you get home.$"
 
 EventScript_PCMainMenu::
 	message Text_AccessWhichPC
