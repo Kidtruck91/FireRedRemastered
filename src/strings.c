@@ -872,6 +872,7 @@ const u8 gText_NuzlockeAlreadyEncountered[] = _("Your encounter here is used.\nT
 const u8 gText_NuzlockeOn[] = _("ON");
 const u8 gText_NuzlockeOff[] = _("OFF");
 const u8 gText_PhysSpecSplit[] = _("PHYS/SPEC SPLIT");
+const u8 gText_ExpAll[] = _("EXP. ALL");
 const u8 gText_RandomizeTrainer[] = _("RANDOMIZE TRAINER");
 const u8 gText_RandomizeItems[] = _("RANDOMIZE ITEMS");
 const u8 gText_RandomizeWild[] = _("RANDOMIZE WILD");

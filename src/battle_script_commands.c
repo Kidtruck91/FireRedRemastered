@@ -3173,6 +3173,10 @@ static void Cmd_jumpiftype(void)
         gBattlescriptCurrInstr += 7;
 }
 
+// EXP. ALL option: party members that didn't battle get this percentage of the
+// defeated Pokemon's full EXP (participants keep their normal share).
+#define EXP_ALL_PERCENT 50
+
 static void Cmd_getexp(void)
 {
     u16 item;
@@ -3245,6 +3249,14 @@ static void Cmd_getexp(void)
                 gExpShareExp = 0;
             }
 
+            gExpAllExp = 0;
+            if (FlagGet(FLAG_EXP_ALL))
+            {
+                gExpAllExp = calculatedExp * EXP_ALL_PERCENT / 100;
+                if (gExpAllExp == 0)
+                    gExpAllExp = 1;
+            }
+
             gBattleScripting.getexpState++;
             gBattleStruct->expGetterMonId = 0;
             gBattleStruct->sentInPokes = sentIn;
@@ -3261,7 +3273,7 @@ static void Cmd_getexp(void)
             else
                 holdEffect = ItemId_GetHoldEffect(item);
 
-            if (holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
+            if (holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1) && gExpAllExp == 0)
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 gBattleScripting.getexpState = 5;
@@ -3298,6 +3310,8 @@ static void Cmd_getexp(void)
 
                     if (holdEffect == HOLD_EFFECT_EXP_SHARE)
                         gBattleMoveDamage += gExpShareExp;
+                    else if (!(gBattleStruct->sentInPokes & 1))
+                        gBattleMoveDamage += gExpAllExp; // EXP. ALL
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
                     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)

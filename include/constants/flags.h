@@ -534,7 +534,7 @@
 #define FLAG_NUZLOCKE           0x1FF
 #define FLAG_NUZLOCKE_FIN       0x200
 #define FLAG_PHYS_SPEC_SPLIT    0x201 // Options menu: physical/special decided by move, not type
-#define FLAG_0x202               0x202
+#define FLAG_EXP_ALL            0x202 // Options menu: whole party shares EXP (src/battle_script_commands.c)
 #define FLAG_0x203               0x203
 #define FLAG_0x204               0x204
 #define FLAG_0x205               0x205

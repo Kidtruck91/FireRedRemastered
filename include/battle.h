@@ -739,6 +739,7 @@ extern u16 gPaydayMoney;
 extern u16 gLockedMoves[MAX_BATTLERS_COUNT];
 extern u8 gCurrentTurnActionNumber;
 extern u16 gExpShareExp;
+extern u16 gExpAllExp;
 extern u8 gLeveledUpInBattle;
 extern u16 gLastResultingMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastPrintedMoves[MAX_BATTLERS_COUNT];
