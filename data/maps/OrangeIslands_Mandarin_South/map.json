@@ -6,7 +6,7 @@
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
-  "map_type": "MAP_TYPE_CITY",
+  "map_type": "MAP_TYPE_TOWN",
   "allow_cycling": false,
   "allow_escaping": false,
   "allow_running": true,
@@ -15,24 +15,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_9",
+      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_BEACH",
       "direction": "down",
-      "offset": 10
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_10",
-      "direction": "left",
-      "offset": 7
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_12",
-      "direction": "right",
-      "offset": 10
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_13",
-      "direction": "up",
-      "offset": 10
+      "offset": -64
     }
   ],
   "object_events": [],
@@ -41,35 +26,19 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 38,
-      "y": 15,
+      "x": 36,
+      "y": 58,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mandarin_South_EventScript_Store"
+      "script": "OrangeIslands_Mandarin_South_EventScript_Beach"
     },
     {
       "type": "sign",
-      "x": 23,
-      "y": 21,
+      "x": 36,
+      "y": 54,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mandarin_South_EventScript_City"
-    },
-    {
-      "type": "sign",
-      "x": 18,
-      "y": 37,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mandarin_South_EventScript_Tutors"
-    },
-    {
-      "type": "sign",
-      "x": 32,
-      "y": 40,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mandarin_South_EventScript_Harbor"
+      "script": "OrangeIslands_Mandarin_South_EventScript_Town"
     }
   ]
 }

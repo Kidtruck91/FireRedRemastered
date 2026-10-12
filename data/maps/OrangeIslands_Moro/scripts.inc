@@ -1,10 +1,10 @@
 OrangeIslands_Moro_MapScripts::
 	.byte 0
 
-OrangeIslands_Moro_EventScript_Landing::
-	msgbox OrangeIslands_Moro_Text_Landing, MSGBOX_SIGN
+OrangeIslands_Moro_EventScript_Beach::
+	msgbox OrangeIslands_Moro_Text_Beach, MSGBOX_SIGN
 	end
 
-OrangeIslands_Moro_EventScript_Wreck::
-	msgbox OrangeIslands_Moro_Text_Wreck, MSGBOX_SIGN
+OrangeIslands_Moro_EventScript_Town::
+	msgbox OrangeIslands_Moro_Text_Town, MSGBOX_SIGN
 	end

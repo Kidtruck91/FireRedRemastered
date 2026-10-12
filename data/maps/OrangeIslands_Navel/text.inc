@@ -1,16 +1,15 @@
-OrangeIslands_Navel_Text_Summit::
+OrangeIslands_Navel_Text_Gym::
 	.string "NAVEL SUMMIT\n"
 	.string "DANNY'S GYM\n"
-	.string "Prepare for the mountain trial.$"
+	.string "Climb the mountain\n"
+	.string "switchbacks.$"
 
-OrangeIslands_Navel_Text_Mountain::
-	.string "MT. NAVEL TRAIL\n"
-	.string "Follow the switchbacks uphill.$"
+OrangeIslands_Navel_Text_Beach::
+	.string "NAVEL COAST\n"
+	.string "Follow the south trail to the\n"
+	.string "harbor.$"
 
-OrangeIslands_Navel_Text_East::
-	.string "ROUTE 8 - BOULDER STRAIT\n"
-	.string "East: KINNOW$"
-
-OrangeIslands_Navel_Text_South::
-	.string "ROUTE 5 - CURRENT CHANNEL\n"
-	.string "South: MIKAN$"
+OrangeIslands_Navel_Text_Town::
+	.string "NAVEL ISLAND\n"
+	.string "Mountain village and summit\n"
+	.string "trail$"

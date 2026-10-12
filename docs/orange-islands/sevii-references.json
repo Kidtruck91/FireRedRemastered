@@ -1,0 +1,196 @@
+{
+  "Valencia": {
+    "sevii_town": "OneIsland",
+    "sevii_coast": "OneIsland_TreasureBeach",
+    "sevii_approach": null,
+    "design": "Ivy village and research gardens",
+    "town_size": [
+      44,
+      56
+    ],
+    "coast_size": [
+      88,
+      40
+    ],
+    "town_landing": [
+      22,
+      55
+    ]
+  },
+  "Sunburst": {
+    "sevii_town": "TwoIsland",
+    "sevii_coast": "TwoIsland_CapeBrink",
+    "sevii_approach": "TwoIsland_CapeBrink",
+    "design": "Cape terraces and glass workshop",
+    "town_size": [
+      68,
+      76
+    ],
+    "coast_size": [
+      134,
+      36
+    ],
+    "town_landing": [
+      34,
+      75
+    ]
+  },
+  "Navel": {
+    "sevii_town": "OneIsland",
+    "sevii_coast": "OneIsland_KindleRoad",
+    "sevii_approach": "OneIsland_KindleRoad",
+    "design": "Mountain trail and summit Gym",
+    "town_size": [
+      44,
+      110
+    ],
+    "coast_size": [
+      98,
+      60
+    ],
+    "town_landing": [
+      22,
+      109
+    ]
+  },
+  "Moro": {
+    "sevii_town": "FiveIsland",
+    "sevii_coast": "FiveIsland_MemorialPillar",
+    "sevii_approach": "FiveIsland_Meadow",
+    "design": "Forest hamlet and memorial headland",
+    "town_size": [
+      44,
+      64
+    ],
+    "coast_size": [
+      84,
+      30
+    ],
+    "town_landing": [
+      22,
+      63
+    ]
+  },
+  "Kinnow": {
+    "sevii_town": "SixIsland",
+    "sevii_coast": "SixIsland_WaterPath",
+    "sevii_approach": "SixIsland_OutcastIsland",
+    "design": "Harbor settlement and northern wilds",
+    "town_size": [
+      44,
+      76
+    ],
+    "coast_size": [
+      86,
+      30
+    ],
+    "town_landing": [
+      22,
+      75
+    ]
+  },
+  "Mandarin_South": {
+    "sevii_town": "FourIsland",
+    "sevii_coast": "FiveIsland_Meadow",
+    "sevii_approach": null,
+    "design": "Canal city and garden districts",
+    "town_size": [
+      68,
+      64
+    ],
+    "coast_size": [
+      132,
+      50
+    ],
+    "town_landing": [
+      34,
+      63
+    ]
+  },
+  "Trovita": {
+    "sevii_town": "SixIsland",
+    "sevii_coast": "SixIsland_GreenPath",
+    "sevii_approach": "SixIsland_RuinValley",
+    "design": "Valley settlement and wooded Gym",
+    "town_size": [
+      68,
+      92
+    ],
+    "coast_size": [
+      124,
+      40
+    ],
+    "town_landing": [
+      34,
+      91
+    ]
+  },
+  "Kumquat": {
+    "sevii_town": "FiveIsland",
+    "sevii_coast": "FiveIsland_ResortGorgeous",
+    "sevii_approach": "FiveIsland_Meadow",
+    "design": "Resort village and waterside gardens",
+    "town_size": [
+      44,
+      62
+    ],
+    "coast_size": [
+      96,
+      40
+    ],
+    "town_landing": [
+      22,
+      61
+    ]
+  },
+  "Pinkan": {
+    "sevii_town": "SixIsland",
+    "sevii_coast": "SixIsland_GreenPath",
+    "sevii_approach": "SixIsland_GreenPath",
+    "design": "Forest reserve and research outpost",
+    "town_size": [
+      92,
+      76
+    ],
+    "coast_size": [
+      136,
+      40
+    ],
+    "town_landing": [
+      46,
+      75
+    ]
+  },
+  "Pummelo": {
+    "sevii_town": "SevenIsland",
+    "sevii_coast": "SevenIsland_TrainerTower",
+    "sevii_approach": "SevenIsland_SevaultCanyon_Entrance",
+    "design": "League town and canyon approach",
+    "town_size": [
+      44,
+      78
+    ],
+    "coast_size": [
+      88,
+      40
+    ],
+    "town_landing": [
+      22,
+      77
+    ]
+  },
+  "Mikan": {
+    "sevii_town": "ThreeIsland",
+    "sevii_coast": "ThreeIsland_BondBridge",
+    "sevii_approach": "ThreeIsland_Port",
+    "design": "Forest town and separate bridged harbor; approved previous revision",
+    "town_size": [
+      24,
+      48
+    ],
+    "coast_size": [
+      64,
+      44
+    ]
+  }
+}

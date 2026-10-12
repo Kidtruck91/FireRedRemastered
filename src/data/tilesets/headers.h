@@ -855,3 +855,36 @@ const struct Tileset gTileset_OrangeCoastalTown =
     .metatileAttributes = gMetatileAttributes_OrangeCoastalTown,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_OrangeSevii123 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_OrangeSevii123,
+    .palettes = gTilesetPalettes_OrangeSevii123,
+    .metatiles = gMetatiles_OrangeSevii123,
+    .metatileAttributes = gMetatileAttributes_OrangeSevii123,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_OrangeSevii45 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_OrangeSevii45,
+    .palettes = gTilesetPalettes_OrangeSevii45,
+    .metatiles = gMetatiles_OrangeSevii45,
+    .metatileAttributes = gMetatileAttributes_OrangeSevii45,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_OrangeSevii67 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_OrangeSevii67,
+    .palettes = gTilesetPalettes_OrangeSevii67,
+    .metatiles = gMetatiles_OrangeSevii67,
+    .metatileAttributes = gMetatileAttributes_OrangeSevii67,
+    .callback = NULL,
+};

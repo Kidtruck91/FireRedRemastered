@@ -15,19 +15,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_4",
-      "direction": "right",
-      "offset": 3
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_6",
-      "direction": "up",
-      "offset": 12
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_7",
-      "direction": "up",
-      "offset": -24
+      "map": "MAP_ORANGE_ISLANDS_SUNBURST_BEACH",
+      "direction": "down",
+      "offset": -66
     }
   ],
   "object_events": [],
@@ -36,32 +26,16 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 20,
-      "y": 17,
+      "x": 36,
+      "y": 70,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Sunburst_EventScript_Workshop"
+      "script": "OrangeIslands_Sunburst_EventScript_Beach"
     },
     {
       "type": "sign",
       "x": 36,
-      "y": 14,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Sunburst_EventScript_East"
-    },
-    {
-      "type": "sign",
-      "x": 33,
-      "y": 5,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Sunburst_EventScript_North"
-    },
-    {
-      "type": "sign",
-      "x": 9,
-      "y": 19,
+      "y": 66,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Sunburst_EventScript_Town"

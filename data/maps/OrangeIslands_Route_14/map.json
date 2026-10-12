@@ -15,12 +15,12 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_KUMQUAT",
+      "map": "MAP_ORANGE_ISLANDS_KUMQUAT_BEACH",
       "direction": "left",
       "offset": -4
     },
     {
-      "map": "MAP_ORANGE_ISLANDS_TROVITA",
+      "map": "MAP_ORANGE_ISLANDS_TROVITA_BEACH",
       "direction": "down",
       "offset": 8
     }

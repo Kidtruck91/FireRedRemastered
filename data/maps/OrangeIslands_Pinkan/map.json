@@ -6,7 +6,7 @@
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
-  "map_type": "MAP_TYPE_ROUTE",
+  "map_type": "MAP_TYPE_TOWN",
   "allow_cycling": false,
   "allow_escaping": false,
   "allow_running": true,
@@ -15,9 +15,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_13",
-      "direction": "right",
-      "offset": -8
+      "map": "MAP_ORANGE_ISLANDS_PINKAN_BEACH",
+      "direction": "down",
+      "offset": -44
     }
   ],
   "object_events": [],
@@ -26,19 +26,19 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 34,
-      "y": 19,
+      "x": 48,
+      "y": 70,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Pinkan_EventScript_Reserve"
+      "script": "OrangeIslands_Pinkan_EventScript_Beach"
     },
     {
       "type": "sign",
-      "x": 12,
-      "y": 23,
+      "x": 48,
+      "y": 66,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Pinkan_EventScript_Pond"
+      "script": "OrangeIslands_Pinkan_EventScript_Town"
     }
   ]
 }

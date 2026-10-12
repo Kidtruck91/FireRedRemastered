@@ -15,12 +15,12 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH",
+      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_BEACH",
       "direction": "left",
       "offset": -10
     },
     {
-      "map": "MAP_ORANGE_ISLANDS_TROVITA",
+      "map": "MAP_ORANGE_ISLANDS_TROVITA_BEACH",
       "direction": "right",
       "offset": -7
     }

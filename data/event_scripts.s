@@ -2024,3 +2024,33 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Mikan_Beach/scripts.inc"
 	.include "data/maps/OrangeIslands_Mikan_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Valencia_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Sunburst_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Sunburst_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Navel_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Navel_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Kinnow_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Kinnow_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Trovita_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Kumquat_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Kumquat_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Pinkan_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Pinkan_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Pummelo_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Pummelo_Beach/text.inc"

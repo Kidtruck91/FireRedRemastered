@@ -1621,3 +1621,66 @@ const u16 gTilesetPalettes_OrangeCoastalTown[][16] =
     INCBIN_U16("data/tilesets/secondary/orange_coastal_town/palettes/14.gbapal"),
     INCBIN_U16("data/tilesets/secondary/orange_coastal_town/palettes/15.gbapal"),
 };
+
+const u32 gTilesetTiles_OrangeSevii123[] = INCBIN_U32("data/tilesets/secondary/orange_sevii_123/tiles.4bpp.lz");
+const u16 gTilesetPalettes_OrangeSevii123[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/12.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/13.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/14.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_123/palettes/15.gbapal"),
+};
+
+const u32 gTilesetTiles_OrangeSevii45[] = INCBIN_U32("data/tilesets/secondary/orange_sevii_45/tiles.4bpp.lz");
+const u16 gTilesetPalettes_OrangeSevii45[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/12.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/13.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/14.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_45/palettes/15.gbapal"),
+};
+
+const u32 gTilesetTiles_OrangeSevii67[] = INCBIN_U32("data/tilesets/secondary/orange_sevii_67/tiles.4bpp.lz");
+const u16 gTilesetPalettes_OrangeSevii67[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/12.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/13.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/14.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/orange_sevii_67/palettes/15.gbapal"),
+};

@@ -15,19 +15,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_11",
+      "map": "MAP_ORANGE_ISLANDS_TROVITA_BEACH",
       "direction": "down",
-      "offset": 2
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_12",
-      "direction": "left",
-      "offset": 7
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_14",
-      "direction": "up",
-      "offset": -8
+      "offset": -56
     }
   ],
   "object_events": [],
@@ -36,35 +26,19 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 28,
-      "y": 14,
+      "x": 36,
+      "y": 86,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Trovita_EventScript_Gym"
+      "script": "OrangeIslands_Trovita_EventScript_Beach"
     },
     {
       "type": "sign",
-      "x": 22,
-      "y": 34,
+      "x": 36,
+      "y": 82,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Trovita_EventScript_South"
-    },
-    {
-      "type": "sign",
-      "x": 3,
-      "y": 20,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Trovita_EventScript_West"
-    },
-    {
-      "type": "sign",
-      "x": 22,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Trovita_EventScript_North"
+      "script": "OrangeIslands_Trovita_EventScript_Town"
     }
   ]
 }

@@ -1,8 +1,9 @@
-OrangeIslands_Pinkan_Text_Reserve::
-	.string "PINKAN RESERVE\n"
-	.string "Wooded lobes and wetland habitats\n"
-	.string "No trainer battles are planned.$"
+OrangeIslands_Pinkan_Text_Beach::
+	.string "PINKAN COAST\n"
+	.string "Follow the south trail to the\n"
+	.string "harbor.$"
 
-OrangeIslands_Pinkan_Text_Pond::
-	.string "RESERVE WETLAND\n"
-	.string "Please leave the habitat undisturbed.$"
+OrangeIslands_Pinkan_Text_Town::
+	.string "PINKAN ISLAND\n"
+	.string "Forest reserve and research\n"
+	.string "outpost$"

@@ -1,0 +1,59 @@
+{
+  "id": "MAP_ORANGE_ISLANDS_SUNBURST_BEACH",
+  "name": "OrangeIslands_Sunburst_Beach",
+  "layout": "LAYOUT_ORANGE_ISLANDS_SUNBURST_BEACH",
+  "music": "MUS_ROUTE1",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_4",
+      "direction": "right",
+      "offset": 3
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_6",
+      "direction": "up",
+      "offset": 12
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_7",
+      "direction": "up",
+      "offset": -24
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_SUNBURST",
+      "direction": "up",
+      "offset": 66
+    }
+  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 103,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Sunburst_Beach_EventScript_Town"
+    },
+    {
+      "type": "sign",
+      "x": 41,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Sunburst_Beach_EventScript_Harbor"
+    }
+  ]
+}

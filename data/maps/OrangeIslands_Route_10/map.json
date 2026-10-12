@@ -15,12 +15,12 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_MORO",
+      "map": "MAP_ORANGE_ISLANDS_MORO_BEACH",
       "direction": "left",
       "offset": 3
     },
     {
-      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH",
+      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_BEACH",
       "direction": "right",
       "offset": -7
     }

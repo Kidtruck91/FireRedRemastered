@@ -45,7 +45,7 @@ for suffix, (start, goals, surf) in checks.items():
     name = 'OrangeIslands_'+suffix
     header = json.loads((ROOT/'data/maps'/name/'map.json').read_text())
     l = layouts[header['layout']]; w,h = l['width'],l['height']
-    secondary = 'orange_coastal_town' if l['secondary_tileset']=='gTileset_OrangeCoastalTown' else 'orange_islands'
+    secondary = {'gTileset_OrangeCoastalTown':'orange_coastal_town', 'gTileset_OrangeIslands':'orange_islands', **{'gTileset_OrangeSevii'+f:'orange_sevii_'+f for f in ('123','45','67')}}[l['secondary_tileset']]
     pb=(ROOT/'data/tilesets/primary/orange_general/metatile_attributes.bin').read_bytes()
     sb=(ROOT/'data/tilesets/secondary'/secondary/'metatile_attributes.bin').read_bytes()
     attrs=list(struct.unpack('<'+'I'*((len(pb)+len(sb))//4),pb+sb))
@@ -54,12 +54,19 @@ for suffix, (start, goals, surf) in checks.items():
     assert len(b) == 2*w*h, name+' has wrong block data length'
     blocks = struct.unpack('<'+'H'*(len(b)//2), b)
     assert all((v&1023)<len(attrs) for v in blocks), name+' has missing metatiles'
-    if secondary=='orange_coastal_town':
+    if secondary!='orange_islands':
         for c in header['connections']:
-            cells=((x,y) for y in range(h) for x in range(w) if
+            neighbor=next(p for p in (ROOT/'data/maps').glob('*/map.json') if json.loads(p.read_text())['id']==c['map'])
+            nh=json.loads(neighbor.read_text());nl=layouts[nh['layout']]
+            if nl['secondary_tileset']==l['secondary_tileset']:continue
+            vertical=c['direction'] in ('up','down')
+            lo=max(0,c['offset']);hi=min(w if vertical else h,c['offset']+(nl['width'] if vertical else nl['height']))
+            cells=((x,y) for y in range(h) for x in range(w) if lo<=(x if vertical else y)<hi and (
                 (c['direction']=='up' and y<7) or (c['direction']=='down' and y>=h-7) or
-                (c['direction']=='left' and x<7) or (c['direction']=='right' and x>=w-7))
-            assert all(blocks[y*w+x]&1023<736 for x,y in cells), name+': imported metatile visible from a route using the tropical tileset'
+                (c['direction']=='left' and x<7) or (c['direction']=='right' and x>=w-7)))
+            assert all(blocks[y*w+x]&1023<736 for x,y in cells), name+': imported metatile visible across a different secondary tileset'
+    if secondary.startswith('orange_sevii_'):
+        assert all(v&0xc00 or attrs[v&1023]&511 in water or v>>12==3 for v in blocks), name+': dry authored path has an abrupt elevation change'
     assert all(v&0xc00 or not 0x60<=attrs[v&1023]&511<=0x7f for v in blocks), name+': unconfigured walkable warp tile'
     def walk(x,y):
         if not (0<=x<w and 0<=y<h): return False
@@ -85,9 +92,11 @@ for suffix, (start, goals, surf) in checks.items():
             x,y=x+dx,y+dy
             assert walk(x,y), name+': current hits a wall or map edge'
         assert attrs[blocks[y*w+x]&1023]&511 in water, name+': current ends on land'
-    data[name]=(header,l,blocks)
+    data[name]=(header,l,blocks,attrs)
     print(f'{name}: dimensions, metatiles, {len(goals)} landmarks and {len(header["bg_events"])} signs passed')
-for name,(header,l,blocks) in data.items():
+group=json.loads((ROOT/'data/maps/map_groups.json').read_text())['gMapGroup_OrangeIslands']
+assert set(group)==set(data), 'Orange exterior validation is missing a registered map'
+for name,(header,l,blocks,attrs) in data.items():
     # Same-side connections must not compete for the same coordinate range.
     ranges=[]
     for connection in header['connections']:
@@ -102,7 +111,7 @@ for name,(header,l,blocks) in data.items():
         ranges.append((connection['direction'],span))
     for c in header['connections']:
         other=next(n for n in data if data[n][0]['id']==c['map'])
-        oh,ol,ob=data[other]
+        oh,ol,ob,other_attrs=data[other]
         opposite={'up':'down','down':'up','left':'right','right':'left'}[c['direction']]
         assert any(o['map']==header['id'] and o['direction']==opposite and o['offset']==-c['offset'] for o in oh['connections'])
         matched=0
@@ -116,7 +125,7 @@ for name,(header,l,blocks) in data.items():
                 if not 0<=ot<ol['height']:continue
                 v=blocks[t*l['width']+(0 if c['direction']=='left' else l['width']-1)]
                 ov=ob[ot*ol['width']+(ol['width']-1 if c['direction']=='left' else 0)]
-            if not(v&0xc00 or ov&0xc00) and attrs[v&1023]&511 not in water and attrs[ov&1023]&511 not in water:
+            if not(v&0xc00 or ov&0xc00) and attrs[v&1023]&511 not in water and other_attrs[ov&1023]&511 not in water:
                 assert v==ov, f'{name}: mismatched walkable seam at {t}'
                 matched+=1
         assert matched>=3, name+': connection has no usable land crossing'
@@ -124,7 +133,7 @@ print('All directional connections have reciprocal offsets and matching walkable
 
 if "--rom" in sys.argv:
     rom = (ROOT/"pokefirered.gba").read_bytes()
-    for name, (_, layout, _) in data.items():
+    for name, (_, layout, _, _) in data.items():
         expected = (ROOT/layout["blockdata_filepath"]).read_bytes()
         assert expected in rom, name+": ROM contains stale or missing layout data"
     print(f"ROM contains the exact binary layouts for all {len(data)} designed maps.")

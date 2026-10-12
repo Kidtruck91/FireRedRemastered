@@ -1,4 +1,22 @@
-# Orange Islands exterior map design — full exterior first pass
+# Orange Islands exterior maps
+
+The current revision gives all eleven islands a specific Sevii town and surrounding-route reference, with a separate connected coast for each settlement. Open `gMapGroup_OrangeIslands` in Porymap: it now contains **36 exteriors** (11 towns, 11 coasts, and 14 regional routes).
+
+**[View the current town/coast gallery and all Sevii references](SEVII_GALLERY.md)**
+
+![Current town overview](sevii-inspired-towns.png)
+
+Ten settlements were rebuilt and ten coast maps added; Mikan retains its approved town/beach split. Routes 1–14 keep their existing terrain and connect through the new coasts. All prior map IDs are retained. New shared tropical/Sevii secondary tilesets stay within the hardware limits, and original General/Sevii assets are unchanged.
+
+The ROM build and all 36 exterior checks pass. Doors and cave entrances are blocked until interiors are supplied; ferries and other gameplay events remain pending. Emulator playtesting is still required.
+
+Run `python3 docs/orange-islands/render_maps.py` to refresh current previews after Porymap edits. Build with `make -j5 -W data/maps.s` using the prepared toolchain, then run `python3 docs/orange-islands/validate_maps.py --rom`. The map-data rebuild flag prevents stale map binaries.
+
+## Design history
+
+The following sections describe earlier passes; their sizes and connection descriptions are historical. Use the gallery above and `data/layouts/layouts.json` for the current layouts.
+
+### Earlier exterior design passes
 
 Based on follower-port commit 2dc0f227cf31c01bce563d674b7fa31f7bb21e8c and the supplied region plan. Open the repository in Porymap and select gMapGroup_OrangeIslands.
 

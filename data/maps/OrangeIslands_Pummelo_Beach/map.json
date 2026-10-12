@@ -1,0 +1,44 @@
+{
+  "id": "MAP_ORANGE_ISLANDS_PUMMELO_BEACH",
+  "name": "OrangeIslands_Pummelo_Beach",
+  "layout": "LAYOUT_ORANGE_ISLANDS_PUMMELO_BEACH",
+  "music": "MUS_ROUTE1",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ORANGE_ISLANDS_PUMMELO",
+      "direction": "up",
+      "offset": 44
+    }
+  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 75,
+      "y": 14,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Pummelo_Beach_EventScript_Town"
+    },
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 34,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Pummelo_Beach_EventScript_Harbor"
+    }
+  ]
+}

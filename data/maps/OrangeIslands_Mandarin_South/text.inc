@@ -1,18 +1,9 @@
-OrangeIslands_Mandarin_South_Text_Store::
-	.string "MANDARIN DEPARTMENT STORE\n"
-	.string "Island goods and supplies$"
+OrangeIslands_Mandarin_South_Text_Beach::
+	.string "MANDARIN SOUTH COAST\n"
+	.string "Follow the south trail to the\n"
+	.string "harbor.$"
 
-OrangeIslands_Mandarin_South_Text_City::
-	.string "MANDARIN SOUTH\n"
-	.string "North: KUMQUAT\n"
-	.string "East: TROVITA\n"
-	.string "West: MORO\n"
-	.string "South: NAVEL$"
-
-OrangeIslands_Mandarin_South_Text_Tutors::
-	.string "TUTOR QUARTER\n"
-	.string "Learn from island move tutors.$"
-
-OrangeIslands_Mandarin_South_Text_Harbor::
-	.string "SOUTH HARBOR\n"
-	.string "Route 9 fishing platforms$"
+OrangeIslands_Mandarin_South_Text_Town::
+	.string "MANDARIN SOUTH ISLAND\n"
+	.string "Canal city and garden\n"
+	.string "districts$"

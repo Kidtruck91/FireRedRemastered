@@ -15,17 +15,17 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH",
+      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_BEACH",
       "direction": "down",
       "offset": -10
     },
     {
-      "map": "MAP_ORANGE_ISLANDS_KUMQUAT",
+      "map": "MAP_ORANGE_ISLANDS_KUMQUAT_BEACH",
       "direction": "up",
       "offset": -4
     },
     {
-      "map": "MAP_ORANGE_ISLANDS_PINKAN",
+      "map": "MAP_ORANGE_ISLANDS_PINKAN_BEACH",
       "direction": "left",
       "offset": 8
     }

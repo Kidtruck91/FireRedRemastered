@@ -15,12 +15,12 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_NAVEL",
+      "map": "MAP_ORANGE_ISLANDS_NAVEL_BEACH",
       "direction": "left",
       "offset": -30
     },
     {
-      "map": "MAP_ORANGE_ISLANDS_KINNOW",
+      "map": "MAP_ORANGE_ISLANDS_KINNOW_BEACH",
       "direction": "right",
       "offset": 0
     }
