@@ -46,6 +46,7 @@ for suffix, (start, goals, surf) in checks.items():
     assert len(b) == 2*w*h, name+' has wrong block data length'
     blocks = struct.unpack('<'+'H'*(len(b)//2), b)
     assert all((v&1023)<len(attrs) for v in blocks), name+' has missing metatiles'
+    assert all(v&0xc00 or not 0x60<=attrs[v&1023]&511<=0x7f for v in blocks), name+': unconfigured walkable warp tile'
     def walk(x,y):
         if not (0<=x<w and 0<=y<h): return False
         v=blocks[y*w+x]

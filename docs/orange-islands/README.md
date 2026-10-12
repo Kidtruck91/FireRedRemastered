@@ -44,6 +44,22 @@ All 25 existing Orange Islands layouts now have exterior designs. This is a regi
 
 PNG previews accompany the source maps. They render the actual existing tiles/metatiles with static animation frames.
 
+## Terrain and building polish pass
+
+Reviewed all 25 layouts. Replaced 1,832 abrupt sand/grass edge tiles with native transition and corner tiles where appropriate. Added sparse native grass texture, mixed red/blue residential roofs, and upper floors on selected homes (12 residential facades reviewed). Corrected paved street/forecourt centers and grassy curb edges. Existing buildings, stairs, encounter clearings, major paths and connected border corridors retain their roles; connection-edge tiles remain unchanged. Sea routes without grassy land did not need sand/grass changes. No new graphics, palettes, ferry scripts or interiors were added.
+
+The saved Valencia layout is polished but still uses the earlier footprint. The supplied Valencia reference screenshot remains the preferred direction for a later town-layout revision.
+
+## Remaining work
+
+- Adapt Valencia to the user's reference layout, including the distinct Ivy lab and house graphics, after obtaining the editable map/tileset files or reconstructing them.
+- Extend the tropical tileset for distinctive lab/Gym buildings, a ghost-ship wreck, showboat, resort/stadium details, and Pinkan palette variants.
+- Create building, Gym, cave and ship interiors with reciprocal door/stair warps. Current building doors are blocked exterior placeholders.
+- Add ferry arrival/return and the Kumquat–Pummelo League boat. Pummelo is not connected to the Surf network.
+- Populate routes and towns with NPCs, trainers, items, encounters and quest events, including the Surf acquisition sequence and Gym progression.
+- Add proper Orange Islands region-map names and locations; placeholder names currently have popups disabled.
+- Test the region in an emulator, including Surf entry/exit, currents, stairs, followers, connections, weather, interiors and story progression. Static reachability checks do not replace gameplay tests.
+
 ## Map previews
 
 ### Valencia
