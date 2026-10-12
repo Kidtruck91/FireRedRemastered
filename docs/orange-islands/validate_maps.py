@@ -36,6 +36,9 @@ checks = {
     'Route_6': ((21,35), [(49,20),(20,12),(31,18),(8,9),(41,29)], True),
     'Route_3': ((20,59), [(20,0),(11,19),(29,35),(10,46)], True),
 }
+landmarks_path = ROOT/'docs/orange-islands/island_landmarks.json'
+if landmarks_path.exists():
+    checks.update({name:(tuple(value[0]), [tuple(g) for g in value[1]], value[2]) for name,value in json.loads(landmarks_path.read_text()).items()})
 data = {}
 for suffix, (start, goals, surf) in checks.items():
     name = 'OrangeIslands_'+suffix

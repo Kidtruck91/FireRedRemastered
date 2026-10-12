@@ -6585,7 +6585,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeIslands",
+      "secondary_tileset": "gTileset_OrangeCoastalTown",
       "border_filepath": "data/layouts/OrangeIslands_Valencia/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Valencia/map.bin"
     },
@@ -6621,7 +6621,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeIslands",
+      "secondary_tileset": "gTileset_OrangeCoastalTown",
       "border_filepath": "data/layouts/OrangeIslands_Trovita/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Trovita/map.bin"
     },
@@ -6633,7 +6633,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeIslands",
+      "secondary_tileset": "gTileset_OrangeCoastalTown",
       "border_filepath": "data/layouts/OrangeIslands_Kumquat/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Kumquat/map.bin"
     },
@@ -6645,7 +6645,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeIslands",
+      "secondary_tileset": "gTileset_OrangeCoastalTown",
       "border_filepath": "data/layouts/OrangeIslands_Pummelo/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo/map.bin"
     },
@@ -6765,7 +6765,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeIslands",
+      "secondary_tileset": "gTileset_OrangeCoastalTown",
       "border_filepath": "data/layouts/OrangeIslands_Sunburst/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Sunburst/map.bin"
     },
@@ -6777,7 +6777,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeIslands",
+      "secondary_tileset": "gTileset_OrangeCoastalTown",
       "border_filepath": "data/layouts/OrangeIslands_Moro/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Moro/map.bin"
     },
@@ -6789,7 +6789,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeIslands",
+      "secondary_tileset": "gTileset_OrangeCoastalTown",
       "border_filepath": "data/layouts/OrangeIslands_Kinnow/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow/map.bin"
     },
@@ -6801,7 +6801,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeIslands",
+      "secondary_tileset": "gTileset_OrangeCoastalTown",
       "border_filepath": "data/layouts/OrangeIslands_Mandarin_South/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Mandarin_South/map.bin"
     },

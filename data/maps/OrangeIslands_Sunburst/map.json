@@ -36,15 +36,15 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 11,
-      "y": 11,
+      "x": 20,
+      "y": 17,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Sunburst_EventScript_Workshop"
     },
     {
       "type": "sign",
-      "x": 35,
+      "x": 36,
       "y": 14,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
@@ -53,15 +53,15 @@
     {
       "type": "sign",
       "x": 33,
-      "y": 4,
+      "y": 5,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Sunburst_EventScript_North"
     },
     {
       "type": "sign",
-      "x": 14,
-      "y": 27,
+      "x": 9,
+      "y": 19,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Sunburst_EventScript_Town"

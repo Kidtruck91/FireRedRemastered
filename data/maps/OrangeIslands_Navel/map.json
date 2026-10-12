@@ -36,15 +36,15 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 26,
-      "y": 14,
+      "x": 28,
+      "y": 22,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Navel_EventScript_Summit"
     },
     {
       "type": "sign",
-      "x": 16,
+      "x": 19,
       "y": 51,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
@@ -52,15 +52,15 @@
     },
     {
       "type": "sign",
-      "x": 40,
-      "y": 49,
+      "x": 42,
+      "y": 48,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Navel_EventScript_East"
     },
     {
       "type": "sign",
-      "x": 27,
+      "x": 26,
       "y": 55,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",

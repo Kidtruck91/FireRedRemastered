@@ -12,4 +12,4 @@ OrangeIslands_Sunburst_Text_North::
 
 OrangeIslands_Sunburst_Text_Town::
 	.string "SUNBURST ISLAND\n"
-	.string "Workshops, beaches and sea glass$"
+	.string "Northern coves and craft terraces$"

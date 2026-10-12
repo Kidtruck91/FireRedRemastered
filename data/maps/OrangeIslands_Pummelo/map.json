@@ -20,15 +20,15 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 21,
-      "y": 23,
+      "x": 22,
+      "y": 24,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Pummelo_EventScript_Arena"
     },
     {
       "type": "sign",
-      "x": 14,
+      "x": 13,
       "y": 32,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",

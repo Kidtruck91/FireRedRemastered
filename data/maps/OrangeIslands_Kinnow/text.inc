@@ -4,8 +4,8 @@ OrangeIslands_Kinnow_Text_Showboat::
 
 OrangeIslands_Kinnow_Text_West::
 	.string "ROUTE 8 - BOULDER STRAIT\n"
-	.string "West: NAVEL ISLAND$"
+	.string "West: NAVEL$"
 
 OrangeIslands_Kinnow_Text_Town::
 	.string "KINNOW ISLAND\n"
-	.string "A harbor for traveling performers$"
+	.string "Harbor of traveling performers$"

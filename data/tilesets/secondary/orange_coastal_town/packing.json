@@ -1,9 +1,9 @@
 {
   "primary": "gTileset_OrangeGeneral",
-  "occupied_tiles": 222,
-  "free_graphics_slots": 162,
-  "metatiles": 189,
-  "free_metatile_slots": 195,
+  "occupied_tiles": 272,
+  "free_graphics_slots": 112,
+  "metatiles": 215,
+  "free_metatile_slots": 169,
   "preserved_tropical_tiles": 112,
   "sevii_metatile_mapping": {
     "640": 736,
@@ -99,5 +99,38 @@
     "904": 826,
     "906": 827,
     "907": 828
+  },
+  "pallet_lab_mapping": {
+    "680": 829,
+    "681": 830,
+    "684": 831,
+    "688": 832,
+    "689": 833,
+    "691": 834,
+    "692": 835,
+    "693": 836,
+    "696": 837,
+    "697": 838,
+    "699": 839,
+    "700": 840,
+    "701": 841,
+    "704": 842,
+    "705": 843,
+    "706": 844,
+    "707": 845,
+    "708": 846,
+    "709": 847,
+    "712": 848,
+    "713": 849,
+    "715": 850,
+    "716": 851,
+    "717": 852,
+    "720": 853,
+    "728": 854
+  },
+  "pallet_palette_mapping": {
+    "9": 13,
+    "10": 14,
+    "11": 15
   }
 }

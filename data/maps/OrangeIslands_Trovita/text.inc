@@ -1,7 +1,7 @@
 OrangeIslands_Trovita_Text_Gym::
 	.string "TROVITA GYM\n"
 	.string "Leader: RUDY\n"
-	.string "The bay overlooks the training grounds.$"
+	.string "Training grounds above the bay$"
 
 OrangeIslands_Trovita_Text_South::
 	.string "ROUTE 11 - RING REEF\n"

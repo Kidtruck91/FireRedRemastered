@@ -1,7 +1,7 @@
 OrangeIslands_Navel_Text_Summit::
 	.string "NAVEL SUMMIT\n"
 	.string "DANNY'S GYM\n"
-	.string "Rest before the mountain trial.$"
+	.string "Prepare for the mountain trial.$"
 
 OrangeIslands_Navel_Text_Mountain::
 	.string "MT. NAVEL TRAIL\n"
@@ -9,8 +9,8 @@ OrangeIslands_Navel_Text_Mountain::
 
 OrangeIslands_Navel_Text_East::
 	.string "ROUTE 8 - BOULDER STRAIT\n"
-	.string "East: KINNOW ISLAND$"
+	.string "East: KINNOW$"
 
 OrangeIslands_Navel_Text_South::
 	.string "ROUTE 5 - CURRENT CHANNEL\n"
-	.string "South: MIKAN ISLAND$"
+	.string "South: MIKAN$"

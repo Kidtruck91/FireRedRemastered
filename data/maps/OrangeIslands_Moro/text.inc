@@ -1,8 +1,9 @@
 OrangeIslands_Moro_Text_Landing::
 	.string "MORO ISLAND\n"
-	.string "South: SUNBURST via Route 7$"
+	.string "South: SUNBURST\n"
+	.string "East: MANDARIN SOUTH$"
 
 OrangeIslands_Moro_Text_Wreck::
 	.string "WRECK EXPLORATION SITE\n"
-	.string "The old deck is unsafe.\n"
+	.string "Broken timbers line the cove.\n"
 	.string "Proceed with caution.$"
