@@ -5,4 +5,4 @@ OrangeIslands_Moro_Text_Landing::
 OrangeIslands_Moro_Text_Wreck::
 	.string "WRECK EXPLORATION SITE\n"
 	.string "The old deck is unsafe.\n"
-	.string "Ghost-ship interior coming later.$"
+	.string "Proceed with caution.$"

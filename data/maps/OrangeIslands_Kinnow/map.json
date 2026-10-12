@@ -2,11 +2,11 @@
   "id": "MAP_ORANGE_ISLANDS_KINNOW",
   "name": "OrangeIslands_Kinnow",
   "layout": "LAYOUT_ORANGE_ISLANDS_KINNOW",
-  "music": "MUS_ROUTE1",
+  "music": "MUS_PALLET",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
-  "map_type": "MAP_TYPE_ROUTE",
+  "map_type": "MAP_TYPE_TOWN",
   "allow_cycling": false,
   "allow_escaping": false,
   "allow_running": true,
@@ -18,6 +18,11 @@
       "map": "MAP_ORANGE_ISLANDS_ROUTE_8",
       "direction": "left",
       "offset": 0
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_11",
+      "direction": "up",
+      "offset": -2
     }
   ],
   "object_events": [],

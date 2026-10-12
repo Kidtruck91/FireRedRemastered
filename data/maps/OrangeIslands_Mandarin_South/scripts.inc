@@ -1,2 +1,18 @@
 OrangeIslands_Mandarin_South_MapScripts::
 	.byte 0
+
+OrangeIslands_Mandarin_South_EventScript_Store::
+	msgbox OrangeIslands_Mandarin_South_Text_Store, MSGBOX_SIGN
+	end
+
+OrangeIslands_Mandarin_South_EventScript_City::
+	msgbox OrangeIslands_Mandarin_South_Text_City, MSGBOX_SIGN
+	end
+
+OrangeIslands_Mandarin_South_EventScript_Tutors::
+	msgbox OrangeIslands_Mandarin_South_Text_Tutors, MSGBOX_SIGN
+	end
+
+OrangeIslands_Mandarin_South_EventScript_Harbor::
+	msgbox OrangeIslands_Mandarin_South_Text_Harbor, MSGBOX_SIGN
+	end

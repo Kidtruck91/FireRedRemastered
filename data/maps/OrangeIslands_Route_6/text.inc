@@ -8,4 +8,4 @@ OrangeIslands_Route_6_Text_East::
 
 OrangeIslands_Route_6_Text_Interior::
 	.string "CRYSTAL RESEARCH OUTCROP\n"
-	.string "A future cave site.$"
+	.string "Crystal formations lie beneath.$"

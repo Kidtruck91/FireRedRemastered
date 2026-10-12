@@ -13,9 +13,20 @@ checks = {
     'Valencia': ((20,39), [(20,0),(0,19),(9,9),(11,20),(8,28),(26,17),(28,27)], False),
     'Route_1': ((15,0), [(19,34),(8,19)], False),
     'Route_2': ((49,19), [(8,9),(15,34),(35,9),(25,9)], False),
-    'Navel': ((25,59), [(25,13),(12,40),(37,29),(49,45)], False),
-    'Moro': ((18,29), [(19,13),(27,22),(6,12)], False),
-    'Kinnow': ((0,15), [(11,8),(25,9),(30,27)], False),
+    'Mandarin_South': ((30,49), [(30,0),(0,24),(59,25),(12,11),(40,10),(32,33)], False),
+    'Trovita': ((22,39), [(20,0),(0,22),(28,12),(8,13),(31,25)], False),
+    'Kumquat': ((24,39), [(47,20),(24,12),(8,13),(8,37)], False),
+    'Pinkan': ((39,21), [(10,22),(18,10),(26,28)], False),
+    'Pummelo': ((20,39), [(20,23),(20,15),(13,33)], False),
+    'Route_9': ((20,49), [(20,0),(10,25),(29,37),(25,21)], True),
+    'Route_10': ((0,17), [(59,17),(18,11),(40,27)], True),
+    'Route_11': ((20,49), [(20,0),(22,27)], True),
+    'Route_12': ((0,15), [(69,15),(22,7),(48,24)], True),
+    'Route_13': ((20,55), [(20,0),(0,29),(29,18),(30,44)], True),
+    'Route_14': ((0,16), [(28,35),(23,10),(48,20)], True),
+    'Navel': ((25,59), [(25,13),(12,40),(37,29),(49,45),(25,0)], False),
+    'Moro': ((18,29), [(19,13),(27,22),(6,12),(35,14)], False),
+    'Kinnow': ((0,15), [(11,8),(25,9),(30,27),(18,0)], False),
     'Route_5': ((18,49), [(18,0),(8,27),(29,15)], True),
     'Route_7': ((18,0), [(30,59),(10,19),(27,34),(12,48)], True),
     'Route_8': ((0,15), [(59,15),(29,16),(43,24)], True),
@@ -62,6 +73,18 @@ for suffix, (start, goals, surf) in checks.items():
     data[name]=(header,l,blocks)
     print(f'{name}: dimensions, metatiles, {len(goals)} landmarks and {len(header["bg_events"])} signs passed')
 for name,(header,l,blocks) in data.items():
+    # Same-side connections must not compete for the same coordinate range.
+    ranges=[]
+    for connection in header['connections']:
+        destination=next(n for n in data if data[n][0]['id']==connection['map'])
+        dl=data[destination][1]
+        limit=l['width'] if connection['direction'] in ['up','down'] else l['height']
+        size=dl['width'] if connection['direction'] in ['up','down'] else dl['height']
+        span=(max(0,connection['offset']),min(limit,connection['offset']+size))
+        for direction,other_span in ranges:
+            if direction==connection['direction']:
+                assert max(span[0],other_span[0])>=min(span[1],other_span[1]), name+': overlapping same-side connections'
+        ranges.append((connection['direction'],span))
     for c in header['connections']:
         other=next(n for n in data if data[n][0]['id']==c['map'])
         oh,ol,ob=data[other]

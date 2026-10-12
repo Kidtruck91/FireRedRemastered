@@ -2,11 +2,11 @@
   "id": "MAP_ORANGE_ISLANDS_MORO",
   "name": "OrangeIslands_Moro",
   "layout": "LAYOUT_ORANGE_ISLANDS_MORO",
-  "music": "MUS_ROUTE1",
+  "music": "MUS_PALLET",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_FOG_HORIZONTAL",
-  "map_type": "MAP_TYPE_ROUTE",
+  "map_type": "MAP_TYPE_TOWN",
   "allow_cycling": false,
   "allow_escaping": false,
   "allow_running": true,
@@ -18,6 +18,11 @@
       "map": "MAP_ORANGE_ISLANDS_ROUTE_7",
       "direction": "down",
       "offset": 0
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_10",
+      "direction": "right",
+      "offset": -3
     }
   ],
   "object_events": [],

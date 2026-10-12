@@ -1,6 +1,6 @@
 OrangeIslands_Kinnow_Text_Showboat::
 	.string "KINNOW SHOWBOAT BERTH\n"
-	.string "Future ship and battle venue$"
+	.string "Home of the traveling SHOWBOAT$"
 
 OrangeIslands_Kinnow_Text_West::
 	.string "ROUTE 8 - BOULDER STRAIT\n"
