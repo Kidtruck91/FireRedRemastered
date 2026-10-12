@@ -723,6 +723,23 @@
 #define MAP_MT_SILVER_4F         (3 | (54 << 8))
 #define MAP_MT_SILVER_POKECENTER (4 | (54 << 8))
 
-#define MAP_GROUPS_COUNT 55
+// gMapGroup_OrangeIslands
+#define MAP_ORANGE_ISLANDS_VALENCIA (0 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_MIKAN    (1 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_NAVEL    (2 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA  (3 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_KUMQUAT  (4 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO  (5 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_1  (6 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_2  (7 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_3  (8 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_4  (9 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_5  (10 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_6  (11 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_7  (12 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_8  (13 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_9  (14 | (55 << 8))
+
+#define MAP_GROUPS_COUNT 56
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H
