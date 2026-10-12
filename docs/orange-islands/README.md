@@ -60,6 +60,24 @@ The saved Valencia layout is polished but still uses the earlier footprint. The 
 - Add proper Orange Islands region-map names and locations; placeholder names currently have popups disabled.
 - Test the region in an emulator, including Surf entry/exit, currents, stairs, followers, connections, weather, interiors and story progression. Static reachability checks do not replace gameplay tests.
 
+## Orange General tileset and color pass
+
+The 25 Orange layouts now use `gTileset_OrangeGeneral` (`data/tilesets/primary/orange_general`). Kanto and Johto retain the original General. This copy keeps every General metatile ID and attribute, deduplicates static graphics with flip-aware remapping, and reserves separate animation banks with a dedicated callback. The tropical secondary metatiles were remapped to match. Do not pair this remapped Orange Islands secondary with the original General.
+
+The primary bank still has 640 slots: 587 are occupied and 53 trailing slots (587–639) are blank and available for future imports. The 640/384 split and GBA hardware limit are unchanged. This conservative packing retains the complete General editing vocabulary; pruning unused structures could free more space later. Sevii building imports are not part of this pass.
+
+Orange-only palette edits make grass richer green, water lighter blue, red roofs warmer, and blue roofs more turquoise. Pixel artwork is unchanged. A palette edit affects every graphic using that palette entry; recoloring just one building may require a separate palette or metatile variant. JASC palette files require CRLF line endings for the repository converter.
+
+`python3 docs/orange-islands/validate_orange_general.py` verifies pixel-index equivalence of all 736 metatiles, attributes, palette-bank references and 21 animation frames. `python3 docs/orange-islands/compact_orange_general.py` regenerates packing while preserving edited palettes; it refuses to overwrite independently changed secondary metatiles. The ROM build and map checks pass. Actual animation playback still needs emulator testing.
+
+### Valencia before the color pass
+
+![Valencia before Orange General](OrangeGeneral_Valencia_Before.png)
+
+### Valencia with Orange General colors
+
+![Valencia with Orange General](OrangeIslands_Valencia.png)
+
 ## Map previews
 
 ### Valencia

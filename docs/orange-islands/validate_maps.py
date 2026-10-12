@@ -5,7 +5,7 @@ import json, struct, sys
 ROOT = Path(__file__).resolve().parents[2]
 layouts = {l['id']: l for l in json.loads((ROOT/'data/layouts/layouts.json').read_text())['layouts']}
 attrs = []
-for p in ['primary/general', 'secondary/orange_islands']:
+for p in ['primary/orange_general', 'secondary/orange_islands']:
     b = (ROOT/'data/tilesets'/p/'metatile_attributes.bin').read_bytes()
     attrs.extend(struct.unpack('<'+'I'*(len(b)//4), b))
 water = {0x10, 0x11, 0x12, 0x13, 0x15, 0x17, 0x50, 0x51, 0x52, 0x53}

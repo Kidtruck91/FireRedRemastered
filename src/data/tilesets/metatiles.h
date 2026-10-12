@@ -210,3 +210,6 @@ const u32 gMetatileAttributes_HoennVolcano[] = INCBIN_U32("data/tilesets/seconda
 
 const u16 gMetatiles_OrangeIslands[] = INCBIN_U16("data/tilesets/secondary/orange_islands/metatiles.bin");
 const u32 gMetatileAttributes_OrangeIslands[] = INCBIN_U32("data/tilesets/secondary/orange_islands/metatile_attributes.bin");
+
+const u16 gMetatiles_OrangeGeneral[] = INCBIN_U16("data/tilesets/primary/orange_general/metatiles.bin");
+const u32 gMetatileAttributes_OrangeGeneral[] = INCBIN_U32("data/tilesets/primary/orange_general/metatile_attributes.bin");

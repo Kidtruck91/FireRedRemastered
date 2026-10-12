@@ -778,3 +778,14 @@ const struct Tileset gTileset_OrangeIslands =
     .metatileAttributes = gMetatileAttributes_OrangeIslands,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_OrangeGeneral =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_OrangeGeneral,
+    .palettes = gTilesetPalettes_OrangeGeneral,
+    .metatiles = gMetatiles_OrangeGeneral,
+    .metatileAttributes = gMetatileAttributes_OrangeGeneral,
+    .callback = InitTilesetAnim_OrangeGeneral,
+};

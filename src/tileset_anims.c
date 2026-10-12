@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/orange_general_tiles.h"
 
 static EWRAM_DATA struct {
     const u16 *src;
@@ -248,6 +249,24 @@ void InitTilesetAnim_General(void)
     sPrimaryTilesetAnimCounter = 0;
     sPrimaryTilesetAnimCounterMax = 640;
     sPrimaryTilesetAnimCallback = TilesetAnim_General;
+}
+
+// Orange General reuses General's animation frames at the repacked VRAM slots.
+static void TilesetAnim_OrangeGeneral(u16 timer)
+{
+    if (timer % 8 == 0)
+        AppendTilesetAnimToBuffer(sTilesetAnims_General_SandWatersEdge[(timer / 8) % ARRAY_COUNT(sTilesetAnims_General_SandWatersEdge)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(ORANGE_GENERAL_SAND_TILE_START)), 18 * TILE_SIZE_4BPP);
+    if (timer % 16 == 1)
+        AppendTilesetAnimToBuffer(sTilesetAnims_General_Water_Current_LandWatersEdge[(timer / 16) % ARRAY_COUNT(sTilesetAnims_General_Water_Current_LandWatersEdge)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(ORANGE_GENERAL_WATER_TILE_START)), 48 * TILE_SIZE_4BPP);
+    if (timer % 16 == 2)
+        AppendTilesetAnimToBuffer(sTilesetAnims_General_Flower[(timer / 16) % ARRAY_COUNT(sTilesetAnims_General_Flower)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(ORANGE_GENERAL_FLOWER_TILE_START)), 4 * TILE_SIZE_4BPP);
+}
+
+void InitTilesetAnim_OrangeGeneral(void)
+{
+    sPrimaryTilesetAnimCounter = 0;
+    sPrimaryTilesetAnimCounterMax = 640;
+    sPrimaryTilesetAnimCallback = TilesetAnim_OrangeGeneral;
 }
 
 static void QueueAnimTiles_CeladonCity_Fountain(u16 timer)

@@ -6584,7 +6584,7 @@
       "height": 40,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Valencia/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Valencia/map.bin"
@@ -6596,7 +6596,7 @@
       "height": 36,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Mikan/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Mikan/map.bin"
@@ -6608,7 +6608,7 @@
       "height": 60,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Navel/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Navel/map.bin"
@@ -6620,7 +6620,7 @@
       "height": 40,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Trovita/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Trovita/map.bin"
@@ -6632,7 +6632,7 @@
       "height": 40,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Kumquat/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Kumquat/map.bin"
@@ -6644,7 +6644,7 @@
       "height": 40,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Pummelo/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo/map.bin"
@@ -6656,7 +6656,7 @@
       "height": 40,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_1/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_1/map.bin"
@@ -6668,7 +6668,7 @@
       "height": 40,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_2/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_2/map.bin"
@@ -6680,7 +6680,7 @@
       "height": 60,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_3/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_3/map.bin"
@@ -6692,7 +6692,7 @@
       "height": 30,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_4/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_4/map.bin"
@@ -6704,7 +6704,7 @@
       "height": 50,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_5/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_5/map.bin"
@@ -6716,7 +6716,7 @@
       "height": 36,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_6/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_6/map.bin"
@@ -6728,7 +6728,7 @@
       "height": 60,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_7/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_7/map.bin"
@@ -6740,7 +6740,7 @@
       "height": 30,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_8/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_8/map.bin"
@@ -6752,7 +6752,7 @@
       "height": 50,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_9/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_9/map.bin"
@@ -6764,7 +6764,7 @@
       "height": 36,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Sunburst/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Sunburst/map.bin"
@@ -6776,7 +6776,7 @@
       "height": 30,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Moro/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Moro/map.bin"
@@ -6788,7 +6788,7 @@
       "height": 30,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Kinnow/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow/map.bin"
@@ -6800,7 +6800,7 @@
       "height": 50,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Mandarin_South/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Mandarin_South/map.bin"
@@ -6812,7 +6812,7 @@
       "height": 40,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Pinkan/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Pinkan/map.bin"
@@ -6824,7 +6824,7 @@
       "height": 36,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_10/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_10/map.bin"
@@ -6836,7 +6836,7 @@
       "height": 50,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_11/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_11/map.bin"
@@ -6848,7 +6848,7 @@
       "height": 30,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_12/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_12/map.bin"
@@ -6860,7 +6860,7 @@
       "height": 56,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_13/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_13/map.bin"
@@ -6872,7 +6872,7 @@
       "height": 36,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_14/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_14/map.bin"
