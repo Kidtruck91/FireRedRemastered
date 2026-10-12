@@ -7,13 +7,21 @@
 // Add a list:  static const struct OverworldBonusMon sBonus_MyRoute[] = { {SPECIES_X, minLv, maxLv}, ... };
 // and a line:  { MAP_MY_ROUTE, sBonus_MyRoute, ARRAY_COUNT(sBonus_MyRoute) },
 
-static const struct OverworldBonusMon sBonus_Route1[] =
-{
-    { SPECIES_SENTRET,  3, 5 },
-    { SPECIES_HOOTHOOT, 3, 5 },
-};
+//static const struct OverworldBonusMon sBonus_Route1[] =
+//{
+//    { SPECIES_SENTRET,  3, 5 },
+//    { SPECIES_HOOTHOOT, 3, 5 },
+//};
 
+//static const struct OverworldBonusList sOverworldBonusLists[] =
+//{
+ //   { MAP_ROUTE1, sBonus_Route1, ARRAY_COUNT(sBonus_Route1) },
+//};
+
+// Keep this array even when it has no real lists: the last line is an empty placeholder
+// (count 0) that is never used, so the file compiles with every bonus list commented out.
 static const struct OverworldBonusList sOverworldBonusLists[] =
 {
-    { MAP_ROUTE1, sBonus_Route1, ARRAY_COUNT(sBonus_Route1) },
+    // { MAP_ROUTE1, sBonus_Route1, ARRAY_COUNT(sBonus_Route1) },
+    { 0xFFFF, NULL, 0 }, // placeholder, leave last
 };

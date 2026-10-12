@@ -1926,3 +1926,11 @@ Text_TestMsg::
 	.include "data/maps/MtSilver_4F/scripts.inc"
 	.include "data/maps/MtSilver_4F/text.inc"
 
+
+	.include "data/maps/SixIsland_Safari/scripts.inc"
+	.include "data/maps/SixIsland_Safari/text.inc"
+
+	.include "data/maps/SixIsland_Safari_1/scripts.inc"
+	.include "data/maps/SixIsland_Safari_1/text.inc"
+	.include "data/maps/SixIsland_Safari_Entrance/scripts.inc"
+	.include "data/maps/SixIsland_Safari_Entrance/text.inc"

@@ -1,13 +1,27 @@
+@ VAR_SAFARI_RETURN_POINT: 0 = Fuchsia SAFARI ZONE, 1 = Six Island LUXURY SAFARI
 SafariZone_EventScript_OutOfBallsMidBattle::
-	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 3
 	special ExitSafariMode
+	goto_if_eq VAR_SAFARI_RETURN_POINT, 1, SafariZone_EventScript_OutOfBallsMidBattleSixIsland
+	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 3
 	setwarp MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4, 1
 	end
 
+SafariZone_EventScript_OutOfBallsMidBattleSixIsland::
+	setvar VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 3
+	setwarp MAP_SIX_ISLAND_SAFARI_ENTRANCE, 4, 1
+	end
+
 SafariZone_EventScript_Exit::
-	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 1
 	special ExitSafariMode
+	goto_if_eq VAR_SAFARI_RETURN_POINT, 1, SafariZone_EventScript_ExitSixIsland
+	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 1
 	warp MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4, 1
+	waitstate
+	end
+
+SafariZone_EventScript_ExitSixIsland::
+	setvar VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 1
+	warp MAP_SIX_ISLAND_SAFARI_ENTRANCE, 4, 1
 	waitstate
 	end
 

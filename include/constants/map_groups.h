@@ -266,6 +266,7 @@
 #define MAP_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE (63 | (3 << 8))
 #define MAP_SEVEN_ISLAND_SEVAULT_CANYON          (64 | (3 << 8))
 #define MAP_SEVEN_ISLAND_TANOBY_RUINS            (65 | (3 << 8))
+#define MAP_SIX_ISLAND_SAFARI                    (66 | (3 << 8))
 
 // gMapGroup_IndoorPallet
 #define MAP_PALLET_TOWN_PLAYERS_HOUSE_1F   (0 | (4 << 8))
@@ -499,6 +500,7 @@
 #define MAP_SIX_ISLAND_HARBOR            (2 | (37 << 8))
 #define MAP_SIX_ISLAND_HOUSE             (3 | (37 << 8))
 #define MAP_SIX_ISLAND_MART              (4 | (37 << 8))
+#define MAP_SIX_ISLAND_SAFARI_1          (5 | (37 << 8))
 
 // gMapGroup_IndoorThreeIslandRoute
 #define MAP_THREE_ISLAND_HARBOR (0 | (38 << 8))

@@ -6504,6 +6504,30 @@
       "secondary_tileset": "gTileset_SeviiIslands67",
       "border_filepath": "data/layouts/NewMap1/border.bin",
       "blockdata_filepath": "data/layouts/NewMap1/map.bin"
+    },
+    {
+      "id": "LAYOUT_SIX_ISLAND_SAFARI",
+      "name": "SixIsland_Safari_Layout",
+      "width": 32,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FuchsiaCity",
+      "border_filepath": "data/layouts/SixIsland_Safari/border.bin",
+      "blockdata_filepath": "data/layouts/SixIsland_Safari/map.bin"
+    },
+    {
+      "id": "LAYOUT_SIX_ISLAND_SAFARI_1",
+      "name": "SixIsland_Safari_1_Layout",
+      "width": 50,
+      "height": 50,
+      "border_width": 1,
+      "border_height": 1,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FuchsiaCity",
+      "border_filepath": "data/layouts/SixIsland_Safari_1/border.bin",
+      "blockdata_filepath": "data/layouts/SixIsland_Safari_1/map.bin"
     }
   ]
 }

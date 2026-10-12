@@ -1,0 +1,2165 @@
+diff --git a/data/event_scripts.s b/data/event_scripts.s
+index 32dc35365..ca9c3fd8a 100644
+--- a/data/event_scripts.s
++++ b/data/event_scripts.s
+@@ -1932,3 +1932,5 @@ Text_TestMsg::
+ 
+ 	.include "data/maps/SixIsland_Safari_1/scripts.inc"
+ 	.include "data/maps/SixIsland_Safari_1/text.inc"
++	.include "data/maps/SixIsland_Safari_Entrance/scripts.inc"
++	.include "data/maps/SixIsland_Safari_Entrance/text.inc"
+diff --git a/data/layouts/SixIsland_Safari_1/map.bin b/data/layouts/SixIsland_Safari_1/map.bin
+index b592e389d5f79fc544c127cb3e626d851df2e6a9..b095010a1ee13177c2f5c39d8442da462ba69fab 100644
+GIT binary patch
+delta 44
+tcmeBB?@-?$BQ!Zg@EGT1gDYTob+W&(`D7(w6|UPxcfjzj(c}PO3jl|D5q<yw
+
+delta 62
+zcmeBB?@-?$BgFc^;Gw~z$%;bptc(Ug2xP@@gBVaaIY8KKvXZb07o)*tgDVDCfx<u`
+F3jheX58?m-
+
+diff --git a/data/maps/FuchsiaCity_SafariZone_Entrance/scripts.inc b/data/maps/FuchsiaCity_SafariZone_Entrance/scripts.inc
+index 77cd336ce..1c3af2184 100644
+--- a/data/maps/FuchsiaCity_SafariZone_Entrance/scripts.inc
++++ b/data/maps/FuchsiaCity_SafariZone_Entrance/scripts.inc
+@@ -128,6 +128,7 @@ FuchsiaCity_SafariZone_Entrance_EventScript_TryEnterSafariZone::
+ 	call_if_eq VAR_TEMP_2, 1, FuchsiaCity_SafariZone_Entrance_EventScript_EnterSafariZoneRight
+ 	call_if_eq VAR_TEMP_2, 2, FuchsiaCity_SafariZone_Entrance_EventScript_EnterSafariZoneLeft
+ 	special EnterSafariMode
++	setvar VAR_SAFARI_RETURN_POINT, 0
+ 	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 2
+ 	warp MAP_SAFARI_ZONE_CENTER, 255, 26, 30
+ 	waitstate
+diff --git a/data/maps/SixIsland_Safari/map.json b/data/maps/SixIsland_Safari/map.json
+index 3a8d2573b..c0ee95690 100644
+--- a/data/maps/SixIsland_Safari/map.json
++++ b/data/maps/SixIsland_Safari/map.json
+@@ -20,51 +20,14 @@
+       "direction": "left"
+     }
+   ],
+-  "object_events": [
+-
+-  ],
++  "object_events": [],
+   "warp_events": [
+-    {
+-      "x": 17,
+-      "y": 0,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
+-      "dest_warp_id": "0"
+-    },
+-    {
+-      "x": 18,
+-      "y": 0,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
+-      "dest_warp_id": "1"
+-    },
+-    {
+-      "x": 19,
+-      "y": 0,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
+-      "dest_warp_id": "2"
+-    },
+-    {
+-      "x": 20,
+-      "y": 0,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
+-      "dest_warp_id": "3"
+-    },
+-    {
+-      "x": 21,
+-      "y": 0,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
+-      "dest_warp_id": "4"
+-    },
+     {
+       "x": 19,
+       "y": 11,
+       "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI",
+-      "dest_warp_id": "0"
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_ENTRANCE",
++      "dest_warp_id": "1"
+     },
+     {
+       "x": 13,
+@@ -81,10 +44,6 @@
+       "dest_warp_id": "0"
+     }
+   ],
+-  "coord_events": [
+-
+-  ],
+-  "bg_events": [
+-
+-  ]
++  "coord_events": [],
++  "bg_events": []
+ }
+diff --git a/data/maps/SixIsland_Safari_1/map.json b/data/maps/SixIsland_Safari_1/map.json
+index 6dd561546..955f2681e 100644
+--- a/data/maps/SixIsland_Safari_1/map.json
++++ b/data/maps/SixIsland_Safari_1/map.json
+@@ -14,50 +14,39 @@
+   "floor_number": 0,
+   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+   "connections": 0,
+-  "object_events": [
+-
+-  ],
++  "object_events": [],
+   "warp_events": [
+     {
+-      "x": 17,
++      "x": 19,
+       "y": 49,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI",
++      "elevation": 3,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_ENTRANCE",
+       "dest_warp_id": "0"
+     },
+     {
+       "x": 18,
+       "y": 49,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI",
+-      "dest_warp_id": "1"
+-    },
+-    {
+-      "x": 19,
+-      "y": 49,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI",
+-      "dest_warp_id": "2"
++      "elevation": 3,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_ENTRANCE",
++      "dest_warp_id": "0"
+     },
+     {
+       "x": 20,
+       "y": 49,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI",
+-      "dest_warp_id": "3"
+-    },
+-    {
+-      "x": 21,
+-      "y": 49,
+-      "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI",
+-      "dest_warp_id": "4"
++      "elevation": 3,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_ENTRANCE",
++      "dest_warp_id": "0"
+     }
+   ],
+-  "coord_events": [
+-
+-  ],
++  "coord_events": [],
+   "bg_events": [
+-
++    {
++      "type": "sign",
++      "x": 18,
++      "y": 14,
++      "elevation": 0,
++      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
++      "script": "SixIsland_Safari_1_EventScript_HabitatSign"
++    }
+   ]
+ }
+diff --git a/data/maps/SixIsland_Safari_1/scripts.inc b/data/maps/SixIsland_Safari_1/scripts.inc
+index f5cea7f71..fa5c40589 100644
+--- a/data/maps/SixIsland_Safari_1/scripts.inc
++++ b/data/maps/SixIsland_Safari_1/scripts.inc
+@@ -1,2 +1,7 @@
+ SixIsland_Safari_1_MapScripts::
+ 	.byte 0
++
++SixIsland_Safari_1_EventScript_HabitatSign::
++	callnative LuxurySafari_BufferHabitatName
++	msgbox SixIsland_Safari_1_Text_HabitatSign, MSGBOX_SIGN
++	end
+diff --git a/data/maps/SixIsland_Safari_1/text.inc b/data/maps/SixIsland_Safari_1/text.inc
+index 8b1378917..cec31b3d7 100644
+--- a/data/maps/SixIsland_Safari_1/text.inc
++++ b/data/maps/SixIsland_Safari_1/text.inc
+@@ -1 +1,3 @@
+-
++SixIsland_Safari_1_Text_HabitatSign::
++    .string "SIX ISLAND LUXURY SAFARI\n"
++    .string "Today's habitat: {STR_VAR_1}$"
+diff --git a/data/maps/SixIsland_Safari_Entrance/map.json b/data/maps/SixIsland_Safari_Entrance/map.json
+new file mode 100644
+index 000000000..be261c8a4
+--- /dev/null
++++ b/data/maps/SixIsland_Safari_Entrance/map.json
+@@ -0,0 +1,107 @@
++{
++  "id": "MAP_SIX_ISLAND_SAFARI_ENTRANCE",
++  "name": "SixIsland_Safari_Entrance",
++  "layout": "LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE",
++  "music": "MUS_SEVII_67",
++  "region_map_section": "MAPSEC_SIX_ISLAND",
++  "requires_flash": false,
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_INDOOR",
++  "allow_cycling": false,
++  "allow_escaping": false,
++  "allow_running": false,
++  "show_map_name": false,
++  "floor_number": 0,
++  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
++  "connections": 0,
++  "object_events": [
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
++      "x": 7,
++      "y": 3,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "0x0",
++      "flag": "0"
++    },
++    {
++      "type": "object",
++      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
++      "x": 1,
++      "y": 6,
++      "elevation": 3,
++      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
++      "movement_range_x": 1,
++      "movement_range_y": 1,
++      "trainer_type": "TRAINER_TYPE_NONE",
++      "trainer_sight_or_berry_tree_id": "0",
++      "script": "SixIsland_Safari_Entrance_EventScript_InfoAttendant",
++      "flag": "0"
++    }
++  ],
++  "warp_events": [
++    {
++      "x": 4,
++      "y": 1,
++      "elevation": 3,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_warp_id": "1"
++    },
++    {
++      "x": 5,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI",
++      "dest_warp_id": "0"
++    },
++    {
++      "x": 4,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI",
++      "dest_warp_id": "0"
++    },
++    {
++      "x": 3,
++      "y": 7,
++      "elevation": 3,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI",
++      "dest_warp_id": "0"
++    }
++  ],
++  "coord_events": [
++    {
++      "type": "trigger",
++      "x": 4,
++      "y": 3,
++      "elevation": 3,
++      "var": "VAR_TEMP_1",
++      "var_value": "0",
++      "script": "SixIsland_Safari_Entrance_EventScript_EntryTriggerMid"
++    },
++    {
++      "type": "trigger",
++      "x": 5,
++      "y": 3,
++      "elevation": 3,
++      "var": "VAR_TEMP_1",
++      "var_value": "0",
++      "script": "SixIsland_Safari_Entrance_EventScript_EntryTriggerRight"
++    },
++    {
++      "type": "trigger",
++      "x": 3,
++      "y": 3,
++      "elevation": 3,
++      "var": "VAR_TEMP_1",
++      "var_value": "0",
++      "script": "SixIsland_Safari_Entrance_EventScript_EntryTriggerLeft"
++    }
++  ],
++  "bg_events": []
++}
+diff --git a/data/maps/SixIsland_Safari_Entrance/scripts.inc b/data/maps/SixIsland_Safari_Entrance/scripts.inc
+new file mode 100644
+index 000000000..00e16525c
+--- /dev/null
++++ b/data/maps/SixIsland_Safari_Entrance/scripts.inc
+@@ -0,0 +1,220 @@
++SixIsland_Safari_Entrance_MapScripts::
++	map_script MAP_SCRIPT_ON_FRAME_TABLE, SixIsland_Safari_Entrance_OnFrame
++	.byte 0
++
++SixIsland_Safari_Entrance_OnFrame::
++	map_script_2 VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 1, SixIsland_Safari_Entrance_EventScript_ExitWarpIn
++	map_script_2 VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 2, SixIsland_Safari_Entrance_EventScript_ExitEarly
++	map_script_2 VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 3, SixIsland_Safari_Entrance_EventScript_ExitWalkIn
++	.2byte 0
++
++@ When player runs out of balls mid-battle
++SixIsland_Safari_Entrance_EventScript_ExitWalkIn::
++	lockall
++	textcolor NPC_TEXT_COLOR_MALE
++	applymovement OBJ_EVENT_ID_PLAYER, SixIsland_Safari_Entrance_Movement_ApproachCounter
++	waitmovement 0
++	msgbox SixIsland_Safari_Entrance_Text_CatchFairShareComeAgain
++	closemessage
++	applymovement OBJ_EVENT_ID_PLAYER, SixIsland_Safari_Entrance_Movement_Exit2
++	waitmovement 0
++	special ExitSafariMode
++	setvar VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0
++	releaseall
++	end
++
++@ When player runs of out balls after catching a pokemon, or runs out of steps
++SixIsland_Safari_Entrance_EventScript_ExitWarpIn::
++	lockall
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox SixIsland_Safari_Entrance_Text_CatchFairShareComeAgain
++	closemessage
++	applymovement OBJ_EVENT_ID_PLAYER, SixIsland_Safari_Entrance_Movement_Exit
++	waitmovement 0
++	special ExitSafariMode
++	setvar VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0
++	releaseall
++	end
++
++@ When player re-enters the entrance building with balls/steps remaining
++SixIsland_Safari_Entrance_EventScript_ExitEarly::
++	lockall
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox SixIsland_Safari_Entrance_Text_GoingToLeaveSafariZoneEarly, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, NO, SixIsland_Safari_Entrance_EventScript_ReturnToSafariZone
++	msgbox SixIsland_Safari_Entrance_Text_PleaseReturnSafariBalls
++	closemessage
++	applymovement OBJ_EVENT_ID_PLAYER, SixIsland_Safari_Entrance_Movement_Exit
++	waitmovement 0
++	special ExitSafariMode
++	setvar VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0
++	releaseall
++	end
++
++SixIsland_Safari_Entrance_EventScript_ReturnToSafariZone::
++	msgbox SixIsland_Safari_Entrance_Text_GoodLuck
++	closemessage
++	applymovement OBJ_EVENT_ID_PLAYER, SixIsland_Safari_Entrance_Movement_ReEnter
++	waitmovement 0
++	warp MAP_SIX_ISLAND_SAFARI_1, 19, 49
++	waitstate
++	end
++
++SixIsland_Safari_Entrance_Movement_Exit::
++	walk_down
++	walk_down
++	step_end
++
++SixIsland_Safari_Entrance_Movement_ReEnter::
++	walk_up
++	step_end
++
++SixIsland_Safari_Entrance_Movement_Exit2::
++	walk_down
++	walk_down
++	step_end
++
++SixIsland_Safari_Entrance_Movement_ApproachCounter::
++	walk_down
++	delay_8
++	step_end
++
++SixIsland_Safari_Entrance_EventScript_EntryTriggerMid::
++	lockall
++	setvar VAR_TEMP_2, 0
++	goto SixIsland_Safari_Entrance_EventScript_AskEnterSafariZone
++	end
++
++SixIsland_Safari_Entrance_EventScript_EntryTriggerRight::
++	lockall
++	setvar VAR_TEMP_2, 1
++	goto SixIsland_Safari_Entrance_EventScript_AskEnterSafariZone
++	end
++
++SixIsland_Safari_Entrance_EventScript_EntryTriggerLeft::
++	lockall
++	setvar VAR_TEMP_2, 2
++	goto SixIsland_Safari_Entrance_EventScript_AskEnterSafariZone
++	end
++
++SixIsland_Safari_Entrance_EventScript_AskEnterSafariZone::
++	textcolor NPC_TEXT_COLOR_MALE
++	msgbox SixIsland_Safari_Entrance_Text_WelcomeToSafariZone
++	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
++	waitmovement 0
++	showmoneybox 0, 0
++	msgbox SixIsland_Safari_Entrance_Text_PlaySafariGameFor500, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, YES, SixIsland_Safari_Entrance_EventScript_TryEnterSafariZone
++	msgbox SixIsland_Safari_Entrance_Text_OkayPleaseComeAgain
++	goto SixIsland_Safari_Entrance_EventScript_ForcePlayerBack
++	end
++
++SixIsland_Safari_Entrance_EventScript_TryEnterSafariZone::
++	call SixIsland_Safari_Entrance_EventScript_CheckSpaceForMons
++	checkmoney 500
++	goto_if_eq VAR_RESULT, FALSE, SixIsland_Safari_Entrance_EventScript_NotEnoughMoney
++	msgbox SixIsland_Safari_Entrance_Text_WhichHabitat
++	closemessage
++	hidemoneybox
++	callnative LuxurySafari_ChooseHabitat
++	waitstate
++	goto_if_eq VAR_RESULT, 0x7F, SixIsland_Safari_Entrance_EventScript_CancelHabitat
++	showmoneybox 0, 0
++	removemoney 500
++	updatemoneybox
++	callnative LuxurySafari_BufferHabitatName
++	msgbox SixIsland_Safari_Entrance_Text_ThatllBe500WeOnlyUseSpecialBalls
++	textcolor NPC_TEXT_COLOR_NEUTRAL
++	playfanfare MUS_LEVEL_UP
++	message SixIsland_Safari_Entrance_Text_PlayerReceived30SafariBalls
++	waitfanfare
++	call EventScript_RestorePrevTextColor
++	msgbox SixIsland_Safari_Entrance_Text_CallYouOnPAWhenYouRunOut
++	closemessage
++	hidemoneybox
++	call_if_eq VAR_TEMP_2, 0, SixIsland_Safari_Entrance_EventScript_EnterSafariZoneMid
++	call_if_eq VAR_TEMP_2, 1, SixIsland_Safari_Entrance_EventScript_EnterSafariZoneRight
++	call_if_eq VAR_TEMP_2, 2, SixIsland_Safari_Entrance_EventScript_EnterSafariZoneLeft
++	special EnterSafariMode
++	setvar VAR_SAFARI_RETURN_POINT, 1
++	setvar VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 2
++	warp MAP_SIX_ISLAND_SAFARI_1, 19, 49
++	waitstate
++	end
++
++SixIsland_Safari_Entrance_EventScript_CancelHabitat::
++	msgbox SixIsland_Safari_Entrance_Text_OkayPleaseComeAgain
++	goto SixIsland_Safari_Entrance_EventScript_ForcePlayerBack
++	end
++
++SixIsland_Safari_Entrance_EventScript_EnterSafariZoneRight::
++	applymovement OBJ_EVENT_ID_PLAYER, SixIsland_Safari_Entrance_Movement_EnterSafariZoneRight
++	waitmovement 0
++	return
++
++SixIsland_Safari_Entrance_EventScript_EnterSafariZoneMid::
++	applymovement OBJ_EVENT_ID_PLAYER, SixIsland_Safari_Entrance_Movement_EnterSafariZoneMid
++	waitmovement 0
++	return
++
++SixIsland_Safari_Entrance_EventScript_EnterSafariZoneLeft::
++	applymovement OBJ_EVENT_ID_PLAYER, SixIsland_Safari_Entrance_Movement_EnterSafariZoneLeft
++	waitmovement 0
++	return
++
++SixIsland_Safari_Entrance_EventScript_CheckSpaceForMons::
++	getpartysize
++	goto_if_ne VAR_RESULT, PARTY_SIZE, EventScript_Return
++	specialvar VAR_RESULT, IsThereRoomInAnyBoxForMorePokemon
++	goto_if_eq VAR_RESULT, TRUE, EventScript_Return
++	msgbox SafariZone_Text_ExcuseMeYourPCBoxIsFull
++	goto SixIsland_Safari_Entrance_EventScript_ForcePlayerBack
++	end
++
++SixIsland_Safari_Entrance_EventScript_NotEnoughMoney::
++	msgbox SixIsland_Safari_Entrance_Text_OopsNotEnoughMoney
++	goto SixIsland_Safari_Entrance_EventScript_ForcePlayerBack
++	end
++
++SixIsland_Safari_Entrance_EventScript_ForcePlayerBack::
++	closemessage
++	hidemoneybox
++	applymovement OBJ_EVENT_ID_PLAYER, SixIsland_Safari_Entrance_Movement_ForceBack
++	waitmovement 0
++	releaseall
++	end
++
++SixIsland_Safari_Entrance_Movement_ForceBack::
++	walk_down
++	step_end
++
++SixIsland_Safari_Entrance_Movement_EnterSafariZoneMid::
++	walk_up
++	walk_up
++	step_end
++
++SixIsland_Safari_Entrance_Movement_EnterSafariZoneRight::
++	walk_up
++	walk_left
++	walk_up
++	step_end
++
++SixIsland_Safari_Entrance_Movement_EnterSafariZoneLeft::
++	walk_up
++	walk_right
++	walk_up
++	step_end
++
++SixIsland_Safari_Entrance_EventScript_InfoAttendant::
++	lock
++	faceplayer
++	msgbox SixIsland_Safari_Entrance_Text_FirstTimeAtSafariZone, MSGBOX_YESNO
++	goto_if_eq VAR_RESULT, YES, SixIsland_Safari_Entrance_EventScript_ExplainSafariZone
++	msgbox SixIsland_Safari_Entrance_Text_SorryYoureARegularHere
++	release
++	end
++
++SixIsland_Safari_Entrance_EventScript_ExplainSafariZone::
++	msgbox SixIsland_Safari_Entrance_Text_ExplainSafariZone
++	release
++	end
+diff --git a/data/maps/SixIsland_Safari_Entrance/text.inc b/data/maps/SixIsland_Safari_Entrance/text.inc
+new file mode 100644
+index 000000000..6ee71bd17
+--- /dev/null
++++ b/data/maps/SixIsland_Safari_Entrance/text.inc
+@@ -0,0 +1,78 @@
++SixIsland_Safari_Entrance_Text_WelcomeToSafariZone::
++    .string "Welcome to the LUXURY SAFARI!$"
++
++SixIsland_Safari_Entrance_Text_PlaySafariGameFor500::
++    .string "For just ¥500, you can hunt\n"
++    .string "POKéMON from the far-off HOENN\l"
++    .string "region.\p"
++    .string "You choose the habitat, and we\n"
++    .string "stock the safari to match!\p"
++    .string "Would you like to play?$"
++
++SixIsland_Safari_Entrance_Text_ThatllBe500WeOnlyUseSpecialBalls::
++    .string "The {STR_VAR_1} habitat it is!\n"
++    .string "That'll be ¥500, please!\p"
++    .string "We only use a special kind of\n"
++    .string "POKé BALLS here.$"
++
++SixIsland_Safari_Entrance_Text_PlayerReceived30SafariBalls::
++    .string "{PLAYER} received 30 SAFARI BALLS\n"
++    .string "from the attendant.$"
++
++SixIsland_Safari_Entrance_Text_CallYouOnPAWhenYouRunOut::
++    .string "We'll call you on the PA when you\n"
++    .string "run out of time or SAFARI BALLS.\p"
++    .string "Well, I'll wish you the best of\n"
++    .string "luck!$"
++
++SixIsland_Safari_Entrance_Text_OkayPleaseComeAgain::
++    .string "Okay.\n"
++    .string "Please come again!$"
++
++SixIsland_Safari_Entrance_Text_OopsNotEnoughMoney::
++    .string "Oops!\n"
++    .string "Not enough money!$"
++
++SixIsland_Safari_Entrance_Text_GoingToLeaveSafariZoneEarly::
++    .string "Are you going to leave the\n"
++    .string "LUXURY SAFARI early?$"
++
++SixIsland_Safari_Entrance_Text_PleaseReturnSafariBalls::
++    .string "Please return any SAFARI BALLS\n"
++    .string "you may have left.$"
++
++SixIsland_Safari_Entrance_Text_GoodLuck::
++    .string "Good luck!$"
++
++SixIsland_Safari_Entrance_Text_CatchFairShareComeAgain::
++    .string "Did you catch your fair share?\n"
++    .string "Come again!$"
++
++SixIsland_Safari_Entrance_Text_FirstTimeAtSafariZone::
++    .string "Hi! Is it your first time here at\n"
++    .string "the LUXURY SAFARI?$"
++
++SixIsland_Safari_Entrance_Text_ExplainSafariZone::
++    .string "Here at the LUXURY SAFARI, you\n"
++    .string "choose which habitat to hunt in.\p"
++    .string "FOREST, MEADOW, DESERT, VOLCANO,\n"
++    .string "JUNGLE, COAST or METEOR.\p"
++    .string "Each habitat brings its own\n"
++    .string "POKéMON to the grass and to the\l"
++    .string "water, where you can SURF or fish.\p"
++    .string "The attendant shows you which\n"
++    .string "POKéMON live in each habitat\l"
++    .string "before you pick.\p"
++    .string "Otherwise, it plays just like the\n"
++    .string "SAFARI ZONE in FUCHSIA.\p"
++    .string "Use the supplied SAFARI BALLS, and\n"
++    .string "throw BAIT or ROCKS as you like.\p"
++    .string "When you run out of time or SAFARI\n"
++    .string "BALLS, it's game over for you!$"
++
++SixIsland_Safari_Entrance_Text_SorryYoureARegularHere::
++    .string "Sorry, you're a regular here!$"
++
++SixIsland_Safari_Entrance_Text_WhichHabitat::
++    .string "Which habitat would you like\n"
++    .string "to hunt in today?$"
+diff --git a/data/maps/map_groups.json b/data/maps/map_groups.json
+index 0dade115a..60d827377 100644
+--- a/data/maps/map_groups.json
++++ b/data/maps/map_groups.json
+@@ -551,7 +551,8 @@
+     "SixIsland_Harbor",
+     "SixIsland_House",
+     "SixIsland_Mart",
+-    "SixIsland_Safari_1"
++    "SixIsland_Safari_1",
++    "SixIsland_Safari_Entrance"
+   ],
+   "gMapGroup_IndoorThreeIslandRoute": [
+     "ThreeIsland_Harbor"
+diff --git a/data/scripts/safari_zone.inc b/data/scripts/safari_zone.inc
+index a973b6a38..19cc48fb2 100644
+--- a/data/scripts/safari_zone.inc
++++ b/data/scripts/safari_zone.inc
+@@ -1,16 +1,30 @@
++@ VAR_SAFARI_RETURN_POINT: 0 = Fuchsia SAFARI ZONE, 1 = Six Island LUXURY SAFARI
+ SafariZone_EventScript_OutOfBallsMidBattle::
+-	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 3
+ 	special ExitSafariMode
++	goto_if_eq VAR_SAFARI_RETURN_POINT, 1, SafariZone_EventScript_OutOfBallsMidBattleSixIsland
++	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 3
+ 	setwarp MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4, 1
+ 	end
+ 
++SafariZone_EventScript_OutOfBallsMidBattleSixIsland::
++	setvar VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 3
++	setwarp MAP_SIX_ISLAND_SAFARI_ENTRANCE, 4, 1
++	end
++
+ SafariZone_EventScript_Exit::
+-	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 1
+ 	special ExitSafariMode
++	goto_if_eq VAR_SAFARI_RETURN_POINT, 1, SafariZone_EventScript_ExitSixIsland
++	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 1
+ 	warp MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4, 1
+ 	waitstate
+ 	end
+ 
++SafariZone_EventScript_ExitSixIsland::
++	setvar VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 1
++	warp MAP_SIX_ISLAND_SAFARI_ENTRANCE, 4, 1
++	waitstate
++	end
++
+ SafariZone_EventScript_RetirePrompt::
+ 	lockall
+ 	msgbox SafariZone_Text_WouldYouLikeToExit, MSGBOX_YESNO
+diff --git a/include/constants/vars.h b/include/constants/vars.h
+index 2234e6564..2a6a01ef4 100644
+--- a/include/constants/vars.h
++++ b/include/constants/vars.h
+@@ -85,9 +85,9 @@
+ // Used by Quest Log.
+ #define VAR_QUEST_LOG_MON_COUNTS           0x4027
+ #define VAR_WONDER_NEWS_STEP_COUNTER       0x4028
+-#define VAR_0x4029                         0x4029
+-#define VAR_0x402A                         0x402A
+-#define VAR_0x402B                         0x402B
++#define VAR_LUXURY_SAFARI_HABITAT          0x4029 // Six Island luxury safari: chosen habitat (encounter set)
++#define VAR_SAFARI_RETURN_POINT            0x402A // 0 = Fuchsia SAFARI ZONE, 1 = Six Island luxury safari
++#define VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE 0x402B
+ #define VAR_0x402C                         0x402C
+ #define VAR_0x402D                         0x402D
+ #define VAR_0x402E                         0x402E
+diff --git a/include/wild_encounter.h b/include/wild_encounter.h
+index b73010306..1b55eb265 100644
+--- a/include/wild_encounter.h
++++ b/include/wild_encounter.h
+@@ -35,6 +35,9 @@ struct WildPokemonHeader
+ 
+ extern const struct WildPokemonHeader gWildMonHeaders[];
+ 
++#define NUM_LUXURY_SAFARI_HABITATS 7 // tables for MAP_SIX_ISLAND_SAFARI_1 in wild_encounters.json
++const struct WildPokemonHeader *GetLuxurySafariHeader(u8 habitat);
++
+ void DisableWildEncounters(bool8 disabled);
+ bool8 StandardWildEncounter(u32 currMetatileAttrs, u16 previousMetaTileBehavior);
+ bool8 SweetScentWildEncounter(void);
+diff --git a/src/data/overworld_mons.h b/src/data/overworld_mons.h
+index 0affced48..c98bc6783 100644
+--- a/src/data/overworld_mons.h
++++ b/src/data/overworld_mons.h
+@@ -17,3 +17,11 @@
+ //{
+  //   { MAP_ROUTE1, sBonus_Route1, ARRAY_COUNT(sBonus_Route1) },
+ //};
++
++// Keep this array even when it has no real lists: the last line is an empty placeholder
++// (count 0) that is never used, so the file compiles with every bonus list commented out.
++static const struct OverworldBonusList sOverworldBonusLists[] =
++{
++    // { MAP_ROUTE1, sBonus_Route1, ARRAY_COUNT(sBonus_Route1) },
++    { 0xFFFF, NULL, 0 }, // placeholder, leave last
++};
+diff --git a/src/data/wild_encounters.json b/src/data/wild_encounters.json
+index 43cb88138..5742c2047 100644
+--- a/src/data/wild_encounters.json
++++ b/src/data/wild_encounters.json
+@@ -25162,6 +25162,1084 @@
+             ]
+           }
+         },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_1",
++          "base_label": "sSixIslandLuxurySafari_Forest",
++          "land_mons": {
++            "encounter_rate": 21,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHROOMISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SEEDOT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLAKOTH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NINCADA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_VOLBEAT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_ILLUMISE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_NUZLEAF"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_VIGOROTH"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_BRELOOM"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_NINJASK"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_KECLEON"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_TROPIUS"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SURSKIT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LOMBRE"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_MASQUERAIN"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_LUDICOLO"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_FEEBAS"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_1",
++          "base_label": "sSixIslandLuxurySafari_Meadow",
++          "land_mons": {
++            "encounter_rate": 21,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZIGZAGOON"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_POOCHYENA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TAILLOW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ELECTRIKE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SKITTY"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_RALTS"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LINOONE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MIGHTYENA"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_SWELLOW"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_MANECTRIC"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PLUSLE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MINUN"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SURSKIT"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_MASQUERAIN"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_FEEBAS"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_1",
++          "base_label": "sSixIslandLuxurySafari_Desert",
++          "land_mons": {
++            "encounter_rate": 21,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SPINDA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_VIBRAVA"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_CACTURNE"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_CLAYDOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LILEEP"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ANORITH"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_FLYGON"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SABLEYE"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_FEEBAS"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_1",
++          "base_label": "sSixIslandLuxurySafari_Volcano",
++          "land_mons": {
++            "encounter_rate": 21,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPOINK"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_TORKOAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SWABLU"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_ZANGOOSE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SEVIPER"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_CAMERUPT"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_GRUMPIG"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_MEDITITE"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_MEDICHAM"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_ALTARIA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BAGON"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_FEEBAS"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_1",
++          "base_label": "sSixIslandLuxurySafari_Jungle",
++          "land_mons": {
++            "encounter_rate": 21,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHUPPET"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_DUSKULL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_KECLEON"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LINOONE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_VOLBEAT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_ILLUMISE"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_TROPIUS"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_BANETTE"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_DUSCLOPS"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CASTFORM"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CHIMECHO"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_ABSOL"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SURSKIT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_MASQUERAIN"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LOMBRE"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_LUDICOLO"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_SHARPEDO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_FEEBAS"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_1",
++          "base_label": "sSixIslandLuxurySafari_Coast",
++          "land_mons": {
++            "encounter_rate": 21,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZIGZAGOON"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PLUSLE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MINUN"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ELECTRIKE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LINOONE"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_MANECTRIC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SEALEO"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_GLALIE"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WAILMER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_WAILORD"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WAILMER"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_SHARPEDO"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WAILMER"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CLAMPERL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_RELICANTH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_FEEBAS"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_1",
++          "base_label": "sSixIslandLuxurySafari_Meteor",
++          "land_mons": {
++            "encounter_rate": 21,
++            "mons": [
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SWABLU"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CHIMECHO"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPOINK"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BAGON"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_ALTARIA"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_GRUMPIG"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BELDUM"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SHELGON"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_METANG"
++              },
++              {
++                "min_level": 42,
++                "max_level": 46,
++                "species": "SPECIES_ABSOL"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WAILMER"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_RELICANTH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_FEEBAS"
++              }
++            ]
++          }
++        },
+         {
+           "map": "MAP_ROUTE26",
+           "base_label": "gRoute260",
+diff --git a/src/luxury_safari.c b/src/luxury_safari.c
+new file mode 100644
+index 000000000..073f1379d
+--- /dev/null
++++ b/src/luxury_safari.c
+@@ -0,0 +1,261 @@
++// Six Island Luxury Safari: lets the player pick which habitat (encounter set) to hunt in.
++//
++// The habitats are the consecutive MAP_SIX_ISLAND_SAFARI_1 entries in src/data/wild_encounters.json
++// (Forest, Meadow, Desert, ...). VAR_LUXURY_SAFARI_HABITAT picks which one is active; see
++// GetCurrentMapWildMonHeaderId() in wild_encounter.c. The names below must stay in the same order.
++
++#include "global.h"
++#include "data.h"
++#include "event_data.h"
++#include "list_menu.h"
++#include "malloc.h"
++#include "menu.h"
++#include "new_menu_helpers.h"
++#include "script.h"
++#include "sound.h"
++#include "string_util.h"
++#include "strings.h"
++#include "task.h"
++#include "text.h"
++#include "text_window.h"
++#include "wild_encounter.h"
++#include "window.h"
++#include "constants/songs.h"
++
++#define LIST_WINDOW_TOP    1
++#define LIST_WINDOW_HEIGHT 14
++#define PREVIEW_LEFT       11
++#define PREVIEW_WIDTH      18
++#define PREVIEW_HEIGHT     18
++#define PREVIEW_LINE       10
++#define PREVIEW_COLUMN     72
++#define MAX_PREVIEW_MONS   16
++
++static const u8 sText_Forest[]  = _("FOREST");
++static const u8 sText_Meadow[]  = _("MEADOW");
++static const u8 sText_Desert[]  = _("DESERT");
++static const u8 sText_Volcano[] = _("VOLCANO");
++static const u8 sText_Jungle[]  = _("JUNGLE");
++static const u8 sText_Coast[]   = _("COAST");
++static const u8 sText_Meteor[]  = _("METEOR");
++static const u8 sText_Grass[]   = _("IN THE GRASS");
++static const u8 sText_Water[]   = _("ON THE WATER");
++static const u8 sText_Cancel[]  = _("CANCEL");
++static const u8 sText_NoMons[]  = _("-");
++static const u8 sText_CancelHint[] = _("Leave without\nchoosing a habitat.");
++
++static const u8 *const sHabitatNames[NUM_LUXURY_SAFARI_HABITATS] =
++{
++    sText_Forest,
++    sText_Meadow,
++    sText_Desert,
++    sText_Volcano,
++    sText_Jungle,
++    sText_Coast,
++    sText_Meteor,
++};
++
++static const struct ListMenuItem sHabitatItems[NUM_LUXURY_SAFARI_HABITATS + 1] =
++{
++    { sText_Forest,  0 },
++    { sText_Meadow,  1 },
++    { sText_Desert,  2 },
++    { sText_Volcano, 3 },
++    { sText_Jungle,  4 },
++    { sText_Coast,   5 },
++    { sText_Meteor,  6 },
++    { sText_Cancel,  LIST_CANCEL },
++};
++
++static const u8 sColor_Name[]   = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY };
++static const u8 sColor_Grass[]  = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_GREEN, TEXT_COLOR_LIGHT_GREEN };
++static const u8 sColor_Water[]  = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_BLUE, TEXT_COLOR_LIGHT_BLUE };
++
++struct LuxurySafariMenu
++{
++    u8 listWindowId;
++    u8 previewWindowId;
++    u8 listTaskId;
++};
++
++static struct LuxurySafariMenu *sMenu;
++
++static void MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu *list);
++static void Task_HandleHabitatMenu(u8 taskId);
++
++static const struct ListMenuTemplate sHabitatListTemplate =
++{
++    .items = sHabitatItems,
++    .moveCursorFunc = MoveCursorFunc,
++    .itemPrintFunc = NULL,
++    .totalItems = NUM_LUXURY_SAFARI_HABITATS + 1,
++    .maxShowed = NUM_LUXURY_SAFARI_HABITATS + 1,
++    .windowId = 0,
++    .header_X = 0,
++    .item_X = 8,
++    .cursor_X = 0,
++    .upText_Y = 0,
++    .cursorPal = 2,
++    .fillValue = 1,
++    .cursorShadowPal = 3,
++    .lettersSpacing = 1,
++    .itemVerticalPadding = 0,
++    .scrollMultiple = 0,
++    .fontId = FONT_NORMAL,
++    .cursorKind = 0,
++};
++
++static u8 AddUniqueSpecies(u16 *list, u8 count, u16 species)
++{
++    u8 i;
++
++    if (species == SPECIES_NONE || count >= MAX_PREVIEW_MONS)
++        return count;
++    for (i = 0; i < count; i++)
++    {
++        if (list[i] == species)
++            return count;
++    }
++    list[count] = species;
++    return count + 1;
++}
++
++// Prints a section header and its species in two columns; returns the y below it.
++static u8 PrintSection(u8 windowId, u8 y, const u8 *header, const u8 *headerColor, const u16 *species, u8 count)
++{
++    u8 i;
++
++    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, y, headerColor, TEXT_SKIP_DRAW, header);
++    y += PREVIEW_LINE + 1;
++    if (count == 0)
++    {
++        AddTextPrinterParameterized3(windowId, FONT_SMALL, 4, y, sColor_Name, TEXT_SKIP_DRAW, sText_NoMons);
++        return y + PREVIEW_LINE;
++    }
++    for (i = 0; i < count; i++)
++        AddTextPrinterParameterized3(windowId, FONT_SMALL, 4 + (i % 2) * PREVIEW_COLUMN, y + (i / 2) * PREVIEW_LINE,
++                                     sColor_Name, TEXT_SKIP_DRAW, gSpeciesNames[species[i]]);
++    return y + ((count + 1) / 2) * PREVIEW_LINE;
++}
++
++static void DrawHabitatPreview(s32 habitat)
++{
++    u8 windowId = sMenu->previewWindowId;
++    const struct WildPokemonHeader *header;
++    u16 land[MAX_PREVIEW_MONS];
++    u16 water[MAX_PREVIEW_MONS];
++    u8 landCount = 0;
++    u8 waterCount = 0;
++    u8 i, y;
++
++    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
++    if (habitat < 0 || habitat >= NUM_LUXURY_SAFARI_HABITATS)
++    {
++        AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, 0, sColor_Name, TEXT_SKIP_DRAW, sText_CancelHint);
++        CopyWindowToVram(windowId, COPYWIN_GFX);
++        return;
++    }
++
++    header = GetLuxurySafariHeader(habitat);
++    if (header != NULL)
++    {
++        if (header->landMonsInfo != NULL)
++        {
++            for (i = 0; i < LAND_WILD_COUNT; i++)
++                landCount = AddUniqueSpecies(land, landCount, header->landMonsInfo->wildPokemon[i].species);
++        }
++        if (header->waterMonsInfo != NULL)
++        {
++            for (i = 0; i < WATER_WILD_COUNT; i++)
++                waterCount = AddUniqueSpecies(water, waterCount, header->waterMonsInfo->wildPokemon[i].species);
++        }
++        if (header->fishingMonsInfo != NULL)
++        {
++            for (i = 0; i < FISH_WILD_COUNT; i++)
++                waterCount = AddUniqueSpecies(water, waterCount, header->fishingMonsInfo->wildPokemon[i].species);
++        }
++    }
++
++    y = PrintSection(windowId, 0, sText_Grass, sColor_Grass, land, landCount);
++    PrintSection(windowId, y + 2, sText_Water, sColor_Water, water, waterCount);
++    CopyWindowToVram(windowId, COPYWIN_GFX);
++}
++
++static void MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu *list)
++{
++    if (!onInit)
++        PlaySE(SE_SELECT);
++    DrawHabitatPreview(itemIndex);
++}
++
++// callnative LuxurySafari_ChooseHabitat, then waitstate.
++// VAR_RESULT = chosen habitat (also stored in VAR_LUXURY_SAFARI_HABITAT, name in STR_VAR_1), or 0x7F if cancelled.
++void LuxurySafari_ChooseHabitat(void)
++{
++    struct WindowTemplate template;
++    struct ListMenuTemplate listTemplate;
++
++    sMenu = AllocZeroed(sizeof(*sMenu));
++
++    template = SetWindowTemplateFields(0, 1, LIST_WINDOW_TOP, 8, LIST_WINDOW_HEIGHT, 15, 0x038);
++    sMenu->listWindowId = AddWindow(&template);
++    template = SetWindowTemplateFields(0, PREVIEW_LEFT, 1, PREVIEW_WIDTH, PREVIEW_HEIGHT, 15, 0x038 + 8 * LIST_WINDOW_HEIGHT);
++    sMenu->previewWindowId = AddWindow(&template);
++
++    SetStdWindowBorderStyle(sMenu->listWindowId, FALSE);
++    SetStdWindowBorderStyle(sMenu->previewWindowId, FALSE);
++    FillWindowPixelBuffer(sMenu->previewWindowId, PIXEL_FILL(1));
++
++    listTemplate = sHabitatListTemplate;
++    listTemplate.windowId = sMenu->listWindowId;
++    sMenu->listTaskId = ListMenuInit(&listTemplate, 0, 0);
++
++    PutWindowTilemap(sMenu->listWindowId);
++    PutWindowTilemap(sMenu->previewWindowId);
++    CopyWindowToVram(sMenu->listWindowId, COPYWIN_FULL);
++    CopyWindowToVram(sMenu->previewWindowId, COPYWIN_FULL);
++    CreateTask(Task_HandleHabitatMenu, 8);
++}
++
++static void CloseHabitatMenu(u8 taskId)
++{
++    DestroyListMenuTask(sMenu->listTaskId, NULL, NULL);
++    ClearStdWindowAndFrameToTransparent(sMenu->previewWindowId, FALSE);
++    ClearStdWindowAndFrameToTransparent(sMenu->listWindowId, TRUE);
++    RemoveWindow(sMenu->previewWindowId);
++    RemoveWindow(sMenu->listWindowId);
++    FREE_AND_SET_NULL(sMenu);
++    DestroyTask(taskId);
++    ScriptContext_Enable();
++}
++
++static void Task_HandleHabitatMenu(u8 taskId)
++{
++    s32 input = ListMenu_ProcessInput(sMenu->listTaskId);
++
++    if (input == LIST_NOTHING_CHOSEN)
++        return;
++
++    PlaySE(SE_SELECT);
++    if (input == LIST_CANCEL || input < 0 || input >= NUM_LUXURY_SAFARI_HABITATS)
++    {
++        gSpecialVar_Result = 0x7F;
++    }
++    else
++    {
++        gSpecialVar_Result = input;
++        VarSet(VAR_LUXURY_SAFARI_HABITAT, input);
++        StringCopy(gStringVar1, sHabitatNames[input]);
++    }
++    CloseHabitatMenu(taskId);
++}
++
++// callnative LuxurySafari_BufferHabitatName: STR_VAR_1 = name of the current habitat.
++void LuxurySafari_BufferHabitatName(void)
++{
++    u16 habitat = VarGet(VAR_LUXURY_SAFARI_HABITAT);
++
++    if (habitat >= NUM_LUXURY_SAFARI_HABITATS)
++        habitat = 0;
++    StringCopy(gStringVar1, sHabitatNames[habitat]);
++}
+diff --git a/src/overworld.c b/src/overworld.c
+index d6346213c..7786eec48 100644
+--- a/src/overworld.c
++++ b/src/overworld.c
+@@ -290,6 +290,7 @@ void Overworld_ResetStateAfterFly(void)
+     FlagClear(FLAG_SYS_CRUISE_MODE);
+     FlagClear(FLAG_SYS_SAFARI_MODE);
+     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
++    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
+     FlagClear(FLAG_SYS_USE_STRENGTH);
+     FlagClear(FLAG_SYS_FLASH_ACTIVE);
+     FlagClear(FLAG_SYS_QL_DEPARTED);
+@@ -304,6 +305,7 @@ void Overworld_ResetStateAfterTeleport(void)
+     FlagClear(FLAG_SYS_CRUISE_MODE);
+     FlagClear(FLAG_SYS_SAFARI_MODE);
+     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
++    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
+     FlagClear(FLAG_SYS_USE_STRENGTH);
+     FlagClear(FLAG_SYS_FLASH_ACTIVE);
+     FlagClear(FLAG_SYS_QL_DEPARTED);
+@@ -318,6 +320,7 @@ void Overworld_ResetStateAfterDigEscRope(void)
+     FlagClear(FLAG_SYS_CRUISE_MODE);
+     FlagClear(FLAG_SYS_SAFARI_MODE);
+     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
++    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
+     FlagClear(FLAG_SYS_USE_STRENGTH);
+     FlagClear(FLAG_SYS_FLASH_ACTIVE);
+     FlagClear(FLAG_SYS_QL_DEPARTED);
+@@ -333,6 +336,7 @@ static void Overworld_ResetStateAfterWhitingOut(void)
+     FlagClear(FLAG_SYS_CRUISE_MODE);
+     FlagClear(FLAG_SYS_SAFARI_MODE);
+     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
++    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
+     FlagClear(FLAG_SYS_USE_STRENGTH);
+     FlagClear(FLAG_SYS_FLASH_ACTIVE);
+     FlagClear(FLAG_SYS_QL_DEPARTED);
+@@ -343,6 +347,7 @@ static void Overworld_ResetStateOnContinue(void)
+ {
+     FlagClear(FLAG_SYS_SAFARI_MODE);
+     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
++    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
+     ChooseAmbientCrySpecies();
+     UpdateLocationHistoryForRoamer();
+     RoamerMoveToOtherLocationSet();
+diff --git a/src/wild_encounter.c b/src/wild_encounter.c
+index 4479ea1f2..09dfa93ea 100644
+--- a/src/wild_encounter.c
++++ b/src/wild_encounter.c
+@@ -173,6 +173,26 @@ static u8 ChooseWildMonLevel(const struct WildPokemon * info)
+     return lo + res;
+ }
+ 
++// Six Island luxury safari: the grounds have one encounter table per habitat in
++// wild_encounters.json (consecutive entries, in the order of sHabitatNames in
++// luxury_safari.c); VAR_LUXURY_SAFARI_HABITAT picks which one is used.
++static bool8 IsLuxurySafariMap(u8 mapGroup, u8 mapNum)
++{
++    return mapGroup == MAP_GROUP(SIX_ISLAND_SAFARI_1) && mapNum == MAP_NUM(SIX_ISLAND_SAFARI_1);
++}
++
++const struct WildPokemonHeader *GetLuxurySafariHeader(u8 habitat)
++{
++    u16 i;
++
++    for (i = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED); i++)
++    {
++        if (IsLuxurySafariMap(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum))
++            return &gWildMonHeaders[i + habitat];
++    }
++    return NULL;
++}
++
+ static u16 GetCurrentMapWildMonHeaderId(void)
+ {
+     u16 i;
+@@ -195,6 +215,13 @@ static u16 GetCurrentMapWildMonHeaderId(void)
+ 
+                 i += alteringCaveId;
+             }
++            else if (IsLuxurySafariMap(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
++            {
++                u16 habitat = VarGet(VAR_LUXURY_SAFARI_HABITAT);
++                if (habitat >= NUM_LUXURY_SAFARI_HABITATS)
++                    habitat = 0;
++                i += habitat;
++            }
+ 
+             if (!UnlockedTanobyOrAreNotInTanoby())
+                 break;

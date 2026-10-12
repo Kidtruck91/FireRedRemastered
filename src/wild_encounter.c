@@ -173,6 +173,26 @@ static u8 ChooseWildMonLevel(const struct WildPokemon * info)
     return lo + res;
 }
 
+// Six Island luxury safari: the grounds have one encounter table per habitat in
+// wild_encounters.json (consecutive entries, in the order of sHabitatNames in
+// luxury_safari.c); VAR_LUXURY_SAFARI_HABITAT picks which one is used.
+static bool8 IsLuxurySafariMap(u8 mapGroup, u8 mapNum)
+{
+    return mapGroup == MAP_GROUP(SIX_ISLAND_SAFARI_1) && mapNum == MAP_NUM(SIX_ISLAND_SAFARI_1);
+}
+
+const struct WildPokemonHeader *GetLuxurySafariHeader(u8 habitat)
+{
+    u16 i;
+
+    for (i = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED); i++)
+    {
+        if (IsLuxurySafariMap(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum))
+            return &gWildMonHeaders[i + habitat];
+    }
+    return NULL;
+}
+
 static u16 GetCurrentMapWildMonHeaderId(void)
 {
     u16 i;
@@ -194,6 +214,13 @@ static u16 GetCurrentMapWildMonHeaderId(void)
                     alteringCaveId = 0;
 
                 i += alteringCaveId;
+            }
+            else if (IsLuxurySafariMap(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
+            {
+                u16 habitat = VarGet(VAR_LUXURY_SAFARI_HABITAT);
+                if (habitat >= NUM_LUXURY_SAFARI_HABITATS)
+                    habitat = 0;
+                i += habitat;
             }
 
             if (!UnlockedTanobyOrAreNotInTanoby())

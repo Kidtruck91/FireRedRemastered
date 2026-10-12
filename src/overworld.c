@@ -290,6 +290,7 @@ void Overworld_ResetStateAfterFly(void)
     FlagClear(FLAG_SYS_CRUISE_MODE);
     FlagClear(FLAG_SYS_SAFARI_MODE);
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
+    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_FLASH_ACTIVE);
     FlagClear(FLAG_SYS_QL_DEPARTED);
@@ -304,6 +305,7 @@ void Overworld_ResetStateAfterTeleport(void)
     FlagClear(FLAG_SYS_CRUISE_MODE);
     FlagClear(FLAG_SYS_SAFARI_MODE);
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
+    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_FLASH_ACTIVE);
     FlagClear(FLAG_SYS_QL_DEPARTED);
@@ -318,6 +320,7 @@ void Overworld_ResetStateAfterDigEscRope(void)
     FlagClear(FLAG_SYS_CRUISE_MODE);
     FlagClear(FLAG_SYS_SAFARI_MODE);
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
+    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_FLASH_ACTIVE);
     FlagClear(FLAG_SYS_QL_DEPARTED);
@@ -333,6 +336,7 @@ static void Overworld_ResetStateAfterWhitingOut(void)
     FlagClear(FLAG_SYS_CRUISE_MODE);
     FlagClear(FLAG_SYS_SAFARI_MODE);
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
+    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_FLASH_ACTIVE);
     FlagClear(FLAG_SYS_QL_DEPARTED);
@@ -343,6 +347,7 @@ static void Overworld_ResetStateOnContinue(void)
 {
     FlagClear(FLAG_SYS_SAFARI_MODE);
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
+    VarSet(VAR_MAP_SCENE_SIX_ISLAND_SAFARI_ENTRANCE, 0);
     ChooseAmbientCrySpecies();
     UpdateLocationHistoryForRoamer();
     RoamerMoveToOtherLocationSet();

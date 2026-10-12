@@ -316,7 +316,8 @@
     "SevenIsland_TrainerTower",
     "SevenIsland_SevaultCanyon_Entrance",
     "SevenIsland_SevaultCanyon",
-    "SevenIsland_TanobyRuins"
+    "SevenIsland_TanobyRuins",
+    "SixIsland_Safari"
   ],
   "gMapGroup_IndoorPallet": [
     "PalletTown_PlayersHouse_1F",
@@ -549,7 +550,9 @@
     "SixIsland_PokemonCenter_2F",
     "SixIsland_Harbor",
     "SixIsland_House",
-    "SixIsland_Mart"
+    "SixIsland_Mart",
+    "SixIsland_Safari_1",
+    "SixIsland_Safari_Entrance"
   ],
   "gMapGroup_IndoorThreeIslandRoute": [
     "ThreeIsland_Harbor"

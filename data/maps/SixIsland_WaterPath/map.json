@@ -28,6 +28,11 @@
       "map": "MAP_SIX_ISLAND_RUIN_VALLEY",
       "offset": 80,
       "direction": "left"
+    },
+    {
+      "map": "MAP_SIX_ISLAND_SAFARI",
+      "offset": -8,
+      "direction": "right"
     }
   ],
   "object_events": [

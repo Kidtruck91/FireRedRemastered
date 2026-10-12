@@ -35,6 +35,9 @@ struct WildPokemonHeader
 
 extern const struct WildPokemonHeader gWildMonHeaders[];
 
+#define NUM_LUXURY_SAFARI_HABITATS 7 // tables for MAP_SIX_ISLAND_SAFARI_1 in wild_encounters.json
+const struct WildPokemonHeader *GetLuxurySafariHeader(u8 habitat);
+
 void DisableWildEncounters(bool8 disabled);
 bool8 StandardWildEncounter(u32 currMetatileAttrs, u16 previousMetaTileBehavior);
 bool8 SweetScentWildEncounter(void);
