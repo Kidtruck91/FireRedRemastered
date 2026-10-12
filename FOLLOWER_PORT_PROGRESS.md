@@ -317,3 +317,11 @@ Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
 - Encounters: 35 tables (5 areas x 7 habitats), consecutive per map in wild_encounters.json (`sSixIslandLuxurySafari{,Desert,Cave,Beach,IceCave}_<Habitat>`); `GetCurrentMapWildMonHeaderId` adds the habitat for any area in `sLuxurySafariAreaMaps`. Desert land encounters only on deep sand; beach is surf/fish only; caves land only.
 - Gate preview: Left/Right flips between the five areas.
 - Tested in mGBA: all warps both ways, Volcano Cave encounter (Numel), preview paging. Not play-tested: every habitat/area table, sandstorm.
+
+## Johto Town Map / Fly map (commit 4a1ffe521)
+- New Johto region-map art (graphics/region_map/johto.bin + extra tiles in region_map.png) and layout (src/data/region_map/region_map_layout_johto.h); Johto entries in region_map_sections.json fixed (names, positions; added MAPSEC_ROUTE_26/27/28).
+- Town Map switch menu: two columns; Johto panel on the right (switch_map_johto_*.bin). Appears once any Johto town has been visited. Room under it in the right column for the Orange Islands later.
+- Fly: per-region like Kanto/Sevii. Johto towns unlock with FLAG_WORLD_MAP_<TOWN> (flags.h, replaced FLAG_0x8C3-0x8CC), set by OnTransition scripts in each town. New Bark spawn added to heal_locations.h (whiteout falls back to Cherrygrove PC).
+- GetMapName now resolves Johto mapsecs (Town Map label + location popups).
+- Cherrygrove/Cianwood/Blackthorn map_type changed INDOOR -> CITY (needed for Fly).
+- TODO: gate Johto access behind post-Sevii progress (story); Orange Islands region later.
