@@ -1451,3 +1451,25 @@ const u16 gTilesetPalettes_HoennVolcano[][16] =
 	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/14.gbapal"),
 	INCBIN_U16("data/tilesets/secondary/hoenn_volcano/palettes/15.gbapal"),
 };
+
+const u32 gTilesetTiles_OrangeIslands[] = INCBIN_U32("data/tilesets/secondary/orange_islands/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_OrangeIslands[][16] =
+{
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/00.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/01.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/02.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/03.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/04.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/05.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/06.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/07.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/08.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/09.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/10.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/11.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/12.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/13.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/14.gbapal"),
+	INCBIN_U16("data/tilesets/secondary/orange_islands/palettes/15.gbapal"),
+};

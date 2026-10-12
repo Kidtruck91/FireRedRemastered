@@ -767,3 +767,14 @@ const struct Tileset gTileset_HoennVolcano =
     .metatileAttributes = gMetatileAttributes_HoennVolcano,
     .callback = InitTilesetAnim_HoennVolcano,
 };
+
+const struct Tileset gTileset_OrangeIslands =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_OrangeIslands,
+    .palettes = gTilesetPalettes_OrangeIslands,
+    .metatiles = gMetatiles_OrangeIslands,
+    .metatileAttributes = gMetatileAttributes_OrangeIslands,
+    .callback = NULL,
+};
