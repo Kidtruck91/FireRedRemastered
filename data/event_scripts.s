@@ -1934,3 +1934,15 @@ Text_TestMsg::
 	.include "data/maps/SixIsland_Safari_1/text.inc"
 	.include "data/maps/SixIsland_Safari_Entrance/scripts.inc"
 	.include "data/maps/SixIsland_Safari_Entrance/text.inc"
+
+	.include "data/maps/SixIsland_Safari_Cave/scripts.inc"
+	.include "data/maps/SixIsland_Safari_Cave/text.inc"
+
+	.include "data/maps/SixIsland_Safari_Desert/scripts.inc"
+	.include "data/maps/SixIsland_Safari_Desert/text.inc"
+
+	.include "data/maps/SixIsland_Safari_Beach/scripts.inc"
+	.include "data/maps/SixIsland_Safari_Beach/text.inc"
+
+	.include "data/maps/SixIsland_Safari_Cave_Cold/scripts.inc"
+	.include "data/maps/SixIsland_Safari_Cave_Cold/text.inc"

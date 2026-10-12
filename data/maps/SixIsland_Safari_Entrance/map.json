@@ -103,5 +103,7 @@
       "script": "SixIsland_Safari_Entrance_EventScript_EntryTriggerLeft"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

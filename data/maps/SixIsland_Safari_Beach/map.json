@@ -1,0 +1,43 @@
+{
+  "id": "MAP_SIX_ISLAND_SAFARI_BEACH",
+  "name": "SixIsland_Safari_Beach",
+  "layout": "LAYOUT_SIX_ISLAND_SAFARI_BEACH",
+  "music": "MUS_BERRY_PICK",
+  "region_map_section": "MAPSEC_SIX_ISLAND",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 27,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 27,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 6,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SIX_ISLAND_SAFARI_CAVE_COLD",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

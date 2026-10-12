@@ -173,21 +173,42 @@ static u8 ChooseWildMonLevel(const struct WildPokemon * info)
     return lo + res;
 }
 
-// Six Island luxury safari: the grounds have one encounter table per habitat in
-// wild_encounters.json (consecutive entries, in the order of sHabitatNames in
+// Six Island luxury safari: every safari area (grounds, desert, volcano cave, beach, ice cave) has one
+// encounter table per habitat in wild_encounters.json (consecutive entries, in the order of sHabitatNames in
 // luxury_safari.c); VAR_LUXURY_SAFARI_HABITAT picks which one is used.
+static const u16 sLuxurySafariAreaMaps[NUM_LUXURY_SAFARI_AREAS] =
+{
+    MAP_SIX_ISLAND_SAFARI_1,
+    MAP_SIX_ISLAND_SAFARI_DESERT,
+    MAP_SIX_ISLAND_SAFARI_CAVE,
+    MAP_SIX_ISLAND_SAFARI_BEACH,
+    MAP_SIX_ISLAND_SAFARI_CAVE_COLD,
+};
+
 static bool8 IsLuxurySafariMap(u8 mapGroup, u8 mapNum)
 {
-    return mapGroup == MAP_GROUP(SIX_ISLAND_SAFARI_1) && mapNum == MAP_NUM(SIX_ISLAND_SAFARI_1);
+    u8 i;
+
+    for (i = 0; i < NUM_LUXURY_SAFARI_AREAS; i++)
+    {
+        if (mapGroup == (sLuxurySafariAreaMaps[i] >> 8) && mapNum == (sLuxurySafariAreaMaps[i] & 0xFF))
+            return TRUE;
+    }
+    return FALSE;
 }
 
-const struct WildPokemonHeader *GetLuxurySafariHeader(u8 habitat)
+const struct WildPokemonHeader *GetLuxurySafariHeader(u8 area, u8 habitat)
 {
     u16 i;
+    u8 group, num;
 
+    if (area >= NUM_LUXURY_SAFARI_AREAS)
+        return NULL;
+    group = sLuxurySafariAreaMaps[area] >> 8;
+    num = sLuxurySafariAreaMaps[area] & 0xFF;
     for (i = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED); i++)
     {
-        if (IsLuxurySafariMap(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum))
+        if (gWildMonHeaders[i].mapGroup == group && gWildMonHeaders[i].mapNum == num)
             return &gWildMonHeaders[i + habitat];
     }
     return NULL;

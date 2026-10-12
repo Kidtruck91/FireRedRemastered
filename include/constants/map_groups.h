@@ -501,6 +501,11 @@
 #define MAP_SIX_ISLAND_HOUSE             (3 | (37 << 8))
 #define MAP_SIX_ISLAND_MART              (4 | (37 << 8))
 #define MAP_SIX_ISLAND_SAFARI_1          (5 | (37 << 8))
+#define MAP_SIX_ISLAND_SAFARI_ENTRANCE   (6 | (37 << 8))
+#define MAP_SIX_ISLAND_SAFARI_CAVE       (7 | (37 << 8))
+#define MAP_SIX_ISLAND_SAFARI_DESERT     (8 | (37 << 8))
+#define MAP_SIX_ISLAND_SAFARI_BEACH      (9 | (37 << 8))
+#define MAP_SIX_ISLAND_SAFARI_CAVE_COLD  (10 | (37 << 8))
 
 // gMapGroup_IndoorThreeIslandRoute
 #define MAP_THREE_ISLAND_HARBOR (0 | (38 << 8))

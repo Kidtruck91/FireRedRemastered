@@ -552,7 +552,11 @@
     "SixIsland_House",
     "SixIsland_Mart",
     "SixIsland_Safari_1",
-    "SixIsland_Safari_Entrance"
+    "SixIsland_Safari_Entrance",
+    "SixIsland_Safari_Cave",
+    "SixIsland_Safari_Desert",
+    "SixIsland_Safari_Beach",
+    "SixIsland_Safari_Cave_Cold"
   ],
   "gMapGroup_IndoorThreeIslandRoute": [
     "ThreeIsland_Harbor"

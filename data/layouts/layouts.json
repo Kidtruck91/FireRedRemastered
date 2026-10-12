@@ -6528,6 +6528,54 @@
       "secondary_tileset": "gTileset_FuchsiaCity",
       "border_filepath": "data/layouts/SixIsland_Safari_1/border.bin",
       "blockdata_filepath": "data/layouts/SixIsland_Safari_1/map.bin"
+    },
+    {
+      "id": "LAYOUT_SIX_ISLAND_SAFARI_CAVE",
+      "name": "SixIsland_Safari_Cave_Layout",
+      "width": 56,
+      "height": 40,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_HoennVolcano",
+      "border_filepath": "data/layouts/SixIsland_Safari_Cave/border.bin",
+      "blockdata_filepath": "data/layouts/SixIsland_Safari_Cave/map.bin"
+    },
+    {
+      "id": "LAYOUT_SIX_ISLAND_SAFARI_DESERT",
+      "name": "SixIsland_Safari_Desert_Layout",
+      "width": 42,
+      "height": 25,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_HoennDesert",
+      "border_filepath": "data/layouts/SixIsland_Safari_Desert/border.bin",
+      "blockdata_filepath": "data/layouts/SixIsland_Safari_Desert/map.bin"
+    },
+    {
+      "id": "LAYOUT_SIX_ISLAND_SAFARI_BEACH",
+      "name": "SixIsland_Safari_Beach_Layout",
+      "width": 28,
+      "height": 37,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeviiIslands123",
+      "border_filepath": "data/layouts/SixIsland_Safari_Beach/border.bin",
+      "blockdata_filepath": "data/layouts/SixIsland_Safari_Beach/map.bin"
+    },
+    {
+      "id": "LAYOUT_SIX_ISLAND_SAFARI_CAVE_COLD",
+      "name": "SixIsland_Safari_Cave_Cold_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeafoamIslands",
+      "border_filepath": "data/layouts/SixIsland_Safari_Cave_Cold/border.bin",
+      "blockdata_filepath": "data/layouts/SixIsland_Safari_Cave_Cold/map.bin"
     }
   ]
 }

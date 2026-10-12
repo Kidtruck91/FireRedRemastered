@@ -1,0 +1,3957 @@
+diff --git a/data/layouts/SixIsland_Safari_Beach/border.bin b/data/layouts/SixIsland_Safari_Beach/border.bin
+index c74c21bfda6e5d8dd9c33bcf1a962b94976f96df..d9994d6cdc788c7a7d5bf7126d03f64e584b96b0 100644
+GIT binary patch
+literal 8
+LcmdO9)CNNU19Skf
+
+literal 8
+PcmWe(5M_{IkYxY>0nh+r
+
+diff --git a/data/layouts/SixIsland_Safari_Beach/map.bin b/data/layouts/SixIsland_Safari_Beach/map.bin
+index 1e604c8b56c673582cfc033fa36ba99772a86898..dd01ba7d3eda50799d8926cff0fb6098b688d176 100644
+GIT binary patch
+literal 2072
+zcmb7E%W4!+5T&t3lZ~;!Nfb0ujIWtqRFmIw;Y0#P$Gtxws35L&>C(TDWWX`qD84rS
+zgmt>Q`aWhFl!Cc^@7z=8)ay=p+S;WNkMQNIo%(Od<EoL*@=5JE&D8wvmC@A}hjkUZ
+z9_JYMp6{pZxTSoNhb^D^-WhH6Hb3tg+|N3k`F_;;fbJQ6q&-y}IN^Df&wR$X86CAz
+zI~zP0t`L~%9LB}jaok1O8o+&^V|qdptw>Pn@fC87_9*a`{FLTu?_^HzX<Xgls;jDN
+zb-v5A6XAq!YF&eYEj7b!$ZpSPQQ*85M-Jf%+3xu)3gKIk<to$o9&1F$eV?Ve@}22q
+z*{9pIDaajefYY<?Yl^fuPUTb<ih8Eq;s1Nqef9GYzeV53QQKAi|IliFz-O5Q&UFr9
+z!nxsqZRC&+>20sm?!?h8dD&Mn;A)K#7JTB%RNdqIJmGKreGSf{d~=ZEY*(^%ej(lg
+zF<&jU02gZuICTDoPK_afLq7pyjIJ%_1s^*9M5`5Wc7I&Gq*wGh%S+(frZGWn!2PLy
+zxAx*fKH1K>p6_cF=KaBc@SUp`lFqy3-PzFnHfd>mwKUQE;kM=7b8dS~b{ZdgCCshi
+z!0$OQ+%8>L+-8)QT7IqI;3vjm((XolnCpG5PWrx-oa0WqF7*0&G`Y?@iT9F!$WQGI
+zD4TTsRPuq=0r%o}(EPji__e9JUN0HhEriA1c2jWHc3snD0cW|De5Q5Cai$BZ^83CA
+l4zst2-ua*_egV@t0nX+<#OFTKHGQG}9hZ7Bo#+|k`wNN}T2uf4
+
+literal 2072
+ycmZQHU?d7MpaJ4^F&dz0V;I#334zgY!JZOE!)17d3wnHx@<&5pGz12J2mk=PLQIhW
+
+diff --git a/data/layouts/SixIsland_Safari_Cave/border.bin b/data/layouts/SixIsland_Safari_Cave/border.bin
+index c74c21bfda6e5d8dd9c33bcf1a962b94976f96df..28260efd3e88c2259a79fdce2edaf44a23855f84 100644
+GIT binary patch
+literal 8
+LcmdnVv=a;g4x9q*
+
+literal 8
+PcmWe(5M_{IkYxY>0nh+r
+
+diff --git a/data/layouts/SixIsland_Safari_Cave/map.bin b/data/layouts/SixIsland_Safari_Cave/map.bin
+index 220d2c01543a2d71617813d9da7ab9df44cbd8d8..b46d80bf92769c652d9786ac06cb85b3712b8402 100644
+GIT binary patch
+literal 4480
+zcmcgvL5|xn3<P?Reqy-UY!<Mt{X!qL{lcPuiH#iGI6#iYKA?XoM-(l|rfda80|K!u
+z3mndfq?F$DPqm9-doJo=#(*pM@yU^#cUL?T@zAxdWakc^8e96_I;@xwZ&$Y7dy$y7
+z@EW&=hZO_GwB?1PuEDG0_e?zSyI1n#ytr=c-@cw>ckwl~r6+q~JqJ_H1<r;(%g*0l
+zV)kNGzbmzPd9?sfFhXYfYT8$+=XIO>M6Eow^Njdr^DnwqqGzrQ-ZZr$ziWuC2`K9?
+zI-W$W<3+Xdox7M@z#D0_{KmeP@$!4>ah)#|O=`1t(q~?&0wS|KW(_YzLvPSEh_k?_
+zjzrdkz87bBzVBX(9kF$O^&Is+Uh9T{C(H$<?|5b_H#u(TQIlD`8vSZAzx=M@3A>S|
+zZ+0^8es+sr>#zf2`}_{>PG~>PAM-&tc)~si>D|A5lCNz%(p2SlurJEVgP#4(GK%(_
+z<7qxh{2HsVMYY!B={|IRW2f!>V|bd662Djjt&6%mrf2kVa7TNzFTPTAesL|G40C0I
+z-`)Hu8oH^LFDHjy0L5zfHB@zsFWpu$diflU^wl(89*d79KjNMkGyq=Ef=*Pa)+Ls_
+z3%}gY(cQb?my|tP&)4^}lOIbjq<Af&9!#tc=`C4r4SklgY@*7~{jfiZDcsM3fAmK)
+zr9FD~qt(Y+wV<7m{+h2KEtC5o-5ufG?`yseZ~u<xb0y)&dtLHdnqNnT*!K8EJxdu@
+zkB2Us;!WLm$40r9@FPsGXTYXROwY_x9BY0jhZBRnz{3?M0?sjh;x~NN@cb&jMlyYk
+zu$&PzjyRw(Vv;YqVv_w@KV9PJ?_<=H^o#N9c)E{t_AvLxbhb2(H^^E%RCDU>OlNRC
+zd&a}=)@B4{dv+FU=S~_=K8|>K)cLCPZJ2Lo>1^#d_Uo8cu_D%^8}-thACUb2TFLUw
+gXUvzn5l+K39`0@b$8ambExvVMgMpo|=?4)10>BIHNB{r;
+
+literal 4480
+zcmeIxF$w@73`N1@M&AE)7AexE2!b$cV<CJP-sZ{CiKTD0mS<@$?3Dn|nSfsOGApHC
+Z=|wMkX@S@OLod4#AV7cs0Rja65V-WoOpyQp
+
+diff --git a/data/layouts/SixIsland_Safari_Cave_Cold/border.bin b/data/layouts/SixIsland_Safari_Cave_Cold/border.bin
+index c74c21bfda6e5d8dd9c33bcf1a962b94976f96df..a021ddd4ec700b32b3589c3767be88c4e7885ca4 100644
+GIT binary patch
+literal 8
+LcmbQpG!YB|3w#1i
+
+literal 8
+PcmWe(5M_{IkYxY>0nh+r
+
+diff --git a/data/layouts/SixIsland_Safari_Cave_Cold/map.bin b/data/layouts/SixIsland_Safari_Cave_Cold/map.bin
+index 3ac590bebd4ed508c54b183fb831d0c8f8ae9e5c..35ebecf8cad765487322ff06b9ad626cb039dc5a 100644
+GIT binary patch
+literal 800
+zcmb`Eu@%E03`9E(gvanyK#@3AOc$5g%G*Te^F`Q2k|IwJW8kCHiP>grK7NV+a}WC#
+zsH<5{IjtU;a~g*}aw=A~`pJ<2+f(DPo;VQ9*mKw^R`-0!Tz!<Sf}VrQ)uz2~lmFeE
+ziF~M572ll-pUa!$`H>67x@po)e2Y;PilG@^f`qC9ondV{ukMRIB{$jA>1Lv!5*oOr
+ve9gVU14FxdrJfTLebQ^fvu;Lh+ELZi*D7B3%!%MEE)<UETEXkZ<1_aH?rH#1
+
+literal 800
+TcmZQHU>t>`Aut*OI6?pbtf@?q
+
+diff --git a/data/layouts/SixIsland_Safari_Desert/border.bin b/data/layouts/SixIsland_Safari_Desert/border.bin
+index c74c21bfda6e5d8dd9c33bcf1a962b94976f96df..c07869a9fb8184c57c27017d67cddcd4a41a7b07 100644
+GIT binary patch
+literal 8
+Lcmcb~bQ25#5gY?;
+
+literal 8
+PcmWe(5M_{IkYxY>0nh+r
+
+diff --git a/data/layouts/SixIsland_Safari_Desert/map.bin b/data/layouts/SixIsland_Safari_Desert/map.bin
+index b8d0bd06e8737638fa2851d7f2c51f973464e206..7c0cd431e27118b9c5cf636e5e70be9fea9df1a1 100644
+GIT binary patch
+literal 2100
+zcmdUwu}%U(5Qe+m7|Uza%2@CKw;j)7$JyE1<J*9hSb=Xs;0hunY9&^L%Kh)>zg_N*
+zlY*F-KVi<>nQv!iXV0mb{yWXhve05@`ImmzM(cV*zjbS!-zIa1wK3bq^^Iwxwlkm8
+zQTmi-ZjcTO;hEYLbydl%YHPX{UWf`2j2n0&G~C%y`cg7Q-lsCdu0@QZn2qS;l0`Ot
+zx$nJ`5*w)VvQwz9D&<pO!^)lOr&7<cx2QVwz8*L6d!QqzVX~8Utur(C<)<L<(3QYs
+z{HxD|Jq|W_iFuJ+CRa&6?Rj4?6~R7>se1Vqyx32@74tedOKu7#^ZeYKxn?GLT^r_s
+zeoaiwRc>NxGZWdOpA=4;e&`I&=&=xLhv$RK_o%80-c`l>;aUB;brK`MT$%X(1aI9J
+z&8hMPi+rq9?*=N${W-<Vv7Z-Yse2<*Y;`O6F6N%w58umGg{g{FY0NtGtS<1>bAL*U
+z%8ZiQ#>DKBPaC?A>FiiAm;P&|{A6`n_1s8MkH$r(-VJKb{N2R2mH#<rHD=}zRaeMK
+tyMx!UQ$IiYRv%_6<~NIaA)I!sw{j2db*x<*#p1M2quGf#aW;R&`~eUuGw=Wa
+
+literal 2100
+zcmZQHU?d7MkN}7?k<owzBN;}`Bpd>x;YnNw5DrO*3gS$Is2Vksa0rZsCvhP_I3$N}
+O`XnxdMpX@D2mk<yRZNip
+
+diff --git a/data/maps/SixIsland_Safari_1/map.json b/data/maps/SixIsland_Safari_1/map.json
+index e1303787e..5a75b11d4 100644
+--- a/data/maps/SixIsland_Safari_1/map.json
++++ b/data/maps/SixIsland_Safari_1/map.json
+@@ -14,9 +14,7 @@
+   "floor_number": 0,
+   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+   "connections": 0,
+-  "object_events": [
+-
+-  ],
++  "object_events": [],
+   "warp_events": [
+     {
+       "x": 19,
+@@ -40,44 +38,42 @@
+       "dest_warp_id": "0"
+     },
+     {
+-      "x": 0,
+-      "y": 16,
++      "x": 9,
++      "y": 15,
+       "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_DESERT",
+       "dest_warp_id": "0"
+     },
+     {
+-      "x": 0,
+-      "y": 15,
++      "x": 9,
++      "y": 16,
+       "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
+-      "dest_warp_id": "0"
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_DESERT",
++      "dest_warp_id": "1"
+     },
+     {
+-      "x": 0,
+-      "y": 33,
++      "x": 9,
++      "y": 32,
+       "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_BEACH",
+       "dest_warp_id": "0"
+     },
+     {
+-      "x": 0,
+-      "y": 32,
++      "x": 9,
++      "y": 33,
+       "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
+-      "dest_warp_id": "0"
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++      "dest_warp_id": "1"
+     },
+     {
+       "x": 25,
+       "y": 2,
+       "elevation": 0,
+-      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_CAVE",
+       "dest_warp_id": "0"
+     }
+   ],
+-  "coord_events": [
+-
+-  ],
++  "coord_events": [],
+   "bg_events": [
+     {
+       "type": "sign",
+diff --git a/data/maps/SixIsland_Safari_Beach/map.json b/data/maps/SixIsland_Safari_Beach/map.json
+index ecb3cc482..68533a874 100644
+--- a/data/maps/SixIsland_Safari_Beach/map.json
++++ b/data/maps/SixIsland_Safari_Beach/map.json
+@@ -3,7 +3,7 @@
+   "name": "SixIsland_Safari_Beach",
+   "layout": "LAYOUT_SIX_ISLAND_SAFARI_BEACH",
+   "music": "MUS_BERRY_PICK",
+-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
++  "region_map_section": "MAPSEC_SIX_ISLAND",
+   "requires_flash": false,
+   "weather": "WEATHER_NONE",
+   "map_type": "MAP_TYPE_ROUTE",
+@@ -14,16 +14,30 @@
+   "floor_number": 0,
+   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+   "connections": 0,
+-  "object_events": [
+-
+-  ],
++  "object_events": [],
+   "warp_events": [
+-
+-  ],
+-  "coord_events": [
+-
++    {
++      "x": 27,
++      "y": 18,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_warp_id": "5"
++    },
++    {
++      "x": 27,
++      "y": 19,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_warp_id": "6"
++    },
++    {
++      "x": 6,
++      "y": 8,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_CAVE_COLD",
++      "dest_warp_id": "0"
++    }
+   ],
+-  "bg_events": [
+-
+-  ]
++  "coord_events": [],
++  "bg_events": []
+ }
+diff --git a/data/maps/SixIsland_Safari_Cave/map.json b/data/maps/SixIsland_Safari_Cave/map.json
+index 9ddcb95bf..31e587c02 100644
+--- a/data/maps/SixIsland_Safari_Cave/map.json
++++ b/data/maps/SixIsland_Safari_Cave/map.json
+@@ -3,10 +3,10 @@
+   "name": "SixIsland_Safari_Cave",
+   "layout": "LAYOUT_SIX_ISLAND_SAFARI_CAVE",
+   "music": "MUS_BERRY_PICK",
+-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
++  "region_map_section": "MAPSEC_SIX_ISLAND",
+   "requires_flash": false,
+-  "weather": "WEATHER_VOLCANIC_ASH",
+-  "map_type": "MAP_TYPE_NONE",
++  "weather": "WEATHER_NONE",
++  "map_type": "MAP_TYPE_UNDERGROUND",
+   "allow_cycling": false,
+   "allow_escaping": false,
+   "allow_running": false,
+@@ -14,16 +14,37 @@
+   "floor_number": 0,
+   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+   "connections": 0,
+-  "object_events": [
+-
+-  ],
++  "object_events": [],
+   "warp_events": [
+-
+-  ],
+-  "coord_events": [
+-
++    {
++      "x": 27,
++      "y": 39,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_warp_id": "7"
++    },
++    {
++      "x": 28,
++      "y": 39,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_warp_id": "7"
++    },
++    {
++      "x": 26,
++      "y": 39,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_warp_id": "7"
++    },
++    {
++      "x": 29,
++      "y": 39,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_warp_id": "7"
++    }
+   ],
+-  "bg_events": [
+-
+-  ]
++  "coord_events": [],
++  "bg_events": []
+ }
+diff --git a/data/maps/SixIsland_Safari_Cave_Cold/map.json b/data/maps/SixIsland_Safari_Cave_Cold/map.json
+index f82ab4c4e..949087d1a 100644
+--- a/data/maps/SixIsland_Safari_Cave_Cold/map.json
++++ b/data/maps/SixIsland_Safari_Cave_Cold/map.json
+@@ -3,9 +3,9 @@
+   "name": "SixIsland_Safari_Cave_Cold",
+   "layout": "LAYOUT_SIX_ISLAND_SAFARI_CAVE_COLD",
+   "music": "MUS_BERRY_PICK",
+-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
++  "region_map_section": "MAPSEC_SIX_ISLAND",
+   "requires_flash": false,
+-  "weather": "WEATHER_SNOW",
++  "weather": "WEATHER_NONE",
+   "map_type": "MAP_TYPE_UNDERGROUND",
+   "allow_cycling": false,
+   "allow_escaping": false,
+@@ -14,16 +14,23 @@
+   "floor_number": 0,
+   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+   "connections": 0,
+-  "object_events": [
+-
+-  ],
++  "object_events": [],
+   "warp_events": [
+-
+-  ],
+-  "coord_events": [
+-
++    {
++      "x": 3,
++      "y": 19,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++      "dest_warp_id": "2"
++    },
++    {
++      "x": 4,
++      "y": 19,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++      "dest_warp_id": "2"
++    }
+   ],
+-  "bg_events": [
+-
+-  ]
++  "coord_events": [],
++  "bg_events": []
+ }
+diff --git a/data/maps/SixIsland_Safari_Desert/map.json b/data/maps/SixIsland_Safari_Desert/map.json
+index 55683548b..a8fecddb9 100644
+--- a/data/maps/SixIsland_Safari_Desert/map.json
++++ b/data/maps/SixIsland_Safari_Desert/map.json
+@@ -3,7 +3,7 @@
+   "name": "SixIsland_Safari_Desert",
+   "layout": "LAYOUT_SIX_ISLAND_SAFARI_DESERT",
+   "music": "MUS_BERRY_PICK",
+-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
++  "region_map_section": "MAPSEC_SIX_ISLAND",
+   "requires_flash": false,
+   "weather": "WEATHER_SANDSTORM",
+   "map_type": "MAP_TYPE_ROUTE",
+@@ -14,16 +14,23 @@
+   "floor_number": 0,
+   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+   "connections": 0,
+-  "object_events": [
+-
+-  ],
++  "object_events": [],
+   "warp_events": [
+-
+-  ],
+-  "coord_events": [
+-
++    {
++      "x": 41,
++      "y": 12,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_warp_id": "3"
++    },
++    {
++      "x": 41,
++      "y": 13,
++      "elevation": 0,
++      "dest_map": "MAP_SIX_ISLAND_SAFARI_1",
++      "dest_warp_id": "4"
++    }
+   ],
+-  "bg_events": [
+-
+-  ]
++  "coord_events": [],
++  "bg_events": []
+ }
+diff --git a/data/tilesets/secondary/hoenn_desert/metatile_attributes.bin b/data/tilesets/secondary/hoenn_desert/metatile_attributes.bin
+index 06736139e48b434f77289ebcae3a2cbe24d1f2b9..e4a880eff12070a30522c52846140cfb865497e6 100644
+GIT binary patch
+delta 24
+bcmcb@{)BzQ6=s1X1_p*?AWi||R3HWbR{jL+
+
+delta 7
+OcmaFDeuaI*6=nbqXai0F
+
+diff --git a/data/tilesets/secondary/hoenn_desert/metatiles.bin b/data/tilesets/secondary/hoenn_desert/metatiles.bin
+index fc47a26d0539588f1ac5ceaadeea2461915e6036..5d0fb14a75ecf484b8e5a2db35506bf375d43b89 100644
+GIT binary patch
+delta 72
+bcmca0H$i?w0KdboqTN8atB3&#NaX_ndYBcp
+
+delta 7
+OcmbOre?e|T06zc=_yVl}
+
+diff --git a/data/tilesets/secondary/sevii_islands_123/metatile_attributes.bin b/data/tilesets/secondary/sevii_islands_123/metatile_attributes.bin
+index 62eb1b91789520c143c5892e0edf4533d5ca0aad..a87786e8783c67234a8d217be1f60c2b51b4b5c8 100644
+GIT binary patch
+delta 12
+Tcmeyu@q=SS2@6XS0|Ns9AS?rm
+
+delta 7
+Ocmeyt@r7eU2@3!Y-vcE8
+
+diff --git a/data/tilesets/secondary/sevii_islands_123/metatiles.bin b/data/tilesets/secondary/sevii_islands_123/metatiles.bin
+index 52d2f020d9702b504f0798897c5b21724104f802..882ee1820f13aa8a05255e07c40b334890ab63b8 100644
+GIT binary patch
+delta 24
+acmcbh{6Klb1wjFY07W2F2w>o000RJGJOyR|
+
+delta 7
+OcmaE$d_j4`1wjB0Rs)Ct
+
+diff --git a/include/wild_encounter.h b/include/wild_encounter.h
+index 1b55eb265..266569253 100644
+--- a/include/wild_encounter.h
++++ b/include/wild_encounter.h
+@@ -35,8 +35,9 @@ struct WildPokemonHeader
+ 
+ extern const struct WildPokemonHeader gWildMonHeaders[];
+ 
+-#define NUM_LUXURY_SAFARI_HABITATS 7 // tables for MAP_SIX_ISLAND_SAFARI_1 in wild_encounters.json
+-const struct WildPokemonHeader *GetLuxurySafariHeader(u8 habitat);
++#define NUM_LUXURY_SAFARI_HABITATS 7 // tables per safari area in wild_encounters.json
++#define NUM_LUXURY_SAFARI_AREAS    5 // grounds, desert, volcano cave, beach, ice cave
++const struct WildPokemonHeader *GetLuxurySafariHeader(u8 area, u8 habitat);
+ 
+ void DisableWildEncounters(bool8 disabled);
+ bool8 StandardWildEncounter(u32 currMetatileAttrs, u16 previousMetaTileBehavior);
+diff --git a/src/data/wild_encounters.json b/src/data/wild_encounters.json
+index 19eac9a72..c3debef27 100644
+--- a/src/data/wild_encounters.json
++++ b/src/data/wild_encounters.json
+@@ -25201,12 +25201,12 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SLAKOTH"
++                "species": "SPECIES_SHROOMISH"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_NINCADA"
++                "species": "SPECIES_SEEDOT"
+               },
+               {
+                 "min_level": 40,
+@@ -25216,7 +25216,7 @@
+               {
+                 "min_level": 40,
+                 "max_level": 44,
+-                "species": "SPECIES_NUZLEAF"
++                "species": "SPECIES_BRELOOM"
+               },
+               {
+                 "min_level": 36,
+@@ -25244,14 +25244,14 @@
+                 "species": "SPECIES_SURSKIT"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_LOTAD"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LOMBRE"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_SURSKIT"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MASQUERAIN"
+               },
+               {
+                 "min_level": 40,
+@@ -25304,9 +25304,9 @@
+                 "species": "SPECIES_BARBOACH"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_CORPHISH"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
+               },
+               {
+                 "min_level": 36,
+@@ -25355,22 +25355,22 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SKITTY"
++                "species": "SPECIES_ZIGZAGOON"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SKITTY"
++                "species": "SPECIES_POOCHYENA"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_TAILLOW"
++                "species": "SPECIES_SKITTY"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_ELECTRIKE"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LINOONE"
+               },
+               {
+                 "min_level": 36,
+@@ -25400,17 +25400,17 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_WINGULL"
++                "species": "SPECIES_SURSKIT"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_LOTAD"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
+               },
+               {
+                 "min_level": 40,
+                 "max_level": 44,
+-                "species": "SPECIES_PELIPPER"
++                "species": "SPECIES_MASQUERAIN"
+               }
+             ]
+           },
+@@ -25440,7 +25440,7 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CORPHISH"
++                "species": "SPECIES_BARBOACH"
+               },
+               {
+                 "min_level": 36,
+@@ -25455,12 +25455,12 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CORPHISH"
++                "species": "SPECIES_BARBOACH"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_LUVDISC"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
+               },
+               {
+                 "min_level": 36,
+@@ -25479,27 +25479,27 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_TRAPINCH"
++                "species": "SPECIES_ZIGZAGOON"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CACNEA"
++                "species": "SPECIES_SPINDA"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_BALTOY"
++                "species": "SPECIES_CACNEA"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SPINDA"
++                "species": "SPECIES_POOCHYENA"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_TRAPINCH"
++                "species": "SPECIES_SPINDA"
+               },
+               {
+                 "min_level": 36,
+@@ -25509,32 +25509,32 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SABLEYE"
++                "species": "SPECIES_ZIGZAGOON"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SABLEYE"
++                "species": "SPECIES_SPINDA"
+               },
+               {
+                 "min_level": 40,
+                 "max_level": 44,
+-                "species": "SPECIES_VIBRAVA"
++                "species": "SPECIES_LINOONE"
+               },
+               {
+                 "min_level": 40,
+                 "max_level": 44,
+-                "species": "SPECIES_VIBRAVA"
++                "species": "SPECIES_MIGHTYENA"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_LILEEP"
++                "species": "SPECIES_KECLEON"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_ANORITH"
++                "species": "SPECIES_KECLEON"
+               }
+             ]
+           },
+@@ -25557,14 +25557,14 @@
+                 "species": "SPECIES_BARBOACH"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_CORPHISH"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
+               },
+               {
+                 "min_level": 40,
+                 "max_level": 44,
+-                "species": "SPECIES_WHISCASH"
++                "species": "SPECIES_CRAWDAUNT"
+               }
+             ]
+           },
+@@ -25633,12 +25633,12 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_NUMEL"
++                "species": "SPECIES_SPOINK"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SPOINK"
++                "species": "SPECIES_SWABLU"
+               },
+               {
+                 "min_level": 36,
+@@ -25648,47 +25648,47 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SWABLU"
++                "species": "SPECIES_POOCHYENA"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_TORKOAL"
++                "species": "SPECIES_ZANGOOSE"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_TORKOAL"
++                "species": "SPECIES_SEVIPER"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_ZANGOOSE"
++                "species": "SPECIES_SPOINK"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SEVIPER"
++                "species": "SPECIES_SWABLU"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_ZANGOOSE"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GRUMPIG"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_SEVIPER"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MEDICHAM"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_BAGON"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_ALTARIA"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_BAGON"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_ALTARIA"
+               }
+             ]
+           },
+@@ -25711,9 +25711,9 @@
+                 "species": "SPECIES_WINGULL"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_BARBOACH"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
+               },
+               {
+                 "min_level": 40,
+@@ -25787,52 +25787,52 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SHUPPET"
++                "species": "SPECIES_SHROOMISH"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_DUSKULL"
++                "species": "SPECIES_KECLEON"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_KECLEON"
++                "species": "SPECIES_VOLBEAT"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CASTFORM"
++                "species": "SPECIES_ILLUMISE"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SHUPPET"
++                "species": "SPECIES_SLAKOTH"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_DUSKULL"
++                "species": "SPECIES_CASTFORM"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_KECLEON"
++                "species": "SPECIES_SHROOMISH"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CHIMECHO"
++                "species": "SPECIES_KECLEON"
+               },
+               {
+-                "min_level": 40,
+-                "max_level": 44,
+-                "species": "SPECIES_BANETTE"
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TROPIUS"
+               },
+               {
+-                "min_level": 40,
+-                "max_level": 44,
+-                "species": "SPECIES_DUSCLOPS"
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CHIMECHO"
+               },
+               {
+                 "min_level": 36,
+@@ -25865,14 +25865,14 @@
+                 "species": "SPECIES_SURSKIT"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_LOTAD"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LOMBRE"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_SURSKIT"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MASQUERAIN"
+               }
+             ]
+           },
+@@ -25946,27 +25946,27 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SPHEAL"
++                "species": "SPECIES_ZIGZAGOON"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SNORUNT"
++                "species": "SPECIES_ELECTRIKE"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_ELECTRIKE"
++                "species": "SPECIES_PLUSLE"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_PLUSLE"
++                "species": "SPECIES_MINUN"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_MINUN"
++                "species": "SPECIES_TAILLOW"
+               },
+               {
+                 "min_level": 36,
+@@ -25976,7 +25976,7 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SPHEAL"
++                "species": "SPECIES_ZIGZAGOON"
+               },
+               {
+                 "min_level": 40,
+@@ -25986,17 +25986,17 @@
+               {
+                 "min_level": 40,
+                 "max_level": 44,
+-                "species": "SPECIES_SEALEO"
++                "species": "SPECIES_LINOONE"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_SNORUNT"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MANECTRIC"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_SNORUNT"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MANECTRIC"
+               }
+             ]
+           },
+@@ -26011,7 +26011,7 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_WAILMER"
++                "species": "SPECIES_SURSKIT"
+               },
+               {
+                 "min_level": 36,
+@@ -26019,14 +26019,14 @@
+                 "species": "SPECIES_WINGULL"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_WAILMER"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_WAILMER"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
+               }
+             ]
+           },
+@@ -26041,7 +26041,7 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CARVANHA"
++                "species": "SPECIES_CORPHISH"
+               },
+               {
+                 "min_level": 36,
+@@ -26051,12 +26051,12 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CARVANHA"
++                "species": "SPECIES_CORPHISH"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CLAMPERL"
++                "species": "SPECIES_LUVDISC"
+               },
+               {
+                 "min_level": 36,
+@@ -26066,22 +26066,22 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CARVANHA"
++                "species": "SPECIES_CORPHISH"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_CLAMPERL"
++                "species": "SPECIES_LUVDISC"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_CLAMPERL"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_RELICANTH"
++                "species": "SPECIES_FEEBAS"
+               }
+             ]
+           }
+@@ -26092,16 +26092,6 @@
+           "land_mons": {
+             "encounter_rate": 21,
+             "mons": [
+-              {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_SOLROCK"
+-              },
+-              {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_LUNATONE"
+-              },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+@@ -26125,32 +26115,42 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SOLROCK"
++                "species": "SPECIES_SWABLU"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_LUNATONE"
++                "species": "SPECIES_CASTFORM"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_SWABLU"
++                "species": "SPECIES_SPOINK"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_ABSOL"
++                "species": "SPECIES_SWABLU"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GRUMPIG"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_ALTARIA"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_BELDUM"
++                "species": "SPECIES_ABSOL"
+               },
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_BAGON"
++                "species": "SPECIES_ABSOL"
+               }
+             ]
+           },
+@@ -26170,17 +26170,17 @@
+               {
+                 "min_level": 36,
+                 "max_level": 40,
+-                "species": "SPECIES_BARBOACH"
++                "species": "SPECIES_SOLROCK"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_SOLROCK"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_LUNATONE"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
+               }
+             ]
+           },
+@@ -26228,9 +26228,9 @@
+                 "species": "SPECIES_BARBOACH"
+               },
+               {
+-                "min_level": 36,
+-                "max_level": 40,
+-                "species": "SPECIES_RELICANTH"
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
+               },
+               {
+                 "min_level": 36,
+@@ -26240,6 +26240,2673 @@
+             ]
+           }
+         },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_DESERT",
++          "base_label": "sSixIslandLuxurySafariDesert_Forest",
++          "land_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CACTURNE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SEEDOT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHROOMISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHROOMISH"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LOMBRE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LOMBRE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LOMBRE"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_DESERT",
++          "base_label": "sSixIslandLuxurySafariDesert_Meadow",
++          "land_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZIGZAGOON"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SANDSLASH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPINDA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPINDA"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SURSKIT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SURSKIT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MASQUERAIN"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_DESERT",
++          "base_label": "sSixIslandLuxurySafariDesert_Desert",
++          "land_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_VIBRAVA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CACTURNE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LILEEP"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ANORITH"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_DESERT",
++          "base_label": "sSixIslandLuxurySafariDesert_Volcano",
++          "land_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_VIBRAVA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CAMERUPT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_DESERT",
++          "base_label": "sSixIslandLuxurySafariDesert_Jungle",
++          "land_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_KECLEON"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CACTURNE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TROPIUS"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ABSOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ABSOL"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SURSKIT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SURSKIT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LOMBRE"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_DESERT",
++          "base_label": "sSixIslandLuxurySafariDesert_Coast",
++          "land_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CACNEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SANDSLASH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ANORITH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LILEEP"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_DESERT",
++          "base_label": "sSixIslandLuxurySafariDesert_Meteor",
++          "land_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TRAPINCH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CLAYDOL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_VIBRAVA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              }
++            ]
++          },
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 20,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WHISCASH"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE",
++          "base_label": "sSixIslandLuxurySafariCave_Forest",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TORKOAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_GEODUDE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHROOMISH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MAGCARGO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CAMERUPT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CAMERUPT"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE",
++          "base_label": "sSixIslandLuxurySafariCave_Meadow",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_GEODUDE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TORKOAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ELECTRIKE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MAGCARGO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MANECTRIC"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MANECTRIC"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE",
++          "base_label": "sSixIslandLuxurySafariCave_Desert",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_GEODUDE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BALTOY"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_GEODUDE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_GEODUDE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SANDSHREW"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GRAVELER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SANDSLASH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CLAYDOL"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE",
++          "base_label": "sSixIslandLuxurySafariCave_Volcano",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TORKOAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_GEODUDE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MAGCARGO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CAMERUPT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BAGON"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BAGON"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE",
++          "base_label": "sSixIslandLuxurySafariCave_Jungle",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHUPPET"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_DUSKULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHUPPET"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_DUSKULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHUPPET"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_DUSKULL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_BANETTE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_DUSCLOPS"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SABLEYE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SABLEYE"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE",
++          "base_label": "sSixIslandLuxurySafariCave_Coast",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_GEODUDE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TORKOAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_MAGCARGO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GRAVELER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CAMERUPT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CAMERUPT"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE",
++          "base_label": "sSixIslandLuxurySafariCave_Meteor",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_NUMEL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLUGMA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SOLROCK"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BAGON"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SHELGON"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BELDUM"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BELDUM"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++          "base_label": "sSixIslandLuxurySafariBeach_Forest",
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LOTAD"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_LOMBRE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TROPIUS"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 30,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_FEEBAS"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++          "base_label": "sSixIslandLuxurySafariBeach_Meadow",
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_TENTACRUEL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 30,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++          "base_label": "sSixIslandLuxurySafariBeach_Desert",
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_TENTACRUEL"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 30,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BARBOACH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_RELICANTH"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++          "base_label": "sSixIslandLuxurySafariBeach_Volcano",
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_TENTACRUEL"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 30,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_CRAWDAUNT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SHARPEDO"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++          "base_label": "sSixIslandLuxurySafariBeach_Jungle",
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TROPIUS"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_TENTACRUEL"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 30,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CARVANHA"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SHARPEDO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SHARPEDO"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++          "base_label": "sSixIslandLuxurySafariBeach_Coast",
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WAILMER"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WINGULL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_PELIPPER"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_WAILORD"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 30,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CLAMPERL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CLAMPERL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_HORSEA"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_RELICANTH"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_BEACH",
++          "base_label": "sSixIslandLuxurySafariBeach_Meteor",
++          "water_mons": {
++            "encounter_rate": 4,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_TENTACOOL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_WAILMER"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              }
++            ]
++          },
++          "fishing_mons": {
++            "encounter_rate": 30,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUVDISC"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_CORPHISH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_RELICANTH"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_RELICANTH"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE_COLD",
++          "base_label": "sSixIslandLuxurySafariIceCave_Forest",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GOLBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SLAKOTH"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SEALEO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SEALEO"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE_COLD",
++          "base_label": "sSixIslandLuxurySafariIceCave_Meadow",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GOLBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SKITTY"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GLALIE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GLALIE"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE_COLD",
++          "base_label": "sSixIslandLuxurySafariIceCave_Desert",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_GEODUDE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GOLBAT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GRAVELER"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE_COLD",
++          "base_label": "sSixIslandLuxurySafariIceCave_Volcano",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GOLBAT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GLALIE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SEALEO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SEALEO"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE_COLD",
++          "base_label": "sSixIslandLuxurySafariIceCave_Jungle",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHUPPET"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_DUSKULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHUPPET"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_DUSKULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SHUPPET"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_DUSKULL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GOLBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SABLEYE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SABLEYE"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE_COLD",
++          "base_label": "sSixIslandLuxurySafariIceCave_Coast",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SEALEO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GLALIE"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_SEALEO"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GLALIE"
++              }
++            ]
++          }
++        },
++        {
++          "map": "MAP_SIX_ISLAND_SAFARI_CAVE_COLD",
++          "base_label": "sSixIslandLuxurySafariIceCave_Meteor",
++          "land_mons": {
++            "encounter_rate": 10,
++            "mons": [
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_ZUBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SPHEAL"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_LUNATONE"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_SNORUNT"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_GOLBAT"
++              },
++              {
++                "min_level": 36,
++                "max_level": 40,
++                "species": "SPECIES_BELDUM"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_METANG"
++              },
++              {
++                "min_level": 40,
++                "max_level": 44,
++                "species": "SPECIES_METANG"
++              }
++            ]
++          }
++        },
+         {
+           "map": "MAP_ROUTE26",
+           "base_label": "gRoute260",
+diff --git a/src/luxury_safari.c b/src/luxury_safari.c
+index 073f1379d..226f36ee5 100644
+--- a/src/luxury_safari.c
++++ b/src/luxury_safari.c
+@@ -8,6 +8,7 @@
+ #include "data.h"
+ #include "event_data.h"
+ #include "list_menu.h"
++#include "main.h"
+ #include "malloc.h"
+ #include "menu.h"
+ #include "new_menu_helpers.h"
+@@ -38,8 +39,25 @@ static const u8 sText_Volcano[] = _("VOLCANO");
+ static const u8 sText_Jungle[]  = _("JUNGLE");
+ static const u8 sText_Coast[]   = _("COAST");
+ static const u8 sText_Meteor[]  = _("METEOR");
+-static const u8 sText_Grass[]   = _("IN THE GRASS");
+ static const u8 sText_Water[]   = _("ON THE WATER");
++static const u8 sText_AreaGrounds[] = _("{LEFT_ARROW} SAFARI GROUNDS {RIGHT_ARROW}");
++static const u8 sText_AreaDesert[]  = _("{LEFT_ARROW} DESERT {RIGHT_ARROW}");
++static const u8 sText_AreaVolcano[] = _("{LEFT_ARROW} VOLCANO CAVE {RIGHT_ARROW}");
++static const u8 sText_AreaBeach[]   = _("{LEFT_ARROW} BEACH {RIGHT_ARROW}");
++static const u8 sText_AreaIce[]     = _("{LEFT_ARROW} ICE CAVE {RIGHT_ARROW}");
++static const u8 sText_LandGrass[]   = _("IN THE GRASS");
++static const u8 sText_LandSand[]    = _("ON THE DEEP SAND");
++static const u8 sText_LandCave[]    = _("IN THE CAVE");
++
++// Same order as sLuxurySafariAreaMaps in wild_encounter.c
++static const u8 *const sAreaNames[NUM_LUXURY_SAFARI_AREAS] =
++{
++    sText_AreaGrounds, sText_AreaDesert, sText_AreaVolcano, sText_AreaBeach, sText_AreaIce,
++};
++static const u8 *const sAreaLandNames[NUM_LUXURY_SAFARI_AREAS] =
++{
++    sText_LandGrass, sText_LandSand, sText_LandCave, sText_LandGrass, sText_LandCave,
++};
+ static const u8 sText_Cancel[]  = _("CANCEL");
+ static const u8 sText_NoMons[]  = _("-");
+ static const u8 sText_CancelHint[] = _("Leave without\nchoosing a habitat.");
+@@ -73,6 +91,8 @@ static const u8 sColor_Water[]  = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_BLUE, TEX
+ 
+ struct LuxurySafariMenu
+ {
++    s32 habitat;
++    u8 area;
+     u8 listWindowId;
+     u8 previewWindowId;
+     u8 listTaskId;
+@@ -140,6 +160,7 @@ static u8 PrintSection(u8 windowId, u8 y, const u8 *header, const u8 *headerColo
+ 
+ static void DrawHabitatPreview(s32 habitat)
+ {
++    u8 area = sMenu->area;
+     u8 windowId = sMenu->previewWindowId;
+     const struct WildPokemonHeader *header;
+     u16 land[MAX_PREVIEW_MONS];
+@@ -156,7 +177,7 @@ static void DrawHabitatPreview(s32 habitat)
+         return;
+     }
+ 
+-    header = GetLuxurySafariHeader(habitat);
++    header = GetLuxurySafariHeader(area, habitat);
+     if (header != NULL)
+     {
+         if (header->landMonsInfo != NULL)
+@@ -176,8 +197,12 @@ static void DrawHabitatPreview(s32 habitat)
+         }
+     }
+ 
+-    y = PrintSection(windowId, 0, sText_Grass, sColor_Grass, land, landCount);
+-    PrintSection(windowId, y + 2, sText_Water, sColor_Water, water, waterCount);
++    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, 0, sColor_Name, TEXT_SKIP_DRAW, sAreaNames[area]);
++    y = PREVIEW_LINE + 4;
++    if (landCount != 0)
++        y = PrintSection(windowId, y, sAreaLandNames[area], sColor_Grass, land, landCount) + 2;
++    if (waterCount != 0)
++        PrintSection(windowId, y, sText_Water, sColor_Water, water, waterCount);
+     CopyWindowToVram(windowId, COPYWIN_GFX);
+ }
+ 
+@@ -185,6 +210,7 @@ static void MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu *list)
+ {
+     if (!onInit)
+         PlaySE(SE_SELECT);
++    sMenu->habitat = itemIndex;
+     DrawHabitatPreview(itemIndex);
+ }
+ 
+@@ -231,8 +257,20 @@ static void CloseHabitatMenu(u8 taskId)
+ 
+ static void Task_HandleHabitatMenu(u8 taskId)
+ {
+-    s32 input = ListMenu_ProcessInput(sMenu->listTaskId);
++    s32 input;
+ 
++    // Left/Right flip the preview between the safari areas
++    if (JOY_NEW(DPAD_LEFT) || JOY_NEW(DPAD_RIGHT))
++    {
++        if (JOY_NEW(DPAD_LEFT))
++            sMenu->area = (sMenu->area + NUM_LUXURY_SAFARI_AREAS - 1) % NUM_LUXURY_SAFARI_AREAS;
++        else
++            sMenu->area = (sMenu->area + 1) % NUM_LUXURY_SAFARI_AREAS;
++        PlaySE(SE_SELECT);
++        DrawHabitatPreview(sMenu->habitat);
++        return;
++    }
++    input = ListMenu_ProcessInput(sMenu->listTaskId);
+     if (input == LIST_NOTHING_CHOSEN)
+         return;
+ 
+diff --git a/src/wild_encounter.c b/src/wild_encounter.c
+index 09dfa93ea..dd3b37114 100644
+--- a/src/wild_encounter.c
++++ b/src/wild_encounter.c
+@@ -173,21 +173,42 @@ static u8 ChooseWildMonLevel(const struct WildPokemon * info)
+     return lo + res;
+ }
+ 
+-// Six Island luxury safari: the grounds have one encounter table per habitat in
+-// wild_encounters.json (consecutive entries, in the order of sHabitatNames in
++// Six Island luxury safari: every safari area (grounds, desert, volcano cave, beach, ice cave) has one
++// encounter table per habitat in wild_encounters.json (consecutive entries, in the order of sHabitatNames in
+ // luxury_safari.c); VAR_LUXURY_SAFARI_HABITAT picks which one is used.
++static const u16 sLuxurySafariAreaMaps[NUM_LUXURY_SAFARI_AREAS] =
++{
++    MAP_SIX_ISLAND_SAFARI_1,
++    MAP_SIX_ISLAND_SAFARI_DESERT,
++    MAP_SIX_ISLAND_SAFARI_CAVE,
++    MAP_SIX_ISLAND_SAFARI_BEACH,
++    MAP_SIX_ISLAND_SAFARI_CAVE_COLD,
++};
++
+ static bool8 IsLuxurySafariMap(u8 mapGroup, u8 mapNum)
+ {
+-    return mapGroup == MAP_GROUP(SIX_ISLAND_SAFARI_1) && mapNum == MAP_NUM(SIX_ISLAND_SAFARI_1);
++    u8 i;
++
++    for (i = 0; i < NUM_LUXURY_SAFARI_AREAS; i++)
++    {
++        if (mapGroup == (sLuxurySafariAreaMaps[i] >> 8) && mapNum == (sLuxurySafariAreaMaps[i] & 0xFF))
++            return TRUE;
++    }
++    return FALSE;
+ }
+ 
+-const struct WildPokemonHeader *GetLuxurySafariHeader(u8 habitat)
++const struct WildPokemonHeader *GetLuxurySafariHeader(u8 area, u8 habitat)
+ {
+     u16 i;
++    u8 group, num;
+ 
++    if (area >= NUM_LUXURY_SAFARI_AREAS)
++        return NULL;
++    group = sLuxurySafariAreaMaps[area] >> 8;
++    num = sLuxurySafariAreaMaps[area] & 0xFF;
+     for (i = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED); i++)
+     {
+-        if (IsLuxurySafariMap(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum))
++        if (gWildMonHeaders[i].mapGroup == group && gWildMonHeaders[i].mapNum == num)
+             return &gWildMonHeaders[i + habitat];
+     }
+     return NULL;

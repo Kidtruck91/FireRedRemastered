@@ -308,3 +308,12 @@ Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
 - Behaviors mapped to FR: deep sand -> MB_SAND (land encounters), MB_CAVE floors (land encounters), cave entrance -> MB_CAVE_DOOR, ledges kept, Emerald-only ones (diagonal ledges, bumpy/muddy slopes) -> MB_NORMAL. Collision comes from the map, so mark lava impassable in Porymap.
 - Lava animates (`InitTilesetAnim_HoennVolcano` in tileset_anims.c, Emerald's 4-frame lava, first 4 tiles of the tileset).
 - Converter + source lists live in the session scratch (`/tmp/claude-0/hoenn/convert.py`); tested by converting Mt. Chimney's crater and the Route 111 desert into test maps in mGBA.
+
+## Extra: Luxury Safari areas (desert, volcano cave, beach, ice cave)
+
+- Your maps `SixIsland_Safari_Desert` (HoennDesert), `_Cave` (HoennVolcano), `_Beach` (SeviiIslands123), `_Cave_Cold` (SeafoamIslands) are filled. Layouts were generated from coarse plans with a tile-adjacency solver trained on vanilla maps (Route 111 / Mt. Chimney / Fiery Path / Treasure Beach / Icefall Cave), so edges follow the games' own rules; touch up in Porymap as you like.
+- Warps: grounds west arrows (9,15)/(9,16) -> Desert east arrows; (9,32)/(9,33) -> Beach east arrows; cave door (25,2) -> Volcano Cave bottom exit; Beach islet door (6,8) -> Cold Cave bottom exit. Added metatiles: HoennDesert gets sand arrow-warp tiles (E/W/N/S) at the end; SeviiIslands123 gets one east-arrow sand tile (0x39D).
+- Map types: caves MAP_TYPE_UNDERGROUND; region section Six Island; Desert keeps your WEATHER_SANDSTORM. Borders set to rock/ocean/ice fill.
+- Encounters: 35 tables (5 areas x 7 habitats), consecutive per map in wild_encounters.json (`sSixIslandLuxurySafari{,Desert,Cave,Beach,IceCave}_<Habitat>`); `GetCurrentMapWildMonHeaderId` adds the habitat for any area in `sLuxurySafariAreaMaps`. Desert land encounters only on deep sand; beach is surf/fish only; caves land only.
+- Gate preview: Left/Right flips between the five areas.
+- Tested in mGBA: all warps both ways, Volcano Cave encounter (Numel), preview paging. Not play-tested: every habitat/area table, sandstorm.
