@@ -18,6 +18,11 @@
       "map": "MAP_ORANGE_ISLANDS_VALENCIA",
       "direction": "down",
       "offset": 0
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_MIKAN",
+      "direction": "up",
+      "offset": 0
     }
   ],
   "object_events": [],

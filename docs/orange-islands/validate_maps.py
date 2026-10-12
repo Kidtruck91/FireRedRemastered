@@ -13,6 +13,10 @@ checks = {
     'Valencia': ((20,39), [(20,0),(0,19),(9,9),(11,20),(8,28),(26,17),(28,27)], False),
     'Route_1': ((15,0), [(19,34),(8,19)], False),
     'Route_2': ((49,19), [(8,9),(15,34),(35,9),(25,9)], False),
+    'Mikan': ((20,35), [(0,20),(27,12),(11,10),(30,27)], False),
+    'Sunburst': ((43,16), [(32,0),(8,10),(27,10),(26,27)], False),
+    'Route_4': ((0,13), [(69,14),(19,10),(39,20),(52,10)], True),
+    'Route_6': ((21,35), [(49,20),(20,12),(31,18),(8,9),(41,29)], True),
     'Route_3': ((20,59), [(20,0),(11,19),(29,35),(10,46)], True),
 }
 data = {}
@@ -61,4 +65,4 @@ for name,(header,l,blocks) in data.items():
                 assert v==ov, f'{name}: mismatched walkable seam at {t}'
                 matched+=1
         assert matched>=3, name+': connection has no usable land crossing'
-print('All 6 directional connections have reciprocal offsets and matching walkable seams.')
+print('All directional connections have reciprocal offsets and matching walkable seams.')

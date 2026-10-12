@@ -18,6 +18,11 @@
       "map": "MAP_ORANGE_ISLANDS_VALENCIA",
       "direction": "up",
       "offset": -5
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_4",
+      "direction": "left",
+      "offset": 0
     }
   ],
   "object_events": [],
