@@ -6585,7 +6585,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Valencia/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Valencia/map.bin"
     },
@@ -6597,7 +6597,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Mikan/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Mikan/map.bin"
     },
@@ -6609,7 +6609,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Navel/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Navel/map.bin"
     },
@@ -6621,7 +6621,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Trovita/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Trovita/map.bin"
     },
@@ -6633,7 +6633,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Kumquat/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Kumquat/map.bin"
     },
@@ -6645,7 +6645,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Pummelo/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo/map.bin"
     },
@@ -6657,7 +6657,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_1/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_1/map.bin"
     },
@@ -6669,7 +6669,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_2/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_2/map.bin"
     },
@@ -6681,7 +6681,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_3/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_3/map.bin"
     },
@@ -6693,7 +6693,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_4/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_4/map.bin"
     },
@@ -6705,7 +6705,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_5/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_5/map.bin"
     },
@@ -6717,7 +6717,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_6/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_6/map.bin"
     },
@@ -6729,7 +6729,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_7/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_7/map.bin"
     },
@@ -6741,7 +6741,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_8/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_8/map.bin"
     },
@@ -6753,9 +6753,129 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PalletTown",
+      "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_9/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_9/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_SUNBURST",
+      "name": "OrangeIslands_Sunburst_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Sunburst/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Sunburst/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO",
+      "name": "OrangeIslands_Moro_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Moro/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_KINNOW",
+      "name": "OrangeIslands_Kinnow_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Kinnow/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MANDARIN_SOUTH",
+      "name": "OrangeIslands_Mandarin_South_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Mandarin_South/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Mandarin_South/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_PINKAN",
+      "name": "OrangeIslands_Pinkan_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Pinkan/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Pinkan/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_10",
+      "name": "OrangeIslands_Route_10_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Route_10/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_10/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_11",
+      "name": "OrangeIslands_Route_11_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Route_11/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_11/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_12",
+      "name": "OrangeIslands_Route_12_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Route_12/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_12/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_13",
+      "name": "OrangeIslands_Route_13_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Route_13/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_13/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_14",
+      "name": "OrangeIslands_Route_14_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Route_14/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_14/map.bin"
     }
   ]
 }

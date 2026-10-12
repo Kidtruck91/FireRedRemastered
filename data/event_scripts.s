@@ -1991,3 +1991,33 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Route_9/scripts.inc"
 	.include "data/maps/OrangeIslands_Route_9/text.inc"
+
+	.include "data/maps/OrangeIslands_Sunburst/scripts.inc"
+	.include "data/maps/OrangeIslands_Sunburst/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro/text.inc"
+
+	.include "data/maps/OrangeIslands_Kinnow/scripts.inc"
+	.include "data/maps/OrangeIslands_Kinnow/text.inc"
+
+	.include "data/maps/OrangeIslands_Mandarin_South/scripts.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South/text.inc"
+
+	.include "data/maps/OrangeIslands_Pinkan/scripts.inc"
+	.include "data/maps/OrangeIslands_Pinkan/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_10/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_10/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_11/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_11/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_12/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_12/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_13/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_13/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_14/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_14/text.inc"
