@@ -8,7 +8,7 @@ Based on follower-port commit 2dc0f227cf31c01bce563d674b7fa31f7bb21e8c and the s
 | Route 1 | 30×40 | Southern ferry beach, picnic furniture, long pier |
 | Route 2 | 50×40 | Winding jungle trail, encounter clearings, pond, optional branches |
 | Route 3 | 40×60 | Surf crossing, staggered reef banks, three optional rest islets |
-| Mikan | 40×36 | Harbor settlement, Gym forecourt, promenade, west landing |
+| Mikan | 52×44 | Narrow western settlement, sheltered inlet, Gym headland, southern landing |
 | Sunburst | 44×36 | Glass workshop yard, village square, picnic beach |
 | Route 4 | 70×30 | Long crossing with staggered sandbars and rest stops |
 | Route 6 | 50×36 | Central exploration island, rocky outcrop, two optional islets |
@@ -196,3 +196,19 @@ Mikan's seven-tile connected border strips contain only the shared General/tropi
 Regenerate and verify asset packing with `python3 docs/orange-islands/build_coastal_tileset.py`. The generator verifies imported graphics, palette-bank references, PNG round trips and exact preservation of base metatile definitions. Map reachability and connection checks include Mikan's added residence and pier. The ROM build verifies asset integration.
 
 ![Mikan with the combined coastal-town tileset](OrangeIslands_Mikan.png)
+
+## Mikan geography revision — Sevii references
+
+Mikan's former oval footprint has been replaced by an asymmetric 52×44 island. Reference layouts were One Island (compact waterfront and cliff enclosure), Three Island (a narrow settlement spine with offset buildings), and Four Island (bays and irregular terrain around town). This is a new layout inspired by their structure, not a copied Sevii map.
+
+The island now has a long western settlement strip, a northeastern Gym headland with cliff-facing steps, an east-facing sheltered harbor inlet and projecting pier, a garden beside the lower residence, and a separate southern beach landing. Forest clusters sit behind the town instead of palms encircling a round shoreline. Buildings and their approach paths follow the landform.
+
+The three existing connection directions and offsets are unchanged: Route 5 north (+2), Route 6 west (0), and Route 3 south (0). Their landing corridors remain compatible; Mikan's additional area extends east and the south connection moves with the new map height. Sign positions/text and landmark checks were updated. The combined coastal tileset and its budget are unchanged. Building doors remain blocked pending interiors. Emulator traversal and connection-scroll checks are still needed.
+
+### Before
+
+![Mikan before the geography revision](Mikan_Before_Reshape.png)
+
+### After
+
+![Mikan with a headland and harbor inlet](OrangeIslands_Mikan.png)
