@@ -2,28 +2,64 @@
   "id": "MAP_ORANGE_ISLANDS_NAVEL",
   "name": "OrangeIslands_Navel",
   "layout": "LAYOUT_ORANGE_ISLANDS_NAVEL",
-  "music": "MUS_BERRY_PICK",
+  "music": "MUS_ROUTE1",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
-  "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_NONE",
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": false,
   "allow_escaping": false,
-  "allow_running": false,
-  "show_map_name": true,
+  "allow_running": true,
+  "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
-  "object_events": [
-
+  "connections": [
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_5",
+      "direction": "down",
+      "offset": 7
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_8",
+      "direction": "right",
+      "offset": 30
+    }
   ],
-  "warp_events": [
-
-  ],
-  "coord_events": [
-
-  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 26,
+      "y": 14,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Navel_EventScript_Summit"
+    },
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 51,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Navel_EventScript_Mountain"
+    },
+    {
+      "type": "sign",
+      "x": 40,
+      "y": 49,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Navel_EventScript_East"
+    },
+    {
+      "type": "sign",
+      "x": 27,
+      "y": 55,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Navel_EventScript_South"
+    }
   ]
 }

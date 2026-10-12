@@ -23,6 +23,11 @@
       "map": "MAP_ORANGE_ISLANDS_ROUTE_6",
       "direction": "up",
       "offset": 12
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_7",
+      "direction": "up",
+      "offset": -24
     }
   ],
   "object_events": [],

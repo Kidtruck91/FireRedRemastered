@@ -2,28 +2,51 @@
   "id": "MAP_ORANGE_ISLANDS_KINNOW",
   "name": "OrangeIslands_Kinnow",
   "layout": "LAYOUT_ORANGE_ISLANDS_KINNOW",
-  "music": "MUS_BERRY_PICK",
+  "music": "MUS_ROUTE1",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
-  "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_NONE",
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": false,
   "allow_escaping": false,
-  "allow_running": false,
-  "show_map_name": true,
+  "allow_running": true,
+  "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
-  "object_events": [
-
+  "connections": [
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_8",
+      "direction": "left",
+      "offset": 0
+    }
   ],
-  "warp_events": [
-
-  ],
-  "coord_events": [
-
-  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 24,
+      "y": 23,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Kinnow_EventScript_Showboat"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Kinnow_EventScript_West"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Kinnow_EventScript_Town"
+    }
   ]
 }
