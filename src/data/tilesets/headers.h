@@ -789,3 +789,58 @@ const struct Tileset gTileset_OrangeGeneral =
     .metatileAttributes = gMetatileAttributes_OrangeGeneral,
     .callback = InitTilesetAnim_OrangeGeneral,
 };
+
+const struct Tileset gTileset_PalletTownCondensed =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PalletTownCondensed,
+    .palettes = gTilesetPalettes_PalletTownCondensed,
+    .metatiles = gMetatiles_PalletTownCondensed,
+    .metatileAttributes = gMetatileAttributes_PalletTownCondensed,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_VermilionCityCondensed =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_VermilionCityCondensed,
+    .palettes = gTilesetPalettes_VermilionCityCondensed,
+    .metatiles = gMetatiles_VermilionCityCondensed,
+    .metatileAttributes = gMetatileAttributes_VermilionCityCondensed,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_SeviiIslands123Condensed =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_SeviiIslands123Condensed,
+    .palettes = gTilesetPalettes_SeviiIslands123Condensed,
+    .metatiles = gMetatiles_SeviiIslands123Condensed,
+    .metatileAttributes = gMetatileAttributes_SeviiIslands123Condensed,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_SeviiIslands45Condensed =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_SeviiIslands45Condensed,
+    .palettes = gTilesetPalettes_SeviiIslands45Condensed,
+    .metatiles = gMetatiles_SeviiIslands45Condensed,
+    .metatileAttributes = gMetatileAttributes_SeviiIslands45Condensed,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_SeviiIslands67Condensed =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_SeviiIslands67Condensed,
+    .palettes = gTilesetPalettes_SeviiIslands67Condensed,
+    .metatiles = gMetatiles_SeviiIslands67Condensed,
+    .metatileAttributes = gMetatileAttributes_SeviiIslands67Condensed,
+    .callback = NULL,
+};

@@ -1,0 +1,10 @@
+{
+  "source": "pallet_town",
+  "symbol": "gTileset_PalletTownCondensed",
+  "primary": "gTileset_OrangeGeneral",
+  "source_png_tiles": 80,
+  "referenced_source_tiles": 63,
+  "occupied_tiles": 63,
+  "free_secondary_slots": 321,
+  "metatiles": 89
+}

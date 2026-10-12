@@ -1,0 +1,10 @@
+{
+  "source": "vermilion_city",
+  "symbol": "gTileset_VermilionCityCondensed",
+  "primary": "gTileset_OrangeGeneral",
+  "source_png_tiles": 144,
+  "referenced_source_tiles": 114,
+  "occupied_tiles": 101,
+  "free_secondary_slots": 283,
+  "metatiles": 168
+}

@@ -1,0 +1,10 @@
+{
+  "source": "sevii_islands_123",
+  "symbol": "gTileset_SeviiIslands123Condensed",
+  "primary": "gTileset_OrangeGeneral",
+  "source_png_tiles": 384,
+  "referenced_source_tiles": 215,
+  "occupied_tiles": 176,
+  "free_secondary_slots": 208,
+  "metatiles": 286
+}

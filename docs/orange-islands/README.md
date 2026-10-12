@@ -180,3 +180,7 @@ Orange-only palette edits make grass richer green, water lighter blue, red roofs
 
 ![Route 14 — Outer reef](OrangeIslands_Route_14.png)
 
+
+## Condensed secondary tilesets
+
+[View the five condensed town/city tilesets and their metatile atlases](secondary-tilesets/README.md). These are optional Orange General companions; existing maps retain their current secondary tilesets.

@@ -213,3 +213,18 @@ const u32 gMetatileAttributes_OrangeIslands[] = INCBIN_U32("data/tilesets/second
 
 const u16 gMetatiles_OrangeGeneral[] = INCBIN_U16("data/tilesets/primary/orange_general/metatiles.bin");
 const u32 gMetatileAttributes_OrangeGeneral[] = INCBIN_U32("data/tilesets/primary/orange_general/metatile_attributes.bin");
+
+const u16 gMetatiles_PalletTownCondensed[] = INCBIN_U16("data/tilesets/secondary/pallet_town_condensed/metatiles.bin");
+const u32 gMetatileAttributes_PalletTownCondensed[] = INCBIN_U32("data/tilesets/secondary/pallet_town_condensed/metatile_attributes.bin");
+
+const u16 gMetatiles_VermilionCityCondensed[] = INCBIN_U16("data/tilesets/secondary/vermilion_city_condensed/metatiles.bin");
+const u32 gMetatileAttributes_VermilionCityCondensed[] = INCBIN_U32("data/tilesets/secondary/vermilion_city_condensed/metatile_attributes.bin");
+
+const u16 gMetatiles_SeviiIslands123Condensed[] = INCBIN_U16("data/tilesets/secondary/sevii_islands_123_condensed/metatiles.bin");
+const u32 gMetatileAttributes_SeviiIslands123Condensed[] = INCBIN_U32("data/tilesets/secondary/sevii_islands_123_condensed/metatile_attributes.bin");
+
+const u16 gMetatiles_SeviiIslands45Condensed[] = INCBIN_U16("data/tilesets/secondary/sevii_islands_45_condensed/metatiles.bin");
+const u32 gMetatileAttributes_SeviiIslands45Condensed[] = INCBIN_U32("data/tilesets/secondary/sevii_islands_45_condensed/metatile_attributes.bin");
+
+const u16 gMetatiles_SeviiIslands67Condensed[] = INCBIN_U16("data/tilesets/secondary/sevii_islands_67_condensed/metatiles.bin");
+const u32 gMetatileAttributes_SeviiIslands67Condensed[] = INCBIN_U32("data/tilesets/secondary/sevii_islands_67_condensed/metatile_attributes.bin");
