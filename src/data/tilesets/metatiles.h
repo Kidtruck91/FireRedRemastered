@@ -228,3 +228,6 @@ const u32 gMetatileAttributes_SeviiIslands45Condensed[] = INCBIN_U32("data/tiles
 
 const u16 gMetatiles_SeviiIslands67Condensed[] = INCBIN_U16("data/tilesets/secondary/sevii_islands_67_condensed/metatiles.bin");
 const u32 gMetatileAttributes_SeviiIslands67Condensed[] = INCBIN_U32("data/tilesets/secondary/sevii_islands_67_condensed/metatile_attributes.bin");
+
+const u16 gMetatiles_OrangeCoastalTown[] = INCBIN_U16("data/tilesets/secondary/orange_coastal_town/metatiles.bin");
+const u32 gMetatileAttributes_OrangeCoastalTown[] = INCBIN_U32("data/tilesets/secondary/orange_coastal_town/metatile_attributes.bin");

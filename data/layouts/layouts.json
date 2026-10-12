@@ -6597,7 +6597,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeIslands",
+      "secondary_tileset": "gTileset_OrangeCoastalTown",
       "border_filepath": "data/layouts/OrangeIslands_Mikan/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Mikan/map.bin"
     },

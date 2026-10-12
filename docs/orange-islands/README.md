@@ -184,3 +184,15 @@ Orange-only palette edits make grass richer green, water lighter blue, red roofs
 ## Condensed secondary tilesets
 
 [View the five condensed town/city tilesets and their metatile atlases](secondary-tilesets/README.md). These are optional Orange General companions; existing maps retain their current secondary tilesets.
+
+## Coastal-town trial on Mikan
+
+Mikan now pairs OrangeGeneral with **gTileset_OrangeCoastalTown**. The mixed secondary contains all tropical assets plus selected Sevii 1–3 house facades, building pieces and nature details. The native Gym facade, Center, Mart, terrain and dock planks come from OrangeGeneral. Two Sevii houses replace/add residential frontage. Beach seating, palms and an optional pier complete the exterior trial.
+
+Budget: **222/384 secondary graphics slots** (162 free), **189/384 secondary metatile definitions** (195 free). Original tropical graphics slots and its first 96 metatile definitions are preserved exactly, including attributes. Imported Sevii definitions are appended and flip-packed; their palette banks do not conflict with tropical graphics, which use primary palettes 0–6. The other 24 map assignments are unchanged.
+
+Mikan's seven-tile connected border strips contain only the shared General/tropical metatile vocabulary so approaching routes can render them with their existing tilesets. Imported houses sit beyond those strips. Interiors and door warps remain for later; building fronts are blocked placeholders. Emulator tests of transitions and Surf are still needed.
+
+Regenerate and verify asset packing with `python3 docs/orange-islands/build_coastal_tileset.py`. The generator verifies imported graphics, palette-bank references, PNG round trips and exact preservation of base metatile definitions. Map reachability and connection checks include Mikan's added residence and pier. The ROM build verifies asset integration.
+
+![Mikan with the combined coastal-town tileset](OrangeIslands_Mikan.png)

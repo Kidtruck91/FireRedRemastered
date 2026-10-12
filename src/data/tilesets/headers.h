@@ -844,3 +844,14 @@ const struct Tileset gTileset_SeviiIslands67Condensed =
     .metatileAttributes = gMetatileAttributes_SeviiIslands67Condensed,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_OrangeCoastalTown =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_OrangeCoastalTown,
+    .palettes = gTilesetPalettes_OrangeCoastalTown,
+    .metatiles = gMetatiles_OrangeCoastalTown,
+    .metatileAttributes = gMetatileAttributes_OrangeCoastalTown,
+    .callback = NULL,
+};
