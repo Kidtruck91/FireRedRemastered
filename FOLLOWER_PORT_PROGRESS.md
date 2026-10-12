@@ -325,3 +325,11 @@ Spawns aren't saved; stale or orphaned ones are cleaned up on the next step.
 - GetMapName now resolves Johto mapsecs (Town Map label + location popups).
 - Cherrygrove/Cianwood/Blackthorn map_type changed INDOOR -> CITY (needed for Fly).
 - TODO: gate Johto access behind post-Sevii progress (story); Orange Islands region later.
+
+## EXP. ALL option (commit af58d5cab)
+- Options menu item EXP. ALL (FLAG_EXP_ALL). Non-participants get EXP_ALL_PERCENT (50) of the defeated mon's EXP; participants unchanged; level cap still applies. gExpAllExp in battle_main.c.
+
+## Orange Islands (in progress)
+- Core done (commit 572f7171b): ITEM_ORANGE_TICKET; src/orange_islands.c OrangeChallenge_Begin/End (callnative; VAR_RESULT = PC space ok); FLAG_ORANGE_CHALLENGE locks PCs; VAR_ORANGE_STASH_0..5 hold home-team PC slots.
+- Plan: ticket after National Dex; ferry via Seagallop (add SEAGALLOP_VALENCIA); Valencia arrival (Ivy gives a starter); gyms Mikan (Cissy: accuracy tricks), Navel (Danny), Trovita (Rudy), Kumquat (Luana); Pummelo (Drake, full 6v6). Kanto/Johto/Hoenn mons.
+- TODO: maps (user, Porymap), ferry wiring, starter gift, gym scripts/teams, Orange region map, respawn point on arrival.
