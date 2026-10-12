@@ -749,6 +749,7 @@
 #define MAP_ORANGE_ISLANDS_ROUTE_12       (22 | (55 << 8))
 #define MAP_ORANGE_ISLANDS_ROUTE_13       (23 | (55 << 8))
 #define MAP_ORANGE_ISLANDS_ROUTE_14       (24 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_MIKAN_BEACH    (25 | (55 << 8))
 
 #define MAP_GROUPS_COUNT 56
 

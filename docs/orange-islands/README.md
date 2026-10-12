@@ -8,7 +8,8 @@ Based on follower-port commit 2dc0f227cf31c01bce563d674b7fa31f7bb21e8c and the s
 | Route 1 | 30×40 | Southern ferry beach, picnic furniture, long pier |
 | Route 2 | 50×40 | Winding jungle trail, encounter clearings, pond, optional branches |
 | Route 3 | 40×60 | Surf crossing, staggered reef banks, three optional rest islets |
-| Mikan | 52×44 | Narrow western settlement, sheltered inlet, Gym headland, southern landing |
+| Mikan | 24×48 | Inland forest town, offset homes, raised Gym forecourt |
+| Mikan Beach | 64×44 | Separate coast route, harbor, channel bridge and sea landings |
 | Sunburst | 44×36 | Twin north coves, craft terraces and workshop yard |
 | Route 4 | 70×30 | Long crossing with staggered sandbars and rest stops |
 | Route 6 | 50×36 | Central exploration island, rocky outcrop, two optional islets |
@@ -222,3 +223,25 @@ Valencia, Sunburst, Navel, Moro, Kinnow, Mandarin South, Trovita, Kumquat, Pinka
 All existing route connection directions, offsets and landing edge cells are preserved. Each settlement has checked access to its building fronts, piers and signs. `island_landmarks.json` supplies the revised meaningful walkability targets to the existing validator; routes keep their original checks. Mixed-secondary border strips remain compatible with approaching routes.
 
 The combined coastal tileset now also includes the native lab facade from Pallet. Its three private palettes occupy slots 13–15; tropical assets use primary palettes 0–6, and existing imported Sevii assets retain their palette banks. Existing tropical/Sevii metatile IDs are preserved. Native Gym facades, houses and lab artwork replace more generic placeholders; ship artwork, interiors, events and emulator testing remain outstanding.
+
+## Inland Mikan and separate coast — current trial
+
+The current Mikan model separates the settlement from the coast. This follows the supplied Three Island town reference and the town/port/route organization across Islands 1–7. The Bond Bridge map exists in this repository and was inspected directly, along with all seven Sevii town maps. Its long coastal route, wooded banks and channel crossing inspired the separate beach route.
+
+**OrangeIslands_Mikan** is now a 24×48 inland settlement with no ocean tiles: forest enclosure, an eastern rock wall, a winding lane, offset residences, Center, Mart and raised Gym forecourt. Its southern lane connects to **OrangeIslands_Mikan_Beach**, a 64×44 coastal route containing the sea landings, a bridge across a water channel, picnic beach and small pier. No new interiors were added.
+
+The beach takes over the previous sea-route connections: Route 3 south (offset 0), Route 6 west (offset 0), and Route 5 north (offset +2). The town joins the beach's north edge at offset +40, with a reciprocal town-south offset of -40. Its coordinate range 40–63 is disjoint from Route 5's range 2–37. Dry land paths connect all four entrances through the bridge. All existing map IDs are preserved; the beach map and layout are appended to their tables. Region map and ferry story integration remain pending.
+
+There are now 26 designed exterior layouts. This separation is a trial on Mikan; the other settlements retain their latest geography revisions while we review the new model. Building doors remain blocked for later interiors. Map/border, access, script/build and exact-ROM-layout checks pass. Emulator connection scrolling, Surf and gameplay tests still need to be run.
+
+### Inland town
+
+![Inland Mikan](OrangeIslands_Mikan.png)
+
+### Connected coast route
+
+![Mikan beach and harbor](OrangeIslands_Mikan_Beach.png)
+
+### Previous combined map
+
+![Previous Mikan](Mikan_Before_TownBeachSplit.png)

@@ -44,4 +44,5 @@ layouts=json.loads((ROOT/'data/layouts/layouts.json').read_text())['layouts']
 assert all(l['primary_tileset']=='gTileset_OrangeGeneral' for l in layouts if l['name'].startswith('OrangeIslands_'))
 assert all(l['primary_tileset']!='gTileset_OrangeGeneral' for l in layouts if not l['name'].startswith('OrangeIslands_'))
 print(f'All 736 metatile definitions are pixel-index equivalent; attributes/palette banks preserved; {frame_count} animation frames verified.')
-print(f'{report["free_primary_tiles"]} free primary graphics slots; all 25 Orange layouts use OrangeGeneral exclusively.')
+orange_count=sum(l['name'].startswith('OrangeIslands_') for l in layouts)
+print(f'{report["free_primary_tiles"]} free primary graphics slots; all {orange_count} Orange layouts use OrangeGeneral exclusively.')

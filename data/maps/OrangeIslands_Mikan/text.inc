@@ -1,13 +1,12 @@
 OrangeIslands_Mikan_Text_Gym::
 	.string "MIKAN GYM\n"
 	.string "Leader: CISSY\n"
-	.string "Climb the headland steps.$"
+	.string "Climb the forecourt steps.$"
 
-OrangeIslands_Mikan_Text_Harbor::
-	.string "MIKAN HARBOR\n"
-	.string "South: VALENCIA reef passage\n"
-	.string "North: NAVEL via Route 5$"
+OrangeIslands_Mikan_Text_Beach::
+	.string "MIKAN HARBOR AND BEACH\n"
+	.string "Follow the south lane.$"
 
-OrangeIslands_Mikan_Text_West::
-	.string "ROUTE 6 - WORKSHOP CHANNEL\n"
-	.string "West: SUNBURST ISLAND$"
+OrangeIslands_Mikan_Text_Town::
+	.string "MIKAN TOWN\n"
+	.string "Forest lanes and island homes$"

@@ -15,7 +15,7 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_MIKAN",
+      "map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
       "direction": "down",
       "offset": -2
     },

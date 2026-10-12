@@ -2021,3 +2021,6 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Route_14/scripts.inc"
 	.include "data/maps/OrangeIslands_Route_14/text.inc"
+
+	.include "data/maps/OrangeIslands_Mikan_Beach/scripts.inc"
+	.include "data/maps/OrangeIslands_Mikan_Beach/text.inc"

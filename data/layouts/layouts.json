@@ -6592,8 +6592,8 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_MIKAN",
       "name": "OrangeIslands_Mikan_Layout",
-      "width": 52,
-      "height": 44,
+      "width": 24,
+      "height": 48,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
@@ -6876,6 +6876,18 @@
       "secondary_tileset": "gTileset_OrangeIslands",
       "border_filepath": "data/layouts/OrangeIslands_Route_14/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_14/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MIKAN_BEACH",
+      "name": "OrangeIslands_Mikan_Beach_Layout",
+      "width": 64,
+      "height": 44,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_OrangeGeneral",
+      "secondary_tileset": "gTileset_OrangeIslands",
+      "border_filepath": "data/layouts/OrangeIslands_Mikan_Beach/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Mikan_Beach/map.bin"
     }
   ]
 }
