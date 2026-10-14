@@ -1,4 +1,6 @@
 #include "global.h"
+#include "palette.h"
+#include "util.h"
 #include "constants/orange_general_tiles.h"
 
 static EWRAM_DATA struct {
@@ -376,3 +378,5 @@ void InitTilesetAnim_CeladonGym(void)
     sSecondaryTilesetAnimCounterMax = 256;
     sSecondaryTilesetAnimCallback = TilesetAnim_CeladonGym;
 }
+
+#include "data/tilesets/hoenn_anims.h"

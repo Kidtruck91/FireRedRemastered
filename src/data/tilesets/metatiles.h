@@ -240,3 +240,234 @@ const u32 gMetatileAttributes_OrangeSevii45[] = INCBIN_U32("data/tilesets/second
 
 const u16 gMetatiles_OrangeSevii67[] = INCBIN_U16("data/tilesets/secondary/orange_sevii_67/metatiles.bin");
 const u32 gMetatileAttributes_OrangeSevii67[] = INCBIN_U32("data/tilesets/secondary/orange_sevii_67/metatile_attributes.bin");
+
+// BEGIN IMPORTED HOENN TILESETS
+const u16 gMetatiles_HoennGeneral[] = INCBIN_U16("data/tilesets/primary/hoenn_general/metatiles.bin");
+const u32 gMetatileAttributes_HoennGeneral[] = INCBIN_U32("data/tilesets/primary/hoenn_general/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennInterior[] = INCBIN_U16("data/tilesets/primary/hoenn_interior/metatiles.bin");
+const u32 gMetatileAttributes_HoennInterior[] = INCBIN_U32("data/tilesets/primary/hoenn_interior/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattleArena[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_arena/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattleArena[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_arena/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattleDome[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_dome/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattleDome[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_dome/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattleFactory[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_factory/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattleFactory[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_factory/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattleFrontier[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_frontier/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattleFrontier[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_frontier/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattleFrontierOutsideEastPart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_frontier_outside_east_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattleFrontierOutsideEastPart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_frontier_outside_east_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattleFrontierOutsideEastPart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_frontier_outside_east_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattleFrontierOutsideEastPart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_frontier_outside_east_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattleFrontierOutsideWest[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_frontier_outside_west/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattleFrontierOutsideWest[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_frontier_outside_west/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattleFrontierRankingHall[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_frontier_ranking_hall/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattleFrontierRankingHall[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_frontier_ranking_hall/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattlePalace[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_palace/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattlePalace[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_palace/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattlePike[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_pike/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattlePike[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_pike/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattlePyramid[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_pyramid/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattlePyramid[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_pyramid/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBattleTent[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_battle_tent/metatiles.bin");
+const u32 gMetatileAttributes_HoennBattleTent[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_battle_tent/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBikeShop[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_bike_shop/metatiles.bin");
+const u32 gMetatileAttributes_HoennBikeShop[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_bike_shop/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennBrendansMaysHouse[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_brendans_mays_house/metatiles.bin");
+const u32 gMetatileAttributes_HoennBrendansMaysHouse[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_brendans_mays_house/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennCableClub[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_cable_club/metatiles.bin");
+const u32 gMetatileAttributes_HoennCableClub[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_cable_club/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennCavePart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_cave_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennCavePart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_cave_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennCavePart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_cave_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennCavePart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_cave_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennContest[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_contest/metatiles.bin");
+const u32 gMetatileAttributes_HoennContest[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_contest/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennDewford[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_dewford/metatiles.bin");
+const u32 gMetatileAttributes_HoennDewford[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_dewford/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennDewfordGym[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_dewford_gym/metatiles.bin");
+const u32 gMetatileAttributes_HoennDewfordGym[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_dewford_gym/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennEliteFour[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_elite_four/metatiles.bin");
+const u32 gMetatileAttributes_HoennEliteFour[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_elite_four/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennEverGrande[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_ever_grande/metatiles.bin");
+const u32 gMetatileAttributes_HoennEverGrande[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_ever_grande/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennFacilityPart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_facility_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennFacilityPart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_facility_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennFacilityPart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_facility_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennFacilityPart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_facility_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennFallarbor[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_fallarbor/metatiles.bin");
+const u32 gMetatileAttributes_HoennFallarbor[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_fallarbor/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennFortree[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_fortree/metatiles.bin");
+const u32 gMetatileAttributes_HoennFortree[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_fortree/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennFortreeGym[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_fortree_gym/metatiles.bin");
+const u32 gMetatileAttributes_HoennFortreeGym[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_fortree_gym/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennGenericBuildingPart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_generic_building_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennGenericBuildingPart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_generic_building_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennGenericBuildingPart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_generic_building_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennGenericBuildingPart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_generic_building_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennInsideOfTruck[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_inside_of_truck/metatiles.bin");
+const u32 gMetatileAttributes_HoennInsideOfTruck[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_inside_of_truck/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennInsideShip[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_inside_ship/metatiles.bin");
+const u32 gMetatileAttributes_HoennInsideShip[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_inside_ship/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennIslandHarbor[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_island_harbor/metatiles.bin");
+const u32 gMetatileAttributes_HoennIslandHarbor[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_island_harbor/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennLab[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_lab/metatiles.bin");
+const u32 gMetatileAttributes_HoennLab[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_lab/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennLavaridgePart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_lavaridge_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennLavaridgePart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_lavaridge_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennLavaridgePart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_lavaridge_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennLavaridgePart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_lavaridge_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennLavaridgeGym[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_lavaridge_gym/metatiles.bin");
+const u32 gMetatileAttributes_HoennLavaridgeGym[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_lavaridge_gym/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennLilycove[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_lilycove/metatiles.bin");
+const u32 gMetatileAttributes_HoennLilycove[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_lilycove/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennLilycoveMuseum[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_lilycove_museum/metatiles.bin");
+const u32 gMetatileAttributes_HoennLilycoveMuseum[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_lilycove_museum/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMauvillePart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mauville_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennMauvillePart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mauville_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMauvillePart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mauville_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennMauvillePart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mauville_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMauvilleGameCorner[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mauville_game_corner/metatiles.bin");
+const u32 gMetatileAttributes_HoennMauvilleGameCorner[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mauville_game_corner/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMauvilleGym[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mauville_gym/metatiles.bin");
+const u32 gMetatileAttributes_HoennMauvilleGym[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mauville_gym/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMeteorFalls[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_meteor_falls/metatiles.bin");
+const u32 gMetatileAttributes_HoennMeteorFalls[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_meteor_falls/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMirageTowerPart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mirage_tower_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennMirageTowerPart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mirage_tower_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMirageTowerPart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mirage_tower_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennMirageTowerPart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mirage_tower_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMossdeep[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mossdeep/metatiles.bin");
+const u32 gMetatileAttributes_HoennMossdeep[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mossdeep/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMossdeepGameCorner[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mossdeep_game_corner/metatiles.bin");
+const u32 gMetatileAttributes_HoennMossdeepGameCorner[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mossdeep_game_corner/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMossdeepGym[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mossdeep_gym/metatiles.bin");
+const u32 gMetatileAttributes_HoennMossdeepGym[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mossdeep_gym/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennMysteryEventsHouse[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_mystery_events_house/metatiles.bin");
+const u32 gMetatileAttributes_HoennMysteryEventsHouse[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_mystery_events_house/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennNavelRockPart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_navel_rock_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennNavelRockPart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_navel_rock_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennNavelRockPart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_navel_rock_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennNavelRockPart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_navel_rock_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennOceanicMuseum[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_oceanic_museum/metatiles.bin");
+const u32 gMetatileAttributes_HoennOceanicMuseum[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_oceanic_museum/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennPacifidlog[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_pacifidlog/metatiles.bin");
+const u32 gMetatileAttributes_HoennPacifidlog[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_pacifidlog/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennPetalburg[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_petalburg/metatiles.bin");
+const u32 gMetatileAttributes_HoennPetalburg[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_petalburg/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennPetalburgGym[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_petalburg_gym/metatiles.bin");
+const u32 gMetatileAttributes_HoennPetalburgGym[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_petalburg_gym/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennPokemonCenter[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_pokemon_center/metatiles.bin");
+const u32 gMetatileAttributes_HoennPokemonCenter[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_pokemon_center/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennPokemonDayCare[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_pokemon_day_care/metatiles.bin");
+const u32 gMetatileAttributes_HoennPokemonDayCare[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_pokemon_day_care/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennPokemonFanClub[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_pokemon_fan_club/metatiles.bin");
+const u32 gMetatileAttributes_HoennPokemonFanClub[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_pokemon_fan_club/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennPokemonSchool[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_pokemon_school/metatiles.bin");
+const u32 gMetatileAttributes_HoennPokemonSchool[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_pokemon_school/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennPrettyPetalFlowerShop[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_pretty_petal_flower_shop/metatiles.bin");
+const u32 gMetatileAttributes_HoennPrettyPetalFlowerShop[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_pretty_petal_flower_shop/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennRustboro[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_rustboro/metatiles.bin");
+const u32 gMetatileAttributes_HoennRustboro[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_rustboro/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennRustboroGym[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_rustboro_gym/metatiles.bin");
+const u32 gMetatileAttributes_HoennRustboroGym[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_rustboro_gym/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennRusturfTunnel[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_rusturf_tunnel/metatiles.bin");
+const u32 gMetatileAttributes_HoennRusturfTunnel[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_rusturf_tunnel/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennSeashoreHouse[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_seashore_house/metatiles.bin");
+const u32 gMetatileAttributes_HoennSeashoreHouse[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_seashore_house/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennShop[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_shop/metatiles.bin");
+const u32 gMetatileAttributes_HoennShop[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_shop/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennSlateportPart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_slateport_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennSlateportPart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_slateport_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennSlateportPart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_slateport_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennSlateportPart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_slateport_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennSootopolis[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_sootopolis/metatiles.bin");
+const u32 gMetatileAttributes_HoennSootopolis[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_sootopolis/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennSootopolisGym[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_sootopolis_gym/metatiles.bin");
+const u32 gMetatileAttributes_HoennSootopolisGym[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_sootopolis_gym/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennTrainerHillPart1[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_trainer_hill_part_1/metatiles.bin");
+const u32 gMetatileAttributes_HoennTrainerHillPart1[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_trainer_hill_part_1/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennTrainerHillPart2[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_trainer_hill_part_2/metatiles.bin");
+const u32 gMetatileAttributes_HoennTrainerHillPart2[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_trainer_hill_part_2/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennTrickHousePuzzle[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_trick_house_puzzle/metatiles.bin");
+const u32 gMetatileAttributes_HoennTrickHousePuzzle[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_trick_house_puzzle/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennUnderwater[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_underwater/metatiles.bin");
+const u32 gMetatileAttributes_HoennUnderwater[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_underwater/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennUnionRoom[] = INCBIN_U16("data/tilesets/secondary/hoenn_native_union_room/metatiles.bin");
+const u32 gMetatileAttributes_HoennUnionRoom[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_union_room/metatile_attributes.bin");
+
+// END IMPORTED HOENN TILESETS

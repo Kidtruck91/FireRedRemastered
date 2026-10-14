@@ -888,3 +888,842 @@ const struct Tileset gTileset_OrangeSevii67 =
     .metatileAttributes = gMetatileAttributes_OrangeSevii67,
     .callback = NULL,
 };
+
+// BEGIN IMPORTED HOENN TILESETS
+const struct Tileset gTileset_HoennGeneral =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_HoennGeneral,
+    .palettes = gTilesetPalettes_HoennGeneral,
+    .metatiles = gMetatiles_HoennGeneral,
+    .metatileAttributes = gMetatileAttributes_HoennGeneral,
+    .callback = InitTilesetAnim_HoennGeneral,
+};
+
+const struct Tileset gTileset_HoennInterior =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_HoennInterior,
+    .palettes = gTilesetPalettes_HoennInterior,
+    .metatiles = gMetatiles_HoennInterior,
+    .metatileAttributes = gMetatileAttributes_HoennInterior,
+    .callback = InitTilesetAnim_HoennInterior,
+};
+
+const struct Tileset gTileset_HoennBattleArena =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattleArena,
+    .palettes = gTilesetPalettes_HoennBattleArena,
+    .metatiles = gMetatiles_HoennBattleArena,
+    .metatileAttributes = gMetatileAttributes_HoennBattleArena,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennBattleDome =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattleDome,
+    .palettes = gTilesetPalettes_HoennBattleDome,
+    .metatiles = gMetatiles_HoennBattleDome,
+    .metatileAttributes = gMetatileAttributes_HoennBattleDome,
+    .callback = InitTilesetAnim_HoennBattleDome,
+};
+
+const struct Tileset gTileset_HoennBattleFactory =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattleFactory,
+    .palettes = gTilesetPalettes_HoennBattleFactory,
+    .metatiles = gMetatiles_HoennBattleFactory,
+    .metatileAttributes = gMetatileAttributes_HoennBattleFactory,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennBattleFrontier =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattleFrontier,
+    .palettes = gTilesetPalettes_HoennBattleFrontier,
+    .metatiles = gMetatiles_HoennBattleFrontier,
+    .metatileAttributes = gMetatileAttributes_HoennBattleFrontier,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennBattleFrontierOutsideEastPart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattleFrontierOutsideEastPart1,
+    .palettes = gTilesetPalettes_HoennBattleFrontierOutsideEastPart1,
+    .metatiles = gMetatiles_HoennBattleFrontierOutsideEastPart1,
+    .metatileAttributes = gMetatileAttributes_HoennBattleFrontierOutsideEastPart1,
+    .callback = InitTilesetAnim_HoennBattleFrontierOutsideEastPart1,
+};
+
+const struct Tileset gTileset_HoennBattleFrontierOutsideEastPart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattleFrontierOutsideEastPart2,
+    .palettes = gTilesetPalettes_HoennBattleFrontierOutsideEastPart2,
+    .metatiles = gMetatiles_HoennBattleFrontierOutsideEastPart2,
+    .metatileAttributes = gMetatileAttributes_HoennBattleFrontierOutsideEastPart2,
+    .callback = InitTilesetAnim_HoennBattleFrontierOutsideEastPart2,
+};
+
+const struct Tileset gTileset_HoennBattleFrontierOutsideWest =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattleFrontierOutsideWest,
+    .palettes = gTilesetPalettes_HoennBattleFrontierOutsideWest,
+    .metatiles = gMetatiles_HoennBattleFrontierOutsideWest,
+    .metatileAttributes = gMetatileAttributes_HoennBattleFrontierOutsideWest,
+    .callback = InitTilesetAnim_HoennBattleFrontierOutsideWest,
+};
+
+const struct Tileset gTileset_HoennBattleFrontierRankingHall =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattleFrontierRankingHall,
+    .palettes = gTilesetPalettes_HoennBattleFrontierRankingHall,
+    .metatiles = gMetatiles_HoennBattleFrontierRankingHall,
+    .metatileAttributes = gMetatileAttributes_HoennBattleFrontierRankingHall,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennBattlePalace =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattlePalace,
+    .palettes = gTilesetPalettes_HoennBattlePalace,
+    .metatiles = gMetatiles_HoennBattlePalace,
+    .metatileAttributes = gMetatileAttributes_HoennBattlePalace,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennBattlePike =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattlePike,
+    .palettes = gTilesetPalettes_HoennBattlePike,
+    .metatiles = gMetatiles_HoennBattlePike,
+    .metatileAttributes = gMetatileAttributes_HoennBattlePike,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennBattlePyramid =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattlePyramid,
+    .palettes = gTilesetPalettes_HoennBattlePyramid,
+    .metatiles = gMetatiles_HoennBattlePyramid,
+    .metatileAttributes = gMetatileAttributes_HoennBattlePyramid,
+    .callback = InitTilesetAnim_HoennBattlePyramid,
+};
+
+const struct Tileset gTileset_HoennBattleTent =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBattleTent,
+    .palettes = gTilesetPalettes_HoennBattleTent,
+    .metatiles = gMetatiles_HoennBattleTent,
+    .metatileAttributes = gMetatileAttributes_HoennBattleTent,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennBikeShop =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBikeShop,
+    .palettes = gTilesetPalettes_HoennBikeShop,
+    .metatiles = gMetatiles_HoennBikeShop,
+    .metatileAttributes = gMetatileAttributes_HoennBikeShop,
+    .callback = InitTilesetAnim_HoennBikeShop,
+};
+
+const struct Tileset gTileset_HoennBrendansMaysHouse =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennBrendansMaysHouse,
+    .palettes = gTilesetPalettes_HoennBrendansMaysHouse,
+    .metatiles = gMetatiles_HoennBrendansMaysHouse,
+    .metatileAttributes = gMetatileAttributes_HoennBrendansMaysHouse,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennCableClub =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennCableClub,
+    .palettes = gTilesetPalettes_HoennCableClub,
+    .metatiles = gMetatiles_HoennCableClub,
+    .metatileAttributes = gMetatileAttributes_HoennCableClub,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennCavePart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennCavePart1,
+    .palettes = gTilesetPalettes_HoennCavePart1,
+    .metatiles = gMetatiles_HoennCavePart1,
+    .metatileAttributes = gMetatileAttributes_HoennCavePart1,
+    .callback = InitTilesetAnim_HoennCavePart1,
+};
+
+const struct Tileset gTileset_HoennCavePart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennCavePart2,
+    .palettes = gTilesetPalettes_HoennCavePart2,
+    .metatiles = gMetatiles_HoennCavePart2,
+    .metatileAttributes = gMetatileAttributes_HoennCavePart2,
+    .callback = InitTilesetAnim_HoennCavePart2,
+};
+
+const struct Tileset gTileset_HoennContest =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennContest,
+    .palettes = gTilesetPalettes_HoennContest,
+    .metatiles = gMetatiles_HoennContest,
+    .metatileAttributes = gMetatileAttributes_HoennContest,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennDewford =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennDewford,
+    .palettes = gTilesetPalettes_HoennDewford,
+    .metatiles = gMetatiles_HoennDewford,
+    .metatileAttributes = gMetatileAttributes_HoennDewford,
+    .callback = InitTilesetAnim_HoennDewford,
+};
+
+const struct Tileset gTileset_HoennDewfordGym =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennDewfordGym,
+    .palettes = gTilesetPalettes_HoennDewfordGym,
+    .metatiles = gMetatiles_HoennDewfordGym,
+    .metatileAttributes = gMetatileAttributes_HoennDewfordGym,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennEliteFour =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennEliteFour,
+    .palettes = gTilesetPalettes_HoennEliteFour,
+    .metatiles = gMetatiles_HoennEliteFour,
+    .metatileAttributes = gMetatileAttributes_HoennEliteFour,
+    .callback = InitTilesetAnim_HoennEliteFour,
+};
+
+const struct Tileset gTileset_HoennEverGrande =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennEverGrande,
+    .palettes = gTilesetPalettes_HoennEverGrande,
+    .metatiles = gMetatiles_HoennEverGrande,
+    .metatileAttributes = gMetatileAttributes_HoennEverGrande,
+    .callback = InitTilesetAnim_HoennEverGrande,
+};
+
+const struct Tileset gTileset_HoennFacilityPart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennFacilityPart1,
+    .palettes = gTilesetPalettes_HoennFacilityPart1,
+    .metatiles = gMetatiles_HoennFacilityPart1,
+    .metatileAttributes = gMetatileAttributes_HoennFacilityPart1,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennFacilityPart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennFacilityPart2,
+    .palettes = gTilesetPalettes_HoennFacilityPart2,
+    .metatiles = gMetatiles_HoennFacilityPart2,
+    .metatileAttributes = gMetatileAttributes_HoennFacilityPart2,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennFallarbor =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennFallarbor,
+    .palettes = gTilesetPalettes_HoennFallarbor,
+    .metatiles = gMetatiles_HoennFallarbor,
+    .metatileAttributes = gMetatileAttributes_HoennFallarbor,
+    .callback = InitTilesetAnim_HoennFallarbor,
+};
+
+const struct Tileset gTileset_HoennFortree =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennFortree,
+    .palettes = gTilesetPalettes_HoennFortree,
+    .metatiles = gMetatiles_HoennFortree,
+    .metatileAttributes = gMetatileAttributes_HoennFortree,
+    .callback = InitTilesetAnim_HoennFortree,
+};
+
+const struct Tileset gTileset_HoennFortreeGym =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennFortreeGym,
+    .palettes = gTilesetPalettes_HoennFortreeGym,
+    .metatiles = gMetatiles_HoennFortreeGym,
+    .metatileAttributes = gMetatileAttributes_HoennFortreeGym,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennGenericBuildingPart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennGenericBuildingPart1,
+    .palettes = gTilesetPalettes_HoennGenericBuildingPart1,
+    .metatiles = gMetatiles_HoennGenericBuildingPart1,
+    .metatileAttributes = gMetatileAttributes_HoennGenericBuildingPart1,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennGenericBuildingPart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennGenericBuildingPart2,
+    .palettes = gTilesetPalettes_HoennGenericBuildingPart2,
+    .metatiles = gMetatiles_HoennGenericBuildingPart2,
+    .metatileAttributes = gMetatileAttributes_HoennGenericBuildingPart2,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennInsideOfTruck =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennInsideOfTruck,
+    .palettes = gTilesetPalettes_HoennInsideOfTruck,
+    .metatiles = gMetatiles_HoennInsideOfTruck,
+    .metatileAttributes = gMetatileAttributes_HoennInsideOfTruck,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennInsideShip =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennInsideShip,
+    .palettes = gTilesetPalettes_HoennInsideShip,
+    .metatiles = gMetatiles_HoennInsideShip,
+    .metatileAttributes = gMetatileAttributes_HoennInsideShip,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennIslandHarbor =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennIslandHarbor,
+    .palettes = gTilesetPalettes_HoennIslandHarbor,
+    .metatiles = gMetatiles_HoennIslandHarbor,
+    .metatileAttributes = gMetatileAttributes_HoennIslandHarbor,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennLab =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennLab,
+    .palettes = gTilesetPalettes_HoennLab,
+    .metatiles = gMetatiles_HoennLab,
+    .metatileAttributes = gMetatileAttributes_HoennLab,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennLavaridgePart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennLavaridgePart1,
+    .palettes = gTilesetPalettes_HoennLavaridgePart1,
+    .metatiles = gMetatiles_HoennLavaridgePart1,
+    .metatileAttributes = gMetatileAttributes_HoennLavaridgePart1,
+    .callback = InitTilesetAnim_HoennLavaridgePart1,
+};
+
+const struct Tileset gTileset_HoennLavaridgePart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennLavaridgePart2,
+    .palettes = gTilesetPalettes_HoennLavaridgePart2,
+    .metatiles = gMetatiles_HoennLavaridgePart2,
+    .metatileAttributes = gMetatileAttributes_HoennLavaridgePart2,
+    .callback = InitTilesetAnim_HoennLavaridgePart2,
+};
+
+const struct Tileset gTileset_HoennLavaridgeGym =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennLavaridgeGym,
+    .palettes = gTilesetPalettes_HoennLavaridgeGym,
+    .metatiles = gMetatiles_HoennLavaridgeGym,
+    .metatileAttributes = gMetatileAttributes_HoennLavaridgeGym,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennLilycove =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennLilycove,
+    .palettes = gTilesetPalettes_HoennLilycove,
+    .metatiles = gMetatiles_HoennLilycove,
+    .metatileAttributes = gMetatileAttributes_HoennLilycove,
+    .callback = InitTilesetAnim_HoennLilycove,
+};
+
+const struct Tileset gTileset_HoennLilycoveMuseum =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennLilycoveMuseum,
+    .palettes = gTilesetPalettes_HoennLilycoveMuseum,
+    .metatiles = gMetatiles_HoennLilycoveMuseum,
+    .metatileAttributes = gMetatileAttributes_HoennLilycoveMuseum,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennMauvillePart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMauvillePart1,
+    .palettes = gTilesetPalettes_HoennMauvillePart1,
+    .metatiles = gMetatiles_HoennMauvillePart1,
+    .metatileAttributes = gMetatileAttributes_HoennMauvillePart1,
+    .callback = InitTilesetAnim_HoennMauvillePart1,
+};
+
+const struct Tileset gTileset_HoennMauvillePart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMauvillePart2,
+    .palettes = gTilesetPalettes_HoennMauvillePart2,
+    .metatiles = gMetatiles_HoennMauvillePart2,
+    .metatileAttributes = gMetatileAttributes_HoennMauvillePart2,
+    .callback = InitTilesetAnim_HoennMauvillePart2,
+};
+
+const struct Tileset gTileset_HoennMauvilleGameCorner =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMauvilleGameCorner,
+    .palettes = gTilesetPalettes_HoennMauvilleGameCorner,
+    .metatiles = gMetatiles_HoennMauvilleGameCorner,
+    .metatileAttributes = gMetatileAttributes_HoennMauvilleGameCorner,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennMauvilleGym =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMauvilleGym,
+    .palettes = gTilesetPalettes_HoennMauvilleGym,
+    .metatiles = gMetatiles_HoennMauvilleGym,
+    .metatileAttributes = gMetatileAttributes_HoennMauvilleGym,
+    .callback = InitTilesetAnim_HoennMauvilleGym,
+};
+
+const struct Tileset gTileset_HoennMeteorFalls =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMeteorFalls,
+    .palettes = gTilesetPalettes_HoennMeteorFalls,
+    .metatiles = gMetatiles_HoennMeteorFalls,
+    .metatileAttributes = gMetatileAttributes_HoennMeteorFalls,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennMirageTowerPart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMirageTowerPart1,
+    .palettes = gTilesetPalettes_HoennMirageTowerPart1,
+    .metatiles = gMetatiles_HoennMirageTowerPart1,
+    .metatileAttributes = gMetatileAttributes_HoennMirageTowerPart1,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennMirageTowerPart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMirageTowerPart2,
+    .palettes = gTilesetPalettes_HoennMirageTowerPart2,
+    .metatiles = gMetatiles_HoennMirageTowerPart2,
+    .metatileAttributes = gMetatileAttributes_HoennMirageTowerPart2,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennMossdeep =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMossdeep,
+    .palettes = gTilesetPalettes_HoennMossdeep,
+    .metatiles = gMetatiles_HoennMossdeep,
+    .metatileAttributes = gMetatileAttributes_HoennMossdeep,
+    .callback = InitTilesetAnim_HoennMossdeep,
+};
+
+const struct Tileset gTileset_HoennMossdeepGameCorner =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMossdeepGameCorner,
+    .palettes = gTilesetPalettes_HoennMossdeepGameCorner,
+    .metatiles = gMetatiles_HoennMossdeepGameCorner,
+    .metatileAttributes = gMetatileAttributes_HoennMossdeepGameCorner,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennMossdeepGym =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMossdeepGym,
+    .palettes = gTilesetPalettes_HoennMossdeepGym,
+    .metatiles = gMetatiles_HoennMossdeepGym,
+    .metatileAttributes = gMetatileAttributes_HoennMossdeepGym,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennMysteryEventsHouse =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennMysteryEventsHouse,
+    .palettes = gTilesetPalettes_HoennMysteryEventsHouse,
+    .metatiles = gMetatiles_HoennMysteryEventsHouse,
+    .metatileAttributes = gMetatileAttributes_HoennMysteryEventsHouse,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennNavelRockPart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennNavelRockPart1,
+    .palettes = gTilesetPalettes_HoennNavelRockPart1,
+    .metatiles = gMetatiles_HoennNavelRockPart1,
+    .metatileAttributes = gMetatileAttributes_HoennNavelRockPart1,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennNavelRockPart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennNavelRockPart2,
+    .palettes = gTilesetPalettes_HoennNavelRockPart2,
+    .metatiles = gMetatiles_HoennNavelRockPart2,
+    .metatileAttributes = gMetatileAttributes_HoennNavelRockPart2,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennOceanicMuseum =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennOceanicMuseum,
+    .palettes = gTilesetPalettes_HoennOceanicMuseum,
+    .metatiles = gMetatiles_HoennOceanicMuseum,
+    .metatileAttributes = gMetatileAttributes_HoennOceanicMuseum,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennPacifidlog =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennPacifidlog,
+    .palettes = gTilesetPalettes_HoennPacifidlog,
+    .metatiles = gMetatiles_HoennPacifidlog,
+    .metatileAttributes = gMetatileAttributes_HoennPacifidlog,
+    .callback = InitTilesetAnim_HoennPacifidlog,
+};
+
+const struct Tileset gTileset_HoennPetalburg =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennPetalburg,
+    .palettes = gTilesetPalettes_HoennPetalburg,
+    .metatiles = gMetatiles_HoennPetalburg,
+    .metatileAttributes = gMetatileAttributes_HoennPetalburg,
+    .callback = InitTilesetAnim_HoennPetalburg,
+};
+
+const struct Tileset gTileset_HoennPetalburgGym =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennPetalburgGym,
+    .palettes = gTilesetPalettes_HoennPetalburgGym,
+    .metatiles = gMetatiles_HoennPetalburgGym,
+    .metatileAttributes = gMetatileAttributes_HoennPetalburgGym,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennPokemonCenter =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennPokemonCenter,
+    .palettes = gTilesetPalettes_HoennPokemonCenter,
+    .metatiles = gMetatiles_HoennPokemonCenter,
+    .metatileAttributes = gMetatileAttributes_HoennPokemonCenter,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennPokemonDayCare =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennPokemonDayCare,
+    .palettes = gTilesetPalettes_HoennPokemonDayCare,
+    .metatiles = gMetatiles_HoennPokemonDayCare,
+    .metatileAttributes = gMetatileAttributes_HoennPokemonDayCare,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennPokemonFanClub =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennPokemonFanClub,
+    .palettes = gTilesetPalettes_HoennPokemonFanClub,
+    .metatiles = gMetatiles_HoennPokemonFanClub,
+    .metatileAttributes = gMetatileAttributes_HoennPokemonFanClub,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennPokemonSchool =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennPokemonSchool,
+    .palettes = gTilesetPalettes_HoennPokemonSchool,
+    .metatiles = gMetatiles_HoennPokemonSchool,
+    .metatileAttributes = gMetatileAttributes_HoennPokemonSchool,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennPrettyPetalFlowerShop =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennPrettyPetalFlowerShop,
+    .palettes = gTilesetPalettes_HoennPrettyPetalFlowerShop,
+    .metatiles = gMetatiles_HoennPrettyPetalFlowerShop,
+    .metatileAttributes = gMetatileAttributes_HoennPrettyPetalFlowerShop,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennRustboro =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennRustboro,
+    .palettes = gTilesetPalettes_HoennRustboro,
+    .metatiles = gMetatiles_HoennRustboro,
+    .metatileAttributes = gMetatileAttributes_HoennRustboro,
+    .callback = InitTilesetAnim_HoennRustboro,
+};
+
+const struct Tileset gTileset_HoennRustboroGym =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennRustboroGym,
+    .palettes = gTilesetPalettes_HoennRustboroGym,
+    .metatiles = gMetatiles_HoennRustboroGym,
+    .metatileAttributes = gMetatileAttributes_HoennRustboroGym,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennRusturfTunnel =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennRusturfTunnel,
+    .palettes = gTilesetPalettes_HoennRusturfTunnel,
+    .metatiles = gMetatiles_HoennRusturfTunnel,
+    .metatileAttributes = gMetatileAttributes_HoennRusturfTunnel,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennSeashoreHouse =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennSeashoreHouse,
+    .palettes = gTilesetPalettes_HoennSeashoreHouse,
+    .metatiles = gMetatiles_HoennSeashoreHouse,
+    .metatileAttributes = gMetatileAttributes_HoennSeashoreHouse,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennShop =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennShop,
+    .palettes = gTilesetPalettes_HoennShop,
+    .metatiles = gMetatiles_HoennShop,
+    .metatileAttributes = gMetatileAttributes_HoennShop,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennSlateportPart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennSlateportPart1,
+    .palettes = gTilesetPalettes_HoennSlateportPart1,
+    .metatiles = gMetatiles_HoennSlateportPart1,
+    .metatileAttributes = gMetatileAttributes_HoennSlateportPart1,
+    .callback = InitTilesetAnim_HoennSlateportPart1,
+};
+
+const struct Tileset gTileset_HoennSlateportPart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennSlateportPart2,
+    .palettes = gTilesetPalettes_HoennSlateportPart2,
+    .metatiles = gMetatiles_HoennSlateportPart2,
+    .metatileAttributes = gMetatileAttributes_HoennSlateportPart2,
+    .callback = InitTilesetAnim_HoennSlateportPart2,
+};
+
+const struct Tileset gTileset_HoennSootopolis =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennSootopolis,
+    .palettes = gTilesetPalettes_HoennSootopolis,
+    .metatiles = gMetatiles_HoennSootopolis,
+    .metatileAttributes = gMetatileAttributes_HoennSootopolis,
+    .callback = InitTilesetAnim_HoennSootopolis,
+};
+
+const struct Tileset gTileset_HoennSootopolisGym =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennSootopolisGym,
+    .palettes = gTilesetPalettes_HoennSootopolisGym,
+    .metatiles = gMetatiles_HoennSootopolisGym,
+    .metatileAttributes = gMetatileAttributes_HoennSootopolisGym,
+    .callback = InitTilesetAnim_HoennSootopolisGym,
+};
+
+const struct Tileset gTileset_HoennTrainerHillPart1 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennTrainerHillPart1,
+    .palettes = gTilesetPalettes_HoennTrainerHillPart1,
+    .metatiles = gMetatiles_HoennTrainerHillPart1,
+    .metatileAttributes = gMetatileAttributes_HoennTrainerHillPart1,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennTrainerHillPart2 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennTrainerHillPart2,
+    .palettes = gTilesetPalettes_HoennTrainerHillPart2,
+    .metatiles = gMetatiles_HoennTrainerHillPart2,
+    .metatileAttributes = gMetatileAttributes_HoennTrainerHillPart2,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennTrickHousePuzzle =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennTrickHousePuzzle,
+    .palettes = gTilesetPalettes_HoennTrickHousePuzzle,
+    .metatiles = gMetatiles_HoennTrickHousePuzzle,
+    .metatileAttributes = gMetatileAttributes_HoennTrickHousePuzzle,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_HoennUnderwater =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennUnderwater,
+    .palettes = gTilesetPalettes_HoennUnderwater,
+    .metatiles = gMetatiles_HoennUnderwater,
+    .metatileAttributes = gMetatileAttributes_HoennUnderwater,
+    .callback = InitTilesetAnim_HoennUnderwater,
+};
+
+const struct Tileset gTileset_HoennUnionRoom =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennUnionRoom,
+    .palettes = gTilesetPalettes_HoennUnionRoom,
+    .metatiles = gMetatiles_HoennUnionRoom,
+    .metatileAttributes = gMetatileAttributes_HoennUnionRoom,
+    .callback = NULL,
+};
+
+// END IMPORTED HOENN TILESETS

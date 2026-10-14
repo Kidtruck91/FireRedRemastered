@@ -1,0 +1,74 @@
+{
+  "symbol": "HoennNavelRockPart2",
+  "source": "data/tilesets/secondary/navel_rock",
+  "is_primary": false,
+  "part": 2,
+  "graphics_used": 12,
+  "metatiles": 2,
+  "recommended_primaries": [
+    "gTileset_HoennGeneral"
+  ],
+  "palette_mapping": {
+    "7": 7,
+    "9": 9,
+    "10": 10,
+    "11": 11,
+    "6": 8
+  },
+  "metatile_mapping": {
+    "961": 640,
+    "962": 641
+  },
+  "graphics_mapping": {
+    "194": [
+      640,
+      0
+    ],
+    "195": [
+      641,
+      0
+    ],
+    "210": [
+      642,
+      0
+    ],
+    "211": [
+      643,
+      0
+    ],
+    "226": [
+      644,
+      0
+    ],
+    "227": [
+      645,
+      0
+    ],
+    "242": [
+      646,
+      0
+    ],
+    "243": [
+      647,
+      0
+    ],
+    "228": [
+      648,
+      0
+    ],
+    "229": [
+      649,
+      0
+    ],
+    "244": [
+      650,
+      0
+    ],
+    "245": [
+      651,
+      0
+    ]
+  },
+  "animation_ranges": [],
+  "callback": "NULL"
+}
