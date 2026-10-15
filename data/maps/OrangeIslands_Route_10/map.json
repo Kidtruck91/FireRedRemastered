@@ -20,16 +20,16 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 37,
-      "y": 25,
+      "x": 28,
+      "y": 29,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Route_10_EventScript_West"
     },
     {
       "type": "sign",
-      "x": 123,
-      "y": 10,
+      "x": 80,
+      "y": 48,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Route_10_EventScript_Debris"

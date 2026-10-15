@@ -1,8 +1,9 @@
 OrangeIslands_Route_5_Text_Currents::
-	.string "ROUTE 5 - CURRENT CHANNEL\n"
-	.string "Currents flow north.\n"
-	.string "Calm water passes on either side.$"
+	.string "ROUTE 5 - SEA PASSAGE\n"
+	.string "Watch which way the water flows.\n"
+	.string "The other lane returns south.$"
 
 OrangeIslands_Route_5_Text_North::
-	.string "ROUTE 5 - CURRENT CHANNEL\n"
-	.string "A small beach to rest on.$"
+	.string "ROUTE 5 - SEA PASSAGE\n"
+	.string "Watch which way the water flows.\n"
+	.string "The other lane returns south.$"

@@ -4,119 +4,275 @@
       140,
       36
     ],
+    "flow": "W → E",
+    "primary": "gTileset_OrangeGeneral",
+    "secondary": "gTileset_OrangeIslands",
     "surf_percent": 87.2,
     "walkable_land_percent": 2.4,
-    "reachable_cells": 4518,
-    "signs": 2
+    "largest_walkable_island": 49,
+    "shortest_crossing_steps": 128,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": []
   },
   "4": {
     "size": [
-      160,
-      36
+      120,
+      48
     ],
-    "surf_percent": 88.1,
-    "walkable_land_percent": 2.2,
-    "reachable_cells": 5201,
-    "signs": 3
+    "flow": "W → E",
+    "primary": "gTileset_General",
+    "secondary": "gTileset_SeviiIslands45",
+    "surf_percent": 94.0,
+    "walkable_land_percent": 2.9,
+    "largest_walkable_island": 71,
+    "shortest_crossing_steps": 112,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": []
   },
   "5": {
     "size": [
-      36,
-      152
+      48,
+      124
     ],
-    "surf_percent": 89.3,
-    "walkable_land_percent": 1.2,
-    "reachable_cells": 4950,
-    "signs": 2
+    "flow": "S → N",
+    "primary": "gTileset_HoennGeneral",
+    "secondary": "gTileset_HoennPacifidlog",
+    "surf_percent": 95.3,
+    "walkable_land_percent": 0.6,
+    "largest_walkable_island": 22,
+    "shortest_crossing_steps": 119,
+    "current_tiles_checked": 336,
+    "current_runs": [
+      {
+        "name": "lower correct lane",
+        "entry": [
+          32,
+          101
+        ],
+        "actual_end": [
+          32,
+          80
+        ]
+      },
+      {
+        "name": "lower return lane",
+        "entry": [
+          12,
+          80
+        ],
+        "actual_end": [
+          12,
+          101
+        ]
+      },
+      {
+        "name": "upper correct lane",
+        "entry": [
+          12,
+          61
+        ],
+        "actual_end": [
+          12,
+          40
+        ]
+      },
+      {
+        "name": "upper return lane",
+        "entry": [
+          34,
+          40
+        ],
+        "actual_end": [
+          34,
+          61
+        ]
+      }
+    ],
+    "required_maze_gates": []
   },
   "6": {
     "size": [
-      152,
-      36
+      88,
+      72
     ],
-    "surf_percent": 88.2,
-    "walkable_land_percent": 2.0,
-    "reachable_cells": 4932,
-    "signs": 3
+    "flow": "SW → NE",
+    "primary": "gTileset_HoennGeneral",
+    "secondary": "gTileset_HoennMossdeep",
+    "surf_percent": 89.4,
+    "walkable_land_percent": 3.3,
+    "largest_walkable_island": 98,
+    "shortest_crossing_steps": 132,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": []
   },
   "7": {
     "size": [
-      36,
-      156
+      72,
+      88
     ],
-    "surf_percent": 89.3,
-    "walkable_land_percent": 1.1,
-    "reachable_cells": 5074,
-    "signs": 2
+    "flow": "NW → SE",
+    "primary": "gTileset_HoennGeneral",
+    "secondary": "gTileset_HoennDewford",
+    "surf_percent": 94.6,
+    "walkable_land_percent": 1.5,
+    "largest_walkable_island": 62,
+    "shortest_crossing_steps": 132,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": []
   },
   "8": {
     "size": [
-      180,
-      36
+      132,
+      46
     ],
-    "surf_percent": 88.0,
-    "walkable_land_percent": 1.7,
-    "reachable_cells": 5816,
-    "signs": 3
+    "flow": "E → W",
+    "primary": "gTileset_HoennGeneral",
+    "secondary": "gTileset_HoennMossdeep",
+    "surf_percent": 92.7,
+    "walkable_land_percent": 1.8,
+    "largest_walkable_island": 62,
+    "shortest_crossing_steps": 127,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": []
   },
   "9": {
     "size": [
-      40,
-      152
+      52,
+      116
     ],
-    "surf_percent": 90.2,
-    "walkable_land_percent": 1.0,
-    "reachable_cells": 5546,
-    "signs": 2
+    "flow": "N → S",
+    "primary": "gTileset_General",
+    "secondary": "gTileset_SeviiIslands67",
+    "surf_percent": 94.9,
+    "walkable_land_percent": 2.3,
+    "largest_walkable_island": 91,
+    "shortest_crossing_steps": 106,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": []
   },
   "10": {
     "size": [
-      168,
-      36
+      104,
+      68
     ],
-    "surf_percent": 88.6,
+    "flow": "NW → SE",
+    "primary": "gTileset_HoennGeneral",
+    "secondary": "gTileset_HoennDewford",
+    "surf_percent": 95.3,
     "walkable_land_percent": 1.4,
-    "reachable_cells": 5445,
-    "signs": 2
+    "largest_walkable_island": 62,
+    "shortest_crossing_steps": 144,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": []
   },
   "11": {
     "size": [
-      40,
-      156
+      80,
+      80
     ],
-    "surf_percent": 89.2,
-    "walkable_land_percent": 0.7,
-    "reachable_cells": 5611,
-    "signs": 1
+    "flow": "NE → SW",
+    "primary": "gTileset_HoennGeneral",
+    "secondary": "gTileset_HoennMossdeep",
+    "surf_percent": 75.5,
+    "walkable_land_percent": 0.2,
+    "largest_walkable_island": 11,
+    "shortest_crossing_steps": 190,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": [
+      [
+        20,
+        12,
+        24
+      ],
+      [
+        40,
+        56,
+        68
+      ],
+      [
+        60,
+        20,
+        32
+      ]
+    ]
   },
   "12": {
     "size": [
-      180,
-      36
+      140,
+      44
     ],
-    "surf_percent": 89.9,
-    "walkable_land_percent": 0.8,
-    "reachable_cells": 5875,
-    "signs": 1
+    "flow": "W → E",
+    "primary": "gTileset_HoennGeneral",
+    "secondary": "gTileset_HoennMossdeep",
+    "surf_percent": 95.7,
+    "walkable_land_percent": 1.0,
+    "largest_walkable_island": 61,
+    "shortest_crossing_steps": 131,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": []
   },
   "13": {
     "size": [
-      40,
-      156
+      84,
+      76
     ],
-    "surf_percent": 90.0,
-    "walkable_land_percent": 0.9,
-    "reachable_cells": 5674,
-    "signs": 2
+    "flow": "SE → NW",
+    "primary": "gTileset_HoennGeneral",
+    "secondary": "gTileset_HoennPacifidlog",
+    "surf_percent": 93.2,
+    "walkable_land_percent": 2.1,
+    "largest_walkable_island": 98,
+    "shortest_crossing_steps": 136,
+    "current_tiles_checked": 393,
+    "current_runs": [
+      {
+        "name": "forward hook",
+        "entry": [
+          72,
+          61
+        ],
+        "actual_end": [
+          12,
+          21
+        ]
+      },
+      {
+        "name": "safe return hook",
+        "entry": [
+          79,
+          46
+        ],
+        "actual_end": [
+          79,
+          67
+        ]
+      }
+    ],
+    "required_maze_gates": []
   },
   "14": {
     "size": [
-      180,
-      36
+      88,
+      72
     ],
-    "surf_percent": 88.3,
-    "walkable_land_percent": 1.3,
-    "reachable_cells": 5801,
-    "signs": 2
+    "flow": "SE → NW",
+    "primary": "gTileset_HoennGeneral",
+    "secondary": "gTileset_HoennMossdeep",
+    "surf_percent": 93.2,
+    "walkable_land_percent": 0.6,
+    "largest_walkable_island": 22,
+    "shortest_crossing_steps": 132,
+    "current_tiles_checked": 0,
+    "current_runs": [],
+    "required_maze_gates": []
   }
 }

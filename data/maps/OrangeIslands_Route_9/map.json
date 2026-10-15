@@ -20,16 +20,16 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 12,
-      "y": 25,
+      "x": 13,
+      "y": 28,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Route_9_EventScript_South"
     },
     {
       "type": "sign",
-      "x": 27,
-      "y": 115,
+      "x": 36,
+      "y": 81,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Route_9_EventScript_Platform"

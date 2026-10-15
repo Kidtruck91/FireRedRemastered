@@ -41,8 +41,14 @@ with tempfile.TemporaryDirectory() as tmp:
    n[bank['destination_start']:bank['destination_start']+bank['count']]=tiles
    verify(o,n);frame_count+=1
 layouts=json.loads((ROOT/'data/layouts/layouts.json').read_text())['layouts']
-assert all(l['primary_tileset']=='gTileset_OrangeGeneral' for l in layouts if l['name'].startswith('OrangeIslands_'))
+sea_routes={f'OrangeIslands_Route_{n}_Layout' for n in range(4,15)}
+alternate_pairs={('gTileset_General','gTileset_SeviiIslands45'),('gTileset_General','gTileset_SeviiIslands67'),
+                 *{('gTileset_HoennGeneral','gTileset_Hoenn'+name) for name in ('Dewford','Mossdeep','Pacifidlog')}}
+for layout in layouts:
+ if not layout['name'].startswith('OrangeIslands_'):continue
+ if layout['primary_tileset']=='gTileset_OrangeGeneral':continue
+ assert layout['name'] in sea_routes and (layout['primary_tileset'],layout['secondary_tileset']) in alternate_pairs,'Unapproved Orange tileset pairing'
 assert all(l['primary_tileset']!='gTileset_OrangeGeneral' for l in layouts if not l['name'].startswith('OrangeIslands_'))
 print(f'All 736 metatile definitions are pixel-index equivalent; attributes/palette banks preserved; {frame_count} animation frames verified.')
-orange_count=sum(l['name'].startswith('OrangeIslands_') for l in layouts)
-print(f'{report["free_primary_tiles"]} free primary graphics slots; all {orange_count} Orange layouts use OrangeGeneral exclusively.')
+orange_count=sum(l['name'].startswith('OrangeIslands_') and l['primary_tileset']=='gTileset_OrangeGeneral' for l in layouts)
+print(f'{report["free_primary_tiles"]} free primary graphics slots; {orange_count} Orange layouts use OrangeGeneral; alternate sea-route pairings verified.')
