@@ -13,31 +13,16 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_5",
-      "direction": "down",
-      "offset": 7
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_8",
-      "direction": "right",
-      "offset": 30
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_9",
-      "direction": "up",
-      "offset": 5
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_NAVEL",
-      "direction": "up",
-      "offset": 54
-    }
+  "connections": 0,
+  "object_events": [
+
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

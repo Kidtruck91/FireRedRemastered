@@ -16,28 +16,19 @@
   "connections": [
     {
       "map": "MAP_ORANGE_ISLANDS_ROUTE_3",
-      "direction": "down",
-      "offset": 0
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_6",
-      "direction": "left",
-      "offset": 0
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_5",
-      "direction": "up",
-      "offset": 2
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_MIKAN",
-      "direction": "up",
-      "offset": 40
+      "offset": 6,
+      "direction": "left"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

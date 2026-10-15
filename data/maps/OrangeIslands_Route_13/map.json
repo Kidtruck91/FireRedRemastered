@@ -13,26 +13,16 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_BEACH",
-      "direction": "down",
-      "offset": -10
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_KUMQUAT_BEACH",
-      "direction": "up",
-      "offset": -4
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_PINKAN_BEACH",
-      "direction": "left",
-      "offset": 8
-    }
+  "connections": 0,
+  "object_events": [
+
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

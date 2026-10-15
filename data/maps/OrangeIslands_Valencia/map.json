@@ -16,13 +16,19 @@
   "connections": [
     {
       "map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
-      "direction": "down",
-      "offset": -44
+      "offset": 16,
+      "direction": "right"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

@@ -15,29 +15,25 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_1",
-      "direction": "down",
-      "offset": 5
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_2",
-      "direction": "left",
-      "offset": 0
+      "map": "MAP_ORANGE_ISLANDS_VALENCIA",
+      "offset": -16,
+      "direction": "left"
     },
     {
       "map": "MAP_ORANGE_ISLANDS_ROUTE_3",
-      "direction": "up",
-      "offset": 0
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_VALENCIA",
-      "direction": "up",
-      "offset": 44
+      "offset": -18,
+      "direction": "right"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

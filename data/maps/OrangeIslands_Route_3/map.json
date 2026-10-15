@@ -16,18 +16,24 @@
   "connections": [
     {
       "map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
-      "direction": "down",
-      "offset": 0
+      "offset": 18,
+      "direction": "left"
     },
     {
       "map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
-      "direction": "up",
-      "offset": 0
+      "offset": -6,
+      "direction": "right"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

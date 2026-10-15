@@ -15,24 +15,20 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_13",
-      "direction": "down",
-      "offset": 4
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_14",
-      "direction": "right",
-      "offset": 4
-    },
-    {
       "map": "MAP_ORANGE_ISLANDS_KUMQUAT",
-      "direction": "up",
-      "offset": 52
+      "offset": 52,
+      "direction": "up"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

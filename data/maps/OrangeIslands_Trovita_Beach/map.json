@@ -15,29 +15,20 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_11",
-      "direction": "down",
-      "offset": 2
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_12",
-      "direction": "left",
-      "offset": 7
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_ROUTE_14",
-      "direction": "up",
-      "offset": -8
-    },
-    {
       "map": "MAP_ORANGE_ISLANDS_TROVITA",
-      "direction": "up",
-      "offset": 56
+      "offset": 56,
+      "direction": "up"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
