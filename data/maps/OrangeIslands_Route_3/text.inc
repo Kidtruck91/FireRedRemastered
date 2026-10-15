@@ -1,8 +1,8 @@
 OrangeIslands_Route_3_Text_Passage::
 	.string "ROUTE 3 - REEF PASSAGE\n"
-	.string "North: MIKAN ISLAND\n"
-	.string "Rest on the small island beaches.$"
+	.string "West: VALENCIA BEACH\n"
+	.string "East: MIKAN BEACH$"
 
 OrangeIslands_Route_3_Text_Islet::
-	.string "REEF REST STOP\n"
-	.string "Keep the channels clear.$"
+	.string "ROUTE 3 - REEF PASSAGE\n"
+	.string "A small beach to rest on.$"

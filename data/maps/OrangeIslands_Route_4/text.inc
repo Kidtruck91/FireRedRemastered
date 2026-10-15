@@ -1,11 +1,11 @@
 OrangeIslands_Route_4_Text_West::
 	.string "ROUTE 4 - SANDBAR CROSSING\n"
-	.string "West: SUNBURST ISLAND$"
+	.string "Follow the gaps between reefs.$"
 
 OrangeIslands_Route_4_Text_East::
-	.string "VALENCIA SOUTH BEACH\n"
-	.string "Ferry landing to the east$"
+	.string "ROUTE 4 - SANDBAR CROSSING\n"
+	.string "A small beach to rest on.$"
 
 OrangeIslands_Route_4_Text_Sandbar::
-	.string "SANDBAR REST STOP\n"
-	.string "Small beaches break the crossing.$"
+	.string "ROUTE 4 - SANDBAR CROSSING\n"
+	.string "Keep the open channel clear.$"

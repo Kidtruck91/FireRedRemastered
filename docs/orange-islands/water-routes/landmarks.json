@@ -1,0 +1,210 @@
+{
+  "3": {
+    "size": [
+      140,
+      36
+    ],
+    "reference": "Route107",
+    "sign_approaches": [
+      [
+        43,
+        9
+      ],
+      [
+        93,
+        27
+      ]
+    ]
+  },
+  "4": {
+    "size": [
+      160,
+      36
+    ],
+    "reference": "Route129",
+    "sign_approaches": [
+      [
+        33,
+        11
+      ],
+      [
+        78,
+        26
+      ],
+      [
+        128,
+        11
+      ]
+    ]
+  },
+  "5": {
+    "size": [
+      36,
+      152
+    ],
+    "reference": "Route132",
+    "sign_approaches": [
+      [
+        9,
+        32
+      ],
+      [
+        25,
+        123
+      ]
+    ]
+  },
+  "6": {
+    "size": [
+      152,
+      36
+    ],
+    "reference": "Route124",
+    "sign_approaches": [
+      [
+        26,
+        10
+      ],
+      [
+        75,
+        24
+      ],
+      [
+        127,
+        11
+      ]
+    ]
+  },
+  "7": {
+    "size": [
+      36,
+      156
+    ],
+    "reference": "Route105",
+    "sign_approaches": [
+      [
+        9,
+        36
+      ],
+      [
+        26,
+        118
+      ]
+    ]
+  },
+  "8": {
+    "size": [
+      180,
+      36
+    ],
+    "reference": "Route130",
+    "sign_approaches": [
+      [
+        28,
+        27
+      ],
+      [
+        90,
+        11
+      ],
+      [
+        150,
+        26
+      ]
+    ]
+  },
+  "9": {
+    "size": [
+      40,
+      152
+    ],
+    "reference": "Route109",
+    "sign_approaches": [
+      [
+        12,
+        26
+      ],
+      [
+        27,
+        116
+      ]
+    ]
+  },
+  "10": {
+    "size": [
+      168,
+      36
+    ],
+    "reference": "Route108",
+    "sign_approaches": [
+      [
+        37,
+        26
+      ],
+      [
+        123,
+        11
+      ]
+    ]
+  },
+  "11": {
+    "size": [
+      40,
+      156
+    ],
+    "reference": "Route131",
+    "sign_approaches": [
+      [
+        12,
+        76
+      ]
+    ]
+  },
+  "12": {
+    "size": [
+      180,
+      36
+    ],
+    "reference": "Route128",
+    "sign_approaches": [
+      [
+        52,
+        9
+      ]
+    ]
+  },
+  "13": {
+    "size": [
+      40,
+      156
+    ],
+    "reference": "Route133",
+    "sign_approaches": [
+      [
+        11,
+        34
+      ],
+      [
+        27,
+        119
+      ]
+    ]
+  },
+  "14": {
+    "size": [
+      180,
+      36
+    ],
+    "reference": "Route134",
+    "sign_approaches": [
+      [
+        40,
+        27
+      ],
+      [
+        129,
+        11
+      ]
+    ]
+  }
+}

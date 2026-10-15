@@ -1,0 +1,109 @@
+{
+  "repository": "pret/pokeemerald",
+  "commit": "731ad5bfd6e6f265508d0efcca0ba42f9dcf5881",
+  "note": "Fractions exclude collision-blocked cells; shallow beach fringe is counted as walkable land.",
+  "maps": {
+    "Route105": {
+      "width": 40,
+      "height": 80,
+      "water_fraction": 0.7169,
+      "dry_walkable_fraction": 0.0409
+    },
+    "Route106": {
+      "width": 80,
+      "height": 20,
+      "water_fraction": 0.6462,
+      "dry_walkable_fraction": 0.1062
+    },
+    "Route107": {
+      "width": 60,
+      "height": 20,
+      "water_fraction": 0.6708,
+      "dry_walkable_fraction": 0.0442
+    },
+    "Route108": {
+      "width": 60,
+      "height": 20,
+      "water_fraction": 0.7033,
+      "dry_walkable_fraction": 0.0567
+    },
+    "Route109": {
+      "width": 40,
+      "height": 63,
+      "water_fraction": 0.6087,
+      "dry_walkable_fraction": 0.2524
+    },
+    "Route122": {
+      "width": 40,
+      "height": 40,
+      "water_fraction": 0.4931,
+      "dry_walkable_fraction": 0.0131
+    },
+    "Route124": {
+      "width": 80,
+      "height": 80,
+      "water_fraction": 0.6678,
+      "dry_walkable_fraction": 0.0859
+    },
+    "Route125": {
+      "width": 80,
+      "height": 40,
+      "water_fraction": 0.6512,
+      "dry_walkable_fraction": 0.0813
+    },
+    "Route126": {
+      "width": 80,
+      "height": 80,
+      "water_fraction": 0.6375,
+      "dry_walkable_fraction": 0.0175
+    },
+    "Route127": {
+      "width": 80,
+      "height": 80,
+      "water_fraction": 0.5958,
+      "dry_walkable_fraction": 0.1116
+    },
+    "Route128": {
+      "width": 120,
+      "height": 40,
+      "water_fraction": 0.7567,
+      "dry_walkable_fraction": 0.0867
+    },
+    "Route129": {
+      "width": 80,
+      "height": 40,
+      "water_fraction": 0.8003,
+      "dry_walkable_fraction": 0.0378
+    },
+    "Route130": {
+      "width": 80,
+      "height": 40,
+      "water_fraction": 0.7741,
+      "dry_walkable_fraction": 0.0331
+    },
+    "Route131": {
+      "width": 60,
+      "height": 40,
+      "water_fraction": 0.7008,
+      "dry_walkable_fraction": 0.0146
+    },
+    "Route132": {
+      "width": 80,
+      "height": 40,
+      "water_fraction": 0.6737,
+      "dry_walkable_fraction": 0.0875
+    },
+    "Route133": {
+      "width": 80,
+      "height": 40,
+      "water_fraction": 0.6525,
+      "dry_walkable_fraction": 0.1025
+    },
+    "Route134": {
+      "width": 80,
+      "height": 40,
+      "water_fraction": 0.6953,
+      "dry_walkable_fraction": 0.1031
+    }
+  }
+}

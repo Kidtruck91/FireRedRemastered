@@ -1,12 +1,19 @@
 """Render current Porymap block data, palettes and flip flags for the GitHub gallery."""
 from pathlib import Path
 from functools import lru_cache
-import json,struct
+import json,struct,re
 from PIL import Image,ImageDraw
 ROOT=Path(__file__).resolve().parents[2]
-SECONDARIES={**{'gTileset_SeviiIslands'+f:'sevii_islands_'+f for f in ('123','45','67')},'gTileset_OrangeIslands':'orange_islands','gTileset_OrangeCoastalTown':'orange_coastal_town',**{'gTileset_OrangeSevii'+f:'orange_sevii_'+f for f in ('123','45','67')}}
+@lru_cache(None)
+def tileset_path(symbol):
+ headers=(ROOT/'src/data/tilesets/headers.h').read_text()
+ body=re.search(r'const struct Tileset '+re.escape(symbol)+r'\s*=\s*\{(.*?)\};',headers,re.S).group(1)
+ metatiles=re.search(r'\.metatiles\s*=\s*(\w+)',body).group(1)
+ definitions=(ROOT/'src/data/tilesets/metatiles.h').read_text()
+ path=re.search(re.escape(metatiles)+r'\[\]\s*=\s*INCBIN_U16\("([^"]+)"\)',definitions).group(1)
+ return (ROOT/path).parent
 def render(layout):
- primary=ROOT/'data/tilesets/primary'/{'gTileset_OrangeGeneral':'orange_general','gTileset_General':'general'}[layout['primary_tileset']];secondary=ROOT/'data/tilesets/secondary'/SECONDARIES[layout['secondary_tileset']]
+ primary=tileset_path(layout['primary_tileset']);secondary=tileset_path(layout['secondary_tileset'])
  images=[Image.open(p/'tiles.png') for p in (primary,secondary)]
  palettes=[[tuple(map(int,line.split())) for line in ((primary if bank<7 else secondary)/'palettes'/f'{bank:02}.pal').read_text().splitlines()[3:19]] for bank in range(16)]
  metas=[]

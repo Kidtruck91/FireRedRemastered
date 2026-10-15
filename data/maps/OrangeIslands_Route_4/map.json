@@ -14,37 +14,31 @@
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
-  "object_events": [
-
-  ],
-  "warp_events": [
-
-  ],
-  "coord_events": [
-
-  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",
-      "x": 4,
+      "x": 33,
       "y": 10,
-      "elevation": 0,
+      "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Route_4_EventScript_West"
     },
     {
       "type": "sign",
-      "x": 65,
-      "y": 18,
-      "elevation": 0,
+      "x": 78,
+      "y": 25,
+      "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Route_4_EventScript_East"
     },
     {
       "type": "sign",
-      "x": 39,
-      "y": 22,
-      "elevation": 0,
+      "x": 129,
+      "y": 11,
+      "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Route_4_EventScript_Sandbar"
     }

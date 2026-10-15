@@ -1,11 +1,11 @@
 OrangeIslands_Route_6_Text_South::
-	.string "SUNBURST LANDING\n"
-	.string "South: the workshop village$"
+	.string "ROUTE 6 - SPLIT SHOALS\n"
+	.string "Follow the gaps between reefs.$"
 
 OrangeIslands_Route_6_Text_East::
-	.string "MIKAN LANDING\n"
-	.string "East: harbor town and Gym$"
+	.string "ROUTE 6 - SPLIT SHOALS\n"
+	.string "A small beach to rest on.$"
 
 OrangeIslands_Route_6_Text_Interior::
-	.string "CRYSTAL RESEARCH OUTCROP\n"
-	.string "Crystal formations lie beneath.$"
+	.string "ROUTE 6 - SPLIT SHOALS\n"
+	.string "Keep the open channel clear.$"

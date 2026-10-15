@@ -1,7 +1,7 @@
 OrangeIslands_Route_7_Text_Moro::
-	.string "MORO LANDING\n"
-	.string "Wreck site beyond the northern shore$"
+	.string "ROUTE 7 - MIST PASSAGE\n"
+	.string "Follow the gaps between reefs.$"
 
 OrangeIslands_Route_7_Text_South::
 	.string "ROUTE 7 - MIST PASSAGE\n"
-	.string "South: SUNBURST west landing$"
+	.string "A small beach to rest on.$"

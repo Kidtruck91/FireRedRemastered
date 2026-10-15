@@ -1,16 +1,14 @@
 # Orange Islands exterior maps
 
-The current revision gives all eleven islands a specific Sevii town and surrounding-route reference, with a separate connected coast for each settlement. Open `gMapGroup_OrangeIslands` in Porymap: it now contains **36 exteriors** (11 towns, 11 coasts, and 14 regional routes).
+The Orange Islands group contains **36 exteriors**: 11 towns, 11 coasts and 14 regional routes. Open `gMapGroup_OrangeIslands` in Porymap.
 
-**[View the current town/coast gallery and all Sevii references](SEVII_GALLERY.md)**
+**[Current sea-route pass: Routes 3–14, previews and Hoenn references](water-routes/README.md)**
 
-![Current town overview](sevii-inspired-towns.png)
+The sea routes now span 140–180 metatiles along their long axes, with mostly open Surf water, tiny beaches and broken reef formations. Every current connection record is preserved; the other island links remain for the user to arrange. Valencia's town/beach layouts and the user's tileset images are unchanged. Mikan Beach has a water-elevation correction with no visual changes.
 
-Ten settlements were rebuilt and ten coast maps added; Mikan retains its approved town/beach split. Routes 1–14 keep their existing terrain and connect through the new coasts. All prior map IDs are retained. New shared tropical/Sevii secondary tilesets stay within the hardware limits, and original General/Sevii assets are unchanged.
+The ROM build and focused sea-route checks pass. See the linked report for scope and commands. Emulator testing remains necessary. The older whole-region validator needs updating for the user's newer tileset choices and town landmarks.
 
-The ROM build and all 36 exterior checks pass. Doors and cave entrances are blocked until interiors are supplied; ferries and other gameplay events remain pending. Emulator playtesting is still required.
-
-Run `python3 docs/orange-islands/render_maps.py` to refresh current previews after Porymap edits. Build with `make -j5 -W data/maps.s` using the prepared toolchain, then run `python3 docs/orange-islands/validate_maps.py --rom`. The map-data rebuild flag prevents stale map binaries.
+[Earlier town/coast gallery and Sevii references](SEVII_GALLERY.md). That gallery predates the user's latest Porymap edits. The sections below record previous design passes; current map files are the source of truth.
 
 ## Design history
 

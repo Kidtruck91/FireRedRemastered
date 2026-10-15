@@ -1,8 +1,7 @@
 OrangeIslands_Route_9_Text_South::
 	.string "ROUTE 9 - ANGLER CHANNEL\n"
-	.string "South: NAVEL\n"
-	.string "North: MANDARIN SOUTH$"
+	.string "Follow the gaps between reefs.$"
 
 OrangeIslands_Route_9_Text_Platform::
-	.string "FISHING PLATFORM\n"
-	.string "A quiet place to cast a line.$"
+	.string "ROUTE 9 - ANGLER CHANNEL\n"
+	.string "A small beach to rest on.$"
