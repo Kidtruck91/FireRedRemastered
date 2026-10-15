@@ -1,0 +1,163 @@
+{
+  "town": {
+    "size": [
+      88,
+      80
+    ],
+    "goals": [
+      [
+        28,
+        58
+      ],
+      [
+        44,
+        58
+      ],
+      [
+        18,
+        62
+      ],
+      [
+        36,
+        68
+      ],
+      [
+        37,
+        31
+      ],
+      [
+        66,
+        35
+      ],
+      [
+        42,
+        33
+      ],
+      [
+        24,
+        59
+      ],
+      [
+        62,
+        53
+      ],
+      [
+        22,
+        16
+      ],
+      [
+        71,
+        22
+      ],
+      [
+        19,
+        12
+      ],
+      [
+        68,
+        18
+      ]
+    ],
+    "facades": [
+      [
+        "center",
+        26,
+        54,
+        5,
+        4
+      ],
+      [
+        "mart",
+        42,
+        54,
+        4,
+        4
+      ],
+      [
+        "house",
+        16,
+        58,
+        5,
+        4
+      ],
+      [
+        "house",
+        34,
+        64,
+        5,
+        4
+      ],
+      [
+        "gym",
+        34,
+        26,
+        7,
+        5
+      ],
+      [
+        "large_house",
+        64,
+        31,
+        7,
+        4
+      ]
+    ],
+    "warps": [
+      {
+        "x": 19,
+        "y": 12,
+        "elevation": 3,
+        "dest_map": "MAP_ORANGE_ISLANDS_NAVEL_BEACH",
+        "dest_warp_id": "0"
+      },
+      {
+        "x": 68,
+        "y": 18,
+        "elevation": 3,
+        "dest_map": "MAP_ORANGE_ISLANDS_NAVEL_BEACH",
+        "dest_warp_id": "1"
+      }
+    ]
+  },
+  "beach": {
+    "size": [
+      88,
+      38
+    ],
+    "goals": [
+      [
+        19,
+        30
+      ],
+      [
+        74,
+        30
+      ],
+      [
+        21,
+        27
+      ],
+      [
+        71,
+        26
+      ]
+    ],
+    "facades": [],
+    "warps": [
+      {
+        "x": 19,
+        "y": 30,
+        "elevation": 3,
+        "dest_map": "MAP_ORANGE_ISLANDS_NAVEL",
+        "dest_warp_id": "0"
+      },
+      {
+        "x": 74,
+        "y": 30,
+        "elevation": 3,
+        "dest_map": "MAP_ORANGE_ISLANDS_NAVEL",
+        "dest_warp_id": "1"
+      }
+    ]
+  }
+}

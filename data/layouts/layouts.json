@@ -6604,8 +6604,8 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_NAVEL",
       "name": "OrangeIslands_Navel_Layout",
-      "width": 44,
-      "height": 110,
+      "width": 88,
+      "height": 80,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
@@ -6856,8 +6856,8 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_13",
       "name": "OrangeIslands_Route_13_Layout",
-      "width": 84,
-      "height": 76,
+      "width": 88,
+      "height": 80,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_HoennGeneral",
@@ -6916,8 +6916,8 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_NAVEL_BEACH",
       "name": "OrangeIslands_Navel_Beach_Layout",
-      "width": 98,
-      "height": 60,
+      "width": 88,
+      "height": 38,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",

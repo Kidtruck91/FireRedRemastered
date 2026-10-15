@@ -14,39 +14,64 @@
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
-  "object_events": [
-
-  ],
+  "object_events": [],
   "warp_events": [
-
+    {
+      "x": 19,
+      "y": 12,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_NAVEL_BEACH",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 68,
+      "y": 18,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_NAVEL_BEACH",
+      "dest_warp_id": "1"
+    }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",
-      "x": 26,
-      "y": 23,
-      "elevation": 0,
+      "x": 42,
+      "y": 32,
+      "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Navel_EventScript_Gym"
     },
     {
       "type": "sign",
       "x": 24,
-      "y": 104,
-      "elevation": 0,
+      "y": 58,
+      "elevation": 3,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Navel_EventScript_Town"
+    },
+    {
+      "type": "sign",
+      "x": 62,
+      "y": 52,
+      "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Navel_EventScript_Beach"
     },
     {
       "type": "sign",
-      "x": 24,
-      "y": 100,
-      "elevation": 0,
+      "x": 22,
+      "y": 15,
+      "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Navel_EventScript_Town"
+      "script": "OrangeIslands_Navel_EventScript_WestTrail"
+    },
+    {
+      "type": "sign",
+      "x": 71,
+      "y": 21,
+      "elevation": 3,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Navel_EventScript_EastTrail"
     }
   ]
 }

@@ -168,7 +168,12 @@ def build():
         (hp.parent/'text.inc').write_text('\n'.join(texts))
         render(layout).save(HERE.parent/(name+'.png'))
         landmarks[number]={'size':[w,h],'sign_approaches':sign_goals,'entrance':d['entrance'],'exit':d['exit'],'flow':d['flow'],'current_runs':run_checks}
-    path.write_text(json.dumps(table,indent=2)+'\n');(HERE/'landmarks.json').write_text(json.dumps(landmarks,indent=2)+'\n');overview()
+    path.write_text(json.dumps(table,indent=2)+'\n');(HERE/'landmarks.json').write_text(json.dumps(landmarks,indent=2)+'\n')
+    from add_boundaries import build as seal_boundaries
+    seal_boundaries()
+    for number in DESIGNS:
+        render(layouts['LAYOUT_ORANGE_ISLANDS_ROUTE_'+number]).save(HERE.parent/f'OrangeIslands_Route_{number}.png')
+    overview()
     print('Built eleven varied routes; Route 3 and all connection records retained.')
 
 

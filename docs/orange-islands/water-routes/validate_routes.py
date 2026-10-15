@@ -61,6 +61,9 @@ def main():
             x,y=i%w,i//w
             return [ny*w+nx for nx,ny in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)] if 0<=nx<w and 0<=ny<h]
         passable={i for i,v in enumerate(blocks) if not v&0xC00}
+        edge={x for x in range(w)}|{(h-1)*w+x for x in range(w)}|{y*w for y in range(h)}|{y*w+w-1 for y in range(h)}
+        allowed_edges={y*w for y in range(22,34)}|{y*w+w-1 for y in range(2,h-2)} if number=='3' else set()
+        assert not (passable&edge)-allowed_edges,(name,'unused edge lacks a visible barrier')
         for i in passable:
             assert blocks[i]>>12==(1 if behavior(i) in SURF else 3),(name,'bad land/Surf elevation',i%w,i//w,hex(blocks[i]))
             assert not 0x60<=behavior(i)<=0x7F,(name,'unconfigured warp')

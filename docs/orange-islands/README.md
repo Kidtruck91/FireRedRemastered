@@ -2,9 +2,11 @@
 
 The Orange Islands group contains **36 exteriors**: 11 towns, 11 coasts and 14 regional routes. Open `gMapGroup_OrangeIslands` in Porymap.
 
+**[Current Navel draft: large island, southern village, summit climb and separate north-beach loop](navel/README.md)**
+
 **[Current sea routes: varied tilesets, cardinal/diagonal crossings and puzzle previews](water-routes/README.md)**
 
-Routes 4–14 now use six pairings across the sea-route group, including Hoenn Mossdeep, Dewford and Pacifidlog. Wider diagonal seas, cliff shelves, karst reefs, current courses and a switchback maze replace the repeated corridor layout. Route 3 and every existing map connection are retained. The user's Valencia edits and all tileset assets are unchanged.
+Routes 4–14 now use six pairings across the sea-route group, including Hoenn Mossdeep, Dewford and Pacifidlog. Wider diagonal seas, cliff shelves, karst reefs, current courses and a switchback maze replace the repeated corridor layout. Rock barriers now seal unused sea-map edges; Route 3 retains its two beach joins. The user's Valencia edits and all tileset assets are unchanged. Navel now has two reciprocal trail warps through its separate north beach; external map connections are retained.
 
 See the linked gallery for entrance/exit anchors, matching-tileset requirements when adding future connections, and validation commands. Emulator testing remains necessary. The older whole-region validator needs updating for the user's newer town tilesets and landmarks.
 

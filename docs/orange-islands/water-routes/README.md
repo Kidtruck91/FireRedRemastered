@@ -1,6 +1,8 @@
 # Orange sea routes — tilesets, directions and puzzles
 
-Eleven sea routes have been rebuilt with **six tileset pairings**, wider map shapes and varied crossing directions. Route 3 retains its existing Valencia/Mikan beach seams and layout. All connection records are preserved; the other island links remain for the user to arrange.
+Eleven sea routes have been rebuilt with **six tileset pairings**, wider map shapes and varied crossing directions. Route 3 retains its existing Valencia/Mikan beach seams and interior layout. All connection records are preserved; the other island links remain for the user to arrange.
+
+**Rock-boundary pass:** every unused sea-map edge now has a continuous barrier made from complete native reef objects. Route 3's active beach crossings remain open. Route 11 retains its existing closed maze rim. Route 13 is widened to 88 × 80 so its outer current course still has a five-tile-wide calm bypass inside the new rocks. Interior terrain, signs, currents and maze gates retain their positions.
 
 The maps now mix native FireRed/Sevii scenery with **Hoenn General + Mossdeep, Dewford and Pacifidlog**. Hoenn cliff shelves, white karst formations, wet shoals, forested islets and currents give the routes different landmarks. Walkable land remains under 5% per map; larger rock formations are collision barriers rather than large traversable islands.
 
@@ -20,7 +22,7 @@ The maps now mix native FireRed/Sevii scenery with **Hoenn General + Mossdeep, D
 | 10 — Twin-spine diagonal | 104 × 68 | NW → SE | HoennGeneral + HoennDewford | [View](../OrangeIslands_Route_10.png) |
 | 11 — White reef switchback maze | 80 × 80 | NE → SW | HoennGeneral + HoennMossdeep | [View](../OrangeIslands_Route_11.png) |
 | 12 — Lagoon shipping sweep | 140 × 44 | W → E | HoennGeneral + HoennMossdeep | [View](../OrangeIslands_Route_12.png) |
-| 13 — Hook-current course | 84 × 76 | SE → NW | HoennGeneral + HoennPacifidlog | [View](../OrangeIslands_Route_13.png) |
+| 13 — Hook-current course | 88 × 80 | SE → NW | HoennGeneral + HoennPacifidlog | [View](../OrangeIslands_Route_13.png) |
 | 14 — Karst outer diagonal | 88 × 72 | SE → NW | HoennGeneral + HoennMossdeep | [View](../OrangeIslands_Route_14.png) |
 
 ## Current and maze prototypes
@@ -35,7 +37,7 @@ These use existing FireRed Surf and forced-current behavior. Emulator playtestin
 
 ## Connections and preserved work
 
-Every connection direction, offset and destination is unchanged. Valencia town/beach, Mikan Beach, Route 3 and all tileset assets are unchanged in this pass. Routes 1–2 and the original Sevii maps are also untouched. The earlier Mikan Beach water-elevation correction remains in place.
+Every connection direction, offset and destination is unchanged. Valencia town/beach, Mikan Beach and all tileset assets are unchanged in this pass. Route 3 changes only at unused edges to add barriers. Routes 1–2 and the original Sevii maps are also untouched. The earlier Mikan Beach water-elevation correction remains in place.
 
 **When arranging the remaining links:** direct scrolling connections need compatible primary tilesets and shared metatile definitions/palettes in their visible border strips. A Hoenn route cannot simply share an edge with an OrangeGeneral beach. Use a matching beach/transition tileset and compatible border strips, or a ferry/warp transition. The current Route 3 chain retains its compatible Orange pairing.
 
@@ -64,8 +66,8 @@ make -j5 -W data/maps.s
 python3 -B docs/orange-islands/water-routes/validate_routes.py --rom
 ```
 
-The focused validator checks engine map-buffer limits, metatile IDs, elevations, native shore joins, complete reef objects, reachable land/signs and routes back to the exit. It follows every forced-current tile, checks every entry lane reaches the intended calm exit, verifies required maze gates, and checks a five-tile-wide calm crossing/bypass. The ROM check compares the exact current route binaries and connected beach binaries against the built ROM.
+The focused validator checks engine map-buffer limits, metatile IDs, elevations, native shore joins, complete reef objects, sealed unused edges, reachable land/signs and routes back to the exit. It follows every forced-current tile, checks every entry lane reaches the intended calm exit, verifies required maze gates, and checks a five-tile-wide calm crossing/bypass. The ROM check compares the exact current route binaries and connected beach binaries against the built ROM.
 
 Hoenn asset validation checks imported artwork, loaded palettes, layers and animation banks. OrangeGeneral validation retains its asset checks and now accepts the explicit alternate route pairings. The older whole-region `validate_maps.py` still needs updating for the user's latest town tilesets and landmarks; its historical all-region result does not cover these newer town edits.
 
-For Porymap edits, refresh images with `render_maps.py`. The optional `water-routes/build_routes.py` recreates Routes 4–14 from the tracked motifs/recipes and retains Route 3; **running it replaces subsequent Porymap edits to Routes 4–14**. It is not needed to compile the ROM. Existing connection records are retained when rebuilding.
+For Porymap edits, refresh images with `render_maps.py`. The optional `water-routes/build_routes.py` recreates Routes 4–14 from the tracked motifs/recipes and retains Route 3's interior; **running it replaces subsequent Porymap edits to Routes 4–14**. It then applies `add_boundaries.py` to seal unused edges and refreshes the gallery. Neither script is needed to compile the ROM. Existing connection records are retained when rebuilding.
