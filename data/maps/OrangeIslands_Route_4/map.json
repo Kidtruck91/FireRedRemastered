@@ -13,83 +13,16 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [
+  "connections": [
     {
-      "type": "trigger",
-      "x": 119,
-      "y": 20,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_4_EventScript_SailToRoute1"
-    },
-    {
-      "type": "trigger",
-      "x": 119,
-      "y": 21,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_4_EventScript_SailToRoute1"
-    },
-    {
-      "type": "trigger",
-      "x": 119,
-      "y": 22,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_4_EventScript_SailToRoute1"
-    },
-    {
-      "type": "trigger",
-      "x": 119,
-      "y": 23,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_4_EventScript_SailToRoute1"
-    },
-    {
-      "type": "trigger",
-      "x": 119,
-      "y": 24,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_4_EventScript_SailToRoute1"
-    },
-    {
-      "type": "trigger",
-      "x": 119,
-      "y": 25,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_4_EventScript_SailToRoute1"
-    },
-    {
-      "type": "trigger",
-      "x": 119,
-      "y": 26,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_4_EventScript_SailToRoute1"
-    },
-    {
-      "type": "trigger",
-      "x": 119,
-      "y": 27,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_4_EventScript_SailToRoute1"
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_1",
+      "offset": 17,
+      "direction": "right"
     }
   ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

@@ -11,12 +11,12 @@ OrangeIslands_Route_2_EventScript_Pond::
 
 @ Edge warp: different tilesets, so no seamless edge
 OrangeIslands_Route_2_EventScript_WalkToValencia_24_2::
-	warp MAP_ORANGE_ISLANDS_VALENCIA, 24, 2
+	warp MAP_ORANGE_ISLANDS_VALENCIA, 39, 2
 	waitstate
 	end
 
 @ Edge warp: different tilesets, so no seamless edge
 OrangeIslands_Route_2_EventScript_WalkToValencia_25_2::
-	warp MAP_ORANGE_ISLANDS_VALENCIA, 25, 2
+	warp MAP_ORANGE_ISLANDS_VALENCIA, 40, 2
 	waitstate
 	end

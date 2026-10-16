@@ -6580,7 +6580,7 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_VALENCIA",
       "name": "OrangeIslands_Valencia_Layout",
-      "width": 52,
+      "width": 67,
       "height": 57,
       "border_width": 2,
       "border_height": 2,
@@ -6652,8 +6652,8 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_1",
       "name": "OrangeIslands_Route_1_Layout",
-      "width": 52,
-      "height": 36,
+      "width": 60,
+      "height": 63,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
@@ -6692,8 +6692,8 @@
       "height": 48,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands45",
+      "primary_tileset": "gTileset_OrangeGeneral",
+      "secondary_tileset": "gTileset_SeviiIslands45Condensed",
       "border_filepath": "data/layouts/OrangeIslands_Route_4/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_4/map.bin"
     },

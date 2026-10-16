@@ -18,83 +18,15 @@
       "map": "MAP_ORANGE_ISLANDS_VALENCIA",
       "offset": 0,
       "direction": "down"
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_4",
+      "offset": -17,
+      "direction": "left"
     }
   ],
   "object_events": [],
   "warp_events": [],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 6,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_1_EventScript_SailToRoute4"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 7,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_1_EventScript_SailToRoute4"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 8,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_1_EventScript_SailToRoute4"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 9,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_1_EventScript_SailToRoute4"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 10,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_1_EventScript_SailToRoute4"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 11,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_1_EventScript_SailToRoute4"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 12,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_1_EventScript_SailToRoute4"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 13,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_1_EventScript_SailToRoute4"
-    }
-  ],
+  "coord_events": [],
   "bg_events": []
 }
