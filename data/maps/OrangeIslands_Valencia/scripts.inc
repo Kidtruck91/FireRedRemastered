@@ -10,26 +10,26 @@ OrangeIslands_Valencia_EventScript_Town::
 	end
 
 OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_49::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 1, 33
+	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 33
 	waitstate
 	end
 
 OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_50::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 1, 34
+	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 34
 	waitstate
 	end
 
 OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_51::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 1, 35
+	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 35
 	waitstate
 	end
 
 OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_52::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 1, 36
+	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 36
 	waitstate
 	end
 
 OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_53::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 1, 37
+	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 37
 	waitstate
 	end

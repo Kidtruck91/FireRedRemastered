@@ -6580,7 +6580,7 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_VALENCIA",
       "name": "OrangeIslands_Valencia_Layout",
-      "width": 44,
+      "width": 52,
       "height": 57,
       "border_width": 2,
       "border_height": 2,
@@ -6892,7 +6892,7 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_VALENCIA_BEACH",
       "name": "OrangeIslands_Valencia_Beach_Layout",
-      "width": 88,
+      "width": 96,
       "height": 41,
       "border_width": 2,
       "border_height": 2,
