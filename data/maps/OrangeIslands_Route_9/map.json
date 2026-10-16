@@ -16,7 +16,80 @@
   "connections": 0,
   "object_events": [],
   "warp_events": [],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 106,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_9_EventScript_SailToNavelBeach"
+    },
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 107,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_9_EventScript_SailToNavelBeach"
+    },
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 108,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_9_EventScript_SailToNavelBeach"
+    },
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 109,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_9_EventScript_SailToNavelBeach"
+    },
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 110,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_9_EventScript_SailToNavelBeach"
+    },
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 111,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_9_EventScript_SailToNavelBeach"
+    },
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 112,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_9_EventScript_SailToNavelBeach"
+    },
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 113,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_9_EventScript_SailToNavelBeach"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

@@ -3,7 +3,7 @@
   "name": "OrangeIslands_Navel",
   "layout": "LAYOUT_ORANGE_ISLANDS_NAVEL",
   "music": "MUS_PALLET",
-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "region_map_section": "MAPSEC_NAVEL_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_TOWN",
@@ -13,8 +13,16 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
-  "object_events": [],
+  "connections": [
+    {
+      "map": "MAP_ORANGE_ISLANDS_NAVEL_BEACH",
+      "offset": 0,
+      "direction": "up"
+    }
+  ],
+  "object_events": [
+
+  ],
   "warp_events": [
     {
       "x": 19,
@@ -31,7 +39,9 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

@@ -3,7 +3,7 @@
   "name": "OrangeIslands_Navel_Beach",
   "layout": "LAYOUT_ORANGE_ISLANDS_NAVEL_BEACH",
   "music": "MUS_ROUTE1",
-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "region_map_section": "MAPSEC_NAVEL_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_ROUTE",
@@ -13,7 +13,13 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "map": "MAP_ORANGE_ISLANDS_NAVEL",
+      "offset": 0,
+      "direction": "down"
+    }
+  ],
   "object_events": [],
   "warp_events": [
     {
@@ -31,7 +37,152 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute9"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute9"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 4,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute9"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute9"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute9"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute9"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute9"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute9"
+    },
+    {
+      "type": "trigger",
+      "x": 87,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute10"
+    },
+    {
+      "type": "trigger",
+      "x": 87,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute10"
+    },
+    {
+      "type": "trigger",
+      "x": 87,
+      "y": 4,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute10"
+    },
+    {
+      "type": "trigger",
+      "x": 87,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute10"
+    },
+    {
+      "type": "trigger",
+      "x": 87,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute10"
+    },
+    {
+      "type": "trigger",
+      "x": 87,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute10"
+    },
+    {
+      "type": "trigger",
+      "x": 87,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute10"
+    },
+    {
+      "type": "trigger",
+      "x": 87,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Navel_Beach_EventScript_SailToRoute10"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
