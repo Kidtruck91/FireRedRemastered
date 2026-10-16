@@ -13,7 +13,13 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "map": "MAP_ORANGE_ISLANDS_ROUTE_1",
+      "offset": 0,
+      "direction": "up"
+    }
+  ],
   "object_events": [],
   "warp_events": [],
   "coord_events": [
@@ -61,6 +67,24 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_53"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Valencia_EventScript_WalkToRoute2_27_44"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Valencia_EventScript_WalkToRoute2_27_44"
     }
   ],
   "bg_events": [

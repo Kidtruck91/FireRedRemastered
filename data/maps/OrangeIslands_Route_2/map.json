@@ -14,31 +14,36 @@
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
-  "object_events": [
-
-  ],
-  "warp_events": [
-
-  ],
+  "object_events": [],
+  "warp_events": [],
   "coord_events": [
-
-  ],
-  "bg_events": [
     {
-      "type": "sign",
-      "x": 46,
-      "y": 17,
+      "type": "trigger",
+      "x": 26,
+      "y": 46,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Route_2_EventScript_Jungle"
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_2_EventScript_WalkToValencia_24_2"
     },
     {
-      "type": "sign",
-      "x": 29,
-      "y": 5,
+      "type": "trigger",
+      "x": 27,
+      "y": 46,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Route_2_EventScript_Pond"
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_2_EventScript_WalkToValencia_24_2"
+    },
+    {
+      "type": "trigger",
+      "x": 28,
+      "y": 46,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_2_EventScript_WalkToValencia_25_2"
     }
-  ]
+  ],
+  "bg_events": []
 }

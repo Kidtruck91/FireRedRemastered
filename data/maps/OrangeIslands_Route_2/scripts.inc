@@ -8,3 +8,15 @@ OrangeIslands_Route_2_EventScript_Jungle::
 OrangeIslands_Route_2_EventScript_Pond::
 	msgbox OrangeIslands_Route_2_Text_Pond, MSGBOX_SIGN
 	end
+
+@ Edge warp: different tilesets, so no seamless edge
+OrangeIslands_Route_2_EventScript_WalkToValencia_24_2::
+	warp MAP_ORANGE_ISLANDS_VALENCIA, 24, 2
+	waitstate
+	end
+
+@ Edge warp: different tilesets, so no seamless edge
+OrangeIslands_Route_2_EventScript_WalkToValencia_25_2::
+	warp MAP_ORANGE_ISLANDS_VALENCIA, 25, 2
+	waitstate
+	end

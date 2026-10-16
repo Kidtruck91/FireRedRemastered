@@ -33,3 +33,9 @@ OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_53::
 	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 37
 	waitstate
 	end
+
+@ Edge warp: different tilesets, so no seamless edge
+OrangeIslands_Valencia_EventScript_WalkToRoute2_27_44::
+	warp MAP_ORANGE_ISLANDS_ROUTE_2, 27, 44
+	waitstate
+	end
