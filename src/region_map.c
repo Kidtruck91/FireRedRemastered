@@ -3942,13 +3942,72 @@ static bool32 IsCeladonDeptStoreMapsec(u16 mapsec)
     return TRUE;
 }
 
+// Orange Islands location names. They use the Hoenn mapsec slots FireRed leaves empty,
+// so they sit outside the generated (Kanto-based) sMapNames table.
+static const u8 sMapsecName_VALENCIA_ISLAND[] = _("VALENCIA ISLAND");
+static const u8 sMapsecName_MIKAN_ISLAND[] = _("MIKAN ISLAND");
+static const u8 sMapsecName_SUNBURST_ISLAND[] = _("SUNBURST ISLAND");
+static const u8 sMapsecName_NAVEL_ISLAND[] = _("NAVEL ISLAND");
+static const u8 sMapsecName_MORO_ISLAND[] = _("MORO ISLAND");
+static const u8 sMapsecName_KINNOW_ISLAND[] = _("KINNOW ISLAND");
+static const u8 sMapsecName_MANDARIN_SOUTH[] = _("MANDARIN ISLAND");
+static const u8 sMapsecName_TROVITA_ISLAND[] = _("TROVITA ISLAND");
+static const u8 sMapsecName_PINKAN_ISLAND[] = _("PINKAN ISLAND");
+static const u8 sMapsecName_KUMQUAT_ISLAND[] = _("KUMQUAT ISLAND");
+static const u8 sMapsecName_PUMMELO_ISLAND[] = _("PUMMELO ISLAND");
+static const u8 sMapsecName_ORANGE_ROUTE_1[] = _("ORANGE ROUTE 1");
+static const u8 sMapsecName_ORANGE_ROUTE_2[] = _("ORANGE ROUTE 2");
+static const u8 sMapsecName_ORANGE_ROUTE_3[] = _("ORANGE ROUTE 3");
+static const u8 sMapsecName_ORANGE_ROUTE_4[] = _("ORANGE ROUTE 4");
+static const u8 sMapsecName_ORANGE_ROUTE_5[] = _("ORANGE ROUTE 5");
+static const u8 sMapsecName_ORANGE_ROUTE_6[] = _("ORANGE ROUTE 6");
+static const u8 sMapsecName_ORANGE_ROUTE_7[] = _("ORANGE ROUTE 7");
+static const u8 sMapsecName_ORANGE_ROUTE_8[] = _("ORANGE ROUTE 8");
+static const u8 sMapsecName_ORANGE_ROUTE_9[] = _("ORANGE ROUTE 9");
+static const u8 sMapsecName_ORANGE_ROUTE_10[] = _("ORANGE ROUTE 10");
+static const u8 sMapsecName_ORANGE_ROUTE_11[] = _("ORANGE ROUTE 11");
+static const u8 sMapsecName_ORANGE_ROUTE_12[] = _("ORANGE ROUTE 12");
+static const u8 sMapsecName_ORANGE_ROUTE_13[] = _("ORANGE ROUTE 13");
+static const u8 sMapsecName_ORANGE_ROUTE_14[] = _("ORANGE ROUTE 14");
+static const u8 *const sOrangeMapNames[MAPSEC_ORANGE_END - MAPSECS_ORANGE] = {
+    [MAPSEC_VALENCIA_ISLAND - MAPSECS_ORANGE] = sMapsecName_VALENCIA_ISLAND,
+    [MAPSEC_MIKAN_ISLAND - MAPSECS_ORANGE] = sMapsecName_MIKAN_ISLAND,
+    [MAPSEC_SUNBURST_ISLAND - MAPSECS_ORANGE] = sMapsecName_SUNBURST_ISLAND,
+    [MAPSEC_NAVEL_ISLAND - MAPSECS_ORANGE] = sMapsecName_NAVEL_ISLAND,
+    [MAPSEC_MORO_ISLAND - MAPSECS_ORANGE] = sMapsecName_MORO_ISLAND,
+    [MAPSEC_KINNOW_ISLAND - MAPSECS_ORANGE] = sMapsecName_KINNOW_ISLAND,
+    [MAPSEC_MANDARIN_SOUTH - MAPSECS_ORANGE] = sMapsecName_MANDARIN_SOUTH,
+    [MAPSEC_TROVITA_ISLAND - MAPSECS_ORANGE] = sMapsecName_TROVITA_ISLAND,
+    [MAPSEC_PINKAN_ISLAND - MAPSECS_ORANGE] = sMapsecName_PINKAN_ISLAND,
+    [MAPSEC_KUMQUAT_ISLAND - MAPSECS_ORANGE] = sMapsecName_KUMQUAT_ISLAND,
+    [MAPSEC_PUMMELO_ISLAND - MAPSECS_ORANGE] = sMapsecName_PUMMELO_ISLAND,
+    [MAPSEC_ORANGE_ROUTE_1 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_1,
+    [MAPSEC_ORANGE_ROUTE_2 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_2,
+    [MAPSEC_ORANGE_ROUTE_3 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_3,
+    [MAPSEC_ORANGE_ROUTE_4 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_4,
+    [MAPSEC_ORANGE_ROUTE_5 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_5,
+    [MAPSEC_ORANGE_ROUTE_6 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_6,
+    [MAPSEC_ORANGE_ROUTE_7 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_7,
+    [MAPSEC_ORANGE_ROUTE_8 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_8,
+    [MAPSEC_ORANGE_ROUTE_9 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_9,
+    [MAPSEC_ORANGE_ROUTE_10 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_10,
+    [MAPSEC_ORANGE_ROUTE_11 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_11,
+    [MAPSEC_ORANGE_ROUTE_12 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_12,
+    [MAPSEC_ORANGE_ROUTE_13 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_13,
+    [MAPSEC_ORANGE_ROUTE_14 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_14,
+};
+
 u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)
 {
     u8 *dst;
     u16 i;
     u16 idx;
     idx = mapsec - MAPSECS_KANTO;
-    if (idx < ARRAY_COUNT(sMapNames) && sMapNames[idx] != NULL)
+    if (mapsec < MAPSEC_ORANGE_END)
+    {
+        dst = StringCopy(dst0, sOrangeMapNames[mapsec - MAPSECS_ORANGE]);
+    }
+    else if (idx < ARRAY_COUNT(sMapNames) && sMapNames[idx] != NULL)
     {
         if (IsCeladonDeptStoreMapsec(mapsec) == TRUE)
             dst = StringCopy(dst0, sMapsecName_CELADONDEPT);

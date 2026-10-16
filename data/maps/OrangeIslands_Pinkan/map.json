@@ -3,7 +3,7 @@
   "name": "OrangeIslands_Pinkan",
   "layout": "LAYOUT_ORANGE_ISLANDS_PINKAN",
   "music": "MUS_PALLET",
-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "region_map_section": "MAPSEC_PINKAN_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_TOWN",

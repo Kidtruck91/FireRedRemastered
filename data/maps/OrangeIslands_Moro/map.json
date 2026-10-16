@@ -3,7 +3,7 @@
   "name": "OrangeIslands_Moro",
   "layout": "LAYOUT_ORANGE_ISLANDS_MORO",
   "music": "MUS_PALLET",
-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "region_map_section": "MAPSEC_MORO_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_FOG_HORIZONTAL",
   "map_type": "MAP_TYPE_TOWN",

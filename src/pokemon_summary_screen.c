@@ -5233,6 +5233,10 @@ static bool32 MapSecIsInKantoOrSevii(u8 mapSec)
 {
     if (mapSec >= MAPSECS_KANTO && mapSec < MAPSEC_NONE)
         return TRUE;
+    if (mapSec < MAPSEC_ORANGE_END)                                 // Orange Islands
+        return TRUE;
+    if (mapSec >= MAPSECS_JOHTO_TOWNS && mapSec < MAPSEC_COUNT)     // Johto
+        return TRUE;
     return FALSE;
 }
 
