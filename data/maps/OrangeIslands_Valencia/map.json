@@ -13,21 +13,55 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
-      "offset": 16,
-      "direction": "right"
-    }
-  ],
-  "object_events": [
-
-  ],
-  "warp_events": [
-
-  ],
+  "connections": 0,
+  "object_events": [],
+  "warp_events": [],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_49"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 50,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_50"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 51,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_51"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 52,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_52"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 53,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_53"
+    }
   ],
   "bg_events": [
     {

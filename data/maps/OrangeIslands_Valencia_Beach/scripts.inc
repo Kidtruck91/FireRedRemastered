@@ -8,3 +8,28 @@ OrangeIslands_Valencia_Beach_EventScript_Town::
 OrangeIslands_Valencia_Beach_EventScript_Harbor::
 	msgbox OrangeIslands_Valencia_Beach_Text_Harbor, MSGBOX_SIGN
 	end
+
+OrangeIslands_Valencia_Beach_EventScript_EdgeToValencia_33::
+	warp MAP_ORANGE_ISLANDS_VALENCIA, 42, 49
+	waitstate
+	end
+
+OrangeIslands_Valencia_Beach_EventScript_EdgeToValencia_34::
+	warp MAP_ORANGE_ISLANDS_VALENCIA, 42, 50
+	waitstate
+	end
+
+OrangeIslands_Valencia_Beach_EventScript_EdgeToValencia_35::
+	warp MAP_ORANGE_ISLANDS_VALENCIA, 42, 51
+	waitstate
+	end
+
+OrangeIslands_Valencia_Beach_EventScript_EdgeToValencia_36::
+	warp MAP_ORANGE_ISLANDS_VALENCIA, 42, 52
+	waitstate
+	end
+
+OrangeIslands_Valencia_Beach_EventScript_EdgeToValencia_37::
+	warp MAP_ORANGE_ISLANDS_VALENCIA, 42, 53
+	waitstate
+	end
