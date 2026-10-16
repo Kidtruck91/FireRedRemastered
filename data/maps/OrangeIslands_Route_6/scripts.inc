@@ -12,3 +12,9 @@ OrangeIslands_Route_6_EventScript_East::
 OrangeIslands_Route_6_EventScript_Interior::
 	msgbox OrangeIslands_Route_6_Text_Interior, MSGBOX_SIGN
 	end
+
+@ Edge warp: different tilesets, so no seamless edge
+OrangeIslands_Route_6_EventScript_SailToMikan::
+	warp MAP_ORANGE_ISLANDS_MIKAN, 1, 15
+	waitstate
+	end

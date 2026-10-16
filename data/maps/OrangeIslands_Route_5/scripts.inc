@@ -8,3 +8,9 @@ OrangeIslands_Route_5_EventScript_Currents::
 OrangeIslands_Route_5_EventScript_North::
 	msgbox OrangeIslands_Route_5_Text_North, MSGBOX_SIGN
 	end
+
+@ Edge warp: different tilesets, so no seamless edge
+OrangeIslands_Route_5_EventScript_SailToMikan::
+	warp MAP_ORANGE_ISLANDS_MIKAN, 31, 1
+	waitstate
+	end

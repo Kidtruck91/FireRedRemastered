@@ -18,57 +18,15 @@
       "map": "MAP_ORANGE_ISLANDS_ROUTE_3",
       "offset": 6,
       "direction": "left"
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_MIKAN",
+      "offset": 0,
+      "direction": "up"
     }
   ],
-  "object_events": [
-
-  ],
-  "warp_events": [
-
-  ],
-  "coord_events": [
-
-  ],
-  "bg_events": [
-    {
-      "type": "sign",
-      "x": 52,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mikan_Beach_EventScript_Town"
-    },
-    {
-      "type": "sign",
-      "x": 22,
-      "y": 38,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mikan_Beach_EventScript_South"
-    },
-    {
-      "type": "sign",
-      "x": 3,
-      "y": 18,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mikan_Beach_EventScript_West"
-    },
-    {
-      "type": "sign",
-      "x": 22,
-      "y": 4,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mikan_Beach_EventScript_North"
-    },
-    {
-      "type": "sign",
-      "x": 23,
-      "y": 31,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mikan_Beach_EventScript_Harbor"
-    }
-  ]
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
+  "bg_events": []
 }
