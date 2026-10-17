@@ -2030,6 +2030,8 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Sunburst_Beach/scripts.inc"
 	.include "data/maps/OrangeIslands_Sunburst_Beach/text.inc"
+	.include "data/maps/OrangeIslands_Sunburst_Cave/scripts.inc"
+	.include "data/maps/OrangeIslands_Sunburst_Cave/text.inc"
 
 	.include "data/maps/OrangeIslands_Navel_Beach/scripts.inc"
 	.include "data/maps/OrangeIslands_Navel_Beach/text.inc"

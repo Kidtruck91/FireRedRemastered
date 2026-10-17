@@ -18,6 +18,11 @@
       "map": "MAP_ORANGE_ISLANDS_ROUTE_1",
       "offset": 17,
       "direction": "right"
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_SUNBURST",
+      "offset": -8,
+      "direction": "left"
     }
   ],
   "object_events": [],

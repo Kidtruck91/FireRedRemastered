@@ -6760,14 +6760,26 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_SUNBURST",
       "name": "OrangeIslands_Sunburst_Layout",
-      "width": 68,
-      "height": 76,
+      "width": 64,
+      "height": 64,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeSevii123",
       "border_filepath": "data/layouts/OrangeIslands_Sunburst/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Sunburst/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_SUNBURST_CAVE",
+      "name": "OrangeIslands_Sunburst_Cave_Layout",
+      "width": 40,
+      "height": 32,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/OrangeIslands_Sunburst_Cave/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Sunburst_Cave/map.bin"
     },
     {
       "id": "LAYOUT_ORANGE_ISLANDS_MORO",
