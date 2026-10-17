@@ -34,10 +34,10 @@ OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10::
 	getplayerxy VAR_0x8004, VAR_0x8005
 	compare VAR_0x8005, 0
 	goto_if_lt OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Lo
-	compare VAR_0x8005, 7
+	compare VAR_0x8005, 17
 	goto_if_gt OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Hi
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Go:
-	addvar VAR_0x8005, 50
+	addvar VAR_0x8005, 40
 	setvar VAR_0x8004, 102
 	warp MAP_ORANGE_ISLANDS_ROUTE_10, VAR_0x8004, VAR_0x8005
 	waitstate
@@ -46,5 +46,5 @@ OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Lo:
 	setvar VAR_0x8005, 0
 	goto OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Go
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Hi:
-	setvar VAR_0x8005, 7
+	setvar VAR_0x8005, 17
 	goto OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Go

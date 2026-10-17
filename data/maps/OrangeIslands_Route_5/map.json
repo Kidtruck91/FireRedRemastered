@@ -19,24 +19,6 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 0,
-      "y": 123,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
-    },
-    {
-      "type": "trigger",
-      "x": 1,
-      "y": 123,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
-    },
-    {
-      "type": "trigger",
       "x": 4,
       "y": 123,
       "elevation": 0,

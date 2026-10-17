@@ -11,7 +11,7 @@ WORLD = {
     'Valencia_Beach': (67, 16), 'Route_3': (163, -2), 'Mikan_Beach': (303, -7), 'Mikan': (303, -79),
     'Route_5': (311, -203), 'Navel': (290, -268), 'Navel_Beach': (290, -338),
     'Route_6': (223, -170), 'Mandarin_South': (127, -180), 'Route_18': (127, -220),
-    'Route_8': (91, -104), 'Kinnow': (19, -150), 'Route_10': (-85, -200),
+    'Route_8': (91, -104), 'Kinnow': (19, -150), 'Route_10': (-85, -190),
     'Route_17': (-125, -232), 'Moro': (-189, -232), 'Route_7': (-190, -176),
     'Route_13': (131, -300), 'Kumquat': (131, -360),
     'Route_16': (95, -312), 'Pinkan': (55, -312), 'Route_15': (19, -312),
@@ -30,6 +30,7 @@ LINKS = [
     ('Kumquat', 'up', 'Route_14'), ('Route_14', 'right', 'Trovita'), ('Trovita', 'down', 'Trovita_Beach'),
     ('Trovita_Beach', 'down', 'Route_11'), ('Route_11', 'right', 'Navel_Beach'),
 ]
+SEA_ROUTES = {'Route_%d' % n for n in (5, 6, 7, 8, 10, 11, 13, 14)}   # open-sea routes that get funnel walls
 if __name__ != '__main__': raise SystemExit
 OPP = {'up': 'down', 'down': 'up', 'left': 'right', 'right': 'left'}
 EDGE = {'up': 'top', 'down': 'bottom', 'left': 'left', 'right': 'right'}
@@ -98,6 +99,27 @@ for a, d, b in LINKS:
         clo, chi = min(dest_ok), max(dest_ok)
         land = {'top': size[n][1] - 2, 'bottom': 1, 'left': size[n][0] - 2, 'right': 1}[e]
         edges.append((m, e, n, off, (clo, chi), land))
+# 3b. funnel: on sea routes, wall every edge water cell (2 deep) that has no link behind it, so the player
+#     slides along the rocks to the opening instead of stopping at a dead edge
+ROCK = {'gTileset_HoennGeneral': (0x150, 0x151, 0x158, 0x159)}
+ROCK_DEFAULT = (0x110, 0x111, 0x118, 0x119)          # General / OrangeGeneral sea rocks
+live = {}
+for m, e, n, off, (clo, chi), land in edges: live.setdefault((m, e), []).append((clo, chi))
+for m in WORLD:
+    if m not in SEA_ROUTES: continue
+    g = load(m); W, H = size[m]; rk = ROCK.get(LAY[m]['primary_tileset'], ROCK_DEFAULT); changed = False
+    sides_seamless = {EDGE[d] for a, d, b in LINKS for (x, y, d) in [(a, b, d), (b, a, OPP[d])] if x == m and (x, y) in seamless}
+    for e in ('top', 'bottom', 'left', 'right'):
+        if e in sides_seamless: continue
+        ax = axis(e); ok = live.get((m, e), [])
+        for (x, y) in edge_cells(m, e):
+            c = (x, y)[ax]
+            if any(lo <= c <= hi for lo, hi in ok): continue
+            for k in (0, 1):
+                xx, yy = {'top': (x, k), 'bottom': (x, H - 1 - k), 'left': (k, y), 'right': (W - 1 - k, y)}[e]
+                if surf(g[yy][xx]):
+                    g[yy][xx] = rk[(xx & 1) | ((yy & 1) << 1)] | (1 << 10); changed = True
+    if changed: save(m); print('walled', m)
 for m in WORLD:
     open('data/maps/OrangeIslands_%s/map.json' % m, 'w', newline='\n').write(json.dumps(J[m], indent=2) + '\n')
 # 4. write the EDGES table and run edge_links.py
