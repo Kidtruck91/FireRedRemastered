@@ -888,7 +888,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -897,7 +897,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -906,7 +906,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -915,7 +915,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -924,7 +924,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -933,7 +933,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -942,7 +942,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -951,7 +951,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -960,7 +960,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -969,7 +969,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -978,7 +978,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -987,7 +987,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -996,7 +996,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -1005,7 +1005,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -1014,7 +1014,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -1023,7 +1023,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -1032,7 +1032,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -1041,7 +1041,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -1050,7 +1050,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     },
     {
       "type": "trigger",
@@ -1059,7 +1059,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan"
+      "script": "OrangeIslands_Route_13_EventScript_SeaEdgeToRoute16"
     }
   ],
   "bg_events": [

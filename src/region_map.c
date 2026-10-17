@@ -3969,6 +3969,10 @@ static const u8 sMapsecName_ORANGE_ROUTE_11[] = _("ORANGE ROUTE 11");
 static const u8 sMapsecName_ORANGE_ROUTE_12[] = _("ORANGE ROUTE 12");
 static const u8 sMapsecName_ORANGE_ROUTE_13[] = _("ORANGE ROUTE 13");
 static const u8 sMapsecName_ORANGE_ROUTE_14[] = _("ORANGE ROUTE 14");
+static const u8 sMapsecName_ORANGE_ROUTE_15[] = _("ORANGE ROUTE 15");
+static const u8 sMapsecName_ORANGE_ROUTE_16[] = _("ORANGE ROUTE 16");
+static const u8 sMapsecName_ORANGE_ROUTE_17[] = _("ORANGE ROUTE 17");
+static const u8 sMapsecName_ORANGE_ROUTE_18[] = _("ORANGE ROUTE 18");
 static const u8 *const sOrangeMapNames[MAPSEC_ORANGE_END - MAPSECS_ORANGE] = {
     [MAPSEC_VALENCIA_ISLAND - MAPSECS_ORANGE] = sMapsecName_VALENCIA_ISLAND,
     [MAPSEC_MIKAN_ISLAND - MAPSECS_ORANGE] = sMapsecName_MIKAN_ISLAND,
@@ -3995,6 +3999,10 @@ static const u8 *const sOrangeMapNames[MAPSEC_ORANGE_END - MAPSECS_ORANGE] = {
     [MAPSEC_ORANGE_ROUTE_12 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_12,
     [MAPSEC_ORANGE_ROUTE_13 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_13,
     [MAPSEC_ORANGE_ROUTE_14 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_14,
+    [MAPSEC_ORANGE_ROUTE_15 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_15,
+    [MAPSEC_ORANGE_ROUTE_16 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_16,
+    [MAPSEC_ORANGE_ROUTE_17 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_17,
+    [MAPSEC_ORANGE_ROUTE_18 - MAPSECS_ORANGE] = sMapsecName_ORANGE_ROUTE_18,
 };
 
 u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)

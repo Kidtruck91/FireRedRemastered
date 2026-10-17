@@ -420,7 +420,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -429,7 +429,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -438,7 +438,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -447,7 +447,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -456,7 +456,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -465,7 +465,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -474,7 +474,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -483,7 +483,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -492,7 +492,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -501,7 +501,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -510,7 +510,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -519,7 +519,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -528,7 +528,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -537,7 +537,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -546,7 +546,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -555,7 +555,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -564,7 +564,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -573,7 +573,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -582,7 +582,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -591,7 +591,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -600,7 +600,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -609,7 +609,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -618,7 +618,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -627,7 +627,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -636,7 +636,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -645,7 +645,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -654,7 +654,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -663,7 +663,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -672,7 +672,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -681,7 +681,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -690,7 +690,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -699,7 +699,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -708,7 +708,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -717,7 +717,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -726,7 +726,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -735,7 +735,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -744,7 +744,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -753,7 +753,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -762,7 +762,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -771,7 +771,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -780,7 +780,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -789,7 +789,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -798,7 +798,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -807,7 +807,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -816,7 +816,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     },
     {
       "type": "trigger",
@@ -825,7 +825,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToMoro"
+      "script": "OrangeIslands_Route_9_EventScript_SeaEdgeToRoute17"
     }
   ],
   "bg_events": [

@@ -6868,8 +6868,8 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_PINKAN",
       "name": "OrangeIslands_Pinkan_Layout",
-      "width": 60,
-      "height": 52,
+      "width": 40,
+      "height": 92,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
@@ -6936,6 +6936,54 @@
       "secondary_tileset": "gTileset_HoennMossdeep",
       "border_filepath": "data/layouts/OrangeIslands_Route_14/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_14/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_18",
+      "name": "OrangeIslands_Route_18_Layout",
+      "width": 96,
+      "height": 40,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeladonCity",
+      "border_filepath": "data/layouts/OrangeIslands_Route_18/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_18/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_17",
+      "name": "OrangeIslands_Route_17_Layout",
+      "width": 40,
+      "height": 56,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_OrangeGeneral",
+      "secondary_tileset": "gTileset_OrangeSevii45",
+      "border_filepath": "data/layouts/OrangeIslands_Route_17/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_17/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_16",
+      "name": "OrangeIslands_Route_16_Layout",
+      "width": 36,
+      "height": 92,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_OrangeGeneral",
+      "secondary_tileset": "gTileset_OrangeSevii67",
+      "border_filepath": "data/layouts/OrangeIslands_Route_16/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_16/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_15",
+      "name": "OrangeIslands_Route_15_Layout",
+      "width": 36,
+      "height": 92,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_OrangeGeneral",
+      "secondary_tileset": "gTileset_OrangeSevii67",
+      "border_filepath": "data/layouts/OrangeIslands_Route_15/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_15/map.bin"
     },
     {
       "id": "LAYOUT_ORANGE_ISLANDS_MIKAN_BEACH",

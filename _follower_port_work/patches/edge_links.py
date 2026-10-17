@@ -35,10 +35,10 @@ EDGES = [
     ('Route_14', 'left', 'Kumquat', -6, (12, 55), 70),
     ('Moro', 'bottom', 'Route_7', 4, (16, 55), 2),
     ('Route_7', 'top', 'Moro', -4, (20, 59), 54),
-    ('Moro', 'right', 'Route_9', 30, (4, 49), 2),
-    ('Route_9', 'left', 'Moro', -30, (34, 79), 62),
-    ('Pinkan', 'right', 'Route_13', 6, (24, 43), 2),
-    ('Route_13', 'left', 'Pinkan', -6, (30, 49), 58),
+    ('Route_17', 'right', 'Route_9', 30, (4, 49), 2),
+    ('Route_9', 'left', 'Route_17', -30, (34, 79), 38),
+    ('Route_16', 'right', 'Route_13', -8, (38, 57), 2),
+    ('Route_13', 'left', 'Route_16', 8, (30, 49), 34),
 ]
 def const(m): return 'MAP_ORANGE_ISLANDS_' + m.upper()
 L = {l['name']: l for l in json.load(open('data/layouts/layouts.json'))['layouts'] if 'name' in l}

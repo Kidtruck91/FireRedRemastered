@@ -27,10 +27,10 @@
 #define MAPSEC_ORANGE_ROUTE_12              0x16
 #define MAPSEC_ORANGE_ROUTE_13              0x17
 #define MAPSEC_ORANGE_ROUTE_14              0x18
-#define MAPSEC_ROUTE_110                    0x19
-#define MAPSEC_ROUTE_111                    0x1A
-#define MAPSEC_ROUTE_112                    0x1B
-#define MAPSEC_ROUTE_113                    0x1C
+#define MAPSEC_ORANGE_ROUTE_15              0x19
+#define MAPSEC_ORANGE_ROUTE_16              0x1A
+#define MAPSEC_ORANGE_ROUTE_17              0x1B
+#define MAPSEC_ORANGE_ROUTE_18              0x1C
 #define MAPSEC_ROUTE_114                    0x1D
 #define MAPSEC_ROUTE_115                    0x1E
 #define MAPSEC_ROUTE_116                    0x1F
@@ -92,7 +92,7 @@
 #define MAPSEC_DYNAMIC                      0x57
 
 #define MAPSECS_ORANGE                      0x00
-#define MAPSEC_ORANGE_END                   0x19
+#define MAPSEC_ORANGE_END                   0x1D
 #define MAPSECS_KANTO                       0x58
 
 #define MAPSEC_PALLET_TOWN                  0x58
