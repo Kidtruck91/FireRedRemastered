@@ -32,6 +32,7 @@ enum {
     REGIONMAP_SEVII45,
     REGIONMAP_SEVII67,
     REGIONMAP_JOHTO,     // right-hand column of the switch menu (room below it for more regions)
+    REGIONMAP_ORANGE,    // Orange Islands: shown on its own while the player is there (no switch menu entry)
     REGIONMAP_COUNT
 };
 
@@ -418,6 +419,7 @@ static const u32 sSevii123_Tilemap[] = INCBIN_U32("graphics/region_map/sevii_123
 static const u32 sSevii45_Tilemap[] = INCBIN_U32("graphics/region_map/sevii_45.bin.lz");
 static const u32 sSevii67_Tilemap[] = INCBIN_U32("graphics/region_map/sevii_67.bin.lz");
 static const u32 sJohto_Tilemap[] = INCBIN_U32("graphics/region_map/johto.bin.lz");
+static const u32 sOrange_Tilemap[] = INCBIN_U32("graphics/region_map/orange.bin.lz");
 static const u32 sMapEdge_Tilemap[] = INCBIN_U32("graphics/region_map/map_edge.bin.lz");
 static const u32 sSwitchMap_KantoSeviiAll_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii_all.bin.lz");
 static const u32 sSwitchMap_KantoSevii123_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii_123.bin.lz");
@@ -835,6 +837,71 @@ static const u8 sTextColors[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_CO
 #include "data/region_map/region_map_layout_sevii_45.h"
 #include "data/region_map/region_map_layout_sevii_67.h"
 #include "data/region_map/region_map_layout_johto.h"
+#include "data/region_map/region_map_layout_orange.h"
+
+// Orange Islands section boxes (cells on the Orange page), indexed from MAPSECS_ORANGE
+static const u16 sOrangeMapSectionTopLeftCorners[MAPSEC_ORANGE_END - MAPSECS_ORANGE][2] = {
+    [MAPSEC_KINNOW_ISLAND - MAPSECS_ORANGE] = { 8, 9 },
+    [MAPSEC_KUMQUAT_ISLAND - MAPSECS_ORANGE] = { 11, 4 },
+    [MAPSEC_MANDARIN_SOUTH - MAPSECS_ORANGE] = { 11, 8 },
+    [MAPSEC_MIKAN_ISLAND - MAPSECS_ORANGE] = { 14, 12 },
+    [MAPSEC_MORO_ISLAND - MAPSECS_ORANGE] = { 2, 9 },
+    [MAPSEC_NAVEL_ISLAND - MAPSECS_ORANGE] = { 14, 7 },
+    [MAPSEC_ORANGE_ROUTE_1 - MAPSECS_ORANGE] = { 7, 11 },
+    [MAPSEC_ORANGE_ROUTE_10 - MAPSECS_ORANGE] = { 4, 9 },
+    [MAPSEC_ORANGE_ROUTE_11 - MAPSECS_ORANGE] = { 13, 3 },
+    [MAPSEC_ORANGE_ROUTE_12 - MAPSECS_ORANGE] = { 11, 4 },
+    [MAPSEC_ORANGE_ROUTE_13 - MAPSECS_ORANGE] = { 11, 5 },
+    [MAPSEC_ORANGE_ROUTE_14 - MAPSECS_ORANGE] = { 11, 2 },
+    [MAPSEC_ORANGE_ROUTE_15 - MAPSECS_ORANGE] = { 8, 5 },
+    [MAPSEC_ORANGE_ROUTE_16 - MAPSECS_ORANGE] = { 10, 5 },
+    [MAPSEC_ORANGE_ROUTE_17 - MAPSECS_ORANGE] = { 3, 9 },
+    [MAPSEC_ORANGE_ROUTE_18 - MAPSECS_ORANGE] = { 11, 7 },
+    [MAPSEC_ORANGE_ROUTE_2 - MAPSECS_ORANGE] = { 7, 13 },
+    [MAPSEC_ORANGE_ROUTE_3 - MAPSECS_ORANGE] = { 8, 13 },
+    [MAPSEC_ORANGE_ROUTE_4 - MAPSECS_ORANGE] = { 3, 11 },
+    [MAPSEC_ORANGE_ROUTE_5 - MAPSECS_ORANGE] = { 14, 8 },
+    [MAPSEC_ORANGE_ROUTE_6 - MAPSECS_ORANGE] = { 12, 8 },
+    [MAPSEC_ORANGE_ROUTE_7 - MAPSECS_ORANGE] = { 2, 10 },
+    [MAPSEC_ORANGE_ROUTE_8 - MAPSECS_ORANGE] = { 9, 9 },
+    [MAPSEC_ORANGE_ROUTE_9 - MAPSECS_ORANGE] = { 11, 8 },
+    [MAPSEC_PINKAN_ISLAND - MAPSECS_ORANGE] = { 9, 5 },
+    [MAPSEC_PUMMELO_ISLAND - MAPSECS_ORANGE] = { 17, 1 },
+    [MAPSEC_SUNBURST_ISLAND - MAPSECS_ORANGE] = { 2, 11 },
+    [MAPSEC_TROVITA_ISLAND - MAPSECS_ORANGE] = { 13, 2 },
+    [MAPSEC_VALENCIA_ISLAND - MAPSECS_ORANGE] = { 7, 13 },
+};
+static const u16 sOrangeMapSectionDimensions[MAPSEC_ORANGE_END - MAPSECS_ORANGE][2] = {
+    [MAPSEC_KINNOW_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_KUMQUAT_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_MANDARIN_SOUTH - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_MIKAN_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_MORO_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_NAVEL_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_ORANGE_ROUTE_1 - MAPSECS_ORANGE] = { 1, 2 },
+    [MAPSEC_ORANGE_ROUTE_10 - MAPSECS_ORANGE] = { 4, 1 },
+    [MAPSEC_ORANGE_ROUTE_11 - MAPSECS_ORANGE] = { 1, 5 },
+    [MAPSEC_ORANGE_ROUTE_12 - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_ORANGE_ROUTE_13 - MAPSECS_ORANGE] = { 1, 2 },
+    [MAPSEC_ORANGE_ROUTE_14 - MAPSECS_ORANGE] = { 2, 2 },
+    [MAPSEC_ORANGE_ROUTE_15 - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_ORANGE_ROUTE_16 - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_ORANGE_ROUTE_17 - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_ORANGE_ROUTE_18 - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_ORANGE_ROUTE_2 - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_ORANGE_ROUTE_3 - MAPSECS_ORANGE] = { 7, 1 },
+    [MAPSEC_ORANGE_ROUTE_4 - MAPSECS_ORANGE] = { 4, 1 },
+    [MAPSEC_ORANGE_ROUTE_5 - MAPSECS_ORANGE] = { 1, 4 },
+    [MAPSEC_ORANGE_ROUTE_6 - MAPSECS_ORANGE] = { 2, 1 },
+    [MAPSEC_ORANGE_ROUTE_7 - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_ORANGE_ROUTE_8 - MAPSECS_ORANGE] = { 3, 1 },
+    [MAPSEC_ORANGE_ROUTE_9 - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_PINKAN_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_PUMMELO_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_SUNBURST_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_TROVITA_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+    [MAPSEC_VALENCIA_ISLAND - MAPSECS_ORANGE] = { 1, 1 },
+};
 
 static const u8 sMapFlyDestinations[][3] = {
     [MAPSEC_PALLET_TOWN         - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           SPAWN_PALLET_TOWN},
@@ -1088,7 +1155,12 @@ static void InitRegionMapType(void)
         sRegionMap->permissions[MAPPERM_HAS_SWITCH_BUTTON] = FALSE;
     region = REGIONMAP_KANTO;
     j = REGIONMAP_KANTO;
-    if (gMapHeader.regionMapSectionId >= MAPSECS_JOHTO_TOWNS && gMapHeader.regionMapSectionId != MAPSEC_NONE)
+    if (gMapHeader.regionMapSectionId < MAPSEC_ORANGE_END)
+    {
+        region = REGIONMAP_ORANGE;
+        sRegionMap->permissions[MAPPERM_HAS_SWITCH_BUTTON] = FALSE;
+    }
+    else if (gMapHeader.regionMapSectionId >= MAPSECS_JOHTO_TOWNS && gMapHeader.regionMapSectionId != MAPSEC_NONE)
     {
         region = REGIONMAP_JOHTO;
     }
@@ -1208,6 +1280,9 @@ static bool8 LoadRegionMapGfx(void)
         break;
     case 9:
         LZ77UnCompWram(sJohto_Tilemap, sRegionMap->layouts[REGIONMAP_JOHTO]);
+        break;
+    case 10:
+        LZ77UnCompWram(sOrange_Tilemap, sRegionMap->layouts[REGIONMAP_ORANGE]);
         break;
     default:
         LZ77UnCompWram(sBackground_Tilemap, sRegionMap->layouts[REGIONMAP_COUNT]);
@@ -3296,6 +3371,27 @@ static void GetPlayerPositionOnRegionMap(void)
         break;
     }
 
+    if (sMapCursor->selectedMapsec < MAPSEC_ORANGE_END)
+    {
+        const u16 (*dim)[2] = sOrangeMapSectionDimensions;
+        const u16 (*tl)[2] = sOrangeMapSectionTopLeftCorners;
+        u16 ms = sMapCursor->selectedMapsec - MAPSECS_ORANGE;
+        divisor = width / dim[ms][0];
+        if (divisor == 0)
+            divisor = 1;
+        x /= divisor;
+        if (x >= dim[ms][0])
+            x = dim[ms][0] - 1;
+        divisor = height / dim[ms][1];
+        if (divisor == 0)
+            divisor = 1;
+        y /= divisor;
+        if (y >= dim[ms][1])
+            y = dim[ms][1] - 1;
+        sMapCursor->x = x + tl[ms][0];
+        sMapCursor->y = y + tl[ms][1];
+        return;
+    }
     sMapCursor->selectedMapsec -= MAPSECS_KANTO;
     divisor = width / sMapSectionDimensions[sMapCursor->selectedMapsec][0];
     if (divisor == 0)
@@ -3507,6 +3603,8 @@ static u8 GetSelectedMapSection(u8 whichMap, u8 layer, s16 y, s16 x)
         return sRegionMapSections_Sevii67[layer][y][x];
     case REGIONMAP_JOHTO:
         return sRegionMapSections_Johto[layer][y][x];
+    case REGIONMAP_ORANGE:
+        return sRegionMapSections_Orange[layer][y][x];
     default:
         return MAPSEC_NONE;
     }

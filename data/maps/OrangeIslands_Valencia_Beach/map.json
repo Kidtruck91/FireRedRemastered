@@ -18,14 +18,15 @@
       "map": "MAP_ORANGE_ISLANDS_ROUTE_3",
       "offset": -18,
       "direction": "right"
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_VALENCIA",
+      "offset": -16,
+      "direction": "left"
     }
   ],
-  "object_events": [
-
-  ],
-  "warp_events": [
-
-  ],
+  "object_events": [],
+  "warp_events": [],
   "coord_events": [
     {
       "type": "trigger",

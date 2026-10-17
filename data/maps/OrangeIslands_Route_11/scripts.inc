@@ -5,42 +5,42 @@ OrangeIslands_Route_11_EventScript_Reef::
 	msgbox OrangeIslands_Route_11_Text_Reef, MSGBOX_SIGN
 	end
 
-@ Sea edge: any surfable cell on this edge, landing at the matching spot on Kinnow
-OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow::
-	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8004, 20
-	goto_if_lt OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow_Lo
-	compare VAR_0x8004, 59
-	goto_if_gt OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow_Hi
-OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow_Go:
-	subvar VAR_0x8004, 4
-	setvar VAR_0x8005, 1
-	warp MAP_ORANGE_ISLANDS_KINNOW, VAR_0x8004, VAR_0x8005
-	waitstate
-	end
-OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow_Lo:
-	setvar VAR_0x8004, 20
-	goto OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow_Go
-OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow_Hi:
-	setvar VAR_0x8004, 59
-	goto OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow_Go
-
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Trovita Beach
 OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8004, 20
+	compare VAR_0x8004, 0
 	goto_if_lt OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Lo
-	compare VAR_0x8004, 59
+	compare VAR_0x8004, 64
 	goto_if_gt OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Hi
 OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Go:
-	subvar VAR_0x8004, 4
+	addvar VAR_0x8004, 7
 	setvar VAR_0x8005, 34
 	warp MAP_ORANGE_ISLANDS_TROVITA_BEACH, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
 OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Lo:
-	setvar VAR_0x8004, 20
+	setvar VAR_0x8004, 0
 	goto OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Go
 OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Hi:
-	setvar VAR_0x8004, 59
+	setvar VAR_0x8004, 64
 	goto OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Go
+
+@ Sea edge: any surfable cell on this edge, landing at the matching spot on Navel Beach
+OrangeIslands_Route_11_EventScript_SeaEdgeToNavelBeach::
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8005, 44
+	goto_if_lt OrangeIslands_Route_11_EventScript_SeaEdgeToNavelBeach_Lo
+	compare VAR_0x8005, 51
+	goto_if_gt OrangeIslands_Route_11_EventScript_SeaEdgeToNavelBeach_Hi
+OrangeIslands_Route_11_EventScript_SeaEdgeToNavelBeach_Go:
+	subvar VAR_0x8005, 42
+	setvar VAR_0x8004, 1
+	warp MAP_ORANGE_ISLANDS_NAVEL_BEACH, VAR_0x8004, VAR_0x8005
+	waitstate
+	end
+OrangeIslands_Route_11_EventScript_SeaEdgeToNavelBeach_Lo:
+	setvar VAR_0x8005, 44
+	goto OrangeIslands_Route_11_EventScript_SeaEdgeToNavelBeach_Go
+OrangeIslands_Route_11_EventScript_SeaEdgeToNavelBeach_Hi:
+	setvar VAR_0x8005, 51
+	goto OrangeIslands_Route_11_EventScript_SeaEdgeToNavelBeach_Go

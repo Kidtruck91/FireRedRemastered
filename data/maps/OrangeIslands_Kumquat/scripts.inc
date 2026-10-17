@@ -12,39 +12,38 @@ OrangeIslands_Kumquat_EventScript_Town::
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Route 13
 OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8004, 12
+	compare VAR_0x8004, 20
 	goto_if_lt OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13_Lo
-	compare VAR_0x8004, 59
+	compare VAR_0x8004, 67
 	goto_if_gt OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13_Hi
 OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13_Go:
-	addvar VAR_0x8004, 8
-	setvar VAR_0x8005, 2
+	setvar VAR_0x8005, 1
 	warp MAP_ORANGE_ISLANDS_ROUTE_13, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
 OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13_Lo:
-	setvar VAR_0x8004, 12
+	setvar VAR_0x8004, 20
 	goto OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13_Go
 OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13_Hi:
-	setvar VAR_0x8004, 59
+	setvar VAR_0x8004, 67
 	goto OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13_Go
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Route 14
 OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8005, 6
+	compare VAR_0x8004, 4
 	goto_if_lt OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Lo
-	compare VAR_0x8005, 49
+	compare VAR_0x8004, 51
 	goto_if_gt OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Hi
 OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Go:
-	addvar VAR_0x8005, 6
-	setvar VAR_0x8004, 2
+	addvar VAR_0x8004, 16
+	setvar VAR_0x8005, 70
 	warp MAP_ORANGE_ISLANDS_ROUTE_14, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
 OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Lo:
-	setvar VAR_0x8005, 6
+	setvar VAR_0x8004, 4
 	goto OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Go
 OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Hi:
-	setvar VAR_0x8005, 49
+	setvar VAR_0x8004, 51
 	goto OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Go

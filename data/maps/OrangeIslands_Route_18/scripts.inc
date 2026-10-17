@@ -10,7 +10,7 @@ OrangeIslands_Route_18_EventScript_SeaEdgeToRoute13::
 	goto_if_gt OrangeIslands_Route_18_EventScript_SeaEdgeToRoute13_Hi
 OrangeIslands_Route_18_EventScript_SeaEdgeToRoute13_Go:
 	subvar VAR_0x8004, 4
-	setvar VAR_0x8005, 77
+	setvar VAR_0x8005, 78
 	warp MAP_ORANGE_ISLANDS_ROUTE_13, VAR_0x8004, VAR_0x8005
 	waitstate
 	end

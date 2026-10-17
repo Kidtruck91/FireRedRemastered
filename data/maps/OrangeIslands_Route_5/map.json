@@ -37,24 +37,6 @@
     },
     {
       "type": "trigger",
-      "x": 2,
-      "y": 123,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
-    },
-    {
-      "type": "trigger",
-      "x": 3,
-      "y": 123,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
-    },
-    {
-      "type": "trigger",
       "x": 4,
       "y": 123,
       "elevation": 0,
@@ -415,39 +397,435 @@
     },
     {
       "type": "trigger",
-      "x": 44,
-      "y": 123,
+      "x": 2,
+      "y": 0,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 21,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 23,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 28,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 30,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 33,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 34,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 36,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 38,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 40,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
+    },
+    {
+      "type": "trigger",
+      "x": 44,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
     },
     {
       "type": "trigger",
       "x": 45,
-      "y": 123,
+      "y": 0,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToNavel"
     },
     {
       "type": "trigger",
-      "x": 46,
-      "y": 123,
+      "x": 0,
+      "y": 65,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToRoute6"
     },
     {
       "type": "trigger",
-      "x": 47,
-      "y": 123,
+      "x": 0,
+      "y": 66,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToRoute6"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 67,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToRoute6"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 68,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToRoute6"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 69,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToRoute6"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 70,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToRoute6"
     }
   ],
   "bg_events": [

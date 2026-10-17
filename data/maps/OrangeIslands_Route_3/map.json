@@ -21,19 +21,13 @@
     },
     {
       "map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
-      "offset": -6,
+      "offset": -5,
       "direction": "right"
     }
   ],
-  "object_events": [
-
-  ],
-  "warp_events": [
-
-  ],
-  "coord_events": [
-
-  ],
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",
