@@ -44,6 +44,13 @@
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_PUMMELO_CAVE",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 19,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_PUMMELO_STADIUM",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

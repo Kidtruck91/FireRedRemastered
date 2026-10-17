@@ -6674,6 +6674,18 @@
       "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo_Cave/map.bin"
     },
     {
+      "id": "LAYOUT_ORANGE_ISLANDS_PUMMELO_STADIUM",
+      "name": "OrangeIslands_Pummelo_Stadium_Layout",
+      "width": 20,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennInterior",
+      "secondary_tileset": "gTileset_HoennBattleDome",
+      "border_filepath": "data/layouts/OrangeIslands_Pummelo_Stadium/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo_Stadium/map.bin"
+    },
+    {
       "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_1",
       "name": "OrangeIslands_Route_1_Layout",
       "width": 60,
