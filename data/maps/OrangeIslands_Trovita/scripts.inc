@@ -10,7 +10,7 @@ OrangeIslands_Trovita_EventScript_Town::
 	end
 
 OrangeIslands_Trovita_EventScript_WalkToTrovitaFalls::
-	warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, 27, 45
+	warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, 22, 53
 	waitstate
 	end
 

@@ -20,8 +20,12 @@
       "direction": "up"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
   "coord_events": [
     {
       "type": "trigger",
@@ -672,5 +676,7 @@
       "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

@@ -20,13 +20,17 @@
       "direction": "down"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 38,
-      "y": 10,
+      "x": 32,
+      "y": 12,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -34,8 +38,8 @@
     },
     {
       "type": "trigger",
-      "x": 39,
-      "y": 10,
+      "x": 33,
+      "y": 12,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -43,8 +47,8 @@
     },
     {
       "type": "trigger",
-      "x": 40,
-      "y": 10,
+      "x": 34,
+      "y": 12,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -52,8 +56,8 @@
     },
     {
       "type": "trigger",
-      "x": 41,
-      "y": 10,
+      "x": 35,
+      "y": 12,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -1212,5 +1216,7 @@
       "script": "OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }
