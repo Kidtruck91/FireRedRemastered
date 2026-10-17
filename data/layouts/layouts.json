@@ -6652,14 +6652,26 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_PUMMELO",
       "name": "OrangeIslands_Pummelo_Layout",
-      "width": 44,
-      "height": 78,
+      "width": 56,
+      "height": 72,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeSevii67",
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_HoennBattleFrontierOutsideWest",
       "border_filepath": "data/layouts/OrangeIslands_Pummelo/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_PUMMELO_CAVE",
+      "name": "OrangeIslands_Pummelo_Cave_Layout",
+      "width": 40,
+      "height": 32,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/OrangeIslands_Pummelo_Cave/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo_Cave/map.bin"
     },
     {
       "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_1",
