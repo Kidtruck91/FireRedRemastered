@@ -6808,12 +6808,12 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_MANDARIN_SOUTH",
       "name": "OrangeIslands_Mandarin_South_Layout",
-      "width": 68,
-      "height": 64,
+      "width": 96,
+      "height": 76,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeSevii45",
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeladonCity",
       "border_filepath": "data/layouts/OrangeIslands_Mandarin_South/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Mandarin_South/map.bin"
     },
