@@ -34,3 +34,23 @@ OrangeIslands_Route_9_EventScript_SeaEdgeToMandarinSouth_Lo:
 OrangeIslands_Route_9_EventScript_SeaEdgeToMandarinSouth_Hi:
 	setvar VAR_0x8004, 43
 	goto OrangeIslands_Route_9_EventScript_SeaEdgeToMandarinSouth_Go
+
+@ Sea edge: any surfable cell on this edge, landing at the matching spot on Moro
+OrangeIslands_Route_9_EventScript_SeaEdgeToMoro::
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8005, 34
+	goto_if_lt OrangeIslands_Route_9_EventScript_SeaEdgeToMoro_Lo
+	compare VAR_0x8005, 79
+	goto_if_gt OrangeIslands_Route_9_EventScript_SeaEdgeToMoro_Hi
+OrangeIslands_Route_9_EventScript_SeaEdgeToMoro_Go:
+	subvar VAR_0x8005, 30
+	setvar VAR_0x8004, 62
+	warp MAP_ORANGE_ISLANDS_MORO, VAR_0x8004, VAR_0x8005
+	waitstate
+	end
+OrangeIslands_Route_9_EventScript_SeaEdgeToMoro_Lo:
+	setvar VAR_0x8005, 34
+	goto OrangeIslands_Route_9_EventScript_SeaEdgeToMoro_Go
+OrangeIslands_Route_9_EventScript_SeaEdgeToMoro_Hi:
+	setvar VAR_0x8005, 79
+	goto OrangeIslands_Route_9_EventScript_SeaEdgeToMoro_Go

@@ -2038,6 +2038,8 @@ Text_TestMsg::
 	.include "data/maps/OrangeIslands_Pummelo_Cave/text.inc"
 	.include "data/maps/OrangeIslands_Pummelo_Stadium/scripts.inc"
 	.include "data/maps/OrangeIslands_Pummelo_Stadium/text.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip/text.inc"
 
 	.include "data/maps/OrangeIslands_Navel_Beach/scripts.inc"
 	.include "data/maps/OrangeIslands_Navel_Beach/text.inc"

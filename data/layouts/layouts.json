@@ -6820,14 +6820,26 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_MORO",
       "name": "OrangeIslands_Moro_Layout",
-      "width": 44,
-      "height": 64,
+      "width": 64,
+      "height": 56,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",
       "secondary_tileset": "gTileset_OrangeSevii45",
       "border_filepath": "data/layouts/OrangeIslands_Moro/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Moro/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP",
+      "name": "OrangeIslands_Moro_GhostShip_Layout",
+      "width": 18,
+      "height": 12,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_HoennInsideShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip/map.bin"
     },
     {
       "id": "LAYOUT_ORANGE_ISLANDS_KINNOW",
