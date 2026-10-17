@@ -8,10 +8,10 @@
     "FiveIsland_ResortGorgeous",
     "FiveIsland_WaterLabyrinth"
   ],
-  "occupied_tiles": 258,
-  "free_graphics_slots": 126,
-  "metatiles": 241,
-  "free_metatile_slots": 143,
+  "occupied_tiles": 307,
+  "free_graphics_slots": 77,
+  "metatiles": 260,
+  "free_metatile_slots": 124,
   "sevii_metatile_mapping": {
     "641": 736,
     "642": 737,
@@ -159,5 +159,26 @@
     "790": 879,
     "791": 880
   },
-  "pallet_lab_mapping": {}
+  "pallet_lab_mapping": {},
+  "wreck_metatiles": {
+    "1,0": 881,
+    "2,0": 882,
+    "3,0": 883,
+    "4,0": 884,
+    "0,1": 885,
+    "1,1": 886,
+    "2,1": 887,
+    "3,1": 888,
+    "4,1": 889,
+    "5,1": 890,
+    "0,2": 891,
+    "1,2": 892,
+    "2,2": 893,
+    "3,2": 894,
+    "4,2": 895,
+    "5,2": 896,
+    "1,3": 897,
+    "2,3": 898,
+    "3,3": 899
+  }
 }
