@@ -48,3 +48,23 @@ OrangeIslands_Route_13_EventScript_SeaEdgeToKumquat_Lo:
 OrangeIslands_Route_13_EventScript_SeaEdgeToKumquat_Hi:
 	setvar VAR_0x8004, 67
 	goto OrangeIslands_Route_13_EventScript_SeaEdgeToKumquat_Go
+
+@ Sea edge: any surfable cell on this edge, landing at the matching spot on Pinkan
+OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan::
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8005, 30
+	goto_if_lt OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan_Lo
+	compare VAR_0x8005, 49
+	goto_if_gt OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan_Hi
+OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan_Go:
+	subvar VAR_0x8005, 6
+	setvar VAR_0x8004, 58
+	warp MAP_ORANGE_ISLANDS_PINKAN, VAR_0x8004, VAR_0x8005
+	waitstate
+	end
+OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan_Lo:
+	setvar VAR_0x8005, 30
+	goto OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan_Go
+OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan_Hi:
+	setvar VAR_0x8005, 49
+	goto OrangeIslands_Route_13_EventScript_SeaEdgeToPinkan_Go
