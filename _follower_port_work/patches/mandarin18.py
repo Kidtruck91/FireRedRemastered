@@ -15,6 +15,6 @@ write_bin('data/layouts/OrangeIslands_Mandarin_South/map.bin', man)
 write_bin('data/layouts/OrangeIslands_Route_18/map.bin', r18)
 strip_link('Mandarin_South', 'Route_13'); strip_link('Route_13', 'Mandarin_South')
 connect('Mandarin_South', 'Route_18', 'up', 0)
-edge_entries([('Route_18', 'top', 'Route_13', -4, (24, 71), 77), ('Route_13', 'bottom', 'Route_18', 4, (20, 67), 38)],
+edge_entries([('Route_18', 'top', 'Route_13', -4, (24, 71), 77), ('Route_13', 'bottom', 'Route_18', 4, (20, 67), 1)],
              remove=[('Mandarin_South', 'top', 'Route_13'), ('Route_13', 'bottom', 'Mandarin_South')])
 print('mandarin18 ok; now run edge_links.py Route_18 Route_13')

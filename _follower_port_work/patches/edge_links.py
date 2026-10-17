@@ -11,8 +11,6 @@ EDGES = [
     ('Route_6', 'bottom', 'Sunburst', -12, (20, 67), 1),
     ('Sunburst', 'left', 'Route_7', 20, (0, 63), 63),
     ('Route_7', 'right', 'Sunburst', -20, (20, 83), 1),
-    ('Mandarin_South', 'top', 'Route_13', -4, (24, 71), 77),
-    ('Route_13', 'bottom', 'Mandarin_South', 4, (20, 67), 1),
     ('Mandarin_South', 'bottom', 'Route_9', -22, (30, 65), 2),
     ('Route_9', 'top', 'Mandarin_South', 22, (8, 43), 74),
     ('Mandarin_South', 'left', 'Route_10', -4, (14, 61), 101),
@@ -39,6 +37,8 @@ EDGES = [
     ('Route_9', 'left', 'Route_17', -30, (34, 79), 38),
     ('Route_16', 'right', 'Route_13', -8, (38, 57), 2),
     ('Route_13', 'left', 'Route_16', 8, (30, 49), 34),
+    ('Route_18', 'top', 'Route_13', -4, (24, 71), 77),
+    ('Route_13', 'bottom', 'Route_18', 4, (20, 67), 1),
 ]
 def const(m): return 'MAP_ORANGE_ISLANDS_' + m.upper()
 L = {l['name']: l for l in json.load(open('data/layouts/layouts.json'))['layouts'] if 'name' in l}
