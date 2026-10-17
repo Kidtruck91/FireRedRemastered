@@ -6616,12 +6616,12 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_TROVITA",
       "name": "OrangeIslands_Trovita_Layout",
-      "width": 68,
-      "height": 92,
+      "width": 72,
+      "height": 68,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeSevii67",
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FuchsiaCity",
       "border_filepath": "data/layouts/OrangeIslands_Trovita/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Trovita/map.bin"
     },
