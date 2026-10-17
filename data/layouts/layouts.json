@@ -6796,12 +6796,12 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_KINNOW",
       "name": "OrangeIslands_Kinnow_Layout",
-      "width": 44,
-      "height": 76,
+      "width": 72,
+      "height": 66,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeSevii67",
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_VermilionCity",
       "border_filepath": "data/layouts/OrangeIslands_Kinnow/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow/map.bin"
     },
