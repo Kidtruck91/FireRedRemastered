@@ -28,3 +28,23 @@ OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Lo:
 OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Hi:
 	setvar VAR_0x8004, 67
 	goto OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Go
+
+@ Sea edge: any surfable cell on this edge, landing at the matching spot on Kumquat
+OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat::
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8005, 12
+	goto_if_lt OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat_Lo
+	compare VAR_0x8005, 55
+	goto_if_gt OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat_Hi
+OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat_Go:
+	subvar VAR_0x8005, 6
+	setvar VAR_0x8004, 70
+	warp MAP_ORANGE_ISLANDS_KUMQUAT, VAR_0x8004, VAR_0x8005
+	waitstate
+	end
+OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat_Lo:
+	setvar VAR_0x8005, 12
+	goto OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat_Go
+OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat_Hi:
+	setvar VAR_0x8005, 55
+	goto OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat_Go

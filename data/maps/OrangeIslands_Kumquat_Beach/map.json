@@ -13,22 +13,10 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_ORANGE_ISLANDS_KUMQUAT",
-      "offset": 52,
-      "direction": "up"
-    }
-  ],
-  "object_events": [
-
-  ],
-  "warp_events": [
-
-  ],
-  "coord_events": [
-
-  ],
+  "connections": 0,
+  "object_events": [],
+  "warp_events": [],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

@@ -6640,12 +6640,12 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_KUMQUAT",
       "name": "OrangeIslands_Kumquat_Layout",
-      "width": 44,
-      "height": 62,
+      "width": 72,
+      "height": 60,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeSevii45",
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_HoennLilycove",
       "border_filepath": "data/layouts/OrangeIslands_Kumquat/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Kumquat/map.bin"
     },
