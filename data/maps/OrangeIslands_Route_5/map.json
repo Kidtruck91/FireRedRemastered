@@ -19,12 +19,192 @@
   "coord_events": [
     {
       "type": "trigger",
+      "x": 0,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 1,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
       "x": 20,
       "y": 123,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SailToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
     },
     {
       "type": "trigger",
@@ -33,7 +213,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SailToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
     },
     {
       "type": "trigger",
@@ -42,7 +222,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SailToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
     },
     {
       "type": "trigger",
@@ -51,7 +231,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SailToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
     },
     {
       "type": "trigger",
@@ -60,7 +240,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SailToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
     },
     {
       "type": "trigger",
@@ -69,7 +249,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SailToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
     },
     {
       "type": "trigger",
@@ -78,7 +258,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SailToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
     },
     {
       "type": "trigger",
@@ -87,7 +267,187 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Route_5_EventScript_SailToMikan"
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 28,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 30,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 33,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 34,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 36,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 38,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 40,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 41,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 42,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 44,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 45,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 46,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
+    },
+    {
+      "type": "trigger",
+      "x": 47,
+      "y": 123,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Route_5_EventScript_SeaEdgeToMikan"
     }
   ],
   "bg_events": [

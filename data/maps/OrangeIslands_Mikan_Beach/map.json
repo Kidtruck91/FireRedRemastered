@@ -16,7 +16,7 @@
   "connections": [
     {
       "map": "MAP_ORANGE_ISLANDS_ROUTE_3",
-      "offset": 6,
+      "offset": 5,
       "direction": "left"
     },
     {
@@ -25,8 +25,16 @@
       "direction": "up"
     }
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
-  "bg_events": []
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }
