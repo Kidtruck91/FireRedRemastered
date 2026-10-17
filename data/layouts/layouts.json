@@ -6617,13 +6617,25 @@
       "id": "LAYOUT_ORANGE_ISLANDS_TROVITA",
       "name": "OrangeIslands_Trovita_Layout",
       "width": 72,
-      "height": 68,
+      "height": 56,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_FuchsiaCity",
       "border_filepath": "data/layouts/OrangeIslands_Trovita/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Trovita/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_TROVITA_FALLS",
+      "name": "OrangeIslands_Trovita_Falls_Layout",
+      "width": 48,
+      "height": 48,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FuchsiaCity",
+      "border_filepath": "data/layouts/OrangeIslands_Trovita_Falls/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Trovita_Falls/map.bin"
     },
     {
       "id": "LAYOUT_ORANGE_ISLANDS_KUMQUAT",
@@ -6976,12 +6988,12 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_TROVITA_BEACH",
       "name": "OrangeIslands_Trovita_Beach_Layout",
-      "width": 124,
-      "height": 40,
+      "width": 72,
+      "height": 36,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_OrangeGeneral",
-      "secondary_tileset": "gTileset_OrangeSevii67",
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FuchsiaCity",
       "border_filepath": "data/layouts/OrangeIslands_Trovita_Beach/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Trovita_Beach/map.bin"
     },

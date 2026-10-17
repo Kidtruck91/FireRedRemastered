@@ -25,22 +25,22 @@ OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow_Hi:
 	setvar VAR_0x8004, 59
 	goto OrangeIslands_Route_11_EventScript_SeaEdgeToKinnow_Go
 
-@ Sea edge: any surfable cell on this edge, landing at the matching spot on Trovita
-OrangeIslands_Route_11_EventScript_SeaEdgeToTrovita::
+@ Sea edge: any surfable cell on this edge, landing at the matching spot on Trovita Beach
+OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach::
 	getplayerxy VAR_0x8004, VAR_0x8005
 	compare VAR_0x8004, 20
-	goto_if_lt OrangeIslands_Route_11_EventScript_SeaEdgeToTrovita_Lo
+	goto_if_lt OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Lo
 	compare VAR_0x8004, 59
-	goto_if_gt OrangeIslands_Route_11_EventScript_SeaEdgeToTrovita_Hi
-OrangeIslands_Route_11_EventScript_SeaEdgeToTrovita_Go:
+	goto_if_gt OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Hi
+OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Go:
 	subvar VAR_0x8004, 4
-	setvar VAR_0x8005, 66
-	warp MAP_ORANGE_ISLANDS_TROVITA, VAR_0x8004, VAR_0x8005
+	setvar VAR_0x8005, 34
+	warp MAP_ORANGE_ISLANDS_TROVITA_BEACH, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
-OrangeIslands_Route_11_EventScript_SeaEdgeToTrovita_Lo:
+OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Lo:
 	setvar VAR_0x8004, 20
-	goto OrangeIslands_Route_11_EventScript_SeaEdgeToTrovita_Go
-OrangeIslands_Route_11_EventScript_SeaEdgeToTrovita_Hi:
+	goto OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Go
+OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Hi:
 	setvar VAR_0x8004, 59
-	goto OrangeIslands_Route_11_EventScript_SeaEdgeToTrovita_Go
+	goto OrangeIslands_Route_11_EventScript_SeaEdgeToTrovitaBeach_Go

@@ -13,26 +13,664 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "map": "MAP_ORANGE_ISLANDS_TROVITA",
+      "offset": 0,
+      "direction": "up"
+    }
+  ],
   "object_events": [],
   "warp_events": [],
-  "coord_events": [],
-  "bg_events": [
+  "coord_events": [
     {
-      "type": "sign",
-      "x": 93,
-      "y": 6,
+      "type": "trigger",
+      "x": 0,
+      "y": 35,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Trovita_Beach_EventScript_Town"
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
     },
     {
-      "type": "sign",
-      "x": 22,
-      "y": 34,
+      "type": "trigger",
+      "x": 1,
+      "y": 35,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Trovita_Beach_EventScript_Harbor"
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 21,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 23,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 28,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 29,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 30,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 31,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 33,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 34,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 36,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 38,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 40,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 41,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 42,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 44,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 45,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 46,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 47,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 48,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 49,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 50,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 51,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 52,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 53,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 54,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 55,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 56,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 57,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 58,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 59,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 60,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 61,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 62,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 63,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 64,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 65,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 66,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 67,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 68,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 69,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 70,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
+    },
+    {
+      "type": "trigger",
+      "x": 71,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Trovita_Beach_EventScript_SeaEdgeToRoute11"
     }
-  ]
+  ],
+  "bg_events": []
 }

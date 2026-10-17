@@ -2032,6 +2032,8 @@ Text_TestMsg::
 	.include "data/maps/OrangeIslands_Sunburst_Beach/text.inc"
 	.include "data/maps/OrangeIslands_Sunburst_Cave/scripts.inc"
 	.include "data/maps/OrangeIslands_Sunburst_Cave/text.inc"
+	.include "data/maps/OrangeIslands_Trovita_Falls/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_Falls/text.inc"
 
 	.include "data/maps/OrangeIslands_Navel_Beach/scripts.inc"
 	.include "data/maps/OrangeIslands_Navel_Beach/text.inc"
