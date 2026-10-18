@@ -2,7 +2,6 @@ EventScript_PC::
 	goto_if_questlog EventScript_ReleaseEnd
 	lockall
 	goto_if_set FLAG_SYS_PC_STORAGE_DISABLED, EventScript_PCDisabled
-	goto_if_set FLAG_ORANGE_CHALLENGE, EventScript_PCOrangeIslands
 	setvar VAR_0x8004, HELPCONTEXT_PC
 	special Script_SetHelpContext
 	setvar VAR_0x8004, 0

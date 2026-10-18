@@ -159,9 +159,9 @@ OrangeIslands_Valencia_IvysLab_Text_Intro::
 	.string "Now, about the ORANGE LEAGUE.\n"
 	.string "The ORANGE CREW has one rule for\l"
 	.string "visiting trainers: you start fresh.\p"
-	.string "The team you brought rests in the\n"
-	.string "PC, and the PC stays locked until\l"
-	.string "you leave the islands.\p"
+	.string "The team you brought waits for you\n"
+	.string "in your KANTO PC, and while you're\l"
+	.string "here you get an ORANGE PC instead.\p"
 	.string "You'll raise a new team from the\n"
 	.string "POKéMON you meet here.\p"
 	.string "And the CREW caps your POKéMON's\n"
@@ -169,18 +169,16 @@ OrangeIslands_Valencia_IvysLab_Text_Intro::
 	.string "the cap a little.$"
 
 OrangeIslands_Valencia_IvysLab_Text_ReadyToStore::
-	.string "I'll send your team to the PC now.\n"
-	.string "Don't worry, they'll be safe!$"
+	.string "I'll send your team to your KANTO\n"
+	.string "PC now. Don't worry, they'll be safe!$"
 
 OrangeIslands_Valencia_IvysLab_Text_TeamStored::
 	.string "{PLAYER}'s POKéMON were sent\n"
 	.string "to the PC!$"
 
 OrangeIslands_Valencia_IvysLab_Text_NoRoom::
-	.string "Oh dear, your PC boxes are too full\n"
-	.string "to take your whole team.\p"
-	.string "Make some room at the POKéMON\n"
-	.string "CENTER, then come talk to me.$"
+	.string "Hmm, the PC link didn't go\n"
+	.string "through. Let's try that again.$"
 
 OrangeIslands_Valencia_IvysLab_Text_PickOne::
 	.string "You can't go out with no POKéMON!\n"

@@ -433,7 +433,7 @@ bool8 IsThereRoomInAnyBoxForMorePokemon(void)
 {
     u16 i;
     u16 j;
-    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
+    for (i = 0; i < GetActiveBoxCount(); i++)
     {
         for (j = 0; j < IN_BOX_COUNT; j++)
         {
@@ -2009,7 +2009,7 @@ bool8 IsDestinationBoxFull(void)
             }
         }
         i++;
-        if (i == TOTAL_BOXES_COUNT)
+        if (i >= GetActiveBoxCount())
             i = 0;
     } while (i != StorageGetCurrentBox());
     return FALSE;

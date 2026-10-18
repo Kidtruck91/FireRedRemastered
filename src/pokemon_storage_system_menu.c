@@ -1,4 +1,5 @@
 #include "global.h"
+#include "pokemon_storage_system.h"
 #include "gflib.h"
 #include "event_data.h"
 #include "field_fadetransition.h"
@@ -606,14 +607,14 @@ static void ChooseBoxMenu_DestroySprites(void)
 
 static void ChooseBoxMenu_MoveRight(void)
 {
-    if (++sChooseBoxMenu->curBox >= TOTAL_BOXES_COUNT)
+    if (++sChooseBoxMenu->curBox >= GetActiveBoxCount())
         sChooseBoxMenu->curBox = 0;
     ChooseBoxMenu_PrintBoxNameAndCount();
 }
 
 static void ChooseBoxMenu_MoveLeft(void)
 {
-    sChooseBoxMenu->curBox = (sChooseBoxMenu->curBox == 0 ? TOTAL_BOXES_COUNT - 1 : sChooseBoxMenu->curBox - 1);
+    sChooseBoxMenu->curBox = (sChooseBoxMenu->curBox == 0 ? GetActiveBoxCount() - 1 : sChooseBoxMenu->curBox - 1);
     ChooseBoxMenu_PrintBoxNameAndCount();
 }
 

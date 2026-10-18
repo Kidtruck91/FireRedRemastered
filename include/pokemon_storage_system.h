@@ -9,6 +9,7 @@
 #define IN_BOX_COLUMNS          6 // Number of columns, 5 Pokémon per column
 #define IN_BOX_COUNT            (IN_BOX_ROWS * IN_BOX_COLUMNS)
 #define BOX_NAME_LENGTH         8
+#define ORANGE_BOXES_COUNT      9 // boxes in the Orange Islands PC
 
 /*
             COLUMNS
@@ -58,6 +59,7 @@ void ZeroBoxMonAt(u8 boxId, u8 monPosition);
 void CB2_ReturnToPokeStorage(void);
 void ResetPokemonStorageSystem(void);
 u8 StorageGetCurrentBox(void);
+u8 GetActiveBoxCount(void); // ORANGE_BOXES_COUNT on the Orange Islands trip, else TOTAL_BOXES_COUNT
 void DrawTextWindowAndBufferTiles(const u8 *string, void *dst, u8 zero1, u8 zero2, u8 *buffer, s32 bytesToBuffer);
 
 #endif // GUARD_POKEMON_STORAGE_SYSTEM_H

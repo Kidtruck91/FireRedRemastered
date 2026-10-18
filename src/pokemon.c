@@ -3799,7 +3799,7 @@ static u8 SendMonToPC(struct Pokemon* mon)
         }
 
         boxNo++;
-        if (boxNo == TOTAL_BOXES_COUNT)
+        if (boxNo >= GetActiveBoxCount())
             boxNo = 0;
     } while (boxNo != StorageGetCurrentBox());
 
@@ -3948,7 +3948,7 @@ static bool8 IsPokemonStorageFull(void)
 {
     s32 i, j;
 
-    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
+    for (i = 0; i < GetActiveBoxCount(); i++)
         for (j = 0; j < IN_BOX_COUNT; j++)
             if (GetBoxMonDataAt(i, j, MON_DATA_SPECIES) == SPECIES_NONE)
                 return FALSE;

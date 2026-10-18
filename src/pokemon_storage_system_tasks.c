@@ -1,4 +1,5 @@
 #include "global.h"
+#include "pokemon_storage_system.h"
 #include "gflib.h"
 #include "data.h"
 #include "decompress.h"
@@ -688,7 +689,7 @@ static void Task_PokeStorageMain(u8 taskId)
         case INPUT_SCROLL_RIGHT:
             PlaySE(SE_SELECT);
             gStorage->newCurrBoxId = StorageGetCurrentBox() + 1;
-            if (gStorage->newCurrBoxId >= TOTAL_BOXES_COUNT)
+            if (gStorage->newCurrBoxId >= GetActiveBoxCount())
                 gStorage->newCurrBoxId = 0;
             if (gStorage->boxOption != OPTION_MOVE_ITEMS)
             {
@@ -705,7 +706,7 @@ static void Task_PokeStorageMain(u8 taskId)
             PlaySE(SE_SELECT);
             gStorage->newCurrBoxId = StorageGetCurrentBox() - 1;
             if (gStorage->newCurrBoxId < 0)
-                gStorage->newCurrBoxId = TOTAL_BOXES_COUNT - 1;
+                gStorage->newCurrBoxId = GetActiveBoxCount() - 1;
             if (gStorage->boxOption != OPTION_MOVE_ITEMS)
             {
                 SetUpScrollToBox(gStorage->newCurrBoxId);

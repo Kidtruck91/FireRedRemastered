@@ -58,9 +58,8 @@ struct
     SAVEBLOCK_CHUNK(struct SaveBlock1, 0), // SECTOR_ID_SAVEBLOCK1_START
     SAVEBLOCK_CHUNK(struct SaveBlock1, 1),
     SAVEBLOCK_CHUNK(struct SaveBlock1, 2),
-    SAVEBLOCK_CHUNK(struct SaveBlock1, 3), // SECTOR_ID_SAVEBLOCK1_END
-    SAVEBLOCK_CHUNK(struct SaveBlock1, 4),
-    SAVEBLOCK_CHUNK(struct SaveBlock1, 5),
+    SAVEBLOCK_CHUNK(struct SaveBlock1, 3),
+    SAVEBLOCK_CHUNK(struct SaveBlock1, 4), // SECTOR_ID_SAVEBLOCK1_END
     
     SAVEBLOCK_CHUNK(struct PokemonStorage, 0), // SECTOR_ID_PKMN_STORAGE_START
     SAVEBLOCK_CHUNK(struct PokemonStorage, 1),
@@ -497,7 +496,7 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
     // check save slot 2.
     validSectors = 0;
     signatureValid = FALSE;
-    for (sector = 0; sector < NUM_SECTORS_PER_SLOT; sector++)
+    for (sector = 0; sector < NUM_SECTORS_PER_SLOT && NUM_SAVE_SLOTS > 1; sector++)
     {
         ReadFlashSector(NUM_SECTORS_PER_SLOT + sector, gSaveDataBufferPtr);
         if (gSaveDataBufferPtr->signature == SECTOR_SIGNATURE)
@@ -649,7 +648,7 @@ u8 HandleSavingData(u8 saveType)
     switch (saveType)
     {
     case SAVE_HALL_OF_FAME_ERASE_BEFORE: // Unused
-        for (i = SECTOR_ID_HOF_1; i < SECTORS_COUNT; i++)
+        for (i = SECTOR_ID_HOF_1; i <= SECTOR_ID_HOF_2; i++)
             EraseFlashSector(i);
         // fallthrough
     case SAVE_HALL_OF_FAME:
@@ -676,7 +675,7 @@ u8 HandleSavingData(u8 saveType)
         WriteSaveSectorOrSlot(SECTOR_ID_SAVEBLOCK2, gRamSaveSectorLocations);
         break;
     case SAVE_OVERWRITE_DIFFERENT_FILE:
-        for (i = SECTOR_ID_HOF_1; i < SECTORS_COUNT; i++)
+        for (i = SECTOR_ID_HOF_1; i <= SECTOR_ID_HOF_2; i++)
             EraseFlashSector(i);
         SaveSerializedGame();
         WriteSaveSectorOrSlot(FULL_SAVE_SLOT, gRamSaveSectorLocations);
@@ -824,6 +823,7 @@ u32 TryReadSpecialSaveSector(u8 sectorId, u8 *dst)
     s32 size;
     u8 *savData;
 
+    return SAVE_STATUS_ERROR; // e-Reader Trainer Tower disabled: its sectors hold the Orange PC
     if (sectorId != SECTOR_ID_TRAINER_TOWER_1 && sectorId != SECTOR_ID_TRAINER_TOWER_2)
         return SAVE_STATUS_ERROR;
 
@@ -848,6 +848,7 @@ u32 TryWriteSpecialSaveSector(u8 sector, u8 *src)
     u8 *savData;
     void *savDataBuffer;
 
+    return SAVE_STATUS_ERROR; // e-Reader Trainer Tower disabled: its sectors hold the Orange PC
     if (sector != SECTOR_ID_TRAINER_TOWER_1 && sector != SECTOR_ID_TRAINER_TOWER_2)
         return SAVE_STATUS_ERROR;
 
@@ -936,4 +937,117 @@ void Task_LinkFullSave(u8 taskId)
         }
         break;
     }
+}
+
+// ---------------------------------------------------------------------------
+// Stored PCs (Orange Islands trip). Each sector holds SECTOR_DATA_SIZE bytes of the PC and is
+// checked on load; a PC only loads if every one of its sectors is intact.
+
+static const u8 sKantoPCSectors[NUM_KANTO_PC_SECTORS] = {15, 16, 17, 18, 19, 20, 21, 22, 23};
+static const u8 sOrangePCSectors[] = {24, 25, 26, 27, SECTOR_ID_TRAINER_TOWER_1, SECTOR_ID_TRAINER_TOWER_2};
+
+STATIC_ASSERT(SECTOR_ID_KANTO_PC_START == NUM_SECTORS_PER_SLOT * NUM_SAVE_SLOTS, StoredPCAfterSave);
+STATIC_ASSERT(sizeof(struct PokemonStorage) <= SECTOR_DATA_SIZE * NUM_KANTO_PC_SECTORS, KantoPCFits);
+
+static const u8 *GetStoredPCSectors(u8 which, u8 *count)
+{
+    if (which == STORED_PC_KANTO)
+    {
+        *count = ARRAY_COUNT(sKantoPCSectors);
+        return sKantoPCSectors;
+    }
+    *count = ARRAY_COUNT(sOrangePCSectors);
+    return sOrangePCSectors;
+}
+
+static u32 StoredPCSize(const struct StoredPCPart *parts, u8 numParts)
+{
+    u32 size = 0;
+    u8 i;
+
+    for (i = 0; i < numParts; i++)
+        size += parts[i].size;
+    return size;
+}
+
+// Copies bytes [offset, offset + len) of the parts (laid end to end) to or from buf.
+static void CopyStoredPCParts(const struct StoredPCPart *parts, u8 numParts, u32 offset, u8 *buf, u32 len, bool8 toParts)
+{
+    u8 i;
+    u32 start = 0;
+
+    for (i = 0; i < numParts && len != 0; i++)
+    {
+        u32 end = start + parts[i].size;
+        if (offset < end)
+        {
+            u32 n = end - offset;
+            u8 *p = (u8 *)parts[i].data + (offset - start);
+            if (n > len)
+                n = len;
+            if (toParts)
+                memcpy(p, buf, n);
+            else
+                memcpy(buf, p, n);
+            buf += n;
+            offset += n;
+            len -= n;
+        }
+        start = end;
+    }
+}
+
+bool8 SaveStoredPC(u8 which, const struct StoredPCPart *parts, u8 numParts)
+{
+    u8 count, i;
+    const u8 *sectors = GetStoredPCSectors(which, &count);
+    u32 size = StoredPCSize(parts, numParts);
+    u32 *backupPtr = gMain.vblankCounter1;
+    bool8 ok = TRUE;
+
+    if (gFlashMemoryPresent != TRUE || size > (u32)count * SECTOR_DATA_SIZE)
+        return FALSE;
+    gMain.vblankCounter1 = NULL;
+    for (i = 0; i * SECTOR_DATA_SIZE < size; i++)
+    {
+        u32 chunk = size - i * SECTOR_DATA_SIZE;
+        if (chunk > SECTOR_DATA_SIZE)
+            chunk = SECTOR_DATA_SIZE;
+        CpuFill32(0, gDecompressionBuffer, SECTOR_DATA_SIZE);
+        CopyStoredPCParts(parts, numParts, i * SECTOR_DATA_SIZE, gDecompressionBuffer, chunk, FALSE);
+        if (HandleWriteSectorNBytes(sectors[i], gDecompressionBuffer, chunk) != SAVE_STATUS_OK)
+            ok = FALSE;
+    }
+    gMain.vblankCounter1 = backupPtr;
+    return ok;
+}
+
+// Checks every sector first, so a damaged copy never overwrites anything halfway.
+bool8 LoadStoredPC(u8 which, const struct StoredPCPart *parts, u8 numParts)
+{
+    u8 count, i;
+    const u8 *sectors = GetStoredPCSectors(which, &count);
+    u32 size = StoredPCSize(parts, numParts);
+
+    if (gFlashMemoryPresent != TRUE || size > (u32)count * SECTOR_DATA_SIZE)
+        return FALSE;
+    for (i = 0; i * SECTOR_DATA_SIZE < size; i++)
+    {
+        u32 chunk = size - i * SECTOR_DATA_SIZE;
+        if (chunk > SECTOR_DATA_SIZE)
+            chunk = SECTOR_DATA_SIZE;
+        ReadFlashSector(sectors[i], &gSaveDataBuffer);
+        if (gSaveDataBuffer.signature != SECTOR_SIGNATURE || gSaveDataBuffer.id != CalculateChecksum(gSaveDataBuffer.data, chunk))
+            return FALSE;
+    }
+    for (i = 0; i * SECTOR_DATA_SIZE < size; i++)
+    {
+        u32 chunk = size - i * SECTOR_DATA_SIZE;
+        if (chunk > SECTOR_DATA_SIZE)
+            chunk = SECTOR_DATA_SIZE;
+        if (TryLoadSaveSector(sectors[i], gDecompressionBuffer, chunk) != SAVE_STATUS_OK)
+            return FALSE;
+        CopyStoredPCParts(parts, numParts, i * SECTOR_DATA_SIZE, gDecompressionBuffer, chunk, TRUE);
+    }
+    return TRUE;
 }

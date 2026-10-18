@@ -1,4 +1,5 @@
 #include "global.h"
+#include "pokemon_storage_system.h"
 #include "gflib.h"
 #include "event_data.h"
 #include "graphics.h"
@@ -1137,11 +1138,11 @@ static s8 DetermineBoxScrollDirection(u8 boxId)
     for (i = 0; currentBox != boxId; i++)
     {
         currentBox++;
-        if (currentBox >= TOTAL_BOXES_COUNT)
+        if (currentBox >= GetActiveBoxCount())
             currentBox = 0;
     }
 
-    return (i < TOTAL_BOXES_COUNT / 2) ? 1 : -1;
+    return (i < GetActiveBoxCount() / 2) ? 1 : -1;
 }
 
 void SetWallpaperForCurrentBox(u8 wallpaperId)

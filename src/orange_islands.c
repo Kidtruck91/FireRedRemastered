@@ -1,14 +1,12 @@
-// Orange Islands challenge: the player's party is put away in the PC for the
-// trip and the PC is locked (FLAG_ORANGE_CHALLENGE), so the Orange Islands are
-// played with a team caught there. On the way home the two teams swap back.
-//
-// The slots the home team was stored in are kept in VAR_ORANGE_STASH_0..5
-// (box << 8 | position, 0xFFFF = empty).
+// Orange Islands challenge (FLAG_ORANGE_CHALLENGE). The trip has its own team and its own PC.
+// In RAM there is only ever one of each: the Kanto PC + home team at home, the Orange PC
+// (ORANGE_BOXES_COUNT boxes) + Orange team on the trip. The pair not in use is kept in its own
+// flash sectors (src/save.c, SaveStoredPC). Flash writes only ever store what is in RAM, and the
+// main save only changes when the player saves, so a reset before saving can't lose anything.
 //
 // Script use:
-//   callnative OrangeChallenge_Begin   @ VAR_RESULT: TRUE ok, FALSE no PC space
-//   callnative OrangeChallenge_End     @ VAR_RESULT: TRUE ok, FALSE no PC space
-//   callnative OrangeChallenge_CountFreeSlots  @ VAR_RESULT = free PC slots
+//   callnative OrangeChallenge_Begin   @ VAR_RESULT: TRUE ok, FALSE flash error (nothing changed)
+//   callnative OrangeChallenge_End     @ VAR_RESULT: TRUE ok, FALSE flash error (nothing changed)
 #include "global.h"
 #include "event_data.h"
 #include "follow_me.h"
@@ -19,6 +17,7 @@
 #include "main.h"
 #include "overworld.h"
 #include "party_menu.h"
+#include "save.h"
 #include "script_pokemon_util.h"
 #include "string_util.h"
 #include "strings.h"
@@ -26,130 +25,106 @@
 #include "constants/flags.h"
 #include "constants/vars.h"
 
-#define STASH_EMPTY 0xFFFF
+// The Orange PC: currentBox + its boxes (the start of struct PokemonStorage), its box names and
+// wallpapers, and the Orange team while it waits at home.
+#define ORANGE_PC_HEAD_BYTES (offsetof(struct PokemonStorage, boxes) + sizeof(struct BoxPokemon) * IN_BOX_COUNT * ORANGE_BOXES_COUNT)
 
-static u16 GetStashVar(u8 i)
+static const u8 sText_Orange[] = _("ORANGE ");
+
+u8 GetActiveBoxCount(void)
 {
-    return VarGet(VAR_ORANGE_STASH_0 + i);
+    return FlagGet(FLAG_ORANGE_CHALLENGE) ? ORANGE_BOXES_COUNT : TOTAL_BOXES_COUNT;
 }
 
-static void SetStashVar(u8 i, u16 value)
+static void GetKantoParts(struct StoredPCPart *parts)
 {
-    VarSet(VAR_ORANGE_STASH_0 + i, value);
+    parts[0].data = gPokemonStoragePtr;
+    parts[0].size = sizeof(struct PokemonStorage);
+    parts[1].data = gPlayerParty;
+    parts[1].size = sizeof(gPlayerParty);
 }
 
-static bool8 IsBoxSlotFree(u8 box, u8 pos)
+static void GetOrangeParts(struct StoredPCPart *parts)
 {
-    return GetBoxMonData(GetBoxedMonPtr(box, pos), MON_DATA_SPECIES, NULL) == SPECIES_NONE;
+    parts[0].data = gPokemonStoragePtr;
+    parts[0].size = ORANGE_PC_HEAD_BYTES;
+    parts[1].data = gPokemonStoragePtr->boxNames;
+    parts[1].size = sizeof(gPokemonStoragePtr->boxNames[0]) * ORANGE_BOXES_COUNT;
+    parts[2].data = gPokemonStoragePtr->boxWallpapers;
+    parts[2].size = ORANGE_BOXES_COUNT;
+    parts[3].data = gPlayerParty;
+    parts[3].size = sizeof(gPlayerParty);
 }
 
-static u16 CountFreeBoxSlots(void)
+static void AfterPartyChange(void)
 {
-    u16 count = 0;
-    u8 box, pos;
-
-    for (box = 0; box < TOTAL_BOXES_COUNT; box++)
-        for (pos = 0; pos < IN_BOX_COUNT; pos++)
-            if (IsBoxSlotFree(box, pos))
-                count++;
-    return count;
-}
-
-// Stores `mon` in a free PC slot, searching from the last box backwards so the
-// stored team ends up out of the way. Returns box << 8 | pos, or STASH_EMPTY.
-static u16 StoreMonAtEndOfPC(struct Pokemon *mon)
-{
-    s8 box;
-    s8 pos;
-
-    for (box = TOTAL_BOXES_COUNT - 1; box >= 0; box--)
-    {
-        for (pos = IN_BOX_COUNT - 1; pos >= 0; pos--)
-        {
-            if (IsBoxSlotFree(box, pos))
-            {
-                MonRestorePP(mon);
-                CopyMon(GetBoxedMonPtr(box, pos), &mon->box, sizeof(mon->box));
-                return (box << 8) | pos;
-            }
-        }
-    }
-    return STASH_EMPTY;
-}
-
-void OrangeChallenge_CountFreeSlots(void)
-{
-    gSpecialVar_Result = CountFreeBoxSlots();
+    CompactPartySlots();
+    CalculatePlayerPartyCount();
+    if (gPlayerPartyCount == 0)
+        DestroyFollower();
+    else
+        UpdateFollowerPokemonGraphic();
 }
 
 void OrangeChallenge_Begin(void)
 {
-    u8 i;
-    u8 partyCount = CalculatePlayerPartyCount();
+    struct StoredPCPart parts[4];
+    u8 box, pos, i;
 
     gSpecialVar_Result = FALSE;
-    if (FlagGet(FLAG_ORANGE_CHALLENGE) || CountFreeBoxSlots() < partyCount)
+    if (FlagGet(FLAG_ORANGE_CHALLENGE))
+        return;
+    GetKantoParts(parts);
+    if (!SaveStoredPC(STORED_PC_KANTO, parts, 2))
         return;
 
-    for (i = 0; i < PARTY_SIZE; i++)
+    // Kanto PC + home team are safe in flash: bring in the Orange PC + Orange team.
+    GetOrangeParts(parts);
+    if (!FlagGet(FLAG_ORANGE_PC_SAVED) || !LoadStoredPC(STORED_PC_ORANGE, parts, 4))
     {
-        if (i < partyCount)
-            SetStashVar(i, StoreMonAtEndOfPC(&gPlayerParty[i]));
-        else
-            SetStashVar(i, STASH_EMPTY);
-        ZeroMonData(&gPlayerParty[i]);
+        // First trip: a fresh Orange PC and no team (Prof. Ivy gives a starter).
+        gPokemonStoragePtr->currentBox = 0;
+        for (box = 0; box < ORANGE_BOXES_COUNT; box++)
+        {
+            u8 *name = StringCopy(gPokemonStoragePtr->boxNames[box], sText_Orange);
+            ConvertIntToDecimalStringN(name, box + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
+            gPokemonStoragePtr->boxWallpapers[box] = WALLPAPER_BEACH;
+            for (pos = 0; pos < IN_BOX_COUNT; pos++)
+                ZeroBoxMonData(&gPokemonStoragePtr->boxes[box][pos]);
+        }
+        for (i = 0; i < PARTY_SIZE; i++)
+            ZeroMonData(&gPlayerParty[i]);
     }
-    gPlayerPartyCount = 0;
-    DestroyFollower(); // nothing left to follow; the starter brings it back
+    for (box = ORANGE_BOXES_COUNT; box < TOTAL_BOXES_COUNT; box++)
+        for (pos = 0; pos < IN_BOX_COUNT; pos++)
+            ZeroBoxMonData(&gPokemonStoragePtr->boxes[box][pos]);
+    if (gPokemonStoragePtr->currentBox >= ORANGE_BOXES_COUNT)
+        gPokemonStoragePtr->currentBox = 0;
+
     FlagSet(FLAG_ORANGE_CHALLENGE);
+    AfterPartyChange();
     gSpecialVar_Result = TRUE;
 }
 
 void OrangeChallenge_End(void)
 {
-    u8 i, homeCount = 0;
-    u8 orangeCount = CalculatePlayerPartyCount();
+    struct StoredPCPart parts[4];
 
     gSpecialVar_Result = FALSE;
     if (!FlagGet(FLAG_ORANGE_CHALLENGE))
         return;
+    GetOrangeParts(parts);
+    if (!SaveStoredPC(STORED_PC_ORANGE, parts, 4))
+        return;
+    FlagSet(FLAG_ORANGE_PC_SAVED);
 
-    for (i = 0; i < PARTY_SIZE; i++)
-        if (GetStashVar(i) != STASH_EMPTY)
-            homeCount++;
-
-    // The home team's slots free up before the Orange team goes in.
-    if (CountFreeBoxSlots() + homeCount < orangeCount)
+    // Only now replace RAM; a damaged Kanto copy leaves everything as it was.
+    GetKantoParts(parts);
+    if (!LoadStoredPC(STORED_PC_KANTO, parts, 2))
         return;
 
-    // gEnemyParty is free outside battle: use it to hold the home team.
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        u16 slot = GetStashVar(i);
-
-        ZeroMonData(&gEnemyParty[i]);
-        if (slot != STASH_EMPTY)
-        {
-            struct BoxPokemon *boxMon = GetBoxedMonPtr(slot >> 8, slot & 0xFF);
-
-            BoxMonToMon(boxMon, &gEnemyParty[i]);
-            ZeroBoxMonData(boxMon);
-        }
-    }
-
-    for (i = 0; i < orangeCount; i++)
-        StoreMonAtEndOfPC(&gPlayerParty[i]);
-
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        gPlayerParty[i] = gEnemyParty[i];
-        ZeroMonData(&gEnemyParty[i]);
-        SetStashVar(i, STASH_EMPTY);
-    }
-    CompactPartySlots();
-    CalculatePlayerPartyCount();
     FlagClear(FLAG_ORANGE_CHALLENGE);
-    UpdateFollowerPokemonGraphic();
+    AfterPartyChange();
     gSpecialVar_Result = TRUE;
 }
 

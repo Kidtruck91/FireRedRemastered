@@ -9,7 +9,7 @@
 #define SECTOR_FOOTER_SIZE 128
 #define SECTOR_SIZE (SECTOR_DATA_SIZE + SECTOR_FOOTER_SIZE)
 
-#define NUM_SAVE_SLOTS 2
+#define NUM_SAVE_SLOTS 1 // one slot: the space of the backup slot holds the stored PCs
 
 // If the sector's signature field is not this value, then the sector is either invalid or empty.
 #define SECTOR_SIGNATURE 0x08012025
@@ -20,22 +20,30 @@
 #define SECTOR_ID_SAVEBLOCK2          0
   
 #define SECTOR_ID_SAVEBLOCK1_START    1
-#define SECTOR_ID_SAVEBLOCK1_END      6 // Now includes 6 sectors (4-9)
-#define SECTOR_ID_PKMN_STORAGE_START  7
-#define SECTOR_ID_PKMN_STORAGE_END    15 // Now includes 9 sectors (10-18)
+#define SECTOR_ID_SAVEBLOCK1_END      5 // 5 sectors (1-5)
+#define SECTOR_ID_PKMN_STORAGE_START  6
+#define SECTOR_ID_PKMN_STORAGE_END    14 // 9 sectors (6-14)
 
 // Total sectors per save slot with the new layout
-#define NUM_SECTORS_PER_SLOT          16
+#define NUM_SECTORS_PER_SLOT          15
 
 // Additional sectors outside the save slots
-// Save Slot 1: sectors 0-18; Save Slot 2: sectors 19-37
+// Save: sectors 0-14. Stored Kanto PC: 15-23. Stored Orange PC: 24-27 and 30-31.
 #define SECTOR_ID_HOF_1               28
 #define SECTOR_ID_HOF_2               29
-#define SECTOR_ID_TRAINER_TOWER_1     30
+#define SECTOR_ID_TRAINER_TOWER_1     30 // e-Reader Trainer Tower: disabled, reused by the Orange PC
 #define SECTOR_ID_TRAINER_TOWER_2     31
+#define SECTOR_ID_KANTO_PC_START      15
+#define NUM_KANTO_PC_SECTORS          9
 #define SECTORS_COUNT                 32
 
 #define NUM_HOF_SECTORS 2
+
+// Stored PCs for the Orange Islands trip (see src/orange_islands.c)
+enum { STORED_PC_KANTO, STORED_PC_ORANGE };
+struct StoredPCPart { void *data; u32 size; };
+bool8 SaveStoredPC(u8 which, const struct StoredPCPart *parts, u8 numParts);
+bool8 LoadStoredPC(u8 which, const struct StoredPCPart *parts, u8 numParts);
 
 #define SAVE_STATUS_EMPTY    0
 #define SAVE_STATUS_OK       1
