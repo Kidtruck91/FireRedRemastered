@@ -160,4 +160,5 @@ static const s16 sMugshotsOpponentCoords[TRAINER_PIC_COUNT][2] =
  [TRAINER_PIC_DANNY]                           = { 0, 0},
  [TRAINER_PIC_RUDY]                            = { 0, 0},
  [TRAINER_PIC_LUANA]                           = { 0, 0},
+ [TRAINER_PIC_ORANGE_DRAKE]                    = { 0, 0},
 };

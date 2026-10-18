@@ -534,6 +534,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_DANNY                         0x1127
 #define OBJ_EVENT_PAL_RUDY                          0x1128
 #define OBJ_EVENT_PAL_LUANA                         0x1129
+#define OBJ_EVENT_PAL_ORANGE_DRAKE                  0x112A
 
 #define OBJ_EVENT_PAL_TAG_NONE                        0x11FF
 
@@ -581,6 +582,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPalette_Danny,             OBJ_EVENT_PAL_DANNY},
     {gObjectEventPalette_Rudy,              OBJ_EVENT_PAL_RUDY},
     {gObjectEventPalette_Luana,             OBJ_EVENT_PAL_LUANA},
+    {gObjectEventPalette_OrangeDrake,       OBJ_EVENT_PAL_ORANGE_DRAKE},
     {},
 };
 
@@ -2311,10 +2313,19 @@ static bool8 IsShinyFollowerPaletteTag(u16 paletteTag)
     return paletteTag >= FOLLOWER_SHINY_PAL_TAG_BASE && paletteTag < FOLLOWER_SHINY_PAL_TAG_BASE + FOLLOWER_GFX_COUNT;
 }
 
+// The added NPCs (Johto and Orange League characters) have their own palettes in
+// sObjectEventSpritePalettes. They are loaded on demand too, like follower palettes, so any
+// number of them can share a map with the regular NPCs.
+static bool8 IsCustomNpcPaletteTag(u16 paletteTag)
+{
+    return paletteTag >= OBJ_EVENT_PAL_WALKER && paletteTag <= OBJ_EVENT_PAL_ORANGE_DRAKE;
+}
+
 static bool8 IsDynamicObjectEventPaletteTag(u16 paletteTag)
 {
     return (paletteTag >= FOLLOWER_PAL_TAG_BASE && paletteTag < FOLLOWER_PAL_TAG_BASE + FOLLOWER_GFX_COUNT)
-        || IsShinyFollowerPaletteTag(paletteTag);
+        || IsShinyFollowerPaletteTag(paletteTag)
+        || IsCustomNpcPaletteTag(paletteTag);
 }
 
 static u8 LoadDynamicObjectEventPalette(u16 paletteTag)
@@ -2327,7 +2338,14 @@ static u8 LoadDynamicObjectEventPalette(u16 paletteTag)
     if (!IsDynamicObjectEventPaletteTag(paletteTag))
         return 0xFF;
 
-    if (IsShinyFollowerPaletteTag(paletteTag))
+    if (IsCustomNpcPaletteTag(paletteTag))
+    {
+        u8 index = FindObjectEventPaletteIndexByTag(paletteTag);
+        if (index == 0xFF)
+            return 0xFF;
+        spritePalette.data = sObjectEventSpritePalettes[index].data;
+    }
+    else if (IsShinyFollowerPaletteTag(paletteTag))
     {
         u16 species = paletteTag - FOLLOWER_SHINY_PAL_TAG_BASE;
         spritePalette.data = sFollowerShinyPalettes[species] != NULL ? sFollowerShinyPalettes[species] : sFollowerPalettes[species];

@@ -2768,6 +2768,8 @@ extern const u32 gTrainerFrontPic_Rudy[];
 extern const u32 gTrainerPalette_Rudy[];
 extern const u32 gTrainerFrontPic_Luana[];
 extern const u32 gTrainerPalette_Luana[];
+extern const u32 gTrainerFrontPic_OrangeDrake[];
+extern const u32 gTrainerPalette_OrangeDrake[];
 
 
 extern const u8 gFireRedMenuElements_Gfx[];

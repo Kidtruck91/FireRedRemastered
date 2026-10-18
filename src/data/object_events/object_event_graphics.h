@@ -208,6 +208,8 @@ const u16 gObjectEventPic_Rudy[] = INCBIN_U16("graphics/object_events/pics/peopl
 const u16 gObjectEventPalette_Rudy[] = INCBIN_U16("graphics/object_events/pics/people/rudy.gbapal");
 const u16 gObjectEventPic_Luana[] = INCBIN_U16("graphics/object_events/pics/people/luana.4bpp");
 const u16 gObjectEventPalette_Luana[] = INCBIN_U16("graphics/object_events/pics/people/luana.gbapal");
+const u16 gObjectEventPic_OrangeDrake[] = INCBIN_U16("graphics/object_events/pics/people/orange_drake.4bpp");
+const u16 gObjectEventPalette_OrangeDrake[] = INCBIN_U16("graphics/object_events/pics/people/orange_drake.gbapal");
 
 const u16 gObjectEventPic_Regi[] = INCBIN_U16("graphics/object_events/pics/pokemon/regi.4bpp");
 const u16 gObjectEventPic_Groudon[] = INCBIN_U16("graphics/object_events/pics/pokemon/groudon.4bpp");

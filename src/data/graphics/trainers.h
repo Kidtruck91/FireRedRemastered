@@ -488,4 +488,6 @@ const u32 gTrainerFrontPic_Rudy[] = INCBIN_U32("graphics/trainers/front_pics/rud
 const u32 gTrainerPalette_Rudy[] = INCBIN_U32("graphics/trainers/front_pics/rudy_front_pic.gbapal.lz");
 const u32 gTrainerFrontPic_Luana[] = INCBIN_U32("graphics/trainers/front_pics/luana_front_pic.4bpp.lz");
 const u32 gTrainerPalette_Luana[] = INCBIN_U32("graphics/trainers/front_pics/luana_front_pic.gbapal.lz");
+const u32 gTrainerFrontPic_OrangeDrake[] = INCBIN_U32("graphics/trainers/front_pics/orange_drake_front_pic.4bpp.lz");
+const u32 gTrainerPalette_OrangeDrake[] = INCBIN_U32("graphics/trainers/front_pics/orange_drake_front_pic.gbapal.lz");
 
