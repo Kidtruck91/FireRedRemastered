@@ -24,6 +24,7 @@
 #include "strings.h"
 #include "constants/party_menu.h"
 #include "constants/flags.h"
+#include "constants/opponents.h"
 #include "constants/vars.h"
 
 // The Orange PC: currentBox + its boxes (the start of struct PokemonStorage), its box names and
@@ -181,6 +182,11 @@ void OrangeChallenge_Begin(void)
     gSpecialVar_Result = FALSE;
     if (FlagGet(FLAG_ORANGE_CHALLENGE))
         return;
+    if (FlagGet(TRAINER_FLAGS_START + TRAINER_CHAMPION_DRAKE))
+    {
+        gSpecialVar_Result = TRUE; // after Drake the trip is a plain visit: no team swap, no caps
+        return;
+    }
     if (!ShowBoxSet(FALSE)) // the Kanto boxes may be switched out (after Drake)
         return;
     GetKantoParts(parts, gPlayerParty);

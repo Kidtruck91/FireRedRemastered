@@ -14993,3 +14993,119 @@ static const struct TrainerMonItemCustomMoves sParty_SwimmerFCoral[] = {
         .moves = {MOVE_POISON_STING, MOVE_SUPERSONIC, MOVE_CONSTRICT, MOVE_WATER_PULSE},
     },
 };
+
+static const struct TrainerMonNoItemDefaultMoves sParty_HikerNavelKai[] = {
+    {
+        .iv = 100,
+        .lvl = 24,
+        .species = SPECIES_GEODUDE,
+    },
+    {
+        .iv = 100,
+        .lvl = 25,
+        .species = SPECIES_MACHOP,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_BlackBeltNavelSora[] = {
+    {
+        .iv = 100,
+        .lvl = 25,
+        .species = SPECIES_MANKEY,
+    },
+    {
+        .iv = 100,
+        .lvl = 25,
+        .species = SPECIES_NIDORINO,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_CooltrainerNavelYuki[] = {
+    {
+        .iv = 100,
+        .lvl = 26,
+        .species = SPECIES_SEEL,
+    },
+    {
+        .iv = 100,
+        .lvl = 26,
+        .species = SPECIES_SHELLDER,
+    },
+    {
+        .iv = 100,
+        .lvl = 26,
+        .species = SPECIES_SWINUB,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_CooltrainerTrovitaLime[] = {
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_GROWLITHE,
+    },
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_POLIWHIRL,
+    },
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_GLOOM,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_CooltrainerTrovitaRowan[] = {
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_PONYTA,
+    },
+    {
+        .iv = 100,
+        .lvl = 35,
+        .species = SPECIES_SEADRA,
+    },
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_WEEPINBELL,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_TwinsKumquatAnaBel[] = {
+    {
+        .iv = 100,
+        .lvl = 41,
+        .species = SPECIES_NIDORINA,
+    },
+    {
+        .iv = 100,
+        .lvl = 41,
+        .species = SPECIES_NIDORINO,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_CoolCoupleKumquatLexNya[] = {
+    {
+        .iv = 100,
+        .lvl = 42,
+        .species = SPECIES_DODRIO,
+    },
+    {
+        .iv = 100,
+        .lvl = 42,
+        .species = SPECIES_RAPIDASH,
+    },
+    {
+        .iv = 100,
+        .lvl = 42,
+        .species = SPECIES_GOLDUCK,
+    },
+    {
+        .iv = 100,
+        .lvl = 42,
+        .species = SPECIES_PERSIAN,
+    },
+};

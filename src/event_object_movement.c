@@ -531,6 +531,9 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_ELM                           0x1124
 #define OBJ_EVENT_PAL_IVY                           0x1125
 #define OBJ_EVENT_PAL_CISSY                         0x1126
+#define OBJ_EVENT_PAL_DANNY                         0x1127
+#define OBJ_EVENT_PAL_RUDY                          0x1128
+#define OBJ_EVENT_PAL_LUANA                         0x1129
 
 #define OBJ_EVENT_PAL_TAG_NONE                        0x11FF
 
@@ -575,6 +578,9 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPalette_Elm,               OBJ_EVENT_PAL_ELM},
     {gObjectEventPalette_Ivy,               OBJ_EVENT_PAL_IVY},
     {gObjectEventPalette_Cissy,             OBJ_EVENT_PAL_CISSY},
+    {gObjectEventPalette_Danny,             OBJ_EVENT_PAL_DANNY},
+    {gObjectEventPalette_Rudy,              OBJ_EVENT_PAL_RUDY},
+    {gObjectEventPalette_Luana,             OBJ_EVENT_PAL_LUANA},
     {},
 };
 

@@ -156,6 +156,10 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     {.size = 8, .y_offset = 1},
     {.size = 8, .y_offset = 1},
     {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1}, // CISSY
+    {.size = 8, .y_offset = 1}, // DANNY
+    {.size = 8, .y_offset = 1}, // RUDY
+    {.size = 8, .y_offset = 1}, // LUANA
 };
 
 const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
@@ -316,6 +320,10 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(LEADER_JASMINE, gTrainerFrontPic_LeaderJasmine, 0x800),
     TRAINER_SPRITE(LEADER_PRYCE, gTrainerFrontPic_LeaderPryce, 0x800),
     TRAINER_SPRITE(LEADER_CLAIR, gTrainerFrontPic_LeaderClair, 0x800),
+    TRAINER_SPRITE(CISSY, gTrainerFrontPic_LeaderMisty, 0x800),
+    TRAINER_SPRITE(DANNY, gTrainerFrontPic_RSBlackBelt, 0x800),
+    TRAINER_SPRITE(RUDY, gTrainerFrontPic_CooltrainerM, 0x800),
+    TRAINER_SPRITE(LUANA, gTrainerFrontPic_Beauty, 0x800),
 };
 
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
@@ -475,5 +483,9 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(LEADER_CHUCK, gTrainerPalette_LeaderChuck),
     TRAINER_PAL(LEADER_JASMINE, gTrainerPalette_LeaderJasmine),
     TRAINER_PAL(LEADER_PRYCE, gTrainerPalette_LeaderPryce),
-    TRAINER_PAL(LEADER_CLAIR, gTrainerPalette_LeaderClair)
+    TRAINER_PAL(LEADER_CLAIR, gTrainerPalette_LeaderClair),
+    TRAINER_PAL(CISSY, gTrainerPalette_Cissy),
+    TRAINER_PAL(DANNY, gTrainerPalette_Danny),
+    TRAINER_PAL(RUDY, gTrainerPalette_Rudy),
+    TRAINER_PAL(LUANA, gTrainerPalette_Luana)
 };

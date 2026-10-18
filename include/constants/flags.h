@@ -544,12 +544,12 @@
 #define FLAG_GOT_TM18_FROM_CISSY     0x209
 #define FLAG_ORANGE_PC_SAVED     0x20A // the stored Orange PC sectors hold a real PC
 #define FLAG_PC_SHOWS_ORANGE     0x20B // the PC in RAM is the Orange Islands PC
-#define FLAG_0x20C               0x20C
-#define FLAG_0x20D               0x20D
-#define FLAG_0x20E               0x20E
-#define FLAG_0x20F               0x20F
-#define FLAG_0x210               0x210
-#define FLAG_0x211               0x211
+#define FLAG_BADGE_SPIKE_SHELL       0x20C // Orange League badge 2 (Danny, Navel)
+#define FLAG_BADGE_SEA_RUBY          0x20D // Orange League badge 3 (Rudy, Trovita)
+#define FLAG_BADGE_JADE_STAR         0x20E // Orange League badge 4 (Luana, Kumquat)
+#define FLAG_GOT_TM07_FROM_DANNY     0x20F
+#define FLAG_GOT_TM10_FROM_RUDY      0x210
+#define FLAG_GOT_TM33_FROM_LUANA     0x211
 #define FLAG_0x212               0x212
 #define FLAG_0x213               0x213
 #define FLAG_0x214               0x214

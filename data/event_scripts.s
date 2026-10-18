@@ -1949,6 +1949,9 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Valencia/scripts.inc"
 	.include "data/maps/OrangeIslands_Mikan_Gym/scripts.inc"
+	.include "data/maps/OrangeIslands_Kumquat_Gym/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_Gym/scripts.inc"
+	.include "data/maps/OrangeIslands_Navel_Gym/scripts.inc"
 	.include "data/maps/OrangeIslands_Valencia_IvysLab/scripts.inc"
 	.include "data/maps/OrangeIslands_Valencia/text.inc"
 

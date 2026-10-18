@@ -21,7 +21,15 @@
     }
   ],
   "object_events": [],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 26,
+      "y": 34,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_GYM",
+      "dest_warp_id": "1"
+    }
+  ],
   "coord_events": [
     {
       "type": "trigger",

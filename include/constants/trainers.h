@@ -175,7 +175,11 @@
 #define TRAINER_PIC_LEADER_PRYCE          154
 #define TRAINER_PIC_LEADER_CLAIR          155
 
-#define TRAINER_PIC_COUNT                 156
+#define TRAINER_PIC_CISSY                 156
+#define TRAINER_PIC_DANNY                 157
+#define TRAINER_PIC_RUDY                  158
+#define TRAINER_PIC_LUANA                 159
+#define TRAINER_PIC_COUNT                 160
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_RED                    0

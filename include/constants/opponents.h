@@ -950,6 +950,13 @@
 #define TRAINER_CHAMPION_DRAKE                   931
 #define TRAINER_SWIMMER_M_MARCO                  932
 #define TRAINER_SWIMMER_F_CORAL                  933
+#define TRAINER_HIKER_NAVEL_KAI                  934
+#define TRAINER_BLACK_BELT_NAVEL_SORA            935
+#define TRAINER_COOLTRAINER_NAVEL_YUKI           936
+#define TRAINER_COOLTRAINER_TROVITA_LIME         937
+#define TRAINER_COOLTRAINER_TROVITA_ROWAN        938
+#define TRAINER_TWINS_KUMQUAT_ANA_BEL            939
+#define TRAINER_COOL_COUPLE_KUMQUAT_LEX_NYA      940
 
 
 
@@ -960,7 +967,7 @@
 //       room for NUM_TRAINERS up to MAX_TRAINERS_COUNT before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             934
+#define NUM_TRAINERS                             941
 #define MAX_TRAINERS_COUNT                       1504
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

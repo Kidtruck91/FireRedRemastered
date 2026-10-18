@@ -156,4 +156,8 @@ static const s16 sMugshotsOpponentRotationScales[TRAINER_PIC_COUNT] =
  [TRAINER_PIC_LEADER_JASMINE]            = 0x200,
  [TRAINER_PIC_LEADER_PRYCE]              = 0x200,
  [TRAINER_PIC_LEADER_CLAIR]              = 0x200,
+ [TRAINER_PIC_CISSY]                           = 0x200,
+ [TRAINER_PIC_DANNY]                           = 0x200,
+ [TRAINER_PIC_RUDY]                            = 0x200,
+ [TRAINER_PIC_LUANA]                           = 0x200,
 };
