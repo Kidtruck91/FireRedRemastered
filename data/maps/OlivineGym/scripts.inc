@@ -37,8 +37,9 @@ OlivineGym_EventScript_LeaderWon::
 	release
 	end
 
-@ Rematch: any number of times, one of three teams
+@ Rematch (after the Champion, FLAG_DEFEATED_CHAMP): any number of times, one of three teams
 OlivineGym_EventScript_LeaderAfter::
+	goto_if_unset FLAG_DEFEATED_CHAMP, OlivineGym_EventScript_LeaderPostBattle
 	msgbox OlivineGym_Text_LeaderRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, OlivineGym_Script_NoRematch
 	msgbox OlivineGym_Text_RebattleIntro
@@ -61,6 +62,11 @@ OlivineGym_Script_Jasmine_RematchTeamOption3::
 	goto OlivineGym_EventScript_RematchWon
 	end
 
+OlivineGym_EventScript_LeaderPostBattle::
+	msgbox OlivineGym_Text_Jasmine_postbattle
+	release
+	end
+
 OlivineGym_EventScript_RematchWon::
 	msgbox OlivineGym_Text_Jasmine_postrematch
 	release
@@ -75,8 +81,13 @@ OlivineGym_Script_NoRematch::
 OlivineGym_Script_Rematch::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE_MINERAL, OlivineGym_Script_HelperAfter
+	goto_if_set FLAG_DEFEATED_CHAMP, OlivineGym_Script_HelperAfter
+	goto_if_set FLAG_BADGE_MINERAL, OlivineGym_Script_HelperBadge
 	msgbox OlivineGym_Text_HelperBefore
+	release
+	end
+OlivineGym_Script_HelperBadge::
+	msgbox OlivineGym_Text_HelperBadge
 	release
 	end
 OlivineGym_Script_HelperAfter::
@@ -98,6 +109,11 @@ OlivineGym_Text_LeaderNoRematch::
 OlivineGym_Text_HelperBefore::
 	.string "Hey, champ! Beat JASMINE and the\n"
 	.string "MINERAL BADGE is yours!$"
+
+OlivineGym_Text_HelperBadge::
+	.string "Nice BADGE, champ! Once you've\n"
+	.string "beaten the CHAMPION, JASMINE\l"
+	.string "takes on rematches.$"
 
 OlivineGym_Text_HelperAfter::
 	.string "Hey, champ! JASMINE takes on\n"

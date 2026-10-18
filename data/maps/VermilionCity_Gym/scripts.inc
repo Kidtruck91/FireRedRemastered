@@ -205,7 +205,8 @@ VermilionCity_Gym_EventScript_SetBeamsOn::
 
 VermilionCity_Gym_EventScript_LtSurge::
 	famechecker FAMECHECKER_LTSURGE, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
-	goto_if_set FLAG_REMATCH_LT_SURGE, VermilionCity_Gym_EventScript_LeaderRematch
+	goto_if_set FLAG_DEFEATED_CHAMP, VermilionCity_Gym_EventScript_LeaderRematchAsk
+VermilionCity_Gym_EventScript_LeaderBattle::
 	trainerbattle_single TRAINER_LEADER_LT_SURGE, VermilionCity_Gym_Text_LtSurgeIntro, VermilionCity_Gym_Text_LtSurgeDefeat, VermilionCity_Gym_EventScript_DefeatedLtSurge, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM34_FROM_SURGE, VermilionCity_Gym_EventScript_GiveTM34
 	msgbox VermilionCity_Gym_Text_LtSurgePostBattle
@@ -288,36 +289,48 @@ VermilionCity_Gym_EventScript_GymStatuePostVictory::
 	releaseall
 	end
 
-VermilionCity_Gym_EventScript_LeaderRematch::
- random 2
- switch VAR_RESULT
- case 0, VermilionCity_Gym_Script_LT_Surge_RematchTeamOption1
- case 1, VermilionCity_Gym_Script_LT_Surge_RematchTeamOption2
- msgbox VermilionCity_Gym_Text_LT_Surge_postrematch, MSGBOX_AUTOCLOSE
- end
+@ Rematch (after the Champion): any number of times, one of two teams
+VermilionCity_Gym_EventScript_LeaderRematchAsk::
+	lock
+	faceplayer
+	msgbox VermilionCity_Gym_Text_LeaderRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_Gym_EventScript_LeaderBattle
+	msgbox VermilionCity_Gym_Text_RebattleIntro
+	random 2
+	goto_if_eq VAR_RESULT, 1, VermilionCity_Gym_Script_LT_Surge_RematchTeamOption2
 VermilionCity_Gym_Script_LT_Surge_RematchTeamOption1::
- trainerbattle_single TRAINER_LEADER_LT_SURGEREMATCHA, VermilionCity_Gym_Text_RebattleIntro, VermilionCity_Gym_Text_RebattleDeafeated
- clearflag FLAG_REMATCH_LT_SURGE
-VermilionCity_Gym_Script_LT_Surge_RematchTeamOption2::
- trainerbattle_single TRAINER_LEADER_LT_SURGEREMATCHB, VermilionCity_Gym_Text_RebattleIntro, VermilionCity_Gym_Text_RebattleDeafeated
- clearflag FLAG_REMATCH_LT_SURGE
-
-VermilionCity_Gym_Text_RematchCheckUnlocked::
-  lock
-  faceplayer
-  goto_if_set FLAG_DEFEATED_CHAMP, VermilionCity_Gym_Script_Rematch
-  msgbox VermilionCity_Gym_Text_RematchNotUnlocked, MSGBOX_AUTOCLOSE
-  end
-
-
-VermilionCity_Gym_Script_Rematch::
-	msgbox VermilionCity_Gym_Text_RematchQuestion, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq VermilionCity_Gym_Script_NoRematch
-	setflag FLAG_REMATCH_LT_SURGE
-	msgbox VermilionCity_Gym_Text_RematchGo, MSGBOX_AUTOCLOSE
+	cleartrainerflag TRAINER_LEADER_LT_SURGEREMATCHA
+	trainerbattle_no_intro TRAINER_LEADER_LT_SURGEREMATCHA, VermilionCity_Gym_Text_RebattleDeafeated
+	goto VermilionCity_Gym_EventScript_RematchWon
 	end
-VermilionCity_Gym_Script_NoRematch::
-	msgbox VermilionCity_Gym_Text_NoRematch, MSGBOX_AUTOCLOSE
+VermilionCity_Gym_Script_LT_Surge_RematchTeamOption2::
+	cleartrainerflag TRAINER_LEADER_LT_SURGEREMATCHB
+	trainerbattle_no_intro TRAINER_LEADER_LT_SURGEREMATCHB, VermilionCity_Gym_Text_RebattleDeafeated
+	goto VermilionCity_Gym_EventScript_RematchWon
+	end
+
+VermilionCity_Gym_EventScript_RematchWon::
+	msgbox VermilionCity_Gym_Text_LT_Surge_postrematch
 	release
 	end
+
+@ Rematch NPC: explains when rematches open up
+VermilionCity_Gym_Text_RematchCheckUnlocked::
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_CHAMP, VermilionCity_Gym_Script_RematchHelperAfter
+	msgbox VermilionCity_Gym_Text_RematchNotUnlocked
+	release
+	end
+VermilionCity_Gym_Script_RematchHelperAfter::
+	msgbox VermilionCity_Gym_Text_RematchHelperAfter
+	release
+	end
+
+VermilionCity_Gym_Text_LeaderRematchAsk::
+	.string "Hey, kid! My troops are charged\n"
+	.string "up! Ready for a rematch?$"
+
+VermilionCity_Gym_Text_RematchHelperAfter::
+	.string "Hey, champ! LT. SURGE takes on\n"
+	.string "rematches now. Just ask!$"

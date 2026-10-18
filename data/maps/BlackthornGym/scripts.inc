@@ -37,8 +37,9 @@ BlackthornGym_EventScript_LeaderWon::
 	release
 	end
 
-@ Rematch: any number of times, one of three teams
+@ Rematch (after the Champion, FLAG_DEFEATED_CHAMP): any number of times, one of three teams
 BlackthornGym_EventScript_LeaderAfter::
+	goto_if_unset FLAG_DEFEATED_CHAMP, BlackthornGym_EventScript_LeaderPostBattle
 	msgbox BlackthornGym_Text_LeaderRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, BlackthornGym_Script_NoRematch
 	msgbox BlackthornGym_Text_RebattleIntro
@@ -61,6 +62,11 @@ BlackthornGym_Script_Clair_RematchTeamOption3::
 	goto BlackthornGym_EventScript_RematchWon
 	end
 
+BlackthornGym_EventScript_LeaderPostBattle::
+	msgbox BlackthornGym_Text_Clair_postbattle
+	release
+	end
+
 BlackthornGym_EventScript_RematchWon::
 	msgbox BlackthornGym_Text_Clair_postrematch
 	release
@@ -75,8 +81,13 @@ BlackthornGym_Script_NoRematch::
 BlackthornGym_Script_Rematch::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE_RISING, BlackthornGym_Script_HelperAfter
+	goto_if_set FLAG_DEFEATED_CHAMP, BlackthornGym_Script_HelperAfter
+	goto_if_set FLAG_BADGE_RISING, BlackthornGym_Script_HelperBadge
 	msgbox BlackthornGym_Text_HelperBefore
+	release
+	end
+BlackthornGym_Script_HelperBadge::
+	msgbox BlackthornGym_Text_HelperBadge
 	release
 	end
 BlackthornGym_Script_HelperAfter::
@@ -98,6 +109,11 @@ BlackthornGym_Text_LeaderNoRematch::
 BlackthornGym_Text_HelperBefore::
 	.string "Hey, champ! Beat CLAIR and the\n"
 	.string "RISING BADGE is yours!$"
+
+BlackthornGym_Text_HelperBadge::
+	.string "Nice BADGE, champ! Once you've\n"
+	.string "beaten the CHAMPION, CLAIR\l"
+	.string "takes on rematches.$"
 
 BlackthornGym_Text_HelperAfter::
 	.string "Hey, champ! CLAIR takes on\n"

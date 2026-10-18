@@ -2,8 +2,9 @@
 # Johto gym leader scripts (Violet .. Blackthorn), rewritten from one template:
 #  - First win: the leader battles with one of three random teams (A/B/C); winning plays
 #    "{PLAYER} received the X BADGE" with the badge fanfare, then the leader's post-battle line.
-#  - After the badge: the leader asks if you want a rematch (YES/NO); YES fights one of the three
-#    rematch teams, which can be fought again any number of times.
+#  - After the badge and the Champion (FLAG_DEFEATED_CHAMP): the leader asks if you want a rematch
+#    (YES/NO); YES fights one of the three rematch teams, repeatable any number of times. Before
+#    the Champion, the leader just gives the post-battle line.
 #  - Saves from before the badge flags: if the leader was already beaten, the next talk hands
 #    over the badge instead of battling again.
 #  - The gym's helper NPC (previously the rematch switch) now explains how rematches work.
@@ -82,8 +83,9 @@ for gmap, L, T, BADGE, NAME, prompt in GYMS:
 	release
 	end
 
-@ Rematch: any number of times, one of three teams
+@ Rematch (after the Champion, FLAG_DEFEATED_CHAMP): any number of times, one of three teams
 {g}_EventScript_LeaderAfter::
+	goto_if_unset FLAG_DEFEATED_CHAMP, {g}_EventScript_LeaderPostBattle
 	msgbox {g}_Text_LeaderRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, {g}_Script_NoRematch
 	msgbox {g}_Text_RebattleIntro
@@ -106,6 +108,11 @@ for gmap, L, T, BADGE, NAME, prompt in GYMS:
 	goto {g}_EventScript_RematchWon
 	end
 
+{g}_EventScript_LeaderPostBattle::
+	msgbox {g}_Text_{L}_postbattle
+	release
+	end
+
 {g}_EventScript_RematchWon::
 	msgbox {g}_Text_{L}_postrematch
 	release
@@ -120,8 +127,13 @@ for gmap, L, T, BADGE, NAME, prompt in GYMS:
 {g}_Script_Rematch::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE_{BADGE}, {g}_Script_HelperAfter
+	goto_if_set FLAG_DEFEATED_CHAMP, {g}_Script_HelperAfter
+	goto_if_set FLAG_BADGE_{BADGE}, {g}_Script_HelperBadge
 	msgbox {g}_Text_HelperBefore
+	release
+	end
+{g}_Script_HelperBadge::
+	msgbox {g}_Text_HelperBadge
 	release
 	end
 {g}_Script_HelperAfter::
@@ -142,6 +154,11 @@ for gmap, L, T, BADGE, NAME, prompt in GYMS:
 {g}_Text_HelperBefore::
 	.string "Hey, champ! Beat {NAME} and the\\n"
 	.string "{BADGE} BADGE is yours!$"
+
+{g}_Text_HelperBadge::
+	.string "Nice BADGE, champ! Once you've\\n"
+	.string "beaten the CHAMPION, {NAME}\\l"
+	.string "takes on rematches.$"
 
 {g}_Text_HelperAfter::
 	.string "Hey, champ! {NAME} takes on\\n"

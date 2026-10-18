@@ -37,8 +37,9 @@ MohoganyGym_EventScript_LeaderWon::
 	release
 	end
 
-@ Rematch: any number of times, one of three teams
+@ Rematch (after the Champion, FLAG_DEFEATED_CHAMP): any number of times, one of three teams
 MohoganyGym_EventScript_LeaderAfter::
+	goto_if_unset FLAG_DEFEATED_CHAMP, MohoganyGym_EventScript_LeaderPostBattle
 	msgbox MohoganyGym_Text_LeaderRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, MohoganyGym_Script_NoRematch
 	msgbox MohoganyGym_Text_RebattleIntro
@@ -61,6 +62,11 @@ MohoganyGym_Script_Pryce_RematchTeamOption3::
 	goto MohoganyGym_EventScript_RematchWon
 	end
 
+MohoganyGym_EventScript_LeaderPostBattle::
+	msgbox MohoganyGym_Text_Pryce_postbattle
+	release
+	end
+
 MohoganyGym_EventScript_RematchWon::
 	msgbox MohoganyGym_Text_Pryce_postrematch
 	release
@@ -75,8 +81,13 @@ MohoganyGym_Script_NoRematch::
 MohoganyGym_Script_Rematch::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE_GLACIER, MohoganyGym_Script_HelperAfter
+	goto_if_set FLAG_DEFEATED_CHAMP, MohoganyGym_Script_HelperAfter
+	goto_if_set FLAG_BADGE_GLACIER, MohoganyGym_Script_HelperBadge
 	msgbox MohoganyGym_Text_HelperBefore
+	release
+	end
+MohoganyGym_Script_HelperBadge::
+	msgbox MohoganyGym_Text_HelperBadge
 	release
 	end
 MohoganyGym_Script_HelperAfter::
@@ -98,6 +109,11 @@ MohoganyGym_Text_LeaderNoRematch::
 MohoganyGym_Text_HelperBefore::
 	.string "Hey, champ! Beat PRYCE and the\n"
 	.string "GLACIER BADGE is yours!$"
+
+MohoganyGym_Text_HelperBadge::
+	.string "Nice BADGE, champ! Once you've\n"
+	.string "beaten the CHAMPION, PRYCE\l"
+	.string "takes on rematches.$"
 
 MohoganyGym_Text_HelperAfter::
 	.string "Hey, champ! PRYCE takes on\n"

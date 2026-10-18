@@ -37,8 +37,9 @@ CianwoodGym_EventScript_LeaderWon::
 	release
 	end
 
-@ Rematch: any number of times, one of three teams
+@ Rematch (after the Champion, FLAG_DEFEATED_CHAMP): any number of times, one of three teams
 CianwoodGym_EventScript_LeaderAfter::
+	goto_if_unset FLAG_DEFEATED_CHAMP, CianwoodGym_EventScript_LeaderPostBattle
 	msgbox CianwoodGym_Text_LeaderRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, CianwoodGym_Script_NoRematch
 	msgbox CianwoodGym_Text_RebattleIntro
@@ -61,6 +62,11 @@ CianwoodGym_Script_Chuck_RematchTeamOption3::
 	goto CianwoodGym_EventScript_RematchWon
 	end
 
+CianwoodGym_EventScript_LeaderPostBattle::
+	msgbox CianwoodGym_Text_Chuck_postbattle
+	release
+	end
+
 CianwoodGym_EventScript_RematchWon::
 	msgbox CianwoodGym_Text_Chuck_postrematch
 	release
@@ -75,8 +81,13 @@ CianwoodGym_Script_NoRematch::
 CianwoodGym_Script_Rematch::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE_STORM, CianwoodGym_Script_HelperAfter
+	goto_if_set FLAG_DEFEATED_CHAMP, CianwoodGym_Script_HelperAfter
+	goto_if_set FLAG_BADGE_STORM, CianwoodGym_Script_HelperBadge
 	msgbox CianwoodGym_Text_HelperBefore
+	release
+	end
+CianwoodGym_Script_HelperBadge::
+	msgbox CianwoodGym_Text_HelperBadge
 	release
 	end
 CianwoodGym_Script_HelperAfter::
@@ -98,6 +109,11 @@ CianwoodGym_Text_LeaderNoRematch::
 CianwoodGym_Text_HelperBefore::
 	.string "Hey, champ! Beat CHUCK and the\n"
 	.string "STORM BADGE is yours!$"
+
+CianwoodGym_Text_HelperBadge::
+	.string "Nice BADGE, champ! Once you've\n"
+	.string "beaten the CHAMPION, CHUCK\l"
+	.string "takes on rematches.$"
 
 CianwoodGym_Text_HelperAfter::
 	.string "Hey, champ! CHUCK takes on\n"

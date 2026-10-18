@@ -37,8 +37,9 @@ GoldenrodGym_EventScript_LeaderWon::
 	release
 	end
 
-@ Rematch: any number of times, one of three teams
+@ Rematch (after the Champion, FLAG_DEFEATED_CHAMP): any number of times, one of three teams
 GoldenrodGym_EventScript_LeaderAfter::
+	goto_if_unset FLAG_DEFEATED_CHAMP, GoldenrodGym_EventScript_LeaderPostBattle
 	msgbox GoldenrodGym_Text_LeaderRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, GoldenrodGym_Script_NoRematch
 	msgbox GoldenrodGym_Text_RebattleIntro
@@ -61,6 +62,11 @@ GoldenrodGym_Script_Whitney_RematchTeamOption3::
 	goto GoldenrodGym_EventScript_RematchWon
 	end
 
+GoldenrodGym_EventScript_LeaderPostBattle::
+	msgbox GoldenrodGym_Text_Whitney_postbattle
+	release
+	end
+
 GoldenrodGym_EventScript_RematchWon::
 	msgbox GoldenrodGym_Text_Whitney_postrematch
 	release
@@ -75,8 +81,13 @@ GoldenrodGym_Script_NoRematch::
 GoldenrodGym_Script_Rematch::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE_PLAIN, GoldenrodGym_Script_HelperAfter
+	goto_if_set FLAG_DEFEATED_CHAMP, GoldenrodGym_Script_HelperAfter
+	goto_if_set FLAG_BADGE_PLAIN, GoldenrodGym_Script_HelperBadge
 	msgbox GoldenrodGym_Text_HelperBefore
+	release
+	end
+GoldenrodGym_Script_HelperBadge::
+	msgbox GoldenrodGym_Text_HelperBadge
 	release
 	end
 GoldenrodGym_Script_HelperAfter::
@@ -98,6 +109,11 @@ GoldenrodGym_Text_LeaderNoRematch::
 GoldenrodGym_Text_HelperBefore::
 	.string "Hey, champ! Beat WHITNEY and the\n"
 	.string "PLAIN BADGE is yours!$"
+
+GoldenrodGym_Text_HelperBadge::
+	.string "Nice BADGE, champ! Once you've\n"
+	.string "beaten the CHAMPION, WHITNEY\l"
+	.string "takes on rematches.$"
 
 GoldenrodGym_Text_HelperAfter::
 	.string "Hey, champ! WHITNEY takes on\n"

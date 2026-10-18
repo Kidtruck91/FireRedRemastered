@@ -37,8 +37,9 @@ EcruteakGym_EventScript_LeaderWon::
 	release
 	end
 
-@ Rematch: any number of times, one of three teams
+@ Rematch (after the Champion, FLAG_DEFEATED_CHAMP): any number of times, one of three teams
 EcruteakGym_EventScript_LeaderAfter::
+	goto_if_unset FLAG_DEFEATED_CHAMP, EcruteakGym_EventScript_LeaderPostBattle
 	msgbox EcruteakGym_Text_LeaderRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, EcruteakGym_Script_NoRematch
 	msgbox EcruteakGym_Text_RebattleIntro
@@ -61,6 +62,11 @@ EcruteakGym_Script_Morty_RematchTeamOption3::
 	goto EcruteakGym_EventScript_RematchWon
 	end
 
+EcruteakGym_EventScript_LeaderPostBattle::
+	msgbox EcruteakGym_Text_Morty_postbattle
+	release
+	end
+
 EcruteakGym_EventScript_RematchWon::
 	msgbox EcruteakGym_Text_Morty_postrematch
 	release
@@ -75,8 +81,13 @@ EcruteakGym_Script_NoRematch::
 EcruteakGym_Script_Rematch::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE_FOG, EcruteakGym_Script_HelperAfter
+	goto_if_set FLAG_DEFEATED_CHAMP, EcruteakGym_Script_HelperAfter
+	goto_if_set FLAG_BADGE_FOG, EcruteakGym_Script_HelperBadge
 	msgbox EcruteakGym_Text_HelperBefore
+	release
+	end
+EcruteakGym_Script_HelperBadge::
+	msgbox EcruteakGym_Text_HelperBadge
 	release
 	end
 EcruteakGym_Script_HelperAfter::
@@ -99,6 +110,11 @@ EcruteakGym_Text_LeaderNoRematch::
 EcruteakGym_Text_HelperBefore::
 	.string "Hey, champ! Beat MORTY and the\n"
 	.string "FOG BADGE is yours!$"
+
+EcruteakGym_Text_HelperBadge::
+	.string "Nice BADGE, champ! Once you've\n"
+	.string "beaten the CHAMPION, MORTY\l"
+	.string "takes on rematches.$"
 
 EcruteakGym_Text_HelperAfter::
 	.string "Hey, champ! MORTY takes on\n"
