@@ -161,6 +161,11 @@ void OrangeChallenge_End(void)
 //
 // No items (Danny): setflag FLAG_NO_BATTLE_ITEMS before the gauntlet and
 // clearflag it afterwards; it is also cleared if the player loses.
+//
+// Rain arena (Cissy): overworld rain turns into permanent rain in battle, so
+//   setweather WEATHER_RAIN / doweather   before trainerbattle_single, and
+//   resetweather / doweather              in the post-battle script.
+// A loss whites out to a Pokemon Center, which resets the weather by itself.
 // ---------------------------------------------------------------------------
 
 static void CB2_ReturnFromChooseTypeTriad(void)
