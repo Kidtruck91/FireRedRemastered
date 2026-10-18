@@ -1216,6 +1216,8 @@
 #define TRAINER_ORANGE_COOLTRAINER_JEFF          1193
 #define TRAINER_ORANGE_SWIMMER_M_EMMET           1194
 
+#define TRAINER_CHAMPION_DRAKE_REMATCH           1195
+
 
 
 
@@ -1225,7 +1227,7 @@
 //       room for NUM_TRAINERS up to MAX_TRAINERS_COUNT before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             1195
+#define NUM_TRAINERS                             1196
 #define MAX_TRAINERS_COUNT                       1504
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

@@ -12140,6 +12140,18 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_LEVEL_NORMAL,
         .party = POOL_PARTY(sPool_SwimmerM_Intermediate, 3, 5, 47, 2),
     },
+    [TRAINER_CHAMPION_DRAKE_REMATCH] = {
+        .trainerClass = TRAINER_CLASS_CHAMPION,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_ORANGE_DRAKE,
+        .trainerName = _("DRAKE"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .mugshotEnabled = TRUE,
+        .mugshotColor = MUGSHOT_COLOR_DARK_RED,
+        .aiFlags = AI_LEVEL_ADVANCED,
+        .party = ITEM_CUSTOM_MOVES(sParty_ChampionDrakeRematch),
+    },
 };
 
 // Want a trainer whose team is rolled from a pool (Hiker / Swimmer / Ace Trainer pools with

@@ -558,7 +558,7 @@
 #define FLAG_BADGE_MINERAL            0x217 // Johto badge 6 (Jasmine, Olivine)
 #define FLAG_BADGE_GLACIER            0x218 // Johto badge 7 (Pryce, Mahogany)
 #define FLAG_BADGE_RISING             0x219 // Johto badge 8 (Clair, Blackthorn)
-#define FLAG_0x21A               0x21A
+#define FLAG_ORANGE_LEAGUE_CHAMPION   0x21A // beat Drake in Pummelo Stadium
 #define FLAG_0x21B               0x21B
 #define FLAG_0x21C               0x21C
 #define FLAG_0x21D               0x21D
