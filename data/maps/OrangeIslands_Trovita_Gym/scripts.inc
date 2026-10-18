@@ -3,7 +3,7 @@
 OrangeIslands_Trovita_Gym_MapScripts::
 	.byte 0
 
-@ Type triad: the player battles with one FIRE, one WATER and one GRASS POKéMON.
+@ The player brings three POKéMON that share no type; Rudy builds a team to counter them.
 OrangeIslands_Trovita_Gym_EventScript_Rudy::
 	lock
 	faceplayer
@@ -12,10 +12,7 @@ OrangeIslands_Trovita_Gym_EventScript_Rudy::
 	goto_if_eq VAR_RESULT, NO, OrangeIslands_Trovita_Gym_EventScript_RudyDeclined
 	msgbox OrangeIslands_Trovita_Gym_Text_ChooseThree
 	closemessage
-	setvar VAR_0x8005, TYPE_FIRE
-	setvar VAR_0x8006, TYPE_WATER
-	setvar VAR_0x8007, TYPE_GRASS
-	callnative OrangeGym_ChooseTypeTriad
+	callnative OrangeGym_ChooseDistinctTypes
 	waitstate
 	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Trovita_Gym_EventScript_RudyDeclined
 	msgbox OrangeIslands_Trovita_Gym_Text_RudyIntro
@@ -91,28 +88,29 @@ OrangeIslands_Trovita_Gym_EventScript_GymStatueAfter::
 
 OrangeIslands_Trovita_Gym_Text_RudyChallenge::
 	.string "Welcome to TROVITA. I'm RUDY.\p"
-	.string "A good trainer balances FIRE,\n"
-	.string "WATER and GRASS, each covering\l"
-	.string "the others.\p"
-	.string "So here, you battle me with one\n"
-	.string "of each. Just three POKéMON.\p"
+	.string "A battle is a dance. I watch my\n"
+	.string "partner, then I make my move.\p"
+	.string "Bring me three POKéMON, no two\n"
+	.string "sharing a type. I'll see what\l"
+	.string "you've got, then pick my team.\p"
 	.string "Shall we?$"
 
 OrangeIslands_Trovita_Gym_Text_ChooseThree::
-	.string "Pick one FIRE, one WATER and one\n"
-	.string "GRASS POKéMON.$"
+	.string "Pick three POKéMON. No two may\n"
+	.string "share a type.$"
 
 OrangeIslands_Trovita_Gym_Text_RudyDeclined::
-	.string "Come back once you have a FIRE,\n"
-	.string "a WATER and a GRASS POKéMON.$"
+	.string "Come back when you have three\n"
+	.string "POKéMON that share no type.$"
 
 OrangeIslands_Trovita_Gym_Text_RudyIntro::
-	.string "A fine triad. Let's see how\n"
-	.string "well it holds together!$"
+	.string "I see… Yes, I know just who to\n"
+	.string "send against each of those.\p"
+	.string "Let's dance!$"
 
 OrangeIslands_Trovita_Gym_Text_RudyDefeat::
-	.string "Perfectly balanced. You've\n"
-	.string "earned this.$"
+	.string "You stayed a step ahead of me.\n"
+	.string "You've earned this.$"
 
 OrangeIslands_Trovita_Gym_Text_ReceivedBadge::
 	.string "{PLAYER} received the\n"
@@ -130,8 +128,8 @@ OrangeIslands_Trovita_Gym_Text_ReceivedTM10::
 OrangeIslands_Trovita_Gym_Text_ExplainTM10::
 	.string "TM10 is HIDDEN POWER. Its type\n"
 	.string "is different for every POKéMON.\p"
-	.string "A good way to cover a gap in\n"
-	.string "your triad!$"
+	.string "Good for surprising someone who\n"
+	.string "thinks they've read you!$"
 
 OrangeIslands_Trovita_Gym_Text_NoRoom::
 	.string "Your BAG is full. Come back\n"
@@ -159,21 +157,23 @@ OrangeIslands_Trovita_Gym_Text_RowanDefeat::
 	.string "Out of balance...$"
 
 OrangeIslands_Trovita_Gym_Text_RowanPostBattle::
-	.string "RUDY's team doesn't follow the\n"
-	.string "triad. Watch for ELECTRIC and\l"
-	.string "PSYCHIC moves!$"
+	.string "RUDY picks his team after he\n"
+	.string "sees yours. Watch out for moves\l"
+	.string "that cover his weak spots!$"
 
 OrangeIslands_Trovita_Gym_Text_GymGuyAdvice::
-	.string "Yo! RUDY's rule: you battle him\n"
-	.string "with one FIRE, one WATER and one\l"
-	.string "GRASS POKéMON, nothing else.\p"
-	.string "His own team is a mix, so think\n"
-	.string "about which of your three\l"
-	.string "covers what!$"
+	.string "Yo! RUDY's rule: three POKéMON,\n"
+	.string "and no two can share a type.\p"
+	.string "Here's the catch. RUDY looks at\n"
+	.string "your three and picks a POKéMON\l"
+	.string "to beat each one!\p"
+	.string "So bring three that cover each\n"
+	.string "other. If he counters one, the\l"
+	.string "next should beat his counter!$"
 
 OrangeIslands_Trovita_Gym_Text_GymGuyAfter::
-	.string "Three POKéMON against RUDY, and\n"
-	.string "you won! Nicely done!$"
+	.string "RUDY read your team and you\n"
+	.string "still won! Nicely done!$"
 
 OrangeIslands_Trovita_Gym_Text_GymStatue::
 	.string "TROVITA ISLAND POKéMON GYM\n"

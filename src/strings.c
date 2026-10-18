@@ -877,6 +877,7 @@ const u8 gText_OrangeTriad_ChooseOne[] = _("Choose one ");
 const u8 gText_OrangeTriad_CommaOne[] = _(", one\n");
 const u8 gText_OrangeTriad_AndOne[] = _(" and one ");
 const u8 gText_OrangeTriad_Pokemon[] = _(" POKéMON.");
+const u8 gText_OrangeTriad_NoSharedType[] = _("No two may share a type.");
 const u8 gText_RandomizeTrainer[] = _("RANDOMIZE TRAINER");
 const u8 gText_RandomizeItems[] = _("RANDOMIZE ITEMS");
 const u8 gText_RandomizeWild[] = _("RANDOMIZE WILD");

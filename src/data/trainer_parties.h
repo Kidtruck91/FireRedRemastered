@@ -14842,33 +14842,27 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderDanny[] = {
 };
 
 static const struct TrainerMonItemCustomMoves sParty_LeaderRudy[] = {
+    // Only used if the counter team can't be built (see OrangeGym_CreateRudyParty)
     {
         .iv = 250,
         .lvl = 36,
-        .species = SPECIES_EXEGGUTOR,
-        .heldItem = ITEM_MIRACLE_SEED,
-        .moves = {MOVE_GIGA_DRAIN, MOVE_EGG_BOMB, MOVE_CONFUSION, MOVE_STUN_SPORE},
-    },
-    {
-        .iv = 250,
-        .lvl = 36,
-        .species = SPECIES_STARMIE,
-        .heldItem = ITEM_LEFTOVERS,
-        .moves = {MOVE_SURF, MOVE_THUNDERBOLT, MOVE_RECOVER, MOVE_CONFUSE_RAY},
+        .species = SPECIES_ELECTABUZZ,
+        .heldItem = ITEM_MAGNET,
+        .moves = {MOVE_THUNDERBOLT, MOVE_BRICK_BREAK, MOVE_ICE_PUNCH, MOVE_DOUBLE_TEAM},
     },
     {
         .iv = 250,
         .lvl = 37,
-        .species = SPECIES_KINGLER,
-        .heldItem = ITEM_KINGS_ROCK,
-        .moves = {MOVE_SURF, MOVE_MUD_SHOT, MOVE_METAL_CLAW, MOVE_STOMP},
+        .species = SPECIES_EXEGGUTOR,
+        .heldItem = ITEM_MIRACLE_SEED,
+        .moves = {MOVE_GIGA_DRAIN, MOVE_PSYCHIC, MOVE_SLEEP_POWDER, MOVE_EGG_BOMB},
     },
     {
         .iv = 250,
         .lvl = 38,
-        .species = SPECIES_ELECTABUZZ,
-        .heldItem = ITEM_MAGNET,
-        .moves = {MOVE_THUNDER_PUNCH, MOVE_BRICK_BREAK, MOVE_QUICK_ATTACK, MOVE_LIGHT_SCREEN},
+        .species = SPECIES_STARMIE,
+        .heldItem = ITEM_LEFTOVERS,
+        .moves = {MOVE_SURF, MOVE_PSYCHIC, MOVE_THUNDERBOLT, MOVE_RECOVER},
     },
 };
 

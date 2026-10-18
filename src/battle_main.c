@@ -1669,6 +1669,12 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
      && !(gBattleTypeFlags & (BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER)))
     {
         ZeroEnemyPartyMons();
+        if (trainerNum == TRAINER_LEADER_RUDY && FlagGet(FLAG_ORANGE_PARTY_REDUCED))
+        {
+            u8 count = OrangeGym_CreateRudyParty(party);
+            if (count != 0)
+                return count;
+        }
         if (gTrainers[trainerNum].partyFlags & F_TRAINER_PARTY_POOL)
         {
             u8 count = CreatePoolTrainerParty(party, trainerNum);

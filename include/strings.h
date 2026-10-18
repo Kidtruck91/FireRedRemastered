@@ -937,6 +937,7 @@ extern const u8 gText_NuzlockeMode[];
 extern const u8 gText_PhysSpecSplit[];
 extern const u8 gText_ExpAll[];
 extern const u8 gText_OrangeTriad_ChooseOne[];
+extern const u8 gText_OrangeTriad_NoSharedType[];
 extern const u8 gText_OrangeTriad_CommaOne[];
 extern const u8 gText_OrangeTriad_AndOne[];
 extern const u8 gText_OrangeTriad_Pokemon[];

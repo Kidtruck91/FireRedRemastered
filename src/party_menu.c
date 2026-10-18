@@ -5700,6 +5700,8 @@ static bool8 GetBattleEntryEligibility(struct Pokemon *mon)
     case CHOOSE_MONS_FOR_TYPE_TRIAD:
         if (GetMonData(mon, MON_DATA_HP) == 0)
             return FALSE;
+        if (gTypeTriadTypes[0] == TYPE_NONE) // any three that share no type
+            return TRUE;
         species = GetMonData(mon, MON_DATA_SPECIES);
         for (i = 0; i < NELEMS(gTypeTriadTypes); i++)
         {
@@ -5728,12 +5730,37 @@ static bool8 MonHasType(u8 slot, u8 type)
     return gSpeciesInfo[species].types[0] == type || gSpeciesInfo[species].types[1] == type;
 }
 
+// TRUE if no two of the 3 chosen mons share a type
+static bool8 TypeTriadDistinct(const u8 *order)
+{
+    u8 i, j, a, b;
+
+    for (i = 0; i < 3; i++)
+    {
+        u16 si = GetMonData(&gPlayerParty[order[i] - 1], MON_DATA_SPECIES);
+
+        for (j = i + 1; j < 3; j++)
+        {
+            u16 sj = GetMonData(&gPlayerParty[order[j] - 1], MON_DATA_SPECIES);
+
+            for (a = 0; a < 2; a++)
+                for (b = 0; b < 2; b++)
+                    if (gSpeciesInfo[si].types[a] == gSpeciesInfo[sj].types[b])
+                        return FALSE;
+        }
+    }
+    return TRUE;
+}
+
 // TRUE if the 3 chosen mons can be matched one-to-one with the 3 required types
+// (or, with gTypeTriadTypes[0] == TYPE_NONE, if they share no type)
 static bool8 TypeTriadCovered(const u8 *order)
 {
     static const u8 perms[6][3] = {{0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}};
     u8 p, i;
 
+    if (gTypeTriadTypes[0] == TYPE_NONE)
+        return TypeTriadDistinct(order);
     for (p = 0; p < NELEMS(perms); p++)
     {
         for (i = 0; i < 3; i++)
