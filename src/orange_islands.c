@@ -7,6 +7,7 @@
 // Script use:
 //   callnative OrangeChallenge_Begin   @ VAR_RESULT: TRUE ok, FALSE flash error (nothing changed)
 //   callnative OrangeChallenge_End     @ VAR_RESULT: TRUE ok, FALSE flash error (nothing changed)
+//   setvar VAR_0x8004, 0/1  callnative OrangePC_ShowBoxSet  @ after Drake: Kanto/Orange boxes in any PC
 #include "global.h"
 #include "event_data.h"
 #include "follow_me.h"
@@ -33,18 +34,19 @@ static const u8 sText_Orange[] = _("ORANGE ");
 
 u8 GetActiveBoxCount(void)
 {
-    return FlagGet(FLAG_ORANGE_CHALLENGE) ? ORANGE_BOXES_COUNT : TOTAL_BOXES_COUNT;
+    return FlagGet(FLAG_PC_SHOWS_ORANGE) ? ORANGE_BOXES_COUNT : TOTAL_BOXES_COUNT;
 }
 
-static void GetKantoParts(struct StoredPCPart *parts)
+// `team` is the team stored with that PC (NULL: leave it out when loading).
+static void GetKantoParts(struct StoredPCPart *parts, struct Pokemon *team)
 {
     parts[0].data = gPokemonStoragePtr;
     parts[0].size = sizeof(struct PokemonStorage);
-    parts[1].data = gPlayerParty;
+    parts[1].data = team;
     parts[1].size = sizeof(gPlayerParty);
 }
 
-static void GetOrangeParts(struct StoredPCPart *parts)
+static void GetOrangeParts(struct StoredPCPart *parts, struct Pokemon *team)
 {
     parts[0].data = gPokemonStoragePtr;
     parts[0].size = ORANGE_PC_HEAD_BYTES;
@@ -52,8 +54,35 @@ static void GetOrangeParts(struct StoredPCPart *parts)
     parts[1].size = sizeof(gPokemonStoragePtr->boxNames[0]) * ORANGE_BOXES_COUNT;
     parts[2].data = gPokemonStoragePtr->boxWallpapers;
     parts[2].size = ORANGE_BOXES_COUNT;
-    parts[3].data = gPlayerParty;
+    parts[3].data = team;
     parts[3].size = sizeof(gPlayerParty);
+}
+
+static void ResetOrangePC(void)
+{
+    u8 box, pos;
+
+    gPokemonStoragePtr->currentBox = 0;
+    for (box = 0; box < ORANGE_BOXES_COUNT; box++)
+    {
+        u8 *name = StringCopy(gPokemonStoragePtr->boxNames[box], sText_Orange);
+        ConvertIntToDecimalStringN(name, box + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
+        gPokemonStoragePtr->boxWallpapers[box] = WALLPAPER_BEACH;
+        for (pos = 0; pos < IN_BOX_COUNT; pos++)
+            ZeroBoxMonData(&gPokemonStoragePtr->boxes[box][pos]);
+    }
+}
+
+// After loading the Orange PC into RAM: the boxes past ORANGE_BOXES_COUNT hold leftovers.
+static void TidyOrangePC(void)
+{
+    u8 box, pos;
+
+    for (box = ORANGE_BOXES_COUNT; box < TOTAL_BOXES_COUNT; box++)
+        for (pos = 0; pos < IN_BOX_COUNT; pos++)
+            ZeroBoxMonData(&gPokemonStoragePtr->boxes[box][pos]);
+    if (gPokemonStoragePtr->currentBox >= ORANGE_BOXES_COUNT)
+        gPokemonStoragePtr->currentBox = 0;
 }
 
 static void AfterPartyChange(void)
@@ -66,41 +95,109 @@ static void AfterPartyChange(void)
         UpdateFollowerPokemonGraphic();
 }
 
+// Stores the PC that is in RAM. The team kept with that stored copy (the home team with the
+// Kanto PC during the trip, the Orange team with the Orange PC at home) is carried over as is;
+// otherwise the slot is unused and gets the current party as filler.
+static bool8 StoreShownPC(void)
+{
+    struct StoredPCPart parts[4];
+    bool8 orange = FlagGet(FLAG_PC_SHOWS_ORANGE);
+    bool8 keepTeam = orange ? !FlagGet(FLAG_ORANGE_CHALLENGE) : FlagGet(FLAG_ORANGE_CHALLENGE);
+    struct Pokemon *team = gPlayerParty;
+
+    if (keepTeam && (!orange || FlagGet(FLAG_ORANGE_PC_SAVED)))
+    {
+        // gEnemyParty is free outside battle
+        if (orange)
+        {
+            GetOrangeParts(parts, gEnemyParty);
+            parts[0].data = parts[1].data = parts[2].data = NULL;
+            if (!LoadStoredPC(STORED_PC_ORANGE, parts, 4))
+                return FALSE;
+        }
+        else
+        {
+            GetKantoParts(parts, gEnemyParty);
+            parts[0].data = NULL;
+            if (!LoadStoredPC(STORED_PC_KANTO, parts, 2))
+                return FALSE;
+        }
+        team = gEnemyParty;
+    }
+    if (orange)
+    {
+        GetOrangeParts(parts, team);
+        if (!SaveStoredPC(STORED_PC_ORANGE, parts, 4))
+            return FALSE;
+        FlagSet(FLAG_ORANGE_PC_SAVED);
+    }
+    else
+    {
+        GetKantoParts(parts, team);
+        if (!SaveStoredPC(STORED_PC_KANTO, parts, 2))
+            return FALSE;
+    }
+    return TRUE;
+}
+
+// Puts the Kanto (FALSE) or Orange (TRUE) boxes in RAM. The party is not touched.
+static bool8 ShowBoxSet(bool8 orange)
+{
+    struct StoredPCPart parts[4];
+
+    if (FlagGet(FLAG_PC_SHOWS_ORANGE) == orange)
+        return TRUE;
+    if (!StoreShownPC())
+        return FALSE;
+    if (orange)
+    {
+        GetOrangeParts(parts, NULL);
+        if (!FlagGet(FLAG_ORANGE_PC_SAVED) || !LoadStoredPC(STORED_PC_ORANGE, parts, 4))
+            ResetOrangePC();
+        TidyOrangePC();
+        FlagSet(FLAG_PC_SHOWS_ORANGE);
+    }
+    else
+    {
+        GetKantoParts(parts, NULL);
+        if (!LoadStoredPC(STORED_PC_KANTO, parts, 2))
+            return FALSE; // RAM still holds the Orange PC, nothing lost
+        FlagClear(FLAG_PC_SHOWS_ORANGE);
+    }
+    return TRUE;
+}
+
+// After beating Drake. VAR_0x8004: 0 = Kanto boxes, 1 = Orange boxes. VAR_RESULT: TRUE ok.
+void OrangePC_ShowBoxSet(void)
+{
+    gSpecialVar_Result = ShowBoxSet(gSpecialVar_0x8004 != 0);
+}
+
 void OrangeChallenge_Begin(void)
 {
     struct StoredPCPart parts[4];
-    u8 box, pos, i;
+    u8 i;
 
     gSpecialVar_Result = FALSE;
     if (FlagGet(FLAG_ORANGE_CHALLENGE))
         return;
-    GetKantoParts(parts);
+    if (!ShowBoxSet(FALSE)) // the Kanto boxes may be switched out (after Drake)
+        return;
+    GetKantoParts(parts, gPlayerParty);
     if (!SaveStoredPC(STORED_PC_KANTO, parts, 2))
         return;
 
     // Kanto PC + home team are safe in flash: bring in the Orange PC + Orange team.
-    GetOrangeParts(parts);
+    GetOrangeParts(parts, gPlayerParty);
     if (!FlagGet(FLAG_ORANGE_PC_SAVED) || !LoadStoredPC(STORED_PC_ORANGE, parts, 4))
     {
         // First trip: a fresh Orange PC and no team (Prof. Ivy gives a starter).
-        gPokemonStoragePtr->currentBox = 0;
-        for (box = 0; box < ORANGE_BOXES_COUNT; box++)
-        {
-            u8 *name = StringCopy(gPokemonStoragePtr->boxNames[box], sText_Orange);
-            ConvertIntToDecimalStringN(name, box + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
-            gPokemonStoragePtr->boxWallpapers[box] = WALLPAPER_BEACH;
-            for (pos = 0; pos < IN_BOX_COUNT; pos++)
-                ZeroBoxMonData(&gPokemonStoragePtr->boxes[box][pos]);
-        }
+        ResetOrangePC();
         for (i = 0; i < PARTY_SIZE; i++)
             ZeroMonData(&gPlayerParty[i]);
     }
-    for (box = ORANGE_BOXES_COUNT; box < TOTAL_BOXES_COUNT; box++)
-        for (pos = 0; pos < IN_BOX_COUNT; pos++)
-            ZeroBoxMonData(&gPokemonStoragePtr->boxes[box][pos]);
-    if (gPokemonStoragePtr->currentBox >= ORANGE_BOXES_COUNT)
-        gPokemonStoragePtr->currentBox = 0;
-
+    TidyOrangePC();
+    FlagSet(FLAG_PC_SHOWS_ORANGE);
     FlagSet(FLAG_ORANGE_CHALLENGE);
     AfterPartyChange();
     gSpecialVar_Result = TRUE;
@@ -113,16 +210,19 @@ void OrangeChallenge_End(void)
     gSpecialVar_Result = FALSE;
     if (!FlagGet(FLAG_ORANGE_CHALLENGE))
         return;
-    GetOrangeParts(parts);
+    if (!ShowBoxSet(TRUE)) // the Orange boxes may be switched out (after Drake)
+        return;
+    GetOrangeParts(parts, gPlayerParty);
     if (!SaveStoredPC(STORED_PC_ORANGE, parts, 4))
         return;
     FlagSet(FLAG_ORANGE_PC_SAVED);
 
     // Only now replace RAM; a damaged Kanto copy leaves everything as it was.
-    GetKantoParts(parts);
+    GetKantoParts(parts, gPlayerParty);
     if (!LoadStoredPC(STORED_PC_KANTO, parts, 2))
         return;
 
+    FlagClear(FLAG_PC_SHOWS_ORANGE);
     FlagClear(FLAG_ORANGE_CHALLENGE);
     AfterPartyChange();
     gSpecialVar_Result = TRUE;

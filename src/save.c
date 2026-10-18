@@ -982,11 +982,14 @@ static void CopyStoredPCParts(const struct StoredPCPart *parts, u8 numParts, u32
         if (offset < end)
         {
             u32 n = end - offset;
-            u8 *p = (u8 *)parts[i].data + (offset - start);
+            u8 *p = (u8 *)parts[i].data + (offset - start); // unused when data is NULL
             if (n > len)
                 n = len;
             if (toParts)
-                memcpy(p, buf, n);
+            {
+                if (parts[i].data != NULL) // parts[i].data == NULL: skip this part
+                    memcpy(p, buf, n);
+            }
             else
                 memcpy(buf, p, n);
             buf += n;

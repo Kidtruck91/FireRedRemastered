@@ -58,6 +58,8 @@ EventScript_AccessPlayersPC::
 
 EventScript_AccessPokemonStorage::
 	playse SE_PC_LOGIN
+	goto_if_defeated TRAINER_CHAMPION_DRAKE, EventScript_PCChooseBoxSet
+EventScript_OpenPokemonStorage::
 	call_if_unset FLAG_SYS_NOT_SOMEONES_PC, EventScript_AccessSomeonesPC
 	call_if_set FLAG_SYS_NOT_SOMEONES_PC, EventScript_AccessBillsPC
 	msgbox Text_OpenedPkmnStorage
@@ -112,3 +114,27 @@ EventScript_ExitOaksPC::
 	msgbox Text_ClosedLinkToProfOaksPC
 	goto EventScript_PCMainMenu
 	end
+
+@ After beating Drake: open the KANTO or the ORANGE ISLANDS boxes. The party stays with the
+@ player, so POKeMON can be carried from one set of boxes to the other.
+EventScript_PCChooseBoxSet::
+	message Text_PCWhichBoxes
+	waitmessage
+	multichoice 16, 7, MULTICHOICE_PC_BOX_SET, FALSE
+	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, EventScript_PCMainMenu
+	copyvar VAR_0x8004, VAR_RESULT
+	callnative OrangePC_ShowBoxSet
+	goto_if_eq VAR_RESULT, FALSE, EventScript_PCBoxSetFailed
+	goto EventScript_OpenPokemonStorage
+	end
+
+EventScript_PCBoxSetFailed::
+	msgbox Text_PCBoxSetFailed
+	goto EventScript_PCMainMenu
+	end
+
+Text_PCWhichBoxes:
+	.string "Which boxes?$"
+
+Text_PCBoxSetFailed:
+	.string "The link to those boxes failed.$"

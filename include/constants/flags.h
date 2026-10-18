@@ -543,7 +543,7 @@
 #define FLAG_BADGE_CORAL_EYE         0x208 // Orange League badge 1 (Cissy, Mikan)
 #define FLAG_GOT_TM18_FROM_CISSY     0x209
 #define FLAG_ORANGE_PC_SAVED     0x20A // the stored Orange PC sectors hold a real PC
-#define FLAG_0x20B               0x20B
+#define FLAG_PC_SHOWS_ORANGE     0x20B // the PC in RAM is the Orange Islands PC
 #define FLAG_0x20C               0x20C
 #define FLAG_0x20D               0x20D
 #define FLAG_0x20E               0x20E
