@@ -943,6 +943,11 @@
 #define TRAINER_LASS_LYLA                        924
 #define TRAINER_LASS_MAEVE                       925
 #define TRAINER_NURSE_JOY                       926
+#define TRAINER_LEADER_CISSY                     927
+#define TRAINER_LEADER_DANNY                     928
+#define TRAINER_LEADER_RUDY                      929
+#define TRAINER_LEADER_LUANA                     930
+#define TRAINER_CHAMPION_DRAKE                   931
 
 
 
@@ -950,10 +955,10 @@
 
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is 
-//       only space for 25 additional trainers before trainer flag space overflows.
+//       room for NUM_TRAINERS up to MAX_TRAINERS_COUNT before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             927
-#define MAX_TRAINERS_COUNT                       992
+#define NUM_TRAINERS                             932
+#define MAX_TRAINERS_COUNT                       1504
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

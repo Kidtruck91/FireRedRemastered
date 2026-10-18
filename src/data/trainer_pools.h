@@ -84,7 +84,7 @@ static const struct PoolMon sPool_Hiker_Advanced[] =
 // =============================================================================================
 //
 // 1) Give the trainer an ID in include/constants/opponents.h, after the last one
-//    (TRAINER_NURSE_JOY is 926; there is room up to MAX_TRAINERS_COUNT, 992):
+//    (TRAINER_NURSE_JOY is 926; there is room up to MAX_TRAINERS_COUNT, 1504):
 //
 //        #define TRAINER_HIKER_DEMO                       927
 //        #define TRAINER_HIKER_DEMO_2                     928   // optional rematch

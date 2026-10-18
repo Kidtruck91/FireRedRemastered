@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/opponents.h"
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -43,7 +44,10 @@ void TrySetQuestLogBattleEvent(void)
                 eventId = QL_EVENT_DEFEATED_GYM_LEADER;
                 break;
             case TRAINER_CLASS_CHAMPION:
-                eventId = QL_EVENT_DEFEATED_CHAMPION;
+                if (gTrainerBattleOpponent_A == TRAINER_CHAMPION_DRAKE)
+                    eventId = QL_EVENT_DEFEATED_GYM_LEADER; // Orange champion: log by own name
+                else
+                    eventId = QL_EVENT_DEFEATED_CHAMPION;
                 break;
             case TRAINER_CLASS_ELITE_FOUR:
                 eventId = QL_EVENT_DEFEATED_E4_MEMBER;
