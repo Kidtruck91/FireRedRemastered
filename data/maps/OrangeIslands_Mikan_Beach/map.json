@@ -26,7 +26,15 @@
     }
   ],
   "object_events": [],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 46,
+      "y": 17,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_MIKAN_GYM",
+      "dest_warp_id": "1"
+    }
+  ],
   "coord_events": [],
   "bg_events": []
 }

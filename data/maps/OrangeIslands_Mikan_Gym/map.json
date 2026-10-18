@@ -77,21 +77,21 @@
       "x": 7,
       "y": 18,
       "elevation": 0,
-      "dest_map": "MAP_ORANGE_ISLANDS_MIKAN",
+      "dest_map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
       "dest_warp_id": "0"
     },
     {
       "x": 8,
       "y": 18,
       "elevation": 0,
-      "dest_map": "MAP_ORANGE_ISLANDS_MIKAN",
+      "dest_map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
       "dest_warp_id": "0"
     },
     {
       "x": 9,
       "y": 18,
       "elevation": 0,
-      "dest_map": "MAP_ORANGE_ISLANDS_MIKAN",
+      "dest_map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
       "dest_warp_id": "0"
     }
   ],
