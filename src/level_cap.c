@@ -6,11 +6,12 @@
 #include "constants/flags.h"
 #include "constants/opponents.h"
 
-// Level caps only apply with the Nuzlocke option on. The cap is worked out from the badges
+// Kanto level caps only apply with the Nuzlocke option on. The cap is worked out from the badges
 // every time it is asked for, so it goes up automatically after each gym.
 // To change the caps, edit the table in CalculateLevelCap.
 
-// Orange Islands challenge: cap by how many Orange leaders are beaten (any order).
+// Orange Islands challenge (after the Sevii Islands): caps always apply, whatever the
+// Nuzlocke option says. Cap by how many Orange leaders are beaten (any order).
 static const u8 sOrangeLevelCaps[] = {20, 28, 38, 44, 50};
 static const u16 sOrangeLeaders[] = {
     TRAINER_LEADER_CISSY, TRAINER_LEADER_DANNY, TRAINER_LEADER_RUDY, TRAINER_LEADER_LUANA,
@@ -18,9 +19,6 @@ static const u16 sOrangeLeaders[] = {
 
 static u8 CalculateLevelCap(void)
 {
-    if (!FlagGet(FLAG_NUZLOCKE))
-        return MAX_LEVEL; // no cap
-
     if (FlagGet(FLAG_ORANGE_CHALLENGE) && !FlagGet(TRAINER_FLAGS_START + TRAINER_CHAMPION_DRAKE))
     {
         u8 i, beaten = 0;
@@ -29,6 +27,9 @@ static u8 CalculateLevelCap(void)
                 beaten++;
         return sOrangeLevelCaps[beaten];
     }
+
+    if (!FlagGet(FLAG_NUZLOCKE))
+        return MAX_LEVEL; // no cap
 
     if (FlagGet(FLAG_DEFEATED_CHAMP))
         return MAX_LEVEL;

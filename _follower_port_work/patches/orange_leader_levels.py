@@ -3,15 +3,17 @@
 #    Cissy 20, Danny 28, Rudy 38, Luana 44, Drake 50 (ace at the cap, the rest just below).
 #    Species and moves are legal for their level (level-up, pre-evolution, TM/HM or tutor).
 #  - Scales the leaders' bag items down to match.
-#  - Level cap: while FLAG_ORANGE_CHALLENGE is set (and Nuzlocke caps are on), the cap is
+#  - Level cap: while FLAG_ORANGE_CHALLENGE is set the cap is mandatory (Nuzlocke option or not):
 #    20 / 28 / 38 / 44 / 50 by how many Orange leaders have been beaten, in any order.
 import re
 TEAMS = [
  ('sParty_LeaderCissy', 'TRAINER_LEADER_CISSY', 'ITEM_SUPER_POTION', [
-   (18,'HORSEA','MYSTIC_WATER',['WATER_PULSE','SMOKESCREEN','LEER','BUBBLE']),
-   (18,'STARYU','ORAN_BERRY',['WATER_PULSE','RAPID_SPIN','RECOVER','HARDEN']),
-   (19,'CHINCHOU','ORAN_BERRY',['WATER_GUN','SHOCK_WAVE','THUNDER_WAVE','SUPERSONIC']),
-   (20,'WARTORTLE','SITRUS_BERRY',['WATER_PULSE','BITE','WITHDRAW','PROTECT'])]),
+   # Rain team: Horsea (Swift Swim) sets rain, Thunder never misses in it,
+   # Smokescreen/Flash lower accuracy, Double Team/BrightPowder raise evasion.
+   (18,'HORSEA','MYSTIC_WATER',['RAIN_DANCE','SMOKESCREEN','DOUBLE_TEAM','WATER_PULSE'],1),
+   (18,'STARYU','BRIGHT_POWDER',['THUNDER','WATER_PULSE','DOUBLE_TEAM','RECOVER'],2),
+   (19,'CHINCHOU','ORAN_BERRY',['THUNDER','RAIN_DANCE','FLASH','WATER_GUN'],1),
+   (20,'WARTORTLE','SITRUS_BERRY',['WATER_PULSE','RAIN_DANCE','DOUBLE_TEAM','BITE'],1)]),
  ('sParty_LeaderDanny', 'TRAINER_LEADER_DANNY', 'ITEM_SUPER_POTION, ITEM_SUPER_POTION', [
    (26,'GRAVELER','QUICK_CLAW',['ROCK_TOMB','MAGNITUDE','DEFENSE_CURL','SELF_DESTRUCT']),
    (27,'VOLTORB','MAGNET',['SPARK','SONIC_BOOM','SCREECH','SELF_DESTRUCT']),
@@ -38,8 +40,8 @@ TEAMS = [
 
 p = 'src/data/trainer_parties.h'; t = open(p).read()
 for sym, const, items, party in TEAMS:
-    body = ''.join('    {\n        .iv = 250,\n        .lvl = %d,\n        .species = SPECIES_%s,\n        .heldItem = ITEM_%s,\n        .moves = {%s},\n    },\n' % (
-        lvl, sp, it, ', '.join('MOVE_' + m for m in mv)) for lvl, sp, it, mv in party)
+    body = ''.join('    {\n        .iv = 250,\n        .lvl = %d,\n%s        .species = SPECIES_%s,\n        .heldItem = ITEM_%s,\n        .moves = {%s},\n    },\n' % (
+        m[0], ('        .ability = %d,\n' % m[4]) if len(m) > 4 else '', m[1], m[2], ', '.join('MOVE_' + x for x in m[3])) for m in party)
     pat = re.compile(r'(static const struct TrainerMonItemCustomMoves %s\[\] = \{\n).*?(\n\};)' % sym, re.S)
     assert pat.search(t), sym
     t = pat.sub(lambda m: m.group(1) + body.rstrip('\n') + m.group(2), t, count=1)
@@ -53,25 +55,32 @@ for sym, const, items, party in TEAMS:
 open(p, 'w', newline='\n').write(t)
 
 p = 'src/level_cap.c'; t = open(p).read()
+# Orange caps are mandatory (not tied to the Nuzlocke option), so the block goes first.
+t = re.sub(r'    if \(FlagGet\(FLAG_ORANGE_CHALLENGE\).*?\n    \}\n\n', '', t, flags=re.S)
 if 'sOrangeLevelCaps' not in t:
     t = t.replace('#include "constants/flags.h"\n', '#include "constants/flags.h"\n#include "constants/opponents.h"\n', 1)
     t = t.replace('// To change the caps, edit the table in CalculateLevelCap.\n',
         '// To change the caps, edit the table in CalculateLevelCap.\n\n'
-        '// Orange Islands challenge: cap by how many Orange leaders are beaten (any order).\n'
+        '// Orange Islands challenge (after the Sevii Islands): caps always apply, whatever the\n'
+        '// Nuzlocke option says. Cap by how many Orange leaders are beaten (any order).\n'
         'static const u8 sOrangeLevelCaps[] = {20, 28, 38, 44, 50};\n'
         'static const u16 sOrangeLeaders[] = {\n'
         '    TRAINER_LEADER_CISSY, TRAINER_LEADER_DANNY, TRAINER_LEADER_RUDY, TRAINER_LEADER_LUANA,\n'
         '};\n', 1)
-    old = '        return MAX_LEVEL; // no cap\n\n'
-    assert old in t
-    t = t.replace(old, old +
-        '    if (FlagGet(FLAG_ORANGE_CHALLENGE) && !FlagGet(TRAINER_FLAGS_START + TRAINER_CHAMPION_DRAKE))\n'
-        '    {\n'
-        '        u8 i, beaten = 0;\n'
-        '        for (i = 0; i < ARRAY_COUNT(sOrangeLeaders); i++)\n'
-        '            if (FlagGet(TRAINER_FLAGS_START + sOrangeLeaders[i]))\n'
-        '                beaten++;\n'
-        '        return sOrangeLevelCaps[beaten];\n'
-        '    }\n\n', 1)
-    open(p, 'w', newline='\n').write(t)
+t = t.replace('// Orange Islands challenge: cap by how many Orange leaders are beaten (any order).\n',
+              '// Orange Islands challenge (after the Sevii Islands): caps always apply, whatever the\n'
+              '// Nuzlocke option says. Cap by how many Orange leaders are beaten (any order).\n')
+old = '    if (!FlagGet(FLAG_NUZLOCKE))\n        return MAX_LEVEL; // no cap\n'
+assert old in t
+t = t.replace(old,
+    '    if (FlagGet(FLAG_ORANGE_CHALLENGE) && !FlagGet(TRAINER_FLAGS_START + TRAINER_CHAMPION_DRAKE))\n'
+    '    {\n'
+    '        u8 i, beaten = 0;\n'
+    '        for (i = 0; i < ARRAY_COUNT(sOrangeLeaders); i++)\n'
+    '            if (FlagGet(TRAINER_FLAGS_START + sOrangeLeaders[i]))\n'
+    '                beaten++;\n'
+    '        return sOrangeLevelCaps[beaten];\n'
+    '    }\n\n' + old, 1)
+t = t.replace('// Level caps only apply with the Nuzlocke option on.', '// Kanto level caps only apply with the Nuzlocke option on.')
+open(p, 'w', newline='\n').write(t)
 print('orange leader levels ok')
