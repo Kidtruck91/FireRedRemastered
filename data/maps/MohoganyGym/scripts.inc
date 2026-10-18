@@ -1,48 +1,104 @@
 MohoganyGym_MapScripts::
 	.byte 0
 
+@ Leader: first win gives the GLACIER BADGE (FLAG_BADGE_GLACIER, also set in CB2_EndTrainerBattle);
+@ afterwards the leader offers rematches.
 MohoganyGym_EventScript_Leader_Pryce::
-	goto_if_set FLAG_REMATCH_PRYCE, MohoganyGym_EventScript_LeaderRematch
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE_GLACIER, MohoganyGym_EventScript_LeaderAfter
+	goto_if_defeated TRAINER_LEADER_PRYCEA, MohoganyGym_EventScript_LeaderWon
+	goto_if_defeated TRAINER_LEADER_PRYCEB, MohoganyGym_EventScript_LeaderWon
+	goto_if_defeated TRAINER_LEADER_PRYCEC, MohoganyGym_EventScript_LeaderWon
+	msgbox MohoganyGym_Text_Intro
 	random 3
-	switch VAR_RESULT
-	case 0, MohoganyGym_Script_Pryce_TeamOption1
-	case 1, MohoganyGym_Script_Pryce_TeamOption2
-	case 2, MohoganyGym_Script_Pryce_TeamOption3
-	msgbox MohoganyGym_Text_Pryce_postbattle, MSGBOX_AUTOCLOSE
-	end
+	goto_if_eq VAR_RESULT, 1, MohoganyGym_Script_Pryce_TeamOption2
+	goto_if_eq VAR_RESULT, 2, MohoganyGym_Script_Pryce_TeamOption3
 MohoganyGym_Script_Pryce_TeamOption1::
- trainerbattle_single TRAINER_LEADER_PRYCEA, MohoganyGym_Text_Intro,MohoganyGym_Text_Deafeated
+	trainerbattle_no_intro TRAINER_LEADER_PRYCEA, MohoganyGym_Text_Deafeated
+	goto MohoganyGym_EventScript_LeaderWon
+	end
 MohoganyGym_Script_Pryce_TeamOption2::
- trainerbattle_single TRAINER_LEADER_PRYCEB, MohoganyGym_Text_Intro, MohoganyGym_Text_Deafeated
+	trainerbattle_no_intro TRAINER_LEADER_PRYCEB, MohoganyGym_Text_Deafeated
+	goto MohoganyGym_EventScript_LeaderWon
+	end
 MohoganyGym_Script_Pryce_TeamOption3::
- trainerbattle_single TRAINER_LEADER_PRYCEC, MohoganyGym_Text_Intro, MohoganyGym_Text_Deafeated
+	trainerbattle_no_intro TRAINER_LEADER_PRYCEC, MohoganyGym_Text_Deafeated
+	goto MohoganyGym_EventScript_LeaderWon
+	end
 
-MohoganyGym_EventScript_LeaderRematch::
- random 3
- switch VAR_RESULT
- case 0, MohoganyGym_Script_Pryce_RematchTeamOption1
- case 1, MohoganyGym_Script_Pryce_RematchTeamOption2
- case 2, MohoganyGym_Script_Pryce_RematchTeamOption3
- msgbox MohoganyGym_Text_Pryce_postrematch, MSGBOX_AUTOCLOSE
- clearflag FLAG_REMATCH_PRYCE
- end
+MohoganyGym_EventScript_LeaderWon::
+	setflag FLAG_BADGE_GLACIER
+	message MohoganyGym_Text_ReceivedBadge
+	waitmessage
+	playfanfare MUS_OBTAIN_BADGE
+	waitfanfare
+	msgbox MohoganyGym_Text_Pryce_postbattle
+	release
+	end
+
+@ Rematch: any number of times, one of three teams
+MohoganyGym_EventScript_LeaderAfter::
+	msgbox MohoganyGym_Text_LeaderRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, MohoganyGym_Script_NoRematch
+	msgbox MohoganyGym_Text_RebattleIntro
+	random 3
+	goto_if_eq VAR_RESULT, 1, MohoganyGym_Script_Pryce_RematchTeamOption2
+	goto_if_eq VAR_RESULT, 2, MohoganyGym_Script_Pryce_RematchTeamOption3
 MohoganyGym_Script_Pryce_RematchTeamOption1::
- trainerbattle_single TRAINER_LEADER_PRYCEREMATCHA, MohoganyGym_Text_RebattleIntro, MohoganyGym_Text_RebattleDeafeated
+	cleartrainerflag TRAINER_LEADER_PRYCEREMATCHA
+	trainerbattle_no_intro TRAINER_LEADER_PRYCEREMATCHA, MohoganyGym_Text_RebattleDeafeated
+	goto MohoganyGym_EventScript_RematchWon
+	end
 MohoganyGym_Script_Pryce_RematchTeamOption2::
- trainerbattle_single TRAINER_LEADER_PRYCEREMATCHB, MohoganyGym_Text_RebattleIntro, MohoganyGym_Text_RebattleDeafeated
+	cleartrainerflag TRAINER_LEADER_PRYCEREMATCHB
+	trainerbattle_no_intro TRAINER_LEADER_PRYCEREMATCHB, MohoganyGym_Text_RebattleDeafeated
+	goto MohoganyGym_EventScript_RematchWon
+	end
 MohoganyGym_Script_Pryce_RematchTeamOption3::
- trainerbattle_single TRAINER_LEADER_PRYCEREMATCHC,MohoganyGym_Text_RebattleIntro, MohoganyGym_Text_RebattleDeafeated
+	cleartrainerflag TRAINER_LEADER_PRYCEREMATCHC
+	trainerbattle_no_intro TRAINER_LEADER_PRYCEREMATCHC, MohoganyGym_Text_RebattleDeafeated
+	goto MohoganyGym_EventScript_RematchWon
+	end
 
+MohoganyGym_EventScript_RematchWon::
+	msgbox MohoganyGym_Text_Pryce_postrematch
+	release
+	end
+
+MohoganyGym_Script_NoRematch::
+	msgbox MohoganyGym_Text_LeaderNoRematch
+	release
+	end
+
+@ Gym helper: explains rematches
 MohoganyGym_Script_Rematch::
 	lock
 	faceplayer
-	msgbox MohoganyGym_Text_RematchQuestion, MSGBOX_YESNO
-	compare VAR_RESULT, 0
-	goto_if_eq MohoganyGym_Script_NoRematch
-	setflag FLAG_REMATCH_PRYCE
-	msgbox MohoganyGym_Text_RematchGo, MSGBOX_AUTOCLOSE
-	end
-MohoganyGym_Script_NoRematch::
-	msgbox MohoganyGym_Text_NoRematch, MSGBOX_AUTOCLOSE
+	goto_if_set FLAG_BADGE_GLACIER, MohoganyGym_Script_HelperAfter
+	msgbox MohoganyGym_Text_HelperBefore
 	release
 	end
+MohoganyGym_Script_HelperAfter::
+	msgbox MohoganyGym_Text_HelperAfter
+	release
+	end
+
+MohoganyGym_Text_ReceivedBadge::
+	.string "{PLAYER} received the\n"
+	.string "GLACIER BADGE from PRYCE!$"
+
+MohoganyGym_Text_LeaderRematchAsk::
+	.string "Winter always returns. Will you\n"
+	.string "face my rematch team?$"
+
+MohoganyGym_Text_LeaderNoRematch::
+	.string "Come back any time.$"
+
+MohoganyGym_Text_HelperBefore::
+	.string "Hey, champ! Beat PRYCE and the\n"
+	.string "GLACIER BADGE is yours!$"
+
+MohoganyGym_Text_HelperAfter::
+	.string "Hey, champ! PRYCE takes on\n"
+	.string "rematches any time. Just ask!$"

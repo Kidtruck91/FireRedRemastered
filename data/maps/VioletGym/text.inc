@@ -16,7 +16,7 @@ VioletGym_Text_Deafeated:
 VioletGym_Text_Walker_postbattle:
  .string "Kid, I think you've got what\n"
  .string "it takes to jet straight to\l"
- .string "the top!\p"
+ .string "the top!$"
 
 
 
