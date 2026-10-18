@@ -20,7 +20,9 @@
       "direction": "right"
     }
   ],
-  "object_events": [],
+  "object_events": [
+
+  ],
   "warp_events": [
     {
       "x": 20,
@@ -31,15 +33,6 @@
     }
   ],
   "coord_events": [
-    {
-      "type": "trigger",
-      "x": 2,
-      "y": 0,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7"
-    },
     {
       "type": "trigger",
       "x": 3,
@@ -552,16 +545,9 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7"
-    },
-    {
-      "type": "trigger",
-      "x": 60,
-      "y": 0,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

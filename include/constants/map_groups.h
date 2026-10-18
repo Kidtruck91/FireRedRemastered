@@ -760,6 +760,15 @@
 #define MAP_ORANGE_ISLANDS_KUMQUAT_BEACH        (33 | (55 << 8))
 #define MAP_ORANGE_ISLANDS_PINKAN_BEACH         (34 | (55 << 8))
 #define MAP_ORANGE_ISLANDS_PUMMELO_BEACH        (35 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_SUNBURST_CAVE        (36 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_FALLS        (37 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_CAVE         (38 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_STADIUM      (39 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP      (40 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_15             (41 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_16             (42 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_17             (43 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_18             (44 | (55 << 8))
 
 #define MAP_GROUPS_COUNT 56
 
