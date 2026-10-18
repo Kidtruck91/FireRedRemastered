@@ -480,8 +480,12 @@ const u32 gTrainerFrontPic_LeaderClair[] = INCBIN_U32("graphics/trainers/front_p
 const u32 gTrainerPalette_LeaderClair[] = INCBIN_U32("graphics/trainers/palettes/clair_front_pic.gbapal.lz");
 
 // Orange League leaders (recoloured: the front pics are shared with their base trainers)
-const u32 gTrainerPalette_Cissy[] = INCBIN_U32("graphics/trainers/palettes/cissy.gbapal.lz");
-const u32 gTrainerPalette_Danny[] = INCBIN_U32("graphics/trainers/palettes/danny.gbapal.lz");
-const u32 gTrainerPalette_Rudy[] = INCBIN_U32("graphics/trainers/palettes/rudy.gbapal.lz");
-const u32 gTrainerPalette_Luana[] = INCBIN_U32("graphics/trainers/palettes/luana.gbapal.lz");
+const u32 gTrainerFrontPic_Cissy[] = INCBIN_U32("graphics/trainers/front_pics/cissy_front_pic.4bpp.lz");
+const u32 gTrainerPalette_Cissy[] = INCBIN_U32("graphics/trainers/front_pics/cissy_front_pic.gbapal.lz");
+const u32 gTrainerFrontPic_Danny[] = INCBIN_U32("graphics/trainers/front_pics/danny_front_pic.4bpp.lz");
+const u32 gTrainerPalette_Danny[] = INCBIN_U32("graphics/trainers/front_pics/danny_front_pic.gbapal.lz");
+const u32 gTrainerFrontPic_Rudy[] = INCBIN_U32("graphics/trainers/front_pics/rudy_front_pic.4bpp.lz");
+const u32 gTrainerPalette_Rudy[] = INCBIN_U32("graphics/trainers/front_pics/rudy_front_pic.gbapal.lz");
+const u32 gTrainerFrontPic_Luana[] = INCBIN_U32("graphics/trainers/front_pics/luana_front_pic.4bpp.lz");
+const u32 gTrainerPalette_Luana[] = INCBIN_U32("graphics/trainers/front_pics/luana_front_pic.gbapal.lz");
 

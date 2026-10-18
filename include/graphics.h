@@ -2760,9 +2760,13 @@ extern const u32 gTrainerPalette_LeaderChuck[];
 extern const u32 gTrainerPalette_LeaderJasmine[];
 extern const u32 gTrainerPalette_LeaderPryce[];
 extern const u32 gTrainerPalette_LeaderClair[];
+extern const u32 gTrainerFrontPic_Cissy[];
 extern const u32 gTrainerPalette_Cissy[];
+extern const u32 gTrainerFrontPic_Danny[];
 extern const u32 gTrainerPalette_Danny[];
+extern const u32 gTrainerFrontPic_Rudy[];
 extern const u32 gTrainerPalette_Rudy[];
+extern const u32 gTrainerFrontPic_Luana[];
 extern const u32 gTrainerPalette_Luana[];
 
 

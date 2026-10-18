@@ -3212,7 +3212,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo = {
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
-// Prof. Ivy (recoloured Lorelei) and Cissy (recoloured Misty)
+// Prof. Ivy and Cissy (graphics/object_events/pics/people/ivy.png, cissy.png)
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ivy = {
     .tileTag = TAG_NONE,
     .paletteTag = OBJ_EVENT_PAL_IVY,
@@ -3228,7 +3228,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ivy = {
     .oam = &gObjectEventBaseOam_16x32,
     .subspriteTables = gObjectEventSpriteOamTables_16x32,
     .anims = sAnimTable_Standard,
-    .images = sPicTable_Lorelei,
+    .images = sPicTable_Ivy,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
@@ -3247,11 +3247,11 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cissy = {
     .oam = &gObjectEventBaseOam_16x32,
     .subspriteTables = gObjectEventSpriteOamTables_16x32,
     .anims = sAnimTable_Standard,
-    .images = sPicTable_Misty,
+    .images = sPicTable_Cissy,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
-// Orange League leaders: Danny (recoloured Black Belt), Rudy (Cooltrainer M), Luana (Beauty)
+// Orange League leaders: Danny, Rudy, Luana (graphics/object_events/pics/people/*.png)
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Danny = {
     .tileTag = TAG_NONE,
     .paletteTag = OBJ_EVENT_PAL_DANNY,
@@ -3267,7 +3267,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Danny = {
     .oam = &gObjectEventBaseOam_16x32,
     .subspriteTables = gObjectEventSpriteOamTables_16x32,
     .anims = sAnimTable_Standard,
-    .images = sPicTable_Blackbelt,
+    .images = sPicTable_Danny,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
@@ -3286,7 +3286,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rudy = {
     .oam = &gObjectEventBaseOam_16x32,
     .subspriteTables = gObjectEventSpriteOamTables_16x32,
     .anims = sAnimTable_Standard,
-    .images = sPicTable_CooltrainerM,
+    .images = sPicTable_Rudy,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
@@ -3305,6 +3305,6 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Luana = {
     .oam = &gObjectEventBaseOam_16x32,
     .subspriteTables = gObjectEventSpriteOamTables_16x32,
     .anims = sAnimTable_Standard,
-    .images = sPicTable_Beauty,
+    .images = sPicTable_Luana,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
