@@ -3,7 +3,7 @@
 #  - MAX_TRAINERS_COUNT 992 -> 1504 (512 more trainer flags; the system flags move up with it, so saves made
 #    before this change won't line up; new saves are fine).
 #  - Gym leaders Cissy, Danny, Rudy, Luana and Champion Drake (IDs 927-931), with anime-based teams.
-#    Levels assume the Orange League sits between the Kanto Champion (~63) and Johto (65+).
+#    Levels are set by orange_leader_levels.py (soft-reset caps 20/28/38/44/50).
 #    Trainer pics are placeholders until custom art exists.
 # Idempotent. Run from the repo root.
 import re
