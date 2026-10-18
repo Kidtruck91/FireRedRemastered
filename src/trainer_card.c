@@ -212,7 +212,7 @@ static const u8 *const sBadgePageNames[BADGE_PAGE_COUNT] = {
     sText_BadgePageOrange,
 };
 
-// Johto: a badge = that gym's leader beaten (the gyms pick one of three teams)
+// Johto: FLAG_BADGE_ZEPHYR.., set when that gym's leader is beaten (any of three teams)
 static const u16 sJohtoLeaders[8][3] = {
     {TRAINER_LEADER_WALKERA,  TRAINER_LEADER_WALKERB,  TRAINER_LEADER_WALKERC},  // ZEPHYR, Violet
     {TRAINER_LEADER_BUGSYA,   TRAINER_LEADER_BUGSYB,   TRAINER_LEADER_BUGSYC},   // HIVE, Azalea
@@ -222,6 +222,11 @@ static const u16 sJohtoLeaders[8][3] = {
     {TRAINER_LEADER_JASMINEA, TRAINER_LEADER_JASMINEB, TRAINER_LEADER_JASMINEC}, // MINERAL, Olivine
     {TRAINER_LEADER_PRYCEA,   TRAINER_LEADER_PRYCEB,   TRAINER_LEADER_PRYCEC},   // GLACIER, Mahogany
     {TRAINER_LEADER_CLAIRA,   TRAINER_LEADER_CLAIRB,   TRAINER_LEADER_CLAIRC},   // RISING, Blackthorn
+};
+
+static const u16 sJohtoBadgeFlags[8] = {
+    FLAG_BADGE_ZEPHYR, FLAG_BADGE_HIVE, FLAG_BADGE_PLAIN, FLAG_BADGE_FOG,
+    FLAG_BADGE_STORM, FLAG_BADGE_MINERAL, FLAG_BADGE_GLACIER, FLAG_BADGE_RISING,
 };
 
 static const u16 sOrangeBadgeFlags[4] = {
@@ -1612,7 +1617,9 @@ static bool8 HasPageBadge(u8 page, u8 i)
     case BADGE_PAGE_KANTO:
         return sTrainerCardDataPtr->hasBadge[i];
     case BADGE_PAGE_JOHTO:
-        for (j = 0; j < 3; j++)
+        if (FlagGet(sJohtoBadgeFlags[i]))
+            return TRUE;
+        for (j = 0; j < 3; j++) // saves from before the badge flags: the leader beaten counts
             if (FlagGet(TRAINER_FLAGS_START + sJohtoLeaders[i][j]))
                 return TRUE;
         return FALSE;

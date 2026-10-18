@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/opponents.h"
 #include "task.h"
 #include "help_system.h"
 #include "overworld.h"
@@ -896,8 +897,35 @@ void StartTrainerBattle(void)
     ScriptContext_Stop();
 }
 
+// Johto gyms: beating the leader (any of the gym's three teams) gives the badge.
+static const struct {
+    u16 flag;
+    u16 leaders[3];
+} sJohtoBadges[] = {
+    {FLAG_BADGE_ZEPHYR, {TRAINER_LEADER_WALKERA, TRAINER_LEADER_WALKERB, TRAINER_LEADER_WALKERC}},
+    {FLAG_BADGE_HIVE, {TRAINER_LEADER_BUGSYA, TRAINER_LEADER_BUGSYB, TRAINER_LEADER_BUGSYC}},
+    {FLAG_BADGE_PLAIN, {TRAINER_LEADER_WHITNEYA, TRAINER_LEADER_WHITNEYB, TRAINER_LEADER_WHITNEYC}},
+    {FLAG_BADGE_FOG, {TRAINER_LEADER_MORTYA, TRAINER_LEADER_MORTYB, TRAINER_LEADER_MORTYC}},
+    {FLAG_BADGE_STORM, {TRAINER_LEADER_CHUCKA, TRAINER_LEADER_CHUCKB, TRAINER_LEADER_CHUCKC}},
+    {FLAG_BADGE_MINERAL, {TRAINER_LEADER_JASMINEA, TRAINER_LEADER_JASMINEB, TRAINER_LEADER_JASMINEC}},
+    {FLAG_BADGE_GLACIER, {TRAINER_LEADER_PRYCEA, TRAINER_LEADER_PRYCEB, TRAINER_LEADER_PRYCEC}},
+    {FLAG_BADGE_RISING, {TRAINER_LEADER_CLAIRA, TRAINER_LEADER_CLAIRB, TRAINER_LEADER_CLAIRC}},
+};
+
+static void GiveJohtoBadgeForLeader(u16 trainerId)
+{
+    u32 i, j;
+
+    for (i = 0; i < NELEMS(sJohtoBadges); i++)
+        for (j = 0; j < NELEMS(sJohtoBadges[i].leaders); j++)
+            if (sJohtoBadges[i].leaders[j] == trainerId)
+                FlagSet(sJohtoBadges[i].flag);
+}
+
 static void CB2_EndTrainerBattle(void)
 {
+    if (IsPlayerDefeated(gBattleOutcome) != TRUE)
+        GiveJohtoBadgeForLeader(gTrainerBattleOpponent_A);
     OrangeGym_OnTrainerBattleEnd(IsPlayerDefeated(gBattleOutcome) == TRUE);
     if (sTrainerBattleMode == TRAINER_BATTLE_EARLY_RIVAL)
     {

@@ -550,14 +550,14 @@
 #define FLAG_GOT_TM07_FROM_DANNY     0x20F
 #define FLAG_GOT_TM10_FROM_RUDY      0x210
 #define FLAG_GOT_TM33_FROM_LUANA     0x211
-#define FLAG_0x212               0x212
-#define FLAG_0x213               0x213
-#define FLAG_0x214               0x214
-#define FLAG_0x215               0x215
-#define FLAG_0x216               0x216
-#define FLAG_0x217               0x217
-#define FLAG_0x218               0x218
-#define FLAG_0x219               0x219
+#define FLAG_BADGE_ZEPHYR             0x212 // Johto badge 1 (Falkner/Walker, Violet)
+#define FLAG_BADGE_HIVE               0x213 // Johto badge 2 (Bugsy, Azalea)
+#define FLAG_BADGE_PLAIN              0x214 // Johto badge 3 (Whitney, Goldenrod)
+#define FLAG_BADGE_FOG                0x215 // Johto badge 4 (Morty, Ecruteak)
+#define FLAG_BADGE_STORM              0x216 // Johto badge 5 (Chuck, Cianwood)
+#define FLAG_BADGE_MINERAL            0x217 // Johto badge 6 (Jasmine, Olivine)
+#define FLAG_BADGE_GLACIER            0x218 // Johto badge 7 (Pryce, Mahogany)
+#define FLAG_BADGE_RISING             0x219 // Johto badge 8 (Clair, Blackthorn)
 #define FLAG_0x21A               0x21A
 #define FLAG_0x21B               0x21B
 #define FLAG_0x21C               0x21C
