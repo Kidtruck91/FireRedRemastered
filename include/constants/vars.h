@@ -198,7 +198,7 @@
 #define VAR_ORANGE_STASH_4          0x4090 // Orange Islands: home team PC slot
 #define VAR_ORANGE_STASH_5          0x4091 // Orange Islands: home team PC slot
 #define VAR_ORANGE_TRIAD_ORDER     0x4092 // party slots picked for a type-triad battle (3 bits each)
-#define VAR_0x4093                 0x4093
+#define VAR_ORANGE_STORY           0x4093 // 0 not arrived, 1 to the lab, 2 pick a starter, 3 done, 5 PC full
 #define VAR_0x4094                 0x4094
 #define VAR_0x4095                 0x4095
 #define VAR_0x4096                 0x4096

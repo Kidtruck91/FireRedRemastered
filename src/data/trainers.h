@@ -9510,6 +9510,26 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_LEVEL_ADVANCED,
         .party = ITEM_CUSTOM_MOVES(sParty_ChampionDrake),
     },
+    [TRAINER_SWIMMER_M_MARCO] = {
+        .trainerClass = TRAINER_CLASS_SWIMMER_M,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SWIMMER,
+        .trainerPic = TRAINER_PIC_SWIMMER_M,
+        .trainerName = _("MARCO"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_LEVEL_ADVANCED,
+        .party = ITEM_CUSTOM_MOVES(sParty_SwimmerMMarco),
+    },
+    [TRAINER_SWIMMER_F_CORAL] = {
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SWIMMER | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_SWIMMER_F,
+        .trainerName = _("CORAL"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_LEVEL_ADVANCED,
+        .party = ITEM_CUSTOM_MOVES(sParty_SwimmerFCoral),
+    },
 };
 
 // Want a trainer whose team is rolled from a pool (Hiker / Swimmer / Ace Trainer pools with

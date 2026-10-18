@@ -538,10 +538,10 @@
 #define FLAG_ORANGE_CHALLENGE   0x203 // Orange Islands trip active: home team stored, PC locked (src/orange_islands.c)
 #define FLAG_NO_BATTLE_ITEMS    0x204 // Bag can't be used in battle (gym rules; cleared on defeat)
 #define FLAG_ORANGE_PARTY_REDUCED 0x205 // Party cut to the chosen 3; restored after the trainer battle
-#define FLAG_0x206               0x206
-#define FLAG_0x207               0x207
-#define FLAG_0x208               0x208
-#define FLAG_0x209               0x209
+#define FLAG_HIDE_IVY_AT_DOCK        0x206 // Valencia dock: Ivy gone after the arrival scene
+#define FLAG_HIDE_IVY_STARTER_BALLS  0x207 // Ivy's lab: starter picked
+#define FLAG_BADGE_CORAL_EYE         0x208 // Orange League badge 1 (Cissy, Mikan)
+#define FLAG_GOT_TM18_FROM_CISSY     0x209
 #define FLAG_0x20A               0x20A
 #define FLAG_0x20B               0x20B
 #define FLAG_0x20C               0x20C

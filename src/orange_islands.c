@@ -11,6 +11,7 @@
 //   callnative OrangeChallenge_CountFreeSlots  @ VAR_RESULT = free PC slots
 #include "global.h"
 #include "event_data.h"
+#include "follow_me.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "battle_main.h"
@@ -99,6 +100,7 @@ void OrangeChallenge_Begin(void)
         ZeroMonData(&gPlayerParty[i]);
     }
     gPlayerPartyCount = 0;
+    DestroyFollower(); // nothing left to follow; the starter brings it back
     FlagSet(FLAG_ORANGE_CHALLENGE);
     gSpecialVar_Result = TRUE;
 }
@@ -147,6 +149,7 @@ void OrangeChallenge_End(void)
     CompactPartySlots();
     CalculatePlayerPartyCount();
     FlagClear(FLAG_ORANGE_CHALLENGE);
+    UpdateFollowerPokemonGraphic();
     gSpecialVar_Result = TRUE;
 }
 

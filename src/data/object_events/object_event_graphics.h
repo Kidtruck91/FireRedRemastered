@@ -198,6 +198,8 @@ const u32 gObjectEventPic_Clair[] = INCBIN_U32("graphics/object_events/pics/peop
 const u16 gObjectEventPalette_Clair[] = INCBIN_U16("graphics/object_events/palettes/clair.gbapal");
 const u32 gObjectEventPic_Elm[] = INCBIN_U32("graphics/object_events/pics/people/elm.4bpp");
 const u16 gObjectEventPalette_Elm[] = INCBIN_U16("graphics/object_events/palettes/elm.gbapal");
+const u16 gObjectEventPalette_Ivy[] = INCBIN_U16("graphics/object_events/palettes/ivy.gbapal");
+const u16 gObjectEventPalette_Cissy[] = INCBIN_U16("graphics/object_events/palettes/cissy.gbapal");
 
 const u16 gObjectEventPic_Regi[] = INCBIN_U16("graphics/object_events/pics/pokemon/regi.4bpp");
 const u16 gObjectEventPic_Groudon[] = INCBIN_U16("graphics/object_events/pics/pokemon/groudon.4bpp");

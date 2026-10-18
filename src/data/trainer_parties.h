@@ -14947,3 +14947,49 @@ static const struct TrainerMonItemCustomMoves sParty_ChampionDrake[] = {
         .moves = {MOVE_DRAGON_CLAW, MOVE_EARTHQUAKE, MOVE_FLAMETHROWER, MOVE_THUNDER_WAVE},
     },
 };
+
+static const struct TrainerMonItemCustomMoves sParty_SwimmerMMarco[] = {
+    {
+        .iv = 100,
+        .lvl = 15,
+        .ability = 1,
+        .species = SPECIES_POLIWAG,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_HYPNOSIS, MOVE_WATER_GUN, MOVE_DOUBLE_TEAM, MOVE_BUBBLE},
+    },
+    {
+        .iv = 100,
+        .lvl = 16,
+        .ability = 1,
+        .species = SPECIES_GOLDEEN,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_RAIN_DANCE, MOVE_WATER_PULSE, MOVE_SUPERSONIC, MOVE_HORN_ATTACK},
+    },
+};
+
+static const struct TrainerMonItemCustomMoves sParty_SwimmerFCoral[] = {
+    {
+        .iv = 100,
+        .lvl = 16,
+        .ability = 1,
+        .species = SPECIES_SHELLDER,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_ICICLE_SPEAR, MOVE_SUPERSONIC, MOVE_WITHDRAW, MOVE_DOUBLE_TEAM},
+    },
+    {
+        .iv = 100,
+        .lvl = 17,
+        .ability = 1,
+        .species = SPECIES_SEEL,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_ICY_WIND, MOVE_HEADBUTT, MOVE_ENCORE, MOVE_RAIN_DANCE},
+    },
+    {
+        .iv = 100,
+        .lvl = 17,
+        .ability = 1,
+        .species = SPECIES_TENTACOOL,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_POISON_STING, MOVE_SUPERSONIC, MOVE_CONSTRICT, MOVE_WATER_PULSE},
+    },
+};

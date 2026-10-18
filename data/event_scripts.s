@@ -1948,6 +1948,8 @@ Text_TestMsg::
 	.include "data/maps/SixIsland_Safari_Cave_Cold/text.inc"
 
 	.include "data/maps/OrangeIslands_Valencia/scripts.inc"
+	.include "data/maps/OrangeIslands_Mikan_Gym/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia_IvysLab/scripts.inc"
 	.include "data/maps/OrangeIslands_Valencia/text.inc"
 
 	.include "data/maps/OrangeIslands_Mikan/scripts.inc"

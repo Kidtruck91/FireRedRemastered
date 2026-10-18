@@ -166,6 +166,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Latias_Latios;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rayquaza;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RayquazaStill;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ivy;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cissy;
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
     [OBJ_EVENT_GFX_RED_BIKE]                 = &gObjectEventGraphicsInfo_RedBike,
@@ -335,4 +337,6 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_RAYQUAZA]                 = &gObjectEventGraphicsInfo_Rayquaza,
     [OBJ_EVENT_GFX_RAYQUAZA_STILL]           = &gObjectEventGraphicsInfo_RayquazaStill,
     [OBJ_EVENT_GFX_SUDOWOODO]                = &gObjectEventGraphicsInfo_Sudowoodo,
+    [OBJ_EVENT_GFX_IVY]                      = &gObjectEventGraphicsInfo_Ivy,
+    [OBJ_EVENT_GFX_CISSY]                    = &gObjectEventGraphicsInfo_Cissy,
    };

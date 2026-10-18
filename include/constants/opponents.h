@@ -948,6 +948,8 @@
 #define TRAINER_LEADER_RUDY                      929
 #define TRAINER_LEADER_LUANA                     930
 #define TRAINER_CHAMPION_DRAKE                   931
+#define TRAINER_SWIMMER_M_MARCO                  932
+#define TRAINER_SWIMMER_F_CORAL                  933
 
 
 
@@ -958,7 +960,7 @@
 //       room for NUM_TRAINERS up to MAX_TRAINERS_COUNT before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             932
+#define NUM_TRAINERS                             934
 #define MAX_TRAINERS_COUNT                       1504
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

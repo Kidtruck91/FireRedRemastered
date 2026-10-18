@@ -169,7 +169,9 @@
 #define OBJ_EVENT_GFX_RAYQUAZA 165
 #define OBJ_EVENT_GFX_RAYQUAZA_STILL 166
 #define OBJ_EVENT_GFX_SUDOWOODO 167
-#define NUM_OBJ_EVENT_GFX     168
+#define OBJ_EVENT_GFX_IVY 168
+#define OBJ_EVENT_GFX_CISSY 169
+#define NUM_OBJ_EVENT_GFX     170
 
 // Follower Pokemon graphics ids. These live above the 8-bit range (object event graphics ids are
 // u16), so they don't collide with the regular ids or the OBJ_EVENT_GFX_VAR_x ids below.
