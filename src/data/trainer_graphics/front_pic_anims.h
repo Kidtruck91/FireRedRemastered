@@ -920,8 +920,8 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_LEADER_JASMINE]       = sAnims_LeaderJasmine,
     [TRAINER_PIC_LEADER_PRYCE]         = sAnims_LeaderPryce,
     [TRAINER_PIC_LEADER_CLAIR]         = sAnims_LeaderClair,
-    [TRAINER_PIC_CISSY]             = sAnims_LeaderMisty,
-    [TRAINER_PIC_DANNY]             = sAnims_RSBlackBelt,
-    [TRAINER_PIC_RUDY]              = sAnims_CooltrainerM,
-    [TRAINER_PIC_LUANA]             = sAnims_Beauty,
+    [TRAINER_PIC_CISSY]             = sAnims_RSBeauty,
+    [TRAINER_PIC_DANNY]             = sAnims_LeaderBrawly,
+    [TRAINER_PIC_RUDY]              = sAnims_RichBoy,
+    [TRAINER_PIC_LUANA]             = sAnims_RSAromaLady,
 };
