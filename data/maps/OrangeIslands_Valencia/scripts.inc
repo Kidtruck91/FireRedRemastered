@@ -91,3 +91,54 @@ OrangeIslands_Valencia_Text_IvyWelcome::
 	.string "There's something you need to know\n"
 	.string "first. Come on, my lab is just\l"
 	.string "down the beach!$"
+
+@ ---- Orange Islands trainers (orange_route_trainers.py) ----
+OrangeIslands_Valencia_EventScript_OrangeSeth::
+	trainerbattle_single TRAINER_ORANGE_BIRD_KEEPER_SETH, OrangeIslands_Valencia_Text_OrangeSethIntro, OrangeIslands_Valencia_Text_OrangeSethDefeat
+	msgbox OrangeIslands_Valencia_Text_OrangeSethPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Valencia_EventScript_OrangeDora::
+	trainerbattle_single TRAINER_ORANGE_LASS_DORA, OrangeIslands_Valencia_Text_OrangeDoraIntro, OrangeIslands_Valencia_Text_OrangeDoraDefeat
+	msgbox OrangeIslands_Valencia_Text_OrangeDoraPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Valencia_EventScript_OrangeTerry::
+	trainerbattle_single TRAINER_ORANGE_FISHERMAN_TERRY, OrangeIslands_Valencia_Text_OrangeTerryIntro, OrangeIslands_Valencia_Text_OrangeTerryDefeat
+	msgbox OrangeIslands_Valencia_Text_OrangeTerryPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Valencia_Text_OrangeSethIntro::
+	.string "My birds fly between the\n"
+	.string "islands every day!$"
+
+OrangeIslands_Valencia_Text_OrangeSethDefeat::
+	.string "Grounded!$"
+
+OrangeIslands_Valencia_Text_OrangeSethPostBattle::
+	.string "Sea birds are tougher than\n"
+	.string "they look.$"
+
+OrangeIslands_Valencia_Text_OrangeDoraIntro::
+	.string "Ooh, a new face!\n"
+	.string "Let's battle!$"
+
+OrangeIslands_Valencia_Text_OrangeDoraDefeat::
+	.string "You're so mean!$"
+
+OrangeIslands_Valencia_Text_OrangeDoraPostBattle::
+	.string "I love the flowers on this\n"
+	.string "island.$"
+
+OrangeIslands_Valencia_Text_OrangeTerryIntro::
+	.string "Shh! You'll scare the fish!\p"
+	.string "Well, now that they're gone,\n"
+	.string "let's battle!$"
+
+OrangeIslands_Valencia_Text_OrangeTerryDefeat::
+	.string "Reeled in!$"
+
+OrangeIslands_Valencia_Text_OrangeTerryPostBattle::
+	.string "The big ones bite at dawn.\n"
+	.string "Patience is everything.$"
+

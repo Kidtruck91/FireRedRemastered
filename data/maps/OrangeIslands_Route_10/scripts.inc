@@ -48,3 +48,101 @@ OrangeIslands_Route_10_EventScript_SeaEdgeToRoute17_Lo:
 OrangeIslands_Route_10_EventScript_SeaEdgeToRoute17_Hi:
 	setvar VAR_0x8005, 13
 	goto OrangeIslands_Route_10_EventScript_SeaEdgeToRoute17_Go
+
+@ ---- Orange Islands trainers (orange_route_trainers.py) ----
+OrangeIslands_Route_10_EventScript_OrangeVera::
+	trainerbattle_single TRAINER_ORANGE_SWIMMER_F_VERA, OrangeIslands_Route_10_Text_OrangeVeraIntro, OrangeIslands_Route_10_Text_OrangeVeraDefeat
+	msgbox OrangeIslands_Route_10_Text_OrangeVeraPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Route_10_EventScript_OrangeJade::
+	trainerbattle_single TRAINER_ORANGE_SWIMMER_F_JADE, OrangeIslands_Route_10_Text_OrangeJadeIntro, OrangeIslands_Route_10_Text_OrangeJadeDefeat
+	msgbox OrangeIslands_Route_10_Text_OrangeJadePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Route_10_EventScript_OrangeCallie::
+	trainerbattle_single TRAINER_ORANGE_SWIMMER_F_CALLIE, OrangeIslands_Route_10_Text_OrangeCallieIntro, OrangeIslands_Route_10_Text_OrangeCallieDefeat
+	msgbox OrangeIslands_Route_10_Text_OrangeCalliePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Route_10_EventScript_OrangeLance::
+	trainerbattle_single TRAINER_ORANGE_SWIMMER_M_LANCE, OrangeIslands_Route_10_Text_OrangeLanceIntro, OrangeIslands_Route_10_Text_OrangeLanceDefeat
+	msgbox OrangeIslands_Route_10_Text_OrangeLancePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Route_10_EventScript_OrangeDana::
+	trainerbattle_single TRAINER_ORANGE_SWIMMER_F_DANA, OrangeIslands_Route_10_Text_OrangeDanaIntro, OrangeIslands_Route_10_Text_OrangeDanaDefeat
+	msgbox OrangeIslands_Route_10_Text_OrangeDanaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Route_10_EventScript_OrangeJason::
+	trainerbattle_single TRAINER_ORANGE_SWIMMER_M_JASON, OrangeIslands_Route_10_Text_OrangeJasonIntro, OrangeIslands_Route_10_Text_OrangeJasonDefeat
+	msgbox OrangeIslands_Route_10_Text_OrangeJasonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Route_10_Text_OrangeVeraIntro::
+	.string "Swimming in the ORANGE\n"
+	.string "ISLANDS is the best!$"
+
+OrangeIslands_Route_10_Text_OrangeVeraDefeat::
+	.string "Oh, I lost!$"
+
+OrangeIslands_Route_10_Text_OrangeVeraPostBattle::
+	.string "The reefs are so pretty\n"
+	.string "from out here.$"
+
+OrangeIslands_Route_10_Text_OrangeJadeIntro::
+	.string "My POKéMON and I swim\n"
+	.string "together every day!$"
+
+OrangeIslands_Route_10_Text_OrangeJadeDefeat::
+	.string "We'll swim harder!$"
+
+OrangeIslands_Route_10_Text_OrangeJadePostBattle::
+	.string "Each island has its own\n"
+	.string "kind of water. Isn't it neat?$"
+
+OrangeIslands_Route_10_Text_OrangeCallieIntro::
+	.string "Swimming in the ORANGE\n"
+	.string "ISLANDS is the best!$"
+
+OrangeIslands_Route_10_Text_OrangeCallieDefeat::
+	.string "Oh, I lost!$"
+
+OrangeIslands_Route_10_Text_OrangeCalliePostBattle::
+	.string "The reefs are so pretty\n"
+	.string "from out here.$"
+
+OrangeIslands_Route_10_Text_OrangeLanceIntro::
+	.string "I train my POKéMON in the\n"
+	.string "open sea. Ready?$"
+
+OrangeIslands_Route_10_Text_OrangeLanceDefeat::
+	.string "Washed out!$"
+
+OrangeIslands_Route_10_Text_OrangeLancePostBattle::
+	.string "Out here, WATER POKéMON are\n"
+	.string "the real champions.$"
+
+OrangeIslands_Route_10_Text_OrangeDanaIntro::
+	.string "Hey! You splashed me!\n"
+	.string "That means a battle!$"
+
+OrangeIslands_Route_10_Text_OrangeDanaDefeat::
+	.string "Fine, you win.$"
+
+OrangeIslands_Route_10_Text_OrangeDanaPostBattle::
+	.string "Watch out for TENTACOOL\n"
+	.string "near the reefs.$"
+
+OrangeIslands_Route_10_Text_OrangeJasonIntro::
+	.string "I train my POKéMON in the\n"
+	.string "open sea. Ready?$"
+
+OrangeIslands_Route_10_Text_OrangeJasonDefeat::
+	.string "Washed out!$"
+
+OrangeIslands_Route_10_Text_OrangeJasonPostBattle::
+	.string "Out here, WATER POKéMON are\n"
+	.string "the real champions.$"
+
