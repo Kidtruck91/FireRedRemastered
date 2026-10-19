@@ -344,16 +344,16 @@ static const struct PoolMon sRudyCounterPool[] =
       .moves = {MOVE_SURF, MOVE_PSYCHIC, MOVE_THUNDERBOLT, MOVE_RECOVER} },
     { .species = SPECIES_GOLDUCK, .heldItem = ITEM_MYSTIC_WATER, .iv = 250, .ability = 1,
       .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_PSYCHIC, MOVE_DOUBLE_TEAM} },
-    { .species = SPECIES_KINGLER, .heldItem = ITEM_KINGS_ROCK, .iv = 250, .ability = 1,
+    { .species = SPECIES_KINGLER, .heldItem = ITEM_KINGS_ROCK, .iv = 250, .ability = TRAINER_MON_HIDDEN_ABILITY,
       .moves = {MOVE_CRABHAMMER, MOVE_MUD_SHOT, MOVE_METAL_CLAW, MOVE_SWORDS_DANCE} },
     { .species = SPECIES_POLIWRATH, .heldItem = ITEM_LEFTOVERS, .iv = 250, .ability = 1,
       .moves = {MOVE_SURF, MOVE_BRICK_BREAK, MOVE_ICE_BEAM, MOVE_HYPNOSIS} },
-    { .species = SPECIES_CRAWDAUNT, .heldItem = ITEM_SCOPE_LENS, .iv = 250, .ability = 1,
+    { .species = SPECIES_CRAWDAUNT, .heldItem = ITEM_SCOPE_LENS, .iv = 250, .ability = TRAINER_MON_HIDDEN_ABILITY,
       .moves = {MOVE_CRABHAMMER, MOVE_CRUNCH, MOVE_KNOCK_OFF, MOVE_SWORDS_DANCE} },
     // FIRE
     { .species = SPECIES_ARCANINE, .heldItem = ITEM_CHARCOAL, .iv = 250, .ability = 1,
       .moves = {MOVE_FLAMETHROWER, MOVE_BITE, MOVE_IRON_TAIL, MOVE_AGILITY} },
-    { .species = SPECIES_NINETALES, .heldItem = ITEM_BRIGHT_POWDER, .iv = 250, .ability = 1,
+    { .species = SPECIES_NINETALES, .heldItem = ITEM_BRIGHT_POWDER, .iv = 250, .ability = TRAINER_MON_HIDDEN_ABILITY,
       .moves = {MOVE_FLAMETHROWER, MOVE_WILL_O_WISP, MOVE_CONFUSE_RAY, MOVE_QUICK_ATTACK} },
     { .species = SPECIES_MAGMAR, .heldItem = ITEM_CHARCOAL, .iv = 250, .ability = 1,
       .moves = {MOVE_FLAMETHROWER, MOVE_THUNDER_PUNCH, MOVE_CONFUSE_RAY, MOVE_SMOKESCREEN} },
@@ -380,7 +380,7 @@ static const struct PoolMon sRudyCounterPool[] =
       .moves = {MOVE_ICE_BEAM, MOVE_SURF, MOVE_HEADBUTT, MOVE_DOUBLE_TEAM} },
     { .species = SPECIES_JYNX, .heldItem = ITEM_NEVER_MELT_ICE, .iv = 250, .ability = 1,
       .moves = {MOVE_ICE_PUNCH, MOVE_PSYCHIC, MOVE_LOVELY_KISS, MOVE_DOUBLE_TEAM} },
-    { .species = SPECIES_XATU, .heldItem = ITEM_TWISTED_SPOON, .iv = 250, .ability = 1,
+    { .species = SPECIES_XATU, .heldItem = ITEM_TWISTED_SPOON, .iv = 250, .ability = TRAINER_MON_HIDDEN_ABILITY,
       .moves = {MOVE_PSYCHIC, MOVE_WING_ATTACK, MOVE_CONFUSE_RAY, MOVE_NIGHT_SHADE} },
     // FLYING / BUG
     { .species = SPECIES_PIDGEOT, .heldItem = ITEM_SHARP_BEAK, .iv = 250, .ability = 1,
@@ -469,6 +469,8 @@ static u16 RudyBestHit(const u16 *moves, u16 atkSpecies, u16 defSpecies, u8 defA
 
 static u8 RudyPoolAbility(const struct PoolMon *poolMon)
 {
+    if (poolMon->ability == TRAINER_MON_HIDDEN_ABILITY && gSpeciesInfo[poolMon->species].hiddenAbility != ABILITY_NONE)
+        return gSpeciesInfo[poolMon->species].hiddenAbility;
     if (poolMon->ability == 2 && gSpeciesInfo[poolMon->species].abilities[1] != ABILITY_NONE)
         return gSpeciesInfo[poolMon->species].abilities[1];
     return gSpeciesInfo[poolMon->species].abilities[0];
@@ -545,6 +547,9 @@ u8 OrangeGym_CreateRudyParty(struct Pokemon *party)
         u32 personality = 0x88 | ((u32)poolMon->species << 8) | ((u32)(i + 1) << 20);
         u8 abilityNum = (poolMon->ability == 2 && gSpeciesInfo[poolMon->species].abilities[1] != ABILITY_NONE);
         u8 iv = poolMon->iv * MAX_PER_STAT_IVS / 255;
+
+        if (poolMon->ability == TRAINER_MON_HIDDEN_ABILITY && gSpeciesInfo[poolMon->species].hiddenAbility != ABILITY_NONE)
+            abilityNum = ABILITY_NUM_HIDDEN;
 
         CreateMon(&party[i], poolMon->species, sRudyCounterLevels[3 - count + i], iv, TRUE, personality, OT_ID_RANDOM_NO_SHINY, 0);
         SetMonData(&party[i], MON_DATA_HELD_ITEM, &poolMon->heldItem);

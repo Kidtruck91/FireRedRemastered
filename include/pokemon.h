@@ -363,6 +363,8 @@ u8 CalculateEnemyPartyCount(void);
 u8 GetMonsStateToDoubles(void);
 // MON_DATA_ABILITY_NUM values: 0 = first ability, 1 = second, ABILITY_NUM_HIDDEN = hidden ability
 #define ABILITY_NUM_HIDDEN 2
+// .ability on a trainer Pokemon (parties and pools): the species' hidden ability
+#define TRAINER_MON_HIDDEN_ABILITY 4
 u8 GetAbilityBySpecies(u16 species, u8 abilityNum);
 u8 GetBattlerPartyMonAbility(u8 battlerId, u8 partyIndex);
 u8 GetMonAbility(struct Pokemon *mon);
