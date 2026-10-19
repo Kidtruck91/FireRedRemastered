@@ -55,7 +55,15 @@
     "gMapGroup_JohtoIndoorMohogany",
     "gMapGroup_JohtoIndoorBlackthorn",
     "gMapGroup_JohtoMtSilver",
-    "gMapGroup_OrangeIslands"
+    "gMapGroup_OrangeIslands",
+    "gMapGroup_Orange_Valencia_Interior",
+    "gMapGroup_Orange_Mikan_Interior",
+    "gMapGroup_Orange_Navel_Interior",
+    "gMapGroup_Orange_Trovita_Interior",
+    "gMapGroup_Orange_Kumquat_Interior",
+    "gMapGroup_Orange_Pummelo_Interior",
+    "gMapGroup_Orange_Sunburst_Interior",
+    "gMapGroup_Orange_Moro_Interior"
   ],
   "gMapGroup_Link": [
     "BattleColosseum_2P",
@@ -812,19 +820,35 @@
     "OrangeIslands_Kumquat_Beach",
     "OrangeIslands_Pinkan_Beach",
     "OrangeIslands_Pummelo_Beach",
-    "OrangeIslands_Sunburst_Cave",
     "OrangeIslands_Trovita_Falls",
-    "OrangeIslands_Pummelo_Cave",
-    "OrangeIslands_Pummelo_Stadium",
-    "OrangeIslands_Moro_GhostShip",
     "OrangeIslands_Route_15",
     "OrangeIslands_Route_16",
     "OrangeIslands_Route_17",
-    "OrangeIslands_Route_18",
-    "OrangeIslands_Valencia_IvysLab",
-    "OrangeIslands_Mikan_Gym",
-    "OrangeIslands_Navel_Gym",
-    "OrangeIslands_Trovita_Gym",
+    "OrangeIslands_Route_18"
+  ],
+  "gMapGroup_Orange_Valencia_Interior": [
+    "OrangeIslands_Valencia_IvysLab"
+  ],
+  "gMapGroup_Orange_Mikan_Interior": [
+    "OrangeIslands_Mikan_Gym"
+  ],
+  "gMapGroup_Orange_Navel_Interior": [
+    "OrangeIslands_Navel_Gym"
+  ],
+  "gMapGroup_Orange_Trovita_Interior": [
+    "OrangeIslands_Trovita_Gym"
+  ],
+  "gMapGroup_Orange_Kumquat_Interior": [
     "OrangeIslands_Kumquat_Gym"
+  ],
+  "gMapGroup_Orange_Pummelo_Interior": [
+    "OrangeIslands_Pummelo_Stadium",
+    "OrangeIslands_Pummelo_Cave"
+  ],
+  "gMapGroup_Orange_Sunburst_Interior": [
+    "OrangeIslands_Sunburst_Cave"
+  ],
+  "gMapGroup_Orange_Moro_Interior": [
+    "OrangeIslands_Moro_GhostShip"
   ]
 }
