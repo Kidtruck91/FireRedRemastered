@@ -582,6 +582,9 @@ PalletTown_ProfessorOaksLab_EventScript_RivalChoseStarter::
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
 	faceplayer
+	goto_if_unset FLAG_SYS_CAN_LINK_WITH_RS, PalletTown_ProfessorOaksLab_EventScript_ProfOakTalk
+	goto_if_unset FLAG_GOT_SUNKIST_TICKET, PalletTown_ProfessorOaksLab_EventScript_OakSunkistTicket
+PalletTown_ProfessorOaksLab_EventScript_ProfOakTalk::
 	goto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9, PalletTown_ProfessorOaksLab_EventScript_RatePokedex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_MonsAroundWorldWait
@@ -1315,3 +1318,33 @@ PalletTown_ProfessorOaksLab_EventScript_RightSignAlt::
 	msgbox PalletTown_ProfessorOaksLab_Text_AllMonTypesHaveStrongAndWeakPoints
 	releaseall
 	end
+
+@ ---- After the Sevii Islands: Prof. Ivy and the SUNKIST TICKET (orange_trip_story.py)
+PalletTown_ProfessorOaksLab_EventScript_OakSunkistTicket::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakIvyIntro
+	giveitem ITEM_SUNKIST_TICKET
+	setflag FLAG_GOT_SUNKIST_TICKET
+	msgbox PalletTown_ProfessorOaksLab_Text_OakExplainSunkistTicket
+	release
+	end
+
+PalletTown_ProfessorOaksLab_Text_OakIvyIntro::
+	.string "OAK: Ah, {PLAYER}! I heard about\n"
+	.string "everything you did in the SEVII\l"
+	.string "ISLANDS. Well done!\p"
+	.string "I have an old friend, PROF. IVY.\n"
+	.string "She studies POKéMON in the ORANGE\l"
+	.string "ISLANDS, far to the south.\p"
+	.string "The islands have their own league,\n"
+	.string "the ORANGE CREW. Their trainers\l"
+	.string "battle by some very unusual rules.\p"
+	.string "I think you're ready for them.\n"
+	.string "Here, take this!$"
+
+PalletTown_ProfessorOaksLab_Text_OakExplainSunkistTicket::
+	.string "OAK: That's a SUNKIST TICKET.\n"
+	.string "Show it to the SEAGALLOP sailor\l"
+	.string "in VERMILION CITY.\p"
+	.string "PROF. IVY will meet you on\n"
+	.string "VALENCIA ISLAND. I'll tell her\l"
+	.string "you're coming!$"

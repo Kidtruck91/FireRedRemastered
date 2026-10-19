@@ -72,6 +72,7 @@ VermilionCity_EventScript_CheckHasAuroraTicket::
 
 VermilionCity_EventScript_CheckSeagallopPresent::
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	call VermilionCity_EventScript_TrySunkistTicket
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1, VermilionCity_EventScript_ChooseSeagallopDestTriPass
 	msgbox VermilionCity_Text_TheShipSetSail
@@ -210,6 +211,7 @@ VermilionCity_EventScript_DontHaveSSTicket::
 
 VermilionCity_EventScript_CheckSeagallopPresentTrigger::
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	call VermilionCity_EventScript_TrySunkistTicket
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1, VermilionCity_EventScript_ChooseSeagallopDestTriPass
 	msgbox VermilionCity_Text_TheShipSetSail
@@ -326,3 +328,43 @@ VermilionCity_EventScript_AlreadyGotSquirtle::
 	release
 	end
 
+
+@ ---- SUNKIST TICKET: the Seagallop to Valencia Island (orange_trip_story.py)
+@ Returns when the player says no; otherwise sails.
+VermilionCity_EventScript_TrySunkistTicket::
+	checkitem ITEM_SUNKIST_TICKET
+	goto_if_eq VAR_RESULT, FALSE, VermilionCity_EventScript_SunkistReturn
+	msgbox VermilionCity_Text_SunkistAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_SunkistReturn
+	goto_if_set FLAG_GOT_GS_BALL, VermilionCity_EventScript_SunkistSail
+	msgbox VermilionCity_Text_SunkistWarning, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_SunkistReturn
+VermilionCity_EventScript_SunkistSail::
+	msgbox VermilionCity_Text_SunkistDeparting
+	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	setvar VAR_0x8006, SEAGALLOP_VALENCIA
+	goto EventScript_SetSail
+	end
+
+VermilionCity_EventScript_SunkistReturn::
+	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	return
+
+VermilionCity_Text_SunkistAsk::
+	.string "Oh! That's a SUNKIST TICKET!\p"
+	.string "It's good for VALENCIA ISLAND\n"
+	.string "in the ORANGE ISLANDS.\p"
+	.string "Want to sail there today?$"
+
+VermilionCity_Text_SunkistWarning::
+	.string "Hold on, now. The ORANGE ISLANDS\n"
+	.string "are a long way south.\p"
+	.string "Once you're there, the ship won't\n"
+	.string "come back for a while. You might\l"
+	.string "not get back to the mainland for\l"
+	.string "some time.\p"
+	.string "Are you sure?$"
+
+VermilionCity_Text_SunkistDeparting::
+	.string "All right!\n"
+	.string "All aboard for VALENCIA ISLAND!$"

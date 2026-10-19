@@ -281,8 +281,15 @@ OneIsland_PokemonCenter_1F_EventScript_GiveCelioSapphire::
 	setflag FLAG_HIDE_LORELEI_IN_HER_HOUSE
 	setvar VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 6
 	special InitRoamer
+	msgbox OneIsland_PokemonCenter_1F_Text_OakWantsToSeeYou
 	release
 	end
+
+OneIsland_PokemonCenter_1F_Text_OakWantsToSeeYou::
+	.string "Oh, and before I forget...\p"
+	.string "BILL called earlier. PROF. OAK\n"
+	.string "asked if you could stop by his\l"
+	.string "LAB in PALLET TOWN.$"
 
 OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPass::
 	msgbox OneIsland_PokemonCenter_1F_Text_PassLetYouGetToAllIslands

@@ -3301,6 +3301,7 @@ extern const u32 gItemIconPalette_Tea[];
 extern const u32 gItemIcon_MysticTicket[];
 extern const u32 gItemIconPalette_MysticTicket[];
 extern const u32 gItemIconPalette_OrangeTicket[];
+extern const u32 gItemIconPalette_GSBall[];
 extern const u32 gItemIcon_AuroraTicket[];
 extern const u32 gItemIconPalette_AuroraTicket[];
 extern const u32 gItemIcon_PowderJar[];

@@ -129,3 +129,45 @@ OrangeIslands_Kumquat_Text_OrangeTeddyPostBattle::
 	.string "Out here, WATER POKéMON are\n"
 	.string "the real champions.$"
 
+@ ---- League boat to Pummelo (orange_trip_story.py): all four Orange badges
+OrangeIslands_Kumquat_EventScript_LeagueBoat::
+	lock
+	faceplayer
+	goto_if_unset FLAG_BADGE_CORAL_EYE, OrangeIslands_Kumquat_EventScript_LeagueBoatNoBadges
+	goto_if_unset FLAG_BADGE_SPIKE_SHELL, OrangeIslands_Kumquat_EventScript_LeagueBoatNoBadges
+	goto_if_unset FLAG_BADGE_SEA_RUBY, OrangeIslands_Kumquat_EventScript_LeagueBoatNoBadges
+	goto_if_unset FLAG_BADGE_JADE_STAR, OrangeIslands_Kumquat_EventScript_LeagueBoatNoBadges
+	msgbox OrangeIslands_Kumquat_Text_LeagueBoatAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kumquat_EventScript_LeagueBoatNo
+	msgbox OrangeIslands_Kumquat_Text_LeagueBoatDeparting
+	setvar VAR_0x8004, SEAGALLOP_KUMQUAT
+	setvar VAR_0x8006, SEAGALLOP_PUMMELO
+	goto EventScript_SetSail
+	end
+
+OrangeIslands_Kumquat_EventScript_LeagueBoatNoBadges::
+	msgbox OrangeIslands_Kumquat_Text_LeagueBoatNoBadges
+	release
+	end
+
+OrangeIslands_Kumquat_EventScript_LeagueBoatNo::
+	msgbox OrangeIslands_Kumquat_Text_LeagueBoatNo
+	release
+	end
+
+OrangeIslands_Kumquat_Text_LeagueBoatNoBadges::
+	.string "This boat goes to PUMMELO ISLAND,\n"
+	.string "home of the ORANGE LEAGUE.\p"
+	.string "Only trainers with all four\n"
+	.string "ORANGE badges may board.$"
+
+OrangeIslands_Kumquat_Text_LeagueBoatAsk::
+	.string "Four badges! You've earned a ride.\p"
+	.string "Sail to PUMMELO ISLAND?$"
+
+OrangeIslands_Kumquat_Text_LeagueBoatDeparting::
+	.string "Hold on tight!\n"
+	.string "Next stop, PUMMELO ISLAND!$"
+
+OrangeIslands_Kumquat_Text_LeagueBoatNo::
+	.string "Come back when you're ready.$"

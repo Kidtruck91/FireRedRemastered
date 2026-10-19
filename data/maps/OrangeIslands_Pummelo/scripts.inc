@@ -73,3 +73,29 @@ OrangeIslands_Pummelo_Text_OrangeEmmetPostBattle::
 	.string "The currents here are strong.\n"
 	.string "Watch where they push you.$"
 
+@ ---- League boat back to Kumquat (orange_trip_story.py)
+OrangeIslands_Pummelo_EventScript_LeagueBoat::
+	lock
+	faceplayer
+	msgbox OrangeIslands_Pummelo_Text_LeagueBoatAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Pummelo_EventScript_LeagueBoatNo
+	msgbox OrangeIslands_Pummelo_Text_LeagueBoatDeparting
+	setvar VAR_0x8004, SEAGALLOP_PUMMELO
+	setvar VAR_0x8006, SEAGALLOP_KUMQUAT
+	goto EventScript_SetSail
+	end
+
+OrangeIslands_Pummelo_EventScript_LeagueBoatNo::
+	msgbox OrangeIslands_Pummelo_Text_LeagueBoatNo
+	release
+	end
+
+OrangeIslands_Pummelo_Text_LeagueBoatAsk::
+	.string "Heading back to KUMQUAT ISLAND?$"
+
+OrangeIslands_Pummelo_Text_LeagueBoatDeparting::
+	.string "Hold on tight!\n"
+	.string "Next stop, KUMQUAT ISLAND!$"
+
+OrangeIslands_Pummelo_Text_LeagueBoatNo::
+	.string "I'll be right here.$"

@@ -29,6 +29,14 @@ OrangeIslands_Pummelo_Stadium_EventScript_Drake::
 	playfanfare MUS_OBTAIN_BADGE
 	waitfanfare
 	msgbox OrangeIslands_Pummelo_Stadium_Text_DrakeAfterTrophy
+	goto OrangeIslands_Pummelo_Stadium_EventScript_DrakeGiveGSBall
+	end
+
+OrangeIslands_Pummelo_Stadium_EventScript_DrakeGiveGSBall::
+	msgbox OrangeIslands_Pummelo_Stadium_Text_DrakeGSBall
+	giveitem ITEM_GS_BALL
+	setflag FLAG_GOT_GS_BALL
+	msgbox OrangeIslands_Pummelo_Stadium_Text_DrakeGSBallFerry
 	release
 	end
 
@@ -44,6 +52,7 @@ OrangeIslands_Pummelo_Stadium_EventScript_DrakeNotReady::
 
 OrangeIslands_Pummelo_Stadium_EventScript_DrakeAfter::
 	setflag FLAG_ORANGE_LEAGUE_CHAMPION
+	goto_if_unset FLAG_GOT_GS_BALL, OrangeIslands_Pummelo_Stadium_EventScript_DrakeGiveGSBall
 	goto_if_unset FLAG_DEFEATED_CHAMP, OrangeIslands_Pummelo_Stadium_EventScript_DrakePostBattle
 	msgbox OrangeIslands_Pummelo_Stadium_Text_DrakeRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, OrangeIslands_Pummelo_Stadium_EventScript_DrakeNoRematch
@@ -142,3 +151,17 @@ OrangeIslands_Pummelo_Stadium_Text_DrakeRematchDefeat::
 OrangeIslands_Pummelo_Stadium_Text_DrakeRematchWon::
 	.string "Good fight. Come back any time.\n"
 	.string "I'll be stronger.$"
+
+OrangeIslands_Pummelo_Stadium_Text_DrakeGSBall::
+	.string "One more thing.\p"
+	.string "This BALL washed up on PUMMELO a\n"
+	.string "few years back. Nobody here can\l"
+	.string "open it. Not even me.\p"
+	.string "You take it.$"
+
+OrangeIslands_Pummelo_Stadium_Text_DrakeGSBallFerry::
+	.string "PROF. OAK might know what it is.\n"
+	.string "Show it to him.\p"
+	.string "The SEAGALLOP captain was waiting\n"
+	.string "for it. His ship is back at\l"
+	.string "VALENCIA, ready to take you home.$"

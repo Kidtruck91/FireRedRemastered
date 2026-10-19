@@ -12,6 +12,9 @@
 #define SEAGALLOP_CINNABAR_ISLAND  8
 #define SEAGALLOP_NAVEL_ROCK       9
 #define SEAGALLOP_BIRTH_ISLAND    10
+#define SEAGALLOP_VALENCIA        11 // Orange Islands: Valencia dock
+#define SEAGALLOP_KUMQUAT         12 // Orange League boat
+#define SEAGALLOP_PUMMELO         13
 
 #define SEAGALLOP_MORE           254
 

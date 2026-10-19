@@ -142,3 +142,67 @@ OrangeIslands_Valencia_Text_OrangeTerryPostBattle::
 	.string "The big ones bite at dawn.\n"
 	.string "Patience is everything.$"
 
+@ ---- Ferry sailor (orange_trip_story.py): no ship until Drake hands over the GS BALL
+OrangeIslands_Valencia_EventScript_FerrySailor::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_GS_BALL, OrangeIslands_Valencia_EventScript_FerryHome
+	msgbox OrangeIslands_Valencia_Text_ShipLeft
+	release
+	end
+
+OrangeIslands_Valencia_EventScript_FerryHome::
+	msgbox OrangeIslands_Valencia_Text_FerryHomeAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Valencia_EventScript_FerryNotNow
+	goto_if_unset FLAG_ORANGE_CHALLENGE, OrangeIslands_Valencia_EventScript_FerrySail
+	msgbox OrangeIslands_Valencia_Text_TeamsSwap
+	callnative OrangeChallenge_End
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Valencia_EventScript_FerrySaveError
+	playse SE_PC_LOGIN
+	waitse
+OrangeIslands_Valencia_EventScript_FerrySail::
+	msgbox OrangeIslands_Valencia_Text_FerryDeparting
+	setvar VAR_0x8004, SEAGALLOP_VALENCIA
+	setvar VAR_0x8006, SEAGALLOP_VERMILION_CITY
+	goto EventScript_SetSail
+	end
+
+OrangeIslands_Valencia_EventScript_FerryNotNow::
+	msgbox OrangeIslands_Valencia_Text_FerryNotNow
+	release
+	end
+
+OrangeIslands_Valencia_EventScript_FerrySaveError::
+	msgbox OrangeIslands_Valencia_Text_FerrySaveError
+	release
+	end
+
+OrangeIslands_Valencia_Text_ShipLeft::
+	.string "The SEAGALLOP that brought you\n"
+	.string "has already sailed back to KANTO.\p"
+	.string "It won't be back for several days.\p"
+	.string "The captain says he's waiting on\n"
+	.string "something from PUMMELO ISLAND.\l"
+	.string "Enjoy the islands until then!$"
+
+OrangeIslands_Valencia_Text_FerryHomeAsk::
+	.string "Ahoy! The SEAGALLOP is back.\p"
+	.string "Sailing home to VERMILION CITY?$"
+
+OrangeIslands_Valencia_Text_TeamsSwap::
+	.string "Your ORANGE ISLANDS team and PC\n"
+	.string "will wait here for you.\p"
+	.string "Your KANTO team and PC go home\n"
+	.string "with you.$"
+
+OrangeIslands_Valencia_Text_FerryDeparting::
+	.string "All right!\n"
+	.string "All aboard for VERMILION CITY!$"
+
+OrangeIslands_Valencia_Text_FerryNotNow::
+	.string "No rush. The ship will wait.$"
+
+OrangeIslands_Valencia_Text_FerrySaveError::
+	.string "Hm, something went wrong storing\n"
+	.string "your POKéMON. Nothing was changed.\p"
+	.string "Please try again.$"
