@@ -7116,6 +7116,18 @@
       "secondary_tileset": "gTileset_OrangeSevii67",
       "border_filepath": "data/layouts/OrangeIslands_Pummelo_Beach/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo_Beach/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MIKAN_GYM",
+      "name": "OrangeIslands_Mikan_Gym_Layout",
+      "width": 24,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_CeruleanGym",
+      "border_filepath": "data/layouts/OrangeIslands_Mikan_Gym/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Mikan_Gym/map.bin"
     }
   ]
 }
