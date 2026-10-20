@@ -760,16 +760,41 @@
 #define MAP_ORANGE_ISLANDS_KUMQUAT_BEACH        (33 | (55 << 8))
 #define MAP_ORANGE_ISLANDS_PINKAN_BEACH         (34 | (55 << 8))
 #define MAP_ORANGE_ISLANDS_PUMMELO_BEACH        (35 | (55 << 8))
-#define MAP_ORANGE_ISLANDS_SUNBURST_CAVE        (36 | (55 << 8))
-#define MAP_ORANGE_ISLANDS_TROVITA_FALLS        (37 | (55 << 8))
-#define MAP_ORANGE_ISLANDS_PUMMELO_CAVE         (38 | (55 << 8))
-#define MAP_ORANGE_ISLANDS_PUMMELO_STADIUM      (39 | (55 << 8))
-#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP      (40 | (55 << 8))
-#define MAP_ORANGE_ISLANDS_ROUTE_15             (41 | (55 << 8))
-#define MAP_ORANGE_ISLANDS_ROUTE_16             (42 | (55 << 8))
-#define MAP_ORANGE_ISLANDS_ROUTE_17             (43 | (55 << 8))
-#define MAP_ORANGE_ISLANDS_ROUTE_18             (44 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_FALLS        (36 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_15             (37 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_16             (38 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_17             (39 | (55 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_18             (40 | (55 << 8))
 
-#define MAP_GROUPS_COUNT 56
+// gMapGroup_Orange_Valencia_Interior
+#define MAP_ORANGE_ISLANDS_VALENCIA_IVYS_LAB (0 | (56 << 8))
+
+// gMapGroup_Orange_Mikan_Interior
+#define MAP_ORANGE_ISLANDS_MIKAN_GYM (0 | (57 << 8))
+
+// gMapGroup_Orange_Navel_Interior
+#define MAP_ORANGE_ISLANDS_NAVEL_GYM (0 | (58 << 8))
+
+// gMapGroup_Orange_Trovita_Interior
+#define MAP_ORANGE_ISLANDS_TROVITA_GYM (0 | (59 << 8))
+
+// gMapGroup_Orange_Kumquat_Interior
+#define MAP_ORANGE_ISLANDS_KUMQUAT_GYM (0 | (60 << 8))
+
+// gMapGroup_Orange_Pummelo_Interior
+#define MAP_ORANGE_ISLANDS_PUMMELO_STADIUM (0 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_CAVE    (1 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_CAVE2   (2 | (61 << 8))
+
+// gMapGroup_Orange_Sunburst_Interior
+#define MAP_ORANGE_ISLANDS_SUNBURST_CAVE    (0 | (62 << 8))
+#define MAP_ORANGE_ISLANDS_SUNBURST_CAVE_2F (1 | (62 << 8))
+#define MAP_ORANGE_ISLAND_SUNBURST_CAVE_3F  (2 | (62 << 8))
+#define MAP_ORANGE_ISLAND_PUMMELO_CAVE_2F   (3 | (62 << 8))
+
+// gMapGroup_Orange_Moro_Interior
+#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP (0 | (63 << 8))
+
+#define MAP_GROUPS_COUNT 64
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H

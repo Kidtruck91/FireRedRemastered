@@ -14,7 +14,9 @@
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
-  "object_events": [],
+  "object_events": [
+
+  ],
   "warp_events": [
     {
       "x": 15,
@@ -42,5 +44,7 @@
       "script": "OrangeIslands_Pummelo_Cave_EventScript_ToArena"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

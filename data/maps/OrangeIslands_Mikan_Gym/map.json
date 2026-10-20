@@ -13,7 +13,7 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_GYM",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "type": "object",
@@ -61,7 +61,7 @@
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "x": 7,
-      "y": 18,
+      "y": 31,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -74,22 +74,22 @@
   ],
   "warp_events": [
     {
+      "x": 10,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
+      "dest_warp_id": "0"
+    },
+    {
       "x": 11,
-      "y": 18,
+      "y": 31,
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
       "dest_warp_id": "0"
     },
     {
       "x": 12,
-      "y": 18,
-      "elevation": 0,
-      "dest_map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 13,
-      "y": 18,
+      "y": 31,
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
       "dest_warp_id": "0"
@@ -172,16 +172,16 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 9,
-      "y": 18,
+      "x": 8,
+      "y": 31,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Mikan_Gym_EventScript_GymStatue"
     },
     {
       "type": "sign",
-      "x": 15,
-      "y": 18,
+      "x": 14,
+      "y": 31,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Mikan_Gym_EventScript_GymStatue"

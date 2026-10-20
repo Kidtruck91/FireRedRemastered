@@ -843,10 +843,14 @@
   ],
   "gMapGroup_Orange_Pummelo_Interior": [
     "OrangeIslands_Pummelo_Stadium",
-    "OrangeIslands_Pummelo_Cave"
+    "OrangeIslands_Pummelo_Cave",
+    "OrangeIslands_Pummelo_Cave2"
   ],
   "gMapGroup_Orange_Sunburst_Interior": [
-    "OrangeIslands_Sunburst_Cave"
+    "OrangeIslands_Sunburst_Cave",
+    "OrangeIslands_Sunburst_Cave_2F",
+    "OrangeIsland_Sunburst_Cave_3F",
+    "OrangeIsland_Pummelo_Cave_2F"
   ],
   "gMapGroup_Orange_Moro_Interior": [
     "OrangeIslands_Moro_GhostShip"

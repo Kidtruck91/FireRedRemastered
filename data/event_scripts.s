@@ -2077,3 +2077,15 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Pummelo_Beach/scripts.inc"
 	.include "data/maps/OrangeIslands_Pummelo_Beach/text.inc"
+
+	.include "data/maps/OrangeIslands_Sunburst_Cave_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Sunburst_Cave_2F/text.inc"
+
+	.include "data/maps/OrangeIsland_Sunburst_Cave_3F/scripts.inc"
+	.include "data/maps/OrangeIsland_Sunburst_Cave_3F/text.inc"
+
+	.include "data/maps/OrangeIsland_Pummelo_Cave_2F/scripts.inc"
+	.include "data/maps/OrangeIsland_Pummelo_Cave_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Pummelo_Cave2/scripts.inc"
+	.include "data/maps/OrangeIslands_Pummelo_Cave2/text.inc"
