@@ -48,3 +48,12 @@ OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Lo:
 OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Hi:
 	setvar VAR_0x8005, 49
 	goto OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Go
+
+@ Sea corner: choose the crossed edge from the incoming direction
+OrangeIslands_Kumquat_EventScript_SeaCorner_71_59::
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	compare VAR_RESULT, DIR_SOUTH
+	goto_if_eq OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13
+	compare VAR_RESULT, DIR_EAST
+	goto_if_eq OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14
+	end

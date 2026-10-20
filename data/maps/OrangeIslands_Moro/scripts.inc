@@ -23,7 +23,7 @@ OrangeIslands_Moro_EventScript_SeaEdgeToRoute7::
 	goto_if_gt OrangeIslands_Moro_EventScript_SeaEdgeToRoute7_Hi
 OrangeIslands_Moro_EventScript_SeaEdgeToRoute7_Go:
 	addvar VAR_0x8004, 4
-	setvar VAR_0x8005, 2
+	setvar VAR_0x8005, 1
 	warp MAP_ORANGE_ISLANDS_ROUTE_7, VAR_0x8004, VAR_0x8005
 	waitstate
 	end

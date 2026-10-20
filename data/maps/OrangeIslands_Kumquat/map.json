@@ -663,7 +663,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute13"
+      "script": "OrangeIslands_Kumquat_EventScript_SeaCorner_71_59"
     },
     {
       "type": "trigger",
@@ -1191,15 +1191,6 @@
       "type": "trigger",
       "x": 71,
       "y": 58,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14"
-    },
-    {
-      "type": "trigger",
-      "x": 71,
-      "y": 59,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",

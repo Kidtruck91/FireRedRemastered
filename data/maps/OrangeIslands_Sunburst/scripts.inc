@@ -48,3 +48,12 @@ OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Lo:
 OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Hi:
 	setvar VAR_0x8005, 63
 	goto OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Go
+
+@ Sea corner: choose the crossed edge from the incoming direction
+OrangeIslands_Sunburst_EventScript_SeaCorner_0_0::
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	compare VAR_RESULT, DIR_NORTH
+	goto_if_eq OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute6
+	compare VAR_RESULT, DIR_WEST
+	goto_if_eq OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7
+	end

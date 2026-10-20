@@ -39,7 +39,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8"
+      "script": "OrangeIslands_Kinnow_EventScript_SeaCorner_0_0"
     },
     {
       "type": "trigger",
@@ -625,15 +625,6 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 0,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute11"
     },
     {
       "type": "trigger",

@@ -68,3 +68,21 @@ OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute12_Lo:
 OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute12_Hi:
 	setvar VAR_0x8005, 55
 	goto OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute12_Go
+
+@ Sea corner: choose the crossed edge from the incoming direction
+OrangeIslands_Mandarin_South_EventScript_SeaCorner_0_75::
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	compare VAR_RESULT, DIR_SOUTH
+	goto_if_eq OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute9
+	compare VAR_RESULT, DIR_WEST
+	goto_if_eq OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute10
+	end
+
+@ Sea corner: choose the crossed edge from the incoming direction
+OrangeIslands_Mandarin_South_EventScript_SeaCorner_95_75::
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	compare VAR_RESULT, DIR_SOUTH
+	goto_if_eq OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute9
+	compare VAR_RESULT, DIR_EAST
+	goto_if_eq OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute12
+	end

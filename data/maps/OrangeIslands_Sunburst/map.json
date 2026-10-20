@@ -38,7 +38,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute6"
+      "script": "OrangeIslands_Sunburst_EventScript_SeaCorner_0_0"
     },
     {
       "type": "trigger",
@@ -606,15 +606,6 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute6"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 0,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7"
     },
     {
       "type": "trigger",

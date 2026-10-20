@@ -53,3 +53,12 @@ OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Lo:
 OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Hi:
 	setvar VAR_0x8004, 59
 	goto OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Go
+
+@ Sea corner: choose the crossed edge from the incoming direction
+OrangeIslands_Trovita_EventScript_SeaCorner_0_0::
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	compare VAR_RESULT, DIR_WEST
+	goto_if_eq OrangeIslands_Trovita_EventScript_SeaEdgeToRoute12
+	compare VAR_RESULT, DIR_NORTH
+	goto_if_eq OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14
+	end

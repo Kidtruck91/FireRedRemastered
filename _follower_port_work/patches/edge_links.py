@@ -10,7 +10,7 @@ EDGES = [
     ('Sunburst', 'top', 'Route_6', 12, (8, 55), 69),
     ('Route_6', 'bottom', 'Sunburst', -12, (20, 67), 1),
     ('Sunburst', 'left', 'Route_7', 20, (0, 63), 63),
-    ('Route_7', 'right', 'Sunburst', -20, (20, 83), 1),
+    ('Route_7', 'right', 'Sunburst', -20, (21, 82), 1),
     ('Mandarin_South', 'bottom', 'Route_9', -22, (30, 65), 2),
     ('Route_9', 'top', 'Mandarin_South', 22, (8, 43), 74),
     ('Mandarin_South', 'left', 'Route_10', -4, (14, 61), 101),
@@ -31,7 +31,7 @@ EDGES = [
     ('Route_13', 'top', 'Kumquat', -8, (20, 67), 58),
     ('Kumquat', 'right', 'Route_14', 6, (6, 49), 2),
     ('Route_14', 'left', 'Kumquat', -6, (12, 55), 70),
-    ('Moro', 'bottom', 'Route_7', 4, (16, 55), 2),
+    ('Moro', 'bottom', 'Route_7', 4, (16, 55), 1),
     ('Route_7', 'top', 'Moro', -4, (20, 59), 54),
     ('Route_17', 'right', 'Route_9', 30, (4, 49), 2),
     ('Route_9', 'left', 'Route_17', -30, (34, 79), 38),
@@ -45,13 +45,21 @@ L = {l['name']: l for l in json.load(open('data/layouts/layouts.json'))['layouts
 for m in sorted({e[0] for e in EDGES}):
     if ONLY and m not in ONLY: continue
     p = 'data/maps/OrangeIslands_%s/map.json' % m; j = json.load(open(p))
+    original_header = json.dumps(j, sort_keys=True)
     l = next(v for v in L.values() if v['id'] == j['layout'])
     W, H = l['width'], l['height']; b = open(l['blockdata_filepath'], 'rb').read()
     tile = lambda x, y: struct.unpack_from('<H', b, (y * W + x) * 2)[0]
     sc = open('data/maps/OrangeIslands_%s/scripts.inc' % m).read()
+    # Corner dispatchers are rebuilt from the edge events below. Keeping one
+    # event per corner avoids table-order priority between two different seas.
+    corner_prefix = 'OrangeIslands_%s_EventScript_SeaCorner_' % m
+    j['coord_events'] = [e for e in j.get('coord_events', []) if not e['script'].startswith(corner_prefix)]
+    sc = '\n\n'.join(blk for blk in sc.split('\n\n') if corner_prefix not in blk).rstrip('\n') + '\n'
+    edge_sides = {}
     for a, side, d, off, (lo, hi), across in EDGES:
         if a != m: continue
         label = 'OrangeIslands_%s_EventScript_SeaEdgeTo%s' % (m, d.replace('_', ''))
+        edge_sides[label] = side
         old = 'OrangeIslands_%s_EventScript_SailTo%s' % (m, d.replace('_', ''))
         j['coord_events'] = [e for e in j.get('coord_events', []) if e['script'] not in (label, old)]
         sc = '\n\n'.join(blk for blk in sc.split('\n\n') if label + '::' not in blk and old + '::' not in blk).rstrip('\n') + '\n'
@@ -74,5 +82,28 @@ for m in sorted({e[0] for e in EDGES}):
             label, add, fixed, across, const(d), 'VAR_0x8004', 'VAR_0x8005',
             label, along, lo, label, label, along, hi, label)
         print(m, side, '->', d, n, 'trigger cells')
+    positions = {}
+    for event in j['coord_events']:
+        if event['script'] in edge_sides:
+            positions.setdefault((event['x'], event['y']), []).append(event)
+    corners = {pos: events for pos, events in positions.items() if len(events) > 1}
+    rewritten = []; emitted = set()
+    directions = {'top': 'DIR_NORTH', 'bottom': 'DIR_SOUTH', 'left': 'DIR_WEST', 'right': 'DIR_EAST'}
+    for event in j['coord_events']:
+        pos = (event['x'], event['y'])
+        if pos not in corners or event['script'] not in edge_sides:
+            rewritten.append(event)
+            continue
+        if pos in emitted:
+            continue
+        emitted.add(pos)
+        label = corner_prefix + '%d_%d' % pos
+        rewritten.append(dict(event, script=label))
+        sc += '\n@ Sea corner: choose the crossed edge from the incoming direction\n%s::\n\tspecialvar VAR_RESULT, GetPlayerFacingDirection\n' % label
+        for choice in corners[pos]:
+            sc += '\tcompare VAR_RESULT, %s\n\tgoto_if_eq %s\n' % (directions[edge_sides[choice['script']]], choice['script'])
+        sc += '\tend\n'
+    j['coord_events'] = rewritten
     open('data/maps/OrangeIslands_%s/scripts.inc' % m, 'w', newline='\n').write(sc)
-    open(p, 'w', newline='\n').write(json.dumps(j, indent=2) + '\n')
+    if json.dumps(j, sort_keys=True) != original_header:
+        open(p, 'w', newline='\n').write(json.dumps(j, indent=2) + '\n')

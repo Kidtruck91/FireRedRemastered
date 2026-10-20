@@ -48,3 +48,12 @@ OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute11_Lo:
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute11_Hi:
 	setvar VAR_0x8004, 55
 	goto OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute11_Go
+
+@ Sea corner: choose the crossed edge from the incoming direction
+OrangeIslands_Kinnow_EventScript_SeaCorner_0_0::
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	compare VAR_RESULT, DIR_WEST
+	goto_if_eq OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8
+	compare VAR_RESULT, DIR_NORTH
+	goto_if_eq OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute11
+	end
