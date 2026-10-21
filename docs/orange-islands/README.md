@@ -1,6 +1,8 @@
-# Orange Islands exterior maps
+# Orange Islands maps
 
-The Orange Islands group contains **36 exteriors**: 11 towns, 11 coasts and 14 regional routes. Open `gMapGroup_OrangeIslands` in Porymap.
+The Orange Islands group contains **45 maps**: 11 island areas, 11 coast maps, 18 regional routes and five additional areas/interiors. Open `gMapGroup_OrangeIslands` in Porymap.
+
+**[Current trigger/collision corrections and validation](trigger-corrections.md)** — applies to the latest 45-map region, including Routes 15–18 and the added interiors. The galleries and design history below predate the subsequent town rebuilds.
 
 **[Current Navel draft: large island, southern village, summit climb and separate north-beach loop](navel/README.md)**
 
