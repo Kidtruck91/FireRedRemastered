@@ -27,7 +27,11 @@
 #include "utf8.h"
 #include "string_parser.h"
 
-AsmFile::AsmFile(std::string filename) : m_filename(filename)
+// An empty include is legal and several maps have one, so every member must be
+// valid on that path too: a half-built AsmFile used to emit a line marker from
+// uninitialized memory ("invalid preprocessing directive #-").
+AsmFile::AsmFile(std::string filename)
+    : m_buffer(nullptr), m_pos(0), m_size(0), m_lineNum(1), m_lineStart(0), m_filename(filename)
 {
     FILE *fp = std::fopen(filename.c_str(), "rb");
 
@@ -41,7 +45,10 @@ AsmFile::AsmFile(std::string filename) : m_filename(filename)
     if (m_size < 0)
         FATAL_ERROR("File size of \"%s\" is less than zero.\n", filename.c_str());
     else if (m_size == 0)
-        return; // Empty file
+    {
+        std::fclose(fp);
+        return; // Empty file: nothing to buffer, members already valid.
+    }
 
     m_buffer = new char[m_size + 1];
 
