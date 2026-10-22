@@ -1,6 +1,18 @@
 # Orange Islands maps
 
-The Orange Islands group contains **45 maps**: 11 island areas, 11 coast maps, 18 regional routes and five additional areas/interiors. Open `gMapGroup_OrangeIslands` in Porymap.
+The region contains **54 maps**. Outdoor maps (islands, coasts, routes) are in `gMapGroup_OrangeIslands`; each island's interiors are in its own `gMapGroup_Orange_<Island>_Interior` group. Open them in Porymap.
+
+## Validating the region
+
+```sh
+python3 -B docs/orange-islands/validate_triggers.py      # current structural check
+python3 -B docs/orange-islands/validate_triggers.py --fixtures   # self-test the checks
+python3 -B docs/orange-islands/validate_maps.py          # reachability and seams
+```
+
+`validate_triggers.py` discovers the region from `data/maps/map_groups.json`, so it covers every map in a `gMapGroup_Orange*` group however it is spelled, and resolves each layout's own tilesets. It reports every finding in one run rather than stopping at the first. `--rom` additionally confirms each map binary is embedded in a built ROM; `--legacy` adds the checks tied to the older Navel/edge-barrier design.
+
+`navel/validate_navel.py` and `water-routes/validate_routes.py` are **historical design checks**. They validate against the plans their `build_*.py` generators produced; the maps have moved on, so they report faults that are really just that older design. They say so when run. Do not run the `build_*.py` generators over current maps.
 
 **[Current trigger/collision corrections and validation](trigger-corrections.md)** — applies to the latest 45-map region, including Routes 15–18 and the added interiors. The galleries and design history below predate the subsequent town rebuilds.
 

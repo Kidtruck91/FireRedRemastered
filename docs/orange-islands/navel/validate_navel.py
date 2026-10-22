@@ -1,4 +1,15 @@
-"""Check the actual Navel blocks, dry routes, reciprocal warps and ROM data."""
+"""Check the actual Navel blocks, dry routes, reciprocal warps and ROM data.
+HISTORICAL DESIGN CHECK -- not part of the current structural validation.
+
+This checks the region against the Navel design that
+build_navel.py produced. The maps have moved on since, so it reports
+faults that are really just that older plan. Keep it for reference when
+reconstructing that design; for the current region run
+
+    python3 -B docs/orange-islands/validate_triggers.py
+
+which discovers maps from map_groups.json and reports every finding in one run.
+"""
 from collections import deque
 from pathlib import Path
 import argparse
@@ -83,4 +94,6 @@ def main():
     if rom is not None:print('Exact Navel town and beach blocks are included in the built ROM.')
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    print('HISTORICAL DESIGN CHECK -- see the module docstring; run validate_triggers.py for the current region.\n')
+    main()

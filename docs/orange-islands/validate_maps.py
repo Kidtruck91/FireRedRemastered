@@ -1,8 +1,10 @@
 """Check Orange Islands exterior data and reachable landmarks (no emulator needed)."""
 from pathlib import Path
 from collections import deque
-import json, struct, sys
+import json, struct, sys, traceback
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from render_maps import tileset_path
 layouts = {l['id']: l for l in json.loads((ROOT/'data/layouts/layouts.json').read_text())['layouts']}
 attrs = []
 for p in ['primary/orange_general', 'secondary/orange_islands']:
@@ -41,65 +43,85 @@ landmarks_path = ROOT/'docs/orange-islands/island_landmarks.json'
 if landmarks_path.exists():
     checks.update({name:(tuple(value[0]), [tuple(g) for g in value[1]], value[2]) for name,value in json.loads(landmarks_path.read_text()).items()})
 data = {}
+problems = []
 for suffix, (start, goals, surf) in checks.items():
     name = 'OrangeIslands_'+suffix
-    header = json.loads((ROOT/'data/maps'/name/'map.json').read_text())
-    l = layouts[header['layout']]; w,h = l['width'],l['height']
-    secondary = {'gTileset_OrangeCoastalTown':'orange_coastal_town', 'gTileset_OrangeIslands':'orange_islands', **{'gTileset_OrangeSevii'+f:'orange_sevii_'+f for f in ('123','45','67')}}[l['secondary_tileset']]
-    pb=(ROOT/'data/tilesets/primary/orange_general/metatile_attributes.bin').read_bytes()
-    sb=(ROOT/'data/tilesets/secondary'/secondary/'metatile_attributes.bin').read_bytes()
-    attrs=list(struct.unpack('<'+'I'*((len(pb)+len(sb))//4),pb+sb))
-    assert (w+15)*(h+14) <= 10240, name+' exceeds engine map buffer'
-    b = (ROOT/l['blockdata_filepath']).read_bytes()
-    assert len(b) == 2*w*h, name+' has wrong block data length'
-    blocks = struct.unpack('<'+'H'*(len(b)//2), b)
-    assert all((v&1023)<len(attrs) for v in blocks), name+' has missing metatiles'
-    if secondary!='orange_islands':
-        for c in header['connections']:
-            neighbor=next(p for p in (ROOT/'data/maps').glob('*/map.json') if json.loads(p.read_text())['id']==c['map'])
-            nh=json.loads(neighbor.read_text());nl=layouts[nh['layout']]
-            if nl['secondary_tileset']==l['secondary_tileset']:continue
-            vertical=c['direction'] in ('up','down')
-            lo=max(0,c['offset']);hi=min(w if vertical else h,c['offset']+(nl['width'] if vertical else nl['height']))
-            cells=((x,y) for y in range(h) for x in range(w) if lo<=(x if vertical else y)<hi and (
-                (c['direction']=='up' and y<7) or (c['direction']=='down' and y>=h-7) or
-                (c['direction']=='left' and x<7) or (c['direction']=='right' and x>=w-7)))
-            assert all(blocks[y*w+x]&1023<736 for x,y in cells), name+': imported metatile visible across a different secondary tileset'
-    if secondary.startswith('orange_sevii_'):
-        assert all(v&0xc00 or attrs[v&1023]&511 in water or v>>12==3 for v in blocks), name+': dry authored path has an abrupt elevation change'
-    assert all(v&0xc00 or not 0x60<=attrs[v&1023]&511<=0x7f for v in blocks), name+': unconfigured walkable warp tile'
-    def walk(x,y):
-        if not (0<=x<w and 0<=y<h): return False
-        v=blocks[y*w+x]
-        return not(v&0xc00) and (surf or attrs[v&1023]&511 not in water)
-    seen={start}; q=deque([start]); assert walk(*start)
-    while q:
-        x,y=q.popleft()
-        for point in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)]:
-            if point not in seen and walk(*point):seen.add(point);q.append(point)
-    for x,y in goals:assert (x,y) in seen, f'{name}: unreachable landmark {x,y}'
-    for event in header['bg_events']:
-        x,y=event['x'],event['y']
-        assert any(p in seen for p in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)]), name+': inaccessible sign'
-    # Forced movement must terminate in calm Surf water, never a wall or a loop.
-    directions={0x50:(1,0),0x51:(-1,0),0x52:(0,-1),0x53:(0,1)}
-    for index,v in enumerate(blocks):
-        if attrs[v&1023]&511 not in directions:continue
-        x,y=index%w,index//w;visited=set()
-        while attrs[blocks[y*w+x]&1023]&511 in directions:
-            assert (x,y) not in visited, name+': current loop'
-            visited.add((x,y));dx,dy=directions[attrs[blocks[y*w+x]&1023]&511]
-            x,y=x+dx,y+dy
-            assert walk(x,y), name+': current hits a wall or map edge'
-        assert attrs[blocks[y*w+x]&1023]&511 in water, name+': current ends on land'
-    data[name]=(header,l,blocks,attrs)
-    print(f'{name}: dimensions, metatiles, {len(goals)} landmarks and {len(header["bg_events"])} signs passed')
+    try:
+        header = json.loads((ROOT/'data/maps'/name/'map.json').read_text())
+        l = layouts[header['layout']]; w,h = l['width'],l['height']
+        # Resolve whatever tilesets the layout actually names, so new or condensed
+        # tilesets do not need a table here.
+        secondary = l['secondary_tileset']
+        pb=(tileset_path(l['primary_tileset'])/'metatile_attributes.bin').read_bytes()
+        sb=(tileset_path(secondary)/'metatile_attributes.bin').read_bytes()
+        attrs=list(struct.unpack('<'+'I'*((len(pb)+len(sb))//4),pb+sb))
+        assert (w+15)*(h+14) <= 10240, name+' exceeds engine map buffer'
+        b = (ROOT/l['blockdata_filepath']).read_bytes()
+        assert len(b) == 2*w*h, name+' has wrong block data length'
+        blocks = struct.unpack('<'+'H'*(len(b)//2), b)
+        assert all((v&1023)<len(attrs) for v in blocks), name+' has missing metatiles'
+        if secondary!='gTileset_OrangeIslands':
+            for c in (header['connections'] or []):
+                neighbor=next(p for p in (ROOT/'data/maps').glob('*/map.json') if json.loads(p.read_text())['id']==c['map'])
+                nh=json.loads(neighbor.read_text());nl=layouts[nh['layout']]
+                if nl['secondary_tileset']==l['secondary_tileset']:continue
+                vertical=c['direction'] in ('up','down')
+                lo=max(0,c['offset']);hi=min(w if vertical else h,c['offset']+(nl['width'] if vertical else nl['height']))
+                cells=((x,y) for y in range(h) for x in range(w) if lo<=(x if vertical else y)<hi and (
+                    (c['direction']=='up' and y<7) or (c['direction']=='down' and y>=h-7) or
+                    (c['direction']=='left' and x<7) or (c['direction']=='right' and x>=w-7)))
+                assert all(blocks[y*w+x]&1023<736 for x,y in cells), name+': imported metatile visible across a different secondary tileset'
+        if secondary.startswith('orange_sevii_'):
+            assert all(v&0xc00 or attrs[v&1023]&511 in water or v>>12==3 for v in blocks), name+': dry authored path has an abrupt elevation change'
+        assert all(v&0xc00 or not 0x60<=attrs[v&1023]&511<=0x7f for v in blocks), name+': unconfigured walkable warp tile'
+        def walk(x,y):
+            if not (0<=x<w and 0<=y<h): return False
+            v=blocks[y*w+x]
+            return not(v&0xc00) and (surf or attrs[v&1023]&511 not in water)
+        assert walk(*start), ('%s: flood-fill start %s is no longer walkable; update the '
+                              'landmark fixture for the current terrain'%(name,start))
+        seen={start}; q=deque([start])
+        while q:
+            x,y=q.popleft()
+            for point in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)]:
+                if point not in seen and walk(*point):seen.add(point);q.append(point)
+        for x,y in goals:assert (x,y) in seen, f'{name}: unreachable landmark {x,y}'
+        for event in header['bg_events']:
+            x,y=event['x'],event['y']
+            assert any(p in seen for p in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)]), name+': inaccessible sign'
+        # Forced movement must terminate in calm Surf water, never a wall or a loop.
+        directions={0x50:(1,0),0x51:(-1,0),0x52:(0,-1),0x53:(0,1)}
+        for index,v in enumerate(blocks):
+            if attrs[v&1023]&511 not in directions:continue
+            x,y=index%w,index//w;visited=set()
+            while attrs[blocks[y*w+x]&1023]&511 in directions:
+                assert (x,y) not in visited, name+': current loop'
+                visited.add((x,y));dx,dy=directions[attrs[blocks[y*w+x]&1023]&511]
+                x,y=x+dx,y+dy
+                assert walk(x,y), name+': current hits a wall or map edge'
+            assert attrs[blocks[y*w+x]&1023]&511 in water, name+': current ends on land'
+        data[name]=(header,l,blocks,attrs)
+        print(f'{name}: dimensions, metatiles, {len(goals)} landmarks and {len(header["bg_events"])} signs passed')
+    except AssertionError as problem:
+        problems.append(str(problem) or '%s: failed check at line %d: %s'
+                        %(name, traceback.extract_tb(sys.exc_info()[2])[-1].lineno,
+                          (traceback.extract_tb(sys.exc_info()[2])[-1].line or '').strip()[:90]))
+    except Exception as problem:
+        problems.append('%s: %s: %s' % (name, type(problem).__name__, problem))
+
 group=json.loads((ROOT/'data/maps/map_groups.json').read_text())['gMapGroup_OrangeIslands']
-assert set(group)==set(data), 'Orange exterior validation is missing a registered map'
+# Coverage is about which maps this checker has landmarks for, not which ones
+# happened to pass; a map that failed above is already reported on its own.
+attempted={'OrangeIslands_'+suffix for suffix in checks}
+uncovered=sorted(set(group)-attempted)
+if uncovered:
+    problems.append('no landmark coverage for %d of %d exterior map(s): %s'
+                    %(len(uncovered),len(group),' '.join(uncovered)))
 for name,(header,l,blocks,attrs) in data.items():
+  try:
     # Same-side connections must not compete for the same coordinate range.
     ranges=[]
-    for connection in header['connections']:
+    for connection in (header['connections'] or []):
         destination=next(n for n in data if data[n][0]['id']==connection['map'])
         dl=data[destination][1]
         limit=l['width'] if connection['direction'] in ['up','down'] else l['height']
@@ -109,7 +131,7 @@ for name,(header,l,blocks,attrs) in data.items():
             if direction==connection['direction']:
                 assert max(span[0],other_span[0])>=min(span[1],other_span[1]), name+': overlapping same-side connections'
         ranges.append((connection['direction'],span))
-    for c in header['connections']:
+    for c in (header['connections'] or []):
         other=next(n for n in data if data[n][0]['id']==c['map'])
         oh,ol,ob,other_attrs=data[other]
         opposite={'up':'down','down':'up','left':'right','right':'left'}[c['direction']]
@@ -129,6 +151,16 @@ for name,(header,l,blocks,attrs) in data.items():
                 assert v==ov, f'{name}: mismatched walkable seam at {t}'
                 matched+=1
         assert matched>=3, name+': connection has no usable land crossing'
+  except AssertionError as problem:
+    problems.append(str(problem) or '%s: connection check failed at line %d: %s'
+                    %(name, traceback.extract_tb(sys.exc_info()[2])[-1].lineno,
+                      (traceback.extract_tb(sys.exc_info()[2])[-1].line or '').strip()[:90]))
+  except Exception as problem:
+    problems.append('%s: %s: %s'%(name,type(problem).__name__,problem))
+if problems:
+    print('\n%d problem(s):'%len(problems))
+    for problem in problems: print('  '+problem)
+    sys.exit(1)
 print('All directional connections have reciprocal offsets and matching walkable seams.')
 
 if "--rom" in sys.argv:

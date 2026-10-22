@@ -1,4 +1,15 @@
-"""Check painted route data, current outcomes, maze gates and existing seams."""
+"""Check painted route data, current outcomes, maze gates and existing seams.
+HISTORICAL DESIGN CHECK -- not part of the current structural validation.
+
+This checks the region against the water-route design that
+build_routes.py produced. The maps have moved on since, so it reports
+faults that are really just that older plan. Keep it for reference when
+reconstructing that design; for the current region run
+
+    python3 -B docs/orange-islands/validate_triggers.py
+
+which discovers maps from map_groups.json and reports every finding in one run.
+"""
 from collections import Counter,deque
 from pathlib import Path
 import argparse
@@ -180,4 +191,6 @@ def main():
     if rom is not None:print('Exact current route and connected beach binaries are present in the ROM.')
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    print('HISTORICAL DESIGN CHECK -- see the module docstring; run validate_triggers.py for the current region.\n')
+    main()
