@@ -46,40 +46,14 @@ OrangeIslands_Mikan_Gym_EventScript_NoRoomForTM18::
 	release
 	end
 
-@ ---------------------------------------------------------------- the pockets
-@ The sorting current drops you here when you pick a channel that does not line up
-@ with the chimney. One of CISSY's swimmers is waiting; afterwards the undertow
-@ carries you back to the dock to choose again.
-OrangeIslands_Mikan_Gym_EventScript_PocketLeft::
-	lockall
-	goto_if_defeated TRAINER_SWIMMER_M_MARCO, OrangeIslands_Mikan_Gym_EventScript_SweptBack
-	msgbox OrangeIslands_Mikan_Gym_Text_MarcoIntro
-	trainerbattle_no_intro TRAINER_SWIMMER_M_MARCO, OrangeIslands_Mikan_Gym_Text_MarcoDefeat
-	goto OrangeIslands_Mikan_Gym_EventScript_SweptBack
-	end
-
-OrangeIslands_Mikan_Gym_EventScript_PocketRight::
-	lockall
-	goto_if_defeated TRAINER_SWIMMER_F_CORAL, OrangeIslands_Mikan_Gym_EventScript_SweptBack
-	msgbox OrangeIslands_Mikan_Gym_Text_CoralIntro
-	trainerbattle_no_intro TRAINER_SWIMMER_F_CORAL, OrangeIslands_Mikan_Gym_Text_CoralDefeat
-	goto OrangeIslands_Mikan_Gym_EventScript_SweptBack
-	end
-
-OrangeIslands_Mikan_Gym_EventScript_SweptBack::
-	msgbox OrangeIslands_Mikan_Gym_Text_SweptBack
-	closemessage
-	warpsilent MAP_ORANGE_ISLANDS_MIKAN_GYM, 12, 17
-	waitstate
-	releaseall
-	end
-
 OrangeIslands_Mikan_Gym_EventScript_Marco::
-	msgbox OrangeIslands_Mikan_Gym_Text_MarcoTalk, MSGBOX_NPC
+	trainerbattle_single TRAINER_SWIMMER_M_MARCO, OrangeIslands_Mikan_Gym_Text_MarcoIntro, OrangeIslands_Mikan_Gym_Text_MarcoDefeat
+	msgbox OrangeIslands_Mikan_Gym_Text_MarcoTalk, MSGBOX_AUTOCLOSE
 	end
 
 OrangeIslands_Mikan_Gym_EventScript_Coral::
-	msgbox OrangeIslands_Mikan_Gym_Text_CoralTalk, MSGBOX_NPC
+	trainerbattle_single TRAINER_SWIMMER_F_CORAL, OrangeIslands_Mikan_Gym_Text_CoralIntro, OrangeIslands_Mikan_Gym_Text_CoralDefeat
+	msgbox OrangeIslands_Mikan_Gym_Text_CoralTalk, MSGBOX_AUTOCLOSE
 	end
 
 OrangeIslands_Mikan_Gym_EventScript_GymGuy::
@@ -155,26 +129,22 @@ OrangeIslands_Mikan_Gym_Text_CissyPostBattle::
 	.string "The next gym is on NAVEL ISLAND,\n"
 	.string "north of here. Good luck!$"
 
-OrangeIslands_Mikan_Gym_Text_SweptBack::
-	.string "The undertow catches you and\n"
-	.string "drags you back to the dock!$"
-
 OrangeIslands_Mikan_Gym_Text_MarcoIntro::
-	.string "MARCO: Wrong channel! The cross\n"
-	.string "current always ends up here.\p"
-	.string "And so do I.$"
+	.string "MARCO: You got this far up the\n"
+	.string "pool? Then you can spare a\l"
+	.string "battle!$"
 
 OrangeIslands_Mikan_Gym_Text_MarcoDefeat::
 	.string "Gah! Washed out!$"
 
 OrangeIslands_Mikan_Gym_Text_MarcoTalk::
-	.string "Four channels feed this pool, and\n"
-	.string "three of them wash out here.$"
+	.string "Pick your lane at the top and keep\n"
+	.string "count. Only one of them goes up.$"
 
 OrangeIslands_Mikan_Gym_Text_CoralIntro::
-	.string "CORAL: The current carried you to\n"
-	.string "my corner. Rain or shine, I'm\l"
-	.string "ready!$"
+	.string "CORAL: Nobody crosses my lane\n"
+	.string "without a battle. Rain or shine,\l"
+	.string "I'm ready!$"
 
 OrangeIslands_Mikan_Gym_Text_CoralDefeat::
 	.string "I'm all washed up!$"
@@ -188,14 +158,14 @@ OrangeIslands_Mikan_Gym_Text_GymGuyAdvice::
 	.string "BADGE?\p"
 	.string "You can't walk to CISSY. You SURF,\n"
 	.string "and the pool does the steering.\p"
-	.string "Four channels run north out of\n"
-	.string "this bay. They all feed one cross\l"
-	.string "current up top.\p"
-	.string "Only one of them lines up with the\n"
-	.string "gap that leads to her. The rest\l"
-	.string "wash you into a corner.\p"
-	.string "Count the channels from the left\n"
-	.string "and remember which one you tried!\p"
+	.string "The bottom of the pool is a maze.\n"
+	.string "Ride it round and it sets you on\l"
+	.string "the rock that gets you up top.\p"
+	.string "Then you pick a lane and swim\n"
+	.string "north. Only the middle one carries\l"
+	.string "you up to CISSY.\p"
+	.string "Pick wrong and the outflow takes\n"
+	.string "you all the way back down here!\p"
 	.string "Oh, and CISSY battles in the rain.\n"
 	.string "GRASS types are a safe bet!$"
 

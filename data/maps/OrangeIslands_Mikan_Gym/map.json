@@ -32,28 +32,28 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
-      "x": 1,
-      "y": 10,
+      "x": 3,
+      "y": 9,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "OrangeIslands_Mikan_Gym_EventScript_Marco",
       "flag": "0"
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER",
-      "x": 22,
-      "y": 10,
+      "x": 20,
+      "y": 18,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "5",
       "script": "OrangeIslands_Mikan_Gym_EventScript_Coral",
       "flag": "0"
     },
@@ -95,84 +95,11 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 1,
-      "y": 9,
-      "elevation": 0,
-      "var": "VAR_TEMP_1",
-      "var_value": "0",
-      "script": "OrangeIslands_Mikan_Gym_EventScript_PocketLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 1,
-      "y": 10,
-      "elevation": 0,
-      "var": "VAR_TEMP_1",
-      "var_value": "0",
-      "script": "OrangeIslands_Mikan_Gym_EventScript_PocketLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 2,
-      "y": 9,
-      "elevation": 0,
-      "var": "VAR_TEMP_1",
-      "var_value": "0",
-      "script": "OrangeIslands_Mikan_Gym_EventScript_PocketLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 2,
-      "y": 10,
-      "elevation": 0,
-      "var": "VAR_TEMP_1",
-      "var_value": "0",
-      "script": "OrangeIslands_Mikan_Gym_EventScript_PocketLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 21,
-      "y": 9,
-      "elevation": 0,
-      "var": "VAR_TEMP_1",
-      "var_value": "0",
-      "script": "OrangeIslands_Mikan_Gym_EventScript_PocketRight"
-    },
-    {
-      "type": "trigger",
-      "x": 21,
-      "y": 10,
-      "elevation": 0,
-      "var": "VAR_TEMP_1",
-      "var_value": "0",
-      "script": "OrangeIslands_Mikan_Gym_EventScript_PocketRight"
-    },
-    {
-      "type": "trigger",
-      "x": 22,
-      "y": 9,
-      "elevation": 0,
-      "var": "VAR_TEMP_1",
-      "var_value": "0",
-      "script": "OrangeIslands_Mikan_Gym_EventScript_PocketRight"
-    },
-    {
-      "type": "trigger",
-      "x": 22,
-      "y": 10,
-      "elevation": 0,
-      "var": "VAR_TEMP_1",
-      "var_value": "0",
-      "script": "OrangeIslands_Mikan_Gym_EventScript_PocketRight"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",
-      "x": 8,
+      "x": 5,
       "y": 31,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
@@ -180,7 +107,7 @@
     },
     {
       "type": "sign",
-      "x": 14,
+      "x": 17,
       "y": 31,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
