@@ -3177,6 +3177,13 @@ static void Cmd_jumpiftype(void)
 // defeated Pokemon's full EXP (participants keep their normal share).
 #define EXP_ALL_PERCENT 50
 
+// EXP. ALL: Pokemon that only receive the shared slice are not announced one by one.
+// Cmd_getexp runs once per fainted opponent and walks the party, so these are reset at
+// the start of that walk and reported when it finishes.
+static u8 sExpAllQuietCount;
+static u32 sExpAllQuietExp;
+static bool8 sExpAllQuietMixed;
+
 static void Cmd_getexp(void)
 {
     u16 item;
@@ -3256,6 +3263,9 @@ static void Cmd_getexp(void)
                 if (gExpAllExp == 0)
                     gExpAllExp = 1;
             }
+            sExpAllQuietCount = 0;
+            sExpAllQuietExp = 0;
+            sExpAllQuietMixed = FALSE;
 
             gBattleScripting.getexpState++;
             gBattleStruct->expGetterMonId = 0;
@@ -3348,12 +3358,29 @@ static void Cmd_getexp(void)
                         gBattleStruct->expGetterBattlerId = 0;
                     }
 
-                    PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBattlerId, gBattleStruct->expGetterMonId);
-                    // buffer 'gained' or 'gained a boosted'
-                    PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
-                    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 5, gBattleMoveDamage);
+                    // With EXP. ALL on, a Pokemon that was not sent out and is not holding
+                    // an EXP. SHARE is only getting the shared slice. Announcing each of
+                    // those is a wall of text, so they are counted here and reported in a
+                    // single line once the whole party has been walked (state 7).
+                    if (gExpAllExp != 0
+                     && !(gBattleStruct->sentInPokes & 1)
+                     && holdEffect != HOLD_EFFECT_EXP_SHARE)
+                    {
+                        if (sExpAllQuietCount == 0)
+                            sExpAllQuietExp = gBattleMoveDamage;
+                        else if (sExpAllQuietExp != gBattleMoveDamage)
+                            sExpAllQuietMixed = TRUE; // a Lucky Egg, a traded mon, or the cap
+                        sExpAllQuietCount++;
+                    }
+                    else
+                    {
+                        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBattlerId, gBattleStruct->expGetterMonId);
+                        // buffer 'gained' or 'gained a boosted'
+                        PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
+                        PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 5, gBattleMoveDamage);
 
-                    PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
+                        PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
+                    }
                     MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
                 }
                 gBattleStruct->sentInPokes >>= 1;
@@ -3443,7 +3470,21 @@ static void Cmd_getexp(void)
             if (gBattleStruct->expGetterMonId < PARTY_SIZE)
                 gBattleScripting.getexpState = 2; // loop again
             else
-                gBattleScripting.getexpState = 6; // we're done
+                gBattleScripting.getexpState = 7; // report the EXP. ALL share, then finish
+        }
+        break;
+    case 7: // one line for everyone who only got the EXP. ALL share
+        if (gBattleControllerExecFlags == 0)
+        {
+            if (sExpAllQuietCount != 0)
+            {
+                PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, sExpAllQuietExp);
+                PrepareStringBattle(sExpAllQuietMixed ? STRINGID_PARTYGAINEDEXPNONUM
+                                                      : STRINGID_PARTYGAINEDEXP,
+                                    gBattleStruct->expGetterBattlerId);
+                sExpAllQuietCount = 0;
+            }
+            gBattleScripting.getexpState = 6;
         }
         break;
     case 6: // increment instruction
