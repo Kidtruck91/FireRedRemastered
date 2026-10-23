@@ -150,6 +150,7 @@ void NewGameInitData(void)
     SetAllRenewableItemFlags();
     WarpToPlayersRoom();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
+    Nuzlocke_ApplyPendingChoice();
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
 }

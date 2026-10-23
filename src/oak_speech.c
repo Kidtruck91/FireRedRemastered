@@ -20,6 +20,7 @@
 #include "event_data.h"
 #include "constants/player_palettes.h"
 #include "level_cap.h"
+#include "nuzlocke.h"
 #define INTRO_SPECIES SPECIES_NIDORAN_F
 
 enum
@@ -1373,17 +1374,14 @@ static void Task_NewGameOakSpeech_ChooseNuzlocke(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     s8 input = Menu_ProcessInputNoWrapAround();
-    FlagClear(FLAG_NUZLOCKE);
     FlagClear(FLAG_NUZLOCKE_FIN);
     switch (input)
     {
         case 0: // YES
-            FlagSet(FLAG_NUZLOCKE);
-            SetLevelCapTo();
-
+            Nuzlocke_SetPendingChoice(TRUE);
             break;
         case 1: // NO
-            SetLevelCapTo();
+            Nuzlocke_SetPendingChoice(FALSE);
             break;
         case MENU_B_PRESSED:
         case MENU_NOTHING_CHOSEN:

@@ -561,7 +561,7 @@
 #define FLAG_ORANGE_LEAGUE_CHAMPION   0x21A // beat Drake in Pummelo Stadium
 #define FLAG_GOT_SUNKIST_TICKET       0x21B // from Prof. Oak after the Sevii Islands
 #define FLAG_GOT_GS_BALL              0x21C // from Drake; the Valencia ferry home runs
-#define FLAG_0x21D               0x21D
+#define FLAG_LEVEL_CAP           0x21D // level caps on (Options); Oak's intro turns it on with Nuzlocke
 #define FLAG_0x21E               0x21E
 #define FLAG_0x21F               0x21F
 #define FLAG_0x220               0x220

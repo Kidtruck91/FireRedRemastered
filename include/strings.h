@@ -934,6 +934,7 @@ extern const u8 gText_BattleStyleSet[];
 extern const u8 gText_NuzlockeOn[];
 extern const u8 gText_NuzlockeOff[];
 extern const u8 gText_NuzlockeMode[];
+extern const u8 gText_LevelCapMode[];
 extern const u8 gText_PhysSpecSplit[];
 extern const u8 gText_ExpAll[];
 extern const u8 gText_OrangeTriad_ChooseOne[];
@@ -1564,6 +1565,8 @@ extern const u8 gText_PokeSum_EggOrigin_Trade[];
 extern const u8 gText_WelcomeBattleRoom[];
 extern const u8 gText_PreparingBattle[];
 extern const u8 gText_ComeBackLater[];
+extern const u8 gText_NurseJoy_Text_Ready[];
+extern const u8 gText_NurseJoy_Text_Maybe[];
 extern const u8 gText_NurseJoy_Text_BattleIntro[];
 extern const u8 gText_NurseJoy_Text_BattleDefeat[];
 #endif //GUARD_STRINGS_H

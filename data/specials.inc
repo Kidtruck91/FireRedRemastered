@@ -340,6 +340,7 @@ gSpecials::
 	def_special IsSelectedMonEgg
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
+	def_special SetDynamicWarpToPlayerPosition
 	def_special LoadPlayerBag
 	def_special Script_FadeOutMapMusic
 	def_special NullFieldSpecial

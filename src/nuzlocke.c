@@ -38,6 +38,39 @@ bool8 Nuzlocke_IsActive(void)
     return FlagGet(FLAG_NUZLOCKE);
 }
 
+// Oak asks about the challenge during the new-game intro, which runs before
+// CB2_NewGame -> NewGameInitData() clears every flag -- so a flag set during the
+// intro was wiped immediately and the option always came out OFF. Remember the
+// answer here instead (plain statics, not the save block, so the reset cannot
+// touch them) and apply it once the new save has been initialized.
+static bool8 sPendingChoice;
+static bool8 sHasPendingChoice;
+
+void Nuzlocke_SetPendingChoice(bool8 on)
+{
+    sPendingChoice = on;
+    sHasPendingChoice = TRUE;
+}
+
+void Nuzlocke_ApplyPendingChoice(void)
+{
+    if (!sHasPendingChoice)
+        return;
+    sHasPendingChoice = FALSE;
+
+    if (sPendingChoice)
+    {
+        FlagSet(FLAG_NUZLOCKE);
+        FlagSet(FLAG_LEVEL_CAP);   // taking the challenge turns the caps on as well
+    }
+    else
+    {
+        FlagClear(FLAG_NUZLOCKE);
+        FlagClear(FLAG_LEVEL_CAP);
+    }
+    gSaveBlock2Ptr->enableNuzlocke = FlagGet(FLAG_NUZLOCKE);
+}
+
 // ---------------------------------------------------------------------------
 // Fainted = dead
 // ---------------------------------------------------------------------------

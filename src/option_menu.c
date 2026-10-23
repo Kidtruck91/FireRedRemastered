@@ -25,6 +25,7 @@ enum
     MENUITEM_BUTTONMODE,
     MENUITEM_FRAMETYPE,
     MENUITEM_NUZLOCKE,
+    MENUITEM_LEVELCAP,
     MENUITEM_PHYS_SPEC_SPLIT,
     MENUITEM_EXP_ALL,
     MENUITEM_CANCEL,
@@ -136,7 +137,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 2, 2, 2, 0};
+static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 2, 2, 2, 2, 0};
 
 // Only this many rows fit in the window; the list scrolls past them.
 #define VISIBLE_ROWS 7
@@ -150,6 +151,7 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
     [MENUITEM_FRAMETYPE]   = gText_Frame,
     [MENUITEM_NUZLOCKE]    = gText_NuzlockeMode,
+    [MENUITEM_LEVELCAP]    = gText_LevelCapMode,
     [MENUITEM_PHYS_SPEC_SPLIT] = gText_PhysSpecSplit,
     [MENUITEM_EXP_ALL]     = gText_ExpAll,
 
@@ -232,6 +234,7 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->option[MENUITEM_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
     sOptionMenuPtr->option[MENUITEM_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
     sOptionMenuPtr->option[MENUITEM_NUZLOCKE] = FlagGet(FLAG_NUZLOCKE) ? 0 : 1;
+    sOptionMenuPtr->option[MENUITEM_LEVELCAP] = FlagGet(FLAG_LEVEL_CAP) ? 0 : 1;
     sOptionMenuPtr->option[MENUITEM_PHYS_SPEC_SPLIT] = FlagGet(FLAG_PHYS_SPEC_SPLIT) ? 0 : 1;
     sOptionMenuPtr->option[MENUITEM_EXP_ALL] = FlagGet(FLAG_EXP_ALL) ? 0 : 1;
 
@@ -547,6 +550,7 @@ static void BufferOptionMenuString(u8 selection)
         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, str);
         break;
     case MENUITEM_NUZLOCKE:
+    case MENUITEM_LEVELCAP:
     case MENUITEM_PHYS_SPEC_SPLIT:
     case MENUITEM_EXP_ALL:
         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sNuzlockeOptions[sOptionMenuPtr->option[selection]]);
@@ -574,6 +578,10 @@ static void CloseAndSaveOptionMenu(u8 taskId)
     else
         FlagClear(FLAG_NUZLOCKE);
     gSaveBlock2Ptr->enableNuzlocke = FlagGet(FLAG_NUZLOCKE);
+    if (sOptionMenuPtr->option[MENUITEM_LEVELCAP] == 0)
+        FlagSet(FLAG_LEVEL_CAP);
+    else
+        FlagClear(FLAG_LEVEL_CAP);
     if (sOptionMenuPtr->option[MENUITEM_PHYS_SPEC_SPLIT] == 0)
         FlagSet(FLAG_PHYS_SPEC_SPLIT);
     else

@@ -868,6 +868,7 @@ const u8 gText_BattleScene[] = _("BATTLE SCENE");
 const u8 gText_BattleStyle[] = _("BATTLE STYLE");
 
 const u8 gText_NuzlockeMode[] = _("NUZLOCKE MODE");
+const u8 gText_LevelCapMode[] = _("LEVEL CAP");
 const u8 gText_NuzlockeAlreadyEncountered[] = _("Your encounter here is used.\nThrow it anyway?");
 const u8 gText_NuzlockeOn[] = _("ON");
 const u8 gText_NuzlockeOff[] = _("OFF");
@@ -1351,5 +1352,7 @@ const u8 gText_Receive[] = _("RECEIVE");
 const u8 gText_Send[] = _("SEND");
 const u8 gText_Toss[] = _("TOSS");
 const u8 gText_DelAllCancelOk[] = _("DEL. ALL{CLEAR_TO 0x57}CANCEL{CLEAR_TO 0xA4}OK");
+const u8 gText_NurseJoy_Text_Ready[] = _("NURSE JOY: Ready for a round?");
+const u8 gText_NurseJoy_Text_Maybe[] = _("No problem. Take the seat whenever\nyou are ready.");
 const u8 gText_NurseJoy_Text_BattleIntro[] = _("Greetings!\nHope you are prepared!");
 const u8 gText_NurseJoy_Text_BattleDefeat[] = _("Fantastic!\nHope I was able to help!");

@@ -332,6 +332,7 @@ NurseJoyBattleRoom_EventScript_StartBattle::
     special HealPlayerParty
     special SavePlayerParty
     special LoadPlayerBag
+    special SetDynamicWarpToPlayerPosition
     warp MAP_BATTLE_COLOSSEUM_2P, 6, 8
     waitstate
     end

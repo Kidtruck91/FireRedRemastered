@@ -5,6 +5,10 @@
 
 bool8 Nuzlocke_IsActive(void);
 
+// Oak's intro answer, held across NewGameInitData() and applied after it.
+void Nuzlocke_SetPendingChoice(bool8 on);
+void Nuzlocke_ApplyPendingChoice(void);
+
 // "Fainted = dead": a Pokemon that faints is marked dead and can't be healed or revived.
 bool8 Nuzlocke_IsMonDead(struct Pokemon *mon);
 bool8 Nuzlocke_IsBoxMonDead(struct BoxPokemon *boxMon);

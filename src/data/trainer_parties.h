@@ -14800,42 +14800,42 @@ static const struct TrainerMonItemCustomMoves sParty_NurseJoy[] = {
         .lvl = 50,
         .species = SPECIES_CHANSEY,
         .heldItem = ITEM_NONE,
-        .moves = {MOVE_HEAL_BELL, MOVE_MEMENTO, MOVE_SWALLOW, MOVE_SPIT_UP},
+        .moves = {MOVE_MEMENTO, MOVE_SWAGGER, MOVE_NONE, MOVE_NONE},
     },
     {
         .iv = 130,
         .lvl = 50,
         .species = SPECIES_CHANSEY,
         .heldItem = ITEM_NONE,
-        .moves = {MOVE_HEAL_BELL, MOVE_MEMENTO, MOVE_SWALLOW, MOVE_SPIT_UP},
+        .moves = {MOVE_MEMENTO, MOVE_SWAGGER, MOVE_NONE, MOVE_NONE},
     },
     {
         .iv = 130,
         .lvl = 50,
         .species = SPECIES_CHANSEY,
         .heldItem = ITEM_NONE,
-        .moves = {MOVE_HEAL_BELL, MOVE_MEMENTO, MOVE_SWALLOW, MOVE_SPIT_UP},
+        .moves = {MOVE_MEMENTO, MOVE_SWAGGER, MOVE_NONE, MOVE_NONE},
     },
     {
         .iv = 130,
         .lvl = 50,
         .species = SPECIES_CHANSEY,
         .heldItem = ITEM_NONE,
-        .moves = {MOVE_HEAL_BELL, MOVE_MEMENTO, MOVE_SWALLOW, MOVE_SPIT_UP},
+        .moves = {MOVE_MEMENTO, MOVE_SWAGGER, MOVE_NONE, MOVE_NONE},
     },
     {
         .iv = 130,
         .lvl = 50,
         .species = SPECIES_CHANSEY,
         .heldItem = ITEM_NONE,
-        .moves = {MOVE_HEAL_BELL, MOVE_MEMENTO, MOVE_SWALLOW, MOVE_SPIT_UP},
+        .moves = {MOVE_MEMENTO, MOVE_SWAGGER, MOVE_NONE, MOVE_NONE},
     },
     {
         .iv = 130,
         .lvl = 50,
         .species = SPECIES_CHANSEY,
         .heldItem = ITEM_NONE,
-        .moves = {MOVE_HEAL_BELL, MOVE_MEMENTO, MOVE_SWALLOW, MOVE_SPIT_UP},
+        .moves = {MOVE_MEMENTO, MOVE_SWAGGER, MOVE_NONE, MOVE_NONE},
     }
 };
 

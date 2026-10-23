@@ -2551,3 +2551,16 @@ static void Task_WingFlapSound(u8 taskId)
     if (data[0] == gSpecialVar_0x8004 - 1)
         DestroyTask(taskId);
 }
+
+// The Training Room reuses the link colosseum, whose two exit tiles are dynamic
+// warps (MAP_DYNAMIC/WARP_ID_DYNAMIC). The link path fills that destination in via
+// SetCableClubWarp, which reads the warp event under the player -- but the Training
+// Room is entered by talking to the attendant, standing on ordinary floor, so there
+// is no warp event to read and the exits led nowhere. Record where the player is
+// standing instead, so walking out puts them back in front of the attendant.
+void SetDynamicWarpToPlayerPosition(void)
+{
+    SetDynamicWarpWithCoords(0, gSaveBlock1Ptr->location.mapGroup,
+                             gSaveBlock1Ptr->location.mapNum, WARP_ID_NONE,
+                             gSaveBlock1Ptr->pos.x, gSaveBlock1Ptr->pos.y);
+}
