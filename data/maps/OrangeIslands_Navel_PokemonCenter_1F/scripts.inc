@@ -1,0 +1,15 @@
+OrangeIslands_Navel_PokemonCenter_1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, OrangeIslands_Navel_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+OrangeIslands_Navel_PokemonCenter_1F_OnTransition::
+	setrespawn SPAWN_ORANGE_NAVEL
+	end
+
+OrangeIslands_Navel_PokemonCenter_1F_EventScript_Nurse::
+	lock
+	faceplayer
+	call EventScript_PkmnCenterNurse
+	release
+	end

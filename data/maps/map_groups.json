@@ -63,7 +63,9 @@
     "gMapGroup_Orange_Kumquat_Interior",
     "gMapGroup_Orange_Pummelo_Interior",
     "gMapGroup_Orange_Sunburst_Interior",
-    "gMapGroup_Orange_Moro_Interior"
+    "gMapGroup_Orange_Moro_Interior",
+    "gMapGroup_Orange_Kinnow_Interior",
+    "gMapGroup_Orange_Mandarin_South_Interior"
   ],
   "gMapGroup_Link": [
     "BattleColosseum_2P",
@@ -827,32 +829,54 @@
     "OrangeIslands_Route_18"
   ],
   "gMapGroup_Orange_Valencia_Interior": [
-    "OrangeIslands_Valencia_IvysLab"
+    "OrangeIslands_Valencia_IvysLab",
+    "OrangeIslands_Valencia_PokemonCenter_1F",
+    "OrangeIslands_Valencia_PokemonCenter_2F"
   ],
   "gMapGroup_Orange_Mikan_Interior": [
-    "OrangeIslands_Mikan_Gym"
+    "OrangeIslands_Mikan_Gym",
+    "OrangeIslands_Mikan_PokemonCenter_1F",
+    "OrangeIslands_Mikan_PokemonCenter_2F"
   ],
   "gMapGroup_Orange_Navel_Interior": [
-    "OrangeIslands_Navel_Gym"
+    "OrangeIslands_Navel_Gym",
+    "OrangeIslands_Navel_PokemonCenter_1F",
+    "OrangeIslands_Navel_PokemonCenter_2F"
   ],
   "gMapGroup_Orange_Trovita_Interior": [
-    "OrangeIslands_Trovita_Gym"
+    "OrangeIslands_Trovita_Gym",
+    "OrangeIslands_Trovita_PokemonCenter_1F",
+    "OrangeIslands_Trovita_PokemonCenter_2F"
   ],
   "gMapGroup_Orange_Kumquat_Interior": [
-    "OrangeIslands_Kumquat_Gym"
+    "OrangeIslands_Kumquat_Gym",
+    "OrangeIslands_Kumquat_PokemonCenter_1F",
+    "OrangeIslands_Kumquat_PokemonCenter_2F"
   ],
   "gMapGroup_Orange_Pummelo_Interior": [
     "OrangeIslands_Pummelo_Stadium",
     "OrangeIslands_Pummelo_Cave",
-    "OrangeIslands_Pummelo_Cave2"
+    "OrangeIslands_Pummelo_Cave2",
+    "OrangeIslands_Pummelo_PokemonCenter_1F",
+    "OrangeIslands_Pummelo_PokemonCenter_2F"
   ],
   "gMapGroup_Orange_Sunburst_Interior": [
     "OrangeIslands_Sunburst_Cave",
     "OrangeIslands_Sunburst_Cave_2F",
     "OrangeIsland_Sunburst_Cave_3F",
-    "OrangeIsland_Pummelo_Cave_2F"
+    "OrangeIsland_Pummelo_Cave_2F",
+    "OrangeIslands_Sunburst_PokemonCenter_1F",
+    "OrangeIslands_Sunburst_PokemonCenter_2F"
   ],
   "gMapGroup_Orange_Moro_Interior": [
     "OrangeIslands_Moro_GhostShip"
+  ],
+  "gMapGroup_Orange_Kinnow_Interior": [
+    "OrangeIslands_Kinnow_PokemonCenter_1F",
+    "OrangeIslands_Kinnow_PokemonCenter_2F"
+  ],
+  "gMapGroup_Orange_Mandarin_South_Interior": [
+    "OrangeIslands_Mandarin_South_PokemonCenter_1F",
+    "OrangeIslands_Mandarin_South_PokemonCenter_2F"
   ]
 }

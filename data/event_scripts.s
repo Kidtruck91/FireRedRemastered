@@ -2089,3 +2089,57 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Pummelo_Cave2/scripts.inc"
 	.include "data/maps/OrangeIslands_Pummelo_Cave2/text.inc"
+
+	.include "data/maps/OrangeIslands_Valencia_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia_PokemonCenter_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Valencia_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia_PokemonCenter_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Mikan_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Mikan_PokemonCenter_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Mikan_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Mikan_PokemonCenter_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Navel_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Navel_PokemonCenter_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Navel_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Navel_PokemonCenter_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Trovita_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_PokemonCenter_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Trovita_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_PokemonCenter_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Sunburst_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Sunburst_PokemonCenter_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Sunburst_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Sunburst_PokemonCenter_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Kinnow_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Kinnow_PokemonCenter_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Kinnow_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Kinnow_PokemonCenter_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Mandarin_South_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_PokemonCenter_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Mandarin_South_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_PokemonCenter_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Kumquat_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Kumquat_PokemonCenter_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Kumquat_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Kumquat_PokemonCenter_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Pummelo_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Pummelo_PokemonCenter_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Pummelo_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Pummelo_PokemonCenter_2F/text.inc"
