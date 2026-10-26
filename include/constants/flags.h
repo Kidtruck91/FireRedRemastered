@@ -561,9 +561,9 @@
 #define FLAG_ORANGE_LEAGUE_CHAMPION   0x21A // beat Drake in Pummelo Stadium
 #define FLAG_GOT_SUNKIST_TICKET       0x21B // from Prof. Oak after the Sevii Islands
 #define FLAG_GOT_GS_BALL              0x21C // from Drake; the Valencia ferry home runs
-#define FLAG_0x21D               0x21D
-#define FLAG_0x21E               0x21E
-#define FLAG_0x21F               0x21F
+#define FLAG_NAVEL_GYM_PLATE_LEFT     0x21D // Danny's gym: boulder on the left floor plate
+#define FLAG_NAVEL_GYM_PLATE_CENTRE   0x21E // Danny's gym: boulder on the centre floor plate
+#define FLAG_NAVEL_GYM_PLATE_RIGHT    0x21F // Danny's gym: boulder on the right floor plate
 #define FLAG_0x220               0x220
 #define FLAG_0x221               0x221
 #define FLAG_0x222               0x222

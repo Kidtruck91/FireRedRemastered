@@ -204,7 +204,9 @@
 #define VAR_0x4096                 0x4096
 #define VAR_0x4097                 0x4097
 #define VAR_0x4098                 0x4098
-#define VAR_0x4099                 0x4099
+#define VAR_MAP_SCENE_NAVEL_GYM    0x4099 // only a guard: the gym's plate coord events
+                                          // ask for 99, which it never holds, so they
+                                          // fire for a boulder and never for the player
 #define VAR_0x409A                 0x409A
 #define VAR_0x409B                 0x409B
 #define VAR_0x409C                 0x409C

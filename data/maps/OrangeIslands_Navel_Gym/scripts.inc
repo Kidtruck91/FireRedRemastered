@@ -1,10 +1,82 @@
-.equ LOCALID_DANNY, 1
-.equ LOCALID_KAI,   2
-.equ LOCALID_SORA,  3
-.equ LOCALID_YUKI,  4
+.equ LOCALID_DANNY,           1
+.equ LOCALID_KAI,             2
+.equ LOCALID_SORA,            3
+.equ LOCALID_YUKI,            4
+.equ LOCALID_GUIDE,           5
+.equ LOCALID_BOULDER_LEFT,    6
+.equ LOCALID_BOULDER_CENTRE,  7
+.equ LOCALID_BOULDER_RIGHT,   8
 
 OrangeIslands_Navel_Gym_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, OrangeIslands_Navel_Gym_OnLoad
 	.byte 0
+
+@ The rockfall across the gate is drawn in, not stored in the map, so the open
+@ state is what the layout holds and the three plate flags decide the rest.
+OrangeIslands_Navel_Gym_OnLoad::
+	goto_if_unset FLAG_NAVEL_GYM_PLATE_LEFT,   OrangeIslands_Navel_Gym_EventScript_DrawRockfall
+	goto_if_unset FLAG_NAVEL_GYM_PLATE_CENTRE, OrangeIslands_Navel_Gym_EventScript_DrawRockfall
+	goto_if_unset FLAG_NAVEL_GYM_PLATE_RIGHT,  OrangeIslands_Navel_Gym_EventScript_DrawRockfall
+	end
+
+OrangeIslands_Navel_Gym_EventScript_DrawRockfall::
+	setmetatile  9, 7, METATILE_Cave_RockBarrier_Top, 1
+	setmetatile 10, 7, METATILE_Cave_RockBarrier_Top, 1
+	setmetatile  9, 8, METATILE_Cave_RockBarrier_Bottom, 1
+	setmetatile 10, 8, METATILE_Cave_RockBarrier_Bottom, 1
+	end
+
+@ Each plate is a coord event on an MB_STRENGTH_BUTTON tile. Its var_value is 99,
+@ a value the var never holds, so walking onto the plate does nothing -- the only
+@ thing that fires it is HandleBoulderActivateVictoryRoadSwitch, which matches
+@ coord events by position alone when a boulder comes to rest. Each press copies
+@ its boulder's position into the save so it stays put.
+OrangeIslands_Navel_Gym_EventScript_PlateLeft::
+	lockall
+	goto_if_set FLAG_NAVEL_GYM_PLATE_LEFT, OrangeIslands_Navel_Gym_EventScript_PlateIdle
+	setflag FLAG_NAVEL_GYM_PLATE_LEFT
+	copyobjectxytoperm LOCALID_BOULDER_LEFT
+	goto OrangeIslands_Navel_Gym_EventScript_PlatePressed
+
+OrangeIslands_Navel_Gym_EventScript_PlateCentre::
+	lockall
+	goto_if_set FLAG_NAVEL_GYM_PLATE_CENTRE, OrangeIslands_Navel_Gym_EventScript_PlateIdle
+	setflag FLAG_NAVEL_GYM_PLATE_CENTRE
+	copyobjectxytoperm LOCALID_BOULDER_CENTRE
+	goto OrangeIslands_Navel_Gym_EventScript_PlatePressed
+
+OrangeIslands_Navel_Gym_EventScript_PlateRight::
+	lockall
+	goto_if_set FLAG_NAVEL_GYM_PLATE_RIGHT, OrangeIslands_Navel_Gym_EventScript_PlateIdle
+	setflag FLAG_NAVEL_GYM_PLATE_RIGHT
+	copyobjectxytoperm LOCALID_BOULDER_RIGHT
+	goto OrangeIslands_Navel_Gym_EventScript_PlatePressed
+
+OrangeIslands_Navel_Gym_EventScript_PlatePressed::
+	playse SE_SWITCH
+	waitse
+	goto_if_unset FLAG_NAVEL_GYM_PLATE_LEFT,   OrangeIslands_Navel_Gym_EventScript_PlateHolds
+	goto_if_unset FLAG_NAVEL_GYM_PLATE_CENTRE, OrangeIslands_Navel_Gym_EventScript_PlateHolds
+	goto_if_unset FLAG_NAVEL_GYM_PLATE_RIGHT,  OrangeIslands_Navel_Gym_EventScript_PlateHolds
+	setmetatile  9, 7, METATILE_Cave_Floor, 0
+	setmetatile 10, 7, METATILE_Cave_Floor, 0
+	setmetatile  9, 8, METATILE_Cave_Floor, 0
+	setmetatile 10, 8, METATILE_Cave_Floor, 0
+	playse SE_ICE_BREAK
+	special DrawWholeMapView
+	waitse
+	msgbox OrangeIslands_Navel_Gym_Text_GateOpens
+	releaseall
+	end
+
+OrangeIslands_Navel_Gym_EventScript_PlateHolds::
+	msgbox OrangeIslands_Navel_Gym_Text_PlateHolds
+	releaseall
+	end
+
+OrangeIslands_Navel_Gym_EventScript_PlateIdle::
+	releaseall
+	end
 
 @ Danny's gauntlet: his crew, then Danny, back to back. No healing, no items.
 OrangeIslands_Navel_Gym_EventScript_Danny::
@@ -196,12 +268,35 @@ OrangeIslands_Navel_Gym_Text_YukiTalk::
 	.string "loves the cold.$"
 
 OrangeIslands_Navel_Gym_Text_GymGuyAdvice::
-	.string "Yo! DANNY's gym is a marathon!\p"
-	.string "You fight his crew and then him,\n"
-	.string "back to back, with no items.\p"
-	.string "Bring six POKéMON at full health,\n"
-	.string "and watch out for ROCK, FIGHTING\l"
-	.string "and ICE types!$"
+	.string "Yo! DANNY doesn't take challengers\n"
+	.string "who can't shift rock.\p"
+	.string "Three plates in the floor hold the\n"
+	.string "slide shut, and a POKéMON isn't\l"
+	.string "heavy enough to work one. You need\l"
+	.string "a boulder sitting on each.\p"
+	.string "You'll want STRENGTH to push them\n"
+	.string "and ROCK SMASH for what's in the\l"
+	.string "way.\p"
+	.string "Shove a boulder somewhere useless\n"
+	.string "and don't panic. Step outside and\l"
+	.string "the rocks settle back where they\l"
+	.string "started.\p"
+	.string "Past the gate it's a marathon. His\n"
+	.string "crew and then him, back to back,\l"
+	.string "with no items. Watch out for ROCK,\l"
+	.string "FIGHTING and ICE types!$"
+
+OrangeIslands_Navel_Gym_Text_PlateHolds::
+	.string "The plate sinks under the boulder,\n"
+	.string "and something heavy shifts deep in\l"
+	.string "the rock.\p"
+	.string "The slide still holds.$"
+
+OrangeIslands_Navel_Gym_Text_GateOpens::
+	.string "The last plate goes down.\p"
+	.string "The slide across the gate gives\n"
+	.string "way and slumps aside. The way up\l"
+	.string "to DANNY is open!$"
 
 OrangeIslands_Navel_Gym_Text_GymGuyAfter::
 	.string "You made it through the whole\n"

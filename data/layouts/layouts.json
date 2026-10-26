@@ -7176,6 +7176,18 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/OrangeIslands_Pummelo_Cave2/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo_Cave2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_NAVEL_GYM",
+      "name": "OrangeIslands_Navel_Gym_Layout",
+      "width": 20,
+      "height": 23,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/OrangeIslands_Navel_Gym/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Navel_Gym/map.bin"
     }
   ]
 }

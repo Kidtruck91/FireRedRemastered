@@ -6,6 +6,7 @@
 #define METATILE_Building_PCOn   0x063
 
 // gTileset_Cave
+#define METATILE_Cave_Floor              0x281
 #define METATILE_Cave_Floor_Ledge_Bottom  0x2E1
 #define METATILE_Cave_Floor_Ledge_Top     0x2D1
 #define METATILE_Cave_RockBarrier_Bottom  0x317
