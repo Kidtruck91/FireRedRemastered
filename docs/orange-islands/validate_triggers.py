@@ -24,6 +24,7 @@ from pathlib import Path
 
 from render_maps import ROOT, tileset_path
 
+MB_NORMAL = 0x00
 SURF = {0x10, 0x11, 0x12, 0x13, 0x15, 0x1A, 0x1B, 0x50, 0x51, 0x52, 0x53}
 CURRENT = {0x50: (1, 0), 0x51: (-1, 0), 0x52: (0, -1), 0x53: (0, 1)}
 DIRECTIONS = {'DIR_SOUTH': 1, 'DIR_NORTH': 2, 'DIR_WEST': 3, 'DIR_EAST': 4}
@@ -360,9 +361,13 @@ def structural(world, maps, report):
                     break
                 target, behavior = found
                 if target & 0xC00 or target >> 12 != 1 or behavior not in SURF:
-                    # Being pushed into a wall is how a current ends; being
-                    # pushed onto dry land at the wrong height is not.
-                    if not target & 0xC00:
+                    # Being pushed into a wall is how a current ends, and being
+                    # pushed onto plain walkable ground at the same height is a
+                    # dismount -- that is how the Mikan Gym sets the player down
+                    # on each of its rocks. Anything else is a real problem.
+                    dismount = (not target & 0xC00 and target >> 12 == 1
+                                and behavior == MB_NORMAL)
+                    if not target & 0xC00 and not dismount:
                         report.fail(name, 'current ends on an unsafe cell',
                                     '(%d,%d)' % (x, y), hex(target))
                     break

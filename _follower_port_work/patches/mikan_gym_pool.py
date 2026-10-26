@@ -18,7 +18,9 @@ sys.path.insert(0, '/home/claude/fr2/docs/orange-islands')
 
 NORTH, SOUTH, WEST, EAST = 0x1EC, 0x1ED, 0x1EE, 0x1EF
 STILL = 0x291
-HI = 0x4 << 12          # collision 0, elevation 4, as the rest of the pool
+# Keep each tile's own collision and elevation bits: the pool is elevation 1 and
+# repainting it to anything else makes every tile "surf water at walking height".
+HI_MASK = 0xFC00
 
 # rows 7..21, columns x=2..21. '.' = leave this tile exactly as it is.
 PLAN = """\
@@ -55,8 +57,9 @@ def main(repo):
             if c == '.':
                 continue
             x, y = X0 + dx, Y0 + dy
-            new = CH[c] | HI
-            if blocks[y * w + x] != new:
+            old = blocks[y * w + x]
+            new = CH[c] | (old & HI_MASK)
+            if old != new:
                 blocks[y * w + x] = new
                 n += 1
     open(path, 'wb').write(b''.join(struct.pack('<H', v) for v in blocks))
