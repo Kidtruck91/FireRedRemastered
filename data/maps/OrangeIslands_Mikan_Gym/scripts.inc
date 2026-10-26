@@ -130,27 +130,30 @@ OrangeIslands_Mikan_Gym_Text_CissyPostBattle::
 	.string "north of here. Good luck!$"
 
 OrangeIslands_Mikan_Gym_Text_MarcoIntro::
-	.string "MARCO: You got this far up the\n"
-	.string "pool? Then you can spare a\l"
-	.string "battle!$"
+	.string "MARCO: Third rock! Nobody reaches\n"
+	.string "my rock without a battle!$"
 
 OrangeIslands_Mikan_Gym_Text_MarcoDefeat::
 	.string "Gah! Washed out!$"
 
 OrangeIslands_Mikan_Gym_Text_MarcoTalk::
-	.string "Pick your lane at the top and keep\n"
-	.string "count. Only one of them goes up.$"
+	.string "One climb left. Pick your lane at\n"
+	.string "the top and count to the middle.\p"
+	.string "Only one of them goes up to\n"
+	.string "CISSY.$"
 
 OrangeIslands_Mikan_Gym_Text_CoralIntro::
-	.string "CORAL: Nobody crosses my lane\n"
-	.string "without a battle. Rain or shine,\l"
-	.string "I'm ready!$"
+	.string "CORAL: So the second channel let\n"
+	.string "you through? Rain or shine, you\l"
+	.string "still have to get past me!$"
 
 OrangeIslands_Mikan_Gym_Text_CoralDefeat::
 	.string "I'm all washed up!$"
 
 OrangeIslands_Mikan_Gym_Text_CoralTalk::
-	.string "When CISSY makes it rain, her\n"
+	.string "The next channel runs west. Count\n"
+	.string "in from that wall, not this one.\p"
+	.string "And when CISSY makes it rain, her\n"
 	.string "THUNDER never misses.$"
 
 OrangeIslands_Mikan_Gym_Text_GymGuyAdvice::
@@ -158,12 +161,17 @@ OrangeIslands_Mikan_Gym_Text_GymGuyAdvice::
 	.string "BADGE?\p"
 	.string "You can't walk to CISSY. You SURF,\n"
 	.string "and the pool does the steering.\p"
-	.string "The bottom of the pool is a maze.\n"
-	.string "Ride it round and it sets you on\l"
-	.string "the rock that gets you up top.\p"
-	.string "Then you pick a lane and swim\n"
-	.string "north. Only the middle one carries\l"
-	.string "you up to CISSY.\p"
+	.string "Three rocks stand between you and\n"
+	.string "her, and each one is behind its\l"
+	.string "own channel.\p"
+	.string "The bottom is a maze. Ride it\n"
+	.string "round and it sets you on the\l"
+	.string "first rock.\p"
+	.string "After that it's the same trick\n"
+	.string "three times. Swim out along the\l"
+	.string "open water, pick where you cross,\l"
+	.string "and only one column carries you\l"
+	.string "up to the next rock.\p"
 	.string "Pick wrong and the outflow takes\n"
 	.string "you all the way back down here!\p"
 	.string "Oh, and CISSY battles in the rain.\n"
