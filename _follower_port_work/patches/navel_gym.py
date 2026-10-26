@@ -30,20 +30,32 @@ DOOR = 0x2CC                        # cave exit (behavior 0x62)
 ELEV_FLOOR, ELEV_WALL = 3, 0
 
 # --- the room -------------------------------------------------------------
-CHAMBER = (2, 17, 2, 6)       # Danny and his crew
-GATE    = (9, 10, 7, 8)       # the rockfall
+# Rows, top to bottom: Danny's chamber, the rockfall gate, the upper hall, a
+# wall line, the three alcoves, a wall line, the escort channel, the stubs that
+# drop into the vestibule, and the exit.
+CHAMBER = (2, 17, 2, 6)
+GATE    = (9, 10, 7, 8)
 UPPER   = (2, 17, 9, 10)
-LOWER   = (2, 17, 17, 18)
+CHANNEL = (2, 17, 17, 17)     # one tile tall: you cannot squeeze past a boulder
 VEST    = (2, 17, 19, 21)
 CORRIDORS = [(2, 2, 11, 16), (17, 17, 11, 16)]
-ALCOVES = [(4, 4, 12, 15), (7, 10, 12, 15), (14, 14, 12, 15)]
-# the centre alcove needs a two-tile mouth: with a one-tile mouth the player
-# can push its boulder into the gap and seal themselves in.
-MOUTHS = [(4, 16), (8, 16), (9, 16), (14, 11)]
+ALCOVES = [(4, 4, 12, 15),    # left   : one-tile shaft
+           (7, 10, 12, 15),   # centre : open box
+           (14, 14, 12, 16)]  # right  : shaft that drops into the channel
+# alcove mouths, the right shaft's entrance off the upper hall, the plate nook
+# for the escort, and the three places the channel drops to the vestibule
+MOUTHS = [(4, 16), (8, 16), (9, 16), (14, 11),
+          (6, 16), (2, 18), (6, 18), (17, 18)]
 DOORS = [(8, 22), (9, 22), (10, 22)]
 
-BUTTONS = [(4, 12), (10, 12), (14, 15)]
-BOULDERS = [(4, 14), (8, 13), (14, 13)]
+# left: two pushes north, once the rock on the mouth is gone.
+# centre: the rock sits in the push lane; east, east, north.
+# right: the plate is nowhere near the boulder. You push it down the shaft and
+# out into the channel, then walk the long way round -- back up the shaft,
+# across the upper hall, down the far corridor -- to get behind it, run it the
+# length of the channel, and lap the room again to come at it from below.
+BUTTONS = [(4, 12), (10, 12), (6, 16)]
+BOULDERS = [(4, 14), (8, 13), (14, 12)]
 ROCKS = [(4, 15), (9, 13), (14, 11)]
 
 
@@ -59,7 +71,7 @@ def build_blocks():
             for y in range(y0, y1 + 1):
                 g[(x, y)] = (FLOOR, 0, ELEV_FLOOR)
 
-    for r in [CHAMBER, GATE, UPPER, LOWER, VEST] + CORRIDORS + ALCOVES:
+    for r in [CHAMBER, GATE, UPPER, CHANNEL, VEST] + CORRIDORS + ALCOVES:
         carve(r)
     for p in MOUTHS:
         g[p] = (FLOOR, 0, ELEV_FLOOR)
