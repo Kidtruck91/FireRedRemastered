@@ -65,7 +65,8 @@
     "gMapGroup_Orange_Sunburst_Interior",
     "gMapGroup_Orange_Moro_Interior",
     "gMapGroup_Orange_Kinnow_Interior",
-    "gMapGroup_Orange_Mandarin_South_Interior"
+    "gMapGroup_Orange_Mandarin_South_Interior",
+    "gMapGroup_Orange_Route_Interior"
   ],
   "gMapGroup_Link": [
     "BattleColosseum_2P",
@@ -878,5 +879,9 @@
   "gMapGroup_Orange_Mandarin_South_Interior": [
     "OrangeIslands_Mandarin_South_PokemonCenter_1F",
     "OrangeIslands_Mandarin_South_PokemonCenter_2F"
+  ],
+  "gMapGroup_Orange_Route_Interior": [
+    "OrangeIslands_Route_4_Cave",
+    "OrangeIslands_Route_9_Cave"
   ]
 }

@@ -2143,3 +2143,9 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Pummelo_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/OrangeIslands_Pummelo_PokemonCenter_2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_4_Cave/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_4_Cave/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_9_Cave/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_9_Cave/text.inc"

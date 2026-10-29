@@ -570,9 +570,9 @@
 #define FLAG_TROVITA_GYM_GATE_4       0x223 // Rudy's gym: quiz 4 answered
 #define FLAG_TROVITA_GYM_GATE_5       0x224 // Rudy's gym: quiz 5 answered
 #define FLAG_TROVITA_GYM_GATE_6       0x225 // Rudy's gym: quiz 6 answered
-#define FLAG_0x226               0x226
-#define FLAG_0x227               0x227
-#define FLAG_0x228               0x228
+#define FLAG_HIDE_SUNBURST_CAVE_3F_STAR_PIECE 0x226
+#define FLAG_HIDE_PUMMELO_CAVE_2F_MAX_REVIVE  0x227
+#define FLAG_HIDE_ROUTE_9_CAVE_NUGGET         0x228
 #define FLAG_0x229               0x229
 #define FLAG_0x22A               0x22A
 #define FLAG_0x22B               0x22B

@@ -14,16 +14,30 @@
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
-  "object_events": [
-
-  ],
+  "object_events": [],
   "warp_events": [
-
+    {
+      "x": 8,
+      "y": 8,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_CAVE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 28,
+      "y": 5,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_CAVE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 32,
+      "y": 26,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLAND_SUNBURST_CAVE_3F",
+      "dest_warp_id": "0"
+    }
   ],
-  "coord_events": [
-
-  ],
-  "bg_events": [
-
-  ]
+  "coord_events": [],
+  "bg_events": []
 }

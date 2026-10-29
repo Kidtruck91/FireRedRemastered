@@ -7168,8 +7168,8 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_PUMMELO_CAVE2",
       "name": "OrangeIslands_Pummelo_Cave2_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 40,
+      "height": 32,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
@@ -7200,6 +7200,30 @@
       "secondary_tileset": "gTileset_CeladonGym",
       "border_filepath": "data/layouts/OrangeIslands_Trovita_Gym/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Trovita_Gym/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_4_CAVE",
+      "name": "OrangeIslands_Route_4_Cave_Layout",
+      "width": 38,
+      "height": 26,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/OrangeIslands_Route_4_Cave/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_4_Cave/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_9_CAVE",
+      "name": "OrangeIslands_Route_9_Cave_Layout",
+      "width": 26,
+      "height": 22,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/OrangeIslands_Route_9_Cave/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_9_Cave/map.bin"
     }
   ]
 }
