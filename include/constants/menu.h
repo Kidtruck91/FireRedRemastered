@@ -71,6 +71,13 @@
 #define MULTICHOICE_TRAINER_TOWER_MODE                         64
 #define MULTICHOICE_PC_BOX_SET                                 65 // KANTO / ORANGE ISLES
 
+#define MULTICHOICE_TROVITA_QUIZ_1                                  66
+#define MULTICHOICE_TROVITA_QUIZ_2                                  67
+#define MULTICHOICE_TROVITA_QUIZ_3                                  68
+#define MULTICHOICE_TROVITA_QUIZ_4                                  69
+#define MULTICHOICE_TROVITA_QUIZ_5                                  70
+#define MULTICHOICE_TROVITA_QUIZ_6                                  71
+
 #define MULTICHOICE_NONE                                      255
 
 #define LISTMENU_BADGES                    0

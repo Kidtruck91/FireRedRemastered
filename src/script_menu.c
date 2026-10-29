@@ -12,7 +12,9 @@
 #include "event_scripts.h"
 #include "constants/songs.h"
 #include "constants/seagallop.h"
+#include "battle_main.h"
 #include "constants/menu.h"
+#include "constants/pokemon.h"
 
 #define GFXTAG_FOSSIL 7000
 
@@ -496,11 +498,46 @@ static const struct MenuAction sMultichoiceList_Exit[] = {
     { gOtherText_Exit }
 };
 
-static const u8 sText_KantoBoxes[] = _("KANTO");
-static const u8 sText_OrangeBoxes[] = _("ORANGE ISLES");
-static const struct MenuAction sMultichoiceList_PCBoxSet[] = {
-    { sText_KantoBoxes },
-    { sText_OrangeBoxes }
+static const struct MenuAction sMultichoiceList_TrovitaQuiz1[] = {
+    { gTypeNames[TYPE_ROCK] },
+    { gTypeNames[TYPE_ICE] },
+    { gTypeNames[TYPE_ELECTRIC] },
+    { gTypeNames[TYPE_GRASS] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz2[] = {
+    { gTypeNames[TYPE_FIGHTING] },
+    { gTypeNames[TYPE_FIRE] },
+    { gTypeNames[TYPE_GROUND] },
+    { gTypeNames[TYPE_FLYING] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz3[] = {
+    { gTypeNames[TYPE_FIRE] },
+    { gTypeNames[TYPE_BUG] },
+    { gTypeNames[TYPE_DRAGON] },
+    { gTypeNames[TYPE_ICE] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz4[] = {
+    { gTypeNames[TYPE_GRASS] },
+    { gTypeNames[TYPE_ELECTRIC] },
+    { gTypeNames[TYPE_ICE] },
+    { gTypeNames[TYPE_WATER] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz5[] = {
+    { gTypeNames[TYPE_ROCK] },
+    { gTypeNames[TYPE_FIGHTING] },
+    { gTypeNames[TYPE_BUG] },
+    { gTypeNames[TYPE_GHOST] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz6[] = {
+    { gTypeNames[TYPE_POISON] },
+    { gTypeNames[TYPE_FIGHTING] },
+    { gTypeNames[TYPE_ICE] },
+    { gTypeNames[TYPE_GRASS] },
 };
 
 static const struct MultichoiceListStruct sMultichoiceLists[] = {
@@ -569,7 +606,6 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_62]                                         = MULTICHOICE(sMultichoiceList_62),
     [MULTICHOICE_JOIN_OR_LEAD]                               = MULTICHOICE(sMultichoiceList_JoinOrLead),
     [MULTICHOICE_TRAINER_TOWER_MODE]                         = MULTICHOICE(sMultichoiceList_TrainerTowerMode),
-    [MULTICHOICE_PC_BOX_SET]                                 = MULTICHOICE(sMultichoiceList_PCBoxSet),
 };
 
 // From Cool to Berries goes unused

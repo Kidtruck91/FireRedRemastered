@@ -1227,7 +1227,11 @@
 //       room for NUM_TRAINERS up to MAX_TRAINERS_COUNT before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             1196
+
+#define TRAINER_COOLTRAINER_TROVITA_YUZU         1196
+#define TRAINER_COOLTRAINER_TROVITA_CEDRO        1197
+
+#define NUM_TRAINERS                             1198
 #define MAX_TRAINERS_COUNT                       1504
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

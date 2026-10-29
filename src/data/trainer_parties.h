@@ -15187,6 +15187,42 @@ static const struct TrainerMonNoItemDefaultMoves sParty_CooltrainerTrovitaRowan[
     },
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_CooltrainerTrovitaYuzu[] = {
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_GYARADOS,
+    },
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_MAGNETON,
+    },
+    {
+        .iv = 100,
+        .lvl = 35,
+        .species = SPECIES_VICTREEBEL,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_CooltrainerTrovitaCedro[] = {
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_GRAVELER,
+    },
+    {
+        .iv = 100,
+        .lvl = 35,
+        .species = SPECIES_HAUNTER,
+    },
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_SCYTHER,
+    },
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_TwinsKumquatAnaBel[] = {
     {
         .iv = 100,

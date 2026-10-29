@@ -1,7 +1,7 @@
 {
   "id": "MAP_ORANGE_ISLANDS_TROVITA_GYM",
   "name": "OrangeIslands_Trovita_Gym",
-  "layout": "LAYOUT_CELADON_CITY_GYM",
+  "layout": "LAYOUT_ORANGE_ISLANDS_TROVITA_GYM",
   "music": "MUS_GYM",
   "region_map_section": "MAPSEC_TROVITA_ISLAND",
   "requires_flash": false,
@@ -18,8 +18,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_RUDY",
-      "x": 6,
-      "y": 4,
+      "x": 7,
+      "y": 3,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -32,36 +32,64 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
-      "x": 3,
-      "y": 11,
+      "x": 4,
+      "y": 24,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "OrangeIslands_Trovita_Gym_EventScript_Lime",
       "flag": "0"
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
-      "x": 9,
-      "y": 10,
+      "x": 10,
+      "y": 21,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
       "script": "OrangeIslands_Trovita_Gym_EventScript_Rowan",
       "flag": "0"
     },
     {
       "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
+      "x": 4,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Yuzu",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "x": 10,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Cedro",
+      "flag": "0"
+    },
+    {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
-      "x": 7,
-      "y": 16,
+      "x": 10,
+      "y": 24,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -74,22 +102,22 @@
   ],
   "warp_events": [
     {
-      "x": 5,
-      "y": 18,
-      "elevation": 3,
-      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA",
-      "dest_warp_id": "0"
-    },
-    {
       "x": 6,
-      "y": 18,
+      "y": 26,
       "elevation": 3,
       "dest_map": "MAP_ORANGE_ISLANDS_TROVITA",
       "dest_warp_id": "0"
     },
     {
       "x": 7,
-      "y": 18,
+      "y": 26,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 26,
       "elevation": 3,
       "dest_map": "MAP_ORANGE_ISLANDS_TROVITA",
       "dest_warp_id": "0"
@@ -99,16 +127,112 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 4,
+      "x": 6,
+      "y": 22,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel1"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 22,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel1"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel2"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel2"
+    },
+    {
+      "type": "sign",
+      "x": 6,
       "y": 16,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel3"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 16,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel3"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel4"
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel4"
+    },
+    {
+      "type": "sign",
+      "x": 6,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel5"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel5"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel6"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OrangeIslands_Trovita_Gym_EventScript_Panel6"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 26,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Trovita_Gym_EventScript_GymStatue"
     },
     {
       "type": "sign",
-      "x": 8,
-      "y": 16,
+      "x": 10,
+      "y": 26,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Trovita_Gym_EventScript_GymStatue"

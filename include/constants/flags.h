@@ -564,12 +564,12 @@
 #define FLAG_NAVEL_GYM_PLATE_LEFT     0x21D // Danny's gym: boulder on the left floor plate
 #define FLAG_NAVEL_GYM_PLATE_CENTRE   0x21E // Danny's gym: boulder on the centre floor plate
 #define FLAG_NAVEL_GYM_PLATE_RIGHT    0x21F // Danny's gym: boulder on the right floor plate
-#define FLAG_0x220               0x220
-#define FLAG_0x221               0x221
-#define FLAG_0x222               0x222
-#define FLAG_0x223               0x223
-#define FLAG_0x224               0x224
-#define FLAG_0x225               0x225
+#define FLAG_TROVITA_GYM_GATE_1       0x220 // Rudy's gym: quiz 1 answered
+#define FLAG_TROVITA_GYM_GATE_2       0x221 // Rudy's gym: quiz 2 answered
+#define FLAG_TROVITA_GYM_GATE_3       0x222 // Rudy's gym: quiz 3 answered
+#define FLAG_TROVITA_GYM_GATE_4       0x223 // Rudy's gym: quiz 4 answered
+#define FLAG_TROVITA_GYM_GATE_5       0x224 // Rudy's gym: quiz 5 answered
+#define FLAG_TROVITA_GYM_GATE_6       0x225 // Rudy's gym: quiz 6 answered
 #define FLAG_0x226               0x226
 #define FLAG_0x227               0x227
 #define FLAG_0x228               0x228
