@@ -13,6 +13,11 @@
 #include "constants/songs.h"
 #include "constants/seagallop.h"
 #include "battle_main.h"
+#include "data.h"
+#include "item.h"
+#include "constants/items.h"
+#include "constants/moves.h"
+#include "constants/abilities.h"
 #include "constants/menu.h"
 #include "constants/pokemon.h"
 
@@ -498,46 +503,88 @@ static const struct MenuAction sMultichoiceList_Exit[] = {
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sMultichoiceList_TrovitaQuiz1[] = {
+static const struct MenuAction sMultichoiceList_TrovitaQuiz1A[] = {
     { gTypeNames[TYPE_ROCK] },
     { gTypeNames[TYPE_ICE] },
     { gTypeNames[TYPE_ELECTRIC] },
     { gTypeNames[TYPE_GRASS] },
 };
 
-static const struct MenuAction sMultichoiceList_TrovitaQuiz2[] = {
+static const struct MenuAction sMultichoiceList_TrovitaQuiz1B[] = {
     { gTypeNames[TYPE_FIGHTING] },
     { gTypeNames[TYPE_FIRE] },
     { gTypeNames[TYPE_GROUND] },
     { gTypeNames[TYPE_FLYING] },
 };
 
-static const struct MenuAction sMultichoiceList_TrovitaQuiz3[] = {
+static const struct MenuAction sMultichoiceList_TrovitaQuiz2A[] = {
     { gTypeNames[TYPE_FIRE] },
     { gTypeNames[TYPE_BUG] },
     { gTypeNames[TYPE_DRAGON] },
     { gTypeNames[TYPE_ICE] },
 };
 
-static const struct MenuAction sMultichoiceList_TrovitaQuiz4[] = {
+static const struct MenuAction sMultichoiceList_TrovitaQuiz2B[] = {
     { gTypeNames[TYPE_GRASS] },
     { gTypeNames[TYPE_ELECTRIC] },
     { gTypeNames[TYPE_ICE] },
     { gTypeNames[TYPE_WATER] },
 };
 
-static const struct MenuAction sMultichoiceList_TrovitaQuiz5[] = {
+static const struct MenuAction sMultichoiceList_TrovitaQuiz3A[] = {
     { gTypeNames[TYPE_ROCK] },
     { gTypeNames[TYPE_FIGHTING] },
     { gTypeNames[TYPE_BUG] },
     { gTypeNames[TYPE_GHOST] },
 };
 
-static const struct MenuAction sMultichoiceList_TrovitaQuiz6[] = {
+static const struct MenuAction sMultichoiceList_TrovitaQuiz3B[] = {
     { gTypeNames[TYPE_POISON] },
     { gTypeNames[TYPE_FIGHTING] },
     { gTypeNames[TYPE_ICE] },
     { gTypeNames[TYPE_GRASS] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz4A[] = {
+    { gMoveNames[MOVE_RAZOR_LEAF] },
+    { gMoveNames[MOVE_STUN_SPORE] },
+    { gMoveNames[MOVE_ABSORB] },
+    { gMoveNames[MOVE_GROWTH] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz4B[] = {
+    { gMoveNames[MOVE_WILL_O_WISP] },
+    { gMoveNames[MOVE_CONFUSE_RAY] },
+    { gMoveNames[MOVE_NIGHT_SHADE] },
+    { gMoveNames[MOVE_SPITE] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz5A[] = {
+    { gMoveNames[MOVE_TOXIC] },
+    { gMoveNames[MOVE_THUNDER_WAVE] },
+    { gMoveNames[MOVE_SLEEP_POWDER] },
+    { gMoveNames[MOVE_WILL_O_WISP] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz5B[] = {
+    { gMoveNames[MOVE_STUN_SPORE] },
+    { gMoveNames[MOVE_SPORE] },
+    { gMoveNames[MOVE_WILL_O_WISP] },
+    { gMoveNames[MOVE_POISON_POWDER] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz6A[] = {
+    { gAbilityNames[ABILITY_INSOMNIA] },
+    { gAbilityNames[ABILITY_IMMUNITY] },
+    { gAbilityNames[ABILITY_LIMBER] },
+    { gAbilityNames[ABILITY_MAGMA_ARMOR] },
+};
+
+static const struct MenuAction sMultichoiceList_TrovitaQuiz6B[] = {
+    { gItems[ITEM_PECHA_BERRY].name },
+    { gItems[ITEM_RAWST_BERRY].name },
+    { gItems[ITEM_CHERI_BERRY].name },
+    { gItems[ITEM_ASPEAR_BERRY].name },
 };
 
 static const struct MultichoiceListStruct sMultichoiceLists[] = {

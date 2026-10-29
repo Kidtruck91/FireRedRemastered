@@ -1,36 +1,62 @@
-# Trovita Gym — Rudy's type quiz
+# Trovita Gym — Rudy's panels
 
-Six hedge gates, one question each. The answers below are not written from
-memory: `_follower_port_work/patches/trovita_gym.py` reads `gTypeEffectiveness`
-out of `src/battle_main.c` and works each one out, and refuses to emit a
-question whose options do not have exactly one answer. Re-run the generator
-after any change to the type chart and it will fail loudly rather than ship a
-quiz that disagrees with the battle engine.
+Six hedges, six panels. Each panel holds **two** questions and picks one at
+random, so a second run is not the same six answers.
 
-| # | Defender | Asks for | Options and multipliers | Answer |
-| - | -------- | -------- | ----------------------- | ------ |
-| 1 | Water/Flying | the hardest hit | Rock ×2 · Ice ×1 · **Electric ×4** · Grass ×1 | Electric |
-| 2 | Bug/Steel | the hardest hit | Fighting ×1 · **Fire ×4** · Ground ×1 · Flying ×1 | Fire |
-| 3 | Grass/Dragon | the hardest hit | Fire ×1 · Bug ×2 · Dragon ×2 · **Ice ×4** | Ice |
-| 4 | Water/Ground | the hardest hit | **Grass ×4** · Electric ×0 · Ice ×1 · Water ×1 | Grass |
-| 5 | Normal/Flying | the type that does nothing | Rock ×2 · Fighting ×1 · Bug ×0.5 · **Ghost ×0** | Ghost |
-| 6 | Rock/Ground | what it resists most | **Poison ×0.2** · Fighting ×2 · Ice ×2 · Grass ×4 | Poison |
+No answer below is written down anywhere. `_follower_port_work/patches/`
+derives each one from the data the battle engine itself uses, and refuses to
+emit a question whose four options do not yield exactly one answer — which is
+the failure that actually matters, since a plausible-looking option set with
+two right answers is not something you can spot by eye.
 
-## Why these six
+| Panel | Kind | Asks | Options | Answer | Derived from |
+| --- | --- | --- | --- | --- | --- |
+| 1A | type | Water/Flying: which type hits hardest | Rock ×2 · Ice ×1 · **Electric ×4** · Grass ×1 | Electric | `gTypeEffectiveness` (src/battle_main.c) |
+| 1B | type | Bug/Steel: which type hits hardest | Fighting ×1 · **Fire ×4** · Ground ×1 · Flying ×1 | Fire | `gTypeEffectiveness` (src/battle_main.c) |
+| 2A | type | Grass/Dragon: which type hits hardest | Fire ×1 · Bug ×2 · Dragon ×2 · **Ice ×4** | Ice | `gTypeEffectiveness` (src/battle_main.c) |
+| 2B | type | Water/Ground: which type hits hardest | **Grass ×4** · Electric ×0 · Ice ×1 · Water ×1 | Grass | `gTypeEffectiveness` (src/battle_main.c) |
+| 3A | type | Normal/Flying: which type does nothing | Rock ×2 · Fighting ×1 · Bug ×0.5 · **Ghost ×0** | Ghost | `gTypeEffectiveness` (src/battle_main.c) |
+| 3B | type | Rock/Ground: which type it resists most | **Poison ×0.2** · Fighting ×2 · Ice ×2 · Grass ×4 | Poison | `gTypeEffectiveness` (src/battle_main.c) |
+| 4A | move status | paralysis: which move inflicts it | Razor Leaf · **Stun Spore** · Absorb · Growth | Stun Spore | `.effect` in src/data/battle_moves.h |
+| 4B | move status | burn: which move inflicts it | **Will O Wisp** · Confuse Ray · Night Shade · Spite | Will O Wisp | `.effect` in src/data/battle_moves.h |
+| 5A | ability vs move | Limber: which move the ability wastes | Toxic · **Thunder Wave** · Sleep Powder · Will O Wisp | Thunder Wave | move effects + the ABILITYEFFECT_IMMUNITY switch in src/battle_util.c |
+| 5B | ability vs move | Water Veil: which move the ability wastes | Stun Spore · Spore · **Will O Wisp** · Poison Powder | Will O Wisp | move effects + the ABILITYEFFECT_IMMUNITY switch in src/battle_util.c |
+| 6A | move vs ability | Thunder Wave: which ability blocks the move | Insomnia · Immunity · **Limber** · Magma Armor | Limber | move effects + the ABILITYEFFECT_IMMUNITY switch in src/battle_util.c |
+| 6B | berry | paralysis: which berry cures it | Pecha · Rawst · **Cheri** · Aspear | Cheri | `holdEffect` in src/data/items.json |
 
-They escalate, and each one punishes reading only the first type:
+## What the generator reads
 
-- **1–3** are clean 4x answers: Electric on Water/Flying, Fire on Bug/Steel,
-  Ice on Grass/Dragon. The third already has a trap — Fire doubles against
-  Grass and halves against Dragon, so it comes out at plain neutral.
-- **4** is the classic. Electric looks like the obvious pick against something
-  part Water, and Ground makes it do nothing at all.
-- **5** asks for an immunity rather than a weakness.
-- **6** asks which type the defender *resists* hardest, and the answer is a
-  quarter-damage case: Poison is halved by Rock and halved again by Ground.
+| Fact | Source | How |
+| --- | --- | --- |
+| type matchups | `src/battle_main.c` | the `gTypeEffectiveness` triples |
+| what a move inflicts | `src/data/battle_moves.h` | each move's `.effect` |
+| what an ability blocks | `src/battle_util.c` | the `case ABILITY_x:` arms of the `ABILITYEFFECT_IMMUNITY` switch, matched to their `STATUS1_`/`STATUS2_` test |
+| what a berry cures | `src/data/items.json` | `holdEffect` |
 
-## Spares
+Option text is not duplicated either: the menus point straight at `gTypeNames`,
+`gMoveNames`, `gAbilityNames` and `gItems[].name`, so a renamed move renames
+itself in the quiz.
 
-Verified but unused, if more gates are ever wanted: Fire/Flying → Rock (4x),
-Dragon/Flying → Ice (4x), Ghost/Poison → Psychic (Normal and Fighting both do
-nothing, Bug is quartered), Ice/Flying → Rock (4x), Ghost/Dark → Bug.
+What the ROM actually carries is an ordinary `multichoice` list and a
+`goto_if_eq VAR_RESULT, n`. None of the above runs on the GBA.
+
+## Abilities and berries, as parsed
+
+| Ability | Blocks |
+| --- | --- |
+| Immunity | poison |
+| Insomnia | sleep |
+| Limber | paralysis |
+| Magma Armor | freeze |
+| Own Tempo | confusion |
+| Vital Spirit | sleep |
+| Water Veil | burn |
+
+| Berry | Cures |
+| --- | --- |
+| Rawst | burn |
+| Persim | confusion |
+| Aspear | freeze |
+| Cheri | paralysis |
+| Pecha | poison |
+| Chesto | sleep |

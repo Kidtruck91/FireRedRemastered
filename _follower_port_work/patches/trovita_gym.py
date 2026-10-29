@@ -13,7 +13,7 @@ docs/orange-islands/trovita-quiz.md for the worked multipliers.
 
 Run from the repo root.
 """
-import json, os, struct, sys
+import json, os, re, struct, sys
 
 W, H = 15, 27
 
@@ -107,157 +107,16 @@ if __name__ == '__main__':
 # the quiz
 # ---------------------------------------------------------------------------
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import typechart as tc
+import quizdata as qz
 
-ty = lambda n: tc.T['TYPE_' + n.upper()]
-
-# (defender pair, four options, mode, the sentence Rudy's panel asks)
-#   best  -> the single biggest multiplier
-#   none  -> the only one that does nothing at all
-#   worst -> the single smallest multiplier
-QUIZ = [
-    (('Water', 'Flying'), ['Rock', 'Ice', 'Electric', 'Grass'], 'best',
-     "A WATER and FLYING POKeMON.\\nWhich type hits it hardest?"),
-    (('Bug', 'Steel'), ['Fighting', 'Fire', 'Ground', 'Flying'], 'best',
-     "A BUG and STEEL POKeMON.\\nWhich type hits it hardest?"),
-    (('Grass', 'Dragon'), ['Fire', 'Bug', 'Dragon', 'Ice'], 'best',
-     "A GRASS and DRAGON POKeMON.\\nWhich type hits it hardest?"),
-    (('Water', 'Ground'), ['Grass', 'Electric', 'Ice', 'Water'], 'best',
-     "A WATER and GROUND POKeMON.\\nWhich type hits it hardest?"),
-    (('Normal', 'Flying'), ['Rock', 'Fighting', 'Bug', 'Ghost'], 'none',
-     "A NORMAL and FLYING POKeMON.\\nWhich type does nothing at all\\lto it?"),
-    (('Rock', 'Ground'), ['Poison', 'Fighting', 'Ice', 'Grass'], 'worst',
-     "A ROCK and GROUND POKeMON.\\nWhich type does it shrug off\\lhardest?"),
-]
-
-TRAINERS = [
-    # localId name, graphics, trainer constant, room index (None = no trainer)
-    ('Lime',  'OBJ_EVENT_GFX_COOLTRAINER_F', 'TRAINER_COOLTRAINER_TROVITA_LIME'),
-    ('Rowan', 'OBJ_EVENT_GFX_COOLTRAINER_M', 'TRAINER_COOLTRAINER_TROVITA_ROWAN'),
-    ('Yuzu',  'OBJ_EVENT_GFX_COOLTRAINER_F', 'TRAINER_COOLTRAINER_TROVITA_YUZU'),
-    ('Cedro', 'OBJ_EVENT_GFX_COOLTRAINER_M', 'TRAINER_COOLTRAINER_TROVITA_CEDRO'),
-]
-
-
-def solve(i):
-    """Work the answer out of gTypeEffectiveness; never write one down."""
-    defs, opts, mode, _q = QUIZ[i]
-    d = tuple(ty(x) for x in defs)
-    ms = [tc.mult(ty(o), d) for o in opts]
-    target = {'best': max, 'worst': min}[mode](ms) if mode != 'none' else 0
-    hits = [k for k, m in enumerate(ms) if m == target]
-    if len(hits) != 1:
-        raise SystemExit('question %d has %d answers, not 1: %s'
-                         % (i + 1, len(hits), list(zip(opts, ms))))
-    if mode == 'none' and target != 0:
-        raise SystemExit('question %d has no immunity among its options' % (i + 1))
-    return hits[0], ms
-
-
-# ---------------------------------------------------------------------------
-# emitters
-# ---------------------------------------------------------------------------
 M = 'OrangeIslands_Trovita_Gym'
+POOL = qz.GATES
 NEW_TRAINERS = [
     ('TRAINER_COOLTRAINER_TROVITA_YUZU', 'YUZU', 'F',
      [('GYARADOS', 34), ('MAGNETON', 34), ('VICTREEBEL', 35)]),
     ('TRAINER_COOLTRAINER_TROVITA_CEDRO', 'CEDRO', 'M',
      [('GRAVELER', 34), ('HAUNTER', 35), ('SCYTHER', 34)]),
 ]
-
-
-def emit_menu(repo):
-    p = os.path.join(repo, 'include/constants/menu.h')
-    s = open(p).read()
-    if 'MULTICHOICE_TROVITA_QUIZ_1' in s:
-        return
-    nums = [int(n) for n in __import__('re').findall(r'#define MULTICHOICE_\w+\s+(\d+)', s)
-            if int(n) < 200]
-    nxt = max(nums) + 1
-    lines = ''.join('#define MULTICHOICE_TROVITA_QUIZ_%d%s%d\n'
-                    % (i + 1, ' ' * 34, nxt + i) for i in range(len(QUIZ)))
-    s = s.replace('#define MULTICHOICE_NONE', lines + '\n#define MULTICHOICE_NONE')
-    open(p, 'w').write(s)
-
-
-def emit_lists(repo):
-    p = os.path.join(repo, 'src/script_menu.c')
-    s = open(p).read()
-    if 'sMultichoiceList_TrovitaQuiz1' in s:
-        return
-    blocks, rows = [], []
-    for i, (_d, opts, _m, _q) in enumerate(QUIZ):
-        name = 'sMultichoiceList_TrovitaQuiz%d' % (i + 1)
-        blocks.append('static const struct MenuAction %s[] = {\n%s};\n'
-                      % (name, ''.join('    { gTypeNames[TYPE_%s] },\n' % o.upper()
-                                       for o in opts)))
-        rows.append('    [MULTICHOICE_TROVITA_QUIZ_%d]%s= MULTICHOICE(%s),\n'
-                    % (i + 1, ' ' * 30, name))
-    s = s.replace('static const struct MultichoiceListStruct sMultichoiceLists[] = {',
-                  '\n'.join(blocks) + '\nstatic const struct MultichoiceListStruct sMultichoiceLists[] = {')
-    s = s.replace('    [MULTICHOICE_PC_BOX_SET]                                 = MULTICHOICE(sMultichoiceList_PCBoxSet),\n',
-                  '    [MULTICHOICE_PC_BOX_SET]                                 = MULTICHOICE(sMultichoiceList_PCBoxSet),\n'
-                  + ''.join(rows))
-    # gTypeNames lives in battle_main.h; without it agbcc reports the entries
-    # as non-constant initializers rather than as an undeclared symbol.
-    if '#include "battle_main.h"' not in s:
-        s = s.replace('#include "constants/menu.h"',
-                      '#include "battle_main.h"\n#include "constants/menu.h"\n'
-                      '#include "constants/pokemon.h"', 1)
-    open(p, 'w').write(s)
-
-
-def emit_trainers(repo):
-    p = os.path.join(repo, 'include/constants/opponents.h')
-    s = open(p).read()
-    if NEW_TRAINERS[0][0] in s:
-        return
-    n = int(__import__('re').search(r'#define NUM_TRAINERS\s+(\d+)', s).group(1))
-    add = ''.join('#define %-40s %d\n' % (t[0], n + i)
-                  for i, t in enumerate(NEW_TRAINERS))
-    s = s.replace('#define NUM_TRAINERS', '\n' + add + '\n#define NUM_TRAINERS')
-    s = __import__('re').sub(r'(#define NUM_TRAINERS\s+)\d+', r'\g<1>%d' % (n + len(NEW_TRAINERS)), s)
-    open(p, 'w').write(s)
-
-    p = os.path.join(repo, 'src/data/trainer_parties.h')
-    s = open(p).read()
-    if 'sParty_CooltrainerTrovitaYuzu' in s:
-        return
-    out = ''
-    for const, name, _g, mons in NEW_TRAINERS:
-        sym = 'sParty_CooltrainerTrovita' + name.title()
-        out += ('static const struct TrainerMonNoItemDefaultMoves %s[] = {\n' % sym
-                + ''.join('    {\n        .iv = 100,\n        .lvl = %d,\n'
-                          '        .species = SPECIES_%s,\n    },\n' % (lv, sp)
-                          for sp, lv in mons) + '};\n\n')
-    anchor = 'static const struct TrainerMonNoItemDefaultMoves sParty_TwinsKumquatAnaBel[]'
-    s = s.replace(anchor, out + anchor, 1)
-    open(p, 'w').write(s)
-
-    p = os.path.join(repo, 'src/data/trainers.h')
-    s = open(p).read()
-    if NEW_TRAINERS[0][0] in s:
-        return
-    out = ''
-    for const, name, g, _m in NEW_TRAINERS:
-        sym = 'sParty_CooltrainerTrovita' + name.title()
-        out += ('    [%s] = {\n'
-                '        .trainerClass = TRAINER_CLASS_COOLTRAINER,\n'
-                '        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_%s%s,\n'
-                '        .trainerPic = TRAINER_PIC_COOLTRAINER_%s,\n'
-                '        .trainerName = _("%s"),\n'
-                '        .items = {},\n'
-                '        .doubleBattle = FALSE,\n'
-                '        .aiFlags = AI_LEVEL_ADVANCED,\n'
-                '        .party = NO_ITEM_DEFAULT_MOVES(%s),\n'
-                '    },\n'
-                % (const, 'FEMALE' if g == 'F' else 'MALE',
-                   ' | F_TRAINER_FEMALE' if g == 'F' else '', g, name, sym))
-    anchor = '    [TRAINER_TWINS_KUMQUAT_ANA_BEL] = {'
-    s = s.replace(anchor, out + anchor, 1)
-    open(p, 'w').write(s)
-
-
 PEOPLE = [
     ('OBJ_EVENT_GFX_RUDY', 7, 3, 'DOWN', 'Rudy'),
     ('OBJ_EVENT_GFX_COOLTRAINER_F', 4, 24, 'UP', 'Lime'),
@@ -272,18 +131,33 @@ TRAINER_CONST = {'Lime': 'TRAINER_COOLTRAINER_TROVITA_LIME',
                  'Yuzu': 'TRAINER_COOLTRAINER_TROVITA_YUZU',
                  'Cedro': 'TRAINER_COOLTRAINER_TROVITA_CEDRO'}
 FLAGS = ['FLAG_TROVITA_GYM_GATE_%d' % (i + 1) for i in range(6)]
+TAGS = [(g + 1, 'AB'[p]) for g in range(len(POOL)) for p in range(len(POOL[g]))]
+
+STUDENT_LINES = {
+ 'Lime': ("LIME: Wrong! And a wrong answer in\\nthis gym gets you me.$",
+          "Fine. You've earned the gate.$", None, None),
+ 'Rowan': ("ROWAN: Not even close. Let's see if\\nyou battle better than you think.$",
+           "All right, all right. Go through.$", None, None),
+ 'Yuzu': ("YUZU: Hah! RUDY said someone would\\nguess that one.$",
+          "You're better in a battle than at\\nthe panel. Go on.$",
+          "YUZU: Every POKeMON I carry has two\\ntypes. Work out why that matters.$",
+          "Two types, twice the holes.$"),
+ 'Cedro': ("CEDRO: That's the answer people give\\nwhen they only read half of it.$",
+           "Beaten fair. The hedge is yours.$",
+           "CEDRO: Read the whole thing. Type,\\nability, item. That's the lesson.$",
+           "I read mine wrong that time.$"),
+}
 
 
 def emit_flags(repo):
     p = os.path.join(repo, 'include/constants/flags.h')
     s = open(p).read()
-    if FLAGS[0] in s:
-        return
-    for i, f in enumerate(FLAGS):
-        s = s.replace('#define FLAG_0x%03X               0x%03X' % (0x220 + i, 0x220 + i),
-                      '#define %-29s 0x%03X // Rudy\'s gym: quiz %d answered'
-                      % (f, 0x220 + i, i + 1))
-    open(p, 'w').write(s)
+    if FLAGS[0] not in s:
+        for i, f in enumerate(FLAGS):
+            s = s.replace('#define FLAG_0x%03X               0x%03X' % (0x220 + i, 0x220 + i),
+                          "#define %-29s 0x%03X // Rudy's gym: panel %d answered"
+                          % (f, 0x220 + i, i + 1))
+        open(p, 'w').write(s)
     p = os.path.join(repo, 'include/constants/metatile_labels.h')
     s = open(p).read()
     if 'METATILE_CeladonGym_Floor' not in s:
@@ -291,6 +165,90 @@ def emit_flags(repo):
                       '#define METATILE_CeladonGym_Floor        0x2A5\n'
                       '#define METATILE_Cave_Floor              0x281')
         open(p, 'w').write(s)
+
+
+def emit_menu(repo):
+    p = os.path.join(repo, 'include/constants/menu.h')
+    s = open(p).read()
+    s = re.sub(r'#define MULTICHOICE_TROVITA_QUIZ_\w+\s+\d+\n', '', s)
+    nums = [int(n) for n in re.findall(r'#define MULTICHOICE_\w+\s+(\d+)', s) if int(n) < 200]
+    nxt = max(nums) + 1
+    lines = ''.join('#define MULTICHOICE_TROVITA_QUIZ_%d%s%s%d\n'
+                    % (g, t, ' ' * 32, nxt + i) for i, (g, t) in enumerate(TAGS))
+    s = s.replace('#define MULTICHOICE_NONE', lines + '\n#define MULTICHOICE_NONE')
+    open(p, 'w').write(s)
+
+
+def emit_lists(repo):
+    p = os.path.join(repo, 'src/script_menu.c')
+    s = open(p).read()
+    s = re.sub(r'static const struct MenuAction sMultichoiceList_TrovitaQuiz\w+\[\] = \{\n'
+               r'(?:.*\n)*?\};\n\n', '', s)
+    s = re.sub(r'    \[MULTICHOICE_TROVITA_QUIZ_\w+\]\s+= MULTICHOICE\(\w+\),\n', '', s)
+    blocks, rows = [], []
+    for (g, t) in TAGS:
+        q = POOL[g - 1]['AB'.index(t)]
+        sym = qz.SYMBOL[qz.option_kind(q)]
+        name = 'sMultichoiceList_TrovitaQuiz%d%s' % (g, t)
+        blocks.append('static const struct MenuAction %s[] = {\n%s};\n'
+                      % (name, ''.join('    { %s },\n' % sym(o) for o in q['opts'])))
+        rows.append('    [MULTICHOICE_TROVITA_QUIZ_%d%s]%s= MULTICHOICE(%s),\n'
+                    % (g, t, ' ' * 29, name))
+    s = s.replace('static const struct MultichoiceListStruct sMultichoiceLists[] = {',
+                  '\n'.join(blocks) + '\nstatic const struct MultichoiceListStruct sMultichoiceLists[] = {')
+    s = s.replace('    [MULTICHOICE_PC_BOX_SET]                                 = MULTICHOICE(sMultichoiceList_PCBoxSet),\n',
+                  '    [MULTICHOICE_PC_BOX_SET]                                 = MULTICHOICE(sMultichoiceList_PCBoxSet),\n'
+                  + ''.join(rows))
+    # the option text comes straight from the ROM's own name tables
+    for inc in ('battle_main.h', 'data.h', 'item.h', 'constants/items.h',
+                'constants/moves.h', 'constants/abilities.h', 'constants/pokemon.h'):
+        if '#include "%s"' % inc not in s:
+            s = s.replace('#include "constants/menu.h"',
+                          '#include "%s"\n#include "constants/menu.h"' % inc, 1)
+    open(p, 'w').write(s)
+
+
+def emit_trainers(repo):
+    p = os.path.join(repo, 'include/constants/opponents.h')
+    s = open(p).read()
+    if NEW_TRAINERS[0][0] not in s:
+        n = int(re.search(r'#define NUM_TRAINERS\s+(\d+)', s).group(1))
+        add = ''.join('#define %-40s %d\n' % (t[0], n + i)
+                      for i, t in enumerate(NEW_TRAINERS))
+        s = s.replace('#define NUM_TRAINERS', '\n' + add + '\n#define NUM_TRAINERS')
+        s = re.sub(r'(#define NUM_TRAINERS\s+)\d+', r'\g<1>%d' % (n + len(NEW_TRAINERS)), s)
+        open(p, 'w').write(s)
+    p = os.path.join(repo, 'src/data/trainer_parties.h')
+    s = open(p).read()
+    if 'sParty_CooltrainerTrovitaYuzu' not in s:
+        out = ''
+        for const, name, _g, mons in NEW_TRAINERS:
+            out += ('static const struct TrainerMonNoItemDefaultMoves '
+                    'sParty_CooltrainerTrovita%s[] = {\n' % name.title()
+                    + ''.join('    {\n        .iv = 100,\n        .lvl = %d,\n'
+                              '        .species = SPECIES_%s,\n    },\n' % (lv, sp)
+                              for sp, lv in mons) + '};\n\n')
+        anchor = 'static const struct TrainerMonNoItemDefaultMoves sParty_TwinsKumquatAnaBel[]'
+        open(p, 'w').write(s.replace(anchor, out + anchor, 1))
+    p = os.path.join(repo, 'src/data/trainers.h')
+    s = open(p).read()
+    if NEW_TRAINERS[0][0] not in s:
+        out = ''
+        for const, name, g, _m in NEW_TRAINERS:
+            out += ('    [%s] = {\n'
+                    '        .trainerClass = TRAINER_CLASS_COOLTRAINER,\n'
+                    '        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_%s%s,\n'
+                    '        .trainerPic = TRAINER_PIC_COOLTRAINER_%s,\n'
+                    '        .trainerName = _("%s"),\n'
+                    '        .items = {},\n'
+                    '        .doubleBattle = FALSE,\n'
+                    '        .aiFlags = AI_LEVEL_ADVANCED,\n'
+                    '        .party = NO_ITEM_DEFAULT_MOVES(sParty_CooltrainerTrovita%s),\n'
+                    '    },\n'
+                    % (const, 'FEMALE' if g == 'F' else 'MALE',
+                       ' | F_TRAINER_FEMALE' if g == 'F' else '', g, name, name.title()))
+        anchor = '    [TRAINER_TWINS_KUMQUAT_ANA_BEL] = {'
+        open(p, 'w').write(s.replace(anchor, out + anchor, 1))
 
 
 def emit_map(repo):
@@ -322,43 +280,53 @@ def emit_map(repo):
     open(p, 'a').write('\n')
 
 
-def emit_scripts(repo):
+def emit_scripts():
     P = M + '_'
-    L, out = [], []
+    out = []
     a = out.append
     a('.equ LOCALID_RUDY, 1\n')
     a('%sMapScripts::' % P)
     a('\tmap_script MAP_SCRIPT_ON_LOAD, %sOnLoad' % P)
     a('\t.byte 0\n')
-    a("@ The hedges are closed in the layout; ON_LOAD parts the ones already answered.")
+    a('@ The hedges are shut in the layout; ON_LOAD parts the ones already answered.')
     a('%sOnLoad::' % P)
-    for i in range(len(QUIZ)):
+    for i in range(len(POOL)):
         a('\tcall_if_set %s, %sOnLoadOpenGate%d' % (FLAGS[i], P, i + 1))
     a('\tend\n')
-    for i in range(len(QUIZ)):
+    for i in range(len(POOL)):
         a('%sOnLoadOpenGate%d::' % (P, i + 1))
         a('\tcall %sEventScript_OpenGate%d' % (P, i + 1))
         a('\treturn\n')
-    for i in range(len(QUIZ)):
+    for i in range(len(POOL)):
         a('%sEventScript_OpenGate%d::' % (P, i + 1))
         for (x, y) in gate_tiles(i):
             a('\tsetmetatile %2d, %2d, METATILE_CeladonGym_Floor, 0' % (x, y))
         a('\treturn\n')
-    a('@ Every answer below is the one gTypeEffectiveness gives, not one written')
-    a('@ from memory. docs/orange-islands/trovita-quiz.md shows the multipliers.')
-    for i, (_d, _o, _m, _q) in enumerate(QUIZ):
-        n = i + 1
-        ans, _ms = solve(i)
+    a('@ Each panel keeps two questions and picks one, so a second run through')
+    a('@ the gym is not the same six answers. Every index below is what the ROM')
+    a('@ data gives -- see docs/orange-islands/trovita-quiz.md.')
+    for gi, pool in enumerate(POOL):
+        n = gi + 1
         a('%sEventScript_Panel%d::' % (P, n))
         a('\tlockall')
-        a('\tgoto_if_set %s, %sEventScript_GateAlreadyOpen' % (FLAGS[i], P))
-        a('\tmessage %sText_Question%d' % (P, n))
-        a('\twaitmessage')
-        a('\tmultichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_%d, FALSE' % n)
-        a('\tgoto_if_eq VAR_RESULT, SCR_MENU_CANCEL, %sEventScript_QuizCancelled' % P)
-        a('\tgoto_if_eq VAR_RESULT, %d, %sEventScript_Gate%dCorrect' % (ans, P, n))
-        a('\tgoto %sEventScript_Gate%dWrong' % (P, n))
+        a('\tgoto_if_set %s, %sEventScript_GateAlreadyOpen' % (FLAGS[gi], P))
+        a('\trandom %d' % len(pool))
+        for pi in range(len(pool) - 1):
+            a('\tgoto_if_eq VAR_RESULT, %d, %sEventScript_Ask%d%s'
+              % (pi, P, n, 'AB'[pi]))
+        a('\tgoto %sEventScript_Ask%d%s' % (P, n, 'AB'[len(pool) - 1]))
         a('')
+        for pi, q in enumerate(pool):
+            t = 'AB'[pi]
+            ans, _s = qz.solve(q, 'gate %d%s' % (n, t))
+            a('%sEventScript_Ask%d%s::' % (P, n, t))
+            a('\tmessage %sText_Q%d%s' % (P, n, t))
+            a('\twaitmessage')
+            a('\tmultichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_%d%s, FALSE' % (n, t))
+            a('\tgoto_if_eq VAR_RESULT, SCR_MENU_CANCEL, %sEventScript_QuizCancelled' % P)
+            a('\tgoto_if_eq VAR_RESULT, %d, %sEventScript_Gate%dCorrect' % (ans, P, n))
+            a('\tgoto %sEventScript_Gate%dWrong' % (P, n))
+            a('')
         a('%sEventScript_Gate%dCorrect::' % (P, n))
         a('\tcall %sEventScript_CorrectAnswer' % P)
         a('\tcall %sEventScript_Gate%dOpens' % (P, n))
@@ -369,22 +337,22 @@ def emit_scripts(repo):
         a('\twaitse')
         a('\tcall %sEventScript_OpenGate%d' % (P, n))
         a('\tspecial DrawWholeMapView')
-        a('\tsetflag %s' % FLAGS[i])
+        a('\tsetflag %s' % FLAGS[gi])
         a('\treturn\n')
         a('%sEventScript_Gate%dWrong::' % (P, n))
         a('\tcall %sEventScript_WrongAnswer' % P)
-        t = GATE_TRAINER[i]
-        if t:
+        who = GATE_TRAINER[gi]
+        if who:
             a('\tgoto_if_not_defeated %s, %sEventScript_Battle%s'
-              % (TRAINER_CONST[t], P, t))
+              % (TRAINER_CONST[who], P, who))
         a('\treleaseall')
         a('\tend\n')
-        if t:
+        if who:
             a('@ Beat the student and the hedge opens anyway -- know it or earn it.')
-            a('%sEventScript_Battle%s::' % (P, t))
-            a('\tmsgbox %sText_%sStepsIn' % (P, t))
-            a('\ttrainerbattle_no_intro %s, %sText_%sDefeat' % (TRAINER_CONST[t], P, t))
-            a('\tgoto_if_set %s, %sEventScript_GateAlreadyOpen' % (FLAGS[i], P))
+            a('%sEventScript_Battle%s::' % (P, who))
+            a('\tmsgbox %sText_%sStepsIn' % (P, who))
+            a('\ttrainerbattle_no_intro %s, %sText_%sDefeat' % (TRAINER_CONST[who], P, who))
+            a('\tgoto_if_set %s, %sEventScript_GateAlreadyOpen' % (FLAGS[gi], P))
             a('\tcall %sEventScript_Gate%dOpens' % (P, n))
             a('\treleaseall')
             a('\tend\n')
@@ -403,7 +371,7 @@ def emit_scripts(repo):
     a('\treleaseall')
     a('\tend\n')
     a('%sEventScript_QuizCancelled::' % P)
-    a('\tcloseme' + 'ssage')
+    a('\tclosemessage')
     a('\treleaseall')
     a('\tend\n')
     for who in ('Yuzu', 'Cedro'):
@@ -415,65 +383,46 @@ def emit_scripts(repo):
     return '\n'.join(out)
 
 
-STUDENT_LINES = {
- 'Lime': ("LIME: Wrong! And a wrong answer in\\nthis gym gets you me.$",
-          "Fine. You've earned the gate.$", None, None),
- 'Rowan': ("ROWAN: Not even close. Let's see if\\nyou battle better than you think.$",
-           "All right, all right. Go through.$", None, None),
- 'Yuzu': ("YUZU: Hah! RUDY said someone would\\nguess that one.$",
-          "You're better in a battle than at\\nthe panel. Go on.$",
-          "YUZU: Every POKéMON I carry has two\\ntypes. Work out why that matters.$",
-          "Two types, twice the holes.$"),
- 'Cedro': ("CEDRO: That's the answer people give\\nwhen they only read the first type.$",
-           "Beaten fair. The hedge is yours.$",
-           "CEDRO: Read both halves. That's the\\nwhole lesson on this island.$",
-           "I read mine wrong that time.$"),
-}
-
-
 def emit_texts():
     P = M + '_'
     o = []
     a = o.append
-    for i, (_d, _opts, _m, q) in enumerate(QUIZ):
-        a('%sText_Question%d::' % (P, i + 1))
+    for (g, t) in TAGS:
+        q = POOL[g - 1]['AB'.index(t)]
+        a('%sText_Q%d%s::' % (P, g, t))
         a('\t.string "RUDY\'S PANEL:\\p"')
-        a('\t.string "%s$"\n' % q.replace('POKeMON', 'POK\u00e9MON'))
+        a('\t.string "%s$"\n' % q['text'].replace('POKeMON', 'POKéMON'))
     a('%sText_Correct::' % P)
     a('\t.string "Right! The hedge is opening!$"\n')
     a('%sText_Wrong::' % P)
-    a('\t.string "Wrong. Read both types, not just\\nthe one you noticed first.$"\n')
+    a('\t.string "Wrong. Read the whole POKéMON,\\nnot just the first thing you saw.$"\n')
     for who, (steps, defeat, intro, post) in STUDENT_LINES.items():
         a('%sText_%sStepsIn::' % (P, who))
-        a('\t.string "%s"\n' % steps)
+        a('\t.string "%s"\n' % steps.replace('POKeMON', 'POKéMON'))
         if intro:
-            a('%sText_%sIntro::' % (P, who))
-            a('\t.string "%s"\n' % intro)
-            a('%sText_%sDefeat::' % (P, who))
-            a('\t.string "%s"\n' % defeat)
-            a('%sText_%sPostBattle::' % (P, who))
-            a('\t.string "%s"\n' % post)
+            for tag, line in (('Intro', intro), ('Defeat', defeat), ('PostBattle', post)):
+                a('%sText_%s%s::' % (P, who, tag))
+                a('\t.string "%s"\n' % line.replace('POKeMON', 'POKéMON'))
     return '\n'.join(o)
 
 
-def write_scripts(repo):
+def write_scripts(repo, base):
     p = os.path.join(repo, 'data/maps/%s/scripts.inc' % M)
-    s = open(p).read()
-    start = s.index('.equ LOCALID_RUDY, 1')
-    marker = '@ The player brings three'
-    s = emit_scripts(repo) + '\n' + s[s.index(marker):]
-    # the quiz texts go at the end, beside the rest
+    s = open(base).read()
+    s = emit_scripts() + '\n' + s[s.index('@ The player brings three'):]
     s = s.rstrip('\n') + '\n\n@ ---- quiz ----\n' + emit_texts() + '\n'
     open(p, 'w').write(s)
 
 
-def build_all(repo='.'):
+def build_all(repo='.', base=None):
+    qz.check_all()
     main(repo)
     emit_flags(repo)
     emit_menu(repo)
     emit_lists(repo)
     emit_trainers(repo)
     emit_map(repo)
-    write_scripts(repo)
-    print('trovita gym: %d gates, %d questions, %d new trainers'
-          % (len(GATES), len(QUIZ), len(NEW_TRAINERS)))
+    write_scripts(repo, base or os.path.join(repo, 'data/maps/%s/scripts.inc' % M))
+    print('trovita gym: %d panels, %d questions across %d kinds'
+          % (len(POOL), len(TAGS),
+             len({q['kind'] for pool in POOL for q in pool})))

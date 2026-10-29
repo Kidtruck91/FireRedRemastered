@@ -4,7 +4,7 @@ OrangeIslands_Trovita_Gym_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, OrangeIslands_Trovita_Gym_OnLoad
 	.byte 0
 
-@ The hedges are closed in the layout; ON_LOAD parts the ones already answered.
+@ The hedges are shut in the layout; ON_LOAD parts the ones already answered.
 OrangeIslands_Trovita_Gym_OnLoad::
 	call_if_set FLAG_TROVITA_GYM_GATE_1, OrangeIslands_Trovita_Gym_OnLoadOpenGate1
 	call_if_set FLAG_TROVITA_GYM_GATE_2, OrangeIslands_Trovita_Gym_OnLoadOpenGate2
@@ -68,16 +68,30 @@ OrangeIslands_Trovita_Gym_EventScript_OpenGate6::
 	setmetatile  8,  7, METATILE_CeladonGym_Floor, 0
 	return
 
-@ Every answer below is the one gTypeEffectiveness gives, not one written
-@ from memory. docs/orange-islands/trovita-quiz.md shows the multipliers.
+@ Each panel keeps two questions and picks one, so a second run through
+@ the gym is not the same six answers. Every index below is what the ROM
+@ data gives -- see docs/orange-islands/trovita-quiz.md.
 OrangeIslands_Trovita_Gym_EventScript_Panel1::
 	lockall
 	goto_if_set FLAG_TROVITA_GYM_GATE_1, OrangeIslands_Trovita_Gym_EventScript_GateAlreadyOpen
-	message OrangeIslands_Trovita_Gym_Text_Question1
+	random 2
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Ask1A
+	goto OrangeIslands_Trovita_Gym_EventScript_Ask1B
+
+OrangeIslands_Trovita_Gym_EventScript_Ask1A::
+	message OrangeIslands_Trovita_Gym_Text_Q1A
 	waitmessage
-	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_1, FALSE
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_1A, FALSE
 	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
 	goto_if_eq VAR_RESULT, 2, OrangeIslands_Trovita_Gym_EventScript_Gate1Correct
+	goto OrangeIslands_Trovita_Gym_EventScript_Gate1Wrong
+
+OrangeIslands_Trovita_Gym_EventScript_Ask1B::
+	message OrangeIslands_Trovita_Gym_Text_Q1B
+	waitmessage
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_1B, FALSE
+	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
+	goto_if_eq VAR_RESULT, 1, OrangeIslands_Trovita_Gym_EventScript_Gate1Correct
 	goto OrangeIslands_Trovita_Gym_EventScript_Gate1Wrong
 
 OrangeIslands_Trovita_Gym_EventScript_Gate1Correct::
@@ -112,11 +126,24 @@ OrangeIslands_Trovita_Gym_EventScript_BattleLime::
 OrangeIslands_Trovita_Gym_EventScript_Panel2::
 	lockall
 	goto_if_set FLAG_TROVITA_GYM_GATE_2, OrangeIslands_Trovita_Gym_EventScript_GateAlreadyOpen
-	message OrangeIslands_Trovita_Gym_Text_Question2
+	random 2
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Ask2A
+	goto OrangeIslands_Trovita_Gym_EventScript_Ask2B
+
+OrangeIslands_Trovita_Gym_EventScript_Ask2A::
+	message OrangeIslands_Trovita_Gym_Text_Q2A
 	waitmessage
-	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_2, FALSE
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_2A, FALSE
 	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
-	goto_if_eq VAR_RESULT, 1, OrangeIslands_Trovita_Gym_EventScript_Gate2Correct
+	goto_if_eq VAR_RESULT, 3, OrangeIslands_Trovita_Gym_EventScript_Gate2Correct
+	goto OrangeIslands_Trovita_Gym_EventScript_Gate2Wrong
+
+OrangeIslands_Trovita_Gym_EventScript_Ask2B::
+	message OrangeIslands_Trovita_Gym_Text_Q2B
+	waitmessage
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_2B, FALSE
+	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Gate2Correct
 	goto OrangeIslands_Trovita_Gym_EventScript_Gate2Wrong
 
 OrangeIslands_Trovita_Gym_EventScript_Gate2Correct::
@@ -151,11 +178,24 @@ OrangeIslands_Trovita_Gym_EventScript_BattleRowan::
 OrangeIslands_Trovita_Gym_EventScript_Panel3::
 	lockall
 	goto_if_set FLAG_TROVITA_GYM_GATE_3, OrangeIslands_Trovita_Gym_EventScript_GateAlreadyOpen
-	message OrangeIslands_Trovita_Gym_Text_Question3
+	random 2
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Ask3A
+	goto OrangeIslands_Trovita_Gym_EventScript_Ask3B
+
+OrangeIslands_Trovita_Gym_EventScript_Ask3A::
+	message OrangeIslands_Trovita_Gym_Text_Q3A
 	waitmessage
-	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_3, FALSE
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_3A, FALSE
 	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
 	goto_if_eq VAR_RESULT, 3, OrangeIslands_Trovita_Gym_EventScript_Gate3Correct
+	goto OrangeIslands_Trovita_Gym_EventScript_Gate3Wrong
+
+OrangeIslands_Trovita_Gym_EventScript_Ask3B::
+	message OrangeIslands_Trovita_Gym_Text_Q3B
+	waitmessage
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_3B, FALSE
+	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Gate3Correct
 	goto OrangeIslands_Trovita_Gym_EventScript_Gate3Wrong
 
 OrangeIslands_Trovita_Gym_EventScript_Gate3Correct::
@@ -190,9 +230,22 @@ OrangeIslands_Trovita_Gym_EventScript_BattleYuzu::
 OrangeIslands_Trovita_Gym_EventScript_Panel4::
 	lockall
 	goto_if_set FLAG_TROVITA_GYM_GATE_4, OrangeIslands_Trovita_Gym_EventScript_GateAlreadyOpen
-	message OrangeIslands_Trovita_Gym_Text_Question4
+	random 2
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Ask4A
+	goto OrangeIslands_Trovita_Gym_EventScript_Ask4B
+
+OrangeIslands_Trovita_Gym_EventScript_Ask4A::
+	message OrangeIslands_Trovita_Gym_Text_Q4A
 	waitmessage
-	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_4, FALSE
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_4A, FALSE
+	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
+	goto_if_eq VAR_RESULT, 1, OrangeIslands_Trovita_Gym_EventScript_Gate4Correct
+	goto OrangeIslands_Trovita_Gym_EventScript_Gate4Wrong
+
+OrangeIslands_Trovita_Gym_EventScript_Ask4B::
+	message OrangeIslands_Trovita_Gym_Text_Q4B
+	waitmessage
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_4B, FALSE
 	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
 	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Gate4Correct
 	goto OrangeIslands_Trovita_Gym_EventScript_Gate4Wrong
@@ -229,11 +282,24 @@ OrangeIslands_Trovita_Gym_EventScript_BattleCedro::
 OrangeIslands_Trovita_Gym_EventScript_Panel5::
 	lockall
 	goto_if_set FLAG_TROVITA_GYM_GATE_5, OrangeIslands_Trovita_Gym_EventScript_GateAlreadyOpen
-	message OrangeIslands_Trovita_Gym_Text_Question5
+	random 2
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Ask5A
+	goto OrangeIslands_Trovita_Gym_EventScript_Ask5B
+
+OrangeIslands_Trovita_Gym_EventScript_Ask5A::
+	message OrangeIslands_Trovita_Gym_Text_Q5A
 	waitmessage
-	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_5, FALSE
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_5A, FALSE
 	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
-	goto_if_eq VAR_RESULT, 3, OrangeIslands_Trovita_Gym_EventScript_Gate5Correct
+	goto_if_eq VAR_RESULT, 1, OrangeIslands_Trovita_Gym_EventScript_Gate5Correct
+	goto OrangeIslands_Trovita_Gym_EventScript_Gate5Wrong
+
+OrangeIslands_Trovita_Gym_EventScript_Ask5B::
+	message OrangeIslands_Trovita_Gym_Text_Q5B
+	waitmessage
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_5B, FALSE
+	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
+	goto_if_eq VAR_RESULT, 2, OrangeIslands_Trovita_Gym_EventScript_Gate5Correct
 	goto OrangeIslands_Trovita_Gym_EventScript_Gate5Wrong
 
 OrangeIslands_Trovita_Gym_EventScript_Gate5Correct::
@@ -258,11 +324,24 @@ OrangeIslands_Trovita_Gym_EventScript_Gate5Wrong::
 OrangeIslands_Trovita_Gym_EventScript_Panel6::
 	lockall
 	goto_if_set FLAG_TROVITA_GYM_GATE_6, OrangeIslands_Trovita_Gym_EventScript_GateAlreadyOpen
-	message OrangeIslands_Trovita_Gym_Text_Question6
+	random 2
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Ask6A
+	goto OrangeIslands_Trovita_Gym_EventScript_Ask6B
+
+OrangeIslands_Trovita_Gym_EventScript_Ask6A::
+	message OrangeIslands_Trovita_Gym_Text_Q6A
 	waitmessage
-	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_6, FALSE
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_6A, FALSE
 	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
-	goto_if_eq VAR_RESULT, 0, OrangeIslands_Trovita_Gym_EventScript_Gate6Correct
+	goto_if_eq VAR_RESULT, 2, OrangeIslands_Trovita_Gym_EventScript_Gate6Correct
+	goto OrangeIslands_Trovita_Gym_EventScript_Gate6Wrong
+
+OrangeIslands_Trovita_Gym_EventScript_Ask6B::
+	message OrangeIslands_Trovita_Gym_Text_Q6B
+	waitmessage
+	multichoice 0, 0, MULTICHOICE_TROVITA_QUIZ_6B, FALSE
+	goto_if_eq VAR_RESULT, SCR_MENU_CANCEL, OrangeIslands_Trovita_Gym_EventScript_QuizCancelled
+	goto_if_eq VAR_RESULT, 2, OrangeIslands_Trovita_Gym_EventScript_Gate6Correct
 	goto OrangeIslands_Trovita_Gym_EventScript_Gate6Wrong
 
 OrangeIslands_Trovita_Gym_EventScript_Gate6Correct::
@@ -477,12 +556,13 @@ OrangeIslands_Trovita_Gym_Text_RowanPostBattle::
 OrangeIslands_Trovita_Gym_Text_GymGuyAdvice::
 	.string "Yo! Six hedges between you and\n"
 	.string "RUDY, and a panel on every one.\p"
-	.string "Each panel names a POKéMON by its\n"
-	.string "two types and asks you to pick a\l"
-	.string "type from four.\p"
-	.string "Both halves count! A type can be\n"
-	.string "double super effective, or get\l"
-	.string "cancelled right back to normal.\p"
+	.string "They don't just ask about types.\n"
+	.string "Which move leaves a burn. Which\l"
+	.string "ability makes a move pointless.\l"
+	.string "Which BERRY undoes it.\p"
+	.string "And each panel knows two\n"
+	.string "questions. It won't always pick\l"
+	.string "the one you got last time!\p"
 	.string "Miss one and the student in that\n"
 	.string "room takes it up with you. Beat\l"
 	.string "them and the hedge opens anyway.\p"
@@ -513,35 +593,59 @@ OrangeIslands_Trovita_Gym_Text_GymStatueAfter::
 	.string "{RIVAL}, {PLAYER}$"
 
 @ ---- quiz ----
-OrangeIslands_Trovita_Gym_Text_Question1::
+OrangeIslands_Trovita_Gym_Text_Q1A::
 	.string "RUDY'S PANEL:\p"
 	.string "A WATER and FLYING POKéMON.\nWhich type hits it hardest?$"
 
-OrangeIslands_Trovita_Gym_Text_Question2::
+OrangeIslands_Trovita_Gym_Text_Q1B::
 	.string "RUDY'S PANEL:\p"
 	.string "A BUG and STEEL POKéMON.\nWhich type hits it hardest?$"
 
-OrangeIslands_Trovita_Gym_Text_Question3::
+OrangeIslands_Trovita_Gym_Text_Q2A::
 	.string "RUDY'S PANEL:\p"
 	.string "A GRASS and DRAGON POKéMON.\nWhich type hits it hardest?$"
 
-OrangeIslands_Trovita_Gym_Text_Question4::
+OrangeIslands_Trovita_Gym_Text_Q2B::
 	.string "RUDY'S PANEL:\p"
 	.string "A WATER and GROUND POKéMON.\nWhich type hits it hardest?$"
 
-OrangeIslands_Trovita_Gym_Text_Question5::
+OrangeIslands_Trovita_Gym_Text_Q3A::
 	.string "RUDY'S PANEL:\p"
 	.string "A NORMAL and FLYING POKéMON.\nWhich type does nothing at all\lto it?$"
 
-OrangeIslands_Trovita_Gym_Text_Question6::
+OrangeIslands_Trovita_Gym_Text_Q3B::
 	.string "RUDY'S PANEL:\p"
 	.string "A ROCK and GROUND POKéMON.\nWhich type does it shrug off\lhardest?$"
+
+OrangeIslands_Trovita_Gym_Text_Q4A::
+	.string "RUDY'S PANEL:\p"
+	.string "Which of these can leave a\nPOKéMON PARALYZED?$"
+
+OrangeIslands_Trovita_Gym_Text_Q4B::
+	.string "RUDY'S PANEL:\p"
+	.string "Which of these can leave a\nPOKéMON BURNED?$"
+
+OrangeIslands_Trovita_Gym_Text_Q5A::
+	.string "RUDY'S PANEL:\p"
+	.string "A POKéMON with LIMBER.\nWhich move is wasted on it?$"
+
+OrangeIslands_Trovita_Gym_Text_Q5B::
+	.string "RUDY'S PANEL:\p"
+	.string "A POKéMON with WATER VEIL.\nWhich move is wasted on it?$"
+
+OrangeIslands_Trovita_Gym_Text_Q6A::
+	.string "RUDY'S PANEL:\p"
+	.string "Which ability makes THUNDER WAVE\npointless?$"
+
+OrangeIslands_Trovita_Gym_Text_Q6B::
+	.string "RUDY'S PANEL:\p"
+	.string "A POKéMON is PARALYZED.\nWhich BERRY would cure it?$"
 
 OrangeIslands_Trovita_Gym_Text_Correct::
 	.string "Right! The hedge is opening!$"
 
 OrangeIslands_Trovita_Gym_Text_Wrong::
-	.string "Wrong. Read both types, not just\nthe one you noticed first.$"
+	.string "Wrong. Read the whole POKéMON,\nnot just the first thing you saw.$"
 
 OrangeIslands_Trovita_Gym_Text_LimeStepsIn::
 	.string "LIME: Wrong! And a wrong answer in\nthis gym gets you me.$"
@@ -562,10 +666,10 @@ OrangeIslands_Trovita_Gym_Text_YuzuPostBattle::
 	.string "Two types, twice the holes.$"
 
 OrangeIslands_Trovita_Gym_Text_CedroStepsIn::
-	.string "CEDRO: That's the answer people give\nwhen they only read the first type.$"
+	.string "CEDRO: That's the answer people give\nwhen they only read half of it.$"
 
 OrangeIslands_Trovita_Gym_Text_CedroIntro::
-	.string "CEDRO: Read both halves. That's the\nwhole lesson on this island.$"
+	.string "CEDRO: Read the whole thing. Type,\nability, item. That's the lesson.$"
 
 OrangeIslands_Trovita_Gym_Text_CedroDefeat::
 	.string "Beaten fair. The hedge is yours.$"
