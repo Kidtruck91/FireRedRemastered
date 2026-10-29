@@ -154,3 +154,31 @@ OrangeIslands_Navel_Text_OrangeLeoDefeat::
 OrangeIslands_Navel_Text_OrangeLeoPostBattle::
 	.string "Sand castles are fun too!$"
 
+@ ---- HM06 backstop (rocksmash_backstop.py) ----
+OrangeIslands_Navel_EventScript_RockSmashTip::
+	lock
+	faceplayer
+	goto_if_unset FLAG_GOT_HM06, OrangeIslands_Navel_EventScript_RockSmashTipNeeded
+	msgbox OrangeIslands_Navel_Text_RockSmashTipHave
+	release
+	end
+
+OrangeIslands_Navel_EventScript_RockSmashTipNeeded::
+	msgbox OrangeIslands_Navel_Text_RockSmashTipNeeded
+	release
+	end
+
+OrangeIslands_Navel_Text_RockSmashTipNeeded::
+	.string "Heading up to DANNY's? You'll\n"
+	.string "get nowhere without ROCK SMASH.\p"
+	.string "Don't have it? Nobody does.\n"
+	.string "It's the one nobody makes you\l"
+	.string "pick up.\p"
+	.string "There's an old hiker deep in the\n"
+	.string "cave on SUNBURST. He keeps a\l"
+	.string "spare. Tell him I sent you.$"
+
+OrangeIslands_Navel_Text_RockSmashTipHave::
+	.string "You've got ROCK SMASH and\n"
+	.string "STRENGTH? Then DANNY's gym is\l"
+	.string "just a puzzle.$"
