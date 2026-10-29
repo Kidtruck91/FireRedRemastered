@@ -14935,14 +14935,6 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderLuana[] = {
     {
         .iv = 250,
         .lvl = 42,
-        .species = SPECIES_STEELIX,
-        .ability = TRAINER_MON_HIDDEN_ABILITY,
-        .heldItem = ITEM_METAL_COAT,
-        .moves = {MOVE_IRON_TAIL, MOVE_DRAGON_BREATH, MOVE_ROCK_TOMB, MOVE_SCREECH},
-    },
-    {
-        .iv = 250,
-        .lvl = 42,
         .species = SPECIES_KANGASKHAN,
         .ability = TRAINER_MON_HIDDEN_ABILITY,
         .heldItem = ITEM_SILK_SCARF,
@@ -14950,10 +14942,19 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderLuana[] = {
     },
     {
         .iv = 250,
+        .lvl = 42,
+        .species = SPECIES_STEELIX,
+        .ability = 2,
+        .heldItem = ITEM_METAL_COAT,
+        .moves = {MOVE_ROCK_SLIDE, MOVE_IRON_TAIL, MOVE_DRAGON_BREATH, MOVE_SCREECH},
+    },
+    {
+        .iv = 250,
         .lvl = 43,
         .species = SPECIES_MAROWAK,
+        .ability = 2,
         .heldItem = ITEM_THICK_CLUB,
-        .moves = {MOVE_BONEMERANG, MOVE_ROCK_TOMB, MOVE_HEADBUTT, MOVE_FOCUS_ENERGY},
+        .moves = {MOVE_BONEMERANG, MOVE_ROCK_SLIDE, MOVE_SWORDS_DANCE, MOVE_HEADBUTT},
     },
     {
         .iv = 250,
@@ -14961,7 +14962,7 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderLuana[] = {
         .species = SPECIES_ALAKAZAM,
         .ability = TRAINER_MON_HIDDEN_ABILITY,
         .heldItem = ITEM_TWISTED_SPOON,
-        .moves = {MOVE_PSYCHIC, MOVE_CALM_MIND, MOVE_RECOVER, MOVE_REFLECT},
+        .moves = {MOVE_PSYCHIC, MOVE_CALM_MIND, MOVE_REFLECT, MOVE_RECOVER},
     },
 };
 
@@ -15223,38 +15224,56 @@ static const struct TrainerMonNoItemDefaultMoves sParty_CooltrainerTrovitaCedro[
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_TwinsKumquatAnaBel[] = {
+static const struct TrainerMonItemCustomMoves sParty_TwinsKumquatAnaBel[] = {
     {
-        .iv = 100,
+        .iv = 250,
         .lvl = 41,
-        .species = SPECIES_NIDORINA,
+        .species = SPECIES_DUGTRIO,
+        .ability = 2,
+        .heldItem = ITEM_SOFT_SAND,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SAND_ATTACK, MOVE_SLASH},
     },
     {
-        .iv = 100,
+        .iv = 250,
         .lvl = 41,
-        .species = SPECIES_NIDORINO,
+        .species = SPECIES_DODRIO,
+        .ability = 2,
+        .heldItem = ITEM_SHARP_BEAK,
+        .moves = {MOVE_DRILL_PECK, MOVE_TRI_ATTACK, MOVE_STEEL_WING, MOVE_AGILITY},
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_CoolCoupleKumquatLexNya[] = {
+static const struct TrainerMonItemCustomMoves sParty_CoolCoupleKumquatLexNya[] = {
     {
-        .iv = 100,
-        .lvl = 42,
-        .species = SPECIES_DODRIO,
-    },
-    {
-        .iv = 100,
+        .iv = 250,
         .lvl = 42,
         .species = SPECIES_RAPIDASH,
+        .ability = 2,
+        .heldItem = ITEM_CHARCOAL,
+        .moves = {MOVE_SUNNY_DAY, MOVE_FIRE_BLAST, MOVE_STOMP, MOVE_AGILITY},
     },
     {
-        .iv = 100,
+        .iv = 250,
+        .lvl = 42,
+        .species = SPECIES_VILEPLUME,
+        .ability = 1,
+        .heldItem = ITEM_MIRACLE_SEED,
+        .moves = {MOVE_SOLAR_BEAM, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_GIGA_DRAIN},
+    },
+    {
+        .iv = 250,
         .lvl = 42,
         .species = SPECIES_GOLDUCK,
+        .ability = 1,
+        .heldItem = ITEM_MYSTIC_WATER,
+        .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_PSYCHIC, MOVE_DISABLE},
     },
     {
-        .iv = 100,
+        .iv = 250,
         .lvl = 42,
         .species = SPECIES_PERSIAN,
+        .ability = 1,
+        .heldItem = ITEM_SILK_SCARF,
+        .moves = {MOVE_FAKE_OUT, MOVE_SLASH, MOVE_SCREECH, MOVE_BITE},
     },
 };

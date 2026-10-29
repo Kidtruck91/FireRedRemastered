@@ -117,10 +117,12 @@ OrangeIslands_Kumquat_Gym_Text_LuanaPostBattle::
 	.string "ISLAND. Give him my best!$"
 
 OrangeIslands_Kumquat_Gym_Text_AnaIntro::
-	.string "ANA: Two of us...$"
+	.string "ANA: Our DUGTRIO doesn't aim.\n"
+	.string "It just shakes the whole floor!$"
 
 OrangeIslands_Kumquat_Gym_Text_BelIntro::
-	.string "BEL: ...against two of yours!$"
+	.string "BEL: And my DODRIO is up in the\n"
+	.string "air where it can't be shaken!$"
 
 OrangeIslands_Kumquat_Gym_Text_AnaDefeat::
 	.string "ANA: We lost together!$"
@@ -133,19 +135,23 @@ OrangeIslands_Kumquat_Gym_Text_TwinsNotEnough::
 	.string "back with more POKéMON!$"
 
 OrangeIslands_Kumquat_Gym_Text_AnaPostBattle::
-	.string "ANA: LUANA's partners never\n"
-	.string "get in each other's way.$"
+	.string "ANA: EARTHQUAKE hits everything\n"
+	.string "standing on the ground. Ours\l"
+	.string "wasn't standing on it.$"
 
 OrangeIslands_Kumquat_Gym_Text_BelPostBattle::
-	.string "BEL: Moves that hit both foes\n"
-	.string "are great here!$"
+	.string "BEL: ARENA TRAP meant you\n"
+	.string "couldn't swap out of it either.\p"
+	.string "Find a partner that doesn't\n"
+	.string "care, and you can swing wide\l"
+	.string "every turn!$"
 
 OrangeIslands_Kumquat_Gym_Text_LexIntro::
-	.string "LEX: We've trained as a pair\n"
-	.string "for years!$"
+	.string "LEX: RAPIDASH, bring the sun out!$"
 
 OrangeIslands_Kumquat_Gym_Text_NyaIntro::
-	.string "NYA: Ready, partner?$"
+	.string "NYA: Once it's shining, my\n"
+	.string "VILEPLUME doesn't wait around.$"
 
 OrangeIslands_Kumquat_Gym_Text_LexDefeat::
 	.string "LEX: Out of sync...$"
@@ -158,20 +164,32 @@ OrangeIslands_Kumquat_Gym_Text_CoupleNotEnough::
 	.string "POKéMON on your side!$"
 
 OrangeIslands_Kumquat_Gym_Text_LexPostBattle::
-	.string "LEX: LUANA's ALAKAZAM can put\n"
-	.string "up REFLECT for her whole team.$"
+	.string "LEX: One SUNNY DAY did three\n"
+	.string "jobs. Bigger FIRE BLAST, no\l"
+	.string "charge turn on SOLARBEAM...$"
 
 OrangeIslands_Kumquat_Gym_Text_NyaPostBattle::
-	.string "NYA: Watch out for her\n"
-	.string "MAROWAK. It hits hard!$"
+	.string "NYA: ...and CHLOROPHYLL doubled\n"
+	.string "VILEPLUME's speed.\p"
+	.string "LUANA never uses EARTHQUAKE.\n"
+	.string "She won't hit her own side.$"
 
 OrangeIslands_Kumquat_Gym_Text_GymGuyAdvice::
 	.string "Yo! Every battle in LUANA's gym\n"
 	.string "is a double battle.\p"
-	.string "Her STEELIX and MAROWAK hit\n"
-	.string "hard, and ALAKAZAM backs them\l"
-	.string "up. Bring partners that cover\l"
-	.string "each other!$"
+	.string "Out here your two POKéMON can\n"
+	.string "get in each other's way, and\l"
+	.string "that's the whole lesson.\p"
+	.string "EARTHQUAKE and SURF don't aim.\n"
+	.string "One hits your partner too. The\l"
+	.string "other only hits theirs. Know\l"
+	.string "which is which!\p"
+	.string "Every pair in here is built\n"
+	.string "around one trick. Ask them\l"
+	.string "about it after you win.\p"
+	.string "LUANA plays it clean. She never\n"
+	.string "brings a move that could hit\l"
+	.string "her own side.$"
 
 OrangeIslands_Kumquat_Gym_Text_GymGuyAfter::
 	.string "Four badges! You're ready for\n"

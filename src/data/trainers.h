@@ -9608,7 +9608,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_LEVEL_ADVANCED,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_TwinsKumquatAnaBel),
+        .party = ITEM_CUSTOM_MOVES(sParty_TwinsKumquatAnaBel),
     },
     [TRAINER_COOL_COUPLE_KUMQUAT_LEX_NYA] = {
         .trainerClass = TRAINER_CLASS_COOL_COUPLE,
@@ -9618,7 +9618,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_LEVEL_ADVANCED,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_CoolCoupleKumquatLexNya),
+        .party = ITEM_CUSTOM_MOVES(sParty_CoolCoupleKumquatLexNya),
     },
     [TRAINER_JOHTO_YOUNGSTER_JOEY] = {
         .trainerClass = TRAINER_CLASS_YOUNGSTER,
