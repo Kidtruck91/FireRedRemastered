@@ -47,9 +47,37 @@ reproduces the same caves.
 Generated floors are plainer than the hand-drawn ones — flat rock walls, no ponds
 or ledges. They are meant as a playable skeleton to dress up in Porymap.
 
-## Known leftover
+## Second pass: the rest of the mouths
 
-`OrangeIsland_Pummelo_Cave_2F` (singular prefix) is the duplicate blank, and it is
-filed under `gMapGroup_Orange_Sunburst_Interior` by mistake. It is left in place:
-it is not last in that group, so deleting it would shift the map numbers of the
-Sunburst Pokémon Center and break existing saves. Nothing references it.
+PUMMELO's other two mouths are not on the walkable island at all. (39,55) sits in
+a 16-tile cove and (26,65) in a 42-tile one, both cut off from anywhere you can
+walk to — you reach them by Surf. They are the two ends of a three-floor **secret
+cave**, which also opens onto PUMMELO BEACH, so it is a back network under the
+champion's island rather than a corridor.
+
+The island's existing cave was already the route to DRAKE: (21,24) climbs from
+the Centre plateau (region 15) to the stadium plateau (region 13). It is
+unchanged.
+
+KUMQUAT's mouth and KUMQUAT BEACH's are both on their maps' main walkable area,
+so those are a **through-cave** — a second way between the island and its beach.
+
+| Cave | Floors | Ways in | At the bottom |
+| --- | --- | --- | --- |
+| Pummelo Secret Cave | 3 | two Surf-only coves + Pummelo Beach | RARE CANDY (B1F), PP MAX (B2F) |
+| Kumquat Cave | 1 | island and beach | BIG PEARL |
+
+## The duplicate, now removed
+
+`OrangeIsland_Pummelo_Cave_2F` was a blank 20x20 byte-identical to
+`OrangeIslands_Pummelo_Cave2`, misfiled under the Sunburst interior group. It is
+gone, which drops the trigger check from 71 problems to 70.
+
+**It was not last in its group**, so removing it shifted the map numbers of
+Sunburst Pokémon Center 1F and 2F. Flags and the heal tables use `MAP_NUM()` and
+are resolved at build time, so they are correct after a rebuild — but a save file
+made before this change will have a stale map number stored in it.
+
+## Still unwired
+
+The Moro Ghost Ship's internal cave door (11,9). Left for the Ghost Ship pass.

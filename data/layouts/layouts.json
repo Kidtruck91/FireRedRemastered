@@ -7154,18 +7154,6 @@
       "blockdata_filepath": "data/layouts/OrangeIsland_Sunburst_Cave_3F/map.bin"
     },
     {
-      "id": "LAYOUT_ORANGE_ISLAND_PUMMELO_CAVE_2F",
-      "name": "OrangeIsland_Pummelo_Cave_2F_Layout",
-      "width": 20,
-      "height": 20,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
-      "border_filepath": "data/layouts/OrangeIsland_Pummelo_Cave_2F/border.bin",
-      "blockdata_filepath": "data/layouts/OrangeIsland_Pummelo_Cave_2F/map.bin"
-    },
-    {
       "id": "LAYOUT_ORANGE_ISLANDS_PUMMELO_CAVE2",
       "name": "OrangeIslands_Pummelo_Cave2_Layout",
       "width": 40,
@@ -7224,6 +7212,54 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/OrangeIslands_Route_9_Cave/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Route_9_Cave/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_KUMQUAT_CAVE",
+      "name": "OrangeIslands_Kumquat_Cave_Layout",
+      "width": 44,
+      "height": 24,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/OrangeIslands_Kumquat_Cave/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Kumquat_Cave/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE",
+      "name": "OrangeIslands_Pummelo_Secret_Cave_Layout",
+      "width": 42,
+      "height": 30,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/OrangeIslands_Pummelo_Secret_Cave/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo_Secret_Cave/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B1F",
+      "name": "OrangeIslands_Pummelo_Secret_Cave_B1F_Layout",
+      "width": 40,
+      "height": 34,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/OrangeIslands_Pummelo_Secret_Cave_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo_Secret_Cave_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B2F",
+      "name": "OrangeIslands_Pummelo_Secret_Cave_B2F_Layout",
+      "width": 34,
+      "height": 26,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/OrangeIslands_Pummelo_Secret_Cave_B2F/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo_Secret_Cave_B2F/map.bin"
     }
   ]
 }

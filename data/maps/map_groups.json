@@ -852,20 +852,23 @@
   "gMapGroup_Orange_Kumquat_Interior": [
     "OrangeIslands_Kumquat_Gym",
     "OrangeIslands_Kumquat_PokemonCenter_1F",
-    "OrangeIslands_Kumquat_PokemonCenter_2F"
+    "OrangeIslands_Kumquat_PokemonCenter_2F",
+    "OrangeIslands_Kumquat_Cave"
   ],
   "gMapGroup_Orange_Pummelo_Interior": [
     "OrangeIslands_Pummelo_Stadium",
     "OrangeIslands_Pummelo_Cave",
     "OrangeIslands_Pummelo_Cave2",
     "OrangeIslands_Pummelo_PokemonCenter_1F",
-    "OrangeIslands_Pummelo_PokemonCenter_2F"
+    "OrangeIslands_Pummelo_PokemonCenter_2F",
+    "OrangeIslands_Pummelo_Secret_Cave",
+    "OrangeIslands_Pummelo_Secret_Cave_B1F",
+    "OrangeIslands_Pummelo_Secret_Cave_B2F"
   ],
   "gMapGroup_Orange_Sunburst_Interior": [
     "OrangeIslands_Sunburst_Cave",
     "OrangeIslands_Sunburst_Cave_2F",
     "OrangeIsland_Sunburst_Cave_3F",
-    "OrangeIsland_Pummelo_Cave_2F",
     "OrangeIslands_Sunburst_PokemonCenter_1F",
     "OrangeIslands_Sunburst_PokemonCenter_2F"
   ],

@@ -14,15 +14,17 @@
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
-  "object_events": [
-
-  ],
+  "object_events": [],
   "warp_events": [
-
+    {
+      "x": 66,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE",
+      "dest_warp_id": "2"
+    }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

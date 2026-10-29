@@ -573,9 +573,9 @@
 #define FLAG_HIDE_SUNBURST_CAVE_3F_STAR_PIECE 0x226
 #define FLAG_HIDE_PUMMELO_CAVE_2F_MAX_REVIVE  0x227
 #define FLAG_HIDE_ROUTE_9_CAVE_NUGGET         0x228
-#define FLAG_0x229               0x229
-#define FLAG_0x22A               0x22A
-#define FLAG_0x22B               0x22B
+#define FLAG_HIDE_PUMMELO_SECRET_CAVE_B1F_RARE_CANDY 0x229
+#define FLAG_HIDE_PUMMELO_SECRET_CAVE_B2F_PP_MAX     0x22A
+#define FLAG_HIDE_KUMQUAT_CAVE_BIG_PEARL             0x22B
 #define FLAG_0x22C               0x22C
 #define FLAG_0x22D               0x22D
 #define FLAG_0x22E               0x22E

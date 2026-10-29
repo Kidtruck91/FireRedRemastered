@@ -114,6 +114,20 @@
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_KUMQUAT_POKEMON_CENTER_1F",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 45,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_KUMQUAT_CAVE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 45,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_KUMQUAT_CAVE",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

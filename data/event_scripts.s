@@ -2084,8 +2084,6 @@ Text_TestMsg::
 	.include "data/maps/OrangeIsland_Sunburst_Cave_3F/scripts.inc"
 	.include "data/maps/OrangeIsland_Sunburst_Cave_3F/text.inc"
 
-	.include "data/maps/OrangeIsland_Pummelo_Cave_2F/scripts.inc"
-	.include "data/maps/OrangeIsland_Pummelo_Cave_2F/text.inc"
 
 	.include "data/maps/OrangeIslands_Pummelo_Cave2/scripts.inc"
 	.include "data/maps/OrangeIslands_Pummelo_Cave2/text.inc"
@@ -2149,3 +2147,18 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Route_9_Cave/scripts.inc"
 	.include "data/maps/OrangeIslands_Route_9_Cave/text.inc"
+
+
+
+
+	.include "data/maps/OrangeIslands_Kumquat_Cave/scripts.inc"
+	.include "data/maps/OrangeIslands_Kumquat_Cave/text.inc"
+
+	.include "data/maps/OrangeIslands_Pummelo_Secret_Cave/scripts.inc"
+	.include "data/maps/OrangeIslands_Pummelo_Secret_Cave/text.inc"
+
+	.include "data/maps/OrangeIslands_Pummelo_Secret_Cave_B1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Pummelo_Secret_Cave_B1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Pummelo_Secret_Cave_B2F/scripts.inc"
+	.include "data/maps/OrangeIslands_Pummelo_Secret_Cave_B2F/text.inc"
