@@ -1,0 +1,16 @@
+OrangeIslands_Moro_GhostShip_Rooms2_1F_MapScripts::
+	.byte 0
+
+OrangeIslands_Moro_GhostShip_Rooms2_1F_EventScript_Wren::
+	trainerbattle_single TRAINER_GHOST_SHIP_CHANNELER_WREN, OrangeIslands_Moro_GhostShip_Rooms2_1F_Text_WrenIntro, OrangeIslands_Moro_GhostShip_Rooms2_1F_Text_WrenDefeat
+	msgbox OrangeIslands_Moro_GhostShip_Rooms2_1F_Text_WrenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Moro_GhostShip_Rooms2_1F_EventScript_ItemRevive::
+	finditem ITEM_REVIVE
+	end
+
+OrangeIslands_Moro_GhostShip_Rooms2_1F_EventScript_Cook::
+	msgbox OrangeIslands_Moro_GhostShip_Rooms2_1F_Text_Cook, MSGBOX_NPC
+	end
+

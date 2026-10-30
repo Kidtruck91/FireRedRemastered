@@ -471,3 +471,5 @@ const u16 gMetatiles_HoennUnionRoom[] = INCBIN_U16("data/tilesets/secondary/hoen
 const u32 gMetatileAttributes_HoennUnionRoom[] = INCBIN_U32("data/tilesets/secondary/hoenn_native_union_room/metatile_attributes.bin");
 
 // END IMPORTED HOENN TILESETS
+const u16 gMetatiles_AbandonedShip[] = INCBIN_U16("data/tilesets/secondary/abandoned_ship/metatiles.bin");
+const u32 gMetatileAttributes_AbandonedShip[] = INCBIN_U32("data/tilesets/secondary/abandoned_ship/metatile_attributes.bin");

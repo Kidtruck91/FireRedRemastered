@@ -1,0 +1,16 @@
+OrangeIslands_Moro_GhostShip_Rooms_B1F_MapScripts::
+	.byte 0
+
+OrangeIslands_Moro_GhostShip_Rooms_B1F_EventScript_Duncan::
+	trainerbattle_single TRAINER_GHOST_SHIP_SAILOR_DUNCAN, OrangeIslands_Moro_GhostShip_Rooms_B1F_Text_DuncanIntro, OrangeIslands_Moro_GhostShip_Rooms_B1F_Text_DuncanDefeat
+	msgbox OrangeIslands_Moro_GhostShip_Rooms_B1F_Text_DuncanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Moro_GhostShip_Rooms_B1F_EventScript_ItemEscapeRope::
+	finditem ITEM_ESCAPE_ROPE
+	end
+
+OrangeIslands_Moro_GhostShip_Rooms_B1F_EventScript_Bilge::
+	msgbox OrangeIslands_Moro_GhostShip_Rooms_B1F_Text_Bilge, MSGBOX_NPC
+	end
+

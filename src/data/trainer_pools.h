@@ -1203,3 +1203,35 @@ static const struct PoolMon sPool_Youngster_Advanced[] =
       .moves = {MOVE_CRUNCH, MOVE_IRON_TAIL, MOVE_SHADOW_BALL, MOVE_TOXIC} },
     POOL_END
 };
+
+// ---------------------------------------------------------------------------------------------
+// Channeler -- also used by the ghost crew of the MORO (Orange Islands).
+
+static const struct PoolMon sPool_Channeler_Basic[] =
+{
+    { .species = SPECIES_GASTLY },
+    { .species = SPECIES_HAUNTER },
+    { .species = SPECIES_DROWZEE },
+    { .species = SPECIES_SHUPPET },
+    { .species = SPECIES_DUSKULL },
+    { .species = SPECIES_MISDREAVUS },
+    { .species = SPECIES_NATU },
+    { .species = SPECIES_SPOINK },
+    { .species = SPECIES_ZUBAT },
+    { .species = SPECIES_GOLBAT },
+    POOL_END
+};
+
+static const struct PoolMon sPool_Channeler_Intermediate[] =
+{
+    { .species = SPECIES_HAUNTER, .iv = 150, .moves = {MOVE_SHADOW_BALL, MOVE_CONFUSE_RAY, MOVE_HYPNOSIS, MOVE_DREAM_EATER} },
+    { .species = SPECIES_KADABRA, .iv = 150 },
+    { .species = SPECIES_HYPNO, .iv = 150, .moves = {MOVE_HYPNOSIS, MOVE_DREAM_EATER, MOVE_CONFUSION, MOVE_HEADBUTT} },
+    { .species = SPECIES_BANETTE, .iv = 150 },
+    { .species = SPECIES_DUSCLOPS, .iv = 150 },
+    { .species = SPECIES_SABLEYE, .iv = 150 },
+    { .species = SPECIES_MISDREAVUS, .iv = 150 },
+    { .species = SPECIES_GRUMPIG, .iv = 150 },
+    { .species = SPECIES_GOLBAT, .iv = 150 },
+    POOL_END
+};

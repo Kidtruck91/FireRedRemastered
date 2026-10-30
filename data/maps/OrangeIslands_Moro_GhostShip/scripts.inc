@@ -1,7 +1,12 @@
 OrangeIslands_Moro_GhostShip_MapScripts::
 	.byte 0
 
-OrangeIslands_Moro_GhostShip_EventScript_Leave::
-	warp MAP_ORANGE_ISLANDS_MORO, 32, 52
-	waitstate
+OrangeIslands_Moro_GhostShip_EventScript_Marisol::
+	trainerbattle_single TRAINER_GHOST_SHIP_CHANNELER_MARISOL, OrangeIslands_Moro_GhostShip_Text_MarisolIntro, OrangeIslands_Moro_GhostShip_Text_MarisolDefeat
+	msgbox OrangeIslands_Moro_GhostShip_Text_MarisolPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+OrangeIslands_Moro_GhostShip_EventScript_Gaffer::
+	msgbox OrangeIslands_Moro_GhostShip_Text_Gaffer, MSGBOX_NPC
+	end
+

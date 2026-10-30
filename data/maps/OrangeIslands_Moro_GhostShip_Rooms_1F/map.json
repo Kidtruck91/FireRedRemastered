@@ -1,0 +1,121 @@
+{
+  "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS_1F",
+  "name": "OrangeIslands_Moro_GhostShip_Rooms_1F",
+  "layout": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS_1F",
+  "music": "MUS_POKE_TOWER",
+  "region_map_section": "MAPSEC_MORO_ISLAND",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": false,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_CHANNELER",
+      "x": 12,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "OrangeIslands_Moro_GhostShip_Rooms_1F_EventScript_Odette",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 4,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Moro_GhostShip_Rooms_1F_EventScript_ItemSuperRepel",
+      "flag": "FLAG_HIDE_GHOST_SHIP_1F_SUPER_REPEL"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_CHANNELER",
+      "x": 10,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "OrangeIslands_Moro_GhostShip_Rooms_1F_EventScript_Thalia",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 10,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "OrangeIslands_Moro_GhostShip_Rooms_1F_EventScript_Griff",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 16,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 5,
+      "y": 16,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 13,
+      "y": 16,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 13,
+      "y": 1,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 14,
+      "y": 16,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP",
+      "dest_warp_id": "5"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

@@ -873,7 +873,13 @@
     "OrangeIslands_Sunburst_PokemonCenter_2F"
   ],
   "gMapGroup_Orange_Moro_Interior": [
-    "OrangeIslands_Moro_GhostShip"
+    "OrangeIslands_Moro_GhostShip",
+    "OrangeIslands_Moro_GhostShip_Rooms_1F",
+    "OrangeIslands_Moro_GhostShip_Rooms2_1F",
+    "OrangeIslands_Moro_GhostShip_Corridors_B1F",
+    "OrangeIslands_Moro_GhostShip_Rooms_B1F",
+    "OrangeIslands_Moro_GhostShip_Rooms2_B1F",
+    "OrangeIslands_Moro_GhostShip_Room_B1F"
   ],
   "gMapGroup_Orange_Kinnow_Interior": [
     "OrangeIslands_Kinnow_PokemonCenter_1F",

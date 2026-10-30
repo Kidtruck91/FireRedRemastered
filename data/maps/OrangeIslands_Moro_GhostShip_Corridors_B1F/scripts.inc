@@ -1,0 +1,12 @@
+OrangeIslands_Moro_GhostShip_Corridors_B1F_MapScripts::
+	.byte 0
+
+OrangeIslands_Moro_GhostShip_Corridors_B1F_EventScript_Moss::
+	trainerbattle_single TRAINER_GHOST_SHIP_SAILOR_MOSS, OrangeIslands_Moro_GhostShip_Corridors_B1F_Text_MossIntro, OrangeIslands_Moro_GhostShip_Corridors_B1F_Text_MossDefeat
+	msgbox OrangeIslands_Moro_GhostShip_Corridors_B1F_Text_MossPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Moro_GhostShip_Corridors_B1F_EventScript_Maeve::
+	msgbox OrangeIslands_Moro_GhostShip_Corridors_B1F_Text_Maeve, MSGBOX_NPC
+	end
+

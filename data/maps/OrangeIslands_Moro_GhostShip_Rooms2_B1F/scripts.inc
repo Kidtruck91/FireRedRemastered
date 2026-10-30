@@ -1,0 +1,12 @@
+OrangeIslands_Moro_GhostShip_Rooms2_B1F_MapScripts::
+	.byte 0
+
+OrangeIslands_Moro_GhostShip_Rooms2_B1F_EventScript_Isolde::
+	trainerbattle_single TRAINER_GHOST_SHIP_CHANNELER_ISOLDE, OrangeIslands_Moro_GhostShip_Rooms2_B1F_Text_IsoldeIntro, OrangeIslands_Moro_GhostShip_Rooms2_B1F_Text_IsoldeDefeat
+	msgbox OrangeIslands_Moro_GhostShip_Rooms2_B1F_Text_IsoldePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Moro_GhostShip_Rooms2_B1F_EventScript_ItemBigPearl::
+	finditem ITEM_BIG_PEARL
+	end
+

@@ -1727,3 +1727,14 @@ const struct Tileset gTileset_HoennUnionRoom =
 };
 
 // END IMPORTED HOENN TILESETS
+
+const struct Tileset gTileset_AbandonedShip =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_AbandonedShip,
+    .palettes = gTilesetPalettes_AbandonedShip,
+    .metatiles = gMetatiles_AbandonedShip,
+    .metatileAttributes = gMetatileAttributes_AbandonedShip,
+    .callback = NULL,
+};

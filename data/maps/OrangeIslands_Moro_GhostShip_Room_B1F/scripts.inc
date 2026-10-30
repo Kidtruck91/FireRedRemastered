@@ -1,0 +1,12 @@
+OrangeIslands_Moro_GhostShip_Room_B1F_MapScripts::
+	.byte 0
+
+OrangeIslands_Moro_GhostShip_Room_B1F_EventScript_Voss::
+	trainerbattle_single TRAINER_GHOST_SHIP_CAPTAIN_VOSS, OrangeIslands_Moro_GhostShip_Room_B1F_Text_VossIntro, OrangeIslands_Moro_GhostShip_Room_B1F_Text_VossDefeat
+	msgbox OrangeIslands_Moro_GhostShip_Room_B1F_Text_VossPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Moro_GhostShip_Room_B1F_EventScript_ItemTM30::
+	finditem ITEM_TM30
+	end
+

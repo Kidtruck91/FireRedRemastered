@@ -2162,3 +2162,21 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Pummelo_Secret_Cave_B2F/scripts.inc"
 	.include "data/maps/OrangeIslands_Pummelo_Secret_Cave_B2F/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Rooms_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Rooms_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Rooms2_1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Rooms2_1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Corridors_B1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Corridors_B1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Rooms_B1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Rooms_B1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Rooms2_B1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Rooms2_B1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Room_B1F/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Room_B1F/text.inc"

@@ -15277,3 +15277,34 @@ static const struct TrainerMonItemCustomMoves sParty_CoolCoupleKumquatLexNya[] =
         .moves = {MOVE_FAKE_OUT, MOVE_SLASH, MOVE_SCREECH, MOVE_BITE},
     },
 };
+
+static const struct TrainerMonItemCustomMoves sParty_GhostShipCaptainVoss[] = {
+    {
+        .iv = 200,
+        .lvl = 27,
+        .species = SPECIES_GOLBAT,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_WING_ATTACK, MOVE_CONFUSE_RAY, MOVE_BITE, MOVE_SUPERSONIC},
+    },
+    {
+        .iv = 200,
+        .lvl = 27,
+        .species = SPECIES_TENTACRUEL,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SURF, MOVE_ACID, MOVE_SUPERSONIC, MOVE_WRAP},
+    },
+    {
+        .iv = 220,
+        .lvl = 28,
+        .species = SPECIES_DUSCLOPS,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SHADOW_BALL, MOVE_WILL_O_WISP, MOVE_CONFUSE_RAY, MOVE_PURSUIT},
+    },
+    {
+        .iv = 240,
+        .lvl = 30,
+        .species = SPECIES_HAUNTER,
+        .heldItem = ITEM_SITRUS_BERRY,
+        .moves = {MOVE_SHADOW_BALL, MOVE_HYPNOSIS, MOVE_DREAM_EATER, MOVE_MEAN_LOOK},
+    },
+};

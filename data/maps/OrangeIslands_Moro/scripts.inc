@@ -10,7 +10,7 @@ OrangeIslands_Moro_EventScript_Town::
 	end
 
 OrangeIslands_Moro_EventScript_BoardGhostShip::
-	warp MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP, 8, 10
+	warp MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP, 9, 10
 	waitstate
 	end
 

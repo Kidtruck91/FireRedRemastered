@@ -576,6 +576,11 @@
 #define FLAG_HIDE_PUMMELO_SECRET_CAVE_B1F_RARE_CANDY 0x229
 #define FLAG_HIDE_PUMMELO_SECRET_CAVE_B2F_PP_MAX     0x22A
 #define FLAG_HIDE_KUMQUAT_CAVE_BIG_PEARL             0x22B
+#define FLAG_HIDE_GHOST_SHIP_1F_SUPER_REPEL          0x22C
+#define FLAG_HIDE_GHOST_SHIP_1F_REVIVE               0x22D
+#define FLAG_HIDE_GHOST_SHIP_B1F_ESCAPE_ROPE         0x22E
+#define FLAG_HIDE_GHOST_SHIP_B1F_BIG_PEARL           0x22F
+#define FLAG_HIDE_GHOST_SHIP_B1F_TM30                0x230
 #define FLAG_0x22C               0x22C
 #define FLAG_0x22D               0x22D
 #define FLAG_0x22E               0x22E

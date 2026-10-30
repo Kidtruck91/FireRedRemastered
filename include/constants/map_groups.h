@@ -767,34 +767,69 @@
 #define MAP_ORANGE_ISLANDS_ROUTE_18             (40 | (55 << 8))
 
 // gMapGroup_Orange_Valencia_Interior
-#define MAP_ORANGE_ISLANDS_VALENCIA_IVYS_LAB (0 | (56 << 8))
+#define MAP_ORANGE_ISLANDS_VALENCIA_IVYS_LAB          (0 | (56 << 8))
+#define MAP_ORANGE_ISLANDS_VALENCIA_POKEMON_CENTER_1F (1 | (56 << 8))
+#define MAP_ORANGE_ISLANDS_VALENCIA_POKEMON_CENTER_2F (2 | (56 << 8))
 
 // gMapGroup_Orange_Mikan_Interior
-#define MAP_ORANGE_ISLANDS_MIKAN_GYM (0 | (57 << 8))
+#define MAP_ORANGE_ISLANDS_MIKAN_GYM               (0 | (57 << 8))
+#define MAP_ORANGE_ISLANDS_MIKAN_POKEMON_CENTER_1F (1 | (57 << 8))
+#define MAP_ORANGE_ISLANDS_MIKAN_POKEMON_CENTER_2F (2 | (57 << 8))
 
 // gMapGroup_Orange_Navel_Interior
-#define MAP_ORANGE_ISLANDS_NAVEL_GYM (0 | (58 << 8))
+#define MAP_ORANGE_ISLANDS_NAVEL_GYM               (0 | (58 << 8))
+#define MAP_ORANGE_ISLANDS_NAVEL_POKEMON_CENTER_1F (1 | (58 << 8))
+#define MAP_ORANGE_ISLANDS_NAVEL_POKEMON_CENTER_2F (2 | (58 << 8))
 
 // gMapGroup_Orange_Trovita_Interior
-#define MAP_ORANGE_ISLANDS_TROVITA_GYM (0 | (59 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_GYM               (0 | (59 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_POKEMON_CENTER_1F (1 | (59 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_POKEMON_CENTER_2F (2 | (59 << 8))
 
 // gMapGroup_Orange_Kumquat_Interior
-#define MAP_ORANGE_ISLANDS_KUMQUAT_GYM (0 | (60 << 8))
+#define MAP_ORANGE_ISLANDS_KUMQUAT_GYM               (0 | (60 << 8))
+#define MAP_ORANGE_ISLANDS_KUMQUAT_POKEMON_CENTER_1F (1 | (60 << 8))
+#define MAP_ORANGE_ISLANDS_KUMQUAT_POKEMON_CENTER_2F (2 | (60 << 8))
+#define MAP_ORANGE_ISLANDS_KUMQUAT_CAVE              (3 | (60 << 8))
 
 // gMapGroup_Orange_Pummelo_Interior
-#define MAP_ORANGE_ISLANDS_PUMMELO_STADIUM (0 | (61 << 8))
-#define MAP_ORANGE_ISLANDS_PUMMELO_CAVE    (1 | (61 << 8))
-#define MAP_ORANGE_ISLANDS_PUMMELO_CAVE2   (2 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_STADIUM           (0 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_CAVE              (1 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_CAVE2             (2 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_POKEMON_CENTER_1F (3 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_POKEMON_CENTER_2F (4 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE       (5 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B1F   (6 | (61 << 8))
+#define MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B2F   (7 | (61 << 8))
 
 // gMapGroup_Orange_Sunburst_Interior
-#define MAP_ORANGE_ISLANDS_SUNBURST_CAVE    (0 | (62 << 8))
-#define MAP_ORANGE_ISLANDS_SUNBURST_CAVE_2F (1 | (62 << 8))
-#define MAP_ORANGE_ISLAND_SUNBURST_CAVE_3F  (2 | (62 << 8))
-#define MAP_ORANGE_ISLAND_PUMMELO_CAVE_2F   (3 | (62 << 8))
+#define MAP_ORANGE_ISLANDS_SUNBURST_CAVE              (0 | (62 << 8))
+#define MAP_ORANGE_ISLANDS_SUNBURST_CAVE_2F           (1 | (62 << 8))
+#define MAP_ORANGE_ISLAND_SUNBURST_CAVE_3F            (2 | (62 << 8))
+#define MAP_ORANGE_ISLANDS_SUNBURST_POKEMON_CENTER_1F (3 | (62 << 8))
+#define MAP_ORANGE_ISLANDS_SUNBURST_POKEMON_CENTER_2F (4 | (62 << 8))
 
 // gMapGroup_Orange_Moro_Interior
-#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP (0 | (63 << 8))
+#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP               (0 | (63 << 8))
+#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS_1F      (1 | (63 << 8))
+#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS2_1F     (2 | (63 << 8))
+#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_CORRIDORS_B1F (3 | (63 << 8))
+#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS_B1F     (4 | (63 << 8))
+#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS2_B1F    (5 | (63 << 8))
+#define MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOM_B1F      (6 | (63 << 8))
 
-#define MAP_GROUPS_COUNT 64
+// gMapGroup_Orange_Kinnow_Interior
+#define MAP_ORANGE_ISLANDS_KINNOW_POKEMON_CENTER_1F (0 | (64 << 8))
+#define MAP_ORANGE_ISLANDS_KINNOW_POKEMON_CENTER_2F (1 | (64 << 8))
+
+// gMapGroup_Orange_Mandarin_South_Interior
+#define MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_POKEMON_CENTER_1F (0 | (65 << 8))
+#define MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_POKEMON_CENTER_2F (1 | (65 << 8))
+
+// gMapGroup_Orange_Route_Interior
+#define MAP_ORANGE_ISLANDS_ROUTE_4_CAVE (0 | (66 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_9_CAVE (1 | (66 << 8))
+
+#define MAP_GROUPS_COUNT 67
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H

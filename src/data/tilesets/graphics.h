@@ -3283,3 +3283,24 @@ const u16 gTilesetPalettes_HoennUnionRoom[][16] =
 };
 
 // END IMPORTED HOENN TILESETS
+
+const u32 gTilesetTiles_AbandonedShip[] = INCBIN_U32("data/tilesets/secondary/abandoned_ship/tiles.4bpp.lz");
+const u16 gTilesetPalettes_AbandonedShip[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/12.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/13.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/14.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/abandoned_ship/palettes/15.gbapal"),
+};

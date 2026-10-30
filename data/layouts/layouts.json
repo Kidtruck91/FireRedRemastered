@@ -6837,7 +6837,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_HoennGeneral",
-      "secondary_tileset": "gTileset_HoennInsideShip",
+      "secondary_tileset": "gTileset_AbandonedShip",
       "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip/map.bin"
     },
@@ -7260,6 +7260,78 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/OrangeIslands_Pummelo_Secret_Cave_B2F/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Pummelo_Secret_Cave_B2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS_1F",
+      "name": "OrangeIslands_Moro_GhostShip_Rooms_1F_Layout",
+      "width": 18,
+      "height": 17,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Rooms_1F/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Rooms_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS2_1F",
+      "name": "OrangeIslands_Moro_GhostShip_Rooms2_1F_Layout",
+      "width": 9,
+      "height": 17,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Rooms2_1F/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Rooms2_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_CORRIDORS_B1F",
+      "name": "OrangeIslands_Moro_GhostShip_Corridors_B1F_Layout",
+      "width": 13,
+      "height": 10,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Corridors_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Corridors_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS_B1F",
+      "name": "OrangeIslands_Moro_GhostShip_Rooms_B1F_Layout",
+      "width": 27,
+      "height": 8,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Rooms_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Rooms_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS2_B1F",
+      "name": "OrangeIslands_Moro_GhostShip_Rooms2_B1F_Layout",
+      "width": 18,
+      "height": 8,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Rooms2_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Rooms2_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOM_B1F",
+      "name": "OrangeIslands_Moro_GhostShip_Room_B1F_Layout",
+      "width": 9,
+      "height": 8,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Room_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Room_B1F/map.bin"
     }
   ]
 }
