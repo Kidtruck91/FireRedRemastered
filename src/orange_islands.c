@@ -215,6 +215,21 @@ void OrangeChallenge_Begin(void)
     gSpecialVar_Result = TRUE;
 }
 
+#ifdef ORANGE_TEST_START
+// The test build starts already on the trip. OrangeChallenge_Begin would
+// first write the Kanto PC and home team to flash; at new game both are empty
+// and flash is not somewhere to be writing yet, so this does the RAM half
+// only. FLAG_ORANGE_PC_SAVED stays clear, which is exactly right: it means
+// "no stored Orange PC yet", and End() will not try to read one back.
+void OrangeTest_EnterChallenge(void)
+{
+    ResetOrangePC();
+    TidyOrangePC();
+    FlagSet(FLAG_PC_SHOWS_ORANGE);
+    FlagSet(FLAG_ORANGE_CHALLENGE);
+}
+#endif
+
 void OrangeChallenge_End(void)
 {
     struct StoredPCPart parts[4];

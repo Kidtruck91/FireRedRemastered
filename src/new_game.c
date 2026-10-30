@@ -30,6 +30,7 @@
 #include "berry_powder.h"
 #include "pokemon_jump.h"
 #include "event_scripts.h"
+#include "orange_islands.h"
 
 // this file's functions
 static void ResetMiniGamesResults(void);
@@ -153,6 +154,9 @@ void NewGameInitData(void)
     Nuzlocke_ApplyPendingChoice();
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
+#ifdef ORANGE_TEST_START
+    OrangeTestStart();   // last: EventScript_ResetAllMapFlags above clears flags
+#endif
 }
 
 static void ResetMiniGamesResults(void)

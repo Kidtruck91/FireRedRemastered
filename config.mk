@@ -49,3 +49,10 @@ ifeq ($(MODERN), 0)
 else
   BUILD_NAME := $(BUILD_NAME)_modern
 endif
+
+# Orange Islands test start: a new game that begins on Valencia with every
+# badge, every HM and a team that can use them.  make ORANGE_TEST=1
+ORANGE_TEST ?= 0
+ifeq ($(ORANGE_TEST),1)
+  BUILD_NAME := $(BUILD_NAME)_orangetest
+endif
