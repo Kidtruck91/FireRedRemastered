@@ -85,6 +85,13 @@
       "elevation": 1,
       "dest_map": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 26,
+      "y": 4,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_MORO_BEACH",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

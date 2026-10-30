@@ -18,6 +18,11 @@
       "map": "MAP_ORANGE_ISLANDS_TROVITA_BEACH",
       "offset": 0,
       "direction": "down"
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_TROVITA_FALLS",
+      "offset": 12,
+      "direction": "up"
     }
   ],
   "object_events": [

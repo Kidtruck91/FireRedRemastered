@@ -58,3 +58,23 @@ OrangeIslands_Pinkan_Text_OrangeGlennPostBattle::
 	.string "I swim between the islands\n"
 	.string "every morning.$"
 
+@ ---- Pinkan reserve (orange_orphans.py) ----
+OrangeIslands_Pinkan_EventScript_Warden::
+	lock
+	faceplayer
+	msgbox OrangeIslands_Pinkan_Text_Warden
+	release
+	end
+
+OrangeIslands_Pinkan_Text_Warden::
+	.string "Hold it. This whole island is a\n"
+	.string "reserve, and I'm its warden.\p"
+	.string "The berries here turn whatever\n"
+	.string "eats them pink. Every POKéMON on\l"
+	.string "PINKAN is pink to the tail.\p"
+	.string "You can look. You can battle.\n"
+	.string "You do not take one off this\l"
+	.string "island. Understood?\p"
+	.string "The shore path north runs down to\n"
+	.string "the beach if you want the long\l"
+	.string "way round.$"

@@ -81,3 +81,55 @@ made before this change will have a stale map number stored in it.
 ## Still unwired
 
 The Moro Ghost Ship's internal cave door (11,9). Left for the Ghost Ship pass.
+
+---
+
+# Orphaned maps, reconnected
+
+Separately from the caves, several finished maps had no way in at all.
+
+| Map | Was | Now |
+| --- | --- | --- |
+| Trovita Falls | 48x56, fully drawn — river, waterfall, a MART, tall grass, a hiker — **0 warps, 0 connections** | joined to Trovita by map connection |
+| Pinkan Beach | 136x40, 0 warps, 0 connections | warp pair with Pinkan |
+| Moro Beach | 84x30, 0 warps, 0 connections | warp pair with Moro |
+| Kinnow Beach | 86x30, orphaned | warp pair with Kinnow |
+| Mandarin South Beach | 132x50, orphaned | warp pair with Mandarin South |
+| Sunburst Beach | 134x36, orphaned | warp pair with Sunburst |
+
+Seven beaches were orphaned in total. Kumquat's and Pummelo's stopped being so
+when the caves above gave them an entrance, and these five were left.
+
+## Why connection for the Falls but warps for the beaches
+
+Trovita Falls' only open map edge is its **bottom, x=19..25** — the river running
+south — and Trovita's entire north edge is ocean. It was drawn to be surfed into
+from the island's north coast. The connection offset of +12 lines the river mouth
+up with Trovita x=31..37, so surfing north off that stretch of coast takes you
+into the river.
+
+The beaches could not work that way. Every beach that already connected (Mikan,
+Navel, Trovita) is exactly as wide as its island; every orphaned one is wider, so
+they were never drawn to meet an island along an edge. They get warp pairs
+instead, placed on verified land tiles with at least two walkable neighbours —
+out of the island's north shore, in at the beach's south.
+
+Mandarin South's island warp sits at y=2 rather than its northmost land, because
+the map already connects up to Route 18 and a warp on row 0 would fight it.
+
+These are functional placements: the tiles are real land and the pairs are
+reciprocal, but there is no drawn trail mouth at either end yet.
+
+## Pinkan
+
+Pinkan Island now has the thing it is named for — a warden on the north shore
+who explains the reserve, that the berries turn anything that eats them pink,
+and that nothing leaves the island.
+
+## Still to do
+
+The Moro Ghost Ship. It is an 18x12 room on the Hoenn inside-ship tileset with
+two cabin doors, a third door and nine arrow-warp tiles drawn into it, and
+exactly one warp — the way back out to Moro. The rooms behind all of those still
+need building, and the tileset has beds and furniture that want hand placement
+rather than a procedural room.

@@ -106,6 +106,13 @@
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_POKEMON_CENTER_1F",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 34,
+      "y": 6,
+      "elevation": 3,
+      "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_BEACH",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
