@@ -54,10 +54,11 @@ slots. They are there to make the Kanto leg playable and to give the team
 swap something real to move; **on the Orange side you start from Ivy's
 starter, as the real game intends.**
 
-**Bag**: Sunkist Ticket, HM01–HM08, 50 Poké / 40 Great / 40 Ultra / 20 Dive /
-20 Net Balls, 50 Rare Candies, 30 Full Restores, 20 Revives, 20 Max Repels,
-10 Escape Ropes, ¥99999. The TM Case arrives with the HMs on its own —
-`AddBagItem` adds it when something lands in the TM pocket and it is missing.
+**Bag**: Sunkist Ticket, Town Map, Old / Good / Super Rod, HM01–HM08,
+50 Poké / 40 Great / 40 Ultra / 20 Dive / 20 Net Balls, 50 Rare Candies,
+30 Full Restores, 20 Revives, 20 Max Repels, 10 Escape Ropes, ¥99999. The TM
+Case arrives with the HMs on its own — `AddBagItem` adds it when something
+lands in the TM pocket and it is missing.
 
 **The bag is not swapped by the trip**, only the party and the PC. So the
 HMs, the candies and the 150 balls all come with you, and a level 10 starter
@@ -84,3 +85,21 @@ Because the trip is entered the normal way, through Ivy's lab, the save stays
 fully consistent: `OrangeChallenge_Begin` writes the Kanto PC and home team to
 flash properly, so the ferry home works and ending the trip gives the team
 back.
+
+## What the rods will and will not find
+
+Only nine Orange maps have wild encounter tables at all. Fishing works on the
+eight of them that have a `fishing_mons` list:
+
+> Valencia, Valencia Beach, Route 1, Route 3, Route 4, Sunburst,
+> Mikan, Mikan Beach
+
+Everywhere else — Navel, Trovita, Kumquat, Pummelo, Moro, Kinnow, Mandarin
+South, Pinkan, and Routes 2 and 5 through 18 — has no encounter data of any
+kind, so rods, grass and surfing all come up empty. The ghost ship and the
+four seafloors are the exception: they were given tables when they were
+built.
+
+Worth knowing for the sea routes in particular: Routes 5, 8, 10 and 13 have
+no `water_mons`, so surfing across them finds nothing, while diving under
+them does.

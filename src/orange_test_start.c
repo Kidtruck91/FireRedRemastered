@@ -50,6 +50,8 @@ static const struct { u16 item; u16 count; } sTestBag[] =
     // the ferry sailor runs `checkitem ITEM_SUNKIST_TICKET`, so the flag on
     // its own is not enough -- the ticket has to be in the bag
     {ITEM_SUNKIST_TICKET, 1},
+    {ITEM_TOWN_MAP, 1},
+    {ITEM_OLD_ROD, 1}, {ITEM_GOOD_ROD, 1}, {ITEM_SUPER_ROD, 1},
     {ITEM_HM01, 1}, {ITEM_HM02, 1}, {ITEM_HM03, 1}, {ITEM_HM04, 1},
     {ITEM_HM05, 1}, {ITEM_HM06, 1}, {ITEM_HM07, 1}, {ITEM_HM08, 1},
     {ITEM_POKE_BALL, 50}, {ITEM_GREAT_BALL, 40}, {ITEM_ULTRA_BALL, 40},
