@@ -1,0 +1,12 @@
+OrangeIslands_Moro_GhostShip_Hidden_Corridors_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, OrangeIslands_Moro_GhostShip_Hidden_Corridors_OnResume
+	.byte 0
+
+OrangeIslands_Moro_GhostShip_Hidden_Corridors_OnResume:
+	setdivewarp MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_1, 5, 4
+	end
+
+OrangeIslands_Moro_GhostShip_Hidden_Corridors_EventScript_Manifest::
+	msgbox OrangeIslands_Moro_GhostShip_Hidden_Corridors_Text_Manifest, MSGBOX_SIGN
+	end
+

@@ -475,9 +475,13 @@ bool8 MetatileBehavior_IsMountain(u8 metatileBehavior)
         return FALSE;
 }
 
+// Deep water only. Stock FireRed also counts MB_FAST_WATER, but the Orange
+// routes use that for their currents -- Route 1 alone has 292 such tiles --
+// and every one of them would become a dive spot on a map with a dive warp.
+// Deep water is painted deliberately, so it marks the spot and nothing else.
 bool8 MetatileBehavior_IsDiveable(u8 metatileBehavior)
 {
-    if (metatileBehavior >= MB_FAST_WATER && metatileBehavior <= MB_DEEP_WATER)
+    if (metatileBehavior == MB_DEEP_WATER)
         return TRUE;
     else
         return FALSE;

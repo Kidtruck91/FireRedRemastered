@@ -66,7 +66,8 @@
     "gMapGroup_Orange_Moro_Interior",
     "gMapGroup_Orange_Kinnow_Interior",
     "gMapGroup_Orange_Mandarin_South_Interior",
-    "gMapGroup_Orange_Route_Interior"
+    "gMapGroup_Orange_Route_Interior",
+    "gMapGroup_Orange_Underwater"
   ],
   "gMapGroup_Link": [
     "BattleColosseum_2P",
@@ -879,7 +880,11 @@
     "OrangeIslands_Moro_GhostShip_Corridors_B1F",
     "OrangeIslands_Moro_GhostShip_Rooms_B1F",
     "OrangeIslands_Moro_GhostShip_Rooms2_B1F",
-    "OrangeIslands_Moro_GhostShip_Room_B1F"
+    "OrangeIslands_Moro_GhostShip_Room_B1F",
+    "OrangeIslands_Moro_GhostShip_Underwater_1",
+    "OrangeIslands_Moro_GhostShip_Underwater_2",
+    "OrangeIslands_Moro_GhostShip_Hidden_Corridors",
+    "OrangeIslands_Moro_GhostShip_Hidden_Rooms"
   ],
   "gMapGroup_Orange_Kinnow_Interior": [
     "OrangeIslands_Kinnow_PokemonCenter_1F",
@@ -892,5 +897,11 @@
   "gMapGroup_Orange_Route_Interior": [
     "OrangeIslands_Route_4_Cave",
     "OrangeIslands_Route_9_Cave"
+  ],
+  "gMapGroup_Orange_Underwater": [
+    "OrangeIslands_Underwater_Route_5",
+    "OrangeIslands_Underwater_Route_8",
+    "OrangeIslands_Underwater_Route_10",
+    "OrangeIslands_Underwater_Route_13"
   ]
 }

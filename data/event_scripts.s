@@ -2180,3 +2180,27 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Moro_GhostShip_Room_B1F/scripts.inc"
 	.include "data/maps/OrangeIslands_Moro_GhostShip_Room_B1F/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Underwater_1/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Underwater_1/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Underwater_2/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Underwater_2/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Hidden_Corridors/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Hidden_Corridors/text.inc"
+
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Hidden_Rooms/scripts.inc"
+	.include "data/maps/OrangeIslands_Moro_GhostShip_Hidden_Rooms/text.inc"
+
+	.include "data/maps/OrangeIslands_Underwater_Route_5/scripts.inc"
+	.include "data/maps/OrangeIslands_Underwater_Route_5/text.inc"
+
+	.include "data/maps/OrangeIslands_Underwater_Route_8/scripts.inc"
+	.include "data/maps/OrangeIslands_Underwater_Route_8/text.inc"
+
+	.include "data/maps/OrangeIslands_Underwater_Route_10/scripts.inc"
+	.include "data/maps/OrangeIslands_Underwater_Route_10/text.inc"
+
+	.include "data/maps/OrangeIslands_Underwater_Route_13/scripts.inc"
+	.include "data/maps/OrangeIslands_Underwater_Route_13/text.inc"

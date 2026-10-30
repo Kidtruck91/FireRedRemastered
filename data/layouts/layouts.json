@@ -7332,6 +7332,102 @@
       "secondary_tileset": "gTileset_AbandonedShip",
       "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Room_B1F/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Room_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_1",
+      "name": "OrangeIslands_Moro_GhostShip_Underwater_1_Layout",
+      "width": 8,
+      "height": 8,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Underwater_1/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Underwater_1/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_2",
+      "name": "OrangeIslands_Moro_GhostShip_Underwater_2_Layout",
+      "width": 21,
+      "height": 7,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Underwater_2/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Underwater_2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_HIDDEN_CORRIDORS",
+      "name": "OrangeIslands_Moro_GhostShip_Hidden_Corridors_Layout",
+      "width": 13,
+      "height": 11,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Hidden_Corridors/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Hidden_Corridors/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_MORO_GHOST_SHIP_HIDDEN_ROOMS",
+      "name": "OrangeIslands_Moro_GhostShip_Hidden_Rooms_Layout",
+      "width": 44,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_AbandonedShip",
+      "border_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Hidden_Rooms/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Moro_GhostShip_Hidden_Rooms/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_UNDERWATER_ROUTE_5",
+      "name": "OrangeIslands_Underwater_Route_5_Layout",
+      "width": 48,
+      "height": 124,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_HoennUnderwater",
+      "border_filepath": "data/layouts/OrangeIslands_Underwater_Route_5/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Underwater_Route_5/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_UNDERWATER_ROUTE_8",
+      "name": "OrangeIslands_Underwater_Route_8_Layout",
+      "width": 132,
+      "height": 46,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_HoennUnderwater",
+      "border_filepath": "data/layouts/OrangeIslands_Underwater_Route_8/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Underwater_Route_8/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_UNDERWATER_ROUTE_10",
+      "name": "OrangeIslands_Underwater_Route_10_Layout",
+      "width": 104,
+      "height": 68,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_HoennUnderwater",
+      "border_filepath": "data/layouts/OrangeIslands_Underwater_Route_10/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Underwater_Route_10/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_UNDERWATER_ROUTE_13",
+      "name": "OrangeIslands_Underwater_Route_13_Layout",
+      "width": 88,
+      "height": 80,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_HoennUnderwater",
+      "border_filepath": "data/layouts/OrangeIslands_Underwater_Route_13/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Underwater_Route_13/map.bin"
     }
   ]
 }

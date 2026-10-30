@@ -1,0 +1,41 @@
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_MapScripts::
+	.byte 0
+
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_EventScript_ItemTM18::
+	finditem ITEM_TM18
+	end
+
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_EventScript_ItemStarPiece::
+	finditem ITEM_STAR_PIECE
+	end
+
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_EventScript_ItemWaterStone::
+	finditem ITEM_WATER_STONE
+	end
+
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_EventScript_ItemLuxuryBall::
+	finditem ITEM_LUXURY_BALL
+	end
+
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_EventScript_ItemNugget::
+	finditem ITEM_NUGGET
+	end
+
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_EventScript_Pell::
+	trainerbattle_single TRAINER_GHOST_SHIP_CHANNELER_PELL, OrangeIslands_Moro_GhostShip_Hidden_Rooms_Text_PellIntro, OrangeIslands_Moro_GhostShip_Hidden_Rooms_Text_PellDefeat
+	msgbox OrangeIslands_Moro_GhostShip_Hidden_Rooms_Text_PellPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_EventScript_Hoyle::
+	trainerbattle_single TRAINER_GHOST_SHIP_SAILOR_HOYLE, OrangeIslands_Moro_GhostShip_Hidden_Rooms_Text_HoyleIntro, OrangeIslands_Moro_GhostShip_Hidden_Rooms_Text_HoyleDefeat
+	msgbox OrangeIslands_Moro_GhostShip_Hidden_Rooms_Text_HoylePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_EventScript_Crate::
+	msgbox OrangeIslands_Moro_GhostShip_Hidden_Rooms_Text_Crate, MSGBOX_SIGN
+	end
+
+OrangeIslands_Moro_GhostShip_Hidden_Rooms_EventScript_Ledger::
+	msgbox OrangeIslands_Moro_GhostShip_Hidden_Rooms_Text_Ledger, MSGBOX_SIGN
+	end
+

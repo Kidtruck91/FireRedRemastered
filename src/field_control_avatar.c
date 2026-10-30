@@ -1152,7 +1152,7 @@ bool8 dive_warp(struct MapPosition *position, u16 metatileBehavior)
     return FALSE;
 }
 
-static u8 TrySetDiveWarp(void)
+u8 TrySetDiveWarp(void)
 {
     s16 x, y;
     u8 metatileBehavior;

@@ -1241,7 +1241,10 @@
 #define TRAINER_GHOST_SHIP_SAILOR_DUNCAN         1205
 #define TRAINER_GHOST_SHIP_CAPTAIN_VOSS          1206
 
-#define NUM_TRAINERS                             1207
+#define TRAINER_GHOST_SHIP_CHANNELER_PELL        1207
+#define TRAINER_GHOST_SHIP_SAILOR_HOYLE          1208
+
+#define NUM_TRAINERS                             1209
 #define MAX_TRAINERS_COUNT                       1504
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

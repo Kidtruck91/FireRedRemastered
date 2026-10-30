@@ -300,7 +300,11 @@ def structural(world, maps, report):
             mid = block & 1023
             if mid >= len(attributes) or block & 0xC00:
                 continue
-            if attributes[mid] & 511 in SURF and block >> 12 not in (0, 1):
+            # Underwater maps are the exception: the player is not surfing
+            # there, they are walking the seafloor at elevation 3, and the
+            # floor legitimately carries deep-water behaviour.
+            if (attributes[mid] & 511 in SURF and block >> 12 not in (0, 1)
+                    and header.get('map_type') != 'MAP_TYPE_UNDERWATER'):
                 report.fail(name, 'Surf water at walking height',
                             '(%d,%d)' % (i % w, i // w), hex(block))
         report.count('map cells checked', len(blocks))

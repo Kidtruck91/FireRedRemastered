@@ -100,8 +100,19 @@ The flooded middle store room on B1F is the exception: its water comes from
 `TILE_ENCOUNTER_WATER`. They were left alone, and the room has its own water
 table (Tentacool / Horsea / Shellder).
 
-## Left for Dive
+## Below the hold
 
-That flooded room is the hook. Voss and the NPC beside the pool both point
-at it, and pokeemerald has `AbandonedShip_Underwater1` (8×8) and
-`Underwater2` (21×7) sitting ready to port the same way.
+Done — see **[dive.md](dive.md)**. Voss hands over HM08 when you beat him,
+the flooded hold is two rooms away, and under it are Emerald's
+`Underwater1`, `Underwater2` and the ship's six-strongroom hidden floor,
+ported the same way as the rest.
+
+That port needed one more thing from the behaviour translation: Emerald's
+`MB_NO_SURFACING`, which 103 tiles of the underwater stretch use and which
+FireRed spells `MB_UNDERWATER_BLOCKED_ABOVE`. Name matching could not find
+it and the `hoenn_general` diff could not learn it, because it only appears
+in secondary tilesets. `emerald_port.py` now carries a small synonym table
+for exactly those: that one, `MB_SEAWEED_NO_SURFACING`,
+`MB_WATER_SOUTH_ARROW_WARP` (the two tiles leading down to Underwater 2),
+`MB_WATER_DOOR` (the one doorway out of it) and `MB_TRASH_CAN`. Without the
+middle two the underwater route simply has no exits.

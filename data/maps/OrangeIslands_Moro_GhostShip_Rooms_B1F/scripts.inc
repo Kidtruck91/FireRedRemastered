@@ -1,5 +1,10 @@
 OrangeIslands_Moro_GhostShip_Rooms_B1F_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, OrangeIslands_Moro_GhostShip_Rooms_B1F_OnResume
 	.byte 0
+
+OrangeIslands_Moro_GhostShip_Rooms_B1F_OnResume:
+	setdivewarp MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_2, 17, 4
+	end
 
 OrangeIslands_Moro_GhostShip_Rooms_B1F_EventScript_Duncan::
 	trainerbattle_single TRAINER_GHOST_SHIP_SAILOR_DUNCAN, OrangeIslands_Moro_GhostShip_Rooms_B1F_Text_DuncanIntro, OrangeIslands_Moro_GhostShip_Rooms_B1F_Text_DuncanDefeat

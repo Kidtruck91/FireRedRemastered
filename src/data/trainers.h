@@ -12262,6 +12262,26 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_LEVEL_NORMAL,
         .party = ITEM_CUSTOM_MOVES(sParty_GhostShipCaptainVoss),
     },
+    [TRAINER_GHOST_SHIP_CHANNELER_PELL] = {
+        .trainerClass = TRAINER_CLASS_CHANNELER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_CHANNELER,
+        .trainerName = _("PELL"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_LEVEL_NORMAL,
+        .party = POOL_PARTY(sPool_Channeler_Intermediate, 3, 4, 27, 2),
+    },
+    [TRAINER_GHOST_SHIP_SAILOR_HOYLE] = {
+        .trainerClass = TRAINER_CLASS_SAILOR,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_SAILOR,
+        .trainerName = _("HOYLE"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_LEVEL_NORMAL,
+        .party = POOL_PARTY(sPool_Channeler_Intermediate, 3, 4, 27, 2),
+    },
 };
 
 // Want a trainer whose team is rolled from a pool (Hiker / Swimmer / Ace Trainer pools with

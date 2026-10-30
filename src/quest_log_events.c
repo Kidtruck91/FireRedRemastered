@@ -1842,7 +1842,8 @@ static const u8 *const sUsedFieldMoveTexts[] =
         [FIELD_MOVE_DIG]         = gText_QuestLog_UsedDigInLocation,
         [FIELD_MOVE_MILK_DRINK]  = gText_QuestLog_UsedMilkDrink,
         [FIELD_MOVE_SOFT_BOILED] = gText_QuestLog_UsedSoftboiled,
-        [FIELD_MOVE_SWEET_SCENT] = gText_QuestLog_UsedSweetScent
+        [FIELD_MOVE_SWEET_SCENT] = gText_QuestLog_UsedSweetScent,
+        [FIELD_MOVE_DIVE]        = gText_QuestLog_UsedDive
     };
 
 static u16 *BufferQuestLogData_DepartedLocation(u16 *a0, const u16 *eventData)
