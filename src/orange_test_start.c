@@ -47,6 +47,9 @@ static const struct TestMon sTestParty[] =
 
 static const struct { u16 item; u16 count; } sTestBag[] =
 {
+    // the ferry sailor runs `checkitem ITEM_SUNKIST_TICKET`, so the flag on
+    // its own is not enough -- the ticket has to be in the bag
+    {ITEM_SUNKIST_TICKET, 1},
     {ITEM_HM01, 1}, {ITEM_HM02, 1}, {ITEM_HM03, 1}, {ITEM_HM04, 1},
     {ITEM_HM05, 1}, {ITEM_HM06, 1}, {ITEM_HM07, 1}, {ITEM_HM08, 1},
     {ITEM_POKE_BALL, 50}, {ITEM_GREAT_BALL, 40}, {ITEM_ULTRA_BALL, 40},
@@ -103,27 +106,25 @@ void OrangeTestStart(void)
         FlagSet(sOrangeBadges[i]);
     FlagSet(FLAG_GOT_SUNKIST_TICKET);
 
-    // Prof. Ivy's arrival scene and her three starter balls are already done:
-    // VAR_ORANGE_STORY 3 is the state just after taking one. Without this the
-    // dock trigger on Valencia would fire and drag the player into the lab.
-    VarSet(VAR_ORANGE_STORY, 3);
-    FlagSet(FLAG_HIDE_IVY_AT_DOCK);
-    FlagSet(FLAG_HIDE_IVY_STARTER_BALLS);
+    // Scene 3 is "the S.S. Anne has sailed and the Seagallop dock is open".
+    // The ferry sailor and the pier trigger both check it before they will
+    // look at a ticket at all, so without it the Valencia run is invisible.
+    VarSet(VAR_MAP_SCENE_VERMILION_CITY, 3);
 
-    // The trip has its own PC and its own team. Normally Ivy's lab calls
-    // OrangeChallenge_Begin, which first writes the Kanto PC and home team out
-    // to flash; at new game both are empty and flash is not somewhere to be
-    // writing yet, so this just puts RAM into the same state.
-    OrangeTest_EnterChallenge();
+    // VAR_ORANGE_STORY is left at 0 on purpose: arriving at Valencia should
+    // fire Prof. Ivy's dock scene, and her lab should be the thing that calls
+    // OrangeChallenge_Begin and hands over a starter.
 
     GiveTestParty();
     for (i = 0; i < NELEMS(sTestBag); i++)
         AddBagItem(sTestBag[i].item, sTestBag[i].count);   // HMs bring the TM Case with them
     SetMoney(&gSaveBlock1Ptr->money, 99999);
 
-    SetLastHealLocationWarp(SPAWN_ORANGE_VALENCIA);
-    SetWarpDestination(MAP_GROUP(ORANGE_ISLANDS_VALENCIA),
-                       MAP_NUM(ORANGE_ISLANDS_VALENCIA), -1, 51, 45);
+    // One tile north of the ticket gate at 22-23,33, facing the pier: walk
+    // down and the sailor asks about the SUNKIST TICKET.
+    SetLastHealLocationWarp(SPAWN_VERMILION_CITY);
+    SetWarpDestination(MAP_GROUP(VERMILION_CITY), MAP_NUM(VERMILION_CITY),
+                       -1, 23, 31);
     WarpIntoMap();
 }
 
