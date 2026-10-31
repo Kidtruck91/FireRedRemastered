@@ -3,7 +3,10 @@ OrangeIslands_Route_2_Grotto_MapScripts::
 	.byte 0
 
 OrangeIslands_Route_2_Grotto_OnResume:
-	setdivewarp MAP_ORANGE_ISLANDS_ROUTE_2, 26, 23
+	@ Surfaces on the northern pond's dive tile. Route 2 now has two ponds and
+	@ both have dive tiles, but setdivewarp takes one destination per map, so
+	@ diving in the southern pond also surfaces here.
+	setdivewarp MAP_ORANGE_ISLANDS_ROUTE_2, 26, 26
 	end
 
 OrangeIslands_Route_2_Grotto_EventScript_ItemSunStone::

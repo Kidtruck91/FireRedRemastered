@@ -461,10 +461,19 @@ static void FieldEffectScript_LoadFadedPal(const u8 **script)
 {
     const struct SpritePalette * spritePalette = (const struct SpritePalette * )FieldEffectScript_ReadWord(script);
     u8 idx = IndexOfSpritePaletteTag(spritePalette->tag);
-    LoadSpritePalette(spritePalette);
-    if (idx == 0xFF)
-        ApplyGlobalFieldPaletteTint(IndexOfSpritePaletteTag(spritePalette->tag));
-    UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(spritePalette->tag));
+    u8 loaded = LoadSpritePalette(spritePalette);
+
+    // LoadSpritePalette returns 0xFF when every sprite palette slot is taken.
+    // Both calls below index the palette buffer by the slot number, and
+    // OBJ_PLTT_ID2(0xFF) is 4336 entries into a 512-entry buffer -- passing it
+    // on writes about 8KB past the end, over whatever EWRAM follows. Vanilla
+    // never runs the slots out; follower and wild overworld Pokemon can.
+    if (loaded != 0xFF)
+    {
+        if (idx == 0xFF)
+            ApplyGlobalFieldPaletteTint(loaded);
+        UpdateSpritePaletteWithWeather(loaded);
+    }
     *script += sizeof(u32);
 }
 

@@ -43,8 +43,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKER",
-      "x": 37,
-      "y": 15,
+      "x": 35,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -144,7 +144,7 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 59,
+      "x": 66,
       "y": 49,
       "elevation": 0,
       "var": "VAR_TEMP_0",
@@ -153,7 +153,7 @@
     },
     {
       "type": "trigger",
-      "x": 59,
+      "x": 66,
       "y": 50,
       "elevation": 0,
       "var": "VAR_TEMP_0",
@@ -162,7 +162,7 @@
     },
     {
       "type": "trigger",
-      "x": 59,
+      "x": 66,
       "y": 51,
       "elevation": 0,
       "var": "VAR_TEMP_0",
@@ -171,30 +171,12 @@
     },
     {
       "type": "trigger",
-      "x": 59,
-      "y": 52,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_52"
-    },
-    {
-      "type": "trigger",
-      "x": 59,
-      "y": 53,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_53"
-    },
-    {
-      "type": "trigger",
       "x": 39,
       "y": 1,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Valencia_EventScript_WalkToRoute2_27_44"
+      "script": "OrangeIslands_Valencia_EventScript_WalkToRoute2_28_81"
     },
     {
       "type": "trigger",
@@ -203,16 +185,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OrangeIslands_Valencia_EventScript_WalkToRoute2_27_44"
-    },
-    {
-      "type": "trigger",
-      "x": 41,
-      "y": 1,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Valencia_EventScript_WalkToRoute2_27_44"
+      "script": "OrangeIslands_Valencia_EventScript_WalkToRoute2_28_81"
     }
   ],
   "bg_events": [
@@ -223,14 +196,6 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Valencia_EventScript_Beach"
-    },
-    {
-      "type": "sign",
-      "x": 39,
-      "y": 46,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Valencia_EventScript_Town"
     }
   ]
 }

@@ -13,33 +13,23 @@ OrangeIslands_Valencia_EventScript_Town::
 	end
 
 OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_49::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 33
+	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 1, 33
 	waitstate
 	end
 
 OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_50::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 34
+	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 1, 34
 	waitstate
 	end
 
 OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_51::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 35
-	waitstate
-	end
-
-OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_52::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 36
-	waitstate
-	end
-
-OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_53::
-	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 8, 37
+	warp MAP_ORANGE_ISLANDS_VALENCIA_BEACH, 1, 35
 	waitstate
 	end
 
 @ Edge warp: different tilesets, so no seamless edge
-OrangeIslands_Valencia_EventScript_WalkToRoute2_27_44::
-	warp MAP_ORANGE_ISLANDS_ROUTE_2, 27, 44
+OrangeIslands_Valencia_EventScript_WalkToRoute2_28_81::
+	warp MAP_ORANGE_ISLANDS_ROUTE_2, 28, 81
 	waitstate
 	end
 

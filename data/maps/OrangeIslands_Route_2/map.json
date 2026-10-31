@@ -24,7 +24,7 @@
     {
       "type": "trigger",
       "x": 27,
-      "y": 46,
+      "y": 82,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -33,7 +33,7 @@
     {
       "type": "trigger",
       "x": 28,
-      "y": 46,
+      "y": 82,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -42,7 +42,7 @@
     {
       "type": "trigger",
       "x": 29,
-      "y": 46,
+      "y": 82,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",

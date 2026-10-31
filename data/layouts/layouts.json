@@ -6700,8 +6700,8 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_2",
       "name": "OrangeIslands_Route_2_Layout",
-      "width": 58,
-      "height": 54,
+      "width": 72,
+      "height": 88,
       "border_width": 3,
       "border_height": 2,
       "primary_tileset": "gTileset_General",

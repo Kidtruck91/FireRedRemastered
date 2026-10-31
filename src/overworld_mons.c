@@ -249,9 +249,19 @@ static u32 MakeShinyPersonality(void)
     return ((u32)hi << 16) | lo;
 }
 
+// Field effects take a palette slot the moment they appear -- the tall grass
+// rustle above all, but also dust, ripples and the weather sprites -- and
+// nothing reserves one for them. A map with reflective water anywhere in it
+// keeps the reflection palettes loaded, which leaves only four slots for
+// everything dynamic, and a follower plus two wild Pokemon already fills them.
+// Taking the last one does not fail cleanly: the grass sprite is then created
+// with no palette of its own and draws in whatever slot 15 holds, which is the
+// miscoloured grass. So always leave one slot for them.
+#define OW_MON_PALETTE_HEADROOM 1
+
 static bool8 HasPaletteRoomFor(u16 species, bool8 shiny)
 {
-    u8 i;
+    u8 i, freeSlots = 0;
 
     if (IndexOfSpritePaletteTag(FOLLOWER_PAL_TAG(species)) != 0xFF
      || IndexOfSpritePaletteTag(FOLLOWER_SHINY_PAL_TAG(species)) != 0xFF)
@@ -262,9 +272,9 @@ static bool8 HasPaletteRoomFor(u16 species, bool8 shiny)
     for (i = gReservedSpritePaletteCount; i < 16; i++)
     {
         if (GetSpritePaletteTagByPaletteNum(i) == TAG_NONE)
-            return TRUE;
+            freeSlots++;
     }
-    return FALSE;
+    return freeSlots > OW_MON_PALETTE_HEADROOM;
 }
 
 static void TrySpawn(void)
