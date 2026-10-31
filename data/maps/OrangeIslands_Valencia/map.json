@@ -43,8 +43,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKER",
-      "x": 63,
-      "y": 35,
+      "x": 37,
+      "y": 15,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -71,8 +71,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
-      "x": 61,
-      "y": 50,
+      "x": 50,
+      "y": 53,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -110,6 +110,34 @@
       "y": 44,
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_POKEMON_CENTER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 48,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 27,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_HOUSE2",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 47,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_HOUSE3",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 29,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_MART",
       "dest_warp_id": "0"
     }
   ],

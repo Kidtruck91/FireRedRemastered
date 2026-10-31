@@ -770,6 +770,11 @@
 #define MAP_ORANGE_ISLANDS_VALENCIA_IVYS_LAB          (0 | (56 << 8))
 #define MAP_ORANGE_ISLANDS_VALENCIA_POKEMON_CENTER_1F (1 | (56 << 8))
 #define MAP_ORANGE_ISLANDS_VALENCIA_POKEMON_CENTER_2F (2 | (56 << 8))
+#define MAP_ORANGE_ISLANDS_VALENCIA_HOUSE1            (3 | (56 << 8))
+#define MAP_ORANGE_ISLANDS_VALENCIA_HOUSE2            (4 | (56 << 8))
+#define MAP_ORANGE_ISLANDS_VALENCIA_HOUSE3            (5 | (56 << 8))
+#define MAP_ORANGE_ISLANDS_VALENCIA_MART              (6 | (56 << 8))
+#define MAP_ORANGE_ISLANDS_VALENCIA_BEACH_HOUSE       (7 | (56 << 8))
 
 // gMapGroup_Orange_Mikan_Interior
 #define MAP_ORANGE_ISLANDS_MIKAN_GYM               (0 | (57 << 8))
@@ -831,8 +836,9 @@
 #define MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_POKEMON_CENTER_2F (1 | (65 << 8))
 
 // gMapGroup_Orange_Route_Interior
-#define MAP_ORANGE_ISLANDS_ROUTE_4_CAVE (0 | (66 << 8))
-#define MAP_ORANGE_ISLANDS_ROUTE_9_CAVE (1 | (66 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_4_CAVE  (0 | (66 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_9_CAVE  (1 | (66 << 8))
+#define MAP_ORANGE_ISLANDS_ROUTE_1_HOUSE (2 | (66 << 8))
 
 // gMapGroup_Orange_Underwater
 #define MAP_ORANGE_ISLANDS_UNDERWATER_ROUTE_5  (0 | (67 << 8))

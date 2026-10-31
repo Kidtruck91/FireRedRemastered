@@ -2204,3 +2204,21 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Underwater_Route_13/scripts.inc"
 	.include "data/maps/OrangeIslands_Underwater_Route_13/text.inc"
+
+	.include "data/maps/OrangeIslands_Valencia_House1/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia_House1/text.inc"
+
+	.include "data/maps/OrangeIslands_Valencia_House2/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia_House2/text.inc"
+
+	.include "data/maps/OrangeIslands_Valencia_House3/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia_House3/text.inc"
+
+	.include "data/maps/OrangeIslands_Valencia_Mart/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia_Mart/text.inc"
+
+	.include "data/maps/OrangeIslands_Valencia_Beach_House/scripts.inc"
+	.include "data/maps/OrangeIslands_Valencia_Beach_House/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_1_House/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_1_House/text.inc"

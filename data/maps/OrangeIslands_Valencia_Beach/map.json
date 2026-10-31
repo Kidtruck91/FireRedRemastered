@@ -97,11 +97,19 @@
       "flag": "0"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 83,
+      "y": 33,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH_HOUSE",
+      "dest_warp_id": "0"
+    }
+  ],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 7,
+      "x": 0,
       "y": 33,
       "elevation": 0,
       "var": "VAR_TEMP_0",
@@ -110,8 +118,8 @@
     },
     {
       "type": "trigger",
-      "x": 7,
-      "y": 34,
+      "x": 0,
+      "y": 35,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -119,8 +127,8 @@
     },
     {
       "type": "trigger",
-      "x": 7,
-      "y": 35,
+      "x": 0,
+      "y": 34,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -128,7 +136,7 @@
     },
     {
       "type": "trigger",
-      "x": 7,
+      "x": 0,
       "y": 36,
       "elevation": 0,
       "var": "VAR_TEMP_0",
@@ -137,7 +145,7 @@
     },
     {
       "type": "trigger",
-      "x": 7,
+      "x": 0,
       "y": 37,
       "elevation": 0,
       "var": "VAR_TEMP_0",

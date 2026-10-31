@@ -1,0 +1,22 @@
+OrangeIslands_Route_1_House_MapScripts::
+	.byte 0
+
+OrangeIslands_Route_1_House_EventScript_Camper::
+	msgbox OrangeIslands_Route_1_House_Text_Camper, MSGBOX_NPC
+	end
+
+OrangeIslands_Route_1_House_EventScript_Picnicker::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_SUPER_POTION_FROM_VALENCIA_CAMPER, OrangeIslands_Route_1_House_EventScript_PicnickerAfter
+	msgbox OrangeIslands_Route_1_House_Text_Picnicker
+	giveitem ITEM_SUPER_POTION
+	setflag FLAG_GOT_SUPER_POTION_FROM_VALENCIA_CAMPER
+	release
+	end
+
+OrangeIslands_Route_1_House_EventScript_PicnickerAfter::
+	msgbox OrangeIslands_Route_1_House_Text_PicnickerAfter
+	release
+	end
+

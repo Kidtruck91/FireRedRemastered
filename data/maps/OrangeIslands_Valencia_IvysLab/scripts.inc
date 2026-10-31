@@ -120,6 +120,11 @@ OrangeIslands_Valencia_IvysLab_EventScript_Ball::
 
 OrangeIslands_Valencia_IvysLab_EventScript_AfterStarter::
 	setvar VAR_ORANGE_STORY, 3
+	@ Until now the respawn is still wherever it was in Kanto, so whiting out
+	@ anywhere in the Orange Islands sent the player back across the ocean.
+	@ The Valencia Center sets this too, but by then it is too late if they
+	@ never walked in.
+	setrespawn SPAWN_ORANGE_VALENCIA
 	textcolor NPC_TEXT_COLOR_FEMALE
 	msgbox OrangeIslands_Valencia_IvysLab_Text_TakeBalls
 	giveitem ITEM_POKE_BALL, 5
