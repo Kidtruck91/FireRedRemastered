@@ -2222,3 +2222,6 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Route_1_House/scripts.inc"
 	.include "data/maps/OrangeIslands_Route_1_House/text.inc"
+
+	.include "data/maps/OrangeIslands_Route_2_Grotto/scripts.inc"
+	.include "data/maps/OrangeIslands_Route_2_Grotto/text.inc"

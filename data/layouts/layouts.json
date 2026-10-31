@@ -6700,9 +6700,9 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_2",
       "name": "OrangeIslands_Route_2_Layout",
-      "width": 57,
+      "width": 58,
       "height": 54,
-      "border_width": 2,
+      "border_width": 3,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_BerryForest",
@@ -7428,6 +7428,18 @@
       "secondary_tileset": "gTileset_HoennUnderwater",
       "border_filepath": "data/layouts/OrangeIslands_Underwater_Route_13/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Underwater_Route_13/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_2_GROTTO",
+      "name": "OrangeIslands_Route_2_Grotto_Layout",
+      "width": 18,
+      "height": 10,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_HoennGeneral",
+      "secondary_tileset": "gTileset_HoennUnderwater",
+      "border_filepath": "data/layouts/OrangeIslands_Route_2_Grotto/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Route_2_Grotto/map.bin"
     }
   ]
 }

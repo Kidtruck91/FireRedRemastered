@@ -1,5 +1,10 @@
 OrangeIslands_Route_2_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, OrangeIslands_Route_2_OnResume
 	.byte 0
+
+OrangeIslands_Route_2_OnResume:
+	setdivewarp MAP_ORANGE_ISLANDS_ROUTE_2_GROTTO, 8, 7
+	end
 
 OrangeIslands_Route_2_EventScript_Jungle::
 	msgbox OrangeIslands_Route_2_Text_Jungle, MSGBOX_SIGN
