@@ -24,6 +24,13 @@
       "elevation": 3,
       "dest_map": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
       "dest_warp_id": "2"
+    },
+    {
+      "x": 7,
+      "y": 1,
+      "elevation": 3,
+      "dest_map": "MAP_PALLET_TOWN_PLAYERS_HOUSE_OPTIONS_CLOSET",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

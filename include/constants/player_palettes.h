@@ -15,5 +15,7 @@ u8 GetPlayerPaletteId(void);
 void SetPlayerPaletteId(u8 playerPaletteId);
 void SetCustomPlayerPaletteId(void);
 void RevertPlayerPaletteToGenderDefault(void);
+u8 GetStarterPlayerPaletteId(void);
+void SetMugshotPlayerPalette(u16 opponentId);
 
 #endif // PLAYER_PALETTES_H

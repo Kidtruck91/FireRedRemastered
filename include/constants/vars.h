@@ -312,9 +312,15 @@
 #define VAR_0x4101                 0x4101
 #define VAR_0x4102                 0x4102
 #define VAR_0x4103                 0x4103
+// Unused. Nuzlocke mode and the level cap are flags, not vars: FLAG_NUZLOCKE
+// and FLAG_LEVEL_CAP (src/nuzlocke.c, src/level_cap.c).
 #define VAR_LEVEL_CAP              0x4104
 #define VAR_NUZLOKE_TOGGLE         0x4105
-#define VAR_0x4106                 0x4106
+// Which palette the player's half of a mugshot battle intro uses.
+// MUGSHOT_PALETTE_OPTION_* in include/constants/game_options.h. VARS_END is the
+// end of the saved var array, so another option has to come out of a free slot
+// above rather than past it.
+#define VAR_OPTION_MUGSHOT_PALETTE 0x4106
 
 #define VARS_END                   0x4106
 #define VARS_COUNT                 (VARS_END - VARS_START + 1)

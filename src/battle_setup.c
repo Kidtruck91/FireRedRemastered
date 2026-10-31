@@ -637,7 +637,12 @@ static u8 GetTrainerBattleTransition(void)
     
    
     if (gTrainers[gTrainerBattleOpponent_A].mugshotEnabled)
+    {
+        // Runs for every mugshot battle, so the player's half of the intro is
+        // decided from the opponent rather than from a setvar in each script.
+        SetMugshotPlayerPalette(gTrainerBattleOpponent_A);
         return B_TRANSITION_MUGSHOT;
+    }
     if (gTrainers[gTrainerBattleOpponent_A].doubleBattle == TRUE)
         minPartyCount = 2; // double battles always at least have 2 pokemon.
     else

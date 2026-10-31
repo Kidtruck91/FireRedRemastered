@@ -269,10 +269,11 @@
 #define MAP_SIX_ISLAND_SAFARI                    (66 | (3 << 8))
 
 // gMapGroup_IndoorPallet
-#define MAP_PALLET_TOWN_PLAYERS_HOUSE_1F   (0 | (4 << 8))
-#define MAP_PALLET_TOWN_PLAYERS_HOUSE_2F   (1 | (4 << 8))
-#define MAP_PALLET_TOWN_RIVALS_HOUSE       (2 | (4 << 8))
-#define MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB (3 | (4 << 8))
+#define MAP_PALLET_TOWN_PLAYERS_HOUSE_1F             (0 | (4 << 8))
+#define MAP_PALLET_TOWN_PLAYERS_HOUSE_2F             (1 | (4 << 8))
+#define MAP_PALLET_TOWN_RIVALS_HOUSE                 (2 | (4 << 8))
+#define MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB           (3 | (4 << 8))
+#define MAP_PALLET_TOWN_PLAYERS_HOUSE_OPTIONS_CLOSET (4 | (4 << 8))
 
 // gMapGroup_IndoorViridian
 #define MAP_VIRIDIAN_CITY_HOUSE             (0 | (5 << 8))
