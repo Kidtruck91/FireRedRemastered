@@ -1,5 +1,6 @@
 """Check that every warp event sits on a tile the engine will actually warp on,
-and that every bg_event can be reached and read.
+that every bg_event can be reached and read, and that arriving on a warp does
+not put the map's border on screen.
 
 A warp event does nothing on its own: field_control_avatar.c only acts on it
 when the metatile underneath carries a behaviour one of its three paths
@@ -9,6 +10,13 @@ IsDirectionalStairWarpMetatileBehavior (the four stair corners). A warp placed
 on plain floor is silent: the map looks right and the door simply does nothing.
 A bg_event has the same kind of silent failure -- a sign with no walkable tile
 next to it can never be faced, so its script is unreachable.
+
+A third thing goes wrong quietly. The player lands on the warp tile and the
+camera centres on them, so a warp close to the edge of an outdoor map puts
+the repeating border in view -- open sea beyond the end of a beach, say. The
+engine pads its view by MAP_OFFSET, which is 7, so the safe range is 7 tiles
+in from every edge horizontally. Vertically the screen is shorter: 10 rows
+with the player near the middle, so 5 above and 6 below.
 
     python3 docs/orange-islands/validate_warps.py [MapName ...]
 
@@ -43,6 +51,24 @@ WARP_STAIRS = {
     'MB_DOWN_LEFT_STAIR_WARP', 'MB_DOWN_RIGHT_STAIR_WARP',
 }
 WARPABLE = WARP_ON_STEP | WARP_ON_WALK_INTO | WARP_STAIRS
+
+# How much map has to sit outside a warp before the border stops showing when
+# the player lands on it. MAP_OFFSET is 7 (include/fieldmap.h), and the screen
+# is 15 tiles wide by 10 tall with the player near the centre.
+EDGE_MARGIN_X = 7
+EDGE_MARGIN_UP = 5
+EDGE_MARGIN_DOWN = 6
+# For blending, every kind of water counts as the same thing: a FAST_WATER
+# border below an OCEAN_WATER edge still just reads as more sea.
+def family(behaviour):
+    if behaviour and 'WATER' in behaviour:
+        return 'water'
+    return behaviour
+
+
+# Only outdoors: an indoor map's border is black, and seeing it is normal.
+OUTDOOR_TYPES = {'MAP_TYPE_TOWN', 'MAP_TYPE_CITY', 'MAP_TYPE_ROUTE',
+                 'MAP_TYPE_OCEAN_ROUTE'}
 
 
 def behaviour_names():
@@ -90,6 +116,25 @@ class Tilesets:
         if (i + 1) * 4 > len(a):
             return None
         return self.names.get(struct.unpack_from('<I', a, i * 4)[0] & 0x1FF)
+
+
+def border_behaviours(layout, ts, _cache={}):
+    """The set of behaviours in a layout's border block."""
+    key = layout['id']
+    if key in _cache:
+        return _cache[key]
+    bw, bh = layout.get('border_width', 2), layout.get('border_height', 2)
+    p = os.path.join(REPO, layout['border_filepath'])
+    out = set()
+    if os.path.exists(p):
+        raw = open(p, 'rb').read()
+        for i in range(min(bw * bh, len(raw) // 2)):
+            m = struct.unpack_from('<H', raw, i * 2)[0] & 0x3FF
+            b = family(ts.behaviour(layout, m))
+            if b:
+                out.add(b)
+    _cache[key] = out
+    return out
 
 
 def main(argv):
@@ -172,6 +217,43 @@ def main(argv):
                 problems.append(
                     '%s warp %d (%d,%d): %s warps fire on stepping on the tile, but '
                     'it is not walkable' % (name, i, warp['x'], warp['y'], beh))
+
+        def blends(direction, wx, wy):
+            """True when the border looks like more of what the map ends on,
+            judged only over the stretch of edge that is actually on screen
+            when the player stands at (wx, wy)."""
+            bb = border_behaviours(layout, ts)
+            if not bb:
+                return True
+            if direction in ('west', 'east'):
+                ex = 0 if direction == 'west' else w - 1
+                span = range(max(0, wy - EDGE_MARGIN_UP), min(h, wy + EDGE_MARGIN_DOWN + 1))
+                edge = [cell(ex, yy) for yy in span]
+            else:
+                ey = 0 if direction == 'north' else h - 1
+                span = range(max(0, wx - EDGE_MARGIN_X), min(w, wx + EDGE_MARGIN_X + 1))
+                edge = [cell(xx, ey) for xx in span]
+            seen = {family(ts.behaviour(layout, c[0])) for c in edge if c}
+            seen.discard(None)
+            return bool(seen) and seen <= bb
+
+        if m.get('map_type') in OUTDOOR_TYPES:
+            for i, warp in enumerate(warps):
+                x, y = warp['x'], warp['y']
+                short = []
+                if x < EDGE_MARGIN_X and not blends('west', x, y):
+                    short.append('%d short on the west' % (EDGE_MARGIN_X - x))
+                if x > w - 1 - EDGE_MARGIN_X and not blends('east', x, y):
+                    short.append('%d short on the east' % (x - (w - 1 - EDGE_MARGIN_X)))
+                if y < EDGE_MARGIN_UP and not blends('north', x, y):
+                    short.append('%d short on the north' % (EDGE_MARGIN_UP - y))
+                if y > h - 1 - EDGE_MARGIN_DOWN and not blends('south', x, y):
+                    short.append('%d short on the south' % (y - (h - 1 - EDGE_MARGIN_DOWN)))
+                if short:
+                    problems.append(
+                        '%s warp %d (%d,%d): the player lands here and the camera '
+                        'centres on them, so the border shows -- %s (map is %dx%d)'
+                        % (name, i, x, y, ', '.join(short), w, h))
 
         for bg in m.get('bg_events', []):
             if bg.get('type') not in (None, 'sign'):
