@@ -66,13 +66,20 @@ WATER_BEHAVIOURS = {
 
 
 def tileset_dir(label):
-    base = ''
-    for ch in label[len('gTileset_'):]:
-        base += ('_' + ch.lower()) if (ch.isupper() and base) else ch.lower()
+    # Directory names split on digit runs as well as capitals, so
+    # gTileset_SeviiIslands45Condensed is sevii_islands_45_condensed.
+    # Match by comparing with the underscores removed rather than trying to
+    # reproduce the rule.
+    key = label[len('gTileset_'):].lower() if label else ''
     for sub in ('primary', 'secondary'):
-        p = os.path.join(REPO, 'data/tilesets', sub, base, 'metatile_attributes.bin')
-        if os.path.exists(p):
-            return p
+        d = os.path.join(REPO, 'data/tilesets', sub)
+        if not os.path.isdir(d):
+            continue
+        for name in os.listdir(d):
+            if name.replace('_', '') == key:
+                p = os.path.join(d, name, 'metatile_attributes.bin')
+                if os.path.exists(p):
+                    return p
     return None
 
 
