@@ -9,21 +9,6 @@ OrangeIslands_Valencia_Beach_EventScript_Harbor::
 	msgbox OrangeIslands_Valencia_Beach_Text_Harbor, MSGBOX_SIGN
 	end
 
-OrangeIslands_Valencia_Beach_EventScript_EdgeToValencia_33::
-	warp MAP_ORANGE_ISLANDS_VALENCIA, 65, 49
-	waitstate
-	end
-
-OrangeIslands_Valencia_Beach_EventScript_EdgeToValencia_34::
-	warp MAP_ORANGE_ISLANDS_VALENCIA, 65, 50
-	waitstate
-	end
-
-OrangeIslands_Valencia_Beach_EventScript_EdgeToValencia_35::
-	warp MAP_ORANGE_ISLANDS_VALENCIA, 65, 51
-	waitstate
-	end
-
 @ ---- Orange Islands trainers (orange_route_trainers.py) ----
 OrangeIslands_Valencia_Beach_EventScript_OrangeKent::
 	trainerbattle_single TRAINER_ORANGE_FISHERMAN_KENT, OrangeIslands_Valencia_Beach_Text_OrangeKentIntro, OrangeIslands_Valencia_Beach_Text_OrangeKentDefeat

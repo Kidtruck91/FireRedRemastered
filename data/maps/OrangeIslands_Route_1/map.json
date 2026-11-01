@@ -85,8 +85,8 @@
   ],
   "warp_events": [
     {
-      "x": 54,
-      "y": 39,
+      "x": 42,
+      "y": 43,
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_ROUTE_1_HOUSE",
       "dest_warp_id": "0"

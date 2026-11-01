@@ -32,21 +32,7 @@
   ],
   "warp_events": [
     {
-      "x": 6,
-      "y": 8,
-      "elevation": 3,
-      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA",
-      "dest_warp_id": "1"
-    },
-    {
       "x": 7,
-      "y": 8,
-      "elevation": 3,
-      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA",
-      "dest_warp_id": "1"
-    },
-    {
-      "x": 8,
       "y": 8,
       "elevation": 3,
       "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA",
@@ -60,6 +46,10 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
-  "bg_events": []
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

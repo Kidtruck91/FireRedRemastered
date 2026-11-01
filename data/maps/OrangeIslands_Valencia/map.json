@@ -18,11 +18,6 @@
       "map": "MAP_ORANGE_ISLANDS_ROUTE_1",
       "offset": 0,
       "direction": "up"
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
-      "offset": 16,
-      "direction": "right"
     }
   ],
   "object_events": [
@@ -139,36 +134,44 @@
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_MART",
       "dest_warp_id": "0"
-    }
-  ],
-  "coord_events": [
+    },
     {
-      "type": "trigger",
       "x": 66,
       "y": 49,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_49"
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
+      "dest_warp_id": "1"
     },
     {
-      "type": "trigger",
       "x": 66,
       "y": 50,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_50"
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
+      "dest_warp_id": "2"
     },
     {
-      "type": "trigger",
       "x": 66,
       "y": 51,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Valencia_EventScript_EdgeToValenciaBeach_51"
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
+      "dest_warp_id": "3"
     },
+    {
+      "x": 66,
+      "y": 52,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 66,
+      "y": 53,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
+      "dest_warp_id": "5"
+    }
+  ],
+  "coord_events": [
     {
       "type": "trigger",
       "x": 39,
