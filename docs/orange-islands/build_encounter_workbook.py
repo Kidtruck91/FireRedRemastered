@@ -145,12 +145,75 @@ def land_kind(dirname, map_type):
     return 'Grass'
 
 
+COMPASS = {'left': 'West', 'right': 'East', 'up': 'North', 'down': 'South',
+           'dive': 'Dive', 'emerge': 'Emerge'}
+WARP_CMD = re.compile(r'^\s*warp\w*\s+(MAP_\w+)', re.M)
+JUMP_CMD = re.compile(r'^\s*(?:goto|call)\s+(\w+)', re.M)
+# Dive is not a warp event and not always a connection: an underwater map pair is joined
+# by dive/emerge connections, but a pond inside a route is joined by a setdivewarp in the
+# map's ON_RESUME script, which no event list mentions.
+DIVE_CMD = re.compile(r'^\s*setdivewarp\s+(MAP_\w+)', re.M)
+
+
+def script_block(text, label, depth=2):
+    """The body of a script label, following one or two goto/call hops."""
+    m = re.search(r'^%s::\s*$' % re.escape(label), text, re.M)
+    if not m:
+        return ''
+    end = text.find('\n\n', m.end())
+    body = text[m.end():end if end != -1 else len(text)]
+    if depth > 0:
+        for nxt in JUMP_CMD.findall(body):
+            body += '\n' + script_block(text, nxt, depth - 1)
+    return body
+
+
+def links_for(dirname, mj):
+    """Every way off this map: (kind, direction, dest MAP_ const)."""
+    out = []
+    for conn in mj.get('connections') or []:
+        out.append(('edge', COMPASS.get(conn.get('direction'), conn.get('direction', '')),
+                    conn['map']))
+    seen = set()
+    for w in mj.get('warp_events', []):
+        if w.get('dest_map') and w['dest_map'] not in seen:
+            seen.add(w['dest_map'])
+            out.append(('warp', '', w['dest_map']))
+    sp = os.path.join(REPO, 'data/maps', dirname, 'scripts.inc')
+    if os.path.exists(sp):
+        text = open(sp, encoding='utf-8', errors='replace').read()
+        for c in mj.get('coord_events', []):
+            label = c.get('script')
+            if not label:
+                continue
+            for dest in WARP_CMD.findall(script_block(text, label)):
+                if dest not in seen:
+                    seen.add(dest)
+                    out.append(('trigger', '', dest))
+        under = mj.get('map_type') == 'MAP_TYPE_UNDERWATER'
+        for dest in DIVE_CMD.findall(text):
+            if dest not in seen:
+                seen.add(dest)
+                out.append(('dive', 'Emerge' if under else 'Dive', dest))
+    return out
+
+
 def collect():
     layouts = {l['id']: l for l in json.load(
         open(os.path.join(REPO, 'data/layouts/layouts.json')))['layouts'] if 'id' in l}
     enc = {e['map']: e for e in json.load(
         open(os.path.join(REPO, 'src/data/wild_encounters.json')))
         ['wild_encounter_groups'][0]['encounters']}
+
+    # every map in the game, so a link's far end can be named and placed even when it is
+    # a building or a map outside the encounter universe
+    universe = {}
+    for name in sorted(os.listdir(os.path.join(REPO, 'data/maps'))):
+        p = os.path.join(REPO, 'data/maps', name, 'map.json')
+        if os.path.exists(p):
+            mj = json.load(open(p))
+            universe[mj['id']] = (name, mj.get('map_type', ''))
+
     maps = []
     for name in sorted(os.listdir(os.path.join(REPO, 'data/maps'))):
         p = os.path.join(REPO, 'data/maps', name, 'map.json')
@@ -174,8 +237,44 @@ def collect():
             'w': layout.get('width'), 'h': layout.get('height'),
             'image': img if os.path.exists(img) else None,
             'enc': enc.get(mj['id']),
+            'links': links_for(name, mj),
         })
+
+    # name and place the far end of every link. A link counts as scenery the player
+    # travels through when its far end is itself one of these maps; anything else is a
+    # door into a building, which is noise here. Going by the map type instead would put
+    # the ghost ship's rooms -- which hold encounters -- in with the houses.
+    in_scope = {m['id'] for m in maps}
+    for m in maps:
+        resolved = []
+        for kind, direction, dest in m['links']:
+            dname, dtype = universe.get(dest, (dest.removeprefix('MAP_').title(), ''))
+            dtype = dtype.removeprefix('MAP_TYPE_').title()
+            resolved.append({
+                'kind': kind, 'dir': direction, 'dest_id': dest,
+                'name': pretty(dname) if dname.startswith('OrangeIslands_') else dname,
+                'island': island_of(dname) if dname.startswith('OrangeIslands_') else 'off-region',
+                'type': dtype, 'scope': dest in in_scope,
+            })
+        m['links'] = resolved
     return maps
+
+
+def geo_summary(m):
+    """The links that are geography rather than a door into a building."""
+    parts = []
+    for l in m['links']:
+        if not l['scope']:
+            continue
+        label = l['name']
+        if l['dir']:
+            label = '%s: %s' % (l['dir'], label)
+        elif l['kind'] == 'trigger':
+            label += ' (trigger)'
+        elif l['kind'] == 'warp':
+            label += ' (warp)'
+        parts.append(label)
+    return '; '.join(parts) if parts else '-'
 
 
 def tables_for(m, rates):
@@ -304,12 +403,12 @@ def build(out_path):
     cell(ov, 2, 1, 'Every Orange map that can hold wild Pokemon. A shaded row is a table '
                    'that does not exist yet. Rate totals are formulas over the Encounters '
                    'sheet and must each come to 100%.', italic=True)
-    ov.merge_cells('A1:J1')
-    ov.merge_cells('A2:J2')
+    ov.merge_cells('A1:K1')
+    ov.merge_cells('A2:K2')
     head(ov, 4,
          ['Island', 'Map', 'Map type', 'Size', 'Encounter type', 'Status',
-          'Species', 'Rate total', 'Levels', 'Step rate'],
-         [12, 26, 13, 10, 19, 14, 9, 11, 10, 10])
+          'Species', 'Rate total', 'Levels', 'Step rate', 'Connects to'],
+         [12, 26, 13, 10, 19, 14, 9, 11, 10, 10, 54])
     ov.freeze_panes = 'A5'
     r = 5
     for m in maps:
@@ -332,6 +431,7 @@ def build(out_path):
             cell(ov, r, 9, '%d-%d' % (min(x[3] for x in rows), max(x[4] for x in rows)),
                  align='center')
             cell(ov, r, 10, step, align='center')
+            cell(ov, r, 11, geo_summary(m))
             r += 1
         # the tables this map could have and has not
         wants = []
@@ -351,8 +451,9 @@ def build(out_path):
             cell(ov, r, 6, 'not written yet', fill='FFF2CC', italic=True)
             for col in (7, 8, 9, 10):
                 cell(ov, r, col, None, fill='FFF2CC')
+            cell(ov, r, 11, geo_summary(m), fill='FFF2CC')
             r += 1
-    ov.auto_filter.ref = 'A4:J%d' % (r - 1)
+    ov.auto_filter.ref = 'A4:K%d' % (r - 1)
     ov_last = r - 1
 
     # summary, as formulas over the rows just written
@@ -378,6 +479,55 @@ def build(out_path):
         cell(ov, tot, col, '=SUM(%s%d:%s%d)' % (L, sr, L, tot - 1), bold=True,
              align='center')
 
+    # ---------------- Routes & Links -------------------------------------------------
+    rl = wb.create_sheet('Routes & Links')
+    cell(rl, 1, 1, 'Where every map leads', bold=True).font = Font(
+        name=FONT, bold=True, size=14)
+    cell(rl, 2, 1, 'Read from each map.json: edge connections, warp destinations, and the '
+                   'warp a coord_event script actually runs. Most sea routes are joined by '
+                   'triggers rather than edges, so the compass columns are blank for them '
+                   'and the link shows under Warps & triggers.', italic=True)
+    rl.merge_cells('A1:M1')
+    rl.merge_cells('A2:M2')
+    rl.row_dimensions[2].height = 30
+    rl['A2'].alignment = Alignment(wrap_text=True, vertical='top')
+    head(rl, 4,
+         ['Island', 'Map', 'Map type', 'Size', 'West', 'East', 'North', 'South',
+          'Dive / Emerge', 'Warps & triggers', 'Islands reached', 'Building doors',
+          'Encounters built'],
+         [12, 26, 13, 9, 20, 20, 20, 20, 20, 38, 24, 13, 26])
+    rl.freeze_panes = 'C5'
+    r = 5
+    for m in maps:
+        compass = {'West': [], 'East': [], 'North': [], 'South': [], 'dive': []}
+        other, reached, doors = [], set(), 0
+        for l in m['links']:
+            if not l['scope']:
+                doors += 1
+                continue
+            if l['island'] not in (SEA, 'off-region'):
+                reached.add(l['island'])
+            if l['dir'] in ('West', 'East', 'North', 'South'):
+                compass[l['dir']].append(l['name'])
+            elif l['dir'] in ('Dive', 'Emerge'):
+                compass['dive'].append('%s: %s' % (l['dir'], l['name']))
+            else:
+                other.append('%s (%s)' % (l['name'], l['kind']))
+        built = sorted({grp for _, grp, _, _ in tables_for(m, rates)})
+        cell(rl, r, 1, m['island'])
+        cell(rl, r, 2, m['name'], bold=True)
+        cell(rl, r, 3, m['map_type'])
+        cell(rl, r, 4, '%sx%s' % (m['w'], m['h']), align='center')
+        for i, k in enumerate(('West', 'East', 'North', 'South', 'dive')):
+            cell(rl, r, 5 + i, ', '.join(compass[k]) or None)
+        cell(rl, r, 10, ', '.join(other) or None)
+        cell(rl, r, 11, ', '.join(sorted(reached)) or None)
+        cell(rl, r, 12, doors or None, align='center')
+        cell(rl, r, 13, ', '.join(built) or 'none yet',
+             fill=None if built else 'FFF2CC', italic=not built)
+        r += 1
+    rl.auto_filter.ref = 'A4:M%d' % (r - 1)
+
     # ---------------- one sheet per island -------------------------------------------
     by_island = defaultdict(list)
     for m in maps:
@@ -398,6 +548,8 @@ def build(out_path):
         for m in group:
             cell(sh, r, 1, m['name'], bold=True).font = Font(name=FONT, bold=True, size=12)
             cell(sh, r, 2, '%s  %sx%s blocks' % (m['map_type'], m['w'], m['h']), italic=True)
+            r += 1
+            cell(sh, r, 2, 'Connects to: %s' % geo_summary(m), italic=True)
             r += 1
             img_bottom = r
             if m['image']:
