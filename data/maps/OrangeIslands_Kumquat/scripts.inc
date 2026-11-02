@@ -48,16 +48,34 @@ OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Hi:
 	setvar VAR_0x8004, 51
 	goto OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Go
 
-@ Sea edge: surfing off the east side crosses to Kumquat Beach.
+@ Sea edge: the east coast crosses to Kumquat Beach.
 @ A trigger, not a map connection: this map is on gTileset_HoennGeneral and the beach
-@ on gTileset_OrangeGeneral, and a connected map's edge strip is drawn with the
-@ tilesets of the map the player is standing on, so a connection would show the wrong
-@ graphics and palettes along the whole seam.
-@ The landing spot is fixed rather than matched to the row the player left on: the
-@ beach's west end is broken up by sandbars, so no column there is open water for all
-@ 60 rows of this edge.
+@ on gTileset_OrangeGeneral, and a connected map is drawn with the tilesets of the map
+@ the player stands on, so a connection would show the wrong graphics along the seam.
+@ The two coastlines now line up, so the crossing has to keep the player on the same
+@ footing: this edge is ocean on rows 0-23, sand on 24-44 and ocean again on 45-59, and
+@ the beach's west edge is ocean 0-15, land 16-37, ocean 38-52. Land rows carry across
+@ row for row, eight north, onto the beach's sand strip. Walking across onto water (or
+@ surfacing onto sand) would strand the player, so the two ocean bands land in open sea.
 OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach::
-	warp MAP_ORANGE_ISLANDS_KUMQUAT_BEACH, 15, 21
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8005, 24
+	goto_if_lt OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach_North
+	compare VAR_0x8005, 44
+	goto_if_gt OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach_South
+@ sand: rows 24-44 -> the beach's sand strip, rows 16-36
+	subvar VAR_0x8005, 8
+	setvar VAR_0x8004, 6
+	goto OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach_Go
+OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach_North:
+	setvar VAR_0x8004, 8
+	setvar VAR_0x8005, 6
+	goto OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach_Go
+OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach_South:
+	setvar VAR_0x8004, 8
+	setvar VAR_0x8005, 46
+OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach_Go:
+	warp MAP_ORANGE_ISLANDS_KUMQUAT_BEACH, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
 

@@ -1536,5 +1536,7 @@
       "script": "OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }
