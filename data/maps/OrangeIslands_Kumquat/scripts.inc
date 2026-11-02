@@ -48,6 +48,20 @@ OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Hi:
 	setvar VAR_0x8004, 51
 	goto OrangeIslands_Kumquat_EventScript_SeaEdgeToRoute14_Go
 
+@ Sea edge: surfing off the east side crosses to Kumquat Beach.
+@ A trigger, not a map connection: this map is on gTileset_HoennGeneral and the beach
+@ on gTileset_OrangeGeneral, and a connected map's edge strip is drawn with the
+@ tilesets of the map the player is standing on, so a connection would show the wrong
+@ graphics and palettes along the whole seam.
+@ The landing spot is fixed rather than matched to the row the player left on: the
+@ beach's west end is broken up by sandbars, so no column there is open water for all
+@ 60 rows of this edge.
+OrangeIslands_Kumquat_EventScript_SeaEdgeToKumquatBeach::
+	warp MAP_ORANGE_ISLANDS_KUMQUAT_BEACH, 15, 21
+	waitstate
+	end
+
+
 @ ---- Orange Islands trainers (orange_route_trainers.py) ----
 OrangeIslands_Kumquat_EventScript_OrangeGrace::
 	trainerbattle_single TRAINER_ORANGE_COOLTRAINER_GRACE, OrangeIslands_Kumquat_Text_OrangeGraceIntro, OrangeIslands_Kumquat_Text_OrangeGraceDefeat
