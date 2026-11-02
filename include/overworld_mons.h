@@ -6,6 +6,7 @@
 void OverworldMons_OnStep(void);
 void OverworldMons_CleanUp(void);
 bool8 OverworldMon_IsOverworldMonObjectEventId(u8 objectEventId);
+bool8 OverworldMon_MapIsOverworldOnly(void);
 bool8 OverworldMon_IsOverworldMonLocalId(u8 localId);
 bool8 OverworldMon_TryWalkInto(u8 direction);
 void OverworldMon_PrepareBattle(void);

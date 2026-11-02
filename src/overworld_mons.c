@@ -186,6 +186,41 @@ static const struct OverworldBonusList *GetBonusListForMap(void)
     return NULL;
 }
 
+// TRUE on a map whose wild Pokemon are only ever the visible wandering ones: spawns may
+// stand on plain ground, and stepping never rolls an encounter. The list, and why, is in
+// src/data/overworld_mons.h.
+bool8 OverworldMon_MapIsOverworldOnly(void)
+{
+    u16 map = (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
+    u16 i;
+
+    for (i = 0; i < ARRAY_COUNT(sOverworldOnlyMaps); i++)
+    {
+        if (sOverworldOnlyMaps[i] == map)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+// A spawn standing on a warp would block the way off the map, or be walked through on the
+// way out, so leave the warp tiles alone. Checking the map's own warp events is exact and
+// costs nothing -- a map has a handful of them -- where guessing from the behaviour would
+// miss a warp sitting on ordinary ground, which is just what a beach's warps do.
+static bool8 IsWarpTile(s16 x, s16 y)
+{
+    u8 i;
+
+    if (gMapHeader.events == NULL)
+        return FALSE;
+    for (i = 0; i < gMapHeader.events->warpCount; i++)
+    {
+        if (gMapHeader.events->warps[i].x + MAP_OFFSET == x
+         && gMapHeader.events->warps[i].y + MAP_OFFSET == y)
+            return TRUE;
+    }
+    return FALSE;
+}
+
 static bool8 ChooseSpecies(u8 habitat, u16 *species, u8 *level)
 {
     const struct OverworldBonusList *bonus = GetBonusListForMap();
@@ -209,6 +244,8 @@ static bool8 ChooseSpecies(u8 habitat, u16 *species, u8 *level)
 static bool8 FindSpawnTile(u8 habitat, s16 *outX, s16 *outY)
 {
     struct ObjectEvent *player = &gObjectEvents[gPlayerAvatar.objectEventId];
+    bool8 overworldOnly = OverworldMon_MapIsOverworldOnly();
+    u8 encounterType;
     u8 tries;
 
     for (tries = 0; tries < 16; tries++)
@@ -221,9 +258,24 @@ static bool8 FindSpawnTile(u8 habitat, s16 *outX, s16 *outY)
 
         if (dist < 3)
             continue;
-        if (MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_ENCOUNTER_TYPE)
-            != (habitat == HABITAT_WATER ? TILE_ENCOUNTER_WATER : TILE_ENCOUNTER_LAND))
-            continue;
+        encounterType = MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_ENCOUNTER_TYPE);
+        if (habitat == HABITAT_WATER)
+        {
+            if (encounterType != TILE_ENCOUNTER_WATER)
+                continue;
+        }
+        else if (encounterType != TILE_ENCOUNTER_LAND)
+        {
+            // On an overworld-only map, any walkable ground will do: beach sand has no
+            // encounter attribute, so insisting on one leaves nowhere to stand. Water is
+            // still excluded -- a land spawn belongs on land.
+            if (!overworldOnly || encounterType != TILE_ENCOUNTER_NONE)
+                continue;
+            if (MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_TERRAIN) == TILE_TERRAIN_WATER)
+                continue;
+            if (IsWarpTile(x, y))
+                continue;
+        }
         if (MapGridGetCollisionAt(x, y))
             continue;
         // Land spawns stay on the player's level; water spawns sit at the water's own level

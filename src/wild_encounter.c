@@ -1,6 +1,7 @@
 #include "global.h"
 #include "random.h"
 #include "wild_encounter.h"
+#include "overworld_mons.h"
 #include "event_data.h"
 #include "fieldmap.h"
 #include "random.h"
@@ -520,6 +521,11 @@ bool8 SweetScentWildEncounter(void)
     {
         if (MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_ENCOUNTER_TYPE) == TILE_ENCOUNTER_LAND)
         {
+            // Same rule as the step roll: no land encounter is conjured on an
+            // overworld-only map. Sweet Scent on the water still works.
+            if (OverworldMon_MapIsOverworldOnly())
+                return FALSE;
+
             if (TryStartRoamerEncounter() == TRUE)
             {
                 StartRoamerBattle();
@@ -804,6 +810,15 @@ static bool8 HandleWildEncounterCooldown(u32 currMetatileAttrs)
 
 bool8 TryStandardWildEncounter(u32 currMetatileAttrs)
 {
+    // On an overworld-only map every wild Pokemon is one you can see and chose to walk
+    // into, so nothing is ever sprung from a step. The few tiles of encounter grass on
+    // the beaches would otherwise still roll one. Surfing, fishing and Rock Smash are
+    // not affected: they go through their own entry points.
+    if (OverworldMon_MapIsOverworldOnly())
+    {
+        sWildEncounterData.prevMetatileBehavior = ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR);
+        return FALSE;
+    }
     if (!HandleWildEncounterCooldown(currMetatileAttrs))
     {
         sWildEncounterData.prevMetatileBehavior = ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR);
