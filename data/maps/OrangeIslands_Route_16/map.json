@@ -78,7 +78,9 @@
       "flag": "0"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+
+  ],
   "coord_events": [
     {
       "type": "trigger",
@@ -261,5 +263,7 @@
       "script": "OrangeIslands_Route_16_EventScript_SeaEdgeToRoute13"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

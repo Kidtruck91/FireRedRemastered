@@ -39,13 +39,17 @@
       "dest_warp_id": "3"
     },
     {
-      "x": 36,
-      "y": 12,
+      "x": 33,
+      "y": 19,
       "elevation": 3,
       "dest_map": "MAP_ORANGE_ISLANDS_KUMQUAT_BEACH",
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [],
-  "bg_events": []
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

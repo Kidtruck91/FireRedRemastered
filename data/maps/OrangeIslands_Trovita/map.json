@@ -18,11 +18,6 @@
       "map": "MAP_ORANGE_ISLANDS_TROVITA_BEACH",
       "offset": 0,
       "direction": "down"
-    },
-    {
-      "map": "MAP_ORANGE_ISLANDS_TROVITA_FALLS",
-      "offset": 12,
-      "direction": "up"
     }
   ],
   "object_events": [
@@ -277,5 +272,7 @@
       "script": "OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

@@ -9,15 +9,20 @@ OrangeIslands_Trovita_EventScript_Town::
 	msgbox OrangeIslands_Trovita_Text_Town, MSGBOX_SIGN
 	end
 
+@ Land on row 48, north of the falls' own return trigger on row 49, not south of it.
+@ That trigger spans the whole channel, so arriving below it at row 53 put the player in
+@ a six-row pocket whose only way out was back over the trigger: the rest of the map,
+@ everything above row 49, could not be reached at all. Row 48 is also the last row on a
+@ 56-tall map that does not put the border on screen.
 OrangeIslands_Trovita_EventScript_WalkToTrovitaFalls::
-	warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, 22, 53
+	warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, 22, 48
 	waitstate
 	end
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Route 14
 OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8005, 41
+	compare VAR_0x8005, 42
 	goto_if_lt OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Lo
 	compare VAR_0x8005, 54
 	goto_if_gt OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Hi
@@ -27,8 +32,10 @@ OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Go:
 	warp MAP_ORANGE_ISLANDS_ROUTE_14, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
+@ 42, not 41: the band starts on row 41, but 41-40 is Route 14's row 1, which is rock.
+@ Row 2 is the first open water on that column, so the top of the band lands there.
 OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Lo:
-	setvar VAR_0x8005, 41
+	setvar VAR_0x8005, 42
 	goto OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Go
 OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Hi:
 	setvar VAR_0x8005, 54
