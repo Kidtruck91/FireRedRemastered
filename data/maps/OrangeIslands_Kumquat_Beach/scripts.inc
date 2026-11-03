@@ -1,37 +1,22 @@
 OrangeIslands_Kumquat_Beach_MapScripts::
 	.byte 0
 
-@ Sea edge: the west edge crosses to Kumquat's east coast. See the matching script on
-@ Kumquat for why this is a trigger and not a map connection.
-@ This edge is ocean on rows 0-15, land on 16-37 and ocean on 38-52; Kumquat's east edge
-@ is ocean 0-23, sand 24-44, ocean 45-59. Land rows carry across row for row, eight
-@ south. Rows 17-19 are the rocks and cannot be stood on, so they never fire. Row 37
-@ would land on row 45, which is already water on Kumquat, so it is held at 44.
-@ The landing column is 63: the rocks on Kumquat's shore run diagonally through x=60-64,
-@ and 63 is the only one of those clear of every row this can arrive on.
+@ Sea edge: the west shore crosses to Kumquat. See the matching script on Kumquat for
+@ why this is a trigger and not a map connection.
+@ This edge is sand on rows 16-38 and rock or walled-off ocean everywhere else, and it
+@ meets Kumquat's east sand on rows 23-44, so the crossing is seven rows south onto
+@ column 64 -- the furthest in that still shows no border on a 72-wide map, and clear
+@ land for every row this can arrive on. Row 38 is the one overhang: 38+7 is 45, which
+@ is rock on Kumquat, so it is held at 44.
 OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8005, 16
-	goto_if_lt OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_North
+	setvar VAR_0x8004, 64
 	compare VAR_0x8005, 37
-	goto_if_gt OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_South
-	compare VAR_0x8005, 37
-	goto_if_eq OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_LandEnd
-@ sand: rows 16-36 -> Kumquat's east shore, rows 24-44
-	addvar VAR_0x8005, 8
-	setvar VAR_0x8004, 63
+	goto_if_gt OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_Last
+	addvar VAR_0x8005, 7
 	goto OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_Go
-OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_LandEnd:
-	setvar VAR_0x8004, 63
+OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_Last:
 	setvar VAR_0x8005, 44
-	goto OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_Go
-OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_North:
-	setvar VAR_0x8004, 63
-	setvar VAR_0x8005, 12
-	goto OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_Go
-OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_South:
-	setvar VAR_0x8004, 63
-	setvar VAR_0x8005, 52
 OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat_Go:
 	warp MAP_ORANGE_ISLANDS_KUMQUAT, VAR_0x8004, VAR_0x8005
 	waitstate

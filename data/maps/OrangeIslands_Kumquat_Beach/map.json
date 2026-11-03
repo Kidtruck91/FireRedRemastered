@@ -13,10 +13,14 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
-  "object_events": [
-
+  "connections": [
+    {
+      "map": "MAP_ORANGE_ISLANDS_KUMQUAT",
+      "offset": -7,
+      "direction": "left"
+    }
   ],
+  "object_events": [],
   "warp_events": [
     {
       "x": 71,
@@ -38,6 +42,33 @@
       "type": "trigger",
       "x": 0,
       "y": 16,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 17,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 19,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -213,33 +244,6 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 39,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 40,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 41,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kumquat_Beach_EventScript_SeaEdgeToKumquat"
     }
   ],
   "bg_events": [
@@ -253,8 +257,8 @@
     },
     {
       "type": "sign",
-      "x": 26,
-      "y": 34,
+      "x": 21,
+      "y": 41,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Kumquat_Beach_EventScript_Harbor"
