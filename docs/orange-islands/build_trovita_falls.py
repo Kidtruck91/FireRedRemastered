@@ -1,39 +1,58 @@
-"""Extend Trovita Falls to 48x96 and put three waterfall tiers in the climb.
+"""Build the lower two thirds of Trovita Falls as a route, not a river.
 
-The falls were 48x56: a channel from the Trovita entrance at the bottom up to the Gym
-at (31,19), with nothing in the way. This adds forty rows below the old map -- the old
-rows 0-55 are untouched -- so the entrance moves to the new bottom and the player climbs
-north through three waterfalls to reach the Gym.
+The map was 48x56: a gorge with walkable banks, one waterfall, and a plain corridor out
+to Trovita at the bottom. It is now 48x96, and the forty rows below the author's
+original 56 are a continuation of the same route rather than open water -- banks you
+walk on, tall grass, and two more waterfalls, so the climb from the Trovita entrance up
+to RUDY's GYM passes three falls in all.
 
-Nothing scripts the lock. A metatile whose behaviour is MB_WATERFALL is gated by the
-engine itself: field_control_avatar.c only lets the player up it when FLAG_BADGE07_GET
-is set and they are surfing north, and otherwise runs EventScript_CantUseWaterfall.
-Standing on one pushes the player back south (ForcedMovement_PushedSouthByCurrent), so
-coming back down is free.
+Nothing here is invented. Every new row is a verbatim copy of one of the author's own
+rows, picked so the water columns line up at each seam, which keeps the cliff faces,
+bank edges and water-edge tiles in arrangements that already exist in the map:
 
-The channel and its cliff walls are not invented: rows 54 and 55 of the existing map are
-taken as the even/odd templates and repeated, which keeps the alternating cliff tiles in
-phase. Forty is even, so that phase is preserved. A waterfall row is the same template
-with the channel columns replaced; the stack reads 127 at the top (repeatable), then
-12F, then 137 at the base, which is how TOJO_FALLS builds one on the same tileset.
+    rows 21-25 of the original are a waterfall, six wide, with the rock face either side
+    rows 26-46 are the gorge: water emerging below a fall, banks both sides, narrowing
+
+Composed downward from the author's row 55, each band is one of those two:
+
+    56-69  gorge        (original 26-39)
+    70-74  WATERFALL    (original 21-25)
+    75-82  gorge        (original 26-33)
+    83-87  WATERFALL    (original 21-25)
+    88-95  gorge, and the way in from Trovita (original 26-33)
+
+Only the tall grass is then re-laid, so the copied bands do not read as the same stretch
+three times. Grass and plain ground are both collision 0 elevation 3, so moving it
+changes nothing but where the encounters are.
+
+The waterfalls need no scripting. MB_WATERFALL is gated by the engine itself:
+field_control_avatar.c allows the climb only with FLAG_BADGE07_GET while surfing north,
+and standing on one pushes the player back down, so coming down again is free.
 
     python3 docs/orange-islands/build_trovita_falls.py
 """
 import json
 import os
+import random
 import struct
 
 REPO = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 LAYOUT = 'LAYOUT_ORANGE_ISLANDS_TROVITA_FALLS'
-OLD_H, NEW_H = 56, 96
-CHANNEL = range(19, 26)          # the water columns, x=19..25
-WF_TOP, WF_MID, WF_BASE = 0x127, 0x12F, 0x137
-WATER = 0x1 << 12                # collision 0, elevation 1
+KEEP = 56                        # the author's rows, left alone
+NEW_H = 96
 
-# (first row, last row) of each tier, north to south. Between them are open pools.
-TIERS = [(64, 67), (76, 79), (84, 87)]
-ENTRY_ROW = 89                   # where Trovita lands the player: last row with no border
-EXIT_ROW = NEW_H - 1             # the return trigger, on the bottom edge
+GRASS, GROUND = 0x00D, 0x001     # both collision 0, elevation 3
+WALK = 0x3 << 12                 # elevation 3, collision 0
+
+# (source first row, source last row) in the author's half, in order going down
+BANDS = [(26, 39), (21, 25), (26, 33), (21, 25), (26, 33)]
+
+ENTRY = (22, 89)                 # where Trovita lands the player: below every tier
+EXIT_ROW = NEW_H - 1
+
+# Tall grass for the new banks: (row, row, x, x) rectangles, laid on plain ground only.
+PATCHES = [(58, 63, 27, 34), (65, 69, 11, 17), (76, 80, 28, 36),
+           (88, 92, 11, 16), (91, 94, 29, 35)]
 
 
 def main():
@@ -41,66 +60,70 @@ def main():
     doc = json.load(open(lp))
     layout = next(l for l in doc['layouts'] if l.get('id') == LAYOUT)
     w = layout['width']
-    assert layout['height'] == OLD_H, 'expected the old %d-row map, found %d' % (OLD_H, layout['height'])
-
     path = os.path.join(REPO, layout['blockdata_filepath'])
-    old = open(path, 'rb').read()
-    assert len(old) == w * OLD_H * 2
-    cell = lambda x, y: struct.unpack_from('<H', old, 2 * (y * w + x))[0]
+    raw = open(path, 'rb').read()
+    have_h = len(raw) // 2 // w
+    cell = lambda x, y: struct.unpack_from('<H', raw, 2 * (y * w + x))[0]
 
-    # the two template rows, taken from the plain stretch of channel at the old bottom
-    template = {p: [cell(x, OLD_H - 2 + p) for x in range(w)] for p in (0, 1)}
-    assert (OLD_H - 2) % 2 == 0, 'template parity'
+    rows = [[cell(x, y) for x in range(w)] for y in range(KEEP)]
+    assert have_h >= KEEP, 'the author half is missing'
 
-    rows = [[cell(x, y) for x in range(w)] for y in range(OLD_H)]
+    y = KEEP
+    built = []
+    for a, b in BANDS:
+        for src in range(a, b + 1):
+            rows.append([cell(x, src) for x in range(w)])
+        built.append((y, y + (b - a), a, b))
+        y += b - a + 1
+    assert y == NEW_H, 'bands come to %d rows, wanted %d' % (y - KEEP, NEW_H - KEEP)
 
-    def tier_tile(y, a, b):
-        """127 for every row but the last two, then 12F, then 137 at the base."""
-        if y == b:
-            return WF_BASE
-        if y == b - 1:
-            return WF_MID
-        return WF_TOP
+    # --- re-lay the grass so the copied bands do not read as repeats ---------------
+    for yy in range(KEEP, NEW_H):
+        for xx in range(w):
+            if (rows[yy][xx] & 0x3FF) == GRASS:
+                rows[yy][xx] = GROUND | WALK
+    laid = 0
+    for (y0, y1, x0, x1) in PATCHES:
+        for yy in range(y0, min(y1 + 1, NEW_H)):
+            for xx in range(x0, min(x1 + 1, w)):
+                if (rows[yy][xx] & 0x3FF) == GROUND and ((rows[yy][xx] >> 10) & 3) == 0:
+                    rows[yy][xx] = GRASS | WALK
+                    laid += 1
 
-    for y in range(OLD_H, NEW_H):
-        row = list(template[y % 2])
-        for a, b in TIERS:
-            if a <= y <= b:
-                for x in CHANNEL:
-                    row[x] = tier_tile(y, a, b) | WATER
-                break
-        rows.append(row)
-
-    out = b''.join(struct.pack('<H', rows[y][x]) for y in range(NEW_H) for x in range(w))
+    out = b''.join(struct.pack('<H', rows[yy][xx]) for yy in range(NEW_H) for xx in range(w))
     open(path, 'wb').write(out)
     layout['height'] = NEW_H
     with open(lp, 'w', newline='\n') as f:
         json.dump(doc, f, indent=2); f.write('\n')
-    print('  %s is now %dx%d (%d bytes)' % (LAYOUT, w, NEW_H, len(out)))
-    print('  tiers at rows %s' % ', '.join('%d-%d' % t for t in TIERS))
+    print('  %s -> %dx%d (%d bytes), %d tiles of tall grass on the new banks'
+          % (LAYOUT, w, NEW_H, len(out), laid))
+    for (y0, y1, a, b) in built:
+        kind = 'WATERFALL' if (a, b) == (21, 25) else 'gorge    '
+        print('     rows %2d-%2d  %s  (copied from the author rows %d-%d)' % (y0, y1, kind, a, b))
 
-    # --- move the way out to the new bottom ----------------------------------------
+    # --- the way out sits on whatever water the bottom row actually has -------------
+    water = [x for x in range(w)
+             if ((rows[EXIT_ROW][x] >> 10) & 3) == 0 and ((rows[EXIT_ROW][x] >> 12) & 15) == 1]
     mp = os.path.join(REPO, 'data/maps/OrangeIslands_Trovita_Falls/map.json')
     mj = json.load(open(mp))
-    kept = [c for c in mj['coord_events'] if 'WalkToTrovita' not in (c.get('script') or '')]
-    for x in CHANNEL:
-        kept.append({"type": "trigger", "x": x, "y": EXIT_ROW, "elevation": 0,
-                     "var": "VAR_TEMP_0", "var_value": "0",
-                     "script": "OrangeIslands_Trovita_Falls_EventScript_WalkToTrovita"})
-    mj['coord_events'] = kept
+    mj['coord_events'] = [c for c in mj['coord_events']
+                          if 'WalkToTrovita' not in (c.get('script') or '')]
+    for x in water:
+        mj['coord_events'].append({"type": "trigger", "x": x, "y": EXIT_ROW, "elevation": 0,
+                                   "var": "VAR_TEMP_0", "var_value": "0",
+                                   "script": "OrangeIslands_Trovita_Falls_EventScript_WalkToTrovita"})
     with open(mp, 'w', newline='\n') as f:
         json.dump(mj, f, indent=2); f.write('\n')
-    print('  return triggers moved to row %d (x %d-%d)' % (EXIT_ROW, CHANNEL[0], CHANNEL[-1]))
+    print('  way out: row %d, x %d-%d' % (EXIT_ROW, water[0], water[-1]))
 
-    # --- and land the player below every tier ---------------------------------------
     sp = os.path.join(REPO, 'data/maps/OrangeIslands_Trovita/scripts.inc')
     s = open(sp, encoding='utf-8').read()
-    old_warp = 'warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, 22, 48'
-    new_warp = 'warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, 22, %d' % ENTRY_ROW
-    if old_warp in s:
-        s = s.replace(old_warp, new_warp)
-        open(sp, 'w', encoding='utf-8', newline='\n').write(s)
-    print('  Trovita now lands the player at (22,%d), south of every tier' % ENTRY_ROW)
+    import re
+    s2 = re.sub(r'warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, \d+, \d+',
+                'warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, %d, %d' % ENTRY, s)
+    if s2 != s:
+        open(sp, 'w', encoding='utf-8', newline='\n').write(s2)
+    print('  Trovita lands the player at %s' % (ENTRY,))
 
 
 if __name__ == '__main__':
