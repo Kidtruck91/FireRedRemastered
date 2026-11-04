@@ -77,6 +77,41 @@ def main():
         y += b - a + 1
     assert y == NEW_H, 'bands come to %d rows, wanted %d' % (y - KEEP, NEW_H - KEEP)
 
+    # --- wall off the stairs beside the two new falls -------------------------------
+    # The author put a rock staircase (091, ROCK_STAIRS, collision 0) beside the
+    # original waterfall, so that one is a shortcut rather than a gate. The copies
+    # brought the staircase with them, which would have let the player walk the whole
+    # way up and left HM Waterfall doing nothing. Filling x=36..41 with 07C -- the rock
+    # face the author uses either side of the fall in those same rows -- carries the
+    # cliff across the gorge, so these two tiers are the only way north. The original
+    # fall at rows 21-25 is left exactly as it was, staircase and all.
+    FACE = 0x07C | (1 << 10)     # collision 1, elevation 0
+    walled = 0
+    for (y0, y1, a, b) in built:
+        if (a, b) != (21, 25):
+            continue
+        for yy in range(y0, y1 + 1):
+            for xx in range(36, 42):
+                if ((rows[yy][xx] >> 10) & 3) == 0:
+                    walled += 1
+                rows[yy][xx] = FACE
+    print('  walled the stair bypass beside the two new falls (%d cells opened up before)' % walled)
+
+    # --- flatten the stair feet that no longer lead anywhere ------------------------
+    # The gorge band begins with the foot of that staircase, because in the author's map
+    # it sits directly under the fall the stairs climb. Copied, it lands under a fall
+    # that is now walled (and under the plain channel at the top), so it would read as a
+    # flight of steps running into the rock. Plain ground is what the rest of the bank
+    # already is on those rows.
+    GROUND_WALK = GROUND | WALK
+    flattened = 0
+    for yy in (KEEP,) + tuple(y0 for (y0, _, a, b) in built if (a, b) != (21, 25) and y0 != KEEP):
+        for xx in range(36, 42):
+            if rows[yy][xx] != GROUND_WALK and ((rows[yy][xx] >> 10) & 3) == 0:
+                rows[yy][xx] = GROUND_WALK
+                flattened += 1
+    print('  flattened %d stair-foot tiles that led into the new rock face' % flattened)
+
     # --- re-lay the grass so the copied bands do not read as repeats ---------------
     for yy in range(KEEP, NEW_H):
         for xx in range(w):
