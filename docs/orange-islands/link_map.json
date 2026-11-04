@@ -75,6 +75,13 @@
    "h": 60,
    "exits": [
     {
+     "to": "MAP_ORANGE_ISLANDS_PUMMELO",
+     "kind": "ferry",
+     "where": "Seagallop",
+     "count": null,
+     "twoWay": true
+    },
+    {
      "to": "MAP_ORANGE_ISLANDS_ROUTE_13",
      "kind": "trigger",
      "where": "x 20-67, y 59",
@@ -106,6 +113,7 @@
    "inbound": [
     "MAP_ORANGE_ISLANDS_KUMQUAT_BEACH",
     "MAP_ORANGE_ISLANDS_KUMQUAT_CAVE",
+    "MAP_ORANGE_ISLANDS_PUMMELO",
     "MAP_ORANGE_ISLANDS_ROUTE_13",
     "MAP_ORANGE_ISLANDS_ROUTE_14"
    ],
@@ -894,6 +902,13 @@
    "h": 72,
    "exits": [
     {
+     "to": "MAP_ORANGE_ISLANDS_KUMQUAT",
+     "kind": "ferry",
+     "where": "Seagallop",
+     "count": null,
+     "twoWay": true
+    },
+    {
      "to": "MAP_ORANGE_ISLANDS_PUMMELO_CAVE",
      "kind": "warp",
      "where": "(21,24)",
@@ -909,10 +924,11 @@
     }
    ],
    "inbound": [
+    "MAP_ORANGE_ISLANDS_KUMQUAT",
     "MAP_ORANGE_ISLANDS_PUMMELO_CAVE",
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE"
    ],
-   "reachable": false,
+   "reachable": true,
    "x": 820.6,
    "y": 66.0,
    "sec": "PUMMELO_ISLAND",
@@ -937,7 +953,7 @@
    "inbound": [
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE"
    ],
-   "reachable": false,
+   "reachable": true,
    "x": 715.0,
    "y": 68.3,
    "sec": "PUMMELO_ISLAND",
@@ -962,7 +978,7 @@
    "inbound": [
     "MAP_ORANGE_ISLANDS_PUMMELO"
    ],
-   "reachable": false,
+   "reachable": true,
    "x": 824.8,
    "y": 61.4,
    "sec": "PUMMELO_ISLAND",
@@ -1003,7 +1019,7 @@
     "MAP_ORANGE_ISLANDS_PUMMELO_BEACH",
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B1F"
    ],
-   "reachable": false,
+   "reachable": true,
    "x": 715.4,
    "y": 72.9,
    "sec": "PUMMELO_ISLAND",
@@ -1036,7 +1052,7 @@
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE",
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B2F"
    ],
-   "reachable": false,
+   "reachable": true,
    "x": 824.2,
    "y": 56.9,
    "sec": "PUMMELO_ISLAND",
@@ -1061,7 +1077,7 @@
    "inbound": [
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B1F"
    ],
-   "reachable": false,
+   "reachable": true,
    "x": 716.2,
    "y": 77.4,
    "sec": "PUMMELO_ISLAND",
@@ -2211,6 +2227,14 @@
   },
   {
    "from": "MAP_ORANGE_ISLANDS_KUMQUAT",
+   "to": "MAP_ORANGE_ISLANDS_PUMMELO",
+   "kind": "ferry",
+   "where": "Seagallop",
+   "count": null,
+   "twoWay": true
+  },
+  {
+   "from": "MAP_ORANGE_ISLANDS_KUMQUAT",
    "to": "MAP_ORANGE_ISLANDS_ROUTE_13",
    "kind": "trigger",
    "where": "x 20-67, y 59",
@@ -2614,6 +2638,14 @@
    "to": "MAP_ORANGE_ISLANDS_PINKAN",
    "kind": "warp",
    "where": "(18,38)",
+   "count": null,
+   "twoWay": true
+  },
+  {
+   "from": "MAP_ORANGE_ISLANDS_PUMMELO",
+   "to": "MAP_ORANGE_ISLANDS_KUMQUAT",
+   "kind": "ferry",
+   "where": "Seagallop",
    "count": null,
    "twoWay": true
   },
@@ -3561,12 +3593,6 @@
   ]
  ],
  "unreachable": [
-  "MAP_ORANGE_ISLANDS_PUMMELO",
-  "MAP_ORANGE_ISLANDS_PUMMELO_BEACH",
-  "MAP_ORANGE_ISLANDS_PUMMELO_CAVE",
-  "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE",
-  "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B1F",
-  "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B2F",
   "MAP_ORANGE_ISLANDS_ROUTE_12",
   "MAP_ORANGE_ISLANDS_ROUTE_9",
   "MAP_ORANGE_ISLANDS_ROUTE_9_CAVE"

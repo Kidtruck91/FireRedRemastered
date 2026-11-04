@@ -7,6 +7,10 @@ Porymap's connection editor, which is why a broken link is easy to miss:
     warp        a warp_event's dest_map
     trigger     a coord_event whose script runs a warp -- most Orange sea crossings
     dive        a dive/emerge connection, or a setdivewarp in an ON_RESUME map script
+    ferry       a Seagallop sailing: the script sets VAR_0x8006 to a SEAGALLOP_ id and
+                hands off to EventScript_SetSail, and src/seagallop.c says which map
+                that id lands on. Pummelo is reached this way, from Kumquat, so a tool
+                that only reads the first four kinds calls the Orange League cut off.
 
 This reads all four, works out which links are answered from the far side and which are
 one-way, finds the maps nothing leads into, and places every map where the game itself puts it.
@@ -33,6 +37,7 @@ OUT = os.path.join(REPO, 'docs/orange-islands/link_map.json')
 
 WARP_CMD = re.compile(r'^\s*warp\w*\s+(MAP_\w+)', re.M)
 DIVE_CMD = re.compile(r'^\s*setdivewarp\s+(MAP_\w+)', re.M)
+FERRY_CMD = re.compile(r'^\s*setvar\s+VAR_0x8006,\s*(SEAGALLOP_\w+)', re.M)
 JUMP_CMD = re.compile(r'^\s*(?:goto|call)\s+(\w+)', re.M)
 COMPASS = {'left': 'West', 'right': 'East', 'up': 'North', 'down': 'South',
            'dive': 'Dive', 'emerge': 'Emerge'}
@@ -64,9 +69,19 @@ def block(text, label, depth=2):
     return body
 
 
+def seagallop_destinations():
+    """SEAGALLOP_* -> the MAP_ constant it puts the player on, from src/seagallop.c."""
+    src = open(os.path.join(REPO, 'src/seagallop.c')).read()
+    out = {}
+    for sid, dest in re.findall(r'\[(SEAGALLOP_\w+)\]\s*=\s*\{MAP\((\w+)\)', src):
+        out[sid] = 'MAP_' + dest
+    return out
+
+
 def main():
     layouts = {l['id']: l for l in json.load(
         open(os.path.join(REPO, 'data/layouts/layouts.json')))['layouts'] if 'id' in l}
+    ferry_dest = seagallop_destinations()
     every = {}
     for name in sorted(os.listdir(os.path.join(REPO, 'data/maps'))):
         p = os.path.join(REPO, 'data/maps', name, 'map.json')
@@ -112,6 +127,12 @@ def main():
         for e in j.get('coord_events', []):
             if e.get('script'):
                 bands[e['script']].append((e['x'], e['y']))
+        # a sailing is reachable from anywhere its script is, so read the whole file
+        for sid in sorted(set(FERRY_CMD.findall(text))):
+            dest = ferry_dest.get(sid)
+            if dest and dest in nodes and dest != mid:
+                add('ferry', 'Seagallop', dest)
+
         for label, pts in bands.items():
             body = block(text, label)
             xs = sorted({x for x, _ in pts}); ys = sorted({y for _, y in pts})
