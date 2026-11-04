@@ -105,21 +105,21 @@
       "x": 6,
       "y": 26,
       "elevation": 3,
-      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA",
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_FALLS",
       "dest_warp_id": "0"
     },
     {
       "x": 7,
       "y": 26,
       "elevation": 3,
-      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA",
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_FALLS",
       "dest_warp_id": "0"
     },
     {
       "x": 8,
       "y": 26,
       "elevation": 3,
-      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA",
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_FALLS",
       "dest_warp_id": "0"
     }
   ],

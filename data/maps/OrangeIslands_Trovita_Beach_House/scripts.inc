@@ -1,0 +1,10 @@
+OrangeIslands_Trovita_Beach_House_MapScripts::
+	.byte 0
+
+OrangeIslands_Trovita_Beach_House_EventScript_Beauty::
+	msgbox OrangeIslands_Trovita_Beach_House_Text_Beauty, MSGBOX_NPC
+	end
+
+OrangeIslands_Trovita_Beach_House_EventScript_Swimmer::
+	msgbox OrangeIslands_Trovita_Beach_House_Text_Swimmer, MSGBOX_NPC
+	end

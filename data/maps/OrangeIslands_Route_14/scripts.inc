@@ -30,23 +30,27 @@ OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat_Hi:
 	goto OrangeIslands_Route_14_EventScript_SeaEdgeToKumquat_Go
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Trovita
+@ Column 7, not 1. Landing on column 1 put six columns of border on screen; 7 is the
+@ first column that shows none on a 72-wide map, and it is open water for every row
+@ this can arrive on. The band is clamped to the rows Trovita's west edge actually
+@ opens on -- 2-14 here, which is 42-54 there -- since the cliff now closes the rest.
 OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8005, 0
+	compare VAR_0x8005, 2
 	goto_if_lt OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Lo
-	compare VAR_0x8005, 15
+	compare VAR_0x8005, 14
 	goto_if_gt OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Hi
 OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Go:
 	addvar VAR_0x8005, 40
-	setvar VAR_0x8004, 1
+	setvar VAR_0x8004, 7
 	warp MAP_ORANGE_ISLANDS_TROVITA, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
 OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Lo:
-	setvar VAR_0x8005, 0
+	setvar VAR_0x8005, 2
 	goto OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Go
 OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Hi:
-	setvar VAR_0x8005, 15
+	setvar VAR_0x8005, 14
 	goto OrangeIslands_Route_14_EventScript_SeaEdgeToTrovita_Go
 
 @ ---- Orange Islands trainers (orange_route_trainers.py) ----

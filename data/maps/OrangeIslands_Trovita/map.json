@@ -90,21 +90,77 @@
       "trainer_sight_or_berry_tree_id": "3",
       "script": "OrangeIslands_Trovita_EventScript_OrangeGwen",
       "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
+      "x": 30,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Trovita_EventScript_FallsWatcher",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "x": 24,
+      "y": 35,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Trovita_EventScript_LodgeBoy",
+      "flag": "0"
     }
   ],
   "warp_events": [
     {
       "x": 26,
       "y": 34,
-      "elevation": 3,
-      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_GYM",
-      "dest_warp_id": "1"
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_LODGE",
+      "dest_warp_id": "0"
     },
     {
       "x": 43,
       "y": 37,
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_POKEMON_CENTER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 54,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_MART",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 42,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 53,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_HOUSE2",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 13,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_TROVITA_HOUSE3",
       "dest_warp_id": "0"
     }
   ],
@@ -272,7 +328,5 @@
       "script": "OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14"
     }
   ],
-  "bg_events": [
-
-  ]
+  "bg_events": []
 }

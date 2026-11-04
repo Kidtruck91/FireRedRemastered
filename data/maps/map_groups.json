@@ -854,7 +854,13 @@
   "gMapGroup_Orange_Trovita_Interior": [
     "OrangeIslands_Trovita_Gym",
     "OrangeIslands_Trovita_PokemonCenter_1F",
-    "OrangeIslands_Trovita_PokemonCenter_2F"
+    "OrangeIslands_Trovita_PokemonCenter_2F",
+    "OrangeIslands_Trovita_Mart",
+    "OrangeIslands_Trovita_Lodge",
+    "OrangeIslands_Trovita_House1",
+    "OrangeIslands_Trovita_House2",
+    "OrangeIslands_Trovita_House3",
+    "OrangeIslands_Trovita_Beach_House"
   ],
   "gMapGroup_Orange_Kumquat_Interior": [
     "OrangeIslands_Kumquat_Gym",

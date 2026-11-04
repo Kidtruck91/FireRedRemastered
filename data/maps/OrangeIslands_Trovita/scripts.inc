@@ -9,13 +9,13 @@ OrangeIslands_Trovita_EventScript_Town::
 	msgbox OrangeIslands_Trovita_Text_Town, MSGBOX_SIGN
 	end
 
-@ Land on row 48, north of the falls' own return trigger on row 49, not south of it.
-@ That trigger spans the whole channel, so arriving below it at row 53 put the player in
-@ a six-row pocket whose only way out was back over the trigger: the rest of the map,
-@ everything above row 49, could not be reached at all. Row 48 is also the last row on a
-@ 56-tall map that does not put the border on screen.
+@ Land at the foot of the climb, south of all three waterfall tiers, and north of the
+@ return trigger that now sits on the falls' bottom row. Row 89 is the last row on a
+@ 96-tall map that does not put the border on screen.
+@ The player works north from here: the tiers at rows 84-87, 76-79 and 64-67 each need
+@ HM Waterfall, and above them the channel runs on to RUDY's GYM at (31,19).
 OrangeIslands_Trovita_EventScript_WalkToTrovitaFalls::
-	warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, 22, 48
+	warp MAP_ORANGE_ISLANDS_TROVITA_FALLS, 22, 89
 	waitstate
 	end
 
@@ -28,7 +28,9 @@ OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14::
 	goto_if_gt OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Hi
 OrangeIslands_Trovita_EventScript_SeaEdgeToRoute14_Go:
 	subvar VAR_0x8005, 40
-	setvar VAR_0x8004, 86
+@ Column 78, not 86: 86 showed six columns of border on an 88-wide map. 78 shows none
+@ and is open water on every row 2-14 that this can arrive on.
+	setvar VAR_0x8004, 78
 	warp MAP_ORANGE_ISLANDS_ROUTE_14, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
@@ -123,3 +125,10 @@ OrangeIslands_Trovita_Text_OrangeGwenPostBattle::
 	.string "Each island has its own\n"
 	.string "kind of water. Isn't it neat?$"
 
+OrangeIslands_Trovita_EventScript_FallsWatcher::
+	msgbox OrangeIslands_Trovita_Text_FallsWatcher, MSGBOX_NPC
+	end
+
+OrangeIslands_Trovita_EventScript_LodgeBoy::
+	msgbox OrangeIslands_Trovita_Text_LodgeBoy, MSGBOX_NPC
+	end

@@ -94,3 +94,6 @@ OrangeIslands_Trovita_Beach_Text_OrangeIrisPostBattle::
 	.string "Watch out for TENTACOOL\n"
 	.string "near the reefs.$"
 
+OrangeIslands_Trovita_Beach_EventScript_Sailor::
+	msgbox OrangeIslands_Trovita_Beach_Text_Sailor, MSGBOX_NPC
+	end

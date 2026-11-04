@@ -2113,6 +2113,18 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Trovita_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/OrangeIslands_Trovita_PokemonCenter_2F/text.inc"
+	.include "data/maps/OrangeIslands_Trovita_Mart/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_Mart/text.inc"
+	.include "data/maps/OrangeIslands_Trovita_Lodge/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_Lodge/text.inc"
+	.include "data/maps/OrangeIslands_Trovita_House1/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_House1/text.inc"
+	.include "data/maps/OrangeIslands_Trovita_House2/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_House2/text.inc"
+	.include "data/maps/OrangeIslands_Trovita_House3/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_House3/text.inc"
+	.include "data/maps/OrangeIslands_Trovita_Beach_House/scripts.inc"
+	.include "data/maps/OrangeIslands_Trovita_Beach_House/text.inc"
 
 	.include "data/maps/OrangeIslands_Sunburst_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/OrangeIslands_Sunburst_PokemonCenter_1F/text.inc"
