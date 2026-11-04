@@ -21,13 +21,17 @@ region_map_section, so a map sits on the cells its own section occupies, and map
 share a section are spread across them. A section missing from that grid is reported --
 a map with nowhere on the region map is usually one that was never finished.
 
-The result is written as JSON for docs/orange-islands/link_map.html.
+It writes two things: link_map.json, which docs/orange-islands/link_map.html reads, and
+link_map.png, the same graph drawn straight from Python so you can look at it without a
+browser.
 
-    python3 docs/orange-islands/build_link_map.py
+    python3 docs/orange-islands/build_link_map.py           # json + png
+    python3 docs/orange-islands/build_link_map.py --no-png   # json only
 """
 import json
 import math
 import os
+import sys
 import re
 import struct
 from collections import defaultdict, OrderedDict
@@ -76,6 +80,123 @@ def seagallop_destinations():
     for sid, dest in re.findall(r'\[(SEAGALLOP_\w+)\]\s*=\s*\{MAP\((\w+)\)', src):
         out[sid] = 'MAP_' + dest
     return out
+
+
+# --------------------------------------------------------------------------------------
+# the same graph, drawn from Python
+# --------------------------------------------------------------------------------------
+FONT_DIR = '/usr/share/fonts/truetype/dejavu'
+PALETTE = {
+    'bg': (12, 23, 30), 'sea': (18, 43, 58), 'route': (23, 57, 76), 'land': (59, 53, 36),
+    'cellEdge': (43, 71, 89), 'ink': (227, 237, 243), 'soft': (140, 166, 181),
+    'two': (70, 98, 117), 'one': (226, 166, 71), 'ferry': (92, 196, 150),
+    'bad': (232, 117, 92), 'tray': (232, 117, 92),
+}
+
+
+def render_png(doc, path, scale=2):
+    from PIL import Image, ImageDraw, ImageFont
+
+    def font(size, bold=False):
+        name = 'DejaVuSans-Bold.ttf' if bold else 'DejaVuSans.ttf'
+        try:
+            return ImageFont.truetype(os.path.join(FONT_DIR, name), size)
+        except OSError:
+            return ImageFont.load_default()
+
+    G = doc['grid']
+    C = G['cell']
+    W = int((G['w'] + 7.0) * C)
+    H = int(G['h'] * C) + 54
+    img = Image.new('RGB', (W * scale, H * scale), PALETTE['bg'])
+    d = ImageDraw.Draw(img)
+    S = lambda v: int(round(v * scale))
+    TOP = 46
+
+    f_sec = font(7 * scale)
+    f_node = font(9 * scale)
+    f_title = font(15 * scale, True)
+    f_key = font(10 * scale)
+
+    d.text((S(10), S(12)), 'Orange Islands link map', font=f_title, fill=PALETTE['ink'])
+    key = ('%d maps   %d links   %d one-way   %d nothing leads in'
+           % (len(doc['nodes']), len(doc['edges']), len(doc['oneWay']), len(doc['unreachable'])))
+    d.text((S(10), S(32)), key, font=f_key, fill=PALETTE['soft'])
+
+    # the region plate
+    d.rectangle([S(0), S(TOP), S(G['w'] * C), S(TOP + G['h'] * C)], fill=PALETTE['sea'])
+    for sec, spots in doc['grid']['cells'].items():
+        route = sec.startswith('ORANGE_ROUTE')
+        for cx, cy in spots:
+            d.rectangle([S(cx * C), S(TOP + cy * C), S((cx + 1) * C), S(TOP + (cy + 1) * C)],
+                        fill=PALETTE['route'] if route else PALETTE['land'],
+                        outline=PALETTE['cellEdge'])
+        mx = sum(p[0] for p in spots) / len(spots)
+        my = sum(p[1] for p in spots) / len(spots)
+        label = sec.replace('ORANGE_', '').replace('_', ' ')
+        d.text((S((mx + 0.5) * C), S(TOP + (my + 0.5) * C + 15)), label,
+               font=f_sec, fill=PALETTE['soft'], anchor='mm')
+
+    nodes = {n['id']: n for n in doc['nodes']}
+    # the tray for maps with nowhere on the region map
+    if doc['unplaced']:
+        ys = [nodes[m]['y'] for m in doc['unplaced']]
+        d.rounded_rectangle([S((G['w'] + 0.55) * C), S(TOP + min(ys) - 26),
+                             S((G['w'] + 5.75) * C), S(TOP + max(ys) + 26)],
+                            radius=S(8), outline=PALETTE['tray'], width=max(1, scale))
+        d.text((S((G['w'] + 0.75) * C), S(TOP + min(ys) - 38)), 'Not on the region map',
+               font=f_key, fill=PALETTE['tray'])
+
+    drawn = set()
+    for e in doc['edges']:
+        a, b = nodes.get(e['from']), nodes.get(e['to'])
+        if not a or not b:
+            continue
+        key2 = tuple(sorted((e['from'], e['to']))) + (e['kind'],)
+        if key2 in drawn:
+            continue
+        drawn.add(key2)
+        col = PALETTE['ferry'] if e['kind'] == 'ferry' else (
+            PALETTE['two'] if e['twoWay'] else PALETTE['one'])
+        wid = max(1, int(scale * (2.2 if not e['twoWay'] else 1.5)))
+        d.line([S(a['x']), S(TOP + a['y']), S(b['x']), S(TOP + b['y'])], fill=col, width=wid)
+
+    # Labels are nudged off each other: in a section like Moro's ghost ship, eight maps
+    # share one region cell, and stacked names are unreadable.
+    placed = []
+
+    def slot(cx, cy, w, h):
+        for step in range(0, 9):
+            for dy in ((-step, step) if step else (0,)):
+                box = (cx - w / 2, cy + dy - h / 2, cx + w / 2, cy + dy + h / 2)
+                if all(box[2] < q[0] or box[0] > q[2] or box[3] < q[1] or box[1] > q[3]
+                       for q in placed):
+                    placed.append(box)
+                    return cy + dy
+            step += 0
+        placed.append((cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2))
+        return cy
+
+    for n in sorted(doc['nodes'], key=lambda n: n['y']):
+        r = 5 if n['type'] in ('Route', 'Underwater') else 6.8
+        hue = (doc['islands'].index(n['island']) / max(1, len(doc['islands']))) if n['island'] in doc['islands'] else 0.55
+        import colorsys
+        rgb = tuple(int(v * 255) for v in colorsys.hls_to_rgb(hue, 0.55, 0.45))
+        box = [S(n['x'] - r), S(TOP + n['y'] - r), S(n['x'] + r), S(TOP + n['y'] + r)]
+        d.ellipse(box, fill=rgb,
+                  outline=PALETTE['bad'] if not n['reachable'] else PALETTE['bg'],
+                  width=max(1, int(scale * (2.4 if not n['reachable'] else 1.4))))
+        tw = d.textlength(n['name'], font=f_node) / scale
+        ly = slot(n['x'], n['y'] - r - 8, tw + 4, 13)
+        if abs(ly - (n['y'] - r - 8)) > 2:
+            d.line([S(n['x']), S(TOP + n['y'] - r), S(n['x']), S(TOP + ly + 6)],
+                   fill=PALETTE['cellEdge'], width=max(1, scale))
+        d.text((S(n['x']), S(TOP + ly)), n['name'], font=f_node,
+               fill=PALETTE['ink'], anchor='mm',
+               stroke_width=max(1, int(scale * 1.6)), stroke_fill=PALETTE['sea'])
+
+    img.save(path)
+    print('  wrote %s  (%dx%d)' % (path, img.width, img.height))
 
 
 def main():
@@ -230,6 +351,8 @@ def main():
     print('  not on the region map at all: %d  %s'
           % (len(unplaced), [nodes[m]['name'] for m in unplaced]))
     print('  wrote %s' % OUT)
+    if '--no-png' not in sys.argv:
+        render_png(doc, os.path.join(REPO, 'docs/orange-islands/link_map.png'))
 
 
 if __name__ == '__main__':
