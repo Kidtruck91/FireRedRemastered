@@ -1,0 +1,262 @@
+<title>Orange Islands Link Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a full-bleed chart of the region with a docked inspector; problems ride on top as a strip. */
+:root{
+  --sea:#eaf0f4; --sea-deep:#dde7ee; --ink:#132029; --ink-soft:#4d6472; --line:#b9ccd8;
+  --card:#ffffff; --sand:#c8893f; --good:#2f7d5d; --warn:#b8761c; --bad:#b4442f;
+  --font-d:"IBM Plex Sans Condensed",system-ui,sans-serif;
+  --font-b:"IBM Plex Sans",system-ui,sans-serif;
+  --font-m:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --sea:#0d171e; --sea-deep:#091219; --ink:#e3edf3; --ink-soft:#8ca6b5; --line:#27404f;
+  --card:#131f28; --sand:#e0a45e; --good:#5cc496; --warn:#e2a647; --bad:#e8755c;
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --sea:#0d171e; --sea-deep:#091219; --ink:#e3edf3; --ink-soft:#8ca6b5; --line:#27404f;
+  --card:#131f28; --sand:#e0a45e; --good:#5cc496; --warn:#e2a647; --bad:#e8755c;
+  color-scheme:dark;}
+
+*{box-sizing:border-box}
+body{background:var(--sea);color:var(--ink);font-family:var(--font-b);margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 28px}
+h1,h2,h3{font-family:var(--font-d);margin:0;text-wrap:balance;letter-spacing:.01em}
+.wrap{max-width:1180px;margin:0 auto}
+
+header{padding-block:22px 14px;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between}
+h1{font-size:clamp(22px,3.4vw,31px);line-height:1.05}
+.sub{color:var(--ink-soft);font-size:13.5px;margin-top:5px;max-width:62ch}
+.tallies{display:flex;gap:9px;flex-wrap:wrap}
+.tally{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:7px 11px;min-width:76px}
+.tally b{display:block;font-family:var(--font-d);font-size:20px;line-height:1;font-variant-numeric:tabular-nums}
+.tally span{display:block;color:var(--ink-soft);font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;margin-top:4px}
+.tally.warn b{color:var(--warn)} .tally.bad b{color:var(--bad)}
+
+.alerts{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;margin-bottom:16px}
+.alert{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:9px;padding:12px 14px}
+.alert.bad{border-left-color:var(--bad)}
+.alert h3{font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--warn)}
+.alert.bad h3{color:var(--bad)}
+.alert p{margin:7px 0 0;font-size:13px;color:var(--ink-soft);line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.chip{font-family:var(--font-m);font-size:11.5px;background:var(--sea-deep);border:1px solid var(--line);
+  border-radius:5px;padding:2.5px 7px;cursor:pointer;color:var(--ink)}
+.chip:hover,.chip:focus-visible{border-color:var(--sand);outline:none}
+
+.board{display:grid;grid-template-columns:minmax(0,1fr) 316px;gap:14px;align-items:start}
+@media (max-width:860px){.board{grid-template-columns:minmax(0,1fr)}}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden;position:relative}
+.bar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:9px 11px;border-bottom:1px solid var(--line)}
+.bar label{font-size:12px;color:var(--ink-soft);display:flex;gap:5px;align-items:center;cursor:pointer}
+svg{display:block;width:100%;height:auto;touch-action:none;cursor:grab}
+svg.drag{cursor:grabbing}
+.edge{stroke-width:1.5;fill:none}
+.edge.two{stroke:var(--line)}
+.edge.one{stroke:var(--warn);stroke-dasharray:5 4;stroke-width:2.1}
+.edge.lit{stroke:var(--sand);stroke-width:3}
+.node circle{stroke:var(--card);stroke-width:1.6;cursor:pointer}
+.node.off{opacity:.2}
+.node.bad circle{stroke:var(--bad);stroke-width:2.6}
+.node text{font-family:var(--font-b);font-size:9.2px;fill:var(--ink);pointer-events:none;
+  paint-order:stroke;stroke:var(--card);stroke-width:2.6px;stroke-linejoin:round}
+.node.sel circle{stroke:var(--sand);stroke-width:3}
+.node.sel text{font-weight:600}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px;position:sticky;top:12px}
+.panel h2{font-size:17px;line-height:1.2}
+.meta{font-family:var(--font-m);font-size:11.5px;color:var(--ink-soft);margin-top:4px}
+.sec{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);
+  margin:15px 0 7px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.exit{display:grid;grid-template-columns:auto 1fr;gap:8px;padding:6px 0;border-bottom:1px dotted var(--line);font-size:12.5px}
+.exit:last-child{border-bottom:0}
+.k{font-family:var(--font-m);font-size:10px;text-transform:uppercase;letter-spacing:.05em;
+  background:var(--sea-deep);border-radius:4px;padding:2px 6px;height:fit-content;color:var(--ink-soft)}
+.k.edge{color:var(--good)} .k.trigger{color:var(--sand)} .k.dive{color:var(--ink-soft)}
+.dest{font-weight:600;cursor:pointer}
+.dest:hover{color:var(--sand)}
+.where{font-family:var(--font-m);font-size:10.5px;color:var(--ink-soft);display:block;margin-top:2px}
+.oneway{color:var(--warn);font-weight:600;font-size:11px}
+.empty{color:var(--ink-soft);font-size:12.5px;font-style:italic}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;font-size:11.5px;color:var(--ink-soft)}
+.legend i{display:inline-block;width:19px;height:0;border-top:2px solid var(--line);vertical-align:middle;margin-right:4px}
+.legend i.one{border-top:2px dashed var(--warn)}
+.legend i.dot{width:9px;height:9px;border:2px solid var(--bad);border-radius:50%;border-top-width:2px}
+footer{color:var(--ink-soft);font-size:11.5px;margin-top:16px;line-height:1.6}
+</style>
+
+<div class="wrap">
+<header>
+  <div>
+    <h1>Orange Islands Link Map</h1>
+    <p class="sub">Every way one map leads to another &mdash; edge connections, warps, trigger scripts and dive
+      pairs &mdash; read straight from the repo. Links nothing answers from the far side are drawn in amber.</p>
+  </div>
+  <div class="tallies" id="tallies"></div>
+</header>
+
+<div class="alerts" id="alerts"></div>
+
+<div class="board">
+  <div class="chart">
+    <div class="bar">
+      <label><input type="checkbox" id="onlyProblems"> Problem links only</label>
+      <label><input type="checkbox" id="hideInteriors" checked> Hide ship interiors</label>
+      <span style="flex:1"></span>
+      <button class="chip" id="reset" type="button">Reset view</button>
+    </div>
+    <svg id="svg" viewBox="0 0 1000 860" role="img" aria-label="Region link map"></svg>
+  </div>
+
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<div class="legend">
+  <span><i></i>answered both ways</span>
+  <span><i class="one"></i>one-way</span>
+  <span><i class="dot"></i>nothing leads in</span>
+</div>
+<footer id="foot"></footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/;
+const byId = Object.fromEntries(DATA.nodes.map(n => [n.id, n]));
+const ISLAND_HUE = {};
+DATA.islands.forEach((g, i) => ISLAND_HUE[g] = (i * 360 / DATA.islands.length));
+const colour = n => `hsl(${ISLAND_HUE[n.island] ?? 200} 48% 52%)`;
+const isInterior = n => /GhostShip/.test(n.id);
+
+const svg = document.getElementById('svg');
+const panel = document.getElementById('panel');
+let selected = null, view = {x: 0, y: 0, k: 1};
+
+function tallies() {
+  const t = [
+    ['maps', DATA.nodes.length, ''],
+    ['links', DATA.edges.length, ''],
+    ['one-way', DATA.oneWay.length, 'warn'],
+    ['cut off', DATA.unreachable.length, 'bad'],
+  ];
+  document.getElementById('tallies').innerHTML = t.map(([l, v, c]) =>
+    `<div class="tally ${c}"><b>${v}</b><span>${l}</span></div>`).join('');
+}
+
+function alerts() {
+  const ow = DATA.oneWay.map(([a, b]) =>
+    `<button class="chip" data-go="${a}">${byId[a].name} &rarr; ${byId[b].name}</button>`).join('');
+  const un = DATA.unreachable.map(m =>
+    `<button class="chip" data-go="${m}">${byId[m].name}</button>`).join('');
+  document.getElementById('alerts').innerHTML = `
+    <div class="alert"><h3>One-way links</h3>
+      <p>These maps lead somewhere that never leads back. The crossing works going out and
+         has no return written on the far side.</p><div class="chips">${ow}</div></div>
+    <div class="alert bad"><h3>Nothing leads in</h3>
+      <p>Walking from Valencia, these maps cannot be reached at all. They have exits of their
+         own, but no map anywhere sends the player to them.</p><div class="chips">${un}</div></div>`;
+}
+
+function draw() {
+  const onlyProb = document.getElementById('onlyProblems').checked;
+  const hideInt = document.getElementById('hideInteriors').checked;
+  const vis = n => !(hideInt && isInterior(n));
+  const probNodes = new Set([...DATA.unreachable, ...DATA.oneWay.flat()]);
+  const show = DATA.nodes.filter(n => vis(n) && (!onlyProb || probNodes.has(n.id)));
+  const ids = new Set(show.map(n => n.id));
+  const es = DATA.edges.filter(e => ids.has(e.from) && ids.has(e.to) && (!onlyProb || !e.twoWay));
+
+  const lit = new Set();
+  if (selected) es.forEach(e => {
+    if (e.from === selected || e.to === selected) { lit.add(e.from + '>' + e.to); }
+  });
+
+  const seen = new Set();
+  const lines = es.map(e => {
+    const a = byId[e.from], b = byId[e.to];
+    const key = [e.from, e.to].sort().join('|') + e.kind;
+    if (seen.has(key)) return '';
+    seen.add(key);
+    const on = lit.has(e.from + '>' + e.to) || lit.has(e.to + '>' + e.from);
+    return `<line class="edge ${e.twoWay ? 'two' : 'one'}${on ? ' lit' : ''}"
+      x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"></line>`;
+  }).join('');
+
+  const dots = show.map(n => {
+    const r = n.type === 'Route' || n.type === 'Underwater' ? 5.5 : 7.5;
+    const cls = ['node', n.reachable ? '' : 'bad', selected === n.id ? 'sel' : '',
+                 selected && selected !== n.id && !lit.has(selected + '>' + n.id)
+                   && !lit.has(n.id + '>' + selected) ? 'off' : ''].filter(Boolean).join(' ');
+    return `<g class="${cls}" data-id="${n.id}" tabindex="0" role="button" aria-label="${n.name}">
+      <circle cx="${n.x}" cy="${n.y}" r="${r}" fill="${colour(n)}"></circle>
+      <text x="${n.x}" y="${n.y - r - 3.5}" text-anchor="middle">${n.name}</text></g>`;
+  }).join('');
+
+  svg.innerHTML = `<g transform="translate(${view.x} ${view.y}) scale(${view.k})">${lines}${dots}</g>`;
+  document.getElementById('foot').textContent =
+    `Showing ${show.length} maps and ${es.length} links. Built from data/maps, data/layouts and each map's scripts.inc.`;
+}
+
+function inspect(id) {
+  selected = id;
+  const n = byId[id];
+  if (!n) { panel.innerHTML = '<p class="empty">Pick a map on the chart.</p>'; return; }
+  const exits = n.exits.map(e => `<div class="exit">
+      <span class="k ${e.kind}">${e.kind}</span>
+      <span><span class="dest" data-go="${e.to}">${byId[e.to] ? byId[e.to].name : e.to}</span>
+        ${e.twoWay ? '' : ' <span class="oneway">one-way</span>'}
+        <span class="where">${e.where}${e.count ? ' &middot; ' + e.count + ' tiles' : ''}</span></span>
+    </div>`).join('') || '<p class="empty">No exits.</p>';
+  const ins = n.inbound.length
+    ? n.inbound.map(m => `<button class="chip" data-go="${m}">${byId[m].name}</button>`).join('')
+    : '<p class="empty">Nothing leads here.</p>';
+  panel.innerHTML = `<h2>${n.name}</h2>
+    <div class="meta">${n.island} &middot; ${n.type} &middot; ${n.w}&times;${n.h}</div>
+    ${n.reachable ? '' : '<p class="oneway" style="margin:9px 0 0">Cut off &mdash; no route from Valencia.</p>'}
+    <div class="sec">Leads to</div>${exits}
+    <div class="sec">Reached from</div><div class="chips">${ins}</div>`;
+  draw();
+}
+
+svg.addEventListener('click', e => {
+  const g = e.target.closest('.node');
+  if (g) inspect(g.dataset.id);
+});
+svg.addEventListener('keydown', e => {
+  const g = e.target.closest('.node');
+  if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); inspect(g.dataset.id); }
+});
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-go]');
+  if (b) inspect(b.dataset.go);
+});
+['onlyProblems', 'hideInteriors'].forEach(id =>
+  document.getElementById(id).addEventListener('change', draw));
+document.getElementById('reset').addEventListener('click', () => {
+  view = {x: 0, y: 0, k: 1}; selected = null; inspect(null);
+});
+
+let drag = null;
+svg.addEventListener('pointerdown', e => {
+  if (e.target.closest('.node')) return;
+  drag = {x: e.clientX, y: e.clientY, vx: view.x, vy: view.y};
+  svg.classList.add('drag'); svg.setPointerCapture(e.pointerId);
+});
+svg.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const s = 1000 / svg.getBoundingClientRect().width;
+  view.x = drag.vx + (e.clientX - drag.x) * s;
+  view.y = drag.vy + (e.clientY - drag.y) * s;
+  draw();
+});
+svg.addEventListener('pointerup', () => { drag = null; svg.classList.remove('drag'); });
+svg.addEventListener('wheel', e => {
+  e.preventDefault();
+  const f = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+  view.k = Math.max(0.45, Math.min(4, view.k * f));
+  draw();
+}, {passive: false});
+
+tallies(); alerts(); inspect('MAP_ORANGE_ISLANDS_TROVITA');
+</script>
