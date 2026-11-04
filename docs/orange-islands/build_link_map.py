@@ -1,4 +1,4 @@
-"""Extract how every Orange Islands map connects, and lay the result out for a viewer.
+"""Extract how every Orange Islands map connects, and place it on the game's own region map.
 
 Four different mechanisms join maps in this hack, and only one of them is visible in
 Porymap's connection editor, which is why a broken link is easy to miss:
@@ -9,16 +9,21 @@ Porymap's connection editor, which is why a broken link is easy to miss:
     dive        a dive/emerge connection, or a setdivewarp in an ON_RESUME map script
 
 This reads all four, works out which links are answered from the far side and which are
-one-way, finds the maps nothing leads into, and runs a small spring layout so the viewer
-can draw the region without a physics library. The result is written as JSON for
-docs/orange-islands/link_map.html.
+one-way, finds the maps nothing leads into, and places every map where the game itself puts it.
+
+The positions are not invented. src/data/region_map/region_map_layout_orange.h is the
+in-game region map: a 22x15 grid of MAPSEC values. Each map carries a
+region_map_section, so a map sits on the cells its own section occupies, and maps that
+share a section are spread across them. A section missing from that grid is reported --
+a map with nowhere on the region map is usually one that was never finished.
+
+The result is written as JSON for docs/orange-islands/link_map.html.
 
     python3 docs/orange-islands/build_link_map.py
 """
 import json
 import math
 import os
-import random
 import re
 import struct
 from collections import defaultdict, OrderedDict
@@ -143,44 +148,56 @@ def main():
     for mid, n in nodes.items():
         n['reachable'] = mid in seen
 
-    # --- spring layout, islands pulled toward their own centre ----------------------
-    rnd = random.Random(5)
+    # --- place every map where the region map puts its section ----------------------
     ids = list(nodes)
-    pos = {m: [rnd.uniform(-1, 1), rnd.uniform(-1, 1)] for m in ids}
-    groups = ISLANDS + [SEA]
-    anchor = {g: (math.cos(2 * math.pi * i / len(groups)) * 1.6,
-                  math.sin(2 * math.pi * i / len(groups)) * 1.6)
-              for i, g in enumerate(groups)}
-    anchor[SEA] = (0.0, 0.0)
-    adj = defaultdict(set)
-    for e in edges:
-        adj[e['from']].add(e['to']); adj[e['to']].add(e['from'])
-    for step in range(600):
-        k = 0.06 * (1 - step / 600) + 0.004
-        for m in ids:
-            fx = fy = 0.0
-            for o in ids:
-                if o == m:
-                    continue
-                dx, dy = pos[m][0] - pos[o][0], pos[m][1] - pos[o][1]
-                d2 = dx * dx + dy * dy + 1e-4
-                f = 0.010 / d2
-                fx += dx * f; fy += dy * f
-            for o in adj[m]:
-                dx, dy = pos[o][0] - pos[m][0], pos[o][1] - pos[m][1]
-                fx += dx * 0.45; fy += dy * 0.45
-            ax, ay = anchor.get(nodes[m]['island'], (0, 0))
-            fx += (ax - pos[m][0]) * 0.22; fy += (ay - pos[m][1]) * 0.22
-            pos[m][0] += max(-0.4, min(0.4, fx)) * k
-            pos[m][1] += max(-0.4, min(0.4, fy)) * k
-    xs = [p[0] for p in pos.values()]; ys = [p[1] for p in pos.values()]
-    lo_x, hi_x, lo_y, hi_y = min(xs), max(xs), min(ys), max(ys)
-    for m in ids:
-        nodes[m]['x'] = round(60 + 880 * (pos[m][0] - lo_x) / (hi_x - lo_x or 1), 1)
-        nodes[m]['y'] = round(60 + 740 * (pos[m][1] - lo_y) / (hi_y - lo_y or 1), 1)
+    layout_src = open(os.path.join(REPO, 'src/data/region_map/region_map_layout_orange.h')).read()
+    grid = []
+    lm = re.search(r'\[LAYER_MAP\]\s*=\s*\{(.*?)\n    \},', layout_src, re.S)
+    for rm in re.finditer(r'\{([^{}]*)\}', lm.group(1)):
+        grid.append([c.strip() for c in rm.group(1).split(',') if c.strip()])
+    gh, gw = len(grid), len(grid[0])
+    cells = defaultdict(list)
+    for yy, row in enumerate(grid):
+        for xx, sec in enumerate(row):
+            if sec != 'MAPSEC_NONE':
+                cells[sec].append((xx, yy))
+
+    CELL = 44.0
+    by_sec = defaultdict(list)
+    for mid in ids:
+        by_sec[every[mid][1].get('region_map_section')].append(mid)
+
+    unplaced = []
+    for sec, members in by_sec.items():
+        spots = cells.get(sec)
+        if not spots:
+            unplaced.extend(members)
+            continue
+        # Members of one section fan out on a golden-angle spiral whose reach grows with
+        # how many share it, so six Pummelo maps do not stack their labels on one cell.
+        for i, mid in enumerate(sorted(members)):
+            cx, cy = spots[i % len(spots)]
+            ring = i // len(spots)
+            ang = (i * 2.39996) + ring * 0.7
+            per = max(1, len(members) / len(spots))
+            rad = 0.0 if len(members) == 1 else min(1.25, 0.30 + 0.17 * (per - 1) + 0.22 * ring)
+            nodes[mid]['x'] = round((cx + 0.5 + math.cos(ang) * rad) * CELL, 1)
+            nodes[mid]['y'] = round((cy + 0.5 + math.sin(ang) * rad) * CELL, 1)
+            nodes[mid]['sec'] = sec.removeprefix('MAPSEC_')
+            nodes[mid]['onMap'] = True
+
+    # maps whose section is nowhere on the region map get a tray down the right edge
+    for i, mid in enumerate(sorted(unplaced)):
+        nodes[mid]['x'] = round((gw + 1.1) * CELL, 1)
+        nodes[mid]['y'] = round((1.0 + i * 0.78) * CELL, 1)
+        nodes[mid]['sec'] = (every[mid][1].get('region_map_section') or '').removeprefix('MAPSEC_')
+        nodes[mid]['onMap'] = False
 
     doc = {'nodes': list(nodes.values()), 'edges': edges,
-           'islands': groups,
+           'islands': ISLANDS + [SEA],
+           'grid': {'w': gw, 'h': gh, 'cell': CELL,
+                    'cells': {k.removeprefix('MAPSEC_'): v for k, v in cells.items()}},
+           'unplaced': sorted(unplaced),
            'oneWay': [[e['from'], e['to']] for e in edges if not e['twoWay']],
            'unreachable': [m for m in ids if not nodes[m]['reachable']]}
     with open(OUT, 'w', newline='\n') as f:
@@ -189,6 +206,8 @@ def main():
     print('  one-way links: %d' % len(doc['oneWay']))
     print('  unreachable from Valencia: %d  %s'
           % (len(doc['unreachable']), [nodes[m]['name'] for m in doc['unreachable']][:8]))
+    print('  not on the region map at all: %d  %s'
+          % (len(unplaced), [nodes[m]['name'] for m in unplaced]))
     print('  wrote %s' % OUT)
 
 

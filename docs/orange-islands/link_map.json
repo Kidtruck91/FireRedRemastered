@@ -36,8 +36,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_8"
    ],
    "reachable": true,
-   "x": 202.4,
-   "y": 502.6
+   "x": 394.7,
+   "y": 418.0,
+   "sec": "KINNOW_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_KINNOW_BEACH",
@@ -59,8 +61,10 @@
     "MAP_ORANGE_ISLANDS_KINNOW"
    ],
    "reachable": true,
-   "x": 109.6,
-   "y": 526.9
+   "x": 343.7,
+   "y": 419.3,
+   "sec": "KINNOW_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_KUMQUAT",
@@ -106,8 +110,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_14"
    ],
    "reachable": true,
-   "x": 290.7,
-   "y": 174.8
+   "x": 534.2,
+   "y": 198.0,
+   "sec": "KUMQUAT_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_KUMQUAT_BEACH",
@@ -137,8 +143,10 @@
     "MAP_ORANGE_ISLANDS_KUMQUAT_CAVE"
    ],
    "reachable": true,
-   "x": 246.2,
-   "y": 128.7
+   "x": 468.2,
+   "y": 199.6,
+   "sec": "KUMQUAT_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_KUMQUAT_CAVE",
@@ -168,8 +176,10 @@
     "MAP_ORANGE_ISLANDS_KUMQUAT_BEACH"
    ],
    "reachable": true,
-   "x": 272.8,
-   "y": 122.8
+   "x": 553.4,
+   "y": 194.0,
+   "sec": "KUMQUAT_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH",
@@ -217,8 +227,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_9"
    ],
    "reachable": true,
-   "x": 312.2,
-   "y": 391.3
+   "x": 526.7,
+   "y": 374.0,
+   "sec": "MANDARIN_SOUTH",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_BEACH",
@@ -240,8 +252,10 @@
     "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH"
    ],
    "reachable": true,
-   "x": 162.5,
-   "y": 393.6
+   "x": 475.7,
+   "y": 375.3,
+   "sec": "MANDARIN_SOUTH",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MIKAN",
@@ -271,8 +285,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_5"
    ],
    "reachable": true,
-   "x": 802.8,
-   "y": 531.6
+   "x": 658.7,
+   "y": 550.0,
+   "sec": "MIKAN_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MIKAN_BEACH",
@@ -302,8 +318,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_3"
    ],
    "reachable": true,
-   "x": 893.0,
-   "y": 527.5
+   "x": 607.7,
+   "y": 551.3,
+   "sec": "MIKAN_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO",
@@ -349,8 +367,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_7"
    ],
    "reachable": true,
-   "x": 403.4,
-   "y": 652.4
+   "x": 165.0,
+   "y": 418.0,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_BEACH",
@@ -372,8 +392,10 @@
     "MAP_ORANGE_ISLANDS_MORO"
    ],
    "reachable": true,
-   "x": 360.5,
-   "y": 676.5
+   "x": 55.0,
+   "y": 420.3,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP",
@@ -419,8 +441,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS_1F"
    ],
    "reachable": true,
-   "x": 336.8,
-   "y": 730.8
+   "x": 164.8,
+   "y": 413.4,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_CORRIDORS_B1F",
@@ -466,8 +490,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOM_B1F"
    ],
    "reachable": true,
-   "x": 257.5,
-   "y": 766.6
+   "x": 55.4,
+   "y": 424.9,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_HIDDEN_CORRIDORS",
@@ -497,8 +523,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_1"
    ],
    "reachable": true,
-   "x": 83.3,
-   "y": 710.2
+   "x": 164.2,
+   "y": 408.9,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_HIDDEN_ROOMS",
@@ -520,8 +548,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_HIDDEN_CORRIDORS"
    ],
    "reachable": true,
-   "x": 60.0,
-   "y": 691.0
+   "x": 56.2,
+   "y": 429.4,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS2_1F",
@@ -543,8 +573,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP"
    ],
    "reachable": true,
-   "x": 374.1,
-   "y": 752.8
+   "x": 163.3,
+   "y": 404.4,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS2_B1F",
@@ -566,8 +598,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_CORRIDORS_B1F"
    ],
    "reachable": true,
-   "x": 220.9,
-   "y": 791.7
+   "x": 57.3,
+   "y": 433.8,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS_1F",
@@ -589,8 +623,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP"
    ],
    "reachable": true,
-   "x": 329.8,
-   "y": 760.8
+   "x": 162.0,
+   "y": 400.0,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOMS_B1F",
@@ -620,8 +656,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_2"
    ],
    "reachable": true,
-   "x": 202.8,
-   "y": 749.4
+   "x": 58.8,
+   "y": 438.1,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_ROOM_B1F",
@@ -643,8 +681,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_CORRIDORS_B1F"
    ],
    "reachable": true,
-   "x": 271.0,
-   "y": 800.0
+   "x": 160.3,
+   "y": 395.8,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_1",
@@ -674,8 +714,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_2"
    ],
    "reachable": true,
-   "x": 116.1,
-   "y": 727.6
+   "x": 60.7,
+   "y": 442.3,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_2",
@@ -705,8 +747,10 @@
     "MAP_ORANGE_ISLANDS_MORO_GHOST_SHIP_UNDERWATER_1"
    ],
    "reachable": true,
-   "x": 156.5,
-   "y": 739.2
+   "x": 158.3,
+   "y": 391.7,
+   "sec": "MORO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_NAVEL",
@@ -736,8 +780,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_5"
    ],
    "reachable": true,
-   "x": 524.9,
-   "y": 555.1
+   "x": 658.7,
+   "y": 330.0,
+   "sec": "NAVEL_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_NAVEL_BEACH",
@@ -768,8 +814,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_9"
    ],
    "reachable": true,
-   "x": 424.4,
-   "y": 519.7
+   "x": 607.7,
+   "y": 331.3,
+   "sec": "NAVEL_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_PINKAN",
@@ -807,8 +855,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_16"
    ],
    "reachable": true,
-   "x": 490.5,
-   "y": 144.2
+   "x": 438.7,
+   "y": 242.0,
+   "sec": "PINKAN_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_PINKAN_BEACH",
@@ -830,8 +880,10 @@
     "MAP_ORANGE_ISLANDS_PINKAN"
    ],
    "reachable": true,
-   "x": 489.8,
-   "y": 90.0
+   "x": 387.7,
+   "y": 243.3,
+   "sec": "PINKAN_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_PUMMELO",
@@ -861,8 +913,10 @@
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE"
    ],
    "reachable": false,
-   "x": 845.2,
-   "y": 75.3
+   "x": 820.6,
+   "y": 66.0,
+   "sec": "PUMMELO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_PUMMELO_BEACH",
@@ -884,8 +938,10 @@
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE"
    ],
    "reachable": false,
-   "x": 764.2,
-   "y": 60.0
+   "x": 715.0,
+   "y": 68.3,
+   "sec": "PUMMELO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_PUMMELO_CAVE",
@@ -907,8 +963,10 @@
     "MAP_ORANGE_ISLANDS_PUMMELO"
    ],
    "reachable": false,
-   "x": 884.1,
-   "y": 78.9
+   "x": 824.8,
+   "y": 61.4,
+   "sec": "PUMMELO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE",
@@ -946,8 +1004,10 @@
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B1F"
    ],
    "reachable": false,
-   "x": 797.6,
-   "y": 80.1
+   "x": 715.4,
+   "y": 72.9,
+   "sec": "PUMMELO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B1F",
@@ -977,8 +1037,10 @@
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B2F"
    ],
    "reachable": false,
-   "x": 794.2,
-   "y": 112.2
+   "x": 824.2,
+   "y": 56.9,
+   "sec": "PUMMELO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B2F",
@@ -1000,8 +1062,10 @@
     "MAP_ORANGE_ISLANDS_PUMMELO_SECRET_CAVE_B1F"
    ],
    "reachable": false,
-   "x": 802.6,
-   "y": 137.9
+   "x": 716.2,
+   "y": 77.4,
+   "sec": "PUMMELO_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_1",
@@ -1031,8 +1095,10 @@
     "MAP_ORANGE_ISLANDS_VALENCIA"
    ],
    "reachable": true,
-   "x": 771.9,
-   "y": 456.6
+   "x": 330.0,
+   "y": 506.0,
+   "sec": "ORANGE_ROUTE_1",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_10",
@@ -1070,8 +1136,10 @@
     "MAP_ORANGE_ISLANDS_UNDERWATER_ROUTE_10"
    ],
    "reachable": true,
-   "x": 306.3,
-   "y": 510.6
+   "x": 211.2,
+   "y": 418.0,
+   "sec": "ORANGE_ROUTE_10",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_11",
@@ -1101,8 +1169,10 @@
     "MAP_ORANGE_ISLANDS_TROVITA_BEACH"
    ],
    "reachable": true,
-   "x": 290.6,
-   "y": 415.9
+   "x": 594.0,
+   "y": 154.0,
+   "sec": "ORANGE_ROUTE_11",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_12",
@@ -1129,8 +1199,10 @@
    ],
    "inbound": [],
    "reachable": false,
-   "x": 265.2,
-   "y": 332.9
+   "x": 1016.4,
+   "y": 44.0,
+   "sec": "ORANGE_ROUTE_12",
+   "onMap": false
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_13",
@@ -1176,8 +1248,10 @@
     "MAP_ORANGE_ISLANDS_UNDERWATER_ROUTE_13"
    ],
    "reachable": true,
-   "x": 411.9,
-   "y": 258.4
+   "x": 519.2,
+   "y": 242.0,
+   "sec": "ORANGE_ROUTE_13",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_14",
@@ -1207,8 +1281,10 @@
     "MAP_ORANGE_ISLANDS_TROVITA"
    ],
    "reachable": true,
-   "x": 260.2,
-   "y": 239.9
+   "x": 506.0,
+   "y": 110.0,
+   "sec": "ORANGE_ROUTE_14",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_15",
@@ -1230,8 +1306,10 @@
     "MAP_ORANGE_ISLANDS_PINKAN"
    ],
    "reachable": true,
-   "x": 509.2,
-   "y": 190.1
+   "x": 374.0,
+   "y": 242.0,
+   "sec": "ORANGE_ROUTE_15",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_16",
@@ -1261,8 +1339,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_13"
    ],
    "reachable": true,
-   "x": 466.2,
-   "y": 221.5
+   "x": 462.0,
+   "y": 242.0,
+   "sec": "ORANGE_ROUTE_16",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_17",
@@ -1293,8 +1373,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_9"
    ],
    "reachable": true,
-   "x": 380.0,
-   "y": 544.1
+   "x": 154.0,
+   "y": 418.0,
+   "sec": "ORANGE_ROUTE_17",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_18",
@@ -1324,8 +1406,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_13"
    ],
    "reachable": true,
-   "x": 386.9,
-   "y": 326.3
+   "x": 506.0,
+   "y": 330.0,
+   "sec": "ORANGE_ROUTE_18",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_2",
@@ -1362,8 +1446,10 @@
     "MAP_ORANGE_ISLANDS_VALENCIA"
    ],
    "reachable": true,
-   "x": 784.6,
-   "y": 386.0
+   "x": 1016.4,
+   "y": 78.3,
+   "sec": "ORANGE_ROUTE_2",
+   "onMap": false
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_2_GROTTO",
@@ -1385,8 +1471,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_2"
    ],
    "reachable": true,
-   "x": 732.4,
-   "y": 369.8
+   "x": 1016.4,
+   "y": 112.6,
+   "sec": "ORANGE_ROUTE_2",
+   "onMap": false
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_3",
@@ -1416,8 +1504,10 @@
     "MAP_ORANGE_ISLANDS_VALENCIA_BEACH"
    ],
    "reachable": true,
-   "x": 884.1,
-   "y": 474.7
+   "x": 374.0,
+   "y": 594.0,
+   "sec": "ORANGE_ROUTE_3",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_4",
@@ -1455,8 +1545,10 @@
     "MAP_ORANGE_ISLANDS_SUNBURST"
    ],
    "reachable": true,
-   "x": 713.9,
-   "y": 521.2
+   "x": 167.2,
+   "y": 506.0,
+   "sec": "ORANGE_ROUTE_4",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_4_CAVE",
@@ -1478,8 +1570,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_4"
    ],
    "reachable": true,
-   "x": 687.7,
-   "y": 483.7
+   "x": 188.3,
+   "y": 514.9,
+   "sec": "ORANGE_ROUTE_4",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_5",
@@ -1525,8 +1619,10 @@
     "MAP_ORANGE_ISLANDS_UNDERWATER_ROUTE_5"
    ],
    "reachable": true,
-   "x": 601.9,
-   "y": 487.9
+   "x": 651.2,
+   "y": 374.0,
+   "sec": "ORANGE_ROUTE_5",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_6",
@@ -1556,8 +1652,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_5"
    ],
    "reachable": true,
-   "x": 484.6,
-   "y": 423.1
+   "x": 550.0,
+   "y": 374.0,
+   "sec": "ORANGE_ROUTE_6",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_7",
@@ -1587,8 +1685,10 @@
     "MAP_ORANGE_ISLANDS_SUNBURST"
    ],
    "reachable": true,
-   "x": 563.3,
-   "y": 624.9
+   "x": 110.0,
+   "y": 462.0,
+   "sec": "ORANGE_ROUTE_7",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_8",
@@ -1626,8 +1726,10 @@
     "MAP_ORANGE_ISLANDS_UNDERWATER_ROUTE_8"
    ],
    "reachable": true,
-   "x": 315.5,
-   "y": 432.9
+   "x": 431.2,
+   "y": 418.0,
+   "sec": "ORANGE_ROUTE_8",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_9",
@@ -1670,8 +1772,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_9_CAVE"
    ],
    "reachable": false,
-   "x": 403.8,
-   "y": 473.9
+   "x": 1016.4,
+   "y": 147.0,
+   "sec": "ORANGE_ROUTE_9",
+   "onMap": false
   },
   {
    "id": "MAP_ORANGE_ISLANDS_ROUTE_9_CAVE",
@@ -1693,8 +1797,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_9"
    ],
    "reachable": false,
-   "x": 459.4,
-   "y": 458.4
+   "x": 1016.4,
+   "y": 181.3,
+   "sec": "ORANGE_ROUTE_9",
+   "onMap": false
   },
   {
    "id": "MAP_ORANGE_ISLANDS_SUNBURST",
@@ -1740,8 +1846,10 @@
     "MAP_ORANGE_ISLANDS_SUNBURST_CAVE"
    ],
    "reachable": true,
-   "x": 711.7,
-   "y": 639.3
+   "x": 138.2,
+   "y": 506.0,
+   "sec": "SUNBURST_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_SUNBURST_BEACH",
@@ -1763,8 +1871,10 @@
     "MAP_ORANGE_ISLANDS_SUNBURST"
    ],
    "reachable": true,
-   "x": 780.4,
-   "y": 684.4
+   "x": 72.2,
+   "y": 507.6,
+   "sec": "SUNBURST_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_SUNBURST_CAVE",
@@ -1786,8 +1896,10 @@
     "MAP_ORANGE_ISLANDS_SUNBURST"
    ],
    "reachable": true,
-   "x": 739.0,
-   "y": 683.1
+   "x": 157.4,
+   "y": 502.0,
+   "sec": "SUNBURST_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_TROVITA",
@@ -1826,8 +1938,10 @@
     "MAP_ORANGE_ISLANDS_TROVITA_FALLS"
    ],
    "reachable": true,
-   "x": 171.6,
-   "y": 274.9
+   "x": 622.2,
+   "y": 110.0,
+   "sec": "TROVITA_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_TROVITA_BEACH",
@@ -1857,8 +1971,10 @@
     "MAP_ORANGE_ISLANDS_TROVITA"
    ],
    "reachable": true,
-   "x": 172.4,
-   "y": 323.8
+   "x": 556.2,
+   "y": 111.6,
+   "sec": "TROVITA_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_TROVITA_FALLS",
@@ -1880,8 +1996,10 @@
     "MAP_ORANGE_ISLANDS_TROVITA"
    ],
    "reachable": true,
-   "x": 89.6,
-   "y": 246.0
+   "x": 641.4,
+   "y": 106.0,
+   "sec": "TROVITA_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_UNDERWATER_ROUTE_10",
@@ -1903,8 +2021,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_10"
    ],
    "reachable": true,
-   "x": 332.3,
-   "y": 487.3
+   "x": 232.3,
+   "y": 426.9,
+   "sec": "ORANGE_ROUTE_10",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_UNDERWATER_ROUTE_13",
@@ -1926,8 +2046,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_13"
    ],
    "reachable": true,
-   "x": 474.1,
-   "y": 286.0
+   "x": 496.3,
+   "y": 294.9,
+   "sec": "ORANGE_ROUTE_13",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_UNDERWATER_ROUTE_5",
@@ -1949,8 +2071,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_5"
    ],
    "reachable": true,
-   "x": 600.7,
-   "y": 451.3
+   "x": 628.3,
+   "y": 426.9,
+   "sec": "ORANGE_ROUTE_5",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_UNDERWATER_ROUTE_8",
@@ -1972,8 +2096,10 @@
     "MAP_ORANGE_ISLANDS_ROUTE_8"
    ],
    "reachable": true,
-   "x": 384.9,
-   "y": 404.8
+   "x": 452.3,
+   "y": 426.9,
+   "sec": "ORANGE_ROUTE_8",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_VALENCIA",
@@ -2011,8 +2137,10 @@
     "MAP_ORANGE_ISLANDS_VALENCIA_BEACH"
    ],
    "reachable": true,
-   "x": 872.5,
-   "y": 417.8
+   "x": 350.7,
+   "y": 594.0,
+   "sec": "VALENCIA_ISLAND",
+   "onMap": true
   },
   {
    "id": "MAP_ORANGE_ISLANDS_VALENCIA_BEACH",
@@ -2042,8 +2170,10 @@
     "MAP_ORANGE_ISLANDS_VALENCIA"
    ],
    "reachable": true,
-   "x": 940.0,
-   "y": 437.1
+   "x": 299.7,
+   "y": 595.3,
+   "sec": "VALENCIA_ISLAND",
+   "onMap": true
   }
  ],
  "edges": [
@@ -3133,6 +3263,280 @@
   "Pinkan",
   "Pummelo",
   "Sea routes"
+ ],
+ "grid": {
+  "w": 22,
+  "h": 15,
+  "cell": 44.0,
+  "cells": {
+   "PUMMELO_ISLAND": [
+    [
+     17,
+     1
+    ]
+   ],
+   "ORANGE_ROUTE_14": [
+    [
+     11,
+     2
+    ],
+    [
+     12,
+     2
+    ],
+    [
+     11,
+     3
+    ]
+   ],
+   "TROVITA_ISLAND": [
+    [
+     13,
+     2
+    ]
+   ],
+   "ORANGE_ROUTE_11": [
+    [
+     13,
+     3
+    ],
+    [
+     13,
+     4
+    ],
+    [
+     13,
+     5
+    ],
+    [
+     13,
+     6
+    ],
+    [
+     13,
+     7
+    ]
+   ],
+   "KUMQUAT_ISLAND": [
+    [
+     11,
+     4
+    ]
+   ],
+   "ORANGE_ROUTE_15": [
+    [
+     8,
+     5
+    ]
+   ],
+   "PINKAN_ISLAND": [
+    [
+     9,
+     5
+    ]
+   ],
+   "ORANGE_ROUTE_16": [
+    [
+     10,
+     5
+    ]
+   ],
+   "ORANGE_ROUTE_13": [
+    [
+     11,
+     5
+    ],
+    [
+     11,
+     6
+    ]
+   ],
+   "ORANGE_ROUTE_18": [
+    [
+     11,
+     7
+    ]
+   ],
+   "NAVEL_ISLAND": [
+    [
+     14,
+     7
+    ]
+   ],
+   "MANDARIN_SOUTH": [
+    [
+     11,
+     8
+    ]
+   ],
+   "ORANGE_ROUTE_6": [
+    [
+     12,
+     8
+    ],
+    [
+     13,
+     8
+    ]
+   ],
+   "ORANGE_ROUTE_5": [
+    [
+     14,
+     8
+    ],
+    [
+     14,
+     9
+    ],
+    [
+     14,
+     10
+    ],
+    [
+     14,
+     11
+    ]
+   ],
+   "MORO_ISLAND": [
+    [
+     2,
+     9
+    ]
+   ],
+   "ORANGE_ROUTE_17": [
+    [
+     3,
+     9
+    ]
+   ],
+   "ORANGE_ROUTE_10": [
+    [
+     4,
+     9
+    ],
+    [
+     5,
+     9
+    ],
+    [
+     6,
+     9
+    ],
+    [
+     7,
+     9
+    ]
+   ],
+   "KINNOW_ISLAND": [
+    [
+     8,
+     9
+    ]
+   ],
+   "ORANGE_ROUTE_8": [
+    [
+     9,
+     9
+    ],
+    [
+     10,
+     9
+    ],
+    [
+     11,
+     9
+    ]
+   ],
+   "ORANGE_ROUTE_7": [
+    [
+     2,
+     10
+    ]
+   ],
+   "SUNBURST_ISLAND": [
+    [
+     2,
+     11
+    ]
+   ],
+   "ORANGE_ROUTE_4": [
+    [
+     3,
+     11
+    ],
+    [
+     4,
+     11
+    ],
+    [
+     5,
+     11
+    ],
+    [
+     6,
+     11
+    ]
+   ],
+   "ORANGE_ROUTE_1": [
+    [
+     7,
+     11
+    ],
+    [
+     7,
+     12
+    ]
+   ],
+   "MIKAN_ISLAND": [
+    [
+     14,
+     12
+    ]
+   ],
+   "VALENCIA_ISLAND": [
+    [
+     7,
+     13
+    ]
+   ],
+   "ORANGE_ROUTE_3": [
+    [
+     8,
+     13
+    ],
+    [
+     9,
+     13
+    ],
+    [
+     10,
+     13
+    ],
+    [
+     11,
+     13
+    ],
+    [
+     12,
+     13
+    ],
+    [
+     13,
+     13
+    ],
+    [
+     14,
+     13
+    ]
+   ]
+  }
+ },
+ "unplaced": [
+  "MAP_ORANGE_ISLANDS_ROUTE_12",
+  "MAP_ORANGE_ISLANDS_ROUTE_2",
+  "MAP_ORANGE_ISLANDS_ROUTE_2_GROTTO",
+  "MAP_ORANGE_ISLANDS_ROUTE_9",
+  "MAP_ORANGE_ISLANDS_ROUTE_9_CAVE"
  ],
  "oneWay": [
   [
