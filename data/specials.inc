@@ -172,7 +172,7 @@ gSpecials::
 	def_special PlayRoulette  @ was a NullFieldSpecial stub; this is the slot
 	                          @ Emerald roulette special occupied, so the table
 	                          @ keeps its original indices
-	def_special NullFieldSpecial
+	def_special PlayVoltorbFlip  @ the second of the three stub slots
 	def_special NullFieldSpecial
 	def_special Script_IsFanClubMemberFanOfPlayer
 	def_special Script_GetNumFansOfPlayerInTrainerFanClub

@@ -81,6 +81,15 @@ OrangeIslands_Mandarin_South_GameCorner_EventScript_CroupierRight::
 	goto Roulette_EventScript_Table2
 	end
 
+@ VOLTORB FLIP. The level carries over between visits, as it does on
+@ the DS, so the attendant has nothing to set up.
+OrangeIslands_Mandarin_South_GameCorner_EventScript_FlipAttendant::
+	lock
+	faceplayer
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_FlipAttendant, MSGBOX_DEFAULT
+	goto VoltorbFlip_EventScript_Play
+	end
+
 @ The machines sit where Celadon drew them; the layout is the same one.
 OrangeIslands_Mandarin_South_GameCorner_EventScript_SlotMachine::
 	lockall

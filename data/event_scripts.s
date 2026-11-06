@@ -2276,3 +2276,4 @@ Text_TestMsg::
 	.include "data/maps/OrangeIslands_Mandarin_South_House6/scripts.inc"
 	.include "data/maps/OrangeIslands_Mandarin_South_House6/text.inc"
 	.include "data/scripts/roulette.inc"
+	.include "data/scripts/voltorb_flip.inc"

@@ -96,6 +96,8 @@ GAME_CORNER_PEOPLE = [
     # tables are the croupiers who run them. Minimums are Emerald's: 1 and 3.
     ('OBJ_EVENT_GFX_WORKER_M', 10, 4, 'MOVEMENT_TYPE_FACE_DOWN', 'CroupierLeft', None),
     ('OBJ_EVENT_GFX_WORKER_F', 13, 4, 'MOVEMENT_TYPE_FACE_DOWN', 'CroupierRight', None),
+    # VOLTORB FLIP, written from scratch -- see src/voltorb_flip.c.
+    ('OBJ_EVENT_GFX_SCIENTIST', 4, 4, 'MOVEMENT_TYPE_FACE_DOWN', 'FlipAttendant', None),
     ('OBJ_EVENT_GFX_GENTLEMAN', 16, 10, 'MOVEMENT_TYPE_FACE_LEFT', 'Gentleman',
      ['"I have a system. It has cost me\\n"', '"a great deal of money.$"']),
     ('OBJ_EVENT_GFX_OLD_MAN_2', 10, 9, 'MOVEMENT_TYPE_FACE_DOWN', 'OldMan',
@@ -319,6 +321,22 @@ def extra_scripts(kind, name, out, text):
             for ln in lines:
                 text.append('\t.string %s' % ln)
             text.append('')
+
+        out += ['@ VOLTORB FLIP. The level carries over between visits, as it does on',
+                '@ the DS, so the attendant has nothing to set up.',
+                '%s_EventScript_FlipAttendant::' % name,
+                '\tlock', '\tfaceplayer',
+                '\tmsgbox %s_Text_FlipAttendant, MSGBOX_DEFAULT' % name,
+                '\tgoto VoltorbFlip_EventScript_Play',
+                '\tend', '']
+        text.append('%s_Text_FlipAttendant::' % name)
+        for ln in ['"VOLTORB FLIP. Turn over every 2 and\\n"',
+                   '"every 3 and the board is yours.\\p"',
+                   '"The figures beside each row are what\\n"',
+                   '"it holds and how many VOLTORB are\\l"',
+                   '"hiding in it. Work it out.$"']:
+            text.append('\t.string %s' % ln)
+        text.append('')
 
         out += ['@ The machines sit where Celadon drew them; the layout is the same one.',
                 '%s_EventScript_SlotMachine::' % name,

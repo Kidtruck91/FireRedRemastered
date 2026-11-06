@@ -52,6 +52,13 @@ OrangeIslands_Mandarin_South_GameCorner_Text_CroupierRight::
 	.string "It pays better. It also takes\n"
 	.string "rather more.$"
 
+OrangeIslands_Mandarin_South_GameCorner_Text_FlipAttendant::
+	.string "VOLTORB FLIP. Turn over every 2 and\n"
+	.string "every 3 and the board is yours.\p"
+	.string "The figures beside each row are what\n"
+	.string "it holds and how many VOLTORB are\l"
+	.string "hiding in it. Work it out.$"
+
 OrangeIslands_Mandarin_South_GameCorner_Text_SlotPlay::
 	.string "A slot machine. Play it?$"
 
