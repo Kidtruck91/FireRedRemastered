@@ -73,7 +73,16 @@ for suffix, (start, goals, surf) in checks.items():
                 assert all(blocks[y*w+x]&1023<736 for x,y in cells), name+': imported metatile visible across a different secondary tileset'
         if secondary.startswith('orange_sevii_'):
             assert all(v&0xc00 or attrs[v&1023]&511 in water or v>>12==3 for v in blocks), name+': dry authored path has an abrupt elevation change'
-        assert all(v&0xc00 or not 0x60<=attrs[v&1023]&511<=0x7f for v in blocks), name+': unconfigured walkable warp tile'
+        # A warp-behaviour tile fires when the player steps onto it, so it is
+        # meant to be walkable: 142 of vanilla's 147 are. What makes one a trap
+        # is being walkable with no warp event on it -- the player steps in and
+        # nothing happens -- so the warp events are what this has to be read
+        # against, and naming the cell saves hunting for it.
+        doors={(e['x'],e['y']) for e in header['warp_events']}
+        stray=[(i%w,i//w) for i,v in enumerate(blocks)
+               if not v&0xc00 and 0x60<=attrs[v&1023]&511<=0x7f and (i%w,i//w) not in doors]
+        assert not stray, '%s: walkable warp tile with no warp event on it at %s%s'%(
+            name, stray[0], '' if len(stray)==1 else ' (and %d more)'%(len(stray)-1))
         def walk(x,y):
             if not (0<=x<w and 0<=y<h): return False
             v=blocks[y*w+x]
@@ -117,12 +126,27 @@ uncovered=sorted(set(group)-attempted)
 if uncovered:
     problems.append('no landmark coverage for %d of %d exterior map(s): %s'
                     %(len(uncovered),len(group),' '.join(uncovered)))
+covered_ids=set()
+for suffix in checks:
+    p=ROOT/'data/maps'/('OrangeIslands_'+suffix)/'map.json'
+    if p.exists(): covered_ids.add(json.loads(p.read_text())['id'])
 for name,(header,l,blocks,attrs) in data.items():
   try:
     # Same-side connections must not compete for the same coordinate range.
+    # A neighbour that failed its own checks is not in `data`, and reaching
+    # past it used to raise a bare StopIteration that named neither map. Say
+    # which seam went unchecked and why, and carry on with the rest.
+    # Only a map this checker holds landmarks for can be said to have failed;
+    # a dive map or one with no fixture is reported elsewhere, not here.
+    skipped=set()
+    def neighbour(id):
+        for n in data:
+            if data[n][0]['id']==id: return n
+        if id in covered_ids: skipped.add(id)
     ranges=[]
     for connection in (header['connections'] or []):
-        destination=next(n for n in data if data[n][0]['id']==connection['map'])
+        destination=neighbour(connection['map'])
+        if destination is None: continue
         dl=data[destination][1]
         limit=l['width'] if connection['direction'] in ['up','down'] else l['height']
         size=dl['width'] if connection['direction'] in ['up','down'] else dl['height']
@@ -132,7 +156,8 @@ for name,(header,l,blocks,attrs) in data.items():
                 assert max(span[0],other_span[0])>=min(span[1],other_span[1]), name+': overlapping same-side connections'
         ranges.append((connection['direction'],span))
     for c in (header['connections'] or []):
-        other=next(n for n in data if data[n][0]['id']==c['map'])
+        other=neighbour(c['map'])
+        if other is None: continue
         oh,ol,ob,other_attrs=data[other]
         opposite={'up':'down','down':'up','left':'right','right':'left'}[c['direction']]
         assert any(o['map']==header['id'] and o['direction']==opposite and o['offset']==-c['offset'] for o in oh['connections'])
@@ -151,6 +176,8 @@ for name,(header,l,blocks,attrs) in data.items():
                 assert v==ov, f'{name}: mismatched walkable seam at {t}'
                 matched+=1
         assert matched>=3, name+': connection has no usable land crossing'
+    assert not skipped, '%s: seam unchecked, %s failed its own checks first'%(
+        name, ' and '.join(sorted(i.replace('MAP_ORANGE_ISLANDS_','') for i in skipped)))
   except AssertionError as problem:
     problems.append(str(problem) or '%s: connection check failed at line %d: %s'
                     %(name, traceback.extract_tb(sys.exc_info()[2])[-1].lineno,

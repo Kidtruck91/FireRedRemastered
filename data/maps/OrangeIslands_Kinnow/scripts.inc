@@ -146,3 +146,22 @@ OrangeIslands_Kinnow_Text_OrangeSeanPostBattle::
 	.string "I swim between the islands\n"
 	.string "every morning.$"
 
+@ the return of the crossing above
+OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9::
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8004, 13
+	goto_if_lt OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Lo
+	compare VAR_0x8004, 48
+	goto_if_gt OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Hi
+OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Go:
+	subvar VAR_0x8004, 5
+	setvar VAR_0x8005, 1
+	warp MAP_ORANGE_ISLANDS_ROUTE_9, VAR_0x8004, VAR_0x8005
+	waitstate
+	end
+OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Lo:
+	setvar VAR_0x8004, 13
+	goto OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Go
+OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Hi:
+	setvar VAR_0x8004, 48
+	goto OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Go

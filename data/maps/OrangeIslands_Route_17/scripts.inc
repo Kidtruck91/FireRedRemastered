@@ -71,3 +71,22 @@ OrangeIslands_Route_17_Text_OrangeLisaPostBattle::
 	.string "Watch out for TENTACOOL\n"
 	.string "near the reefs.$"
 
+@ above the rows Route 10 already uses
+OrangeIslands_Route_17_EventScript_SeaEdgeToRoute9::
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8005, 4
+	goto_if_lt OrangeIslands_Route_17_EventScript_SeaEdgeToRoute9_Lo
+	compare VAR_0x8005, 42
+	goto_if_gt OrangeIslands_Route_17_EventScript_SeaEdgeToRoute9_Hi
+OrangeIslands_Route_17_EventScript_SeaEdgeToRoute9_Go:
+	addvar VAR_0x8005, 30
+	setvar VAR_0x8004, 1
+	warp MAP_ORANGE_ISLANDS_ROUTE_9, VAR_0x8004, VAR_0x8005
+	waitstate
+	end
+OrangeIslands_Route_17_EventScript_SeaEdgeToRoute9_Lo:
+	setvar VAR_0x8005, 4
+	goto OrangeIslands_Route_17_EventScript_SeaEdgeToRoute9_Go
+OrangeIslands_Route_17_EventScript_SeaEdgeToRoute9_Hi:
+	setvar VAR_0x8005, 42
+	goto OrangeIslands_Route_17_EventScript_SeaEdgeToRoute9_Go
