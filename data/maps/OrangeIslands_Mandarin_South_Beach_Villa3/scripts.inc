@@ -1,0 +1,6 @@
+OrangeIslands_Mandarin_South_Beach_Villa3_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_Beach_Villa3_EventScript_OldWoman::
+	msgbox OrangeIslands_Mandarin_South_Beach_Villa3_Text_OldWoman, MSGBOX_NPC
+	end

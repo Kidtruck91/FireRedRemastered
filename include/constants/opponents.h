@@ -1244,7 +1244,16 @@
 #define TRAINER_GHOST_SHIP_CHANNELER_PELL        1207
 #define TRAINER_GHOST_SHIP_SAILOR_HOYLE          1208
 
-#define NUM_TRAINERS                             1209
+
+@ Mandarin South Beach (build_mandarin_beach.py)
+#define TRAINER_ORANGE_SWIMMER_F_NERISSA         1209
+#define TRAINER_ORANGE_SWIMMER_M_COY             1210
+#define TRAINER_ORANGE_FISHERMAN_MARLIN          1211
+#define TRAINER_ORANGE_BEAUTY_CORAL              1212
+#define TRAINER_ORANGE_PICNICKER_PIA             1213
+#define TRAINER_ORANGE_SAILOR_BOSUN              1214
+
+#define NUM_TRAINERS                             1215
 #define MAX_TRAINERS_COUNT                       1504
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

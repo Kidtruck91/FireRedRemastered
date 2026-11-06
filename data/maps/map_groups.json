@@ -904,7 +904,11 @@
   ],
   "gMapGroup_Orange_Mandarin_South_Interior": [
     "OrangeIslands_Mandarin_South_PokemonCenter_1F",
-    "OrangeIslands_Mandarin_South_PokemonCenter_2F"
+    "OrangeIslands_Mandarin_South_PokemonCenter_2F",
+    "OrangeIslands_Mandarin_South_Beach_Villa1",
+    "OrangeIslands_Mandarin_South_Beach_Villa2",
+    "OrangeIslands_Mandarin_South_Beach_Villa3",
+    "OrangeIslands_Mandarin_South_Beach_Villa4"
   ],
   "gMapGroup_Orange_Route_Interior": [
     "OrangeIslands_Route_4_Cave",

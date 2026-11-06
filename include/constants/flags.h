@@ -1251,6 +1251,8 @@
 // Unused hidden item flags
 #define FLAG_UNUSED_0x4A7               0x4A7 // Unused Flag
 #define FLAG_UNUSED_0x4A8               0x4A8 // Unused Flag
+#define FLAG_ORANGE_DERBY_RULES  0x4A7 // the derby judge has explained himself
+#define FLAG_ORANGE_DERBY_GRAND  0x4A8 // the derby grand prize has been claimed
 #define FLAG_UNUSED_0x4A9               0x4A9 // Unused Flag
 #define FLAG_UNUSED_0x4AA               0x4AA // Unused Flag
 #define FLAG_UNUSED_0x4AB               0x4AB // Unused Flag

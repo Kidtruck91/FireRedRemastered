@@ -1,0 +1,10 @@
+OrangeIslands_Mandarin_South_Beach_Villa2_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_Beach_Villa2_EventScript_Scientist::
+	msgbox OrangeIslands_Mandarin_South_Beach_Villa2_Text_Scientist, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Beach_Villa2_EventScript_Man::
+	msgbox OrangeIslands_Mandarin_South_Beach_Villa2_Text_Man, MSGBOX_NPC
+	end

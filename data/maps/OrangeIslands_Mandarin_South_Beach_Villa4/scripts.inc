@@ -1,0 +1,6 @@
+OrangeIslands_Mandarin_South_Beach_Villa4_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_Beach_Villa4_EventScript_Youngster::
+	msgbox OrangeIslands_Mandarin_South_Beach_Villa4_Text_Youngster, MSGBOX_NPC
+	end

@@ -2239,3 +2239,11 @@ Text_TestMsg::
 
 	.include "data/maps/OrangeIslands_Route_2_Grotto/scripts.inc"
 	.include "data/maps/OrangeIslands_Route_2_Grotto/text.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach_Villa1/scripts.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach_Villa1/text.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach_Villa2/scripts.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach_Villa2/text.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach_Villa3/scripts.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach_Villa3/text.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach_Villa4/scripts.inc"
+	.include "data/maps/OrangeIslands_Mandarin_South_Beach_Villa4/text.inc"

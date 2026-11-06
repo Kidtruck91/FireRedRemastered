@@ -1,10 +1,375 @@
 OrangeIslands_Mandarin_South_Beach_MapScripts::
 	.byte 0
 
-OrangeIslands_Mandarin_South_Beach_EventScript_Town::
-	msgbox OrangeIslands_Mandarin_South_Beach_Text_Town, MSGBOX_SIGN
+@ The marts want 350 for a LEMONADE. Shelly wants 200, and says so.
+OrangeIslands_Mandarin_South_Beach_EventScript_Lemonade::
+	lock
+	faceplayer
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_LemonadeAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_Beach_EventScript_LemonadeNo
+	checkmoney 200
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Mandarin_South_Beach_EventScript_LemonadeBroke
+	showmoneybox 0, 0
+	checkitemspace ITEM_LEMONADE
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Mandarin_South_Beach_EventScript_LemonadeFull
+	removemoney 200
+	updatemoneybox
+	playse SE_SHOP
+	hidemoneybox
+	giveitem ITEM_LEMONADE
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_LemonadeThanks, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_LemonadeNo::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_LemonadeNo, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_LemonadeBroke::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_LemonadeBroke, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_LemonadeFull::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_LemonadeFull, MSGBOX_DEFAULT
+	release
 	end
 
-OrangeIslands_Mandarin_South_Beach_EventScript_Harbor::
-	msgbox OrangeIslands_Mandarin_South_Beach_Text_Harbor, MSGBOX_SIGN
+@ A different thing every time you ask, because that is what the tide left.
+@ checkmoney and removemoney take a literal, never a variable, so the price
+@ has to be branched on the same way the CELADON vending machine does it.
+OrangeIslands_Mandarin_South_Beach_EventScript_Curio::
+	lock
+	faceplayer
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_CurioIntro, MSGBOX_DEFAULT
+	random 6
+	copyvar VAR_TEMP_1, VAR_RESULT
+	goto_if_eq VAR_TEMP_1, 0, OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock0
+	goto_if_eq VAR_TEMP_1, 1, OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock1
+	goto_if_eq VAR_TEMP_1, 2, OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock2
+	goto_if_eq VAR_TEMP_1, 3, OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock3
+	goto_if_eq VAR_TEMP_1, 4, OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock4
+	goto_if_eq VAR_TEMP_1, 5, OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock5
+	goto OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock0
 	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock0::
+	setvar VAR_TEMP_0, ITEM_PEARL
+	setvar VAR_TEMP_2, 400
+	goto OrangeIslands_Mandarin_South_Beach_EventScript_CurioOffer
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock1::
+	setvar VAR_TEMP_0, ITEM_BIG_PEARL
+	setvar VAR_TEMP_2, 1200
+	goto OrangeIslands_Mandarin_South_Beach_EventScript_CurioOffer
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock2::
+	setvar VAR_TEMP_0, ITEM_STARDUST
+	setvar VAR_TEMP_2, 600
+	goto OrangeIslands_Mandarin_South_Beach_EventScript_CurioOffer
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock3::
+	setvar VAR_TEMP_0, ITEM_WATER_STONE
+	setvar VAR_TEMP_2, 2000
+	goto OrangeIslands_Mandarin_South_Beach_EventScript_CurioOffer
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock4::
+	setvar VAR_TEMP_0, ITEM_HEART_SCALE
+	setvar VAR_TEMP_2, 900
+	goto OrangeIslands_Mandarin_South_Beach_EventScript_CurioOffer
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioStock5::
+	setvar VAR_TEMP_0, ITEM_MYSTIC_WATER
+	setvar VAR_TEMP_2, 1500
+	goto OrangeIslands_Mandarin_South_Beach_EventScript_CurioOffer
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioOffer::
+	bufferitemname STR_VAR_1, VAR_TEMP_0
+	buffernumberstring STR_VAR_2, VAR_TEMP_2
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_CurioOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_Beach_EventScript_CurioNo
+	call_if_eq VAR_TEMP_1, 0, OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck0
+	call_if_eq VAR_TEMP_1, 1, OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck1
+	call_if_eq VAR_TEMP_1, 2, OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck2
+	call_if_eq VAR_TEMP_1, 3, OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck3
+	call_if_eq VAR_TEMP_1, 4, OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck4
+	call_if_eq VAR_TEMP_1, 5, OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck5
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Mandarin_South_Beach_EventScript_CurioBroke
+	checkitemspace VAR_TEMP_0
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Mandarin_South_Beach_EventScript_CurioFull
+	showmoneybox 0, 0
+	call_if_eq VAR_TEMP_1, 0, OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay0
+	call_if_eq VAR_TEMP_1, 1, OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay1
+	call_if_eq VAR_TEMP_1, 2, OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay2
+	call_if_eq VAR_TEMP_1, 3, OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay3
+	call_if_eq VAR_TEMP_1, 4, OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay4
+	call_if_eq VAR_TEMP_1, 5, OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay5
+	updatemoneybox
+	playse SE_SHOP
+	hidemoneybox
+	giveitem VAR_TEMP_0
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_CurioThanks, MSGBOX_DEFAULT
+	release
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck0::
+	checkmoney 400
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay0::
+	removemoney 400
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck1::
+	checkmoney 1200
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay1::
+	removemoney 1200
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck2::
+	checkmoney 600
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay2::
+	removemoney 600
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck3::
+	checkmoney 2000
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay3::
+	removemoney 2000
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck4::
+	checkmoney 900
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay4::
+	removemoney 900
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioCheck5::
+	checkmoney 1500
+	return
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioPay5::
+	removemoney 1500
+	return
+
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioNo::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_CurioNo, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioBroke::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_CurioBroke, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioFull::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_CurioFull, MSGBOX_DEFAULT
+	release
+	end
+
+@ The derby is unenterable without a rod, so the shack keeps a spare.
+OrangeIslands_Mandarin_South_Beach_EventScript_Bait::
+	lock
+	faceplayer
+	checkitem ITEM_OLD_ROD
+	goto_if_eq VAR_RESULT, TRUE, OrangeIslands_Mandarin_South_Beach_EventScript_BaitHasRod
+	checkitem ITEM_GOOD_ROD
+	goto_if_eq VAR_RESULT, TRUE, OrangeIslands_Mandarin_South_Beach_EventScript_BaitHasRod
+	checkitem ITEM_SUPER_ROD
+	goto_if_eq VAR_RESULT, TRUE, OrangeIslands_Mandarin_South_Beach_EventScript_BaitHasRod
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_BaitAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_Beach_EventScript_BaitNo
+	checkmoney 300
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Mandarin_South_Beach_EventScript_BaitBroke
+	showmoneybox 0, 0
+	removemoney 300
+	updatemoneybox
+	playse SE_SHOP
+	hidemoneybox
+	giveitem ITEM_OLD_ROD
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_BaitThanks, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_BaitHasRod::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_BaitHasRod, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_BaitNo::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_BaitNo, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_BaitBroke::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_BaitBroke, MSGBOX_DEFAULT
+	release
+	end
+
+@ The Bug Catching Contest without the machinery. You fish in your own
+@ time and bring the judge one POKeMON; FishingDerby_Score reads its met
+@ location, so only something hooked in MANDARIN SOUTH waters counts, and
+@ ranks it by level plus a twentieth of its base stat total.
+@   VAR_RESULT      0 rejected, 1-5 the prize band
+@   VAR_0x8005      the score itself
+@   VAR_0x8006      0 fine, 1 no POKeMON there, 2 an egg, 3 caught elsewhere,
+@                   4 not a WATER type
+@   STR_VAR_1       its nickname
+OrangeIslands_Mandarin_South_Beach_EventScript_Judge::
+	lock
+	faceplayer
+	goto_if_set FLAG_ORANGE_DERBY_RULES, OrangeIslands_Mandarin_South_Beach_EventScript_JudgeAsk
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyRules, MSGBOX_DEFAULT
+	setflag FLAG_ORANGE_DERBY_RULES
+OrangeIslands_Mandarin_South_Beach_EventScript_JudgeAsk::
+	goto_if_eq VAR_ORANGE_DERBY_BEST, 0, OrangeIslands_Mandarin_South_Beach_EventScript_JudgeAskNow
+	buffernumberstring STR_VAR_3, VAR_ORANGE_DERBY_BEST
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyBest, MSGBOX_DEFAULT
+OrangeIslands_Mandarin_South_Beach_EventScript_JudgeAskNow::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyLater
+	special ChoosePartyMon
+	waitstate
+	goto_if_ge VAR_0x8004, PARTY_SIZE, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyLater
+	callnative FishingDerby_Score
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyRejected
+	buffernumberstring STR_VAR_2, VAR_0x8005
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyWeighIn, MSGBOX_DEFAULT
+	call OrangeIslands_Mandarin_South_Beach_EventScript_DerbyRecordBest
+	goto_if_eq VAR_RESULT, 5, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyGrand
+	goto_if_eq VAR_RESULT, 4, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyFirst
+	goto_if_eq VAR_RESULT, 3, OrangeIslands_Mandarin_South_Beach_EventScript_DerbySecond
+	goto_if_eq VAR_RESULT, 2, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyThird
+	goto OrangeIslands_Mandarin_South_Beach_EventScript_DerbyConsolation
+	end
+
+@ The personal best survives between visits so the judge can hold you to it.
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyRecordBest::
+	goto_if_le VAR_0x8005, VAR_ORANGE_DERBY_BEST, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyKeepBest
+	copyvar VAR_ORANGE_DERBY_BEST, VAR_0x8005
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyKeepBest::
+	return
+
+@ The grand prize is handed out once; after that the top band pays as first.
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyGrand::
+	goto_if_set FLAG_ORANGE_DERBY_GRAND, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyFirst
+	setflag FLAG_ORANGE_DERBY_GRAND
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyGrand, MSGBOX_DEFAULT
+	giveitem ITEM_MYSTIC_WATER
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyFirst::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyFirstText, MSGBOX_DEFAULT
+	giveitem ITEM_BIG_PEARL
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbySecond::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbySecondText, MSGBOX_DEFAULT
+	giveitem ITEM_PEARL
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyThird::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyThirdText, MSGBOX_DEFAULT
+	giveitem ITEM_STARDUST
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyConsolation::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyConsolationText, MSGBOX_DEFAULT
+	giveitem ITEM_LEMONADE
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyRejected::
+	goto_if_eq VAR_0x8006, 2, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyEgg
+	goto_if_eq VAR_0x8006, 3, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyElsewhere
+	goto_if_eq VAR_0x8006, 4, OrangeIslands_Mandarin_South_Beach_EventScript_DerbyDryLand
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyNothing, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyEgg::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyEggText, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyElsewhere::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyElsewhereText, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyDryLand::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyDryLandText, MSGBOX_DEFAULT
+	release
+	end
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbyLater::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbyLaterText, MSGBOX_DEFAULT
+	release
+	end
+
+@ ---- the rest of the beach ----
+OrangeIslands_Mandarin_South_Beach_EventScript_BaitSign::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_BaitSign, MSGBOX_SIGN
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_CurioSign::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_CurioSign, MSGBOX_SIGN
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_DerbySign::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_DerbySign, MSGBOX_SIGN
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_Landlady::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_Landlady, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_LemonadeSign::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_LemonadeSign, MSGBOX_SIGN
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_Lifeguard::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_Lifeguard, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_OldSalt::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_OldSalt, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_Sandcastle::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_Sandcastle, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_Sunbather::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_Sunbather, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_Tourist::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_Tourist, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_Town::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_Town, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_VillaSign::
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_VillaSign, MSGBOX_SIGN
+	end
+
+@ ---- trainers ----
+OrangeIslands_Mandarin_South_Beach_EventScript_OrangeNerissa::
+	trainerbattle_single TRAINER_ORANGE_SWIMMER_F_NERISSA, OrangeIslands_Mandarin_South_Beach_Text_OrangeNerissaIntro, OrangeIslands_Mandarin_South_Beach_Text_OrangeNerissaDefeat
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_OrangeNerissaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_OrangeCoy::
+	trainerbattle_single TRAINER_ORANGE_SWIMMER_M_COY, OrangeIslands_Mandarin_South_Beach_Text_OrangeCoyIntro, OrangeIslands_Mandarin_South_Beach_Text_OrangeCoyDefeat
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_OrangeCoyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_OrangeMarlin::
+	trainerbattle_single TRAINER_ORANGE_FISHERMAN_MARLIN, OrangeIslands_Mandarin_South_Beach_Text_OrangeMarlinIntro, OrangeIslands_Mandarin_South_Beach_Text_OrangeMarlinDefeat
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_OrangeMarlinPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_OrangeCoral::
+	trainerbattle_single TRAINER_ORANGE_BEAUTY_CORAL, OrangeIslands_Mandarin_South_Beach_Text_OrangeCoralIntro, OrangeIslands_Mandarin_South_Beach_Text_OrangeCoralDefeat
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_OrangeCoralPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_OrangePia::
+	trainerbattle_single TRAINER_ORANGE_PICNICKER_PIA, OrangeIslands_Mandarin_South_Beach_Text_OrangePiaIntro, OrangeIslands_Mandarin_South_Beach_Text_OrangePiaDefeat
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_OrangePiaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Mandarin_South_Beach_EventScript_OrangeBosun::
+	trainerbattle_single TRAINER_ORANGE_SAILOR_BOSUN, OrangeIslands_Mandarin_South_Beach_Text_OrangeBosunIntro, OrangeIslands_Mandarin_South_Beach_Text_OrangeBosunDefeat
+	msgbox OrangeIslands_Mandarin_South_Beach_Text_OrangeBosunPostBattle, MSGBOX_AUTOCLOSE
+	end
+
