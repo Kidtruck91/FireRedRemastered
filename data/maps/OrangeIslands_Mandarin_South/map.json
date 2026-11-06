@@ -18,6 +18,11 @@
       "map": "MAP_ORANGE_ISLANDS_ROUTE_18",
       "offset": 0,
       "direction": "up"
+    },
+    {
+      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_BEACH",
+      "offset": -25,
+      "direction": "right"
     }
   ],
   "object_events": [
@@ -127,13 +132,6 @@
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_POKEMON_CENTER_1F",
       "dest_warp_id": "0"
-    },
-    {
-      "x": 48,
-      "y": 2,
-      "elevation": 3,
-      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_BEACH",
-      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -190,42 +188,6 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute6"
-    },
-    {
-      "type": "trigger",
-      "x": 95,
-      "y": 74,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute6"
-    },
-    {
-      "type": "trigger",
-      "x": 95,
-      "y": 75,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute6"
-    },
-    {
-      "type": "trigger",
-      "x": 1,
-      "y": 75,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute8"
-    },
-    {
-      "type": "trigger",
-      "x": 2,
-      "y": 75,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute8"
     },
     {
       "type": "trigger",
@@ -1039,16 +1001,7 @@
     },
     {
       "type": "trigger",
-      "x": 93,
-      "y": 75,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Mandarin_South_EventScript_SeaEdgeToRoute8"
-    },
-    {
-      "type": "trigger",
-      "x": 94,
+      "x": 0,
       "y": 75,
       "elevation": 0,
       "var": "VAR_TEMP_0",

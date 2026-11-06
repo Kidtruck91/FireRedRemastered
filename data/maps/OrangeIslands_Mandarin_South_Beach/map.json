@@ -13,34 +13,24 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
-  "object_events": [],
-  "warp_events": [
+  "connections": [
     {
-      "x": 34,
-      "y": 48,
-      "elevation": 3,
-      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH",
-      "dest_warp_id": "1"
+      "map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH",
+      "offset": 25,
+      "direction": "left"
     }
   ],
+  "object_events": [],
+  "warp_events": [],
   "coord_events": [],
   "bg_events": [
     {
       "type": "sign",
-      "x": 101,
-      "y": 6,
+      "x": 4,
+      "y": 31,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OrangeIslands_Mandarin_South_Beach_EventScript_Town"
-    },
-    {
-      "type": "sign",
-      "x": 32,
-      "y": 44,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "OrangeIslands_Mandarin_South_Beach_EventScript_Harbor"
     }
   ]
 }

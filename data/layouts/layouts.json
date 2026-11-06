@@ -6940,7 +6940,7 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_ROUTE_18",
       "name": "OrangeIslands_Route_18_Layout",
-      "width": 96,
+      "width": 98,
       "height": 40,
       "border_width": 2,
       "border_height": 2,
@@ -7060,8 +7060,8 @@
     {
       "id": "LAYOUT_ORANGE_ISLANDS_MANDARIN_SOUTH_BEACH",
       "name": "OrangeIslands_Mandarin_South_Beach_Layout",
-      "width": 132,
-      "height": 50,
+      "width": 91,
+      "height": 81,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_OrangeGeneral",

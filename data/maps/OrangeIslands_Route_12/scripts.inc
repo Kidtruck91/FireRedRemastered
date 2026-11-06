@@ -6,24 +6,18 @@ OrangeIslands_Route_12_EventScript_West::
 	end
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Mandarin South
+@ Mandarin South's east coast is now cliff from row 0 to 67; only rows
+@ 68-73 are open water, and this edge (rows 4-31) cannot reach them by
+@ carrying the row across, so the crossing lands mid-channel instead.
+@ Mandarin South's east coast is now cliff from row 0 to 67; only rows
+@ 68-73 are open water, and this edge (rows 4-31) cannot reach them by
+@ carrying the row across, so the crossing lands mid-channel instead.
 OrangeIslands_Route_12_EventScript_SeaEdgeToMandarinSouth::
-	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8005, 4
-	goto_if_lt OrangeIslands_Route_12_EventScript_SeaEdgeToMandarinSouth_Lo
-	compare VAR_0x8005, 39
-	goto_if_gt OrangeIslands_Route_12_EventScript_SeaEdgeToMandarinSouth_Hi
-OrangeIslands_Route_12_EventScript_SeaEdgeToMandarinSouth_Go:
-	addvar VAR_0x8005, 16
 	setvar VAR_0x8004, 94
+	setvar VAR_0x8005, 71
 	warp MAP_ORANGE_ISLANDS_MANDARIN_SOUTH, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
-OrangeIslands_Route_12_EventScript_SeaEdgeToMandarinSouth_Lo:
-	setvar VAR_0x8005, 4
-	goto OrangeIslands_Route_12_EventScript_SeaEdgeToMandarinSouth_Go
-OrangeIslands_Route_12_EventScript_SeaEdgeToMandarinSouth_Hi:
-	setvar VAR_0x8005, 39
-	goto OrangeIslands_Route_12_EventScript_SeaEdgeToMandarinSouth_Go
 
 @ Sea edge: any surfable cell on this edge crosses to Trovita.
 @ Trovita's west coast is open on rows 41-54 only -- the rest is cliff -- while this

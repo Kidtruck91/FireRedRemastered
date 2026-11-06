@@ -16,9 +16,9 @@ OrangeIslands_Route_8_EventScript_Rest::
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Mandarin South
 OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8004, 36
+	compare VAR_0x8004, 39
 	goto_if_lt OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Lo
-	compare VAR_0x8004, 131
+	compare VAR_0x8004, 128
 	goto_if_gt OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Hi
 OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Go:
 	subvar VAR_0x8004, 36
@@ -27,10 +27,10 @@ OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Go:
 	waitstate
 	end
 OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Lo:
-	setvar VAR_0x8004, 36
+	setvar VAR_0x8004, 39
 	goto OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Go
 OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Hi:
-	setvar VAR_0x8004, 131
+	setvar VAR_0x8004, 128
 	goto OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Go
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Kinnow

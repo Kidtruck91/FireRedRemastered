@@ -791,6 +791,12 @@
 #define MAP_ORANGE_ISLANDS_TROVITA_GYM               (0 | (59 << 8))
 #define MAP_ORANGE_ISLANDS_TROVITA_POKEMON_CENTER_1F (1 | (59 << 8))
 #define MAP_ORANGE_ISLANDS_TROVITA_POKEMON_CENTER_2F (2 | (59 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_MART              (3 | (59 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_LODGE             (4 | (59 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_HOUSE1            (5 | (59 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_HOUSE2            (6 | (59 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_HOUSE3            (7 | (59 << 8))
+#define MAP_ORANGE_ISLANDS_TROVITA_BEACH_HOUSE       (8 | (59 << 8))
 
 // gMapGroup_Orange_Kumquat_Interior
 #define MAP_ORANGE_ISLANDS_KUMQUAT_GYM               (0 | (60 << 8))
