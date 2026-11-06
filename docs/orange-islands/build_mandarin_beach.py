@@ -102,7 +102,7 @@ PEOPLE = [
      ('TRAINER_ORANGE_SWIMMER_F_NERISSA', 'SWIMMER_F', 'SwimmerF_Intermediate', 4)),
     (60, 55, 1, 'OBJ_EVENT_GFX_SWIMMER_M_WATER', 'MOVEMENT_TYPE_FACE_LEFT', 'OrangeCoy',
      ('TRAINER_ORANGE_SWIMMER_M_COY', 'SWIMMER_M', 'SwimmerM_Intermediate', 4)),
-    (60, 50, 3, 'OBJ_EVENT_GFX_FISHERMAN',      'MOVEMENT_TYPE_FACE_LEFT',  'OrangeMarlin',
+    (60, 50, 3, 'OBJ_EVENT_GFX_FISHER',      'MOVEMENT_TYPE_FACE_LEFT',  'OrangeMarlin',
      ('TRAINER_ORANGE_FISHERMAN_MARLIN', 'FISHERMAN', 'Fisherman_Advanced', 4)),
     (27, 30, 3, 'OBJ_EVENT_GFX_BEAUTY',         'MOVEMENT_TYPE_FACE_DOWN',  'OrangeCoral',
      ('TRAINER_ORANGE_BEAUTY_CORAL', 'BEAUTY', 'Beauty_Intermediate', 3)),
@@ -641,9 +641,9 @@ def trainers():
         nxt += 1
     if block:
         anchor = '\n#define NUM_TRAINERS'
-        s = s.replace(anchor, '\n@MARK' + anchor, 1)
-        s = s.replace('@MARK\n#define NUM_TRAINERS',
-                      '\n@ Mandarin South Beach (build_mandarin_beach.py)\n' + block
+        s = s.replace(anchor, '\nMARKER' + anchor, 1)
+        s = s.replace('MARKER\n#define NUM_TRAINERS',
+                      '\n// Mandarin South Beach (build_mandarin_beach.py)\n' + block
                       + '\n#define NUM_TRAINERS', 1)
         s = re.sub(r'#define NUM_TRAINERS\s+\d+',
                    '#define NUM_TRAINERS                             %d' % nxt, s)

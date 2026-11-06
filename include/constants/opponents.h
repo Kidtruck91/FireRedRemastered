@@ -1245,7 +1245,7 @@
 #define TRAINER_GHOST_SHIP_SAILOR_HOYLE          1208
 
 
-@ Mandarin South Beach (build_mandarin_beach.py)
+// Mandarin South Beach (build_mandarin_beach.py)
 #define TRAINER_ORANGE_SWIMMER_F_NERISSA         1209
 #define TRAINER_ORANGE_SWIMMER_M_COY             1210
 #define TRAINER_ORANGE_FISHERMAN_MARLIN          1211

@@ -1,0 +1,93 @@
+OrangeIslands_Mandarin_South_GameCorner_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_InfoClerk::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_InfoClerk, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_Gentleman::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_Gentleman, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_OldMan::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_OldMan, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_Sailor::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_Sailor, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_Woman::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_Woman, MSGBOX_NPC
+	end
+
+@ Celadon sells fifty coins for a thousand; so does MANDARIN.
+OrangeIslands_Mandarin_South_GameCorner_EventScript_CoinsClerk::
+	lock
+	faceplayer
+	goto_if_unset FLAG_GOT_COIN_CASE, OrangeIslands_Mandarin_South_GameCorner_EventScript_NoCase
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_CoinsAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_GameCorner_EventScript_CoinsNo
+	checkmoney 1000
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Mandarin_South_GameCorner_EventScript_CoinsBroke
+	checkcoins VAR_TEMP_0
+	goto_if_gt VAR_TEMP_0, 9949, OrangeIslands_Mandarin_South_GameCorner_EventScript_CoinsFull
+	showmoneybox 0, 0
+	showcoinsbox 0, 5
+	removemoney 1000
+	addcoins 50
+	updatemoneybox
+	updatecoinsbox 0, 5
+	playse SE_SHOP
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_CoinsThanks, MSGBOX_DEFAULT
+	hidemoneybox
+	hidecoinsbox 0, 5
+	release
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_NoCase::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_NoCase, MSGBOX_DEFAULT
+	release
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_CoinsNo::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_CoinsNo, MSGBOX_DEFAULT
+	release
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_CoinsBroke::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_CoinsBroke, MSGBOX_DEFAULT
+	release
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_CoinsFull::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_CoinsFull, MSGBOX_DEFAULT
+	release
+	end
+
+@ The machines sit where Celadon drew them; the layout is the same one.
+OrangeIslands_Mandarin_South_GameCorner_EventScript_SlotMachine::
+	lockall
+	goto_if_unset FLAG_GOT_COIN_CASE, OrangeIslands_Mandarin_South_GameCorner_EventScript_SlotNoCase
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_SlotPlay, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_GameCorner_EventScript_SlotWalkAway
+	specialvar VAR_RESULT, GetRandomSlotMachineId
+	playslotmachine VAR_RESULT
+	releaseall
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_SlotNoCase::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_SlotNoCase, MSGBOX_DEFAULT
+	releaseall
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_SlotWalkAway::
+	releaseall
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_BrokenSlot::
+	lockall
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_BrokenSlot, MSGBOX_DEFAULT
+	releaseall
+	end
+

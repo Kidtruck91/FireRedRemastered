@@ -1,0 +1,15 @@
+OrangeIslands_Mandarin_South_DepartmentStore_1F_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_DepartmentStore_1F_EventScript_LiftClerk::
+	msgbox OrangeIslands_Mandarin_South_DepartmentStore_1F_Text_LiftClerk, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_DepartmentStore_1F_EventScript_Guide::
+	msgbox OrangeIslands_Mandarin_South_DepartmentStore_1F_Text_Guide, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_DepartmentStore_1F_EventScript_Shopper::
+	msgbox OrangeIslands_Mandarin_South_DepartmentStore_1F_Text_Shopper, MSGBOX_NPC
+	end
+

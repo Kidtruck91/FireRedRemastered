@@ -1,0 +1,11 @@
+OrangeIslands_Mandarin_South_House5_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_House5_EventScript_OldWoman::
+	msgbox OrangeIslands_Mandarin_South_House5_Text_OldWoman, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_House5_EventScript_Youngster::
+	msgbox OrangeIslands_Mandarin_South_House5_Text_Youngster, MSGBOX_NPC
+	end
+

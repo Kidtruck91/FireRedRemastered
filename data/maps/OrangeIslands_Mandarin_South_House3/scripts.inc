@@ -1,0 +1,7 @@
+OrangeIslands_Mandarin_South_House3_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_House3_EventScript_Fisher::
+	msgbox OrangeIslands_Mandarin_South_House3_Text_Fisher, MSGBOX_NPC
+	end
+

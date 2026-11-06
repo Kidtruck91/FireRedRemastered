@@ -1,0 +1,11 @@
+OrangeIslands_Mandarin_South_House1_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_House1_EventScript_OldMan::
+	msgbox OrangeIslands_Mandarin_South_House1_Text_OldMan, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_House1_EventScript_Boy::
+	msgbox OrangeIslands_Mandarin_South_House1_Text_Boy, MSGBOX_NPC
+	end
+

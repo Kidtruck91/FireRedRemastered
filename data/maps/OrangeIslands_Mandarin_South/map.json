@@ -132,6 +132,97 @@
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_POKEMON_CENTER_1F",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_DEPARTMENTSTORE_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 39,
+      "y": 42,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_GAMECORNER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 53,
+      "y": 43,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_GAMECORNER_PRIZEROOM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 37,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_HOTEL",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 68,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_RESTAURANT",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 76,
+      "y": 44,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_MART",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 72,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 76,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_HOUSE2",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 56,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_HOUSE3",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 21,
+      "y": 56,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_HOUSE4",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 55,
+      "y": 56,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_HOUSE5",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 37,
+      "y": 59,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_HOUSE6",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 21,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_MANDARIN_SOUTH_DEPARTMENTSTORE_1F",
+      "dest_warp_id": "3"
     }
   ],
   "coord_events": [

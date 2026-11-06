@@ -1,0 +1,7 @@
+OrangeIslands_Mandarin_South_House4_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_House4_EventScript_Scientist::
+	msgbox OrangeIslands_Mandarin_South_House4_Text_Scientist, MSGBOX_NPC
+	end
+

@@ -1,0 +1,15 @@
+OrangeIslands_Mandarin_South_Hotel_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_Hotel_EventScript_Receptionist::
+	msgbox OrangeIslands_Mandarin_South_Hotel_Text_Receptionist, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Hotel_EventScript_Guest::
+	msgbox OrangeIslands_Mandarin_South_Hotel_Text_Guest, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Hotel_EventScript_Child::
+	msgbox OrangeIslands_Mandarin_South_Hotel_Text_Child, MSGBOX_NPC
+	end
+

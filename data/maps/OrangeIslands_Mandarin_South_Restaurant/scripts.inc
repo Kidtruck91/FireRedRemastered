@@ -1,0 +1,15 @@
+OrangeIslands_Mandarin_South_Restaurant_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_Restaurant_EventScript_Waiter::
+	msgbox OrangeIslands_Mandarin_South_Restaurant_Text_Waiter, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Restaurant_EventScript_Diner::
+	msgbox OrangeIslands_Mandarin_South_Restaurant_Text_Diner, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_Restaurant_EventScript_Lady::
+	msgbox OrangeIslands_Mandarin_South_Restaurant_Text_Lady, MSGBOX_NPC
+	end
+

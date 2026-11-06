@@ -1,0 +1,7 @@
+OrangeIslands_Mandarin_South_House6_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_House6_EventScript_Beauty::
+	msgbox OrangeIslands_Mandarin_South_House6_Text_Beauty, MSGBOX_NPC
+	end
+

@@ -1,0 +1,144 @@
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_MapScripts::
+	.byte 0
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeBalding::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeBalding, MSGBOX_NPC
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeItems::
+	lock
+	faceplayer
+	goto_if_unset FLAG_GOT_COIN_CASE, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeNoCase
+	showcoinsbox 0, 0
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeItemsIntro, MSGBOX_DEFAULT
+	call OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeItems0
+	call OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeItems1
+	call OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeItems2
+	hidecoinsbox 0, 0
+	release
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeItems0::
+	buffernumberstring STR_VAR_2, 1000
+	bufferitemname STR_VAR_1, ITEM_TM13
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeSkip
+	checkcoins VAR_TEMP_0
+	goto_if_lt VAR_TEMP_0, 1000, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeShort
+	checkitemspace ITEM_TM13
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeFull
+	removecoins 1000
+	updatecoinsbox 0, 0
+	giveitem ITEM_TM13
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeThanks, MSGBOX_DEFAULT
+	return
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeItems1::
+	buffernumberstring STR_VAR_2, 3500
+	bufferitemname STR_VAR_1, ITEM_TM24
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeSkip
+	checkcoins VAR_TEMP_0
+	goto_if_lt VAR_TEMP_0, 3500, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeShort
+	checkitemspace ITEM_TM24
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeFull
+	removecoins 3500
+	updatecoinsbox 0, 0
+	giveitem ITEM_TM24
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeThanks, MSGBOX_DEFAULT
+	return
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeItems2::
+	buffernumberstring STR_VAR_2, 2000
+	bufferitemname STR_VAR_1, ITEM_TM45
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeSkip
+	checkcoins VAR_TEMP_0
+	goto_if_lt VAR_TEMP_0, 2000, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeShort
+	checkitemspace ITEM_TM45
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeFull
+	removecoins 2000
+	updatecoinsbox 0, 0
+	giveitem ITEM_TM45
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeThanks, MSGBOX_DEFAULT
+	return
+
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeMons::
+	lock
+	faceplayer
+	goto_if_unset FLAG_GOT_COIN_CASE, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeNoCase
+	showcoinsbox 0, 0
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeMonsIntro, MSGBOX_DEFAULT
+	call OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeMons0
+	call OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeMons1
+	call OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeMons2
+	hidecoinsbox 0, 0
+	release
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeMons0::
+	buffernumberstring STR_VAR_2, 1200
+	bufferspeciesname STR_VAR_1, SPECIES_HORSEA
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeSkip
+	checkcoins VAR_TEMP_0
+	goto_if_lt VAR_TEMP_0, 1200, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeShort
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeNoRoom
+	removecoins 1200
+	updatecoinsbox 0, 0
+	givemon SPECIES_HORSEA, 18
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeThanks, MSGBOX_DEFAULT
+	return
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeMons1::
+	buffernumberstring STR_VAR_2, 2800
+	bufferspeciesname STR_VAR_1, SPECIES_STARYU
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeSkip
+	checkcoins VAR_TEMP_0
+	goto_if_lt VAR_TEMP_0, 2800, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeShort
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeNoRoom
+	removecoins 2800
+	updatecoinsbox 0, 0
+	givemon SPECIES_STARYU, 20
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeThanks, MSGBOX_DEFAULT
+	return
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeMons2::
+	buffernumberstring STR_VAR_2, 6500
+	bufferspeciesname STR_VAR_1, SPECIES_DRATINI
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeSkip
+	checkcoins VAR_TEMP_0
+	goto_if_lt VAR_TEMP_0, 6500, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeShort
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeNoRoom
+	removecoins 6500
+	updatecoinsbox 0, 0
+	givemon SPECIES_DRATINI, 22
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeThanks, MSGBOX_DEFAULT
+	return
+
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeSkip::
+	return
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeNoCase::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeNoCase, MSGBOX_DEFAULT
+	return
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeShort::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeShort, MSGBOX_DEFAULT
+	return
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeFull::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeFull, MSGBOX_DEFAULT
+	return
+
+OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_EventScript_PrizeNoRoom::
+	msgbox OrangeIslands_Mandarin_South_GameCorner_PrizeRoom_Text_PrizeNoRoom, MSGBOX_DEFAULT
+	return
+
