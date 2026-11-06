@@ -169,7 +169,9 @@ gSpecials::
 	def_special StartOldManTutorialBattle
 	def_special ChangePokemonNickname
 	def_special ChoosePartyMon
-	def_special NullFieldSpecial  @ Berry Blender/Roulette specials
+	def_special PlayRoulette  @ was a NullFieldSpecial stub; this is the slot
+	                          @ Emerald roulette special occupied, so the table
+	                          @ keeps its original indices
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special Script_IsFanClubMemberFanOfPlayer

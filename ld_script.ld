@@ -342,6 +342,9 @@ SECTIONS {
         *libgcc.a:_divsi3.o(.text);
         *libgcc.a:_dvmd_tls.o(.text);
         *libgcc.a:_fixunsdfsi.o(.text);
+        /* ROULETTE's ball physics is the only float arithmetic in the game, so
+           this single-precision helper was never needed before. */
+        *libgcc.a:_fixunssfsi.o(.text);
         *libgcc.a:_modsi3.o(.text);
         *libgcc.a:_muldi3.o(.text);
         *libgcc.a:_udivdi3.o(.text);

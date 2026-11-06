@@ -91,6 +91,11 @@ GAME_CORNER_PEOPLE = [
       '"Win coins at the machines, spend\\n"', '"them next door at the PRIZE\\l"',
       '"CORNER.$"']),
     ('OBJ_EVENT_GFX_WORKER_M', 6, 2, 'MOVEMENT_TYPE_FACE_DOWN', 'CoinsClerk', None),
+    # The two ROULETTE tables, ported from Emerald. Mauville put them on the
+    # floor tiles themselves; this room was drawn for slot machines, so the
+    # tables are the croupiers who run them. Minimums are Emerald's: 1 and 3.
+    ('OBJ_EVENT_GFX_WORKER_M', 10, 4, 'MOVEMENT_TYPE_FACE_DOWN', 'CroupierLeft', None),
+    ('OBJ_EVENT_GFX_WORKER_F', 13, 4, 'MOVEMENT_TYPE_FACE_DOWN', 'CroupierRight', None),
     ('OBJ_EVENT_GFX_GENTLEMAN', 16, 10, 'MOVEMENT_TYPE_FACE_LEFT', 'Gentleman',
      ['"I have a system. It has cost me\\n"', '"a great deal of money.$"']),
     ('OBJ_EVENT_GFX_OLD_MAN_2', 10, 9, 'MOVEMENT_TYPE_FACE_DOWN', 'OldMan',
@@ -287,6 +292,29 @@ def extra_scripts(kind, name, out, text):
                 ('CoinsNo', ['"Watching is free, of course.$"']),
                 ('CoinsBroke', ['"Come back when you have the\\n"', '"money, friend.$"']),
                 ('CoinsFull', ['"Your COIN CASE will not hold\\n"', '"another one.$"'])):
+            text.append('%s_Text_%s::' % (name, tag))
+            for ln in lines:
+                text.append('\t.string %s' % ln)
+            text.append('')
+
+        out += ['@ ROULETTE. Table 1 takes a one-coin minimum, table 2 takes three;',
+                '@ both numbers are Emerald own, from sTableMinBets.',
+                '%s_EventScript_CroupierLeft::' % name,
+                '\tlock', '\tfaceplayer',
+                '\tmsgbox %s_Text_CroupierLeft, MSGBOX_DEFAULT' % name,
+                '\tgoto Roulette_EventScript_Table1',
+                '\tend', '',
+                '%s_EventScript_CroupierRight::' % name,
+                '\tlock', '\tfaceplayer',
+                '\tmsgbox %s_Text_CroupierRight, MSGBOX_DEFAULT' % name,
+                '\tgoto Roulette_EventScript_Table2',
+                '\tend', '']
+        for tag, lines in (
+                ('CroupierLeft', ['"ROULETTE, the near table. One coin\\n"',
+                                  '"the spin, and the wheel is kind.$"']),
+                ('CroupierRight', ['"ROULETTE, the far table. Three\\n"',
+                                   '"coins the spin.\\p"',
+                                   '"It pays better. It also takes\\n"', '"rather more.$"'])):
             text.append('%s_Text_%s::' % (name, tag))
             for ln in lines:
                 text.append('\t.string %s' % ln)

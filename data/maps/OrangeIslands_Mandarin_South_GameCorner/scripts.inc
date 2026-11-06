@@ -65,6 +65,22 @@ OrangeIslands_Mandarin_South_GameCorner_EventScript_CoinsFull::
 	release
 	end
 
+@ ROULETTE. Table 1 takes a one-coin minimum, table 2 takes three;
+@ both numbers are Emerald own, from sTableMinBets.
+OrangeIslands_Mandarin_South_GameCorner_EventScript_CroupierLeft::
+	lock
+	faceplayer
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_CroupierLeft, MSGBOX_DEFAULT
+	goto Roulette_EventScript_Table1
+	end
+
+OrangeIslands_Mandarin_South_GameCorner_EventScript_CroupierRight::
+	lock
+	faceplayer
+	msgbox OrangeIslands_Mandarin_South_GameCorner_Text_CroupierRight, MSGBOX_DEFAULT
+	goto Roulette_EventScript_Table2
+	end
+
 @ The machines sit where Celadon drew them; the layout is the same one.
 OrangeIslands_Mandarin_South_GameCorner_EventScript_SlotMachine::
 	lockall

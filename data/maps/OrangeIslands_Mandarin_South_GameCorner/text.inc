@@ -42,6 +42,16 @@ OrangeIslands_Mandarin_South_GameCorner_Text_CoinsFull::
 	.string "Your COIN CASE will not hold\n"
 	.string "another one.$"
 
+OrangeIslands_Mandarin_South_GameCorner_Text_CroupierLeft::
+	.string "ROULETTE, the near table. One coin\n"
+	.string "the spin, and the wheel is kind.$"
+
+OrangeIslands_Mandarin_South_GameCorner_Text_CroupierRight::
+	.string "ROULETTE, the far table. Three\n"
+	.string "coins the spin.\p"
+	.string "It pays better. It also takes\n"
+	.string "rather more.$"
+
 OrangeIslands_Mandarin_South_GameCorner_Text_SlotPlay::
 	.string "A slot machine. Play it?$"
 

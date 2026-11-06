@@ -119,6 +119,7 @@
 	.include "src/dynamic_placeholder_text_util.o"
 	.include "src/berry_pouch.o"
 	.include "src/slot_machine.o"
+	.include "src/roulette.o"
 	.include "src/roamer.o"
 	.include "src/mystery_gift_menu.o"
 	.include "src/mystery_gift.o"
