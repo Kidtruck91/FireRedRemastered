@@ -45,6 +45,15 @@ P = 'OrangeIslands_Sunburst_'
 FENCE_TOP = '@ --- built by docs/orange-islands/build_sunburst_town.py ---'
 FENCE_END = '@ --- end build_sunburst_town.py ---'
 
+# RSE's GLASS WORKSHOP sold the flutes, and this shop front is the same trade,
+# so it stocks them -- the only place in the game that does. All five are fully
+# implemented in FireRed and sold nowhere: BLUE and the BLACK/WHITE pair work in
+# the field, while YELLOW and RED have their field use stubbed to Oak's refusal
+# but keep battleUsage, which is the only place confusion and infatuation exist.
+# Prices are the game's own.
+FLUTES = ['ITEM_BLUE_FLUTE', 'ITEM_YELLOW_FLUTE', 'ITEM_RED_FLUTE',
+          'ITEM_BLACK_FLUTE', 'ITEM_WHITE_FLUTE']
+
 MART_ITEMS = ['ITEM_POKE_BALL', 'ITEM_GREAT_BALL', 'ITEM_POTION', 'ITEM_SUPER_POTION',
               'ITEM_ANTIDOTE', 'ITEM_PARALYZE_HEAL', 'ITEM_AWAKENING',
               'ITEM_ESCAPE_ROPE', 'ITEM_REPEL', 'ITEM_SUPER_REPEL']
@@ -70,15 +79,17 @@ MART = [
 # The shop front. He is the island's trade, so he is the one who says what the
 # island is; and he is the first to hint at the thing in the cave.
 GLASSWORKS = [
-    ('OBJ_EVENT_GFX_OLD_MAN_1', 4, 3, 'MOVEMENT_TYPE_FACE_DOWN', 'Glassblower',
-     ['"Fifty years I have worked glass on\\n"', '"this island.\\p"',
-      '"The sand here is wrong, you know.\\n"', '"Too much of the hill in it. Melt\\l"',
-      '"it and it comes out clear as\\l"', '"water and twice as hard.\\p"',
-      '"That is not sand doing that. That\\n"', '"is whatever the hill is made of.$"']),
+    # the vendor: his script is written by glass_clerk(), not talkers()
+    ('OBJ_EVENT_GFX_OLD_MAN_1', 4, 3, 'MOVEMENT_TYPE_FACE_DOWN', 'Glassblower', None),
     ('OBJ_EVENT_GFX_WOMAN_3', 8, 5, 'MOVEMENT_TYPE_FACE_LEFT', 'Daughter',
      ['"He went down into the cave once,\\n"', '"years ago, and came back up\\l"',
       '"without his tools.\\p"', '"He has never said why.\\n"',
       '"He has never gone back either.$"']),
+    ('OBJ_EVENT_GFX_YOUNGSTER', 2, 5, 'MOVEMENT_TYPE_FACE_RIGHT', 'Apprentice',
+     ['"The sand here is wrong, you know.\\n"', '"Too much of the hill in it.\\p"',
+      '"Melt it and it comes out clear as\\n"', '"water and twice as hard. That is\\l"',
+      '"not the sand doing that.\\p"',
+      '"That is whatever the hill is made\\n"', '"of.$"']),
 ]
 
 STATION = [
@@ -110,7 +121,7 @@ QUARRY = [
 PLAN = [
     ((33, 32), 'Mart', 'LAYOUT_MART', [(3, 7), (4, 7), (5, 7)], MART, 'mart'),
     ((39, 32), 'Glassworks', 'LAYOUT_LAVARIDGE_TOWN_HERB_SHOP',
-     [(3, 7), (4, 7), (5, 7)], GLASSWORKS, None),
+     [(3, 7), (4, 7), (5, 7)], GLASSWORKS, 'flutes'),
     ((27, 41), 'CrystalStation', 'LAYOUT_PALLET_TOWN_PROFESSOR_OAKS_LAB',
      [(5, 12), (6, 12), (7, 12)], STATION, None),
     ((36, 41), 'House1', 'LAYOUT_HOUSE3', [(4, 7)], QUARRY, None),
@@ -219,6 +230,39 @@ def mart_clerk(name, out):
     out += ['\t.2byte ITEM_NONE', '\t.align 2', '']
 
 
+def glass_clerk(name, out, text):
+    """The glassblower sells; he does not just talk.
+
+    He names what each flute does, because the game never explains them
+    anywhere else, and the BLACK one is genuinely the right purchase for the
+    cave above the town.
+    """
+    out += ['%s_EventScript_Glassblower::' % name,
+            '\tgoto_if_questlog EventScript_ReleaseEnd',
+            '\tlock', '\tfaceplayer',
+            '\tmsgbox %s_Text_Glassblower, MSGBOX_DEFAULT' % name,
+            '\tmessage Text_MayIHelpYou', '\twaitmessage',
+            '\tpokemart %s_ItemsGlassblower' % name,
+            '\tmsgbox Text_PleaseComeAgain', '\trelease', '\tend', '',
+            '\t.align 2', '%s_ItemsGlassblower::' % name]
+    out += ['\t.2byte %s' % it for it in FLUTES]
+    out += ['\t.2byte ITEM_NONE', '\t.align 2', '']
+    text += ['%s_Text_Glassblower::' % name,
+             '\t.string "Glass that sings. That is the\\n"',
+             '\t.string "trick of this island\'s sand.\\p"',
+             '\t.string "Five flutes, five notes. BLUE\\n"',
+             '\t.string "wakes a sleeping POKeMON. YELLOW\\l"',
+             '\t.string "shakes the confusion out of one.\\l"',
+             '\t.string "RED cools a head gone soft.\\p"',
+             '\t.string "Then the pair nobody believes\\n"',
+             '\t.string "until they try them. WHITE draws\\l"',
+             '\t.string "POKeMON to you. BLACK keeps them\\l"',
+             '\t.string "off.\\p"',
+             '\t.string "Take a BLACK one down that cave\\n"',
+             '\t.string "and you will reach the bottom\\l"',
+             '\t.string "with something left in the tank.$"', '']
+
+
 def add_outdoor(name, people, ok, report):
     path = os.path.join(REPO, 'data/maps', name, 'map.json')
     mj = json.load(open(path))
@@ -289,6 +333,8 @@ def main():
         talkers(name, people, out, text)
         if kind == 'mart':
             mart_clerk(name, out)
+        if kind == 'flutes':
+            glass_clerk(name, out, text)
         open(os.path.join(d, 'scripts.inc'), 'w', encoding='utf-8',
              newline='\n').write('\n'.join(out) + '\n')
         open(os.path.join(d, 'text.inc'), 'w', encoding='utf-8',
