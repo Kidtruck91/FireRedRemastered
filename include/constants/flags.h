@@ -1250,6 +1250,10 @@
 
 // Unused hidden item flags
 #define FLAG_UNUSED_0x4A7               0x4A7 // Unused Flag
+#define FLAG_HIDE_SUNBURST_CAVE_3F_REVIVE 0x4A7 // Sunburst Cave item: REVIVE
+#define FLAG_HIDE_SUNBURST_CAVE_2F_ESCAPE_ROPE 0x4A7 // Sunburst Cave item: ESCAPE_ROPE
+#define FLAG_HIDE_SUNBURST_CAVE_2F_HARD_STONE 0x4A7 // Sunburst Cave item: HARD_STONE
+#define FLAG_ORANGE_SUNBURST_STEELIX 0x4A7 // the Sunburst Cave STEELIX has been fought
 #define FLAG_UNUSED_0x4A8               0x4A8 // Unused Flag
 #define FLAG_ORANGE_DERBY_RULES  0x4A7 // the derby judge has explained himself
 #define FLAG_ORANGE_DERBY_GRAND  0x4A8 // the derby grand prize has been claimed

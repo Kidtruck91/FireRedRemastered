@@ -1253,7 +1253,15 @@
 #define TRAINER_ORANGE_PICNICKER_PIA             1213
 #define TRAINER_ORANGE_SAILOR_BOSUN              1214
 
-#define NUM_TRAINERS                             1215
+// Sunburst Cave 2F and 3F (build_sunburst_cave.py)
+#define TRAINER_ORANGE_HIKER_DOLAN               1215
+#define TRAINER_ORANGE_PICNICKER_MAEVE           1216
+#define TRAINER_ORANGE_CAMPER_ROSS               1217
+#define TRAINER_ORANGE_YOUNGSTER_TAM             1218
+#define TRAINER_ORANGE_HIKER_GRANT               1219
+#define TRAINER_ORANGE_BLACK_BELT_ODAR           1220
+
+#define NUM_TRAINERS                             1221
 #define MAX_TRAINERS_COUNT                       1504
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

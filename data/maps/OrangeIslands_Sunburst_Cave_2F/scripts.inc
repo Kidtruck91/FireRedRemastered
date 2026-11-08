@@ -1,2 +1,32 @@
 OrangeIslands_Sunburst_Cave_2F_MapScripts::
 	.byte 0
+
+@ --- built by docs/orange-islands/build_sunburst_cave.py ---
+OrangeIslands_Sunburst_Cave_2F_EventScript_Dolan::
+	trainerbattle_single TRAINER_ORANGE_HIKER_DOLAN, OrangeIslands_Sunburst_Cave_2F_Text_DolanIntro, OrangeIslands_Sunburst_Cave_2F_Text_DolanDefeat
+	msgbox OrangeIslands_Sunburst_Cave_2F_Text_DolanPost, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Sunburst_Cave_2F_EventScript_Maeve::
+	trainerbattle_single TRAINER_ORANGE_PICNICKER_MAEVE, OrangeIslands_Sunburst_Cave_2F_Text_MaeveIntro, OrangeIslands_Sunburst_Cave_2F_Text_MaeveDefeat
+	msgbox OrangeIslands_Sunburst_Cave_2F_Text_MaevePost, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Sunburst_Cave_2F_EventScript_Ross::
+	trainerbattle_single TRAINER_ORANGE_CAMPER_ROSS, OrangeIslands_Sunburst_Cave_2F_Text_RossIntro, OrangeIslands_Sunburst_Cave_2F_Text_RossDefeat
+	msgbox OrangeIslands_Sunburst_Cave_2F_Text_RossPost, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Sunburst_Cave_2F_EventScript_Tam::
+	trainerbattle_single TRAINER_ORANGE_YOUNGSTER_TAM, OrangeIslands_Sunburst_Cave_2F_Text_TamIntro, OrangeIslands_Sunburst_Cave_2F_Text_TamDefeat
+	msgbox OrangeIslands_Sunburst_Cave_2F_Text_TamPost, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Sunburst_Cave_2F_EventScript_ItemHardStone::
+	finditem ITEM_HARD_STONE
+	end
+
+OrangeIslands_Sunburst_Cave_2F_EventScript_ItemEscapeRope::
+	finditem ITEM_ESCAPE_ROPE
+	end
+@ --- end build_sunburst_cave.py ---

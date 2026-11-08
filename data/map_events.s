@@ -4,6 +4,9 @@
 #include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/map_scripts.h"
+@ A map may place a Pokemon in the overworld with the follower sprite set, and
+@ OBJ_EVENT_GFX_FOLLOWER(species) needs the species names to resolve.
+#include "constants/species.h"
 #include "constants/layouts.h"
 #include "constants/maps.h"
 #include "constants/trainer_types.h"
