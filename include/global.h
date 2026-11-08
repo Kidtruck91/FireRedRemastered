@@ -11,6 +11,7 @@
 #include "constants/pokedex.h"
 #include "constants/easy_chat.h"
 #include "constants/rgb.h"
+#include "constants/battle_factory.h"
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
@@ -337,6 +338,40 @@ struct Follower
     /*0x16*/ u16 padding2;
 }; /* size = 0x18 */
 
+// One rented POKeMON in the BATTLE FACTORY on the KINNOW boat.
+//
+// Emerald's struct RentalMon orders its fields u16, u32, u8, u8, which the
+// compiler pads out to twelve bytes. SaveBlock2 has no twelve bytes to spare,
+// so the u32 goes first and the whole thing packs to eight with no padding at
+// all -- six of them cost 48 bytes instead of 72.
+struct FactoryRentalMon
+{
+    /*0x00*/ u32 personality;
+    /*0x04*/ u16 monId;
+    /*0x06*/ u8 ivs;
+    /*0x07*/ u8 abilityNum;
+}; /* size = 0x08 */
+
+// The BATTLE FACTORY's save state, which is the part of Emerald's much larger
+// struct BattleFrontier that the factory actually reads.
+//
+// Emerald indexes its streaks and rent counts by level mode, because its
+// factory runs at Lv 50 and at Open Level. This one is Lv 50 only, so that
+// dimension is dropped rather than carried around empty.
+struct BattleFactorySave
+{
+    /*0x00*/ struct FactoryRentalMon rentalMons[FACTORY_RENTAL_COUNT];
+    /*0x30*/ u16 trainerIds[FACTORY_STAGES_PER_CHALLENGE];
+    /*0x3E*/ u16 winStreak;
+    /*0x40*/ u16 bestWinStreak;
+    /*0x42*/ u16 rentsCount;
+    /*0x44*/ u16 curChallengeBattleNum;
+    /*0x46*/ u8 challengeStatus;
+    /*0x47*/ u8 challengePaused:1;
+             u8 disableRecordBattle:1;
+             u8 winStreakActive:1;
+}; /* size = 0x48 */
+
 struct SaveBlock2
 {
     /*0x000*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
@@ -381,7 +416,12 @@ struct SaveBlock2
     /*0xB10*/ struct BerryPickingResults berryPick;
     /*0xB20*/ struct Follower follower;
     /*0xB38*/ u8 nuzlockeAreas[32]; // one bit per map section: its Nuzlocke encounter was used (src/nuzlocke.c)
-    /*0xB58*/ u8 filler_B58[0x400 - sizeof(struct Follower) - 32];
+    // Carved out of the filler below rather than appended to the struct, so
+    // SaveBlock2 keeps its size and encryptionKey stays at 0xF20: the save
+    // layout does not move, and saves written by older builds still load.
+    /*0xB58*/ struct BattleFactorySave factory;
+    /*0xBA0*/ u8 filler_B58[0x400 - sizeof(struct Follower) - 32
+                            - sizeof(struct BattleFactorySave)];
     /*0xF20*/ u32 encryptionKey;
 }; // size: 0xF24
 

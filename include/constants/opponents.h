@@ -1262,6 +1262,9 @@
 #define TRAINER_ORANGE_BLACK_BELT_ODAR           1220
 
 #define NUM_TRAINERS                             1221
-#define MAX_TRAINERS_COUNT                       1504
+// Trainer flags run from TRAINER_FLAGS_START (0x500) to FLAGS_COUNT (0xBE0),
+// which is room for 1760. The old 1504 left 256 of those slots unreachable for
+// no reason; nothing is allocated by raising it, the flags already exist.
+#define MAX_TRAINERS_COUNT                       1760
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H
