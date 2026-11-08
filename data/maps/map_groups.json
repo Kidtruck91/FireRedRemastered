@@ -909,7 +909,12 @@
   ],
   "gMapGroup_Orange_Kinnow_Interior": [
     "OrangeIslands_Kinnow_PokemonCenter_1F",
-    "OrangeIslands_Kinnow_PokemonCenter_2F"
+    "OrangeIslands_Kinnow_PokemonCenter_2F",
+    "OrangeIslands_Kinnow_Mart",
+    "OrangeIslands_Kinnow_Massage",
+    "OrangeIslands_Kinnow_House1",
+    "OrangeIslands_Kinnow_HarbourOffice",
+    "OrangeIslands_Kinnow_House2"
   ],
   "gMapGroup_Orange_Mandarin_South_Interior": [
     "OrangeIslands_Mandarin_South_PokemonCenter_1F",

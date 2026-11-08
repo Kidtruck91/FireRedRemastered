@@ -46,6 +46,15 @@ static void DestroyScriptMenuWindow(u8 windowId);
 static u8 CreateWindowFromRect(u8 left, u8 top, u8 width, u8 height);
 
 
+ // The KINNOW parlour's two courses. The prices are in the script, which is
+// also where the money is taken, so they are spelled out here for the player
+// rather than computed.
+static const struct MenuAction sMultichoiceList_KinnowMassage[] = {
+    { gText_KinnowMassageShort },
+    { gText_KinnowMassageLong },
+    { gText_Exit }
+};
+
 static const struct MenuAction sMultichoiceList_YesNo[] = {
     { gText_Yes },
     { gText_No }
@@ -589,6 +598,7 @@ static const struct MenuAction sMultichoiceList_TrovitaQuiz6B[] = {
 
 static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_YES_NO]                                     = MULTICHOICE(sMultichoiceList_YesNo),
+    [MULTICHOICE_KINNOW_MASSAGE]                             = MULTICHOICE(sMultichoiceList_KinnowMassage),
     [MULTICHOICE_EEVEELUTIONS]                               = MULTICHOICE(sMultichoiceList_Eeveelutions),
     [MULTICHOICE_TRAINER_CARD_ICON_TINT]                     = MULTICHOICE(sMultichoiceList_TrainerCardIconTint),
     [MULTICHOICE_HOF_QUIT]                                   = MULTICHOICE(sMultichoiceList_HOF_Quit),

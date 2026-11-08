@@ -84,6 +84,7 @@
 #define MULTICHOICE_TROVITA_QUIZ_5B                                75
 #define MULTICHOICE_TROVITA_QUIZ_6A                                76
 #define MULTICHOICE_TROVITA_QUIZ_6B                                77
+#define MULTICHOICE_KINNOW_MASSAGE                                 78
 
 #define MULTICHOICE_NONE                                      255
 

@@ -1147,6 +1147,8 @@ extern const u8 gText_Lower[];
 extern const u8 gText_Symbols[];
 extern const u8 gText_Register2[];
 extern const u8 gText_Exit[];
+extern const u8 gText_KinnowMassageShort[];
+extern const u8 gText_KinnowMassageLong[];
 
 // wireless_communication_status_screen
 extern const u8 gText_Dynamic0Players[];

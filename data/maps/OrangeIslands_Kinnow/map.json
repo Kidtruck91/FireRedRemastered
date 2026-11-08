@@ -112,6 +112,76 @@
       "trainer_sight_or_berry_tree_id": "4",
       "script": "OrangeIslands_Kinnow_EventScript_OrangeSean",
       "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_FISHER",
+      "x": 20,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Kinnow_EventScript_Fisher",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "x": 43,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Kinnow_EventScript_Girl",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "x": 26,
+      "y": 29,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Kinnow_EventScript_Man",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 33,
+      "y": 31,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Kinnow_EventScript_Sailor",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "x": 50,
+      "y": 28,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Kinnow_EventScript_Child",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -127,6 +197,41 @@
       "y": 4,
       "elevation": 3,
       "dest_map": "MAP_ORANGE_ISLANDS_KINNOW_BEACH",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 30,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_KINNOW_MART",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 39,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_KINNOW_MASSAGE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 22,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_KINNOW_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 29,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_KINNOW_HARBOUROFFICE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 47,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_KINNOW_HOUSE2",
       "dest_warp_id": "0"
     }
   ],
@@ -744,7 +849,5 @@
       "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8"
     }
   ],
-  "bg_events": [
-
-  ]
+  "bg_events": []
 }

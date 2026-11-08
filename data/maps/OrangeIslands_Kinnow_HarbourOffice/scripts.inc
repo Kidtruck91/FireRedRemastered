@@ -1,0 +1,11 @@
+OrangeIslands_Kinnow_HarbourOffice_MapScripts::
+	.byte 0
+
+OrangeIslands_Kinnow_HarbourOffice_EventScript_Harbourmaster::
+	msgbox OrangeIslands_Kinnow_HarbourOffice_Text_Harbourmaster, MSGBOX_NPC
+	end
+
+OrangeIslands_Kinnow_HarbourOffice_EventScript_Clerk2::
+	msgbox OrangeIslands_Kinnow_HarbourOffice_Text_Clerk2, MSGBOX_NPC
+	end
+

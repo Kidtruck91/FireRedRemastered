@@ -167,3 +167,25 @@ OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Lo:
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Hi:
 	setvar VAR_0x8004, 48
 	goto OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9_Go
+
+@ --- built by docs/orange-islands/build_kinnow_town.py ---
+OrangeIslands_Kinnow_EventScript_Fisher::
+	msgbox OrangeIslands_Kinnow_Text_Fisher, MSGBOX_NPC
+	end
+
+OrangeIslands_Kinnow_EventScript_Girl::
+	msgbox OrangeIslands_Kinnow_Text_Girl, MSGBOX_NPC
+	end
+
+OrangeIslands_Kinnow_EventScript_Man::
+	msgbox OrangeIslands_Kinnow_Text_Man, MSGBOX_NPC
+	end
+
+OrangeIslands_Kinnow_EventScript_Sailor::
+	msgbox OrangeIslands_Kinnow_Text_Sailor, MSGBOX_NPC
+	end
+
+OrangeIslands_Kinnow_EventScript_Child::
+	msgbox OrangeIslands_Kinnow_Text_Child, MSGBOX_NPC
+	end
+@ --- end build_kinnow_town.py ---
