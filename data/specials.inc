@@ -456,5 +456,11 @@ gSpecials::
 	def_special UpdateLoreleiDollCollection
 	def_special LoopWingFlapSound
 	def_special CreateEnemyEventMon
+	def_special CallBattleFactoryFunction
+	def_special OrangeBoat_StartBattle
+	def_special OrangeBoat_PrepareRound
+	def_special OrangeBoat_RoundWon
+	def_special OrangeBoat_SettleUp
+	def_special OrangeBoat_GetLeaderName
 	
 gSpecialsEnd::

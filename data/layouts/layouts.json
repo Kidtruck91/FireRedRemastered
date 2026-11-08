@@ -7452,6 +7452,78 @@
       "secondary_tileset": "gTileset_GenericBuilding1",
       "border_filepath": "data/layouts/PalletTown_PlayersHouse_OptionsCloset/border.bin",
       "blockdata_filepath": "data/layouts/PalletTown_PlayersHouse_OptionsCloset/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_DECK",
+      "name": "OrangeIslands_Kinnow_BattleBoat_Deck_Layout",
+      "width": 24,
+      "height": 19,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SSAnne",
+      "border_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Deck/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Deck/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_SALOON",
+      "name": "OrangeIslands_Kinnow_BattleBoat_Saloon_Layout",
+      "width": 31,
+      "height": 21,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SSAnne",
+      "border_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Saloon/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Saloon/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_HOLD",
+      "name": "OrangeIslands_Kinnow_BattleBoat_Hold_Layout",
+      "width": 23,
+      "height": 7,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SSAnne",
+      "border_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Hold/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Hold/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_CABIN",
+      "name": "OrangeIslands_Kinnow_BattleBoat_Cabin_Layout",
+      "width": 6,
+      "height": 8,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SSAnne",
+      "border_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Cabin/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Cabin/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_GALLEY",
+      "name": "OrangeIslands_Kinnow_BattleBoat_Galley_Layout",
+      "width": 16,
+      "height": 14,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SSAnne",
+      "border_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Galley/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Galley/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_ARENA",
+      "name": "OrangeIslands_Kinnow_BattleBoat_Arena_Layout",
+      "width": 9,
+      "height": 10,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SSAnne",
+      "border_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Arena/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Arena/map.bin"
     }
   ]
 }

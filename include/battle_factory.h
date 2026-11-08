@@ -39,5 +39,6 @@ u8 GetFactoryMonFixedIV(u8 challengeNum, bool8 isLastBattle);
 u8 GetNumPastRentalsRank(void);
 u32 GetAiScriptsInBattleFactory(void);
 void SetMonMoveAvoidReturn(struct Pokemon *mon, u16 moveArg, u8 moveSlot);
+void FillFactoryOpponentParty(void);
 
 #endif // GUARD_BATTLE_FACTORY_H

@@ -728,6 +728,43 @@ u8 GetFactoryMonFixedIV(u8 challengeNum, bool8 isLastBattle)
 // opponent is drawn from the same pool as the rest, only harder -- so the
 // function is gone rather than left unreachable.
 
+// Emerald built the opponent's party inside DoSpecialTrainerBattle, which
+// FireRed has no equivalent of. The work lives here instead, because the
+// monIds it needs are in sFactoryTempParty, which is private to this file.
+// OrangeBoat_StartBattle calls it; see src/orange_battle_boat.c.
+void FillFactoryOpponentParty(void)
+{
+    u8 i, j, friendship, level, fixedIV;
+    u32 otID;
+    u8 challengeNum = gSaveBlock2Ptr->factory.winStreak / FACTORY_STAGES_PER_CHALLENGE;
+    bool8 lastBattle = gSaveBlock2Ptr->factory.curChallengeBattleNum
+                       >= FACTORY_STAGES_PER_CHALLENGE - 1;
+
+    ZeroEnemyPartyMons();
+    fixedIV = GetFactoryMonFixedIV(challengeNum, lastBattle);
+    level = SetFacilityPtrsGetLevel();
+    otID = T1_READ_32(gSaveBlock2Ptr->playerTrainerId);
+    for (i = 0; i < FACTORY_PARTY_SIZE; i++)
+    {
+        u16 monId = sFactoryTempParty[i];
+
+        CreateMonWithEVSpreadNatureOTID(&gEnemyParty[i],
+                                        gFacilityTrainerMons[monId].species,
+                                        level,
+                                        gFacilityTrainerMons[monId].nature,
+                                        fixedIV,
+                                        gFacilityTrainerMons[monId].evSpread,
+                                        otID);
+        friendship = 0;
+        for (j = 0; j < MAX_MON_MOVES; j++)
+            SetMonMoveAvoidReturn(&gEnemyParty[i],
+                                  gFacilityTrainerMons[monId].moves[j], j);
+        SetMonData(&gEnemyParty[i], MON_DATA_FRIENDSHIP, &friendship);
+        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM,
+                   &gBattleFrontierHeldItems[gFacilityTrainerMons[monId].itemTableId]);
+    }
+}
+
 
 static u16 GetFactoryMonId(u8 challengeNum, bool8 useBetterRange)
 {

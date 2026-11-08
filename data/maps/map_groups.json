@@ -914,7 +914,15 @@
     "OrangeIslands_Kinnow_Massage",
     "OrangeIslands_Kinnow_House1",
     "OrangeIslands_Kinnow_HarbourOffice",
-    "OrangeIslands_Kinnow_House2"
+    "OrangeIslands_Kinnow_House2",
+    "OrangeIslands_Kinnow_BattleBoat_Deck",
+    "OrangeIslands_Kinnow_BattleBoat_Saloon",
+    "OrangeIslands_Kinnow_BattleBoat_Hold",
+    "OrangeIslands_Kinnow_BattleBoat_Cabin1",
+    "OrangeIslands_Kinnow_BattleBoat_Cabin2",
+    "OrangeIslands_Kinnow_BattleBoat_Cabin3",
+    "OrangeIslands_Kinnow_BattleBoat_Galley",
+    "OrangeIslands_Kinnow_BattleBoat_Arena"
   ],
   "gMapGroup_Orange_Mandarin_South_Interior": [
     "OrangeIslands_Mandarin_South_PokemonCenter_1F",

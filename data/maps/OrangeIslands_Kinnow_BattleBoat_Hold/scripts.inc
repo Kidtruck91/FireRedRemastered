@@ -1,0 +1,30 @@
+OrangeIslands_Kinnow_BattleBoat_Hold_MapScripts::
+	.byte 0
+
+@ --- built by docs/orange-islands/build_battle_boat.py ---
+OrangeIslands_Kinnow_BattleBoat_Hold_EventScript_Mabon::
+	trainerbattle_single TRAINER_ORANGE_BLACK_BELT_MABON, OrangeIslands_Kinnow_BattleBoat_Hold_Text_MabonIntro, OrangeIslands_Kinnow_BattleBoat_Hold_Text_MabonDefeat
+	msgbox OrangeIslands_Kinnow_BattleBoat_Hold_Text_MabonAfter, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Kinnow_BattleBoat_Hold_EventScript_Iseult::
+	trainerbattle_single TRAINER_ORANGE_BEAUTY_ISEULT, OrangeIslands_Kinnow_BattleBoat_Hold_Text_IseultIntro, OrangeIslands_Kinnow_BattleBoat_Hold_Text_IseultDefeat
+	msgbox OrangeIslands_Kinnow_BattleBoat_Hold_Text_IseultAfter, MSGBOX_AUTOCLOSE
+	end
+
+OrangeIslands_Kinnow_BattleBoat_Hold_EventScript_CrewDoor1::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Hold_Text_CrewDoor, MSGBOX_SIGN
+	end
+
+OrangeIslands_Kinnow_BattleBoat_Hold_EventScript_CrewDoor2::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Hold_Text_CrewDoor, MSGBOX_SIGN
+	end
+
+OrangeIslands_Kinnow_BattleBoat_Hold_EventScript_CrewDoor3::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Hold_Text_CrewDoor, MSGBOX_SIGN
+	end
+
+OrangeIslands_Kinnow_BattleBoat_Hold_EventScript_CrewDoor4::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Hold_Text_CrewDoor, MSGBOX_SIGN
+	end
+@ --- end build_battle_boat.py ---

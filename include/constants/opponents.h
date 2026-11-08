@@ -1261,7 +1261,15 @@
 #define TRAINER_ORANGE_HIKER_GRANT               1219
 #define TRAINER_ORANGE_BLACK_BELT_ODAR           1220
 
-#define NUM_TRAINERS                             1221
+// The KINNOW battle boat (build_battle_boat.py)
+#define TRAINER_ORANGE_SAILOR_BRAC               1221
+#define TRAINER_ORANGE_COOLTRAINER_ARDITH        1222
+#define TRAINER_ORANGE_COOLTRAINER_FENN          1223
+#define TRAINER_ORANGE_GENTLEMAN_LORCAN          1224
+#define TRAINER_ORANGE_BLACK_BELT_MABON          1225
+#define TRAINER_ORANGE_BEAUTY_ISEULT             1226
+
+#define NUM_TRAINERS                             1227
 // Trainer flags run from TRAINER_FLAGS_START (0x500) to FLAGS_COUNT (0xBE0),
 // which is room for 1760. The old 1504 left 256 of those slots unreachable for
 // no reason; nothing is allocated by raising it, the flags already exist.

@@ -18,6 +18,8 @@
 #include "constants/trainers.h"
 #include "constants/event_objects.h"
 #include "constants/trainer_tower.h"
+#include "battle_factory.h"
+#include "orange_battle_boat.h"
 
 #define CURR_FLOOR sTrainerTowerState->data.floors[sTrainerTowerState->floorIdx]
 #define TRAINER_TOWER gSaveBlock1Ptr->trainerTower[gSaveBlock1Ptr->towerChallengeId]
@@ -444,16 +446,23 @@ void CallTrainerTowerFunc(void)
 
 u8 GetTrainerTowerOpponentClass(void)
 {
+    // The KINNOW battle boat borrows this battle type; see orange_battle_boat.c.
+    if (InBattleFactory())
+        return OrangeBoat_OpponentClass();
     return gFacilityClassToTrainerClass[sTrainerTowerOpponent->facilityClass];
 }
 
 void GetTrainerTowerOpponentName(u8 *dest)
 {
+    if (InBattleFactory())
+        return OrangeBoat_OpponentName(dest);
     StringCopyN(dest, sTrainerTowerOpponent->name, 11);
 }
 
 u8 GetTrainerTowerTrainerFrontSpriteId(void)
 {
+    if (InBattleFactory())
+        return OrangeBoat_OpponentPicId();
     return gFacilityClassToPicIndex[sTrainerTowerOpponent->facilityClass];
 }
 
@@ -493,6 +502,8 @@ void FreeTrainerTowerBattleStruct(void)
 
 void GetTrainerTowerOpponentWinText(u8 *dest, u8 opponentIdx)
 {
+    if (InBattleFactory())
+        return OrangeBoat_OpponentWinText(dest);
     VarSet(VAR_TEMP_3, opponentIdx);
     TrainerTowerGetOpponentTextColor(sTrainerTowerOpponent->battleType, sTrainerTowerOpponent->facilityClass);
     if (opponentIdx == 0)
@@ -503,6 +514,8 @@ void GetTrainerTowerOpponentWinText(u8 *dest, u8 opponentIdx)
 
 void GetTrainerTowerOpponentLoseText(u8 *dest, u8 opponentIdx)
 {
+    if (InBattleFactory())
+        return OrangeBoat_OpponentLoseText(dest);
     VarSet(VAR_TEMP_3, opponentIdx);
     TrainerTowerGetOpponentTextColor(sTrainerTowerOpponent->battleType, sTrainerTowerOpponent->facilityClass);
     if (opponentIdx == 0)

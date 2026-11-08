@@ -1,0 +1,119 @@
+OrangeIslands_Kinnow_BattleBoat_Arena_MapScripts::
+	.byte 0
+
+@ --- built by docs/orange-islands/build_battle_boat.py ---
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Desk::
+	lock
+	faceplayer
+	special OrangeBoat_GetLeaderName
+	goto_if_set FLAG_ORANGE_IN_FACTORY, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Resume
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Offer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Decline
+	setflag FLAG_ORANGE_IN_FACTORY
+	special SavePlayerParty
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_INIT
+	special CallBattleFactoryFunction
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_GENERATE_RENTAL_MONS
+	special CallBattleFactoryFunction
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_GENERATE_OPPONENT_MONS
+	special CallBattleFactoryFunction
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Draft, MSGBOX_DEFAULT
+	closemessage
+	fadescreen FADE_TO_BLACK
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_SWAPPED
+	special CallBattleFactoryFunction
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SELECT_RENT_MONS
+	special CallBattleFactoryFunction
+	waitstate
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Resume::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Resume, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Retire
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_PARTIES
+	setvar VAR_0x8005, 0
+	special CallBattleFactoryFunction
+	special CalculatePlayerPartyCount
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round::
+	special OrangeBoat_PrepareRound
+	call_if_eq VAR_RESULT, TRUE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AnnounceLeader
+	call_if_eq VAR_RESULT, FALSE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AnnounceRound
+	closemessage
+	playfanfare MUS_HEAL
+	waitfanfare
+	special HealPlayerParty
+	special OrangeBoat_StartBattle
+	waitstate
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_RoundWon
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Finish
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AnnounceLeader::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_LeaderRound, MSGBOX_DEFAULT
+	return
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AnnounceRound::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_NextRound, MSGBOX_DEFAULT
+	return
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_RoundWon::
+	special OrangeBoat_RoundWon
+	goto_if_eq VAR_RESULT, TRUE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Cleared
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_OPPONENT_MONS
+	special CallBattleFactoryFunction
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_RESET_HELD_ITEMS
+	special CallBattleFactoryFunction
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_GENERATE_OPPONENT_MONS
+	special CallBattleFactoryFunction
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_SwapOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
+	closemessage
+	fadescreen FADE_TO_BLACK
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SWAP_RENT_MONS
+	special CallBattleFactoryFunction
+	waitstate
+	goto_if_eq VAR_RESULT, TRUE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_SWAPPED
+	special CallBattleFactoryFunction
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Swapped, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Cleared::
+	special OrangeBoat_GetLeaderName
+	special OrangeBoat_SettleUp
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Cleared, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Close
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Finish::
+	special OrangeBoat_SettleUp
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Nothing
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Lost, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Close
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Retire::
+	special OrangeBoat_SettleUp
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Nothing
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Retired, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Close
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Nothing::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Nothing, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Close
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Decline::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Decline, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Close
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Close::
+	clearflag FLAG_ORANGE_IN_FACTORY
+	special LoadPlayerParty
+	special HealPlayerParty
+	special CalculatePlayerPartyCount
+	release
+	end
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Rules::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Rules, MSGBOX_SIGN
+	end
+@ --- end build_battle_boat.py ---
