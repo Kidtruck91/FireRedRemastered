@@ -737,8 +737,9 @@ void FillFactoryOpponentParty(void)
     u8 i, j, friendship, level, fixedIV;
     u32 otID;
     u8 challengeNum = gSaveBlock2Ptr->factory.winStreak / FACTORY_STAGES_PER_CHALLENGE;
+    // The last rented round, which is the one before the closing leader.
     bool8 lastBattle = gSaveBlock2Ptr->factory.curChallengeBattleNum
-                       >= FACTORY_STAGES_PER_CHALLENGE - 1;
+                       >= FACTORY_STAGES_PER_CHALLENGE - 2;
 
     ZeroEnemyPartyMons();
     fixedIV = GetFactoryMonFixedIV(challengeNum, lastBattle);

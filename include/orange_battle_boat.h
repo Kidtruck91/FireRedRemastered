@@ -10,6 +10,7 @@ u8 OrangeBoat_OpponentPicId(void);
 void OrangeBoat_OpponentWinText(u8 *dest);
 void OrangeBoat_OpponentLoseText(u8 *dest);
 void OrangeBoat_StartBattle(void);
+void OrangeBoat_DrawLeaders(void);
 void OrangeBoat_PrepareRound(void);
 void OrangeBoat_RoundWon(void);
 void OrangeBoat_SettleUp(void);

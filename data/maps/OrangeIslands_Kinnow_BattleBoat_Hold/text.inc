@@ -11,16 +11,17 @@ OrangeIslands_Kinnow_BattleBoat_Hold_Text_MabonAfter::
 	.string "from whoever you just beat.$"
 
 OrangeIslands_Kinnow_BattleBoat_Hold_Text_IseultIntro::
-	.string "Seven rounds. I have done six.\n"
+	.string "Eight rounds. I have done seven.\n"
 	.string "Twice.$"
 
 OrangeIslands_Kinnow_BattleBoat_Hold_Text_IseultDefeat::
-	.string "Six again, then.$"
+	.string "Seven again, then.$"
 
 OrangeIslands_Kinnow_BattleBoat_Hold_Text_IseultAfter::
-	.string "Rounds four and seven are not one\n"
-	.string "of us. The house brings in a GYM\l"
-	.string "LEADER of HOENN for those two.$"
+	.string "Rounds four and eight are not one\n"
+	.string "of us. The house draws a GYM\l"
+	.string "LEADER of HOENN for those two, and\l"
+	.string "they bring a full six.$"
 
 OrangeIslands_Kinnow_BattleBoat_Hold_Text_CrewDoor::
 	.string "Crew quarters.$"

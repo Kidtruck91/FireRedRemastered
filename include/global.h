@@ -362,15 +362,19 @@ struct BattleFactorySave
 {
     /*0x00*/ struct FactoryRentalMon rentalMons[FACTORY_RENTAL_COUNT];
     /*0x30*/ u16 trainerIds[FACTORY_STAGES_PER_CHALLENGE];
-    /*0x3E*/ u16 winStreak;
-    /*0x40*/ u16 bestWinStreak;
-    /*0x42*/ u16 rentsCount;
-    /*0x44*/ u16 curChallengeBattleNum;
-    /*0x46*/ u8 challengeStatus;
-    /*0x47*/ u8 challengePaused:1;
+    /*0x40*/ u16 winStreak;
+    /*0x42*/ u16 bestWinStreak;
+    /*0x44*/ u16 rentsCount;
+    /*0x46*/ u16 curChallengeBattleNum;
+    /*0x48*/ u8 challengeStatus;
+    /*0x49*/ u8 challengePaused:1;
              u8 disableRecordBattle:1;
              u8 winStreakActive:1;
-}; /* size = 0x48 */
+    // Which two of the eight HOENN leaders this run drew for its fourth and
+    // eighth rounds. Drawn once at the start of a run and kept here, so the
+    // pair survives saving part-way through a challenge.
+    /*0x4A*/ u8 leaders[FACTORY_LEADERS_PER_RUN];
+}; /* size = 0x4C */
 
 struct SaveBlock2
 {

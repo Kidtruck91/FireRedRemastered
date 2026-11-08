@@ -1235,7 +1235,6 @@ static const struct PoolMon sPool_Channeler_Intermediate[] =
     { .species = SPECIES_GOLBAT, .iv = 150 },
     POOL_END
 };
-
 // --- build_battle_boat.py pools ---
 // ---------------------------------------------------------------------------
 // The KINNOW battle boat. Chartered out of HOENN, crewed and patronised by

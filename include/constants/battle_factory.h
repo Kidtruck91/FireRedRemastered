@@ -11,14 +11,16 @@
 
 #define FACTORY_PARTY_SIZE            3   // how many you take into a battle
 #define FACTORY_RENTAL_COUNT          6   // how many you are offered to pick from
-#define FACTORY_STAGES_PER_CHALLENGE  7   // battles in one run before it pays out
+#define FACTORY_STAGES_PER_CHALLENGE  8   // battles in one run before it pays out
 #define FACTORY_MON_LEVEL            50
 
-// Which rounds of the seven are a HOENN GYM LEADER rather than a rented
-// frontier trainer, counting from zero. Three rounds in, then three more.
+// Which rounds of the eight are a HOENN GYM LEADER rather than a rented
+// frontier trainer, counting from zero. Three rented rounds, a leader, three
+// more, a leader.
 #define FACTORY_LEADER_ROUND_A        3   // the fourth
-#define FACTORY_LEADER_ROUND_B        6   // the seventh
+#define FACTORY_LEADER_ROUND_B        7   // the eighth
 #define FACTORY_LEADERS_PER_RUN       2
+#define FACTORY_LEADER_COUNT          8   // the eight HOENN leaders to draw from
 
 // challengeStatus
 #define FACTORY_CHALLENGE_NONE        0

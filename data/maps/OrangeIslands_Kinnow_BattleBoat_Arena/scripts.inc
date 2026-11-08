@@ -5,8 +5,9 @@ OrangeIslands_Kinnow_BattleBoat_Arena_MapScripts::
 OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Desk::
 	lock
 	faceplayer
-	special OrangeBoat_GetLeaderName
 	goto_if_set FLAG_ORANGE_IN_FACTORY, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Resume
+	special OrangeBoat_DrawLeaders
+	special OrangeBoat_GetLeaderName
 	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Offer, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Decline
 	setflag FLAG_ORANGE_IN_FACTORY
@@ -60,12 +61,12 @@ OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AnnounceRound::
 OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_RoundWon::
 	special OrangeBoat_RoundWon
 	goto_if_eq VAR_RESULT, TRUE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Cleared
-	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_OPPONENT_MONS
-	special CallBattleFactoryFunction
+	call_if_eq VAR_0x8006, FALSE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_TakeOpponentMons
 	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_RESET_HELD_ITEMS
 	special CallBattleFactoryFunction
 	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_GENERATE_OPPONENT_MONS
 	special CallBattleFactoryFunction
+	goto_if_eq VAR_0x8006, TRUE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
 	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_SwapOffer, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
 	closemessage
@@ -78,6 +79,11 @@ OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_RoundWon::
 	special CallBattleFactoryFunction
 	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Swapped, MSGBOX_DEFAULT
 	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_TakeOpponentMons::
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_OPPONENT_MONS
+	special CallBattleFactoryFunction
+	return
 
 OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Cleared::
 	special OrangeBoat_SettleUp

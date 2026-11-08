@@ -458,6 +458,7 @@ gSpecials::
 	def_special CreateEnemyEventMon
 	def_special CallBattleFactoryFunction
 	def_special OrangeBoat_StartBattle
+	def_special OrangeBoat_DrawLeaders
 	def_special OrangeBoat_PrepareRound
 	def_special OrangeBoat_RoundWon
 	def_special OrangeBoat_SettleUp
