@@ -169,7 +169,19 @@ def walkable(name):
 
 
 def splice(path, body):
+    """Replace this script's own block in a file, or append it.
+
+    A body with nothing in it writes no block and removes any it left before,
+    so a map this script has nothing to say about keeps a clean file rather
+    than collecting an empty pair of fences.
+    """
     s = open(path, encoding='utf-8').read() if os.path.exists(path) else ''
+    if not [b for b in body if b.strip()]:
+        if FENCE_TOP in s and FENCE_END in s:
+            s = (s[:s.index(FENCE_TOP)]
+                 + s[s.index(FENCE_END) + len(FENCE_END):].lstrip('\n'))
+            open(path, 'w', encoding='utf-8', newline='\n').write(s)
+        return
     block = FENCE_TOP + '\n' + '\n'.join(body).rstrip('\n') + '\n' + FENCE_END + '\n'
     if FENCE_TOP in s and FENCE_END in s:
         s = s[:s.index(FENCE_TOP)] + block + s[s.index(FENCE_END) + len(FENCE_END):].lstrip('\n')
