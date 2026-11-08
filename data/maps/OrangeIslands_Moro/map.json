@@ -580,5 +580,7 @@
       "script": "OrangeIslands_Moro_EventScript_SeaEdgeToRoute7"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

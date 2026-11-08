@@ -10,11 +10,12 @@ OrangeIslands_Route_10_EventScript_Debris::
 	end
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Kinnow
+@ Kinnow's west channel is y 2-17, and its triggers start at 3
 OrangeIslands_Route_10_EventScript_SeaEdgeToKinnow::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8005, 40
+	compare VAR_0x8005, 43
 	goto_if_lt OrangeIslands_Route_10_EventScript_SeaEdgeToKinnow_Lo
-	compare VAR_0x8005, 67
+	compare VAR_0x8005, 57
 	goto_if_gt OrangeIslands_Route_10_EventScript_SeaEdgeToKinnow_Hi
 OrangeIslands_Route_10_EventScript_SeaEdgeToKinnow_Go:
 	subvar VAR_0x8005, 40
@@ -23,10 +24,10 @@ OrangeIslands_Route_10_EventScript_SeaEdgeToKinnow_Go:
 	waitstate
 	end
 OrangeIslands_Route_10_EventScript_SeaEdgeToKinnow_Lo:
-	setvar VAR_0x8005, 40
+	setvar VAR_0x8005, 43
 	goto OrangeIslands_Route_10_EventScript_SeaEdgeToKinnow_Go
 OrangeIslands_Route_10_EventScript_SeaEdgeToKinnow_Hi:
-	setvar VAR_0x8005, 67
+	setvar VAR_0x8005, 57
 	goto OrangeIslands_Route_10_EventScript_SeaEdgeToKinnow_Go
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Route 17

@@ -277,51 +277,6 @@
     },
     {
       "type": "trigger",
-      "x": 71,
-      "y": 63,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8"
-    },
-    {
-      "type": "trigger",
-      "x": 71,
-      "y": 64,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 0,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 1,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10"
-    },
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 2,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10"
-    },
-    {
-      "type": "trigger",
       "x": 0,
       "y": 3,
       "elevation": 0,
@@ -778,7 +733,18 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute9"
+    },
+    {
+      "type": "trigger",
+      "x": 71,
+      "y": 63,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

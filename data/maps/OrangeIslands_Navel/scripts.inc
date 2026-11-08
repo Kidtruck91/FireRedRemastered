@@ -184,21 +184,22 @@ OrangeIslands_Navel_Text_RockSmashTipHave::
 	.string "just a puzzle.$"
 
 @ west of the stretch Route 5 uses
+@ Navel west, open y 54-61 <-> Route 9 east, open y 106-113
 OrangeIslands_Navel_EventScript_SeaEdgeToRoute9::
-	getplayerxy VAR_0x8005, VAR_0x8004
-	compare VAR_0x8005, 2
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8005, 54
 	goto_if_lt OrangeIslands_Navel_EventScript_SeaEdgeToRoute9_Lo
-	compare VAR_0x8005, 9
+	compare VAR_0x8005, 61
 	goto_if_gt OrangeIslands_Navel_EventScript_SeaEdgeToRoute9_Hi
 OrangeIslands_Navel_EventScript_SeaEdgeToRoute9_Go:
-	addvar VAR_0x8005, 104
+	addvar VAR_0x8005, 52
 	setvar VAR_0x8004, 50
 	warp MAP_ORANGE_ISLANDS_ROUTE_9, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
 OrangeIslands_Navel_EventScript_SeaEdgeToRoute9_Lo:
-	setvar VAR_0x8005, 2
+	setvar VAR_0x8005, 54
 	goto OrangeIslands_Navel_EventScript_SeaEdgeToRoute9_Go
 OrangeIslands_Navel_EventScript_SeaEdgeToRoute9_Hi:
-	setvar VAR_0x8005, 9
+	setvar VAR_0x8005, 61
 	goto OrangeIslands_Navel_EventScript_SeaEdgeToRoute9_Go

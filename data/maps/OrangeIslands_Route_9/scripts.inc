@@ -54,21 +54,22 @@ OrangeIslands_Route_9_EventScript_SeaEdgeToKinnow_Hi:
 	goto OrangeIslands_Route_9_EventScript_SeaEdgeToKinnow_Go
 
 @ Navel's south-west corner; Route 5 has x 23-66 of that coast.
+@ the return of the crossing above
 OrangeIslands_Route_9_EventScript_SeaEdgeToNavel::
-	getplayerxy VAR_0x8005, VAR_0x8004
-	compare VAR_0x8004, 106
+	getplayerxy VAR_0x8004, VAR_0x8005
+	compare VAR_0x8005, 106
 	goto_if_lt OrangeIslands_Route_9_EventScript_SeaEdgeToNavel_Lo
-	compare VAR_0x8004, 113
+	compare VAR_0x8005, 113
 	goto_if_gt OrangeIslands_Route_9_EventScript_SeaEdgeToNavel_Hi
 OrangeIslands_Route_9_EventScript_SeaEdgeToNavel_Go:
-	subvar VAR_0x8004, 104
-	setvar VAR_0x8005, 63
+	subvar VAR_0x8005, 52
+	setvar VAR_0x8004, 1
 	warp MAP_ORANGE_ISLANDS_NAVEL, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
 OrangeIslands_Route_9_EventScript_SeaEdgeToNavel_Lo:
-	setvar VAR_0x8004, 106
+	setvar VAR_0x8005, 106
 	goto OrangeIslands_Route_9_EventScript_SeaEdgeToNavel_Go
 OrangeIslands_Route_9_EventScript_SeaEdgeToNavel_Hi:
-	setvar VAR_0x8004, 113
+	setvar VAR_0x8005, 113
 	goto OrangeIslands_Route_9_EventScript_SeaEdgeToNavel_Go

@@ -10,11 +10,12 @@ OrangeIslands_Kinnow_EventScript_Town::
 	end
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Route 8
+@ the return of the crossing above
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8005, 47
+	compare VAR_0x8005, 48
 	goto_if_lt OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8_Lo
-	compare VAR_0x8005, 64
+	compare VAR_0x8005, 63
 	goto_if_gt OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8_Hi
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8_Go:
 	subvar VAR_0x8005, 46
@@ -23,16 +24,17 @@ OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8_Go:
 	waitstate
 	end
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8_Lo:
-	setvar VAR_0x8005, 47
+	setvar VAR_0x8005, 48
 	goto OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8_Go
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8_Hi:
-	setvar VAR_0x8005, 64
+	setvar VAR_0x8005, 63
 	goto OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8_Go
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Route 10
+@ the return of the crossing above
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8005, 0
+	compare VAR_0x8005, 3
 	goto_if_lt OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Lo
 	compare VAR_0x8005, 17
 	goto_if_gt OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Hi
@@ -43,7 +45,7 @@ OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Go:
 	waitstate
 	end
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Lo:
-	setvar VAR_0x8005, 0
+	setvar VAR_0x8005, 3
 	goto OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Go
 OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute10_Hi:
 	setvar VAR_0x8005, 17

@@ -34,11 +34,12 @@ OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Hi:
 	goto OrangeIslands_Route_8_EventScript_SeaEdgeToMandarinSouth_Go
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Kinnow
+@ Kinnow's east channel is y 47-63; Route 8's own is y 2-19
 OrangeIslands_Route_8_EventScript_SeaEdgeToKinnow::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8005, 0
+	compare VAR_0x8005, 2
 	goto_if_lt OrangeIslands_Route_8_EventScript_SeaEdgeToKinnow_Lo
-	compare VAR_0x8005, 19
+	compare VAR_0x8005, 17
 	goto_if_gt OrangeIslands_Route_8_EventScript_SeaEdgeToKinnow_Hi
 OrangeIslands_Route_8_EventScript_SeaEdgeToKinnow_Go:
 	addvar VAR_0x8005, 46
@@ -47,10 +48,10 @@ OrangeIslands_Route_8_EventScript_SeaEdgeToKinnow_Go:
 	waitstate
 	end
 OrangeIslands_Route_8_EventScript_SeaEdgeToKinnow_Lo:
-	setvar VAR_0x8005, 0
+	setvar VAR_0x8005, 2
 	goto OrangeIslands_Route_8_EventScript_SeaEdgeToKinnow_Go
 OrangeIslands_Route_8_EventScript_SeaEdgeToKinnow_Hi:
-	setvar VAR_0x8005, 19
+	setvar VAR_0x8005, 17
 	goto OrangeIslands_Route_8_EventScript_SeaEdgeToKinnow_Go
 
 @ ---- Orange Islands trainers (orange_route_trainers.py) ----

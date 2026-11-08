@@ -29,7 +29,10 @@ So two passes, and the difference between them is deliberate:
                of them on the mouths of its sea crossings, so the fixture now
                fails the moment one is walled up.
 
-    python3 docs/orange-islands/repair_landmark_fixtures.py --repair --redraw
+Name maps after the flags to work on only those, which is what you want after
+editing a handful of them rather than taking on every stale fixture at once.
+
+    python3 docs/orange-islands/repair_landmark_fixtures.py --repair Moro
 """
 import json
 import os
@@ -143,22 +146,37 @@ def redraw(layout, surf):
 
 
 def repair(layout, surf, start, goals):
-    """Move an unwalkable start, keeping every goal exactly where it is.
+    """Move an unwalkable start and any goal that is now solid ground.
 
     The new start goes in whichever region holds the most of the existing
     goals, so the fixture keeps checking what its author meant it to check.
+
+    A goal gets the same treatment only when it is standing on solid ground,
+    because such a goal is not a place any more and can never be reached from
+    anywhere; it slides to the nearest cell of the start's region, which keeps
+    it pointing at the same part of the map. A goal that is walkable but in
+    another region is left exactly where it is: that one is the checker doing
+    its job -- an edit cut something off -- and moving it would throw the
+    finding away.
     """
     walk, regions = terrain(layout, surf)
-    if walk(*start):
-        return None
     want = {tuple(g) for g in goals}
+    stranded = [g for g in want if not walk(*g)]
+    if walk(*start) and not stranded:
+        return None
     best = max(regions, key=lambda r: (len(r & want), len(r)))
-    return list(middle(best)), len(best & want), len(want)
+    fresh = list(middle(best)) if not walk(*start) else list(start)
+    moved = {}
+    for g in stranded:
+        moved[g] = min(best, key=lambda p: (p[0] - g[0]) ** 2 + (p[1] - g[1]) ** 2)
+    out = [list(moved.get(tuple(g), tuple(g))) for g in goals]
+    return fresh, out, moved, len(best & want), len(want)
 
 
 def main():
     do_repair = '--repair' in sys.argv
     do_redraw = '--redraw' in sys.argv
+    only = {a for a in sys.argv[1:] if not a.startswith('--')}
     if not (do_repair or do_redraw):
         sys.exit(__doc__)
     layouts, maps = layouts_and_maps()
@@ -167,6 +185,8 @@ def main():
 
     if do_redraw:
         for suffix, surf in sorted(REDRAW.items()):
+            if only and suffix not in only:
+                continue
             layout = layouts[maps['OrangeIslands_' + suffix]['layout']]
             start, goals, size = redraw(layout, surf)
             if book.get(suffix) == [start, goals, surf]:
@@ -179,6 +199,8 @@ def main():
 
     if do_repair:
         for suffix in sorted(book):
+            if only and suffix not in only:
+                continue
             if do_redraw and suffix in REDRAW:
                 continue
             name = 'OrangeIslands_' + suffix
@@ -189,18 +211,22 @@ def main():
             moved = repair(layouts[maps[name]['layout']], surf, tuple(start), goals)
             if moved is None:
                 continue
-            fresh, held, total = moved
-            book[suffix] = [fresh, goals, surf]
+            fresh, fresh_goals, slid, held, total = moved
+            book[suffix] = [fresh, fresh_goals, surf]
             changed = True
-            print('  moved    %-16s start (%d,%d) -> (%d,%d), the region holding %d of its %d goals'
-                  % (suffix, start[0], start[1], fresh[0], fresh[1], held, total))
+            if list(fresh) != list(start):
+                print('  moved    %-16s start (%d,%d) -> (%d,%d), the region holding %d of its %d goals'
+                      % (suffix, start[0], start[1], fresh[0], fresh[1], held, total))
+            for was, now in sorted(slid.items()):
+                print('  slid     %-16s goal (%d,%d) was standing on solid ground -> (%d,%d)'
+                      % (suffix, was[0], was[1], now[0], now[1]))
 
     if changed:
         with open(FIXTURES, 'w', newline='\n') as f:
             json.dump(book, f, indent=1)
             f.write('\n')
     else:
-        print('  every fixture already stands on its own terrain')
+        print('  every fixture asked for already stands on its own terrain')
 
 
 if __name__ == '__main__':
