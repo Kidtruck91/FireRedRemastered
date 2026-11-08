@@ -1,0 +1,11 @@
+OrangeIslands_Sunburst_House1_MapScripts::
+	.byte 0
+
+OrangeIslands_Sunburst_House1_EventScript_Quarryman::
+	msgbox OrangeIslands_Sunburst_House1_Text_Quarryman, MSGBOX_NPC
+	end
+
+OrangeIslands_Sunburst_House1_EventScript_Daughter::
+	msgbox OrangeIslands_Sunburst_House1_Text_Daughter, MSGBOX_NPC
+	end
+

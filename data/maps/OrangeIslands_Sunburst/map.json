@@ -90,6 +90,76 @@
       "trainer_sight_or_berry_tree_id": "4",
       "script": "OrangeIslands_Sunburst_EventScript_OrangeChris",
       "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "x": 24,
+      "y": 26,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Sunburst_EventScript_Man",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "x": 43,
+      "y": 27,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Sunburst_EventScript_Girl",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
+      "x": 20,
+      "y": 34,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Sunburst_EventScript_OldWoman",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "x": 37,
+      "y": 35,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Sunburst_EventScript_Youngster",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
+      "x": 30,
+      "y": 44,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OrangeIslands_Sunburst_EventScript_Boy",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -112,6 +182,34 @@
       "y": 6,
       "elevation": 3,
       "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_BEACH",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_MART",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 39,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_GLASSWORKS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 27,
+      "y": 41,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_CRYSTALSTATION",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 36,
+      "y": 41,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_HOUSE1",
       "dest_warp_id": "0"
     }
   ],

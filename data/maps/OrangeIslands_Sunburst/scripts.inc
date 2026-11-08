@@ -110,3 +110,24 @@ OrangeIslands_Sunburst_Text_OrangeChrisPostBattle::
 	.string "I swim between the islands\n"
 	.string "every morning.$"
 
+@ --- built by docs/orange-islands/build_sunburst_town.py ---
+OrangeIslands_Sunburst_EventScript_Man::
+	msgbox OrangeIslands_Sunburst_Text_Man, MSGBOX_NPC
+	end
+
+OrangeIslands_Sunburst_EventScript_Girl::
+	msgbox OrangeIslands_Sunburst_Text_Girl, MSGBOX_NPC
+	end
+
+OrangeIslands_Sunburst_EventScript_OldWoman::
+	msgbox OrangeIslands_Sunburst_Text_OldWoman, MSGBOX_NPC
+	end
+
+OrangeIslands_Sunburst_EventScript_Youngster::
+	msgbox OrangeIslands_Sunburst_Text_Youngster, MSGBOX_NPC
+	end
+
+OrangeIslands_Sunburst_EventScript_Boy::
+	msgbox OrangeIslands_Sunburst_Text_Boy, MSGBOX_NPC
+	end
+@ --- end build_sunburst_town.py ---

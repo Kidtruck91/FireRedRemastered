@@ -1,0 +1,11 @@
+OrangeIslands_Sunburst_Glassworks_MapScripts::
+	.byte 0
+
+OrangeIslands_Sunburst_Glassworks_EventScript_Glassblower::
+	msgbox OrangeIslands_Sunburst_Glassworks_Text_Glassblower, MSGBOX_NPC
+	end
+
+OrangeIslands_Sunburst_Glassworks_EventScript_Daughter::
+	msgbox OrangeIslands_Sunburst_Glassworks_Text_Daughter, MSGBOX_NPC
+	end
+

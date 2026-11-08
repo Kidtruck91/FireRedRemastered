@@ -888,7 +888,11 @@
     "OrangeIslands_Sunburst_Cave_2F",
     "OrangeIsland_Sunburst_Cave_3F",
     "OrangeIslands_Sunburst_PokemonCenter_1F",
-    "OrangeIslands_Sunburst_PokemonCenter_2F"
+    "OrangeIslands_Sunburst_PokemonCenter_2F",
+    "OrangeIslands_Sunburst_Mart",
+    "OrangeIslands_Sunburst_Glassworks",
+    "OrangeIslands_Sunburst_CrystalStation",
+    "OrangeIslands_Sunburst_House1"
   ],
   "gMapGroup_Orange_Moro_Interior": [
     "OrangeIslands_Moro_GhostShip",

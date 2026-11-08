@@ -1,0 +1,15 @@
+OrangeIslands_Sunburst_CrystalStation_MapScripts::
+	.byte 0
+
+OrangeIslands_Sunburst_CrystalStation_EventScript_Researcher::
+	msgbox OrangeIslands_Sunburst_CrystalStation_Text_Researcher, MSGBOX_NPC
+	end
+
+OrangeIslands_Sunburst_CrystalStation_EventScript_Assistant::
+	msgbox OrangeIslands_Sunburst_CrystalStation_Text_Assistant, MSGBOX_NPC
+	end
+
+OrangeIslands_Sunburst_CrystalStation_EventScript_Intern::
+	msgbox OrangeIslands_Sunburst_CrystalStation_Text_Intern, MSGBOX_NPC
+	end
+
