@@ -119,6 +119,7 @@
 	.include "src/dynamic_placeholder_text_util.o"
 	.include "src/berry_pouch.o"
 	.include "src/slot_machine.o"
+	.include "src/battle_factory_data.o"
 	.include "src/roulette.o"
 	.include "src/voltorb_flip.o"
 	.include "src/roamer.o"
