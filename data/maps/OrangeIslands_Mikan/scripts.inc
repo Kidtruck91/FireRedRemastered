@@ -130,6 +130,10 @@ OrangeIslands_Mikan_EventScript_OldWoman::
 	msgbox OrangeIslands_Mikan_Text_OldWoman, MSGBOX_NPC
 	end
 
+OrangeIslands_Mikan_EventScript_Hiker::
+	msgbox OrangeIslands_Mikan_Text_Hiker, MSGBOX_NPC
+	end
+
 OrangeIslands_Mikan_EventScript_Boy::
 	msgbox OrangeIslands_Mikan_Text_Boy, MSGBOX_NPC
 	end

@@ -132,6 +132,15 @@ TOWN_PEOPLE = [
     ('OBJ_EVENT_GFX_OLD_WOMAN', 14, 48, 'MOVEMENT_TYPE_FACE_RIGHT', 'OldWoman',
      ['"The orchards to the south grow\\n"', '"the fruit the island is named\\l"',
       '"for. Mind the trainers in them.$"']),
+    # The island's one piece of hard intel. Sunburst is three hops from
+    # Valencia and Mikan is ten, so the cave he is pointing at is somewhere the
+    # player has already walked past, and GEODUDE and ONIX really are in it.
+    ('OBJ_EVENT_GFX_HIKER', 22, 42, 'MOVEMENT_TYPE_FACE_DOWN', 'Hiker',
+     ['"Came over from SUNBURST. There is\\n"', '"a cave on that island packed with\\l"',
+      '"GEODUDE and ONIX.\\p"',
+      '"Worth the trip before you take on\\n"', '"CISSY. A GROUND type walks\\l"',
+      '"straight through an electric\\l"', '"attack.\\p"',
+      '"Thought you might want that in\\n"', '"your pocket.$"']),
     ('OBJ_EVENT_GFX_LITTLE_BOY', 33, 57, 'MOVEMENT_TYPE_WANDER_AROUND', 'Boy',
      ['"I am going to be in the ORANGE\\n"', '"CREW. You have to beat all four\\l"',
       '"gyms first. I have beaten none.$"']),

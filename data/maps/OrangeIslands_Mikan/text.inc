@@ -33,6 +33,17 @@ OrangeIslands_Mikan_Text_OldWoman::
 	.string "the fruit the island is named\l"
 	.string "for. Mind the trainers in them.$"
 
+OrangeIslands_Mikan_Text_Hiker::
+	.string "Came over from SUNBURST. There is\n"
+	.string "a cave on that island packed with\l"
+	.string "GEODUDE and ONIX.\p"
+	.string "Worth the trip before you take on\n"
+	.string "CISSY. A GROUND type walks\l"
+	.string "straight through an electric\l"
+	.string "attack.\p"
+	.string "Thought you might want that in\n"
+	.string "your pocket.$"
+
 OrangeIslands_Mikan_Text_Boy::
 	.string "I am going to be in the ORANGE\n"
 	.string "CREW. You have to beat all four\l"
