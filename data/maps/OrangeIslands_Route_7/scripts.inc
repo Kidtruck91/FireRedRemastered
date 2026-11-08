@@ -10,11 +10,12 @@ OrangeIslands_Route_7_EventScript_South::
 	end
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Sunburst
+@ the return of the crossing above
 OrangeIslands_Route_7_EventScript_SeaEdgeToSunburst::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8004, 6
+	compare VAR_0x8004, 56
 	goto_if_lt OrangeIslands_Route_7_EventScript_SeaEdgeToSunburst_Lo
-	compare VAR_0x8004, 69
+	compare VAR_0x8004, 65
 	goto_if_gt OrangeIslands_Route_7_EventScript_SeaEdgeToSunburst_Hi
 OrangeIslands_Route_7_EventScript_SeaEdgeToSunburst_Go:
 	subvar VAR_0x8004, 6
@@ -23,10 +24,10 @@ OrangeIslands_Route_7_EventScript_SeaEdgeToSunburst_Go:
 	waitstate
 	end
 OrangeIslands_Route_7_EventScript_SeaEdgeToSunburst_Lo:
-	setvar VAR_0x8004, 6
+	setvar VAR_0x8004, 56
 	goto OrangeIslands_Route_7_EventScript_SeaEdgeToSunburst_Go
 OrangeIslands_Route_7_EventScript_SeaEdgeToSunburst_Hi:
-	setvar VAR_0x8004, 69
+	setvar VAR_0x8004, 65
 	goto OrangeIslands_Route_7_EventScript_SeaEdgeToSunburst_Go
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Moro

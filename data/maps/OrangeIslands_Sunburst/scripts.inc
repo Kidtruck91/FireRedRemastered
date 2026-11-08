@@ -10,23 +10,24 @@ OrangeIslands_Sunburst_EventScript_Town::
 	end
 
 @ Sea edge: any surfable cell on this edge, landing at the matching spot on Route 7
+@ SUNBURST north x 50-59 <-> ROUTE 7's east channel, row 87
 OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7::
 	getplayerxy VAR_0x8004, VAR_0x8005
-	compare VAR_0x8004, 2
+	compare VAR_0x8004, 50
 	goto_if_lt OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Lo
-	compare VAR_0x8004, 60
+	compare VAR_0x8004, 59
 	goto_if_gt OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Hi
 OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Go:
 	addvar VAR_0x8004, 6
-	setvar VAR_0x8005, 86
+	setvar VAR_0x8005, 87
 	warp MAP_ORANGE_ISLANDS_ROUTE_7, VAR_0x8004, VAR_0x8005
 	waitstate
 	end
 OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Lo:
-	setvar VAR_0x8004, 2
+	setvar VAR_0x8004, 50
 	goto OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Go
 OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Hi:
-	setvar VAR_0x8004, 60
+	setvar VAR_0x8004, 59
 	goto OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7_Go
 
 @ ---- Orange Islands trainers (orange_route_trainers.py) ----
