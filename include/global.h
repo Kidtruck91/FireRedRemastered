@@ -362,19 +362,24 @@ struct BattleFactorySave
 {
     /*0x00*/ struct FactoryRentalMon rentalMons[FACTORY_RENTAL_COUNT];
     /*0x30*/ u16 trainerIds[FACTORY_STAGES_PER_CHALLENGE];
-    /*0x40*/ u16 winStreak;
-    /*0x42*/ u16 bestWinStreak;
-    /*0x44*/ u16 rentsCount;
-    /*0x46*/ u16 curChallengeBattleNum;
-    /*0x48*/ u8 challengeStatus;
-    /*0x49*/ u8 challengePaused:1;
+    /*0x68*/ u16 winStreak;
+    /*0x6A*/ u16 bestWinStreak;
+    /*0x6C*/ u16 rentsCount;
+    /*0x6E*/ u16 curChallengeBattleNum;
+    /*0x70*/ u8 challengeStatus;
+    /*0x71*/ u8 challengePaused:1;
              u8 disableRecordBattle:1;
              u8 winStreakActive:1;
-    // Which two of the eight HOENN leaders this run drew for its fourth and
-    // eighth rounds. Drawn once at the start of a run and kept here, so the
-    // pair survives saving part-way through a challenge.
-    /*0x4A*/ u8 leaders[FACTORY_LEADERS_PER_RUN];
-}; /* size = 0x4C */
+    // Which of HOENN's eight leaders this run drew, one per leader round, in
+    // the order they are met. Drawn once at the start of a run and kept here,
+    // so the draw survives a challenge saved part-way through.
+    /*0x72*/ u8 leaders[FACTORY_LEADERS_PER_RUN];
+    // You draft three and can grow to six by taking one POKEMON off each
+    // rented team you beat. These are the ones taken, kept so a challenge
+    // saved part-way through comes back with the same team.
+    /*0x79*/ u8 spoilCount;
+    /*0x7C*/ struct FactoryRentalMon spoils[FACTORY_MAX_SPOILS];
+}; /* size = 0x94 */
 
 struct SaveBlock2
 {

@@ -120,6 +120,7 @@
 	.include "src/berry_pouch.o"
 	.include "src/slot_machine.o"
 	.include "src/battle_factory_data.o"
+	.include "src/orange_battle_boat.o"
 	.include "src/battle_factory_screen.o"
 	.include "src/roulette.o"
 	.include "src/voltorb_flip.o"

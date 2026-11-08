@@ -20,6 +20,7 @@
 #include "constants/abilities.h"
 #include "constants/menu.h"
 #include "constants/pokemon.h"
+#include "orange_battle_boat.h"
 
 #define GFXTAG_FOSSIL 7000
 
@@ -596,9 +597,16 @@ static const struct MenuAction sMultichoiceList_TrovitaQuiz6B[] = {
     { gItems[ITEM_ASPEAR_BERRY].name },
 };
 
+static const struct MenuAction sMultichoiceList_BoatSpoils[] = {
+    { (const u8 *)gBoatSpoilNames[0] },
+    { (const u8 *)gBoatSpoilNames[1] },
+    { (const u8 *)gBoatSpoilNames[2] },
+};
+
 static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_YES_NO]                                     = MULTICHOICE(sMultichoiceList_YesNo),
     [MULTICHOICE_KINNOW_MASSAGE]                             = MULTICHOICE(sMultichoiceList_KinnowMassage),
+    [MULTICHOICE_BOAT_SPOILS]                                = MULTICHOICE(sMultichoiceList_BoatSpoils),
     [MULTICHOICE_EEVEELUTIONS]                               = MULTICHOICE(sMultichoiceList_Eeveelutions),
     [MULTICHOICE_TRAINER_CARD_ICON_TINT]                     = MULTICHOICE(sMultichoiceList_TrainerCardIconTint),
     [MULTICHOICE_HOF_QUIT]                                   = MULTICHOICE(sMultichoiceList_HOF_Quit),

@@ -14,6 +14,14 @@ void OrangeBoat_DrawLeaders(void);
 void OrangeBoat_PrepareRound(void);
 void OrangeBoat_RoundWon(void);
 void OrangeBoat_SettleUp(void);
+void OrangeBoat_QuoteRetirement(void);
 void OrangeBoat_GetLeaderName(void);
+
+void OrangeBoat_OfferSpoils(void);
+void OrangeBoat_TakeSpoil(void);
+void OrangeBoat_RestoreSpoils(void);
+
+// The three names the MULTICHOICE_BOAT_SPOILS menu points at.
+extern u8 gBoatSpoilNames[][POKEMON_NAME_LENGTH + 1];
 
 #endif // GUARD_ORANGE_BATTLE_BOAT_H

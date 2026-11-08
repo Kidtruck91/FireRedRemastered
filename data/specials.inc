@@ -462,6 +462,10 @@ gSpecials::
 	def_special OrangeBoat_PrepareRound
 	def_special OrangeBoat_RoundWon
 	def_special OrangeBoat_SettleUp
+	def_special OrangeBoat_QuoteRetirement
+	def_special OrangeBoat_OfferSpoils
+	def_special OrangeBoat_TakeSpoil
+	def_special OrangeBoat_RestoreSpoils
 	def_special OrangeBoat_GetLeaderName
 	
 gSpecialsEnd::

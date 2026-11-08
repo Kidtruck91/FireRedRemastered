@@ -10,6 +10,7 @@
 #include "overworld.h"
 #include "random.h"
 #include "task.h"
+#include "data.h"
 #include "constants/battle_factory.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -30,15 +31,18 @@
 // OrangeBoat_StartBattle is DoTrainerTowerBattle with the tower's party build
 // swapped for the factory's.
 //
-// Rounds four and eight are GYM LEADERS.  Three rented rounds, a leader,
-// three more, a leader. Those two are HOENN leaders with full six-strong
-// teams of their own type at level fifty, and they do not use rental POKEMON
-// -- that is the point of those rounds. The pair is drawn at random when the
-// run starts, never the same leader twice in one run, and kept in the save so
-// it survives a challenge saved part-way through.
+// Every fourth round is a GYM LEADER.  Three rented rounds, then a leader,
+// seven times over: twenty-eight battles for a full run. A leader brings a
+// full six of their own type at level fifty and does not use rental POKEMON
+// -- that is the point of those rounds. The seven are drawn at random when
+// the run starts, never the same leader twice, so one of HOENN's eight sits
+// out each time; the draw is kept in the save so it survives a challenge
+// saved part-way through.
 //
-// The house pays by depth.  A purse per round cleared, and a bonus on top for
-// each leader taken down.
+// The house pays by depth.  A purse per round cleared and a bonus for each
+// leader taken down, and you can walk away at the desk between rounds for
+// three quarters of what you have earned. Losing pays half. So stopping
+// always beats being stopped, and neither beats going on.
 //
 // Because the battle runs on the TRAINER TOWER's battle type, the five places
 // battle_message.c and battle_controller_opponent.c ask the tower who it is
@@ -167,18 +171,29 @@ static const u8 sText_HouseWin[] = _("The house keeps the round.");
 static const u8 sText_HouseLose[] = _("Yours. Pick one of mine on the way out.");
 
 // What the house pays per round survived, and what it adds for the leader.
-#define PURSE_PER_ROUND  600
+#define PURSE_PER_ROUND   400
 #define PURSE_LEADER     2500
+#define PURSE_RETIRED_NUM   3   // three quarters for walking away,
+#define PURSE_LOST_NUM      1   // a half for being carried out
+#define PURSE_DEN           4
 
+// The last round of each block of four.
 bool8 OrangeBoat_IsLeaderRound(void)
 {
-    u8 round = gSaveBlock2Ptr->factory.curChallengeBattleNum;
+    return gSaveBlock2Ptr->factory.curChallengeBattleNum % FACTORY_ROUNDS_PER_BLOCK
+           == FACTORY_ROUNDS_PER_BLOCK - 1;
+}
 
-    return round == FACTORY_LEADER_ROUND_A || round == FACTORY_LEADER_ROUND_B;
+// How many leaders are behind you once `cleared` rounds are won.
+static u8 LeadersBeaten(u32 cleared)
+{
+    return cleared / FACTORY_ROUNDS_PER_BLOCK;
 }
 
 static const struct BoatLeader *LeaderForSlot(u8 slot)
 {
+    if (slot >= FACTORY_LEADERS_PER_RUN)
+        slot = FACTORY_LEADERS_PER_RUN - 1;
     return &sBoatLeaders[gSaveBlock2Ptr->factory.leaders[slot] % LEADER_COUNT];
 }
 
@@ -188,6 +203,9 @@ static const struct BoatLeader *LeaderForSlot(u8 slot)
 void OrangeBoat_DrawLeaders(void)
 {
     u8 i, j;
+
+    // Drawn once per run, so this is also where a new run starts empty-handed.
+    gSaveBlock2Ptr->factory.spoilCount = 0;
 
     for (i = 0; i < FACTORY_LEADERS_PER_RUN; i++)
     {
@@ -209,7 +227,7 @@ void OrangeBoat_DrawLeaders(void)
 static const struct BoatLeader *CurrentLeader(void)
 {
     return LeaderForSlot(gSaveBlock2Ptr->factory.curChallengeBattleNum
-                         > FACTORY_LEADER_ROUND_A ? 1 : 0);
+                         / FACTORY_ROUNDS_PER_BLOCK);
 }
 
 // The five questions the battle asks the TRAINER TOWER, answered for the boat.
@@ -305,7 +323,7 @@ void OrangeBoat_PrepareRound(void)
 {
     ConvertIntToDecimalStringN(gStringVar3,
                                gSaveBlock2Ptr->factory.curChallengeBattleNum + 1,
-                               STR_CONV_MODE_LEFT_ALIGN, 1);
+                               STR_CONV_MODE_LEFT_ALIGN, 2);
     StringCopy(gStringVar2, CurrentLeader()->name);
     gSpecialVar_Result = OrangeBoat_IsLeaderRound();
 }
@@ -339,22 +357,30 @@ void OrangeBoat_SettleUp(void)
 {
     u32 cleared = gSaveBlock2Ptr->factory.curChallengeBattleNum;
     u32 purse;
+    bool8 finished;
 
     if (cleared > FACTORY_STAGES_PER_CHALLENGE)
         cleared = FACTORY_STAGES_PER_CHALLENGE;
-    purse = cleared * PURSE_PER_ROUND;
-    if (cleared > FACTORY_LEADER_ROUND_A)
-        purse += PURSE_LEADER;
-    if (cleared > FACTORY_LEADER_ROUND_B)
-        purse += PURSE_LEADER;
+    finished = (cleared == FACTORY_STAGES_PER_CHALLENGE);
+
+    purse = cleared * PURSE_PER_ROUND + LeadersBeaten(cleared) * PURSE_LEADER;
+
+    // How the run ended decides what fraction of that is paid. The script
+    // puts TRUE in VAR_0x8005 when the player walked away at the desk.
+    if (!finished)
+    {
+        u32 num = gSpecialVar_0x8005 ? PURSE_RETIRED_NUM : PURSE_LOST_NUM;
+
+        purse = purse * num / PURSE_DEN;
+    }
 
     if (purse != 0)
         AddMoney(&gSaveBlock1Ptr->money, purse);
     ConvertIntToDecimalStringN(gStringVar1, purse, STR_CONV_MODE_LEFT_ALIGN, 6);
-    ConvertIntToDecimalStringN(gStringVar3, cleared, STR_CONV_MODE_LEFT_ALIGN, 1);
+    ConvertIntToDecimalStringN(gStringVar3, cleared, STR_CONV_MODE_LEFT_ALIGN, 2);
     gSpecialVar_Result = (purse != 0);
 
-    if (cleared < FACTORY_STAGES_PER_CHALLENGE)
+    if (!finished)
     {
         gSaveBlock2Ptr->factory.winStreak = 0;
         gSaveBlock2Ptr->factory.winStreakActive = FALSE;
@@ -366,13 +392,112 @@ void OrangeBoat_SettleUp(void)
     gSaveBlock2Ptr->factory.curChallengeBattleNum = 0;
     gSaveBlock2Ptr->factory.challengeStatus = FACTORY_CHALLENGE_NONE;
     gSaveBlock2Ptr->factory.rentsCount = 0;
+    gSaveBlock2Ptr->factory.spoilCount = 0;
 }
 
-// The two leaders this run would put in rounds four and seven, for the desk
-// to name before you pay your entry.
+// Growing the team.
+//
+// Emerald's factory hands you three and keeps you at three: after each win
+// the swap screen trades one of yours for one you have just beaten. Here the
+// first three wins add instead -- you take one POKEMON off each rented team
+// you beat, up to six -- and the swap only starts once the team is full.
+//
+// Drafting six at the desk would have been the other way to do it, but both
+// factory screens lay their rows out for three: the chosen-mon row sits at
+// x = i * 72 + 16 and the swap screen's balls at i * 48 + 72, so the fourth
+// of either is off the right of a 240-pixel screen. Growing the team needs no
+// new screen at all -- the three names go into a multichoice.
+
+EWRAM_DATA u8 gBoatSpoilNames[FACTORY_PARTY_SIZE][POKEMON_NAME_LENGTH + 1] = {};
+
+// The team you just beat, as rental entries. SET_OPPONENT_MONS puts them in
+// the back half of rentalMons, which is where the swap screen reads them too.
+static struct FactoryRentalMon *BeatenMon(u8 i)
+{
+    return &gSaveBlock2Ptr->factory.rentalMons[i + FACTORY_PARTY_SIZE];
+}
+
+static void BuildSpoilMon(struct Pokemon *dest, const struct FactoryRentalMon *rental)
+{
+    const struct FacilityMon *src = &gFacilityTrainerMons[rental->monId];
+    u8 friendship = 0;
+    u8 j;
+
+    CreateMonWithEVSpreadNatureOTID(dest, src->species, FACTORY_MON_LEVEL,
+                                    src->nature, rental->ivs, src->evSpread,
+                                    T1_READ_32(gSaveBlock2Ptr->playerTrainerId));
+    for (j = 0; j < MAX_MON_MOVES; j++)
+        SetMonMoveAvoidReturn(dest, src->moves[j], j);
+    SetMonData(dest, MON_DATA_FRIENDSHIP, &friendship);
+    SetMonData(dest, MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[src->itemTableId]);
+    SetMonData(dest, MON_DATA_ABILITY_NUM, &rental->abilityNum);
+}
+
+// Is there room, and if so what are the three called. VAR_RESULT comes back
+// TRUE when the menu is worth opening.
+void OrangeBoat_OfferSpoils(void)
+{
+    u8 i;
+
+    if (gSaveBlock2Ptr->factory.spoilCount >= FACTORY_MAX_SPOILS)
+    {
+        gSpecialVar_Result = FALSE;
+        return;
+    }
+    for (i = 0; i < FACTORY_PARTY_SIZE; i++)
+        StringCopy(gBoatSpoilNames[i],
+                   gSpeciesNames[gFacilityTrainerMons[BeatenMon(i)->monId].species]);
+    gSpecialVar_Result = TRUE;
+}
+
+// VAR_RESULT holds which of the three the player picked.
+void OrangeBoat_TakeSpoil(void)
+{
+    u8 slot = gSaveBlock2Ptr->factory.spoilCount;
+    u8 picked = gSpecialVar_Result;
+
+    if (picked >= FACTORY_PARTY_SIZE || slot >= FACTORY_MAX_SPOILS)
+        return;
+
+    gSaveBlock2Ptr->factory.spoils[slot] = *BeatenMon(picked);
+    gSaveBlock2Ptr->factory.spoilCount++;
+    BuildSpoilMon(&gPlayerParty[FACTORY_PARTY_SIZE + slot],
+                  &gSaveBlock2Ptr->factory.spoils[slot]);
+    CalculatePlayerPartyCount();
+    StringCopy(gStringVar2, gBoatSpoilNames[picked]);
+}
+
+// Put the taken POKEMON back on the end of the party. The factory's own
+// SET_PARTIES only knows about the three you drafted, so a resumed challenge
+// calls this straight after it.
+void OrangeBoat_RestoreSpoils(void)
+{
+    u8 i;
+
+    for (i = 0; i < gSaveBlock2Ptr->factory.spoilCount; i++)
+        BuildSpoilMon(&gPlayerParty[FACTORY_PARTY_SIZE + i],
+                      &gSaveBlock2Ptr->factory.spoils[i]);
+    CalculatePlayerPartyCount();
+}
+
+// What the desk quotes when you ask to stop: what walking away now is worth,
+// without taking it. VAR_RESULT comes back TRUE if there is anything to take.
+
+void OrangeBoat_QuoteRetirement(void)
+{
+    u32 cleared = gSaveBlock2Ptr->factory.curChallengeBattleNum;
+    u32 purse = (cleared * PURSE_PER_ROUND + LeadersBeaten(cleared) * PURSE_LEADER)
+                * PURSE_RETIRED_NUM / PURSE_DEN;
+
+    ConvertIntToDecimalStringN(gStringVar1, purse, STR_CONV_MODE_LEFT_ALIGN, 6);
+    ConvertIntToDecimalStringN(gStringVar3, cleared, STR_CONV_MODE_LEFT_ALIGN, 2);
+    gSpecialVar_Result = (purse != 0);
+}
+
+// The leader waiting at the end of the current block, for the desk to name.
 
 void OrangeBoat_GetLeaderName(void)
 {
-    StringCopy(gStringVar2, LeaderForSlot(0)->name);
-    StringCopy(gStringVar3, LeaderForSlot(1)->name);
+    StringCopy(gStringVar2, LeaderForSlot(
+        gSaveBlock2Ptr->factory.curChallengeBattleNum / FACTORY_ROUNDS_PER_BLOCK)->name);
 }

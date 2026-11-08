@@ -85,6 +85,10 @@
 #define MULTICHOICE_TROVITA_QUIZ_6A                                76
 #define MULTICHOICE_TROVITA_QUIZ_6B                                77
 #define MULTICHOICE_KINNOW_MASSAGE                                 78
+// The three POKEMON you have just beaten on the KINNOW battle boat. The
+// entries point at gBoatSpoilNames, which orange_battle_boat.c fills in
+// before the menu opens.
+#define MULTICHOICE_BOAT_SPOILS                                    79
 
 #define MULTICHOICE_NONE                                      255
 

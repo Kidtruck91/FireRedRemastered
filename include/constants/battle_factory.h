@@ -9,18 +9,19 @@
 // so that dimension is gone throughout: no lvlMode field, no [2] on the
 // streaks, and FACTORY_MON_LEVEL below instead of a lookup.
 
-#define FACTORY_PARTY_SIZE            3   // how many you take into a battle
+#define FACTORY_PARTY_SIZE            3   // how many you draft at the desk
+#define FACTORY_MAX_PARTY             6   // and how many you can grow to
+#define FACTORY_MAX_SPOILS       (FACTORY_MAX_PARTY - FACTORY_PARTY_SIZE)
 #define FACTORY_RENTAL_COUNT          6   // how many you are offered to pick from
-#define FACTORY_STAGES_PER_CHALLENGE  8   // battles in one run before it pays out
+#define FACTORY_STAGES_PER_CHALLENGE 28   // battles in one full run
 #define FACTORY_MON_LEVEL            50
 
-// Which rounds of the eight are a HOENN GYM LEADER rather than a rented
-// frontier trainer, counting from zero. Three rented rounds, a leader, three
-// more, a leader.
-#define FACTORY_LEADER_ROUND_A        3   // the fourth
-#define FACTORY_LEADER_ROUND_B        7   // the eighth
-#define FACTORY_LEADERS_PER_RUN       2
-#define FACTORY_LEADER_COUNT          8   // the eight HOENN leaders to draw from
+// The run is blocks of four: three rented rounds, then a HOENN GYM LEADER.
+// Everything below is derived from that, so adding the ELITE FOUR and a
+// champion later is a matter of lengthening the run and the leader table --
+// 48 stages would be twelve leader rounds -- and nothing else.
+#define FACTORY_ROUNDS_PER_BLOCK      4
+#define FACTORY_LEADERS_PER_RUN  (FACTORY_STAGES_PER_CHALLENGE / FACTORY_ROUNDS_PER_BLOCK)
 
 // challengeStatus
 #define FACTORY_CHALLENGE_NONE        0
