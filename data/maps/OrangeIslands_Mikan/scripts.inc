@@ -113,3 +113,23 @@ OrangeIslands_Mikan_Text_OrangeRyanPostBattle::
 	.string "My big sister swims way\n"
 	.string "out past the rocks.$"
 
+OrangeIslands_Mikan_EventScript_Girl::
+	msgbox OrangeIslands_Mikan_Text_Girl, MSGBOX_NPC
+	end
+
+OrangeIslands_Mikan_EventScript_Man::
+	msgbox OrangeIslands_Mikan_Text_Man, MSGBOX_NPC
+	end
+
+OrangeIslands_Mikan_EventScript_Youngster::
+	msgbox OrangeIslands_Mikan_Text_Youngster, MSGBOX_NPC
+	end
+
+OrangeIslands_Mikan_EventScript_OldWoman::
+	msgbox OrangeIslands_Mikan_Text_OldWoman, MSGBOX_NPC
+	end
+
+OrangeIslands_Mikan_EventScript_Boy::
+	msgbox OrangeIslands_Mikan_Text_Boy, MSGBOX_NPC
+	end
+

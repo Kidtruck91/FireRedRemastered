@@ -86,3 +86,19 @@ OrangeIslands_Mikan_Beach_Text_OrangeIanPostBattle::
 	.string "Out here, WATER POKéMON are\n"
 	.string "the real champions.$"
 
+OrangeIslands_Mikan_Beach_EventScript_GymGuide::
+	msgbox OrangeIslands_Mikan_Beach_Text_GymGuide, MSGBOX_NPC
+	end
+
+OrangeIslands_Mikan_Beach_EventScript_Swimmer::
+	msgbox OrangeIslands_Mikan_Beach_Text_Swimmer, MSGBOX_NPC
+	end
+
+OrangeIslands_Mikan_Beach_EventScript_Child::
+	msgbox OrangeIslands_Mikan_Beach_Text_Child, MSGBOX_NPC
+	end
+
+OrangeIslands_Mikan_Beach_EventScript_Fisher::
+	msgbox OrangeIslands_Mikan_Beach_Text_Fisher, MSGBOX_NPC
+	end
+

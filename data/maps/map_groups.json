@@ -844,7 +844,12 @@
   "gMapGroup_Orange_Mikan_Interior": [
     "OrangeIslands_Mikan_Gym",
     "OrangeIslands_Mikan_PokemonCenter_1F",
-    "OrangeIslands_Mikan_PokemonCenter_2F"
+    "OrangeIslands_Mikan_PokemonCenter_2F",
+    "OrangeIslands_Mikan_Mart",
+    "OrangeIslands_Mikan_House1",
+    "OrangeIslands_Mikan_House2",
+    "OrangeIslands_Mikan_House3",
+    "OrangeIslands_Mikan_House4"
   ],
   "gMapGroup_Orange_Navel_Interior": [
     "OrangeIslands_Navel_Gym",

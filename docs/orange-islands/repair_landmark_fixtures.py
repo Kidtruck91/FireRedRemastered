@@ -34,6 +34,7 @@ editing a handful of them rather than taking on every stale fixture at once.
 
     python3 docs/orange-islands/repair_landmark_fixtures.py --repair Moro
 """
+import ast
 import json
 import os
 import re
@@ -173,6 +174,29 @@ def repair(layout, surf, start, goals):
     return fresh, out, moved, len(best & want), len(want)
 
 
+def migrate(book):
+    """Pull the checker's own built-in fixtures into the file.
+
+    validate_maps.py carries a `checks` dict of fixtures and then overlays this
+    file on top of it, so a map named only in the dict was invisible here and
+    could not be repaired. Copy any such fixture across, once, leaving the dict
+    as the fallback it was.
+    """
+    src = open(os.path.join(REPO, 'docs/orange-islands/validate_maps.py')).read()
+    body = src[src.index('checks = {'):]
+    body = body[:body.index('\n}') + 2]
+    built_in = ast.literal_eval(body[len('checks = '):])
+    added = 0
+    for suffix, (start, goals, surf) in built_in.items():
+        if suffix in book:
+            continue
+        book[suffix] = [list(start), [list(g) for g in goals], surf]
+        added += 1
+    if added:
+        print('  adopted  %d fixture(s) that lived only in validate_maps.py' % added)
+    return bool(added)
+
+
 def main():
     do_repair = '--repair' in sys.argv
     do_redraw = '--redraw' in sys.argv
@@ -181,10 +205,16 @@ def main():
         sys.exit(__doc__)
     layouts, maps = layouts_and_maps()
     book = json.load(open(FIXTURES))
-    changed = False
+    changed = migrate(book)
 
     if do_redraw:
-        for suffix, surf in sorted(REDRAW.items()):
+        # the listed ones by default, or exactly the maps named on the command
+        # line -- a fixture whose goals have all slid onto one cell is as rotted
+        # as these were, and is better drawn afresh than nudged
+        wanted = dict(REDRAW)
+        for suffix in only:
+            wanted.setdefault(suffix, book.get(suffix, [None, None, False])[2])
+        for suffix, surf in sorted(wanted.items()):
             if only and suffix not in only:
                 continue
             layout = layouts[maps['OrangeIslands_' + suffix]['layout']]
