@@ -597,6 +597,16 @@ static const struct MenuAction sMultichoiceList_TrovitaQuiz6B[] = {
     { gItems[ITEM_ASPEAR_BERRY].name },
 };
 
+static const u8 sText_BoatSaveAndStop[] = _("SAVE AND STOP");
+static const u8 sText_BoatTakeThePurse[] = _("TAKE THE PURSE");
+static const u8 sText_BoatKeepGoing[] = _("KEEP GOING");
+
+static const struct MenuAction sMultichoiceList_BoatPause[] = {
+    { sText_BoatSaveAndStop },
+    { sText_BoatTakeThePurse },
+    { sText_BoatKeepGoing },
+};
+
 static const struct MenuAction sMultichoiceList_BoatSpoils[] = {
     { (const u8 *)gBoatSpoilNames[0] },
     { (const u8 *)gBoatSpoilNames[1] },
@@ -607,6 +617,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_YES_NO]                                     = MULTICHOICE(sMultichoiceList_YesNo),
     [MULTICHOICE_KINNOW_MASSAGE]                             = MULTICHOICE(sMultichoiceList_KinnowMassage),
     [MULTICHOICE_BOAT_SPOILS]                                = MULTICHOICE(sMultichoiceList_BoatSpoils),
+    [MULTICHOICE_BOAT_PAUSE]                                 = MULTICHOICE(sMultichoiceList_BoatPause),
     [MULTICHOICE_EEVEELUTIONS]                               = MULTICHOICE(sMultichoiceList_Eeveelutions),
     [MULTICHOICE_TRAINER_CARD_ICON_TINT]                     = MULTICHOICE(sMultichoiceList_TrainerCardIconTint),
     [MULTICHOICE_HOF_QUIT]                                   = MULTICHOICE(sMultichoiceList_HOF_Quit),

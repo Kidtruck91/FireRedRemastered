@@ -31,7 +31,8 @@ OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Desk::
 OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Resume::
 	special OrangeBoat_PrepareRound
 	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Resume, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AskRetire
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AskStop
+	special SavePlayerParty
 	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_PARTIES
 	setvar VAR_0x8005, 0
 	special CallBattleFactoryFunction
@@ -43,7 +44,7 @@ OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round::
 	copyvar VAR_TEMP_1, VAR_RESULT
 	call_if_eq VAR_TEMP_1, TRUE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AnnounceLeader
 	call_if_eq VAR_TEMP_1, FALSE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AnnounceRound
-	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AskRetire
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AskStop
 	closemessage
 	playfanfare MUS_HEAL
 	waitfanfare
@@ -114,11 +115,29 @@ OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Finish::
 	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Lost, MSGBOX_DEFAULT
 	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Close
 
-OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AskRetire::
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_AskStop::
 	special OrangeBoat_QuoteRetirement
-	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Nothing
-	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_RetireOffer, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
+	message OrangeIslands_Kinnow_BattleBoat_Arena_Text_StopMenu
+	waitmessage
+	multichoice 16, 6, MULTICHOICE_BOAT_PAUSE, FALSE
+	goto_if_eq VAR_RESULT, 0, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_SaveAndStop
+	goto_if_eq VAR_RESULT, 1, OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Retire
+	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
+
+OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_SaveAndStop::
+	closemessage
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SAVE
+	setvar VAR_0x8005, FACTORY_CHALLENGE_PAUSED
+	special CallBattleFactoryFunction
+	playse SE_SAVE
+	waitse
+	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Saved, MSGBOX_DEFAULT
+	special LoadPlayerParty
+	special HealPlayerParty
+	special CalculatePlayerPartyCount
+	release
+	end
+
 OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Retire::
 	setvar VAR_0x8005, TRUE
 	special OrangeBoat_SettleUp

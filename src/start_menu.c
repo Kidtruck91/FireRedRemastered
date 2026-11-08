@@ -36,6 +36,7 @@
 #include "help_system.h"
 #include "constants/songs.h"
 #include "constants/field_weather.h"
+#include "battle_factory.h"
 
 enum StartMenuOption
 {
@@ -210,7 +211,13 @@ static void SetUpStartMenu_NormalField(void)
         AppendToStartMenuItems(STARTMENU_POKEMON);
     AppendToStartMenuItems(STARTMENU_BAG);
     AppendToStartMenuItems(STARTMENU_PLAYER);
-    AppendToStartMenuItems(STARTMENU_SAVE);
+    // A BATTLE FACTORY run has the rented team in gPlayerParty and the real
+    // one stashed in SaveBlock1, and saving copies gPlayerParty over that
+    // stash -- so an ordinary save part-way through a run on the KINNOW boat
+    // would write the rentals over the player's own team for good. The arena
+    // desk has a save of its own that swaps the real team back in first.
+    if (!InBattleFactory())
+        AppendToStartMenuItems(STARTMENU_SAVE);
     AppendToStartMenuItems(STARTMENU_OPTION);
     AppendToStartMenuItems(STARTMENU_EXIT);
 }

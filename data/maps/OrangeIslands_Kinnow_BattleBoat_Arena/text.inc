@@ -1,7 +1,7 @@
 @ --- built by docs/orange-islands/build_battle_boat.py ---
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_Offer::
-	.string "Twenty-eight rounds, and we lend\n"
-	.string "you the POKEMON.\p"
+	.string "Thirty-two rounds, and we lend you\n"
+	.string "the POKEMON.\p"
 	.string "Six are brought up, you keep\n"
 	.string "three. Beat a team and you may\l"
 	.string "take one of them, up to six; once\l"
@@ -24,7 +24,7 @@ OrangeIslands_Kinnow_BattleBoat_Arena_Text_Resume::
 	.string "{STR_VAR_3}. Carry on?$"
 
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_NextRound::
-	.string "Round {STR_VAR_3} of 28. Ready?$"
+	.string "Round {STR_VAR_3} of 32. Ready?$"
 
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_SwapOffer::
 	.string "Your six are full. Trade one of\n"
@@ -52,17 +52,22 @@ OrangeIslands_Kinnow_BattleBoat_Arena_Text_LeaderRound::
 	.string "there is nothing to take after.\p"
 	.string "Ready?$"
 
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_RetireOffer::
-	.string "Stopping at {STR_VAR_3} rounds pays\n"
-	.string "{STR_VAR_1}, three quarters of the\l"
-	.string "run. Being stopped pays half.\p"
-	.string "Take it?$"
+OrangeIslands_Kinnow_BattleBoat_Arena_Text_StopMenu::
+	.string "You are {STR_VAR_3} rounds in. Taking\n"
+	.string "the purse now pays {STR_VAR_1}, three\l"
+	.string "quarters; being stopped pays half.\p"
+	.string "Or we hold the run for you.$"
+
+OrangeIslands_Kinnow_BattleBoat_Arena_Text_Saved::
+	.string "Held, and the ledger is written.\p"
+	.string "Your own POKEMON are yours again.\n"
+	.string "The run is here when you are.$"
 
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_Cleared::
-	.string "All twenty-eight, and every leader\n"
-	.string "we put in front of you.\p"
-	.string "{STR_VAR_1}, in full. We draw a new\n"
-	.string "seven for your next one.$"
+	.string "All thirty-two, and all eight\n"
+	.string "leaders.\p"
+	.string "{STR_VAR_1}, in full. We shuffle them\n"
+	.string "again for your next one.$"
 
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_Lost::
 	.string "{STR_VAR_3} rounds. Half of that is\n"
@@ -83,9 +88,10 @@ OrangeIslands_Kinnow_BattleBoat_Arena_Text_Rules::
 	.string "Rented POKEMON. Three of six, and\n"
 	.string "one off every team you beat until\l"
 	.string "you have six of your own.\p"
-	.string "Twenty-eight rounds. Every fourth\n"
-	.string "is a GYM LEADER of HOENN, drawn on\l"
-	.string "the night: six of their own type\l"
+	.string "Thirty-two rounds. Every fourth is\n"
+	.string "a GYM LEADER of HOENN, all eight of\l"
+	.string "them in an order drawn on the\l"
+	.string "night: six of their own type\l"
 	.string "at level fifty, and nothing to\l"
 	.string "take off them.\p"
 	.string "Stop between rounds for three\n"

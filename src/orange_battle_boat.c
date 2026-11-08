@@ -32,12 +32,12 @@
 // swapped for the factory's.
 //
 // Every fourth round is a GYM LEADER.  Three rented rounds, then a leader,
-// seven times over: twenty-eight battles for a full run. A leader brings a
-// full six of their own type at level fifty and does not use rental POKEMON
-// -- that is the point of those rounds. The seven are drawn at random when
-// the run starts, never the same leader twice, so one of HOENN's eight sits
-// out each time; the draw is kept in the save so it survives a challenge
-// saved part-way through.
+// eight times over: thirty-two battles for a full run, and all eight of
+// HOENN's leaders in it. A leader brings a full six of their own type at
+// level fifty and does not use rental POKEMON -- that is the point of those
+// rounds. The order is drawn at the desk when the run starts, never the same
+// leader twice, and kept in the save so it survives a run saved part-way
+// through.
 //
 // The house pays by depth.  A purse per round cleared and a bonus for each
 // leader taken down, and you can walk away at the desk between rounds for
@@ -197,9 +197,10 @@ static const struct BoatLeader *LeaderForSlot(u8 slot)
     return &sBoatLeaders[gSaveBlock2Ptr->factory.leaders[slot] % LEADER_COUNT];
 }
 
-// Drawn once, at the desk, before the rentals are brought up. The second is
-// re-rolled until it is not the first, so a run never fights the same leader
-// twice; with eight to choose from that loop ends quickly.
+// Drawn once, at the desk, before the rentals are brought up: one per leader
+// round, each re-rolled until it is one the run has not drawn yet. With as
+// many leader rounds as there are leaders, that comes out a shuffle of all
+// eight.
 void OrangeBoat_DrawLeaders(void)
 {
     u8 i, j;

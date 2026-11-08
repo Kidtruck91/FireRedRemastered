@@ -89,6 +89,8 @@
 // entries point at gBoatSpoilNames, which orange_battle_boat.c fills in
 // before the menu opens.
 #define MULTICHOICE_BOAT_SPOILS                                    79
+// SAVE AND STOP / TAKE THE PURSE / KEEP GOING, between rounds on the boat.
+#define MULTICHOICE_BOAT_PAUSE                                     80
 
 #define MULTICHOICE_NONE                                      255
 

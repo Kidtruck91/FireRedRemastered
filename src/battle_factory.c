@@ -20,6 +20,7 @@
 #include "battle_factory_screen.h"
 #include "event_data.h"
 #include "battle_setup.h"
+#include "malloc.h"
 #include "load_save.h"
 #include "overworld.h"
 #include "pokemon.h"
@@ -267,11 +268,29 @@ static void SetBattleFactoryData(void)
     }
 }
 
+// Emerald wrapped its frontier save in SaveGameFrontier, which swaps the
+// player's own team back in before writing and the rentals back after. That
+// is not decoration: saving copies gPlayerParty into SaveBlock1's party,
+// which is exactly where the player's own team is being kept for the length
+// of the run, so saving with the rentals live would overwrite it for good.
 static void SaveFactoryChallenge(void)
 {
+    struct Pokemon *rentals = AllocZeroed(sizeof(struct Pokemon) * PARTY_SIZE);
+    u8 rentalCount = gPlayerPartyCount;
+    int i;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+        rentals[i] = gPlayerParty[i];
+
+    LoadPlayerParty();
     gSaveBlock2Ptr->factory.challengeStatus = gSpecialVar_0x8005;
     gSaveBlock2Ptr->factory.challengePaused = TRUE;
     TrySavingData(SAVE_NORMAL);
+
+    for (i = 0; i < PARTY_SIZE; i++)
+        gPlayerParty[i] = rentals[i];
+    gPlayerPartyCount = rentalCount;
+    Free(rentals);
 }
 
 static void FactoryDummy1(void)
