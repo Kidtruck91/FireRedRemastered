@@ -157,8 +157,16 @@ OrangeIslands_Mikan_Gym_Text_CoralTalk::
 	.string "THUNDER never misses.$"
 
 OrangeIslands_Mikan_Gym_Text_GymGuyAdvice::
-	.string "Hey! Going for the CORAL-EYE\n"
-	.string "BADGE?\p"
+	.string "Hey! Here's how CISSY rolls.\p"
+	.string "She battles in the rain. She sets\n"
+	.string "it herself, first thing, every\l"
+	.string "time.\p"
+	.string "That means her WATER moves hit\n"
+	.string "harder, your FIRE moves fizzle,\l"
+	.string "and her THUNDER never misses. Not\l"
+	.string "once. Don't count on dodging it.\p"
+	.string "GRASS types are a safe bet.\p"
+	.string "Getting to her is the other half.\n"
 	.string "You can't walk to CISSY. You SURF,\n"
 	.string "and the pool does the steering.\p"
 	.string "Three rocks stand between you and\n"
@@ -173,9 +181,7 @@ OrangeIslands_Mikan_Gym_Text_GymGuyAdvice::
 	.string "and only one column carries you\l"
 	.string "up to the next rock.\p"
 	.string "Pick wrong and the outflow takes\n"
-	.string "you all the way back down here!\p"
-	.string "Oh, and CISSY battles in the rain.\n"
-	.string "GRASS types are a safe bet!$"
+	.string "you all the way back down here!$"
 
 OrangeIslands_Mikan_Gym_Text_GymGuyAfter::
 	.string "You read the current and beat\n"

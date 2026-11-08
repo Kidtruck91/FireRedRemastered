@@ -175,11 +175,15 @@ OrangeIslands_Kumquat_Gym_Text_NyaPostBattle::
 	.string "She won't hit her own side.$"
 
 OrangeIslands_Kumquat_Gym_Text_GymGuyAdvice::
-	.string "Yo! Every battle in LUANA's gym\n"
-	.string "is a double battle.\p"
-	.string "Out here your two POKéMON can\n"
-	.string "get in each other's way, and\l"
-	.string "that's the whole lesson.\p"
+	.string "Yo! Here's how LUANA rolls.\p"
+	.string "Every battle in her gym is a\n"
+	.string "double battle, and she picks\l"
+	.string "pairs that work together.\p"
+	.string "Not two strong POKéMON. Two that\n"
+	.string "make each other better. That's\l"
+	.string "the whole lesson.\p"
+	.string "Out here your two can get in each\n"
+	.string "other's way instead.\p"
 	.string "EARTHQUAKE and SURF don't aim.\n"
 	.string "One hits your partner too. The\l"
 	.string "other only hits theirs. Know\l"
@@ -188,8 +192,9 @@ OrangeIslands_Kumquat_Gym_Text_GymGuyAdvice::
 	.string "around one trick. Ask them\l"
 	.string "about it after you win.\p"
 	.string "LUANA plays it clean. She never\n"
-	.string "brings a move that could hit\l"
-	.string "her own side.$"
+	.string "brings a move that could hit her\l"
+	.string "own side, because her two are\l"
+	.string "chosen so she never has to.$"
 
 OrangeIslands_Kumquat_Gym_Text_GymGuyAfter::
 	.string "Four badges! You're ready for\n"
