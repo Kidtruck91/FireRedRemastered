@@ -252,10 +252,11 @@ def map_json(suffix, lay_suffix, warps, town_warp):
 # ---------------------------------------------------------------------------
 # Who is aboard.
 #
-# KINNOW's own trainers are level twenty-two. The boat's are level forty-six
-# to fifty, and the purser says so at the top of the gangway: it is optional
-# late content moored at an early island, and the game should admit that
-# rather than let someone walk a level-twenty party into it.
+# The decks are a shade above the island: KINNOW's own trainers are level
+# twenty-two and these are twenty-four to thirty, so a party that cleared the
+# island has somewhere to go next. The arena in the hold is a different thing
+# entirely at level fifty, and the purser says so at the top of the gangway
+# rather than letting someone walk down there and find out.
 
 # (script suffix, graphics, x, y, movement, lines) -- lines None means the
 # NPC is a trainer and its dialogue comes from TRAINERS instead.
@@ -263,13 +264,13 @@ PEOPLE = {
     'Deck': [
         ('Purser', 'OBJ_EVENT_GFX_GENTLEMAN', 12, 6, 'MOVEMENT_TYPE_FACE_UP',
          ['"Welcome aboard the MERIDIAN.\\p"',
-          '"We are chartered out of HOENN and\\n"',
-          '"we run on HOENN rules: everyone\\l"',
-          '"aboard is a paying challenger.\\p"',
-          '"Nobody here is under level forty-\\n"',
-          '"five. If that is a surprise, the\\l"',
-          '"gangway is behind you and we are\\l"',
-          '"moored here all season.$"']),
+          '"We are chartered out of HOENN, and\\n"',
+          '"everyone aboard is a paying\\l"',
+          '"challenger. The decks are friendly\\l"',
+          '"enough.\\p"',
+          '"The arena in the hold is not. That\\n"',
+          '"is a level fifty room and the\\l"',
+          '"house means it.$"']),
         ('Lookout', 'OBJ_EVENT_GFX_SAILOR', 6, 9, 'MOVEMENT_TYPE_FACE_RIGHT',
          ['"We never leave the pier. The boat\\n"',
           '"is the venue, not the voyage.\\p"',
@@ -311,7 +312,7 @@ PEOPLE = {
 #  pool, level, NAME, x, y, movement, intro, defeat, after)
 TRAINERS = [
     ('Deck', 'Brac', 'TRAINER_ORANGE_SAILOR_BRAC', 'SAILOR', 'SAILOR', 'MALE',
-     'OBJ_EVENT_GFX_SAILOR', 'sPool_HoennCrew_Intermediate', 46, 'BRAC',
+     'OBJ_EVENT_GFX_SAILOR', 'sPool_HoennCrew_Basic', 24, 'BRAC',
      10, 8, 'MOVEMENT_TYPE_FACE_DOWN',
      ['"Crossed from SLATEPORT on this\\n"', '"boat and never got off it.$"'],
      ['"Worth the fare, that.$"'],
@@ -319,39 +320,40 @@ TRAINERS = [
       '"seen some of them before.$"']),
     ('Cabin1', 'Ardith', 'TRAINER_ORANGE_COOLTRAINER_ARDITH', 'COOLTRAINER',
      'COOLTRAINER_F', 'FEMALE', 'OBJ_EVENT_GFX_COOLTRAINER_F',
-     'sPool_HoennCrew_Advanced', 48, 'ARDITH', 3, 4, 'MOVEMENT_TYPE_FACE_DOWN',
+     'sPool_HoennCrew_Basic', 26, 'ARDITH', 3, 4, 'MOVEMENT_TYPE_FACE_DOWN',
      ['"I took this cabin for the season.\\n"', '"The door stays open.$"'],
      ['"Then take the one down the hall\\n"', '"as well.$"'],
      ['"Everyone on this deck is running\\n"', '"a HOENN team. Good practice for\\l"',
       '"the arena.$"']),
     ('Cabin2', 'Fenn', 'TRAINER_ORANGE_COOLTRAINER_FENN', 'COOLTRAINER',
      'COOLTRAINER_M', 'MALE', 'OBJ_EVENT_GFX_COOLTRAINER_M',
-     'sPool_HoennCrew_Advanced', 48, 'FENN', 3, 4, 'MOVEMENT_TYPE_FACE_DOWN',
+     'sPool_HoennCrew_Basic', 27, 'FENN', 3, 4, 'MOVEMENT_TYPE_FACE_DOWN',
      ['"Cabin battles. No room to run, no\\n"', '"reason to.$"'],
      ['"No room to hide either.$"'],
      ['"The arena below hands you six you\\n"', '"have never used. Up here at least\\l"',
       '"the team is mine.$"']),
     ('Cabin3', 'Lorcan', 'TRAINER_ORANGE_GENTLEMAN_LORCAN', 'GENTLEMAN',
      'GENTLEMAN', 'RICH', 'OBJ_EVENT_GFX_GENTLEMAN',
-     'sPool_HoennCrew_Advanced', 49, 'LORCAN', 3, 4, 'MOVEMENT_TYPE_FACE_DOWN',
+     'sPool_HoennCrew_Intermediate', 28, 'LORCAN', 3, 4, 'MOVEMENT_TYPE_FACE_DOWN',
      ['"I have lost a great deal of money\\n"', '"in the hold this week.\\p"',
-      '"Let me win some of it back up\\n"', '"here.$"'],
+      '"Well out of my depth down there.\\n"', '"Let me win some of it back up\\l"',
+      '"here.$"'],
      ['"Ah. Well.$"'],
      ['"The house pays by how far you get.\\n"', '"I have never got past the fifth.$"']),
     ('Hold', 'Mabon', 'TRAINER_ORANGE_BLACK_BELT_MABON', 'BLACK_BELT',
      'BLACK_BELT', 'MALE', 'OBJ_EVENT_GFX_BLACKBELT',
-     'sPool_HoennCrew_Advanced', 50, 'MABON', 7, 4, 'MOVEMENT_TYPE_FACE_RIGHT',
+     'sPool_HoennCrew_Intermediate', 30, 'MABON', 7, 4, 'MOVEMENT_TYPE_FACE_RIGHT',
      ['"Queue starts behind me.$"'],
      ['"Or in front of you. Fine.$"'],
      ['"They draw your six at the desk.\\n"', '"After each win you may take one\\l"',
       '"from whoever you just beat.$"']),
     ('Hold', 'Iseult', 'TRAINER_ORANGE_BEAUTY_ISEULT', 'BEAUTY', 'BEAUTY',
      'FEMALE', 'OBJ_EVENT_GFX_BEAUTY',
-     'sPool_HoennCrew_Advanced', 50, 'ISEULT', 14, 4, 'MOVEMENT_TYPE_FACE_LEFT',
+     'sPool_HoennCrew_Intermediate', 30, 'ISEULT', 14, 4, 'MOVEMENT_TYPE_FACE_LEFT',
      ['"Seven rounds. I have done six.\\n"', '"Twice.$"'],
      ['"Six again, then.$"'],
-     ['"The seventh is never one of us.\\n"', '"The house brings in a GYM LEADER\\l"',
-      '"from HOENN for the last one.$"']),
+     ['"Rounds four and seven are not one\\n"', '"of us. The house brings in a GYM\\l"',
+      '"LEADER of HOENN for those two.$"']),
 ]
 
 CREW_SIGN = ['"Crew quarters.$"']
@@ -400,64 +402,75 @@ def fighters(suffix, name, out, text):
 # chosen ability, or `make` refuses to build.
 
 POOLS = '''
+// --- build_battle_boat.py pools ---
 // ---------------------------------------------------------------------------
 // The KINNOW battle boat. Chartered out of HOENN, crewed and patronised by
 // HOENN trainers, so both pools are HOENN-dex only (build_battle_boat.py).
+//
+// These are the people lounging on the decks, not the arena. KINNOW's own
+// trainers are level twenty-two and these run twenty-four to thirty, so the
+// pools stay at first and middle stages -- a fully evolved team would read as
+// the arena's level rather than the deck's.
+
+static const struct PoolMon sPool_HoennCrew_Basic[] =
+{
+    { .species = SPECIES_ZIGZAGOON, .iv = 60 },
+    { .species = SPECIES_POOCHYENA, .iv = 60 },
+    { .species = SPECIES_WINGULL,   .iv = 60 },
+    { .species = SPECIES_TAILLOW,   .iv = 60 },
+    { .species = SPECIES_SHROOMISH, .iv = 60 },
+    { .species = SPECIES_WHISMUR,   .iv = 60 },
+    { .species = SPECIES_ARON,      .iv = 60 },
+    { .species = SPECIES_NUMEL,     .iv = 60 },
+    { .species = SPECIES_CARVANHA,  .iv = 60 },
+    { .species = SPECIES_ELECTRIKE, .iv = 60 },
+    { .species = SPECIES_MAKUHITA,  .iv = 60 },
+    { .species = SPECIES_SWABLU,    .iv = 60 },
+    { .species = SPECIES_SPOINK,    .iv = 60 },
+    { .species = SPECIES_BARBOACH,  .iv = 60 },
+    POOL_END
+};
 
 static const struct PoolMon sPool_HoennCrew_Intermediate[] =
 {
-    { .species = SPECIES_VIBRAVA,   .iv = 100 },
+    { .species = SPECIES_LINOONE,   .iv = 100 },
+    { .species = SPECIES_MIGHTYENA, .iv = 100 },
+    { .species = SPECIES_PELIPPER,  .iv = 100 },
+    { .species = SPECIES_SWELLOW,   .iv = 100 },
     { .species = SPECIES_LOMBRE,    .iv = 100 },
     { .species = SPECIES_MARSHTOMP, .iv = 100 },
     { .species = SPECIES_COMBUSKEN, .iv = 100 },
     { .species = SPECIES_GROVYLE,   .iv = 100 },
     { .species = SPECIES_LAIRON,    .iv = 100, .heldItem = ITEM_HARD_STONE },
+    { .species = SPECIES_VIBRAVA,   .iv = 100 },
     { .species = SPECIES_WAILMER,   .iv = 100 },
-    { .species = SPECIES_CARVANHA,  .iv = 100 },
-    { .species = SPECIES_NUMEL,     .iv = 100 },
-    { .species = SPECIES_SWABLU,    .iv = 100 },
-    { .species = SPECIES_ELECTRIKE, .iv = 100 },
-    { .species = SPECIES_MAKUHITA,  .iv = 100 },
+    { .species = SPECIES_KIRLIA,    .iv = 100 },
+    { .species = SPECIES_NINCADA,   .iv = 100 },
+    { .species = SPECIES_SANDSHREW, .iv = 100 },
     POOL_END
 };
-
-static const struct PoolMon sPool_HoennCrew_Advanced[] =
-{
-    { .species = SPECIES_SWAMPERT, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Torrent
-      .moves = {MOVE_SURF, MOVE_EARTHQUAKE, MOVE_ICE_BEAM, MOVE_PROTECT} },
-    { .species = SPECIES_SCEPTILE, .heldItem = ITEM_SITRUS_BERRY, .iv = 255, .ability = 1, // Overgrow
-      .moves = {MOVE_LEAF_BLADE, MOVE_DRAGON_CLAW, MOVE_CRUNCH, MOVE_EARTHQUAKE} },
-    { .species = SPECIES_BLAZIKEN, .heldItem = ITEM_CHOICE_BAND, .iv = 255, .ability = 1, // Blaze
-      .moves = {MOVE_SKY_UPPERCUT, MOVE_FLAMETHROWER, MOVE_ROCK_SLIDE, MOVE_AERIAL_ACE} },
-    { .species = SPECIES_HARIYAMA, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Thick Fat
-      .moves = {MOVE_BRICK_BREAK, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_BULK_UP} },
-    { .species = SPECIES_SHARPEDO, .heldItem = ITEM_QUICK_CLAW, .iv = 255, .ability = 1, // Rough Skin
-      .moves = {MOVE_CRUNCH, MOVE_SURF, MOVE_ICE_BEAM, MOVE_EARTHQUAKE} },
-    { .species = SPECIES_ALTARIA, .heldItem = ITEM_LUM_BERRY, .iv = 255, .ability = 1, // Natural Cure
-      .moves = {MOVE_DRAGON_DANCE, MOVE_AERIAL_ACE, MOVE_EARTHQUAKE, MOVE_REST} },
-    { .species = SPECIES_MANECTRIC, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Static
-      .moves = {MOVE_THUNDERBOLT, MOVE_CRUNCH, MOVE_THUNDER_WAVE, MOVE_PROTECT} },
-    { .species = SPECIES_MILOTIC, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Marvel Scale
-      .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_RECOVER, MOVE_TOXIC} },
-    { .species = SPECIES_FLYGON, .heldItem = ITEM_SITRUS_BERRY, .iv = 255, .ability = 1, // Levitate
-      .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW, MOVE_ROCK_SLIDE, MOVE_PROTECT} },
-    { .species = SPECIES_AGGRON, .heldItem = ITEM_QUICK_CLAW, .iv = 255, .ability = 1, // Sturdy
-      .moves = {MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_IRON_TAIL, MOVE_ROAR} },
-    { .species = SPECIES_CLAYDOL, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Levitate
-      .moves = {MOVE_EARTHQUAKE, MOVE_PSYCHIC, MOVE_LIGHT_SCREEN, MOVE_REFLECT} },
-    { .species = SPECIES_ABSOL, .heldItem = ITEM_CHOICE_BAND, .iv = 255, .ability = 1, // Pressure
-      .moves = {MOVE_CRUNCH, MOVE_AERIAL_ACE, MOVE_SHADOW_BALL, MOVE_SWORDS_DANCE} },
-    POOL_END
-};
+// --- end build_battle_boat.py pools ---
 '''
 
 
+POOL_FENCE_TOP = '// --- build_battle_boat.py pools ---'
+POOL_FENCE_END = '// --- end build_battle_boat.py pools ---'
+
+
 def add_pools():
+    """Fenced, so changing a pool here rewrites the one in the file rather
+    than appending a second definition of the same name."""
     p = os.path.join(REPO, 'src/data/trainer_pools.h')
     s = open(p, encoding='utf-8').read()
-    if 'sPool_HoennCrew_Advanced' in s:
+    if POOL_FENCE_TOP in s and POOL_FENCE_END in s:
+        head = s[:s.index(POOL_FENCE_TOP)]
+        tail = s[s.index(POOL_FENCE_END) + len(POOL_FENCE_END):].lstrip('\n')
+        new = head.rstrip('\n') + '\n' + POOLS.lstrip('\n') + tail
+    else:
+        new = s.rstrip('\n') + '\n' + POOLS
+    if new == s:
         return 0
-    open(p, 'w', encoding='utf-8', newline='\n').write(s.rstrip('\n') + '\n' + POOLS)
+    open(p, 'w', encoding='utf-8', newline='\n').write(new)
     return 2
 
 
@@ -488,6 +501,12 @@ def add_trainers():
     for t in TRAINERS:
         (_m, _s, const, cls, pic, music, _g, pool, level, name) = t[:10]
         if '[%s] = {' % const in table:
+            # Already there: just re-assert the party, which is the part that
+            # gets retuned.
+            table = re.sub(
+                r'(\[%s\] = \{.*?\.party = )POOL_PARTY\([^)]*\)' % const,
+                lambda m: m.group(1) + 'POOL_PARTY(%s, 3, 4, %d, 2)' % (pool, level),
+                table, count=1, flags=re.S)
             continue
         entries += (
             '    [%s] = {\n'
@@ -504,7 +523,7 @@ def add_trainers():
     if entries:
         close = table.rindex('\n};')
         table = table[:close + 1] + entries + table[close + 1:]
-        open(tp, 'w', encoding='utf-8', newline='\n').write(table)
+    open(tp, 'w', encoding='utf-8', newline='\n').write(table)
     return made, nxt
 
 
@@ -671,8 +690,9 @@ ARENA_TEXT = {
               '"keep three. Win a round and you\\l"',
               '"may trade one of yours for one of\\l"',
               '"theirs.\\p"',
-              '"The seventh round is not one of\\n"',
-              '"ours. {STR_VAR_2} is aboard for it.\\p"',
+              '"Rounds four and seven are not\\n"',
+              '"ours. {STR_VAR_2} is aboard for the\\l"',
+              '"fourth, {STR_VAR_3} for the seventh.\\p"',
               '"We pay by how far you get. Sit\\n"',
               '"down?$"'],
     'Decline': ['"The boat is moored here all\\n"', '"season.$"'],
@@ -685,10 +705,10 @@ ARENA_TEXT = {
     'LeaderRound': ['"Last round. {STR_VAR_2} does not use\\n"',
                     '"our POKEMON, and does not hold\\l"',
                     '"back. Good luck.$"'],
-    'Cleared': ['"All seven. Nobody did that last\\n"',
-                '"week.\\p"',
-                '"{STR_VAR_1} for the run. {STR_VAR_2} will be\\n"',
-                '"replaced for your next one.$"'],
+    'Cleared': ['"All seven, and both leaders.\\n"',
+                '"Nobody did that last week.\\p"',
+                '"{STR_VAR_1} for the run. We will have\\n"',
+                '"two others aboard for your next.$"'],
     'Lost': ['"{STR_VAR_3} rounds. The house pays\\n"',
              '"{STR_VAR_1} for them.\\p"',
              '"The ladder starts over. Come back\\n"',
@@ -698,8 +718,9 @@ ARENA_TEXT = {
     'Rules': ['"THE HOUSE PAYS BY DEPTH.\\p"',
               '"Rented POKEMON. Three of six.\\n"',
               '"Seven rounds. One trade a round.\\p"',
-              '"Round seven is a GYM LEADER of\\n"',
-              '"HOENN, with a team of their own.$"'],
+              '"Rounds four and seven are GYM\\n"',
+              '"LEADERS of HOENN, with teams of\\l"',
+              '"their own at level fifty.$"'],
 }
 
 
@@ -786,7 +807,6 @@ def arena_scripts(name, out, text):
         '\tgoto ' + e + 'Round',
         '',
         e + 'Cleared::',
-        '\tspecial OrangeBoat_GetLeaderName',
         '\tspecial OrangeBoat_SettleUp',
         '\tmsgbox ' + t + 'Cleared, MSGBOX_DEFAULT',
         '\tgoto ' + e + 'Close',

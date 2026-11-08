@@ -14,6 +14,12 @@
 #define FACTORY_STAGES_PER_CHALLENGE  7   // battles in one run before it pays out
 #define FACTORY_MON_LEVEL            50
 
+// Which rounds of the seven are a HOENN GYM LEADER rather than a rented
+// frontier trainer, counting from zero. Three rounds in, then three more.
+#define FACTORY_LEADER_ROUND_A        3   // the fourth
+#define FACTORY_LEADER_ROUND_B        6   // the seventh
+#define FACTORY_LEADERS_PER_RUN       2
+
 // challengeStatus
 #define FACTORY_CHALLENGE_NONE        0
 #define FACTORY_CHALLENGE_RUNNING     1

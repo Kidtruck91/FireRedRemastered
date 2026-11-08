@@ -18,9 +18,9 @@ OrangeIslands_Kinnow_BattleBoat_Hold_Text_IseultDefeat::
 	.string "Six again, then.$"
 
 OrangeIslands_Kinnow_BattleBoat_Hold_Text_IseultAfter::
-	.string "The seventh is never one of us.\n"
-	.string "The house brings in a GYM LEADER\l"
-	.string "from HOENN for the last one.$"
+	.string "Rounds four and seven are not one\n"
+	.string "of us. The house brings in a GYM\l"
+	.string "LEADER of HOENN for those two.$"
 
 OrangeIslands_Kinnow_BattleBoat_Hold_Text_CrewDoor::
 	.string "Crew quarters.$"

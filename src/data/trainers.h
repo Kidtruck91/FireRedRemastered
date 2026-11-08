@@ -12408,7 +12408,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_LEVEL_NORMAL,
-        .party = POOL_PARTY(sPool_HoennCrew_Intermediate, 3, 4, 46, 2),
+        .party = POOL_PARTY(sPool_HoennCrew_Basic, 3, 4, 24, 2),
     },
     [TRAINER_ORANGE_COOLTRAINER_ARDITH] = {
         .trainerClass = TRAINER_CLASS_COOLTRAINER,
@@ -12418,7 +12418,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_LEVEL_NORMAL,
-        .party = POOL_PARTY(sPool_HoennCrew_Advanced, 3, 4, 48, 2),
+        .party = POOL_PARTY(sPool_HoennCrew_Basic, 3, 4, 26, 2),
     },
     [TRAINER_ORANGE_COOLTRAINER_FENN] = {
         .trainerClass = TRAINER_CLASS_COOLTRAINER,
@@ -12428,7 +12428,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_LEVEL_NORMAL,
-        .party = POOL_PARTY(sPool_HoennCrew_Advanced, 3, 4, 48, 2),
+        .party = POOL_PARTY(sPool_HoennCrew_Basic, 3, 4, 27, 2),
     },
     [TRAINER_ORANGE_GENTLEMAN_LORCAN] = {
         .trainerClass = TRAINER_CLASS_GENTLEMAN,
@@ -12438,7 +12438,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_LEVEL_NORMAL,
-        .party = POOL_PARTY(sPool_HoennCrew_Advanced, 3, 4, 49, 2),
+        .party = POOL_PARTY(sPool_HoennCrew_Intermediate, 3, 4, 28, 2),
     },
     [TRAINER_ORANGE_BLACK_BELT_MABON] = {
         .trainerClass = TRAINER_CLASS_BLACK_BELT,
@@ -12448,7 +12448,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_LEVEL_NORMAL,
-        .party = POOL_PARTY(sPool_HoennCrew_Advanced, 3, 4, 50, 2),
+        .party = POOL_PARTY(sPool_HoennCrew_Intermediate, 3, 4, 30, 2),
     },
     [TRAINER_ORANGE_BEAUTY_ISEULT] = {
         .trainerClass = TRAINER_CLASS_BEAUTY,
@@ -12458,7 +12458,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_LEVEL_NORMAL,
-        .party = POOL_PARTY(sPool_HoennCrew_Advanced, 3, 4, 50, 2),
+        .party = POOL_PARTY(sPool_HoennCrew_Intermediate, 3, 4, 30, 2),
     },
 };
 

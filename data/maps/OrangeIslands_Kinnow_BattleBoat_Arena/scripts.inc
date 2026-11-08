@@ -80,7 +80,6 @@ OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_RoundWon::
 	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Round
 
 OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Cleared::
-	special OrangeBoat_GetLeaderName
 	special OrangeBoat_SettleUp
 	msgbox OrangeIslands_Kinnow_BattleBoat_Arena_Text_Cleared, MSGBOX_DEFAULT
 	goto OrangeIslands_Kinnow_BattleBoat_Arena_EventScript_Close

@@ -6,8 +6,9 @@ OrangeIslands_Kinnow_BattleBoat_Arena_Text_Offer::
 	.string "keep three. Win a round and you\l"
 	.string "may trade one of yours for one of\l"
 	.string "theirs.\p"
-	.string "The seventh round is not one of\n"
-	.string "ours. {STR_VAR_2} is aboard for it.\p"
+	.string "Rounds four and seven are not\n"
+	.string "ours. {STR_VAR_2} is aboard for the\l"
+	.string "fourth, {STR_VAR_3} for the seventh.\p"
 	.string "We pay by how far you get. Sit\n"
 	.string "down?$"
 
@@ -38,10 +39,10 @@ OrangeIslands_Kinnow_BattleBoat_Arena_Text_LeaderRound::
 	.string "back. Good luck.$"
 
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_Cleared::
-	.string "All seven. Nobody did that last\n"
-	.string "week.\p"
-	.string "{STR_VAR_1} for the run. {STR_VAR_2} will be\n"
-	.string "replaced for your next one.$"
+	.string "All seven, and both leaders.\n"
+	.string "Nobody did that last week.\p"
+	.string "{STR_VAR_1} for the run. We will have\n"
+	.string "two others aboard for your next.$"
 
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_Lost::
 	.string "{STR_VAR_3} rounds. The house pays\n"
@@ -60,6 +61,7 @@ OrangeIslands_Kinnow_BattleBoat_Arena_Text_Rules::
 	.string "THE HOUSE PAYS BY DEPTH.\p"
 	.string "Rented POKEMON. Three of six.\n"
 	.string "Seven rounds. One trade a round.\p"
-	.string "Round seven is a GYM LEADER of\n"
-	.string "HOENN, with a team of their own.$"
+	.string "Rounds four and seven are GYM\n"
+	.string "LEADERS of HOENN, with teams of\l"
+	.string "their own at level fifty.$"
 @ --- end build_battle_boat.py ---

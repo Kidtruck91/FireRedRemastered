@@ -1236,52 +1236,51 @@ static const struct PoolMon sPool_Channeler_Intermediate[] =
     POOL_END
 };
 
+// --- build_battle_boat.py pools ---
 // ---------------------------------------------------------------------------
 // The KINNOW battle boat. Chartered out of HOENN, crewed and patronised by
 // HOENN trainers, so both pools are HOENN-dex only (build_battle_boat.py).
+//
+// These are the people lounging on the decks, not the arena. KINNOW's own
+// trainers are level twenty-two and these run twenty-four to thirty, so the
+// pools stay at first and middle stages -- a fully evolved team would read as
+// the arena's level rather than the deck's.
+
+static const struct PoolMon sPool_HoennCrew_Basic[] =
+{
+    { .species = SPECIES_ZIGZAGOON, .iv = 60 },
+    { .species = SPECIES_POOCHYENA, .iv = 60 },
+    { .species = SPECIES_WINGULL,   .iv = 60 },
+    { .species = SPECIES_TAILLOW,   .iv = 60 },
+    { .species = SPECIES_SHROOMISH, .iv = 60 },
+    { .species = SPECIES_WHISMUR,   .iv = 60 },
+    { .species = SPECIES_ARON,      .iv = 60 },
+    { .species = SPECIES_NUMEL,     .iv = 60 },
+    { .species = SPECIES_CARVANHA,  .iv = 60 },
+    { .species = SPECIES_ELECTRIKE, .iv = 60 },
+    { .species = SPECIES_MAKUHITA,  .iv = 60 },
+    { .species = SPECIES_SWABLU,    .iv = 60 },
+    { .species = SPECIES_SPOINK,    .iv = 60 },
+    { .species = SPECIES_BARBOACH,  .iv = 60 },
+    POOL_END
+};
 
 static const struct PoolMon sPool_HoennCrew_Intermediate[] =
 {
-    { .species = SPECIES_VIBRAVA,   .iv = 100 },
+    { .species = SPECIES_LINOONE,   .iv = 100 },
+    { .species = SPECIES_MIGHTYENA, .iv = 100 },
+    { .species = SPECIES_PELIPPER,  .iv = 100 },
+    { .species = SPECIES_SWELLOW,   .iv = 100 },
     { .species = SPECIES_LOMBRE,    .iv = 100 },
     { .species = SPECIES_MARSHTOMP, .iv = 100 },
     { .species = SPECIES_COMBUSKEN, .iv = 100 },
     { .species = SPECIES_GROVYLE,   .iv = 100 },
     { .species = SPECIES_LAIRON,    .iv = 100, .heldItem = ITEM_HARD_STONE },
+    { .species = SPECIES_VIBRAVA,   .iv = 100 },
     { .species = SPECIES_WAILMER,   .iv = 100 },
-    { .species = SPECIES_CARVANHA,  .iv = 100 },
-    { .species = SPECIES_NUMEL,     .iv = 100 },
-    { .species = SPECIES_SWABLU,    .iv = 100 },
-    { .species = SPECIES_ELECTRIKE, .iv = 100 },
-    { .species = SPECIES_MAKUHITA,  .iv = 100 },
+    { .species = SPECIES_KIRLIA,    .iv = 100 },
+    { .species = SPECIES_NINCADA,   .iv = 100 },
+    { .species = SPECIES_SANDSHREW, .iv = 100 },
     POOL_END
 };
-
-static const struct PoolMon sPool_HoennCrew_Advanced[] =
-{
-    { .species = SPECIES_SWAMPERT, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Torrent
-      .moves = {MOVE_SURF, MOVE_EARTHQUAKE, MOVE_ICE_BEAM, MOVE_PROTECT} },
-    { .species = SPECIES_SCEPTILE, .heldItem = ITEM_SITRUS_BERRY, .iv = 255, .ability = 1, // Overgrow
-      .moves = {MOVE_LEAF_BLADE, MOVE_DRAGON_CLAW, MOVE_CRUNCH, MOVE_EARTHQUAKE} },
-    { .species = SPECIES_BLAZIKEN, .heldItem = ITEM_CHOICE_BAND, .iv = 255, .ability = 1, // Blaze
-      .moves = {MOVE_SKY_UPPERCUT, MOVE_FLAMETHROWER, MOVE_ROCK_SLIDE, MOVE_AERIAL_ACE} },
-    { .species = SPECIES_HARIYAMA, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Thick Fat
-      .moves = {MOVE_BRICK_BREAK, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_BULK_UP} },
-    { .species = SPECIES_SHARPEDO, .heldItem = ITEM_QUICK_CLAW, .iv = 255, .ability = 1, // Rough Skin
-      .moves = {MOVE_CRUNCH, MOVE_SURF, MOVE_ICE_BEAM, MOVE_EARTHQUAKE} },
-    { .species = SPECIES_ALTARIA, .heldItem = ITEM_LUM_BERRY, .iv = 255, .ability = 1, // Natural Cure
-      .moves = {MOVE_DRAGON_DANCE, MOVE_AERIAL_ACE, MOVE_EARTHQUAKE, MOVE_REST} },
-    { .species = SPECIES_MANECTRIC, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Static
-      .moves = {MOVE_THUNDERBOLT, MOVE_CRUNCH, MOVE_THUNDER_WAVE, MOVE_PROTECT} },
-    { .species = SPECIES_MILOTIC, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Marvel Scale
-      .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_RECOVER, MOVE_TOXIC} },
-    { .species = SPECIES_FLYGON, .heldItem = ITEM_SITRUS_BERRY, .iv = 255, .ability = 1, // Levitate
-      .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW, MOVE_ROCK_SLIDE, MOVE_PROTECT} },
-    { .species = SPECIES_AGGRON, .heldItem = ITEM_QUICK_CLAW, .iv = 255, .ability = 1, // Sturdy
-      .moves = {MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_IRON_TAIL, MOVE_ROAR} },
-    { .species = SPECIES_CLAYDOL, .heldItem = ITEM_LEFTOVERS, .iv = 255, .ability = 1, // Levitate
-      .moves = {MOVE_EARTHQUAKE, MOVE_PSYCHIC, MOVE_LIGHT_SCREEN, MOVE_REFLECT} },
-    { .species = SPECIES_ABSOL, .heldItem = ITEM_CHOICE_BAND, .iv = 255, .ability = 1, // Pressure
-      .moves = {MOVE_CRUNCH, MOVE_AERIAL_ACE, MOVE_SHADOW_BALL, MOVE_SWORDS_DANCE} },
-    POOL_END
-};
+// --- end build_battle_boat.py pools ---

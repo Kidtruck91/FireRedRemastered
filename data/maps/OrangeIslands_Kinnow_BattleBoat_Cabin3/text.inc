@@ -2,7 +2,8 @@
 OrangeIslands_Kinnow_BattleBoat_Cabin3_Text_LorcanIntro::
 	.string "I have lost a great deal of money\n"
 	.string "in the hold this week.\p"
-	.string "Let me win some of it back up\n"
+	.string "Well out of my depth down there.\n"
+	.string "Let me win some of it back up\l"
 	.string "here.$"
 
 OrangeIslands_Kinnow_BattleBoat_Cabin3_Text_LorcanDefeat::

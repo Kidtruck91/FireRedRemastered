@@ -30,14 +30,15 @@
 // OrangeBoat_StartBattle is DoTrainerTowerBattle with the tower's party build
 // swapped for the factory's.
 //
-// The seventh round is a GYM LEADER.  Six rounds are rented trainers off the
-// frontier list; the last is one of HOENN's eight leaders with a written team
-// at level fifty, and which one depends on how many full runs you have made,
-// so the ladder walks ROXANNE to WALLACE and then starts again. The leader
-// does not use rental POKEMON -- that is the point of the round.
+// Rounds four and seven are GYM LEADERS.  The other five are rented trainers
+// off the frontier list; those two are HOENN leaders with written teams at
+// level fifty, three rounds apart, and they do not use rental POKEMON -- that
+// is the point of those rounds. Which two depends on how many full runs you
+// have made, so a run takes the next pair off the ladder and four clean runs
+// walk the whole of ROXANNE to WALLACE before it starts again.
 //
-// The house pays by depth.  Nothing for the first round, then a purse that
-// grows each round, and a bonus on top for taking the leader down.
+// The house pays by depth.  A purse per round cleared, and a bonus on top for
+// each leader taken down.
 //
 // Because the battle runs on the TRAINER TOWER's battle type, the five places
 // battle_message.c and battle_controller_opponent.c ask the tower who it is
@@ -147,19 +148,32 @@ static const u8 sText_HouseLose[] = _("Yours. Pick one of mine on the way out.")
 
 // What the house pays per round survived, and what it adds for the leader.
 #define PURSE_PER_ROUND  600
-#define PURSE_LEADER     5000
+#define PURSE_LEADER     2500
 
 bool8 OrangeBoat_IsLeaderRound(void)
 {
-    return gSaveBlock2Ptr->factory.curChallengeBattleNum
-           == FACTORY_STAGES_PER_CHALLENGE - 1;
+    u8 round = gSaveBlock2Ptr->factory.curChallengeBattleNum;
+
+    return round == FACTORY_LEADER_ROUND_A || round == FACTORY_LEADER_ROUND_B;
 }
 
-static const struct BoatLeader *CurrentLeader(void)
+// A run takes two leaders off the ladder, so the pair a run gets is decided
+// by how many runs have been completed. winStreak counts battles won across
+// runs and is reset by a loss, so dividing it by the run length gives the run
+// number, and it does not change part-way through a run.
+static const struct BoatLeader *LeaderForSlot(u8 slot)
 {
     u32 run = gSaveBlock2Ptr->factory.winStreak / FACTORY_STAGES_PER_CHALLENGE;
 
-    return &sBoatLeaders[run % LEADER_COUNT];
+    return &sBoatLeaders[(run * FACTORY_LEADERS_PER_RUN + slot) % LEADER_COUNT];
+}
+
+// Away from a leader round this names the next one up, which is what the desk
+// wants when it is telling you who is waiting.
+static const struct BoatLeader *CurrentLeader(void)
+{
+    return LeaderForSlot(gSaveBlock2Ptr->factory.curChallengeBattleNum
+                         > FACTORY_LEADER_ROUND_A ? 1 : 0);
 }
 
 // The five questions the battle asks the TRAINER TOWER, answered for the boat.
@@ -288,7 +302,9 @@ void OrangeBoat_SettleUp(void)
     if (cleared > FACTORY_STAGES_PER_CHALLENGE)
         cleared = FACTORY_STAGES_PER_CHALLENGE;
     purse = cleared * PURSE_PER_ROUND;
-    if (cleared == FACTORY_STAGES_PER_CHALLENGE)
+    if (cleared > FACTORY_LEADER_ROUND_A)
+        purse += PURSE_LEADER;
+    if (cleared > FACTORY_LEADER_ROUND_B)
         purse += PURSE_LEADER;
 
     if (purse != 0)
@@ -311,10 +327,11 @@ void OrangeBoat_SettleUp(void)
     gSaveBlock2Ptr->factory.rentsCount = 0;
 }
 
-// Which leader is waiting in the seventh round, for the desk to name before
-// you pay your entry.
+// The two leaders this run would put in rounds four and seven, for the desk
+// to name before you pay your entry.
 
 void OrangeBoat_GetLeaderName(void)
 {
-    StringCopy(gStringVar2, CurrentLeader()->name);
+    StringCopy(gStringVar2, LeaderForSlot(0)->name);
+    StringCopy(gStringVar3, LeaderForSlot(1)->name);
 }

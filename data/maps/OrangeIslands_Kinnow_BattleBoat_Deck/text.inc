@@ -1,13 +1,13 @@
 @ --- built by docs/orange-islands/build_battle_boat.py ---
 OrangeIslands_Kinnow_BattleBoat_Deck_Text_Purser::
 	.string "Welcome aboard the MERIDIAN.\p"
-	.string "We are chartered out of HOENN and\n"
-	.string "we run on HOENN rules: everyone\l"
-	.string "aboard is a paying challenger.\p"
-	.string "Nobody here is under level forty-\n"
-	.string "five. If that is a surprise, the\l"
-	.string "gangway is behind you and we are\l"
-	.string "moored here all season.$"
+	.string "We are chartered out of HOENN, and\n"
+	.string "everyone aboard is a paying\l"
+	.string "challenger. The decks are friendly\l"
+	.string "enough.\p"
+	.string "The arena in the hold is not. That\n"
+	.string "is a level fifty room and the\l"
+	.string "house means it.$"
 
 OrangeIslands_Kinnow_BattleBoat_Deck_Text_Lookout::
 	.string "We never leave the pier. The boat\n"
