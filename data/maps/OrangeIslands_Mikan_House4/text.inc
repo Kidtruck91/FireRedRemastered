@@ -4,7 +4,8 @@ OrangeIslands_Mikan_House4_Text_Mother::
 	.string "not stop trying.$"
 
 OrangeIslands_Mikan_House4_Text_Brother::
-	.string "Once it starts raining in there,\n"
-	.string "CISSY never misses. Not once.\p"
-	.string "I have watched all summer.$"
+	.string "I have watched CISSY all summer.\p"
+	.string "Nobody ever seems to hit her.\n"
+	.string "They just keep swinging and\l"
+	.string "missing until it is over.$"
 

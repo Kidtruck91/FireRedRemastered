@@ -105,8 +105,8 @@ FAMILY = [
      ['"Our boy is out at the gym again.\\n"', '"He cannot beat CISSY and he will\\l"',
       '"not stop trying.$"']),
     ('OBJ_EVENT_GFX_LITTLE_BOY', 8, 5, 'MOVEMENT_TYPE_WANDER_AROUND', 'Brother',
-     ['"Once it starts raining in there,\\n"', '"CISSY never misses. Not once.\\p"',
-      '"I have watched all summer.$"']),
+     ['"I have watched CISSY all summer.\\p"', '"Nobody ever seems to hit her.\\n"',
+      '"They just keep swinging and\\l"', '"missing until it is over.$"']),
 ]
 
 # (door, map suffix, layout, exit cells, people, extra script kind)
