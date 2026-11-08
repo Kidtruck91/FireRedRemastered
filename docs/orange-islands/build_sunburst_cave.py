@@ -150,8 +150,13 @@ def add_flags(names):
         free = re.search(r'#define (FLAG_UNUSED_0x([0-9A-F]{3}))\s+0x\2 // Unused Flag\n', s)
         if not free:
             raise SystemExit('no unused flag left for ' + name)
+        # Replace the FLAG_UNUSED line rather than inserting after it. Keeping
+        # it meant the next flag found the same free slot and every flag this
+        # script added ended up on one bit -- which compiles, and which no
+        # checker catches, because duplicate #defines of the same value are
+        # perfectly legal. Taking the slot is what makes it a slot.
         s = s.replace(free.group(0),
-                      free.group(0) + '#define %-24s 0x%s // %s\n' % (name, free.group(2), comment))
+                      '#define %-38s 0x%s // %s\n' % (name, free.group(2), comment))
         added += 1
     if added:
         open(p, 'w', encoding='utf-8', newline='\n').write(s)

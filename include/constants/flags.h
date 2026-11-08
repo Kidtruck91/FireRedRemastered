@@ -1249,21 +1249,14 @@
 #define FLAG_HIDDEN_ITEM_SSANNE_EXTERIOR_LAVA_COOKIE                       (FLAG_HIDDEN_ITEMS_START + 190)
 
 // Unused hidden item flags
-#define FLAG_UNUSED_0x4A7               0x4A7 // Unused Flag
-#define FLAG_HIDE_SUNBURST_CAVE_3F_REVIVE 0x4A7 // Sunburst Cave item: REVIVE
-#define FLAG_HIDE_SUNBURST_CAVE_2F_ESCAPE_ROPE 0x4A7 // Sunburst Cave item: ESCAPE_ROPE
-#define FLAG_HIDE_SUNBURST_CAVE_2F_HARD_STONE 0x4A7 // Sunburst Cave item: HARD_STONE
-#define FLAG_ORANGE_SUNBURST_STEELIX 0x4A7 // the Sunburst Cave STEELIX has been fought
-#define FLAG_UNUSED_0x4A8               0x4A8 // Unused Flag
-#define FLAG_ORANGE_DERBY_RULES  0x4A7 // the derby judge has explained himself
-#define FLAG_ORANGE_DERBY_GRAND  0x4A8 // the derby grand prize has been claimed
-#define FLAG_ORANGE_CISSY_MET    0x4A9 // Cissy has been found on Mikan beach; her gym is open
-#define FLAG_UNUSED_0x4A9               0x4A9 // Unused Flag
-#define FLAG_UNUSED_0x4AA               0x4AA // Unused Flag
-#define FLAG_UNUSED_0x4AB               0x4AB // Unused Flag
-#define FLAG_UNUSED_0x4AC               0x4AC // Unused Flag
-#define FLAG_UNUSED_0x4AD               0x4AD // Unused Flag
-#define FLAG_UNUSED_0x4AE               0x4AE // Unused Flag
+#define FLAG_ORANGE_DERBY_RULES                0x4A7 // the derby judge has explained himself
+#define FLAG_ORANGE_DERBY_GRAND                0x4A8 // the derby grand prize has been claimed
+#define FLAG_ORANGE_CISSY_MET                  0x4A9 // Cissy has been found on Mikan beach; her gym is open
+#define FLAG_ORANGE_SUNBURST_STEELIX           0x4AA // the Sunburst Cave STEELIX has been fought
+#define FLAG_HIDE_SUNBURST_CAVE_2F_HARD_STONE  0x4AB // Sunburst Cave item: HARD STONE
+#define FLAG_HIDE_SUNBURST_CAVE_2F_ESCAPE_ROPE 0x4AC // Sunburst Cave item: ESCAPE ROPE
+#define FLAG_HIDE_SUNBURST_CAVE_3F_REVIVE      0x4AD // Sunburst Cave item: REVIVE
+#define FLAG_ORANGE_IN_FACTORY                 0x4AE // inside a BATTLE FACTORY challenge on the Kinnow boat
 #define FLAG_UNUSED_0x4AF               0x4AF // Unused Flag
 
 // Boss clear flags, 1200
