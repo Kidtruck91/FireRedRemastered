@@ -2,8 +2,7 @@
 
 Mikan was drawn as a town and wired as a corridor. Six doors, one of which went
 anywhere -- the POKeMON CENTER -- and not a single person outdoors on either
-map. The gym is on the beach, which is right: Cissy's two tests are a water-gun
-accuracy contest and a race on the waves, so her gym belongs at the water.
+map. The gym is on the beach, below the town, at the water.
 
     (37,46)  the MART
     (18,41)  the harbourmaster's house, north-west
@@ -14,12 +13,19 @@ accuracy contest and a race on the waves, so her gym belongs at the water.
 Each interior reuses a layout the game already ships, so no new tilesets and no
 new graphics.
 
-The island is the first stop on the Orange League, so almost everyone here is
-talking about the same thing from a different angle: the two tests, the
-CORAL-EYE BADGE, and the long water crossing to NAVEL that comes after it. The
-sailor in the south-west house is the one who tells you the crossing exists;
-the wave-rider in the north-east is the one who tells you what the second test
-actually involves.
+Cissy is out swimming, so the gym is shut until you find her. She is on the
+sand at the inlet, and what she says is the thing a player most needs to hear
+on the first island of the Orange League: the ORANGE CREW is four leaders and
+a champion, each with their own flavour, and they do not all play by mainland
+rules -- so talk to the gym guide before challenging any of them. That turns
+the gym guide from scenery into the thing that tells you how to win, which on
+Mikan matters: her gym is a surf maze and she fights in rain, where her THUNDER
+never misses.
+
+Everyone else is talking about the same island from a different angle. The pool
+keeper in the north-east house is the one who explains the maze before you are
+standing in it; the old sailor in the south-west tells you the NAVEL crossing
+exists and which water to take.
 
 Every coordinate is checked against the map before anything is written, so an
 NPC can never end up standing in a wall.
@@ -56,8 +62,8 @@ def mid(name):
 MART = [
     ('OBJ_EVENT_GFX_CLERK', 2, 3, 'MOVEMENT_TYPE_FACE_DOWN', 'Clerk', None),
     ('OBJ_EVENT_GFX_YOUNGSTER', 8, 4, 'MOVEMENT_TYPE_FACE_LEFT', 'Youngster',
-     ['"I have bought POTIONs three times\\n"', '"and lost to CISSY three times.\\p"',
-      '"The first test is not a battle.\\n"', '"POTIONs do not help.$"']),
+     ['"I keep taking FIRE types in to\\n"', '"CISSY. In her rain they barely\\l"',
+      '"singe her.\\p"', '"I keep buying POTIONs about it.$"']),
     ('OBJ_EVENT_GFX_WOMAN_1', 5, 6, 'MOVEMENT_TYPE_WANDER_AROUND', 'Woman',
      ['"Stock up here. The next island is\\n"', '"a long way across open water and\\l"',
       '"there are no shops on the way.$"']),
@@ -72,15 +78,16 @@ HARBOUR = [
      ['"Dad knows the name of every boat.\\n"', '"He does not know my friends\'.$"']),
 ]
 
-WAVERIDER = [
-    ('OBJ_EVENT_GFX_SWIMMER_M_LAND', 4, 3, 'MOVEMENT_TYPE_FACE_DOWN', 'Rider',
-     ['"So you are going for the\\n"', '"CORAL-EYE BADGE.\\p"',
-      '"Two tests. First she shoots cans\\n"', '"off a wall with a water gun and\\l"',
-      '"asks you to do the same.\\p"',
-      '"Then you race her. Out around the\\n"', '"marker and back, riding your\\l"',
-      '"POKeMON. No battling at all.$"']),
+POOLKEEPER = [
+    ('OBJ_EVENT_GFX_SWIMMER_M_LAND', 4, 3, 'MOVEMENT_TYPE_FACE_DOWN', 'PoolKeeper',
+     ['"I keep CISSY\'s pool. You will not\\n"', '"walk to her -- you SURF, and the\\l"',
+      '"water does the steering.\\p"',
+      '"Three rocks between the door and\\n"', '"her LEADER\'s stand, each one\\l"',
+      '"behind its own channel.\\p"',
+      '"Pick the wrong column and the\\n"', '"outflow puts you back at the\\l"',
+      '"bottom. It is not cruel. It is\\l"', '"just how water works.$"']),
     ('OBJ_EVENT_GFX_BEAUTY', 8, 6, 'MOVEMENT_TYPE_FACE_LEFT', 'Partner',
-     ['"He lost that race by a length and\\n"', '"has talked about it ever since.$"']),
+     ['"He rode that maze all summer and\\n"', '"she still beat him in the rain.$"']),
 ]
 
 VETERAN = [
@@ -98,14 +105,15 @@ FAMILY = [
      ['"Our boy is out at the gym again.\\n"', '"He cannot beat CISSY and he will\\l"',
       '"not stop trying.$"']),
     ('OBJ_EVENT_GFX_LITTLE_BOY', 8, 5, 'MOVEMENT_TYPE_WANDER_AROUND', 'Brother',
-     ['"CISSY never misses. Not once.\\n"', '"I have watched all summer.$"']),
+     ['"Once it starts raining in there,\\n"', '"CISSY never misses. Not once.\\p"',
+      '"I have watched all summer.$"']),
 ]
 
 # (door, map suffix, layout, exit cells, people, extra script kind)
 PLAN = [
     ((37, 46), 'Mart', 'LAYOUT_MART', [(3, 7), (4, 7), (5, 7)], MART, 'mart'),
     ((18, 41), 'House1', 'LAYOUT_HOUSE1', [(3, 7), (4, 7), (5, 7)], HARBOUR, None),
-    ((41, 41), 'House2', 'LAYOUT_HOUSE5', [(3, 7), (4, 7), (5, 7)], WAVERIDER, None),
+    ((41, 41), 'House2', 'LAYOUT_HOUSE5', [(3, 7), (4, 7), (5, 7)], POOLKEEPER, None),
     ((19, 55), 'House3', 'LAYOUT_HOUSE3', [(4, 7)], VETERAN, None),
     ((40, 56), 'House4', 'LAYOUT_HOUSE4', [(3, 7)], FAMILY, None),
 ]
@@ -129,21 +137,60 @@ TOWN_PEOPLE = [
       '"gyms first. I have beaten none.$"']),
 ]
 
+# Cissy is out swimming, so the gym is shut until the player finds her. She
+# stands on the sand at the inlet, facing the water she has just come out of.
+CISSY = ('OBJ_EVENT_GFX_CISSY', 44, 24, 'MOVEMENT_TYPE_FACE_DOWN', 'Cissy', None)
+
 BEACH_PEOPLE = [
-    ('OBJ_EVENT_GFX_GENTLEMAN', 46, 19, 'MOVEMENT_TYPE_FACE_DOWN', 'GymGuide',
-     ['"That is CISSY\'s gym.\\p"', '"She does not battle challengers.\\n"',
-      '"She tests them. There is a\\l"', '"difference, and it catches people\\l"',
-      '"out.$"']),
+    CISSY,
+    # beside the door's approach rather than in it, so he reads as a bystander
+    ('OBJ_EVENT_GFX_GENTLEMAN', 49, 19, 'MOVEMENT_TYPE_FACE_LEFT', 'Spectator',
+     ['"CISSY tells every challenger the\\n"', '"same thing. Talk to the GYM GUIDE\\l"',
+      '"before you go up.\\p"',
+      '"They hear it, walk straight past\\n"', '"him, and lose in the rain.$"']),
     ('OBJ_EVENT_GFX_SWIMMER_F_LAND', 34, 22, 'MOVEMENT_TYPE_WANDER_AROUND', 'Swimmer',
-     ['"The water here is flat in the\\n"', '"morning and rough by four.\\p"',
-      '"Challenge her early.$"']),
+     ['"She swims the inlet most mornings\\n"', '"and leaves the gym shut.\\p"',
+      '"Nobody minds. She has never lost\\l"', '"a challenge she turned up for.$"']),
     ('OBJ_EVENT_GFX_LITTLE_GIRL', 30, 11, 'MOVEMENT_TYPE_WANDER_AROUND', 'Child',
-     ['"I can hit a can with my SQUIRTLE\\n"', '"from four steps away.\\p"',
-      '"CISSY does it from twenty.$"']),
+     ['"The gym is full of water. All the\\n"', '"way to the top!\\p"',
+      '"Mum says I can go in when I can\\n"', '"swim it.$"']),
     ('OBJ_EVENT_GFX_FISHER', 52, 24, 'MOVEMENT_TYPE_FACE_LEFT', 'Fisher',
      ['"Everyone watches the gym. Nobody\\n"', '"watches the water.\\p"',
       '"There is plenty in it.$"']),
 ]
+
+# The tile the player must cross to reach the gym door at (46,17).
+GYM_STEP = (46, 18)
+
+CISSY_FLAG = 'FLAG_ORANGE_CISSY_MET'
+
+# Script suffixes this file used to write and no longer does.
+RETIRED = ['GymGuide', 'Rider']
+
+CISSY_LINES = {
+    'CissyMeet': [
+        '"Hey! Were you looking for the\\n"', '"gym? It\'s shut. That\'s my fault.\\p"',
+        '"I\'m CISSY, MIKAN\'s LEADER. The\\n"', '"water was too good to waste on\\l"',
+        '"sitting indoors.\\p"',
+        '"Before you challenge any of us,\\n"', '"here\'s what you should know.\\p"',
+        '"The ORANGE CREW is four LEADERS\\n"', '"and our champ, DRAKE. We\'ve each\\l"',
+        '"got our own flavour, and we don\'t\\l"', '"all play by the same rules the\\l"',
+        '"mainland LEADERS do.\\p"',
+        '"So talk to our GYM GUIDES. Every\\n"', '"one of us has one, and they\'ll\\l"',
+        '"give you the scoop on how that\\l"', '"gym rolls.\\p"',
+        '"Mine\'s just inside the door. Go\\n"', '"on -- I\'ll dry off and meet you\\l"',
+        '"at the top of the pool.$"'],
+    'CissyWaiting': [
+        '"Still down here? The pool\'s\\n"', '"waiting, and so am I.\\p"',
+        '"Talk to my GYM GUIDE on the way\\n"', '"in. That\'s what he\'s for.$"'],
+    'CissyBeaten': [
+        '"One down. Three LEADERS and DRAKE\\n"', '"to go.\\p"',
+        '"Try NAVEL next. DANNY runs his\\n"', '"gym nothing like I run mine --\\l"',
+        '"ask his GYM GUIDE before you find\\l"', '"that out the hard way.$"'],
+    'GymShut': [
+        '"The door is shut.\\p"',
+        '"A card is wedged in the handle:\\n"', '"GONE SWIMMING. -- C.$"'],
+}
 
 
 # ---------------------------------------------------------------------------
@@ -210,6 +257,66 @@ def mart_clerk(name, out):
     out += ['\t.2byte ITEM_NONE', '\t.align 2', '']
 
 
+FENCE_TOP = '@ --- built by docs/orange-islands/build_mikan_town.py ---'
+FENCE_END = '@ --- end build_mikan_town.py ---'
+
+
+def splice(path, body):
+    """Replace this script's own block in a file, or append it.
+
+    Everything between the two fences belongs to this script, so an edited line
+    or a renamed person takes effect on the next run instead of being appended
+    beside the version it replaced.
+    """
+    s = open(path, encoding='utf-8').read() if os.path.exists(path) else ''
+    block = FENCE_TOP + '\n' + '\n'.join(body).rstrip('\n') + '\n' + FENCE_END + '\n'
+    if FENCE_TOP in s and FENCE_END in s:
+        head = s[:s.index(FENCE_TOP)]
+        tail = s[s.index(FENCE_END) + len(FENCE_END):].lstrip('\n')
+        s = head + block + tail
+    else:
+        s = s.rstrip('\n') + ('\n\n' if s.strip() else '') + block
+    open(path, 'w', encoding='utf-8', newline='\n').write(s)
+
+
+def beach_scripts(name, out, text):
+    """Cissy on the sand, and the gym door that stays shut until you find her."""
+    out += [
+        '@ The gym is shut while CISSY is in the water. Finding her is what',
+        '@ opens it, and what she says is the point of the detour.',
+        '%s_EventScript_Cissy::' % name,
+        '\tlock', '\tfaceplayer',
+        '\tgoto_if_set FLAG_BADGE_CORAL_EYE, %s_EventScript_CissyBeaten' % name,
+        '\tgoto_if_set %s, %s_EventScript_CissyWaiting' % (CISSY_FLAG, name),
+        '\tmsgbox %s_Text_CissyMeet, MSGBOX_DEFAULT' % name,
+        '\tsetflag %s' % CISSY_FLAG,
+        '\trelease', '\tend', '',
+        '%s_EventScript_CissyWaiting::' % name,
+        '\tmsgbox %s_Text_CissyWaiting, MSGBOX_DEFAULT' % name,
+        '\trelease', '\tend', '',
+        '%s_EventScript_CissyBeaten::' % name,
+        '\tmsgbox %s_Text_CissyBeaten, MSGBOX_DEFAULT' % name,
+        '\trelease', '\tend', '',
+        '@ One step in front of the door. The flag check comes before the lock,',
+        '@ so once the gym is open the player walks through without a hitch.',
+        '%s_EventScript_GymShut::' % name,
+        '\tgoto_if_set %s, %s_EventScript_GymOpen' % (CISSY_FLAG, name),
+        '\tlockall',
+        '\tmsgbox %s_Text_GymShut, MSGBOX_DEFAULT' % name,
+        '\tapplymovement OBJ_EVENT_ID_PLAYER, %s_Movement_StepBack' % name,
+        '\twaitmovement 0',
+        '\treleaseall', '\tend', '',
+        '%s_EventScript_GymOpen::' % name,
+        '\tend', '',
+        '%s_Movement_StepBack::' % name,
+        '\twalk_down',
+        '\tstep_end', '']
+    for tag, lines in CISSY_LINES.items():
+        text.append('%s_Text_%s::' % (name, tag))
+        text += ['\t.string %s' % ln for ln in lines]
+        text.append('')
+
+
 def add_outdoor(name, people, ok, report):
     """Put the listed people on an existing map, after checking each cell."""
     path = os.path.join(REPO, 'data/maps', name, 'map.json')
@@ -217,6 +324,10 @@ def add_outdoor(name, people, ok, report):
     # drop the people this script owns and lay them down again, so a re-run
     # picks up an edited line or a moved coordinate instead of doing nothing
     mine = {'%s_EventScript_%s' % (name, s) for (_g, _x, _y, _m, s, _l) in people}
+    # People this script used to create and has since renamed or dropped. The
+    # object outlives the script it points at, so without this the map keeps a
+    # dangling reference and the link fails.
+    mine |= {'%s_EventScript_%s' % (name, s) for s in RETIRED}
     mj['object_events'] = [o for o in mj['object_events'] if o.get('script') not in mine]
     taken = {(o['x'], o['y']) for o in mj['object_events']}
     added = 0
@@ -236,6 +347,15 @@ def add_outdoor(name, people, ok, report):
             "trainer_type": "TRAINER_TYPE_NONE", "trainer_sight_or_berry_tree_id": "0",
             "script": label, "flag": "0"})
         added += 1
+
+    if name == BEACH:
+        label = '%s_EventScript_GymShut' % name
+        mj['coord_events'] = [e for e in mj['coord_events']
+                              if e.get('script') != label]
+        mj['coord_events'].append({
+            "type": "trigger", "x": GYM_STEP[0], "y": GYM_STEP[1], "elevation": 0,
+            "var": "VAR_TEMP_0", "var_value": "0", "script": label})
+
     with open(path, 'w', newline='\n') as f:
         json.dump(mj, f, indent=2)
         f.write('\n')
@@ -243,14 +363,10 @@ def add_outdoor(name, people, ok, report):
     d = os.path.join(REPO, 'data/maps', name)
     out, text = [], []
     talkers(name, people, out, text)
-    for fname, body in (('scripts.inc', out), ('text.inc', text)):
-        p = os.path.join(d, fname)
-        s = open(p, encoding='utf-8').read() if os.path.exists(p) else ''
-        fresh = [b for b in body if b]
-        keep = '\n'.join(body)
-        if fresh and fresh[0].rstrip(':') not in s:
-            s = s.rstrip('\n') + '\n\n' + keep + '\n'
-            open(p, 'w', encoding='utf-8', newline='\n').write(s)
+    if name == BEACH:
+        beach_scripts(name, out, text)
+    splice(os.path.join(d, 'scripts.inc'), out)
+    splice(os.path.join(d, 'text.inc'), text)
     return added
 
 

@@ -1,8 +1,8 @@
 OrangeIslands_Mikan_Mart_Text_Youngster::
-	.string "I have bought POTIONs three times\n"
-	.string "and lost to CISSY three times.\p"
-	.string "The first test is not a battle.\n"
-	.string "POTIONs do not help.$"
+	.string "I keep taking FIRE types in to\n"
+	.string "CISSY. In her rain they barely\l"
+	.string "singe her.\p"
+	.string "I keep buying POTIONs about it.$"
 
 OrangeIslands_Mikan_Mart_Text_Woman::
 	.string "Stock up here. The next island is\n"

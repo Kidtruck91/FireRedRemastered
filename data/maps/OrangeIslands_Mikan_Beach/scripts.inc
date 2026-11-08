@@ -86,8 +86,9 @@ OrangeIslands_Mikan_Beach_Text_OrangeIanPostBattle::
 	.string "Out here, WATER POKéMON are\n"
 	.string "the real champions.$"
 
-OrangeIslands_Mikan_Beach_EventScript_GymGuide::
-	msgbox OrangeIslands_Mikan_Beach_Text_GymGuide, MSGBOX_NPC
+@ --- built by docs/orange-islands/build_mikan_town.py ---
+OrangeIslands_Mikan_Beach_EventScript_Spectator::
+	msgbox OrangeIslands_Mikan_Beach_Text_Spectator, MSGBOX_NPC
 	end
 
 OrangeIslands_Mikan_Beach_EventScript_Swimmer::
@@ -102,3 +103,43 @@ OrangeIslands_Mikan_Beach_EventScript_Fisher::
 	msgbox OrangeIslands_Mikan_Beach_Text_Fisher, MSGBOX_NPC
 	end
 
+@ The gym is shut while CISSY is in the water. Finding her is what
+@ opens it, and what she says is the point of the detour.
+OrangeIslands_Mikan_Beach_EventScript_Cissy::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE_CORAL_EYE, OrangeIslands_Mikan_Beach_EventScript_CissyBeaten
+	goto_if_set FLAG_ORANGE_CISSY_MET, OrangeIslands_Mikan_Beach_EventScript_CissyWaiting
+	msgbox OrangeIslands_Mikan_Beach_Text_CissyMeet, MSGBOX_DEFAULT
+	setflag FLAG_ORANGE_CISSY_MET
+	release
+	end
+
+OrangeIslands_Mikan_Beach_EventScript_CissyWaiting::
+	msgbox OrangeIslands_Mikan_Beach_Text_CissyWaiting, MSGBOX_DEFAULT
+	release
+	end
+
+OrangeIslands_Mikan_Beach_EventScript_CissyBeaten::
+	msgbox OrangeIslands_Mikan_Beach_Text_CissyBeaten, MSGBOX_DEFAULT
+	release
+	end
+
+@ One step in front of the door. The flag check comes before the lock,
+@ so once the gym is open the player walks through without a hitch.
+OrangeIslands_Mikan_Beach_EventScript_GymShut::
+	goto_if_set FLAG_ORANGE_CISSY_MET, OrangeIslands_Mikan_Beach_EventScript_GymOpen
+	lockall
+	msgbox OrangeIslands_Mikan_Beach_Text_GymShut, MSGBOX_DEFAULT
+	applymovement OBJ_EVENT_ID_PLAYER, OrangeIslands_Mikan_Beach_Movement_StepBack
+	waitmovement 0
+	releaseall
+	end
+
+OrangeIslands_Mikan_Beach_EventScript_GymOpen::
+	end
+
+OrangeIslands_Mikan_Beach_Movement_StepBack::
+	walk_down
+	step_end
+@ --- end build_mikan_town.py ---

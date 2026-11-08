@@ -113,6 +113,7 @@ OrangeIslands_Mikan_Text_OrangeRyanPostBattle::
 	.string "My big sister swims way\n"
 	.string "out past the rocks.$"
 
+@ --- built by docs/orange-islands/build_mikan_town.py ---
 OrangeIslands_Mikan_EventScript_Girl::
 	msgbox OrangeIslands_Mikan_Text_Girl, MSGBOX_NPC
 	end
@@ -132,4 +133,4 @@ OrangeIslands_Mikan_EventScript_OldWoman::
 OrangeIslands_Mikan_EventScript_Boy::
 	msgbox OrangeIslands_Mikan_Text_Boy, MSGBOX_NPC
 	end
-
+@ --- end build_mikan_town.py ---

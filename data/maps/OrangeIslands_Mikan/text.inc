@@ -11,6 +11,7 @@ OrangeIslands_Mikan_Text_Town::
 	.string "MIKAN TOWN\n"
 	.string "Forest lanes and island homes$"
 
+@ --- built by docs/orange-islands/build_mikan_town.py ---
 OrangeIslands_Mikan_Text_Girl::
 	.string "The POKeMON CENTER, the MART and\n"
 	.string "four houses. That is MIKAN.\p"
@@ -36,4 +37,4 @@ OrangeIslands_Mikan_Text_Boy::
 	.string "I am going to be in the ORANGE\n"
 	.string "CREW. You have to beat all four\l"
 	.string "gyms first. I have beaten none.$"
-
+@ --- end build_mikan_town.py ---
