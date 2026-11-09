@@ -3,6 +3,12 @@
 //
 //     make ORANGE_TEST=1          -> pokefirered_orangetest.gba
 //
+// Add BOAT=1 to start at the arena desk on KINNOW's battle boat instead,
+// which is the whole point of the FACTORY port and twenty tiles of jetty plus
+// three decks away from anywhere else:
+//
+//     make ORANGE_TEST=1 BOAT=1
+//
 // The switch sets -DORANGE_TEST_START and changes BUILD_NAME, so the test
 // build never shares object files with the real one and a plain `make` is
 // byte-for-byte unaffected. Everything below compiles to nothing without it.
@@ -122,11 +128,23 @@ void OrangeTestStart(void)
         AddBagItem(sTestBag[i].item, sTestBag[i].count);   // HMs bring the TM Case with them
     SetMoney(&gSaveBlock1Ptr->money, 99999);
 
+#ifdef ORANGE_TEST_BOAT
+    // In front of the arena desk, two decks down on the battle boat. Fainting
+    // out of a factory round does not white out -- those battles run on the
+    // TRAINER TOWER battle type, which battle_main.c leaves out of the
+    // whiteout path -- but the heal point is set to KINNOW so that flying or
+    // a blackout from anything else lands somewhere sane.
+    SetLastHealLocationWarp(SPAWN_ORANGE_KINNOW);
+    SetWarpDestination(MAP_GROUP(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_ARENA),
+                       MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_ARENA),
+                       -1, 4, 4);
+#else
     // One tile north of the ticket gate at 22-23,33, facing the pier: walk
     // down and the sailor asks about the SUNKIST TICKET.
     SetLastHealLocationWarp(SPAWN_VERMILION_CITY);
     SetWarpDestination(MAP_GROUP(VERMILION_CITY), MAP_NUM(VERMILION_CITY),
                        -1, 23, 31);
+#endif
     WarpIntoMap();
 }
 
