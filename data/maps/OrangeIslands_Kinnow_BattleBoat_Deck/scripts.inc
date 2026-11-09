@@ -14,4 +14,10 @@ OrangeIslands_Kinnow_BattleBoat_Deck_EventScript_Brac::
 	trainerbattle_single TRAINER_ORANGE_SAILOR_BRAC, OrangeIslands_Kinnow_BattleBoat_Deck_Text_BracIntro, OrangeIslands_Kinnow_BattleBoat_Deck_Text_BracDefeat
 	msgbox OrangeIslands_Kinnow_BattleBoat_Deck_Text_BracAfter, MSGBOX_AUTOCLOSE
 	end
+
+OrangeIslands_Kinnow_BattleBoat_Deck_EventScript_GoAshore::
+	lockall
+	warp MAP_ORANGE_ISLANDS_KINNOW, 33, 47
+	waitstate
+	end
 @ --- end build_battle_boat.py ---

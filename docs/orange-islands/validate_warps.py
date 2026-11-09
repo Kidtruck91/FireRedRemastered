@@ -146,6 +146,9 @@ def main(argv):
 
     problems = []
     notes = []
+    suspect = []
+    dead = []
+    exits = {}
     checked = 0
     for name in sorted(os.listdir(maps_dir)):
         mj = os.path.join(maps_dir, name, 'map.json')
@@ -209,11 +212,21 @@ def main(argv):
                 # step out of). Telling those apart from a genuinely dead door
                 # needs to know whether anything else reaches the destination,
                 # which this does not, so it is reported and not failed on.
+                if any(c['x'] == warp['x'] and c['y'] == warp['y']
+                       for c in m.get('coord_events') or []):
+                    continue  # a trigger on the tile does the warping instead
                 notes.append(
                     '%s warp %d (%d,%d): metatile 0x%03X is %s -- cannot fire, so '
                     'it is arrival-only (or a dead door)'
                     % (name, i, warp['x'], warp['y'], mid, beh))
-            elif coll != 0 and beh in WARP_ON_STEP:
+                dead.append((name, i, warp['x'], warp['y'], warp['dest_map'], beh))
+            else:
+                exits.setdefault(name, set()).add(warp['dest_map'])
+        # Walking off the edge counts: a beach joined to its island by a map
+        # connection does not need its warps to fire.
+        for conn in (m.get('connections') or []):
+            exits.setdefault(name, set()).add(conn['map'])
+            if beh in WARPABLE and coll != 0 and beh in WARP_ON_STEP:
                 problems.append(
                     '%s warp %d (%d,%d): %s warps fire on stepping on the tile, but '
                     'it is not walkable' % (name, i, warp['x'], warp['y'], beh))
@@ -271,6 +284,57 @@ def main(argv):
                 problems.append(
                     '%s sign (%d,%d): no walkable tile beside it, so it can never '
                     'be read' % (name, bg['x'], bg['y']))
+
+    # A warp that cannot fire is usually an arrival anchor: the foot of a
+    # ladder, the cave mouth you step out of. It is a dead door only when the
+    # map it sits on has no other way to reach that destination. Scripts count
+    # as a way -- the sea crossings and the KINNOW gangway all warp from a
+    # coord_event -- so the map's own scripts.inc is read for `warp MAP_...`.
+    WARPCMD = ('warp ', 'warpsilent ', 'warpteleport ', 'warpdoor ',
+               'warphole ', 'setwarp ', 'setdynamicwarp ')
+
+    def warps_in(path):
+        found = set()
+        if os.path.exists(path):
+            for line in open(path, encoding='utf-8', errors='replace'):
+                line = line.strip()
+                if line.startswith(WARPCMD):
+                    found.add(line.split()[1].rstrip(','))
+        return found
+
+    # The shared scripts under data/scripts are reachable from any map, so
+    # anything they warp to counts for every map. That is what drives the
+    # ELITE FOUR's doors, the TRAINER TOWER lift and the MANSION's holes.
+    shared = set()
+    scripts_dir = os.path.join(REPO, 'data/scripts')
+    if os.path.isdir(scripts_dir):
+        for f in os.listdir(scripts_dir):
+            shared |= warps_in(os.path.join(scripts_dir, f))
+
+    script_exits = {}
+    for mapname, _i, _x, _y, _dest, _beh in dead:
+        if mapname in script_exits:
+            continue
+        script_exits[mapname] = (
+            warps_in(os.path.join(maps_dir, mapname, 'scripts.inc')) | shared)
+    for mapname, i, x, y, dest, beh in dead:
+        if dest in exits.get(mapname, ()) or dest in script_exits.get(mapname, ()):
+            continue
+        suspect.append(
+            '%s warp %d (%d,%d) -> %s: the tile is %s, which no warp path fires '
+            'on, and no warp or script on this map reaches that destination'
+            % (mapname, i, x, y, dest.replace('MAP_', ''), beh))
+
+    # Reported, not failed on. A map can also be left by C -- the ELITE FOUR's
+    # doors, the TRAINER TOWER lift, the MANSION's holes -- which this cannot
+    # see, so the list over-reports. It is still the only thing that catches a
+    # door that silently does nothing, which is otherwise invisible until
+    # someone walks into it.
+    if suspect:
+        print('possible dead doors (a warp that cannot fire, with no other way '
+              'to its destination -- over-reports, see the source):')
+        for d in suspect:
+            print('  ? ' + d)
 
     print('checked %d maps' % checked)
     for p in problems:

@@ -80,12 +80,12 @@ MART = [
 # island is; and he is the first to hint at the thing in the cave.
 GLASSWORKS = [
     # the vendor: his script is written by glass_clerk(), not talkers()
-    ('OBJ_EVENT_GFX_OLD_MAN_1', 4, 3, 'MOVEMENT_TYPE_FACE_DOWN', 'Glassblower', None),
-    ('OBJ_EVENT_GFX_WOMAN_3', 8, 5, 'MOVEMENT_TYPE_FACE_LEFT', 'Daughter',
+    ('OBJ_EVENT_GFX_OLD_MAN_1', 4, 2, 'MOVEMENT_TYPE_FACE_DOWN', 'Glassblower', None),
+    ('OBJ_EVENT_GFX_WOMAN_3', 7, 5, 'MOVEMENT_TYPE_FACE_LEFT', 'Daughter',
      ['"He went down into the cave once,\\n"', '"years ago, and came back up\\l"',
       '"without his tools.\\p"', '"He has never said why.\\n"',
       '"He has never gone back either.$"']),
-    ('OBJ_EVENT_GFX_YOUNGSTER', 2, 5, 'MOVEMENT_TYPE_FACE_RIGHT', 'Apprentice',
+    ('OBJ_EVENT_GFX_YOUNGSTER', 2, 7, 'MOVEMENT_TYPE_FACE_RIGHT', 'Apprentice',
      ['"The sand here is wrong, you know.\\n"', '"Too much of the hill in it.\\p"',
       '"Melt it and it comes out clear as\\n"', '"water and twice as hard. That is\\l"',
       '"not the sand doing that.\\p"',
@@ -120,8 +120,14 @@ QUARRY = [
 # (door, map suffix, layout, exit cells, people, extra script kind)
 PLAN = [
     ((33, 32), 'Mart', 'LAYOUT_MART', [(3, 7), (4, 7), (5, 7)], MART, 'mart'),
-    ((39, 32), 'Glassworks', 'LAYOUT_LAVARIDGE_TOWN_HERB_SHOP',
-     [(3, 7), (4, 7), (5, 7)], GLASSWORKS, 'flutes'),
+    # Not the LAVARIDGE herb shop it used to be: that layout asks for
+    # metatile 790 and the tilesets it names stop at 706, so it drew wrong
+    # and, worse, none of its three doorway tiles carried a warp behaviour --
+    # the shop had no working exit at all. The GAME CORNER prize room is
+    # valid, suits a counter of coloured glass, and its mat at (4,8) is a
+    # real MB_SOUTH_ARROW_WARP.
+    ((39, 32), 'Glassworks', 'LAYOUT_CELADON_CITY_GAME_CORNER_PRIZE_ROOM',
+     [(4, 8)], GLASSWORKS, 'flutes'),
     ((27, 41), 'CrystalStation', 'LAYOUT_PALLET_TOWN_PROFESSOR_OAKS_LAB',
      [(5, 12), (6, 12), (7, 12)], STATION, None),
     ((36, 41), 'House1', 'LAYOUT_HOUSE3', [(4, 7)], QUARRY, None),

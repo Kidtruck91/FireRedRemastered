@@ -236,7 +236,7 @@
     },
     {
       "x": 33,
-      "y": 48,
+      "y": 47,
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_DECK",
       "dest_warp_id": "0"
@@ -854,6 +854,15 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "OrangeIslands_Kinnow_EventScript_SeaEdgeToRoute8"
+    },
+    {
+      "type": "trigger",
+      "x": 33,
+      "y": 48,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OrangeIslands_Kinnow_EventScript_BoardBattleBoat"
     }
   ],
   "bg_events": []

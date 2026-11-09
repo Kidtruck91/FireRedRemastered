@@ -189,3 +189,11 @@ OrangeIslands_Kinnow_EventScript_Child::
 	msgbox OrangeIslands_Kinnow_Text_Child, MSGBOX_NPC
 	end
 @ --- end build_kinnow_town.py ---
+
+@ --- built by docs/orange-islands/build_battle_boat.py ---
+OrangeIslands_Kinnow_EventScript_BoardBattleBoat::
+	lockall
+	warp MAP_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_DECK, 13, 1
+	waitstate
+	end
+@ --- end build_battle_boat.py ---

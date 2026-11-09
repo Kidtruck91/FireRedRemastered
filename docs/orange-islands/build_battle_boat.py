@@ -51,6 +51,26 @@ PIER_BLOCK = 449
 # player reads it standing on the walkway beside it.
 PIER_SIGN = (34, 44)
 
+# Boarding is a trigger, not a warp event.
+#
+# A warp event only fires if the tile it sits on has a warp metatile
+# behaviour: field_control_avatar.c asks IsWarpMetatileBehavior, or for
+# stairs and arrows IsArrowWarpMetatileBehavior and
+# IsDirectionalStairWarpMetatileBehavior, and a tile that answers none of
+# them is walked over with nothing happening. Every warp the boat inherited
+# from the SS ANNE sits on a door, an arrow or a stair and works. The two
+# tiles this script invented -- the end of KINNOW's jetty and the head of the
+# boat's own pier -- are plain stone, MB_NORMAL, so their warp events never
+# fired and the gangway did nothing at all.
+#
+# The region crosses open water with coord_event triggers for the same
+# reason, so the gangway uses one too. The warp events stay where they are as
+# arrival anchors, one tile in from each trigger: landing on a trigger tile
+# is how a warp loop starts.
+GANGWAY_LAND = (33, 47)      # arrive here from the boat, walk north into town
+DECK_TRIGGER = (13, 0)       # head of the boat's pier: leaving
+DECK_LAND = (13, 1)          # arrive here from KINNOW, walk south aboard
+
 # Nothing is drawn in the water. There are no ship-hull metatiles in the
 # VERMILION tileset -- what looks like a moored hull on that map is the brown
 # rock islet, blocks 104-130 -- and vanilla does not draw one either: the
@@ -191,7 +211,7 @@ MAPS = {
     # suffix: (layout suffix, [(x, y, dest suffix or None for the town,
     #                           dest warp index)])
     'Deck': ('Deck', [
-        (13, 0, None, None),            # 0  back down the jetty
+        (13, 1, None, None),            # 0  arrival anchor; see GANGWAY_LAND
         (16, 8, 'Saloon', 0),           # 1  companionway
         (16, 9, 'Saloon', 0),           # 2
     ]),
@@ -565,13 +585,30 @@ def write_maps(report):
     deck_map = mid(P + 'Deck')
     town_warp = next((i for i, w in enumerate(town['warp_events'])
                       if w['dest_map'] == deck_map), None)
+    anchor = {"x": GANGWAY_LAND[0], "y": GANGWAY_LAND[1], "elevation": 0,
+              "dest_map": deck_map, "dest_warp_id": "0"}
     if town_warp is None:
         town_warp = len(town['warp_events'])
-        town['warp_events'].append({"x": GANGWAY[0], "y": GANGWAY[1], "elevation": 0,
-                                    "dest_map": deck_map, "dest_warp_id": "0"})
-        with open(town_path, 'w', newline='\n') as f:
-            json.dump(town, f, indent=2)
-            f.write('\n')
+        town['warp_events'].append(anchor)
+    else:
+        town['warp_events'][town_warp] = anchor
+
+    board = '%s_EventScript_BoardBattleBoat' % TOWN
+    town['coord_events'] = [c for c in town['coord_events']
+                            if c.get('script') != board]
+    town['coord_events'].append({
+        "type": "trigger", "x": GANGWAY[0], "y": GANGWAY[1], "elevation": 0,
+        "var": "VAR_TEMP_0", "var_value": "0", "script": board})
+    with open(town_path, 'w', newline='\n') as f:
+        json.dump(town, f, indent=2)
+        f.write('\n')
+    splice(os.path.join(REPO, 'data/maps', TOWN, 'scripts.inc'), [
+        '%s::' % board,
+        '\tlockall',
+        '\twarp %s, %d, %d' % (deck_map, DECK_LAND[0], DECK_LAND[1]),
+        '\twaitstate',
+        '\tend',
+        ''])
 
     groups_path = os.path.join(REPO, 'data/maps/map_groups.json')
     gj = json.load(open(groups_path))
@@ -631,6 +668,13 @@ def write_maps(report):
                 "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
                 "script": '%s_EventScript_Rules' % name})
 
+        if suffix == 'Deck':
+            leave = '%s_EventScript_GoAshore' % name
+            mj['coord_events'].append({
+                "type": "trigger", "x": DECK_TRIGGER[0], "y": DECK_TRIGGER[1],
+                "elevation": 0, "var": "VAR_TEMP_0", "var_value": "0",
+                "script": leave})
+
         for n, (x, y) in enumerate(CREW_DOORS.get(suffix, []), 1):
             mj['bg_events'].append({
                 "type": "sign", "x": x, "y": y, "elevation": 0,
@@ -648,6 +692,14 @@ def write_maps(report):
             door_signs(name, CREW_DOORS[suffix], out, text)
         if suffix == 'Arena':
             arena_scripts(name, out, text)
+        if suffix == 'Deck':
+            out += ['%s_EventScript_GoAshore::' % name,
+                    '\tlockall',
+                    '\twarp %s, %d, %d' % (TOWN_MAP, GANGWAY_LAND[0],
+                                           GANGWAY_LAND[1]),
+                    '\twaitstate',
+                    '\tend',
+                    '']
 
         sp = os.path.join(d, 'scripts.inc')
         if not os.path.exists(sp):
