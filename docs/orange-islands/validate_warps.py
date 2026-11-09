@@ -28,6 +28,20 @@ import struct
 import sys
 
 REPO = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
+
+# Beaches that are deliberately not wired to their island. The maps exist and
+# their island still has a warp pointing at them, but nothing fires it and
+# that is the intention -- they are empty shells kept in case the island ever
+# wants a shore. Listed so the dead-door report stays worth reading; take an
+# entry out the day the beach is given a way in.
+#
+# For contrast, PUMMELO's beach is not here: it is reached through
+# PUMMELO_SECRET_CAVE, whose ladders connect the island to the shore.
+UNWIRED = {
+    'OrangeIslands_Kinnow_Beach': 'not needed; KINNOW is entered from the sea',
+    'OrangeIslands_Moro_Beach': 'not needed',
+    'OrangeIslands_Pinkan_Beach': 'not needed',
+}
 REPO = os.path.normpath(REPO)
 
 # Behaviours the engine will warp on, by which path handles them.
@@ -317,8 +331,19 @@ def main(argv):
             continue
         script_exits[mapname] = (
             warps_in(os.path.join(maps_dir, mapname, 'scripts.inc')) | shared)
+    def unwired(mapname, dest):
+        if mapname in UNWIRED:
+            return True
+        # ... and the island's half of the same pair.
+        for beach in UNWIRED:
+            if dest == 'MAP_' + beach.replace('OrangeIslands_', 'ORANGE_ISLANDS_').upper():
+                return True
+        return False
+
     for mapname, i, x, y, dest, beh in dead:
         if dest in exits.get(mapname, ()) or dest in script_exits.get(mapname, ()):
+            continue
+        if unwired(mapname, dest):
             continue
         suspect.append(
             '%s warp %d (%d,%d) -> %s: the tile is %s, which no warp path fires '
@@ -330,6 +355,10 @@ def main(argv):
     # see, so the list over-reports. It is still the only thing that catches a
     # door that silently does nothing, which is otherwise invisible until
     # someone walks into it.
+    if UNWIRED:
+        print('beaches left unwired on purpose (see UNWIRED in this script):')
+        for k in sorted(UNWIRED):
+            print('  - %s: %s' % (k.replace('OrangeIslands_', ''), UNWIRED[k]))
     if suspect:
         print('possible dead doors (a warp that cannot fire, with no other way '
               'to its destination -- over-reports, see the source):')
