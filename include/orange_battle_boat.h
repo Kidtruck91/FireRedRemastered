@@ -16,6 +16,7 @@ void OrangeBoat_RoundWon(void);
 void OrangeBoat_SettleUp(void);
 void OrangeBoat_QuoteRetirement(void);
 void OrangeBoat_GetLeaderName(void);
+bool8 OrangeBoat_SuppressesFollower(void);
 
 void OrangeBoat_OfferSpoils(void);
 void OrangeBoat_TakeSpoil(void);

@@ -28,6 +28,7 @@ enum
     MENUITEM_LEVELCAP,
     MENUITEM_PHYS_SPEC_SPLIT,
     MENUITEM_EXP_ALL,
+    MENUITEM_FOLLOWER,
     MENUITEM_CANCEL,
     MENUITEM_COUNT
 };
@@ -137,7 +138,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 2, 2, 2, 2, 0};
+static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {3, 2, 2, 2, 3, 10, 2, 2, 2, 2, 2, 0};
 
 // Only this many rows fit in the window; the list scrolls past them.
 #define VISIBLE_ROWS 7
@@ -154,6 +155,7 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_LEVELCAP]    = gText_LevelCapMode,
     [MENUITEM_PHYS_SPEC_SPLIT] = gText_PhysSpecSplit,
     [MENUITEM_EXP_ALL]     = gText_ExpAll,
+    [MENUITEM_FOLLOWER]    = gText_FollowerPokemon,
 
     [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
 };
@@ -237,6 +239,9 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->option[MENUITEM_LEVELCAP] = FlagGet(FLAG_LEVEL_CAP) ? 0 : 1;
     sOptionMenuPtr->option[MENUITEM_PHYS_SPEC_SPLIT] = FlagGet(FLAG_PHYS_SPEC_SPLIT) ? 0 : 1;
     sOptionMenuPtr->option[MENUITEM_EXP_ALL] = FlagGet(FLAG_EXP_ALL) ? 0 : 1;
+    // The flag is the negative one -- set means off -- so this reads the
+    // other way round from the four above it.
+    sOptionMenuPtr->option[MENUITEM_FOLLOWER] = FlagGet(FLAG_FOLLOWERS_DISABLED) ? 1 : 0;
 
     
     for (i = 0; i < MENUITEM_COUNT - 1; i++)
@@ -553,6 +558,7 @@ static void BufferOptionMenuString(u8 selection)
     case MENUITEM_LEVELCAP:
     case MENUITEM_PHYS_SPEC_SPLIT:
     case MENUITEM_EXP_ALL:
+    case MENUITEM_FOLLOWER:
         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sNuzlockeOptions[sOptionMenuPtr->option[selection]]);
         break;
     default:
@@ -590,6 +596,13 @@ static void CloseAndSaveOptionMenu(u8 taskId)
         FlagSet(FLAG_EXP_ALL);
     else
         FlagClear(FLAG_EXP_ALL);
+    // Setting the flag is what turns the follower off, so this one is
+    // inverted. The follower itself goes away when the field comes back and
+    // CreateFollowerAvatar asks FollowerPokemon_IsEnabled again.
+    if (sOptionMenuPtr->option[MENUITEM_FOLLOWER] == 0)
+        FlagClear(FLAG_FOLLOWERS_DISABLED);
+    else
+        FlagSet(FLAG_FOLLOWERS_DISABLED);
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
     FREE_AND_SET_NULL(sOptionMenuPtr);
     DestroyTask(taskId);

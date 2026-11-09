@@ -31,6 +31,7 @@
 #include "constants/quest_log.h"
 #include "constants/songs.h"
 #include "constants/species.h"
+#include "orange_battle_boat.h"
 
 /*
     Follower Pokemon for FireRed.
@@ -883,6 +884,11 @@ u16 GetFollowerPokemonGraphicsId(void)
 
 bool8 FollowerPokemon_IsEnabled(void)
 {
+    // KINNOW's battle boat keeps its own counsel: the POKEMON aboard during a
+    // challenge are rented, and one of them following the player around reads
+    // as theirs. See OrangeBoat_SuppressesFollower.
+    if (OrangeBoat_SuppressesFollower())
+        return FALSE;
     return !FlagGet(FLAG_FOLLOWERS_DISABLED);
 }
 
@@ -1757,6 +1763,14 @@ void CreateFollowerAvatar(void)
 
     if (QL_IS_PLAYBACK_STATE)
         return;
+
+    // Somewhere the follower is not allowed out: put it away rather than
+    // carrying it over from the map behind.
+    if (!FollowerPokemon_IsEnabled())
+    {
+        gSaveBlock2Ptr->follower.inProgress = FALSE;
+        return;
+    }
 
     FollowerPokemon_TryStart();
     if (!gSaveBlock2Ptr->follower.inProgress)

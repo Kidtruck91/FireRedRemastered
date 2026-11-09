@@ -874,6 +874,7 @@ const u8 gText_NuzlockeOn[] = _("ON");
 const u8 gText_NuzlockeOff[] = _("OFF");
 const u8 gText_PhysSpecSplit[] = _("PHYS/SPEC SPLIT");
 const u8 gText_ExpAll[] = _("EXP. ALL");
+const u8 gText_FollowerPokemon[] = _("FOLLOWER");
 const u8 gText_OrangeTriad_ChooseOne[] = _("Choose one ");
 const u8 gText_OrangeTriad_CommaOne[] = _(", one\n");
 const u8 gText_OrangeTriad_AndOne[] = _(" and one ");

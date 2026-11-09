@@ -16,6 +16,7 @@
 #include "constants/moves.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
+#include "constants/maps.h"
 
 // The KINNOW battle boat's arena.
 //
@@ -327,6 +328,38 @@ void OrangeBoat_PrepareRound(void)
                                STR_CONV_MODE_LEFT_ALIGN, 2);
     StringCopy(gStringVar2, CurrentLeader()->name);
     gSpecialVar_Result = OrangeBoat_IsLeaderRound();
+}
+
+// No follower aboard.
+//
+// The boat lends you POKEMON, and a rented one trotting along behind the
+// player reads as theirs -- worse, the rental stayed out after a lost round,
+// because the follower only re-reads the party when a map loads and the swap
+// happens without one. Rather than chase the refresh, the boat is simply a
+// place where the follower is not out: nine maps, and the duration of a run
+// wherever it is checked from.
+//
+// This is the boat's own suppression and nothing to do with the player's
+// setting, so it neither reads nor writes FLAG_FOLLOWERS_DISABLED. Walking
+// back down the gangway loads KINNOW and the follower comes back on its own.
+
+bool8 OrangeBoat_SuppressesFollower(void)
+{
+    u8 group = gSaveBlock1Ptr->location.mapGroup;
+    u8 num = gSaveBlock1Ptr->location.mapNum;
+
+    if (InBattleFactory())
+        return TRUE;
+    if (group != MAP_GROUP(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_DECK))
+        return FALSE;
+    return num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_DECK)
+        || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_SALOON)
+        || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_HOLD)
+        || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_CABIN1)
+        || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_CABIN2)
+        || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_CABIN3)
+        || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_GALLEY)
+        || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_ARENA);
 }
 
 // Bookkeeping between rounds. VAR_RESULT comes back TRUE when that was the
