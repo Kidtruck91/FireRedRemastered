@@ -319,6 +319,26 @@ static void SetPerformedRentalSwap(void)
     sPerformedRentalSwap = TRUE;
 }
 
+// How far up the shelves the house is reaching.
+//
+// Emerald ran seven-battle challenges, so winStreak / STAGES_PER_CHALLENGE
+// stepped up after each one and the pool climbed with it. A boat run is a
+// single thirty-two battle challenge, so that division stays at zero from the
+// first round to the last: the player drafts out of the weakest range and is
+// still holding it when a gym leader walks in at round thirty-two. Tier on the
+// block instead - every four rounds, one shelf higher - which is the same
+// curve Emerald had, just measured inside one run rather than across several.
+static u8 ChallengeTier(void)
+{
+    u8 block = gSaveBlock2Ptr->factory.curChallengeBattleNum / FACTORY_ROUNDS_PER_BLOCK;
+
+    // The last range is the wide one; stop short of it so a run has somewhere
+    // left to climb if the rounds are ever extended.
+    if (block > 6)
+        block = 6;
+    return block;
+}
+
 static void GenerateOpponentMons(void)
 {
     int i, j, k;
@@ -326,8 +346,7 @@ static void GenerateOpponentMons(void)
     u16 heldItems[FACTORY_PARTY_SIZE];
     int firstMonId = 0;
     u16 trainerId = 0;
-    u32 winStreak = gSaveBlock2Ptr->factory.winStreak;
-    u32 challengeNum = winStreak / FACTORY_STAGES_PER_CHALLENGE;
+    u32 challengeNum = ChallengeTier();
     gFacilityTrainers = gBattleFrontierTrainers;
 
     do
@@ -530,7 +549,7 @@ static void GenerateInitialRentalMons(void)
         monIds[i] = 0;
         heldItems[i] = ITEM_NONE;
     }
-    challengeNum = gSaveBlock2Ptr->factory.winStreak / FACTORY_STAGES_PER_CHALLENGE;
+    challengeNum = ChallengeTier();
     gFacilityTrainerMons = gBattleFrontierMons;
     firstMonId = 0;
     rentalRank = GetNumPastRentalsRank();
@@ -755,7 +774,7 @@ void FillFactoryOpponentParty(void)
 {
     u8 i, j, friendship, level, fixedIV;
     u32 otID;
-    u8 challengeNum = gSaveBlock2Ptr->factory.winStreak / FACTORY_STAGES_PER_CHALLENGE;
+    u8 challengeNum = ChallengeTier();
     // The last rented round, which is the one before the closing leader.
     bool8 lastBattle = gSaveBlock2Ptr->factory.curChallengeBattleNum
                        >= FACTORY_STAGES_PER_CHALLENGE - 2;

@@ -28,6 +28,12 @@ void OrangeBoat_OfferSpoils(void);
 void OrangeBoat_TakeSpoil(void);
 void OrangeBoat_RestoreSpoils(void);
 
+// HOENN's ELITE FOUR and STEVEN, written down but not yet fought. See the
+// table's own note in src/orange_battle_boat.c.
+struct BoatLeader;
+extern const struct BoatLeader gBoatChampions[];
+extern const u8 gBoatChampionCount;
+
 // The three names the MULTICHOICE_BOAT_SPOILS menu points at.
 extern u8 gBoatSpoilNames[][POKEMON_NAME_LENGTH + 1];
 

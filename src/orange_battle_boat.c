@@ -168,6 +168,81 @@ static const u8 sLine_Winona[] = _("Six of mine never touch the\nground. Let us 
 static const u8 sLine_TateAndLiza[] = _("We agreed on how this goes.\nYou were not part of the talk.");
 static const u8 sLine_Wallace[] = _("A boat, of all the places to be\nasked for a match. Delightful.");
 
+// HOENN's ELITE FOUR and its CHAMPION. Nothing draws on these yet: a run is
+// eight leaders over thirty-two rounds and stops there. They are written down
+// now so that the day the run grows a top floor, the teams are already here.
+// Their overworld sprites are the leaders' for the moment - pokeemerald has
+// theirs too, and they can come across the same way when they are wanted.
+
+static const struct BoatLeaderMon sParty_Sidney[] = {    // DARK
+    { SPECIES_MIGHTYENA, {MOVE_CRUNCH, MOVE_DOUBLE_EDGE, MOVE_ROAR, MOVE_SWAGGER}, ITEM_LUM_BERRY, 0 },
+    { SPECIES_SHIFTRY,   {MOVE_FAINT_ATTACK, MOVE_GIGA_DRAIN, MOVE_SWAGGER, MOVE_EXPLOSION}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_CACTURNE,  {MOVE_NEEDLE_ARM, MOVE_FAINT_ATTACK, MOVE_LEECH_SEED, MOVE_COTTON_SPORE}, ITEM_SITRUS_BERRY, 0 },
+    { SPECIES_CRAWDAUNT, {MOVE_CRABHAMMER, MOVE_CRUNCH, MOVE_SURF, MOVE_SWORDS_DANCE}, ITEM_CHOICE_BAND, 0 },
+    { SPECIES_SHARPEDO,  {MOVE_CRUNCH, MOVE_SURF, MOVE_ICE_BEAM, MOVE_DOUBLE_EDGE}, ITEM_QUICK_CLAW, 0 },
+    { SPECIES_ABSOL,     {MOVE_AERIAL_ACE, MOVE_SLASH, MOVE_SWORDS_DANCE, MOVE_ROCK_SLIDE}, ITEM_LEFTOVERS, 0 },
+};
+
+static const struct BoatLeaderMon sParty_Phoebe[] = {    // GHOST
+    { SPECIES_DUSCLOPS,  {MOVE_SHADOW_BALL, MOVE_WILL_O_WISP, MOVE_CONFUSE_RAY, MOVE_REST}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_BANETTE,   {MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_WILL_O_WISP, MOVE_PSYCHIC}, ITEM_SITRUS_BERRY, 0 },
+    { SPECIES_SABLEYE,   {MOVE_SHADOW_BALL, MOVE_FAINT_ATTACK, MOVE_CONFUSE_RAY, MOVE_TOXIC}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_SHEDINJA,  {MOVE_SHADOW_BALL, MOVE_CONFUSE_RAY, MOVE_TOXIC, MOVE_PROTECT}, ITEM_FOCUS_BAND, 0 },
+    { SPECIES_MISDREAVUS,{MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_MEAN_LOOK, MOVE_PERISH_SONG}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_GENGAR,    {MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_GIGA_DRAIN, MOVE_HYPNOSIS}, ITEM_LUM_BERRY, 0 },
+};
+
+static const struct BoatLeaderMon sParty_Glacia[] = {    // ICE
+    { SPECIES_GLALIE,    {MOVE_ICE_BEAM, MOVE_CRUNCH, MOVE_EXPLOSION, MOVE_PROTECT}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_WALREIN,   {MOVE_ICE_BEAM, MOVE_SURF, MOVE_BODY_SLAM, MOVE_REST}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_SEALEO,    {MOVE_ICE_BEAM, MOVE_SURF, MOVE_BODY_SLAM, MOVE_ENCORE}, ITEM_SITRUS_BERRY, 0 },
+    { SPECIES_LAPRAS,    {MOVE_ICE_BEAM, MOVE_SURF, MOVE_THUNDERBOLT, MOVE_CONFUSE_RAY}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_DEWGONG,   {MOVE_ICE_BEAM, MOVE_SURF, MOVE_ENCORE, MOVE_REST}, ITEM_CHESTO_BERRY, 0 },
+    { SPECIES_CLOYSTER,  {MOVE_ICE_BEAM, MOVE_SURF, MOVE_SPIKES, MOVE_EXPLOSION}, ITEM_QUICK_CLAW, 0 },
+};
+
+static const struct BoatLeaderMon sParty_Drake[] = {     // DRAGON
+    { SPECIES_SALAMENCE, {MOVE_DRAGON_CLAW, MOVE_AERIAL_ACE, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE}, ITEM_LUM_BERRY, 0 },
+    { SPECIES_FLYGON,    {MOVE_DRAGON_CLAW, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_CRUNCH}, ITEM_CHOICE_BAND, 0 },
+    { SPECIES_ALTARIA,   {MOVE_DRAGON_DANCE, MOVE_DRAGON_CLAW, MOVE_AERIAL_ACE, MOVE_REST}, ITEM_CHESTO_BERRY, 0 },
+    { SPECIES_KINGDRA,   {MOVE_SURF, MOVE_ICE_BEAM, MOVE_DRAGON_DANCE, MOVE_DRAGON_CLAW}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_SHELGON,   {MOVE_DRAGON_CLAW, MOVE_BRICK_BREAK, MOVE_ROCK_SLIDE, MOVE_PROTECT}, ITEM_SITRUS_BERRY, 0 },
+    { SPECIES_DRAGONITE, {MOVE_DRAGON_CLAW, MOVE_THUNDERBOLT, MOVE_ICE_BEAM, MOVE_EARTHQUAKE}, ITEM_LEFTOVERS, 0 },
+};
+
+static const struct BoatLeaderMon sParty_Steven[] = {    // STEEL
+    { SPECIES_METAGROSS, {MOVE_METEOR_MASH, MOVE_PSYCHIC, MOVE_EARTHQUAKE, MOVE_PROTECT}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_AGGRON,    {MOVE_IRON_TAIL, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_DOUBLE_EDGE}, ITEM_CHOICE_BAND, 0 },
+    { SPECIES_SKARMORY,  {MOVE_DRILL_PECK, MOVE_STEEL_WING, MOVE_SPIKES, MOVE_ROAR}, ITEM_LEFTOVERS, 0 },
+    { SPECIES_STEELIX,   {MOVE_IRON_TAIL, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_EXPLOSION}, ITEM_QUICK_CLAW, 0 },
+    { SPECIES_MAGNETON,  {MOVE_THUNDERBOLT, MOVE_THUNDER_WAVE, MOVE_HIDDEN_POWER, MOVE_PROTECT}, ITEM_SITRUS_BERRY, 0 },
+    { SPECIES_FORRETRESS,{MOVE_SPIKES, MOVE_EXPLOSION, MOVE_EARTHQUAKE, MOVE_TOXIC}, ITEM_LEFTOVERS, 0 },
+};
+
+static const u8 sName_Sidney[] = _("SIDNEY");
+static const u8 sName_Phoebe[] = _("PHOEBE");
+static const u8 sName_Glacia[] = _("GLACIA");
+static const u8 sName_Drake[] = _("DRAKE");
+static const u8 sName_Steven[] = _("STEVEN");
+
+static const u8 sLine_Sidney[] = _("No hard feelings, all right?\nI just like a straight fight.");
+static const u8 sLine_Phoebe[] = _("I grew up on MT. PYRE. The sea\ndoes not frighten me either.");
+static const u8 sLine_Glacia[] = _("I came north for the heat, and\nfound it. Let us cool it down.");
+static const u8 sLine_Drake[] = _("I sailed for years before this.\nA deck is the right place.");
+static const u8 sLine_Steven[] = _("I came out to look at the rocks\nand found a challenge instead.");
+
+// Unused for now, but exported so that it is kept and so the day a top floor
+// is written the order is already settled: the FOUR, then the CHAMPION.
+const struct BoatLeader gBoatChampions[] = {
+    { sName_Sidney, sLine_Sidney, OBJ_EVENT_GFX_LEADER_BRAWLY, TRAINER_PIC_ELITE_FOUR_SIDNEY, MUGSHOT_COLOR_DARK_PURPLES, ARRAY_COUNT(sParty_Sidney), sParty_Sidney },
+    { sName_Phoebe, sLine_Phoebe, OBJ_EVENT_GFX_LEADER_FLANNERY, TRAINER_PIC_ELITE_FOUR_PHOEBE, MUGSHOT_COLOR_LAVENDER_PURPLES, ARRAY_COUNT(sParty_Phoebe), sParty_Phoebe },
+    { sName_Glacia, sLine_Glacia, OBJ_EVENT_GFX_LEADER_WINONA, TRAINER_PIC_ELITE_FOUR_GLACIA, MUGSHOT_COLOR_LIGHT_BLUE, ARRAY_COUNT(sParty_Glacia), sParty_Glacia },
+    { sName_Drake, sLine_Drake, OBJ_EVENT_GFX_LEADER_NORMAN, TRAINER_PIC_ELITE_FOUR_DRAKE, MUGSHOT_COLOR_DARK_RED, ARRAY_COUNT(sParty_Drake), sParty_Drake },
+    { sName_Steven, sLine_Steven, OBJ_EVENT_GFX_LEADER_WALLACE, TRAINER_PIC_CHAMPION_STEVEN, MUGSHOT_COLOR_SKY_BLUE_GREY, ARRAY_COUNT(sParty_Steven), sParty_Steven },
+};
+
+const u8 gBoatChampionCount = ARRAY_COUNT(gBoatChampions);
+
 static const struct BoatLeader sBoatLeaders[] = {
     { sName_Roxanne, sLine_Roxanne, OBJ_EVENT_GFX_LEADER_ROXANNE, TRAINER_PIC_LEADER_ROXANNE, MUGSHOT_COLOR_BROWN_GREY,        ARRAY_COUNT(sParty_Roxanne),     sParty_Roxanne },
     { sName_Brawly, sLine_Brawly, OBJ_EVENT_GFX_LEADER_BRAWLY, TRAINER_PIC_LEADER_BRAWLY, MUGSHOT_COLOR_DARK_RED,         ARRAY_COUNT(sParty_Brawly),      sParty_Brawly },
@@ -302,14 +377,28 @@ void OrangeBoat_OpponentLoseText(u8 *dest)
 static void BuildLeaderParty(void)
 {
     const struct BoatLeader *leader = CurrentLeader();
-    u8 i, j;
+    u8 i, j, count, ivs;
+
+    // A leader's six against three rentals is not a fight, it is a wall. They
+    // bring one more than the player is holding, so the shape stays theirs -
+    // you are always outnumbered - without the first leader being the end of
+    // every run. By the time the player has grown to six it is a full team.
+    // A leader is built a shelf above the house, not at a flat thirty-one:
+    // against a team rolled at three IVs that was the whole difficulty.
+    ivs = GetFactoryMonFixedIV(
+              gSaveBlock2Ptr->factory.curChallengeBattleNum / FACTORY_ROUNDS_PER_BLOCK,
+              TRUE);
+
+    count = CalculatePlayerPartyCount() + 1;
+    if (count > leader->count)
+        count = leader->count;
 
     ZeroEnemyPartyMons();
-    for (i = 0; i < leader->count; i++)
+    for (i = 0; i < count; i++)
     {
         const struct BoatLeaderMon *mon = &leader->party[i];
 
-        CreateMon(&gEnemyParty[i], mon->species, LEADER_LEVEL, MAX_PER_STAT_IVS,
+        CreateMon(&gEnemyParty[i], mon->species, LEADER_LEVEL, ivs,
                   FALSE, 0, OT_ID_PLAYER_ID, 0);
         for (j = 0; j < MAX_MON_MOVES; j++)
             SetMonMoveAvoidReturn(&gEnemyParty[i], mon->moves[j], j);
@@ -461,6 +550,49 @@ void OrangeBoat_MarkRentalsLive(void)
 // Bookkeeping between rounds. VAR_RESULT comes back TRUE when that was the
 // seventh and the run is over.
 
+// The house draws from a higher shelf every four rounds, but the three the
+// player drafted in round one were rolled at the bottom of it and never move.
+// Nothing here can change what they are - a rental is an index into
+// gBattleFrontierMons, species, moves and all - so what rises is how well
+// built they are: at each block the stored IVs step up to the tier's own
+// figure, and the party is rebuilt around it. The team the player started
+// with keeps pace instead of being carried by the spoils alone.
+
+static void SharpenRentals(void)
+{
+    u8 i, ivs;
+
+    if (gSaveBlock2Ptr->factory.curChallengeBattleNum % FACTORY_ROUNDS_PER_BLOCK)
+        return;
+
+    ivs = GetFactoryMonFixedIV(
+              gSaveBlock2Ptr->factory.curChallengeBattleNum / FACTORY_ROUNDS_PER_BLOCK,
+              FALSE);
+    if (ivs > MAX_PER_STAT_IVS)
+        ivs = MAX_PER_STAT_IVS;
+
+    for (i = 0; i < FACTORY_RENTAL_COUNT; i++)
+    {
+        if (gSaveBlock2Ptr->factory.rentalMons[i].ivs < ivs)
+            gSaveBlock2Ptr->factory.rentalMons[i].ivs = ivs;
+    }
+
+    for (i = 0; i < CalculatePlayerPartyCount(); i++)
+    {
+        u8 j;
+        u32 iv = ivs;
+
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL))
+            continue;
+        for (j = 0; j < NUM_STATS; j++)
+        {
+            if (GetMonData(&gPlayerParty[i], MON_DATA_HP_IV + j, NULL) < ivs)
+                SetMonData(&gPlayerParty[i], MON_DATA_HP_IV + j, &iv);
+        }
+        CalculateMonStats(&gPlayerParty[i]);
+    }
+}
+
 void OrangeBoat_RoundWon(void)
 {
     // VAR_0x8006 says the round just won was a leader's. The swap screen
@@ -472,6 +604,7 @@ void OrangeBoat_RoundWon(void)
         gSaveBlock2Ptr->factory.winStreak++;
     gSaveBlock2Ptr->factory.winStreakActive = TRUE;
     gSaveBlock2Ptr->factory.curChallengeBattleNum++;
+    SharpenRentals();
     gSpecialVar_Result = gSaveBlock2Ptr->factory.curChallengeBattleNum
                          >= FACTORY_STAGES_PER_CHALLENGE;
 }
