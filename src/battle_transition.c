@@ -11,6 +11,8 @@
 #include "decompress.h"
 #include "gpu_regs.h"
 #include "battle_transition.h"
+#include "battle_factory.h"
+#include "orange_battle_boat.h"
 #include "field_effect.h"
 #include "field_weather.h"
 #include "field_camera.h"
@@ -1954,13 +1956,30 @@ static bool8 Mugshot_Init(struct Task *task)
     return FALSE;
 }
 
+// On KINNOW's battle boat gTrainerBattleOpponent_A is a frontier trainer id,
+// so gTrainers[] would be read outside its own meaning. See orange_battle_boat.c.
+
+static u8 MugshotOpponentPicId(void)
+{
+    if (InBattleFactory())
+        return OrangeBoat_OpponentPicId();
+    return gTrainers[gTrainerBattleOpponent_A].trainerPic;
+}
+
+static u8 MugshotOpponentColor(void)
+{
+    if (InBattleFactory())
+        return OrangeBoat_MugshotColor();
+    return gTrainers[gTrainerBattleOpponent_A].mugshotColor;
+}
+
 static bool8 Mugshot_SetGfx(struct Task *task)
 {
     s16 i, j;
     u16 *tilemap, *tileset;
     const u16 *mugshotsMap = sMugshotsTilemap;
-    u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
-    u8 mugshotColor = gTrainers[gTrainerBattleOpponent_A].mugshotColor;
+    u8 trainerPicId = MugshotOpponentPicId();
+    u8 mugshotColor = MugshotOpponentColor();
     u8 currentPalette;
     
     currentPalette = GetPlayerPaletteId();
@@ -2218,7 +2237,7 @@ static void HBlankCB_Mugshots(void)
 static void Mugshots_CreateTrainerPics(struct Task *task)
 {
     struct Sprite *opponentSprite, *playerSprite;
-    u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+    u8 trainerPicId = MugshotOpponentPicId();
 
     s16 opponentRotationScales;
 

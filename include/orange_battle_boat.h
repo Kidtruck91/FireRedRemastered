@@ -7,6 +7,7 @@ bool8 OrangeBoat_IsLeaderRound(void);
 u8 OrangeBoat_OpponentClass(void);
 void OrangeBoat_OpponentName(u8 *dest);
 u8 OrangeBoat_OpponentPicId(void);
+u8 OrangeBoat_MugshotColor(void);
 void OrangeBoat_OpponentWinText(u8 *dest);
 void OrangeBoat_OpponentLoseText(u8 *dest);
 void OrangeBoat_StartBattle(void);

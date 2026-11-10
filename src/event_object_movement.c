@@ -531,6 +531,14 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_ELM                           0x1124
 #define OBJ_EVENT_PAL_IVY                           0x1125
 #define OBJ_EVENT_PAL_CISSY                         0x1126
+#define OBJ_EVENT_PAL_ROXANNE                      0x112B
+#define OBJ_EVENT_PAL_BRAWLY                       0x112C
+#define OBJ_EVENT_PAL_WATTSON                      0x112D
+#define OBJ_EVENT_PAL_FLANNERY                     0x112E
+#define OBJ_EVENT_PAL_NORMAN                       0x112F
+#define OBJ_EVENT_PAL_WINONA                       0x1130
+#define OBJ_EVENT_PAL_TATE_LIZA                    0x1131
+#define OBJ_EVENT_PAL_WALLACE                      0x1132
 #define OBJ_EVENT_PAL_DANNY                         0x1127
 #define OBJ_EVENT_PAL_RUDY                          0x1128
 #define OBJ_EVENT_PAL_LUANA                         0x1129
@@ -579,6 +587,14 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPalette_Elm,               OBJ_EVENT_PAL_ELM},
     {gObjectEventPalette_Ivy,               OBJ_EVENT_PAL_IVY},
     {gObjectEventPalette_Cissy,             OBJ_EVENT_PAL_CISSY},
+    {gObjectEventPalette_Roxanne,           OBJ_EVENT_PAL_ROXANNE},
+    {gObjectEventPalette_Brawly,            OBJ_EVENT_PAL_BRAWLY},
+    {gObjectEventPalette_Wattson,           OBJ_EVENT_PAL_WATTSON},
+    {gObjectEventPalette_Flannery,          OBJ_EVENT_PAL_FLANNERY},
+    {gObjectEventPalette_Norman,            OBJ_EVENT_PAL_NORMAN},
+    {gObjectEventPalette_Winona,            OBJ_EVENT_PAL_WINONA},
+    {gObjectEventPalette_TateLiza,          OBJ_EVENT_PAL_TATE_LIZA},
+    {gObjectEventPalette_Wallace,           OBJ_EVENT_PAL_WALLACE},
     {gObjectEventPalette_Danny,             OBJ_EVENT_PAL_DANNY},
     {gObjectEventPalette_Rudy,              OBJ_EVENT_PAL_RUDY},
     {gObjectEventPalette_Luana,             OBJ_EVENT_PAL_LUANA},

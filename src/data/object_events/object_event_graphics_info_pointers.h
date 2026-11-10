@@ -168,6 +168,14 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RayquazaStill;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ivy;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cissy;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Roxanne;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Brawly;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wattson;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Flannery;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Norman;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Winona;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TateLiza;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wallace;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Danny;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rudy;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Luana;
@@ -343,6 +351,14 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_SUDOWOODO]                = &gObjectEventGraphicsInfo_Sudowoodo,
     [OBJ_EVENT_GFX_IVY]                      = &gObjectEventGraphicsInfo_Ivy,
     [OBJ_EVENT_GFX_CISSY]                    = &gObjectEventGraphicsInfo_Cissy,
+    [OBJ_EVENT_GFX_LEADER_ROXANNE] = &gObjectEventGraphicsInfo_Roxanne,
+    [OBJ_EVENT_GFX_LEADER_BRAWLY] = &gObjectEventGraphicsInfo_Brawly,
+    [OBJ_EVENT_GFX_LEADER_WATTSON] = &gObjectEventGraphicsInfo_Wattson,
+    [OBJ_EVENT_GFX_LEADER_FLANNERY] = &gObjectEventGraphicsInfo_Flannery,
+    [OBJ_EVENT_GFX_LEADER_NORMAN] = &gObjectEventGraphicsInfo_Norman,
+    [OBJ_EVENT_GFX_LEADER_WINONA] = &gObjectEventGraphicsInfo_Winona,
+    [OBJ_EVENT_GFX_LEADER_TATE_LIZA] = &gObjectEventGraphicsInfo_TateLiza,
+    [OBJ_EVENT_GFX_LEADER_WALLACE] = &gObjectEventGraphicsInfo_Wallace,
     [OBJ_EVENT_GFX_DANNY]                    = &gObjectEventGraphicsInfo_Danny,
     [OBJ_EVENT_GFX_RUDY]                     = &gObjectEventGraphicsInfo_Rudy,
     [OBJ_EVENT_GFX_LUANA]                    = &gObjectEventGraphicsInfo_Luana,

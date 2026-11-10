@@ -63,8 +63,9 @@ struct BoatLeader
 {
     const u8 *name;
     const u8 *line;      // what they say walking onto the floor
-    u16 gfxId;           // a stand-in: HOENN's leaders have no overworld sprite
+    u16 gfxId;           // ported from pokeemerald's gym_leaders sheets
     u8 trainerPic;
+    u8 mugshotColor;     // the banner behind them in the MUGSHOT transition
     u8 count;
     const struct BoatLeaderMon *party;
 };
@@ -168,14 +169,14 @@ static const u8 sLine_TateAndLiza[] = _("We agreed on how this goes.\nYou were n
 static const u8 sLine_Wallace[] = _("A boat, of all the places to be\nasked for a match. Delightful.");
 
 static const struct BoatLeader sBoatLeaders[] = {
-    { sName_Roxanne, sLine_Roxanne, OBJ_EVENT_GFX_LASS, TRAINER_PIC_LEADER_ROXANNE,        ARRAY_COUNT(sParty_Roxanne),     sParty_Roxanne },
-    { sName_Brawly, sLine_Brawly, OBJ_EVENT_GFX_BLACKBELT, TRAINER_PIC_LEADER_BRAWLY,         ARRAY_COUNT(sParty_Brawly),      sParty_Brawly },
-    { sName_Wattson, sLine_Wattson, OBJ_EVENT_GFX_GENTLEMAN, TRAINER_PIC_LEADER_WATTSON,        ARRAY_COUNT(sParty_Wattson),     sParty_Wattson },
-    { sName_Flannery, sLine_Flannery, OBJ_EVENT_GFX_BEAUTY, TRAINER_PIC_LEADER_FLANNERY,       ARRAY_COUNT(sParty_Flannery),    sParty_Flannery },
-    { sName_Norman, sLine_Norman, OBJ_EVENT_GFX_SCIENTIST, TRAINER_PIC_LEADER_NORMAN,         ARRAY_COUNT(sParty_Norman),      sParty_Norman },
-    { sName_Winona, sLine_Winona, OBJ_EVENT_GFX_WOMAN_2, TRAINER_PIC_LEADER_WINONA,         ARRAY_COUNT(sParty_Winona),      sParty_Winona },
-    { sName_TateAndLiza, sLine_TateAndLiza, OBJ_EVENT_GFX_PICNICKER, TRAINER_PIC_LEADER_TATE_AND_LIZA,  ARRAY_COUNT(sParty_TateAndLiza), sParty_TateAndLiza },
-    { sName_Wallace, sLine_Wallace, OBJ_EVENT_GFX_COOLTRAINER_M, TRAINER_PIC_LEADER_WALLACE,        ARRAY_COUNT(sParty_Wallace),     sParty_Wallace },
+    { sName_Roxanne, sLine_Roxanne, OBJ_EVENT_GFX_LEADER_ROXANNE, TRAINER_PIC_LEADER_ROXANNE, MUGSHOT_COLOR_BROWN_GREY,        ARRAY_COUNT(sParty_Roxanne),     sParty_Roxanne },
+    { sName_Brawly, sLine_Brawly, OBJ_EVENT_GFX_LEADER_BRAWLY, TRAINER_PIC_LEADER_BRAWLY, MUGSHOT_COLOR_DARK_RED,         ARRAY_COUNT(sParty_Brawly),      sParty_Brawly },
+    { sName_Wattson, sLine_Wattson, OBJ_EVENT_GFX_LEADER_WATTSON, TRAINER_PIC_LEADER_WATTSON, MUGSHOT_COLOR_YELLOW,        ARRAY_COUNT(sParty_Wattson),     sParty_Wattson },
+    { sName_Flannery, sLine_Flannery, OBJ_EVENT_GFX_LEADER_FLANNERY, TRAINER_PIC_LEADER_FLANNERY, MUGSHOT_COLOR_RED_ORANGE,       ARRAY_COUNT(sParty_Flannery),    sParty_Flannery },
+    { sName_Norman, sLine_Norman, OBJ_EVENT_GFX_LEADER_NORMAN, TRAINER_PIC_LEADER_NORMAN, MUGSHOT_COLOR_STARS,         ARRAY_COUNT(sParty_Norman),      sParty_Norman },
+    { sName_Winona, sLine_Winona, OBJ_EVENT_GFX_LEADER_WINONA, TRAINER_PIC_LEADER_WINONA, MUGSHOT_COLOR_SKY_BLUE_GREY,         ARRAY_COUNT(sParty_Winona),      sParty_Winona },
+    { sName_TateAndLiza, sLine_TateAndLiza, OBJ_EVENT_GFX_LEADER_TATE_LIZA, TRAINER_PIC_LEADER_TATE_AND_LIZA, MUGSHOT_COLOR_LAVENDER_PURPLES,  ARRAY_COUNT(sParty_TateAndLiza), sParty_TateAndLiza },
+    { sName_Wallace, sLine_Wallace, OBJ_EVENT_GFX_LEADER_WALLACE, TRAINER_PIC_LEADER_WALLACE, MUGSHOT_COLOR_LIGHT_BLUE,        ARRAY_COUNT(sParty_Wallace),     sParty_Wallace },
 };
 
 #define LEADER_COUNT ARRAY_COUNT(sBoatLeaders)
@@ -275,6 +276,17 @@ u8 OrangeBoat_OpponentPicId(void)
         gFacilityTrainers[gTrainerBattleOpponent_A].facilityClass];
 }
 
+// The MUGSHOT transition reads these two off gTrainers[], which holds nothing
+// useful here: the opponent index is a frontier trainer id. battle_transition.c
+// asks us instead whenever InBattleFactory().
+
+u8 OrangeBoat_MugshotColor(void)
+{
+    if (OrangeBoat_IsLeaderRound())
+        return CurrentLeader()->mugshotColor;
+    return MUGSHOT_COLOR_STARS;
+}
+
 void OrangeBoat_OpponentWinText(u8 *dest)
 {
     StringCopy(dest, OrangeBoat_IsLeaderRound() ? sText_LeaderWin : sText_HouseWin);
@@ -328,7 +340,10 @@ void OrangeBoat_StartBattle(void)
     gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_TRAINER_TOWER;
     CreateTask(Task_StartBoatBattle, 1);
     PlayMapChosenOrBattleBGM(0);
-    BattleTransition_StartOnField(BattleSetup_GetBattleTowerBattleTransition());
+    // A leader gets the mugshot; the rest of the boat gets the tower's usual.
+    BattleTransition_StartOnField(OrangeBoat_IsLeaderRound()
+                                  ? B_TRANSITION_MUGSHOT
+                                  : BattleSetup_GetBattleTowerBattleTransition());
 }
 
 // Called at the top of each round, before the battle. Fills in the round

@@ -175,7 +175,18 @@
 #define OBJ_EVENT_GFX_RUDY 171
 #define OBJ_EVENT_GFX_LUANA 172
 #define OBJ_EVENT_GFX_ORANGE_DRAKE 173
-#define NUM_OBJ_EVENT_GFX     174
+
+// HOENN's gym leaders, for the KINNOW battle boat. Ported from pokeemerald
+// (graphics/object_events/pics/people/gym_leaders).
+#define OBJ_EVENT_GFX_LEADER_ROXANNE      174
+#define OBJ_EVENT_GFX_LEADER_BRAWLY       175
+#define OBJ_EVENT_GFX_LEADER_WATTSON      176
+#define OBJ_EVENT_GFX_LEADER_FLANNERY     177
+#define OBJ_EVENT_GFX_LEADER_NORMAN       178
+#define OBJ_EVENT_GFX_LEADER_WINONA       179
+#define OBJ_EVENT_GFX_LEADER_TATE_LIZA    180
+#define OBJ_EVENT_GFX_LEADER_WALLACE      181
+#define NUM_OBJ_EVENT_GFX     182
 
 // Follower Pokemon graphics ids. These live above the 8-bit range (object event graphics ids are
 // u16), so they don't collide with the regular ids or the OBJ_EVENT_GFX_VAR_x ids below.
