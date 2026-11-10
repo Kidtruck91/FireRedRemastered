@@ -122,7 +122,14 @@ LAYOUTS = [
     ('Hold',   'LAYOUT_SSANNE_B1F_CORRIDOR',    []),
     ('Cabin',  'LAYOUT_SSANNE_ROOM1',           []),
     ('Galley', 'LAYOUT_SSANNE_KITCHEN',         []),
-    ('Arena',  'LAYOUT_SSANNE_CAPTAINS_OFFICE', []),
+    # The office gets a door in its back wall at (4,1): block 641 is the
+    # SS ANNE's own door, MB_WARP_DOOR, and the wall there was two plain
+    # panels. Without it the room has only the stair down to the hold.
+    ('Arena',  'LAYOUT_SSANNE_CAPTAINS_OFFICE', [(4, 1, 641, 1)]),
+    # The floor itself. The CHAMPION's room is an octagonal ring with a
+    # carpeted approach from the south and a door at the north for whoever
+    # is being shown in, which is the shape this wanted all along.
+    ('Ring',   'LAYOUT_POKEMON_LEAGUE_CHAMPIONS_ROOM', []),
 ]
 
 
@@ -234,7 +241,14 @@ MAPS = {
     'Cabin2': ('Cabin', [(2, 1, 'Saloon', 7)]),
     'Cabin3': ('Cabin', [(2, 1, 'Saloon', 8)]),
     'Galley': ('Galley', [(7, 1, 'Saloon', 4)]),
-    'Arena': ('Arena', [(3, 7, 'Hold', 1)]),
+    'Arena': ('Arena', [
+        (3, 7, 'Hold', 1),              # 0  back up to the hold
+        (4, 1, 'Ring', 0),              # 1  the door onto the floor
+    ]),
+    'Ring': ('Ring', [
+        (6, 16, 'Arena', 1),            # 0  where the office door lands you
+        (6, 19, 'Arena', 1),            # 1  the foot of the carpet
+    ]),
 }
 
 # Doors with nothing behind them.
@@ -323,10 +337,22 @@ PEOPLE = {
     'Hold': [],
     'Cabin1': [], 'Cabin2': [], 'Cabin3': [],
     'Arena': [
-        # The desk's script is written by arena_scripts, not by talkers.
+        # The desk's script is written by office_scripts, not by talkers.
         ('Desk', 'OBJ_EVENT_GFX_BEAUTY', 4, 3, 'MOVEMENT_TYPE_FACE_DOWN', None),
     ],
+    # The challenger is added by write_maps, not here: it needs the graphics
+    # id that reads VAR_OBJ_GFX_ID_0 and a flag to keep it off the floor
+    # until it is sent for.
+    'Ring': [],
 }
+
+# Where the floor's cast stands. The ring is thirteen wide and the carpet
+# comes up its middle, so everything happens on column 6.
+RING_COLUMN = 6
+RING_DOOR_Y = 2        # the far door the challenger is shown in through
+RING_CHALLENGER_Y = 6  # where they stop
+RING_PLAYER_Y = 10     # and where the player is walked to, four tiles off
+RING_ARRIVAL_Y = 16    # the carpet tile the office door lands you on
 
 # (map, script suffix, trainer constant, class, pic, music, graphics,
 #  pool, level, NAME, x, y, movement, intro, defeat, after)
@@ -661,6 +687,17 @@ def write_maps(report):
                 "trainer_sight_or_berry_tree_id": "3",
                 "script": '%s_EventScript_%s' % (name, s), "flag": "0"})
 
+        if suffix == 'Ring':
+            mj['object_events'].append({
+                "type": "object", "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+                "x": RING_COLUMN, "y": RING_DOOR_Y, "elevation": 3,
+                "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+                "movement_range_x": 1, "movement_range_y": 1,
+                "trainer_type": "TRAINER_TYPE_NONE",
+                "trainer_sight_or_berry_tree_id": "0",
+                "script": "%s_EventScript_Challenger" % name,
+                "flag": "FLAG_TEMP_2"})
+
         if suffix == 'Arena':
             mj['bg_events'].append({
                 "type": "sign", "x": ARENA_BOARD[0], "y": ARENA_BOARD[1],
@@ -691,7 +728,9 @@ def write_maps(report):
         if suffix in CREW_DOORS:
             door_signs(name, CREW_DOORS[suffix], out, text)
         if suffix == 'Arena':
-            arena_scripts(name, out, text)
+            office_scripts(name, out, text)
+        if suffix == 'Ring':
+            ring_scripts(name, out, text)
         if suffix == 'Deck':
             out += ['%s_EventScript_GoAshore::' % name,
                     '\tlockall',
@@ -703,8 +742,19 @@ def write_maps(report):
 
         sp = os.path.join(d, 'scripts.inc')
         if not os.path.exists(sp):
-            open(sp, 'w', encoding='utf-8', newline='\n').write(
-                '%s_MapScripts::\n\t.byte 0\n' % name)
+            if suffix == 'Ring':
+                # The floor opens by itself when the player walks in, the way
+                # a contest hall does, rather than waiting to be spoken to.
+                open(sp, 'w', encoding='utf-8', newline='\n').write(
+                    '%s_MapScripts::\n'
+                    '\tmap_script MAP_SCRIPT_ON_FRAME_TABLE, %s_OnFrame\n'
+                    '\t.byte 0\n\n'
+                    '%s_OnFrame::\n'
+                    '\tmap_script_2 VAR_TEMP_3, 0, %s_EventScript_OpenFloor\n'
+                    '\t.2byte 0\n' % (name, name, name, name))
+            else:
+                open(sp, 'w', encoding='utf-8', newline='\n').write(
+                    '%s_MapScripts::\n\t.byte 0\n' % name)
         splice(sp, out)
         splice(os.path.join(d, 'text.inc'), text)
 
@@ -735,9 +785,9 @@ def write_maps(report):
 # script variable: the round number, the streak and the purse all live in
 # gSaveBlock2Ptr->factory, so a run survives being saved mid-challenge.
 
-ARENA_TEXT = {
-    'Offer': ['"Thirty-two rounds, and we lend you\\n"',
-              '"the POKEMON.\\p"',
+OFFICE_TEXT = {
+    'Offer': ['"Thirty-two rounds, and we lend\\n"',
+              '"you the POKEMON.\\p"',
               '"Six are brought up, you keep\\n"',
               '"three. Beat a team and you may\\l"',
               '"take one of them, up to six; once\\l"',
@@ -749,8 +799,48 @@ ARENA_TEXT = {
               '"between rounds. Sit down?$"'],
     'Decline': ['"The boat is moored here all\\n"', '"season.$"'],
     'Draft': ['"Six are brought up. Keep three.$"'],
-    'Resume': ['"Your run is still open at round\\n"', '"{STR_VAR_3}. Carry on?$"'],
-    'NextRound': ['"Round {STR_VAR_3} of 32. Ready?$"'],
+    'ToTheFloor': ['"The floor is through the door\\n"',
+                   '"behind me. They will send your\\l"',
+                   '"first one in when you are on it.\\p"',
+                   '"Come back here to stop, to be\\n"',
+                   '"paid, or to have the run held.$"'],
+    'Resume': ['"Your run is still open at round\\n"', '"{STR_VAR_3}. Shall I fetch your three?$"'],
+    'StillOut': ['"You are round {STR_VAR_3}, and your\\n"',
+                 '"three are already in hand.\\p"',
+                 '"Through the door when you are\\n"',
+                 '"ready. Stopping instead?$"'],
+    'StopMenu': ['"You are {STR_VAR_3} rounds in. Taking\\n"',
+                 '"the purse now pays {STR_VAR_1}, three\\l"',
+                 '"quarters; being stopped pays half.\\p"',
+                 '"Or we hold the run for you.$"'],
+    'Saved': ['"Held, and the ledger is written.\\p"',
+              '"Your own POKEMON are yours again.\\n"',
+              '"The run is here when you are.$"'],
+    'Retired': ['"Stopped at {STR_VAR_3}. {STR_VAR_1}, and\\n"',
+                '"the run is closed.$"'],
+    'Nothing': ['"No rounds, no purse. Come back\\n"', '"when you want them.$"'],
+    'Rules': ['"THE HOUSE PAYS BY DEPTH.\\p"',
+              '"Rented POKEMON. Three of six, and\\n"',
+              '"one off every team you beat until\\l"',
+              '"you have six of your own.\\p"',
+              '"Thirty-two rounds on the floor\\n"',
+              '"through the door. Every fourth is\\l"',
+              '"a GYM LEADER of HOENN, all eight\\l"',
+              '"of them in an order drawn on the\\l"',
+              '"night: six of their own type at\\l"',
+              '"level fifty, and nothing to take\\l"',
+              '"off them.\\p"',
+              '"Stop between rounds for three\\n"',
+              '"quarters. Be stopped, and it is\\l"',
+              '"half.$"'],
+}
+
+RING_TEXT = {
+    'Announce': ['"Round {STR_VAR_3} of 32.\\p"',
+                 '"{STR_VAR_1} takes the floor.$"'],
+    'NextRound': ['"Round {STR_VAR_3}. Send the next one\\n"', '"in?$"'],
+    'StepOff': ['"The floor is yours again whenever\\n"',
+                '"you walk back onto it.$"'],
     'SwapOffer': ['"Your six are full. Trade one of\\n"',
                   '"yours for one of theirs?$"'],
     'Swapped': ['"Done. The trade stands for the\\n"', '"rest of the run.$"'],
@@ -759,47 +849,176 @@ ARENA_TEXT = {
     'SpoilPick': ['"Which one?$"'],
     'SpoilTaken': ['"{STR_VAR_2} is yours for the rest of\\n"',
                    '"the run.$"'],
-    'LeaderRound': ['"Round {STR_VAR_3}. {STR_VAR_2} brings six of\\n"',
-                    '"their own and will not hold back.\\p"',
-                    '"Nothing of theirs is ours, so\\n"',
-                    '"there is nothing to take after.\\p"',
-                    '"Ready?$"'],
-    'StopMenu': ['"You are {STR_VAR_3} rounds in. Taking\\n"',
-                 '"the purse now pays {STR_VAR_1}, three\\l"',
-                 '"quarters; being stopped pays half.\\p"',
-                 '"Or we hold the run for you.$"'],
-    'Saved': ['"Held, and the ledger is written.\\p"',
-              '"Your own POKEMON are yours again.\\n"',
-              '"The run is here when you are.$"'],
     'Cleared': ['"All thirty-two, and all eight\\n"',
                 '"leaders.\\p"',
-                '"{STR_VAR_1}, in full. We shuffle them\\n"',
-                '"again for your next one.$"'],
+                '"{STR_VAR_1}, in full, and the floor is\\n"',
+                '"yours. We shuffle them again for\\l"',
+                '"your next one.$"'],
     'Lost': ['"{STR_VAR_3} rounds. Half of that is\\n"',
-             '"{STR_VAR_1}.\\p"',
-             '"The run is closed. Come back when\\n"',
-             '"you want another.$"'],
-    'Retired': ['"Stopped at {STR_VAR_3}. {STR_VAR_1}, and\\n"',
-                '"the run is closed.$"'],
-    'Nothing': ['"No rounds, no purse. Come back\\n"', '"when you want them.$"'],
-    'Rules': ['"THE HOUSE PAYS BY DEPTH.\\p"',
-              '"Rented POKEMON. Three of six, and\\n"',
-              '"one off every team you beat until\\l"',
-              '"you have six of your own.\\p"',
-              '"Thirty-two rounds. Every fourth is\\n"',
-              '"a GYM LEADER of HOENN, all eight of\\l"',
-              '"them in an order drawn on the\\l"',
-              '"night: six of their own type\\l"',
-              '"at level fifty, and nothing to\\l"',
-              '"take off them.\\p"',
-              '"Stop between rounds for three\\n"',
-              '"quarters. Be stopped, and it is\\l"',
-              '"half.$"'],
+             '"{STR_VAR_1}, and the run is closed.\\p"',
+             '"Your own POKEMON are yours again.$"'],
+    'LostNothing': ['"Out in the first. No rounds, no\\n"',
+                    '"purse.\\p"',
+                    '"Your own POKEMON are yours again.$"'],
 }
 
 
 
-def arena_scripts(name, out, text):
+
+def ring_scripts(name, out, text):
+    """The floor. The player walks up the carpet, the challenger is shown in
+    through the far door and says their piece, and the round is fought where
+    both of them are standing. Winning sends that one out and brings the next
+    one in, until the player says stop or the house does."""
+    e = '%s_EventScript_' % name
+    t = '%s_Text_' % name
+    up = RING_ARRIVAL_Y - RING_PLAYER_Y
+    inwards = RING_CHALLENGER_Y - RING_DOOR_Y
+
+    out += [
+        # Movement. walk_up is away from the carpet; the challenger comes the
+        # other way and leaves the way it came.
+        '%s_Movement_PlayerToFloor:' % name,
+    ] + ['\twalk_up'] * up + ['\tstep_end', '',
+        '%s_Movement_ChallengerIn:' % name,
+    ] + ['\twalk_down'] * inwards + ['\tstep_end', '',
+        '%s_Movement_ChallengerOut:' % name,
+    ] + ['\twalk_up'] * inwards + ['\tstep_end', '',
+
+        # Nothing to do here without a run booked at the desk.
+        e + 'OpenFloor::',
+        '\tsetvar VAR_TEMP_3, 1',
+        '\tgoto_if_unset FLAG_ORANGE_IN_FACTORY, ' + e + 'NothingBooked',
+        '\tlockall',
+        '\tapplymovement OBJ_EVENT_ID_PLAYER, %s_Movement_PlayerToFloor' % name,
+        '\twaitmovement 0',
+        '\tgoto ' + e + 'Round',
+        '',
+        e + 'NothingBooked::',
+        '\tend',
+        '',
+        # Someone has to be standing there for the object to be talkable at
+        # all; it only ever speaks through the round script.
+        e + 'Challenger::',
+        '\tend',
+        '',
+        e + 'Round::',
+        '\tspecial OrangeBoat_PrepareRound',
+        '\tspecial OrangeBoat_SetChallengerGfx',
+        # Re-adding is what makes the object read VAR_OBJ_GFX_ID_0 again.
+        '\tremoveobject 1',
+        '\tclearflag FLAG_TEMP_2',
+        '\taddobject 1',
+        '\tapplymovement 1, %s_Movement_ChallengerIn' % name,
+        '\twaitmovement 0',
+        '\tspecial OrangeBoat_GetChallengerName',
+        '\tmsgbox ' + t + 'Announce, MSGBOX_DEFAULT',
+        '\tspecial OrangeBoat_GetChallengerLine',
+        '\tmsgbox gStringVar4, MSGBOX_DEFAULT',
+        '\tclosemessage',
+        '\tplayfanfare MUS_HEAL',
+        '\twaitfanfare',
+        '\tspecial HealPlayerParty',
+        '\tspecial OrangeBoat_StartBattle',
+        '\twaitstate',
+        '\tgoto_if_eq VAR_RESULT, B_OUTCOME_WON, ' + e + 'Won',
+        '\tgoto ' + e + 'Lost',
+        '',
+        e + 'Won::',
+        '\tspecial OrangeBoat_RoundWon',
+        '\tcopyvar VAR_TEMP_4, VAR_RESULT',
+        '\tapplymovement 1, %s_Movement_ChallengerOut' % name,
+        '\twaitmovement 0',
+        '\tremoveobject 1',
+        '\tsetflag FLAG_TEMP_2',
+        '\tgoto_if_eq VAR_TEMP_4, TRUE, ' + e + 'Cleared',
+        '\tcall_if_eq VAR_0x8006, FALSE, ' + e + 'TakeOpponentMons',
+        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_RESET_HELD_ITEMS',
+        '\tspecial CallBattleFactoryFunction',
+        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_GENERATE_OPPONENT_MONS',
+        '\tspecial CallBattleFactoryFunction',
+        '\tgoto_if_eq VAR_0x8006, TRUE, ' + e + 'AskNext',
+        '\tspecial OrangeBoat_OfferSpoils',
+        '\tgoto_if_eq VAR_RESULT, FALSE, ' + e + 'AskSwap',
+        '\tmsgbox ' + t + 'SpoilOffer, MSGBOX_YESNO',
+        '\tgoto_if_eq VAR_RESULT, NO, ' + e + 'AskNext',
+        '\tmessage ' + t + 'SpoilPick',
+        '\twaitmessage',
+        '\tmultichoice 18, 6, MULTICHOICE_BOAT_SPOILS, FALSE',
+        '\tgoto_if_eq VAR_RESULT, SCR_MENU_UNSET, ' + e + 'AskNext',
+        '\tspecial OrangeBoat_TakeSpoil',
+        '\tmsgbox ' + t + 'SpoilTaken, MSGBOX_DEFAULT',
+        '\tgoto ' + e + 'AskNext',
+        '',
+        e + 'TakeOpponentMons::',
+        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_OPPONENT_MONS',
+        '\tspecial CallBattleFactoryFunction',
+        '\treturn',
+        '',
+        e + 'AskSwap::',
+        '\tmsgbox ' + t + 'SwapOffer, MSGBOX_YESNO',
+        '\tgoto_if_eq VAR_RESULT, NO, ' + e + 'AskNext',
+        '\tclosemessage',
+        '\tfadescreen FADE_TO_BLACK',
+        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_SWAP_RENT_MONS',
+        '\tspecial CallBattleFactoryFunction',
+        '\twaitstate',
+        '\tgoto_if_eq VAR_RESULT, TRUE, ' + e + 'AskNext',
+        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_SWAPPED',
+        '\tspecial CallBattleFactoryFunction',
+        '\tmsgbox ' + t + 'Swapped, MSGBOX_DEFAULT',
+        '\tgoto ' + e + 'AskNext',
+        '',
+        e + 'AskNext::',
+        '\tspecial OrangeBoat_PrepareRound',
+        '\tmsgbox ' + t + 'NextRound, MSGBOX_YESNO',
+        '\tgoto_if_eq VAR_RESULT, YES, ' + e + 'Round',
+        '\tmsgbox ' + t + 'StepOff, MSGBOX_DEFAULT',
+        '\treleaseall',
+        '\tend',
+        '',
+        # Both endings settle up on the spot: the desk is two rooms away and
+        # the run is over either way.
+        e + 'Cleared::',
+        '\tsetvar VAR_0x8005, FALSE',
+        '\tspecial OrangeBoat_SettleUp',
+        '\tmsgbox ' + t + 'Cleared, MSGBOX_DEFAULT',
+        '\tgoto ' + e + 'Done',
+        '',
+        e + 'Lost::',
+        '\tapplymovement 1, %s_Movement_ChallengerOut' % name,
+        '\twaitmovement 0',
+        '\tremoveobject 1',
+        '\tsetflag FLAG_TEMP_2',
+        '\tsetvar VAR_0x8005, FALSE',
+        '\tspecial OrangeBoat_SettleUp',
+        '\tgoto_if_eq VAR_RESULT, FALSE, ' + e + 'LostNothing',
+        '\tmsgbox ' + t + 'Lost, MSGBOX_DEFAULT',
+        '\tgoto ' + e + 'Done',
+        '',
+        e + 'LostNothing::',
+        '\tmsgbox ' + t + 'LostNothing, MSGBOX_DEFAULT',
+        '\tgoto ' + e + 'Done',
+        '',
+        e + 'Done::',
+        '\tclearflag FLAG_ORANGE_IN_FACTORY',
+        '\tspecial LoadPlayerParty',
+        '\tspecial HealPlayerParty',
+        '\tspecial CalculatePlayerPartyCount',
+        '\treleaseall',
+        '\tend',
+        '',
+    ]
+    for (tag, lines) in RING_TEXT.items():
+        text.append(t + tag + '::')
+        text += ['\t.string %s' % ln for ln in lines]
+        text.append('')
+
+
+def office_scripts(name, out, text):
+    """The desk. It books you in, drafts your three, holds the run, pays you
+    out -- and then sends you through the door. The rounds happen on the
+    floor; see ring_scripts."""
     e = '%s_EventScript_' % name
     t = '%s_Text_' % name
     out += [
@@ -827,101 +1046,33 @@ def arena_scripts(name, out, text):
         '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_SELECT_RENT_MONS',
         '\tspecial CallBattleFactoryFunction',
         '\twaitstate',
-        '\tgoto ' + e + 'Round',
+        '\tspecial OrangeBoat_MarkRentalsLive',
+        '\tmsgbox ' + t + 'ToTheFloor, MSGBOX_DEFAULT',
+        '\tgoto ' + e + 'Close',
         '',
+        # Coming back to the desk. If the rentals are already in hand this is
+        # just a conversation; if the run was put down and picked up again,
+        # the three have to be built back first -- and the player's own team
+        # stashed again, because it is live right now and saving would write
+        # the rentals over it.
         e + 'Resume::',
-        # Fills in the round number the message asks for.
         '\tspecial OrangeBoat_PrepareRound',
+        '\tspecial OrangeBoat_RentalsAreLive',
+        '\tgoto_if_eq VAR_RESULT, TRUE, ' + e + 'StillOut',
         '\tmsgbox ' + t + 'Resume, MSGBOX_YESNO',
         '\tgoto_if_eq VAR_RESULT, NO, ' + e + 'AskStop',
-        # Re-stash: the team may have changed while the run was paused, and
-        # this is what gets handed back at the end of it.
         '\tspecial SavePlayerParty',
         '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_PARTIES',
         '\tsetvar VAR_0x8005, 0',
         '\tspecial CallBattleFactoryFunction',
         '\tspecial OrangeBoat_RestoreSpoils',
-        '\tgoto ' + e + 'Round',
-        '',
-        # One round. Jumped back to for each of the seven.
-        e + 'Round::',
-        '\tspecial OrangeBoat_PrepareRound',
-        # The announce is a yes/no, so between rounds is where you can stop.
-        # Stash the leader flag first: the msgbox inside the call overwrites
-        # VAR_RESULT, and NO and FALSE are the same number.
-        '\tcopyvar VAR_TEMP_1, VAR_RESULT',
-        '\tcall_if_eq VAR_TEMP_1, TRUE, ' + e + 'AnnounceLeader',
-        '\tcall_if_eq VAR_TEMP_1, FALSE, ' + e + 'AnnounceRound',
-        '\tgoto_if_eq VAR_RESULT, NO, ' + e + 'AskStop',
-        '\tclosemessage',
-        '\tplayfanfare MUS_HEAL',
-        '\twaitfanfare',
-        '\tspecial HealPlayerParty',
-        '\tspecial OrangeBoat_StartBattle',
-        '\twaitstate',
-        '\tgoto_if_eq VAR_RESULT, B_OUTCOME_WON, ' + e + 'RoundWon',
-        '\tgoto ' + e + 'Finish',
-        '',
-        e + 'AnnounceLeader::',
-        '\tmsgbox ' + t + 'LeaderRound, MSGBOX_YESNO',
-        '\treturn',
-        '',
-        e + 'AnnounceRound::',
-        '\tmsgbox ' + t + 'NextRound, MSGBOX_YESNO',
-        '\treturn',
-        '',
-        e + 'RoundWon::',
-        '\tspecial OrangeBoat_RoundWon',
-        '\tgoto_if_eq VAR_RESULT, TRUE, ' + e + 'Cleared',
-        '\tcall_if_eq VAR_0x8006, FALSE, ' + e + 'TakeOpponentMons',
-        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_RESET_HELD_ITEMS',
-        '\tspecial CallBattleFactoryFunction',
-        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_GENERATE_OPPONENT_MONS',
-        '\tspecial CallBattleFactoryFunction',
-        '\tgoto_if_eq VAR_0x8006, TRUE, ' + e + 'Round',
-        # Under six, you take one of the beaten three; at six, the swap.
-        '\tspecial OrangeBoat_OfferSpoils',
-        '\tgoto_if_eq VAR_RESULT, FALSE, ' + e + 'AskSwap',
-        '\tmsgbox ' + t + 'SpoilOffer, MSGBOX_YESNO',
-        '\tgoto_if_eq VAR_RESULT, NO, ' + e + 'Round',
-        '\tmessage ' + t + 'SpoilPick',
-        '\twaitmessage',
-        '\tmultichoice 18, 6, MULTICHOICE_BOAT_SPOILS, FALSE',
-        '\tgoto_if_eq VAR_RESULT, SCR_MENU_UNSET, ' + e + 'Round',
-        '\tspecial OrangeBoat_TakeSpoil',
-        '\tmsgbox ' + t + 'SpoilTaken, MSGBOX_DEFAULT',
-        '\tgoto ' + e + 'Round',
-        '',
-        e + 'AskSwap::',
-        '\tmsgbox ' + t + 'SwapOffer, MSGBOX_YESNO',
-        '\tgoto_if_eq VAR_RESULT, NO, ' + e + 'Round',
-        '\tclosemessage',
-        '\tfadescreen FADE_TO_BLACK',
-        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_SWAP_RENT_MONS',
-        '\tspecial CallBattleFactoryFunction',
-        '\twaitstate',
-        '\tgoto_if_eq VAR_RESULT, TRUE, ' + e + 'Round',
-        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_SWAPPED',
-        '\tspecial CallBattleFactoryFunction',
-        '\tmsgbox ' + t + 'Swapped, MSGBOX_DEFAULT',
-        '\tgoto ' + e + 'Round',
-        '',
-        e + 'TakeOpponentMons::',
-        '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_OPPONENT_MONS',
-        '\tspecial CallBattleFactoryFunction',
-        '\treturn',
-        '',
-        e + 'Cleared::',
-        '\tsetvar VAR_0x8005, FALSE',
-        '\tspecial OrangeBoat_SettleUp',
-        '\tmsgbox ' + t + 'Cleared, MSGBOX_DEFAULT',
+        '\tspecial OrangeBoat_MarkRentalsLive',
+        '\tmsgbox ' + t + 'ToTheFloor, MSGBOX_DEFAULT',
         '\tgoto ' + e + 'Close',
         '',
-        e + 'Finish::',
-        '\tsetvar VAR_0x8005, FALSE',
-        '\tspecial OrangeBoat_SettleUp',
-        '\tgoto_if_eq VAR_RESULT, FALSE, ' + e + 'Nothing',
-        '\tmsgbox ' + t + 'Lost, MSGBOX_DEFAULT',
+        e + 'StillOut::',
+        '\tmsgbox ' + t + 'StillOut, MSGBOX_YESNO',
+        '\tgoto_if_eq VAR_RESULT, YES, ' + e + 'AskStop',
         '\tgoto ' + e + 'Close',
         '',
         e + 'AskStop::',
@@ -931,21 +1082,21 @@ def arena_scripts(name, out, text):
         '\tmultichoice 16, 6, MULTICHOICE_BOAT_PAUSE, FALSE',
         '\tgoto_if_eq VAR_RESULT, 0, ' + e + 'SaveAndStop',
         '\tgoto_if_eq VAR_RESULT, 1, ' + e + 'Retire',
-        '\tgoto ' + e + 'Round',
+        '\tgoto ' + e + 'Close',
         '',
-        # Saving the run keeps the flag set and hands the real team back, so
-        # the desk picks it up where it left off next time.
+        # Holding the run hands the player's own team back and keeps the flag
+        # set, so the desk picks it up where it left off next time.
         e + 'SaveAndStop::',
         '\tclosemessage',
+        '\tspecial LoadPlayerParty',
+        '\tspecial HealPlayerParty',
+        '\tspecial CalculatePlayerPartyCount',
         '\tsetvar VAR_0x8004, BATTLE_FACTORY_FUNC_SAVE',
         '\tsetvar VAR_0x8005, FACTORY_CHALLENGE_PAUSED',
         '\tspecial CallBattleFactoryFunction',
         '\tplayse SE_SAVE',
         '\twaitse',
         '\tmsgbox ' + t + 'Saved, MSGBOX_DEFAULT',
-        '\tspecial LoadPlayerParty',
-        '\tspecial HealPlayerParty',
-        '\tspecial CalculatePlayerPartyCount',
         '\trelease',
         '\tend',
         '',
@@ -954,21 +1105,26 @@ def arena_scripts(name, out, text):
         '\tspecial OrangeBoat_SettleUp',
         '\tgoto_if_eq VAR_RESULT, FALSE, ' + e + 'Nothing',
         '\tmsgbox ' + t + 'Retired, MSGBOX_DEFAULT',
-        '\tgoto ' + e + 'Close',
+        '\tgoto ' + e + 'Done',
         '',
         e + 'Nothing::',
         '\tmsgbox ' + t + 'Nothing, MSGBOX_DEFAULT',
-        '\tgoto ' + e + 'Close',
+        '\tgoto ' + e + 'Done',
         '',
         e + 'Decline::',
         '\tmsgbox ' + t + 'Decline, MSGBOX_DEFAULT',
         '\tgoto ' + e + 'Close',
         '',
-        e + 'Close::',
+        # The run is over: the flag goes and the player's own team comes back.
+        e + 'Done::',
         '\tclearflag FLAG_ORANGE_IN_FACTORY',
         '\tspecial LoadPlayerParty',
         '\tspecial HealPlayerParty',
         '\tspecial CalculatePlayerPartyCount',
+        '\trelease',
+        '\tend',
+        '',
+        e + 'Close::',
         '\trelease',
         '\tend',
         '',
@@ -977,7 +1133,7 @@ def arena_scripts(name, out, text):
         '\tend',
         '',
     ]
-    for (tag, lines) in ARENA_TEXT.items():
+    for (tag, lines) in OFFICE_TEXT.items():
         text.append(t + tag + '::')
         text += ['\t.string %s' % ln for ln in lines]
         text.append('')

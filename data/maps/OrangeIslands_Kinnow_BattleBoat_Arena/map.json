@@ -37,6 +37,13 @@
       "elevation": 0,
       "dest_map": "MAP_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_HOLD",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_RING",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

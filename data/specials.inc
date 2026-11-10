@@ -467,5 +467,10 @@ gSpecials::
 	def_special OrangeBoat_TakeSpoil
 	def_special OrangeBoat_RestoreSpoils
 	def_special OrangeBoat_GetLeaderName
+	def_special OrangeBoat_GetChallengerName
+	def_special OrangeBoat_GetChallengerLine
+	def_special OrangeBoat_SetChallengerGfx
+	def_special OrangeBoat_RentalsAreLive
+	def_special OrangeBoat_MarkRentalsLive
 	
 gSpecialsEnd::

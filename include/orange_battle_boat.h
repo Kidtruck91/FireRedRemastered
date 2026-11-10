@@ -17,6 +17,11 @@ void OrangeBoat_SettleUp(void);
 void OrangeBoat_QuoteRetirement(void);
 void OrangeBoat_GetLeaderName(void);
 bool8 OrangeBoat_SuppressesFollower(void);
+void OrangeBoat_GetChallengerName(void);
+void OrangeBoat_GetChallengerLine(void);
+void OrangeBoat_SetChallengerGfx(void);
+void OrangeBoat_RentalsAreLive(void);
+void OrangeBoat_MarkRentalsLive(void);
 
 void OrangeBoat_OfferSpoils(void);
 void OrangeBoat_TakeSpoil(void);

@@ -7524,6 +7524,18 @@
       "secondary_tileset": "gTileset_SSAnne",
       "border_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Arena/border.bin",
       "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Arena/map.bin"
+    },
+    {
+      "id": "LAYOUT_ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_RING",
+      "name": "OrangeIslands_Kinnow_BattleBoat_Ring_Layout",
+      "width": 13,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonLeague",
+      "border_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Ring/border.bin",
+      "blockdata_filepath": "data/layouts/OrangeIslands_Kinnow_BattleBoat_Ring/map.bin"
     }
   ]
 }

@@ -2322,3 +2322,5 @@ Text_TestMsg::
 	.include "data/maps/OrangeIslands_Kinnow_BattleBoat_Galley/text.inc"
 	.include "data/maps/OrangeIslands_Kinnow_BattleBoat_Arena/scripts.inc"
 	.include "data/maps/OrangeIslands_Kinnow_BattleBoat_Arena/text.inc"
+	.include "data/maps/OrangeIslands_Kinnow_BattleBoat_Ring/scripts.inc"
+	.include "data/maps/OrangeIslands_Kinnow_BattleBoat_Ring/text.inc"

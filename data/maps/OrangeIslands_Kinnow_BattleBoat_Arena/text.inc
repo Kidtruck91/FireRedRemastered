@@ -1,7 +1,7 @@
 @ --- built by docs/orange-islands/build_battle_boat.py ---
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_Offer::
-	.string "Thirty-two rounds, and we lend you\n"
-	.string "the POKEMON.\p"
+	.string "Thirty-two rounds, and we lend\n"
+	.string "you the POKEMON.\p"
 	.string "Six are brought up, you keep\n"
 	.string "three. Beat a team and you may\l"
 	.string "take one of them, up to six; once\l"
@@ -19,38 +19,22 @@ OrangeIslands_Kinnow_BattleBoat_Arena_Text_Decline::
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_Draft::
 	.string "Six are brought up. Keep three.$"
 
+OrangeIslands_Kinnow_BattleBoat_Arena_Text_ToTheFloor::
+	.string "The floor is through the door\n"
+	.string "behind me. They will send your\l"
+	.string "first one in when you are on it.\p"
+	.string "Come back here to stop, to be\n"
+	.string "paid, or to have the run held.$"
+
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_Resume::
 	.string "Your run is still open at round\n"
-	.string "{STR_VAR_3}. Carry on?$"
+	.string "{STR_VAR_3}. Shall I fetch your three?$"
 
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_NextRound::
-	.string "Round {STR_VAR_3} of 32. Ready?$"
-
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_SwapOffer::
-	.string "Your six are full. Trade one of\n"
-	.string "yours for one of theirs?$"
-
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_Swapped::
-	.string "Done. The trade stands for the\n"
-	.string "rest of the run.$"
-
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_SpoilOffer::
-	.string "You beat their three. Take one of\n"
-	.string "them onto your side?$"
-
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_SpoilPick::
-	.string "Which one?$"
-
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_SpoilTaken::
-	.string "{STR_VAR_2} is yours for the rest of\n"
-	.string "the run.$"
-
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_LeaderRound::
-	.string "Round {STR_VAR_3}. {STR_VAR_2} brings six of\n"
-	.string "their own and will not hold back.\p"
-	.string "Nothing of theirs is ours, so\n"
-	.string "there is nothing to take after.\p"
-	.string "Ready?$"
+OrangeIslands_Kinnow_BattleBoat_Arena_Text_StillOut::
+	.string "You are round {STR_VAR_3}, and your\n"
+	.string "three are already in hand.\p"
+	.string "Through the door when you are\n"
+	.string "ready. Stopping instead?$"
 
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_StopMenu::
 	.string "You are {STR_VAR_3} rounds in. Taking\n"
@@ -62,18 +46,6 @@ OrangeIslands_Kinnow_BattleBoat_Arena_Text_Saved::
 	.string "Held, and the ledger is written.\p"
 	.string "Your own POKEMON are yours again.\n"
 	.string "The run is here when you are.$"
-
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_Cleared::
-	.string "All thirty-two, and all eight\n"
-	.string "leaders.\p"
-	.string "{STR_VAR_1}, in full. We shuffle them\n"
-	.string "again for your next one.$"
-
-OrangeIslands_Kinnow_BattleBoat_Arena_Text_Lost::
-	.string "{STR_VAR_3} rounds. Half of that is\n"
-	.string "{STR_VAR_1}.\p"
-	.string "The run is closed. Come back when\n"
-	.string "you want another.$"
 
 OrangeIslands_Kinnow_BattleBoat_Arena_Text_Retired::
 	.string "Stopped at {STR_VAR_3}. {STR_VAR_1}, and\n"
@@ -88,12 +60,13 @@ OrangeIslands_Kinnow_BattleBoat_Arena_Text_Rules::
 	.string "Rented POKEMON. Three of six, and\n"
 	.string "one off every team you beat until\l"
 	.string "you have six of your own.\p"
-	.string "Thirty-two rounds. Every fourth is\n"
-	.string "a GYM LEADER of HOENN, all eight of\l"
-	.string "them in an order drawn on the\l"
-	.string "night: six of their own type\l"
-	.string "at level fifty, and nothing to\l"
-	.string "take off them.\p"
+	.string "Thirty-two rounds on the floor\n"
+	.string "through the door. Every fourth is\l"
+	.string "a GYM LEADER of HOENN, all eight\l"
+	.string "of them in an order drawn on the\l"
+	.string "night: six of their own type at\l"
+	.string "level fifty, and nothing to take\l"
+	.string "off them.\p"
 	.string "Stop between rounds for three\n"
 	.string "quarters. Be stopped, and it is\l"
 	.string "half.$"

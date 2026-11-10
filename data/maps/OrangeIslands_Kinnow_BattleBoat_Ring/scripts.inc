@@ -1,0 +1,149 @@
+OrangeIslands_Kinnow_BattleBoat_Ring_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, OrangeIslands_Kinnow_BattleBoat_Ring_OnFrame
+	.byte 0
+
+OrangeIslands_Kinnow_BattleBoat_Ring_OnFrame::
+	map_script_2 VAR_TEMP_3, 0, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_OpenFloor
+	.2byte 0
+
+@ --- built by docs/orange-islands/build_battle_boat.py ---
+OrangeIslands_Kinnow_BattleBoat_Ring_Movement_PlayerToFloor:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+OrangeIslands_Kinnow_BattleBoat_Ring_Movement_ChallengerIn:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+OrangeIslands_Kinnow_BattleBoat_Ring_Movement_ChallengerOut:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_OpenFloor::
+	setvar VAR_TEMP_3, 1
+	goto_if_unset FLAG_ORANGE_IN_FACTORY, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_NothingBooked
+	lockall
+	applymovement OBJ_EVENT_ID_PLAYER, OrangeIslands_Kinnow_BattleBoat_Ring_Movement_PlayerToFloor
+	waitmovement 0
+	goto OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Round
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_NothingBooked::
+	end
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Challenger::
+	end
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Round::
+	special OrangeBoat_PrepareRound
+	special OrangeBoat_SetChallengerGfx
+	removeobject 1
+	clearflag FLAG_TEMP_2
+	addobject 1
+	applymovement 1, OrangeIslands_Kinnow_BattleBoat_Ring_Movement_ChallengerIn
+	waitmovement 0
+	special OrangeBoat_GetChallengerName
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_Announce, MSGBOX_DEFAULT
+	special OrangeBoat_GetChallengerLine
+	msgbox gStringVar4, MSGBOX_DEFAULT
+	closemessage
+	playfanfare MUS_HEAL
+	waitfanfare
+	special HealPlayerParty
+	special OrangeBoat_StartBattle
+	waitstate
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Won
+	goto OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Lost
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Won::
+	special OrangeBoat_RoundWon
+	copyvar VAR_TEMP_4, VAR_RESULT
+	applymovement 1, OrangeIslands_Kinnow_BattleBoat_Ring_Movement_ChallengerOut
+	waitmovement 0
+	removeobject 1
+	setflag FLAG_TEMP_2
+	goto_if_eq VAR_TEMP_4, TRUE, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Cleared
+	call_if_eq VAR_0x8006, FALSE, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_TakeOpponentMons
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_RESET_HELD_ITEMS
+	special CallBattleFactoryFunction
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_GENERATE_OPPONENT_MONS
+	special CallBattleFactoryFunction
+	goto_if_eq VAR_0x8006, TRUE, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskNext
+	special OrangeBoat_OfferSpoils
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskSwap
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_SpoilOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskNext
+	message OrangeIslands_Kinnow_BattleBoat_Ring_Text_SpoilPick
+	waitmessage
+	multichoice 18, 6, MULTICHOICE_BOAT_SPOILS, FALSE
+	goto_if_eq VAR_RESULT, SCR_MENU_UNSET, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskNext
+	special OrangeBoat_TakeSpoil
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_SpoilTaken, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskNext
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_TakeOpponentMons::
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_OPPONENT_MONS
+	special CallBattleFactoryFunction
+	return
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskSwap::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_SwapOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskNext
+	closemessage
+	fadescreen FADE_TO_BLACK
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SWAP_RENT_MONS
+	special CallBattleFactoryFunction
+	waitstate
+	goto_if_eq VAR_RESULT, TRUE, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskNext
+	setvar VAR_0x8004, BATTLE_FACTORY_FUNC_SET_SWAPPED
+	special CallBattleFactoryFunction
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_Swapped, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskNext
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_AskNext::
+	special OrangeBoat_PrepareRound
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_NextRound, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Round
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_StepOff, MSGBOX_DEFAULT
+	releaseall
+	end
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Cleared::
+	setvar VAR_0x8005, FALSE
+	special OrangeBoat_SettleUp
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_Cleared, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Done
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Lost::
+	applymovement 1, OrangeIslands_Kinnow_BattleBoat_Ring_Movement_ChallengerOut
+	waitmovement 0
+	removeobject 1
+	setflag FLAG_TEMP_2
+	setvar VAR_0x8005, FALSE
+	special OrangeBoat_SettleUp
+	goto_if_eq VAR_RESULT, FALSE, OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_LostNothing
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_Lost, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Done
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_LostNothing::
+	msgbox OrangeIslands_Kinnow_BattleBoat_Ring_Text_LostNothing, MSGBOX_DEFAULT
+	goto OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Done
+
+OrangeIslands_Kinnow_BattleBoat_Ring_EventScript_Done::
+	clearflag FLAG_ORANGE_IN_FACTORY
+	special LoadPlayerParty
+	special HealPlayerParty
+	special CalculatePlayerPartyCount
+	releaseall
+	end
+@ --- end build_battle_boat.py ---

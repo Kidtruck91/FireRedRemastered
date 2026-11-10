@@ -16,6 +16,7 @@
 #include "constants/moves.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
+#include "constants/event_objects.h"
 #include "constants/maps.h"
 
 // The KINNOW battle boat's arena.
@@ -61,6 +62,8 @@ struct BoatLeaderMon
 struct BoatLeader
 {
     const u8 *name;
+    const u8 *line;      // what they say walking onto the floor
+    u16 gfxId;           // a stand-in: HOENN's leaders have no overworld sprite
     u8 trainerPic;
     u8 count;
     const struct BoatLeaderMon *party;
@@ -153,15 +156,26 @@ static const u8 sName_Winona[] = _("WINONA");
 static const u8 sName_TateAndLiza[] = _("TATE&LIZA");
 static const u8 sName_Wallace[] = _("WALLACE");
 
+// HOENN's leaders have no overworld sprites in FireRed, so each gets a stand-in
+// for the walk onto the floor. The battle sprite is the real one.
+static const u8 sLine_Roxanne[] = _("I still teach. Consider this a\nlesson in what rock will take.");
+static const u8 sLine_Brawly[] = _("Big waves out past the harbour\ntoday. You will do instead.");
+static const u8 sLine_Wattson[] = _("Wahahah! Mind the floor, it is\nmetal and I am not careful.");
+static const u8 sLine_Flannery[] = _("I was told to go easy on the\nguests. I have decided not to.");
+static const u8 sLine_Norman[] = _("No speeches. Show me what the\nhouse lent you.");
+static const u8 sLine_Winona[] = _("Six of mine never touch the\nground. Let us see yours.");
+static const u8 sLine_TateAndLiza[] = _("We agreed on how this goes.\nYou were not part of the talk.");
+static const u8 sLine_Wallace[] = _("A boat, of all the places to be\nasked for a match. Delightful.");
+
 static const struct BoatLeader sBoatLeaders[] = {
-    { sName_Roxanne,     TRAINER_PIC_LEADER_ROXANNE,        ARRAY_COUNT(sParty_Roxanne),     sParty_Roxanne },
-    { sName_Brawly,      TRAINER_PIC_LEADER_BRAWLY,         ARRAY_COUNT(sParty_Brawly),      sParty_Brawly },
-    { sName_Wattson,     TRAINER_PIC_LEADER_WATTSON,        ARRAY_COUNT(sParty_Wattson),     sParty_Wattson },
-    { sName_Flannery,    TRAINER_PIC_LEADER_FLANNERY,       ARRAY_COUNT(sParty_Flannery),    sParty_Flannery },
-    { sName_Norman,      TRAINER_PIC_LEADER_NORMAN,         ARRAY_COUNT(sParty_Norman),      sParty_Norman },
-    { sName_Winona,      TRAINER_PIC_LEADER_WINONA,         ARRAY_COUNT(sParty_Winona),      sParty_Winona },
-    { sName_TateAndLiza, TRAINER_PIC_LEADER_TATE_AND_LIZA,  ARRAY_COUNT(sParty_TateAndLiza), sParty_TateAndLiza },
-    { sName_Wallace,     TRAINER_PIC_LEADER_WALLACE,        ARRAY_COUNT(sParty_Wallace),     sParty_Wallace },
+    { sName_Roxanne, sLine_Roxanne, OBJ_EVENT_GFX_LASS, TRAINER_PIC_LEADER_ROXANNE,        ARRAY_COUNT(sParty_Roxanne),     sParty_Roxanne },
+    { sName_Brawly, sLine_Brawly, OBJ_EVENT_GFX_BLACKBELT, TRAINER_PIC_LEADER_BRAWLY,         ARRAY_COUNT(sParty_Brawly),      sParty_Brawly },
+    { sName_Wattson, sLine_Wattson, OBJ_EVENT_GFX_GENTLEMAN, TRAINER_PIC_LEADER_WATTSON,        ARRAY_COUNT(sParty_Wattson),     sParty_Wattson },
+    { sName_Flannery, sLine_Flannery, OBJ_EVENT_GFX_BEAUTY, TRAINER_PIC_LEADER_FLANNERY,       ARRAY_COUNT(sParty_Flannery),    sParty_Flannery },
+    { sName_Norman, sLine_Norman, OBJ_EVENT_GFX_SCIENTIST, TRAINER_PIC_LEADER_NORMAN,         ARRAY_COUNT(sParty_Norman),      sParty_Norman },
+    { sName_Winona, sLine_Winona, OBJ_EVENT_GFX_WOMAN_2, TRAINER_PIC_LEADER_WINONA,         ARRAY_COUNT(sParty_Winona),      sParty_Winona },
+    { sName_TateAndLiza, sLine_TateAndLiza, OBJ_EVENT_GFX_PICNICKER, TRAINER_PIC_LEADER_TATE_AND_LIZA,  ARRAY_COUNT(sParty_TateAndLiza), sParty_TateAndLiza },
+    { sName_Wallace, sLine_Wallace, OBJ_EVENT_GFX_COOLTRAINER_M, TRAINER_PIC_LEADER_WALLACE,        ARRAY_COUNT(sParty_Wallace),     sParty_Wallace },
 };
 
 #define LEADER_COUNT ARRAY_COUNT(sBoatLeaders)
@@ -330,6 +344,57 @@ void OrangeBoat_PrepareRound(void)
     gSpecialVar_Result = OrangeBoat_IsLeaderRound();
 }
 
+// Who walks onto the floor, and what they say when they get there.
+//
+// A rented trainer's overworld sprite comes from the FACTORY's own
+// facility-class table, which SET_OPPONENT_GFX puts in VAR_OBJ_GFX_ID_0; a
+// leader has no sprite in FireRed, so the table above gives each a stand-in.
+// Either way the object is removed and re-added after the var is set, which
+// is what makes it re-read its graphics.
+//
+// The line is the one piece of theatre the slim trainer table cannot pay for:
+// Emerald's frontier trainers carry speeches and these do not, so a rented
+// one draws from the list below, chosen by who they are rather than at
+// random, so the same opponent says the same thing twice in a row.
+
+static const u8 sChallengerLine0[] = _("Rented, same as yours. Let us see\nwho got the better draw.");
+static const u8 sChallengerLine1[] = _("I have been down here all week.\nYou are the first new face.");
+static const u8 sChallengerLine2[] = _("No idea what I am holding. That\nis half the fun of it.");
+static const u8 sChallengerLine3[] = _("The house takes a cut either way.\nMight as well enjoy ourselves.");
+static const u8 sChallengerLine4[] = _("Three each. Short and honest.");
+static const u8 sChallengerLine5[] = _("Lose and you keep walking. Win\nand you take one of mine.");
+static const u8 sChallengerLine6[] = _("Do not look at the floor. Look at\nwhat I send out.");
+static const u8 sChallengerLine7[] = _("Been beaten four times tonight.\nI am owed one.");
+
+static const u8 *const sChallengerLines[] = {
+    sChallengerLine0, sChallengerLine1, sChallengerLine2, sChallengerLine3,
+    sChallengerLine4, sChallengerLine5, sChallengerLine6, sChallengerLine7,
+};
+
+void OrangeBoat_GetChallengerName(void)
+{
+    OrangeBoat_OpponentName(gStringVar1);
+}
+
+void OrangeBoat_GetChallengerLine(void)
+{
+    if (OrangeBoat_IsLeaderRound())
+        StringCopy(gStringVar4, CurrentLeader()->line);
+    else
+        StringCopy(gStringVar4, sChallengerLines[gTrainerBattleOpponent_A
+                                                 % ARRAY_COUNT(sChallengerLines)]);
+}
+
+// The sprite that walks in. VAR_OBJ_GFX_ID_0 is what the object event's
+// graphics id is set to, so this is read when the object is re-added.
+void OrangeBoat_SetChallengerGfx(void)
+{
+    if (OrangeBoat_IsLeaderRound())
+        VarSet(VAR_OBJ_GFX_ID_0, CurrentLeader()->gfxId);
+    else
+        SetBattleFacilityTrainerGfxId(gTrainerBattleOpponent_A, 0);
+}
+
 // No follower aboard.
 //
 // The boat lends you POKEMON, and a rented one trotting along behind the
@@ -360,6 +425,22 @@ bool8 OrangeBoat_SuppressesFollower(void)
         || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_CABIN3)
         || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_GALLEY)
         || num == MAP_NUM(ORANGE_ISLANDS_KINNOW_BATTLE_BOAT_ARENA);
+}
+
+// Whether the rented three are the party right now, as opposed to the run
+// being open but put down. The desk needs to know: stashing the player's own
+// team again when it is not the one in hand would write the rentals over it.
+
+void OrangeBoat_RentalsAreLive(void)
+{
+    gSpecialVar_Result =
+        (gSaveBlock2Ptr->factory.challengeStatus == FACTORY_CHALLENGE_RUNNING);
+}
+
+void OrangeBoat_MarkRentalsLive(void)
+{
+    gSaveBlock2Ptr->factory.challengeStatus = FACTORY_CHALLENGE_RUNNING;
+    gSaveBlock2Ptr->factory.challengePaused = FALSE;
 }
 
 // Bookkeeping between rounds. VAR_RESULT comes back TRUE when that was the
