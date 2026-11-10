@@ -405,6 +405,14 @@ $(PSSGFXDIR)/ludicolo.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/ludico
 $(PSSGFXDIR)/whiscash.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/whiscash_bg.4bpp
 	@cat $^ >$@
 
+# HOENN's gym leaders came over from pokeemerald, which stores an object event
+# sheet as a plain left-to-right strip of frames. FireRed's own people sheets
+# are already in tile order, so the generic rule suits them and not these.
+LEADERGFX := $(addprefix $(EVENTOBJGFXDIR)/pics/people/leader_,roxanne brawly wattson flannery norman winona tate wallace)
+
+$(addsuffix .4bpp,$(LEADERGFX)): %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
 $(FIELDEFFECTSGFXDIR)/pics/underwater_bubbles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
