@@ -202,7 +202,7 @@
       "x": 27,
       "y": 41,
       "elevation": 0,
-      "dest_map": "MAP_ORANGE_ISLANDS_SUNBURST_CRYSTALSTATION",
+      "dest_map": "MAP_DYNAMIC",
       "dest_warp_id": "0"
     },
     {
@@ -728,5 +728,7 @@
       "script": "OrangeIslands_Sunburst_EventScript_SeaEdgeToRoute7"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

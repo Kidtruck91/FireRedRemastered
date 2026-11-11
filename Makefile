@@ -62,6 +62,12 @@ LIBPATH := -L $(shell dirname $(shell $(MODERNCC) --print-file-name=libgcc.a)) -
 endif
 
 CPPFLAGS := -iquote include -D$(GAME_VERSION) -DREVISION=$(GAME_REVISION) -D$(GAME_LANGUAGE) -DMODERN=$(MODERN)
+ifeq ($(ORANGE_TEST),1)
+CPPFLAGS += -DORANGE_TEST_START
+ifeq ($(BOAT),1)                
+CPPFLAGS += -DORANGE_TEST_BOAT    
+endif
+endif
 ifeq ($(MODERN),0)
 CPPFLAGS += -I tools/agbcc -I tools/agbcc/include -nostdinc -undef
 endif

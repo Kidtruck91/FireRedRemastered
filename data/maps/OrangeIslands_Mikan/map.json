@@ -618,5 +618,7 @@
       "script": "OrangeIslands_Mikan_EventScript_SeaEdgeToRoute5"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

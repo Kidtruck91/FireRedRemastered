@@ -173,5 +173,7 @@
       "script": "OrangeIslands_Mikan_Beach_EventScript_GymShut"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }
